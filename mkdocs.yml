@@ -10,7 +10,8 @@ theme:
 
 nav:
     - Overview: 'index.md'
-    - Welcome: 'welcome.md'
+    - Data:
+        dataset: "tutor/data.md"
 
 extra:
     social:
