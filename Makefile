@@ -1,8 +1,7 @@
-
 install-python-evn:
 	apt-get update && \
-    apt-get install python3-pip -y && \
-    pip3 install mkdocs
+	apt-get install python3-pip -y && \
+	pip3 install mkdocs
 
 deploy-github-page:
 	mkdir github_page && cd github_page && git init && \
