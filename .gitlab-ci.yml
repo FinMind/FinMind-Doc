@@ -6,7 +6,10 @@ stages:
 
 deploy:githubpage:
   stage: deploy
+  before_script:
+    - make install-python-evn
   script:
+    - mkdocs build
     - make deploy-github-page
   only:
     - master
