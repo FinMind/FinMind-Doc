@@ -1,73 +1,19 @@
-site_name: Shioaji
-site_description: Shioaji is provided by SinoPac the most pythonic API for trading the Taiwan and global financial market. You can use your favorite Python packages such as NumPy, pandas, PyTorch or TensorFlow to build your trading model with integrated the Shioaji API on cross-platform.
+site_name: FinMind
 site_url: https://finmind.github.io/FinMindDoc/
-site_author: 'Sam, '
+site_author: 'Sam'
 
 copyright: 'Copyright'
 
-
 theme:
-    name: 'rtd-dropdown'
+    name: 'readthedocs'
     language: 'en'
-    palette:
-        primary: 'Cyan'
-        accent: 'amber'
-    logo: 'img/shioaji-logo.svg'
-    favicon: 'https://sinotrade.github.io/images/shioaji-logo-01.png'
-
-repo_name: Sinotrade/Shioaji
-repo_url: https://github.com/Sinotrade/Shioaji
-edit_uri: ''
-google_analytics:
-    - 'UA-129719388-1'
-    - 'auto'
 
 nav:
     - Overview: 'index.md'
-    - Quick Start: 'quickstart.md'
-    - Tutorial - User Guide:
-      - Contract: 'tutor/contract.md'
-      - Market Data:
-        - Streaming Market Data: 'tutor/market_data/streaming.md'
-        - Historical Market Data: 'tutor/market_data/historical.md'
-        - Snapshot: 'tutor/snapshot.md'
-      - Order: 
-        - Stock Trade for Trade: 'tutor/order/Stock_Trade_for_Trade.md'
-        - Stock: 'tutor/order/Stock.md'
-        - Future and Option: 'tutor/order/Future_Option.md'
-      - Account Data:
-        - Account & Portfolio: 'tutor/accounting/account_portfolio.md'
-        - Position: 'tutor/accounting/position.md'
-      - Order & Deal Event: "tutor/order_deal_event.md"
-      - Advanced Guide:
-        - None Block & Block Mode: 'tutor/advanced/nonblock.md'
-        - Touch Price Order: 'tutor/advanced/touchorder.md'
-    - Misc:
-      - CA: 'misc/CA.md'
-    - Release Note: 'release.md'
-    - zh-tw: zh-tw/index.md
-
-markdown_extensions:
-    - toc:
-        permalink: true
-    - markdown.extensions.codehilite:
-        guess_lang: false
-    - markdown_include.include:
-        base_path: docs
-    - markdown.extensions.meta:
-    - admonition
-    - codehilite
-    - extra
-    - pymdownx.inlinehilite:
-    - pymdownx.emoji:
-        emoji_index: !!python/name:pymdownx.emoji.gemoji
-    - pymdownx.superfences:
-        custom_fences:
-            - name: mermaid
-              class: mermaid
-              format: !!python/name:pymdownx.superfences.fence_div_format
+    - Data:
+        dataset: "tutor/data.md"
 
 extra:
     social:
         - type: 'github'
-          link: 'https://github.com/Sinotrade/Shioaji'
+          link: 'https://github.com/FinMind/FinMind'

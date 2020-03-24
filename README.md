@@ -1,2 +1,0 @@
-# finmind-githubpage
-

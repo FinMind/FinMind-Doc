@@ -2,79 +2,17 @@ variables:
   GIT_STGIT_STRATEGY: fetch
 
 stages:
-  - prepare
-  - build
   - deploy
-
-prepare:hugo:image:
-  stage: prepare
-  script:
-    - docker pull cibuilds/hugo:0.50
-  when: manual
-  tags:
-    - shell
-
-prepare:mkdocs:image:
-  stage: prepare
-  script:
-    - make mkdocs-images
-  when: manual
-  tags:
-    - shell
-
-.build:hugo:
-  stage: build
-  script:
-    - hugo
-  only:
-    - master
-  artifacts:
-    name: "public"
-    paths:
-      - public
-    expire_in: 1 day
-  tags:
-    - hugo
-  
-build:mkdocs:
-  stage: build
-  script:
-    - python gen_release_note.py
-    - mkdocs build
-  only:
-    - master
-  artifacts:
-    name: "site"
-    paths:
-      - site
-    expire_in: 1 day
-  tags:
-    - mkdocs
-
-build:nbslides:
-  stage: build
-  before_script: 
-    - conda install nbconvert -y
-  script:
-    - make nbslides
-  only:
-    refs:
-      - master
-    changes:
-      - tutorial/**
-  artifacts:
-    name: "slides"
-    paths:
-      - slides
-    expire_in: 1 day
-  tags:
-    - shioaji
 
 deploy:githubpage:
   stage: deploy
+  before_script:
+    - make install-python-evn
   script:
+    - mkdocs build
     - make deploy-github-page
   only:
     - master
+    - schedules
   tags:
-    - hugo
+    - docker
