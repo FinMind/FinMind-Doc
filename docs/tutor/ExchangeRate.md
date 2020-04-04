@@ -2,7 +2,7 @@
 
 - [外幣對台幣資料表 TaiwanExchangeRate](https://finmind.github.io/tutor/TaiwanStock/#外幣對台幣資料表-TaiwanExchangeRate)
 
-另外針對資料集整理出外幣兌換清單，目前共有 19 中幣別
+另外針對資料集整理出外幣兌換清單，目前共有 19 種幣別
 
 - [外幣對台幣列表 TaiwanExchangeRate](https://finmind.github.io/tutor/TaiwanStock/#外幣對台幣列表-TaiwanExchangeRate)
 
