@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "53f0dad17ad7f48f8daa50a9063cd498a5c01c1f1c808fec48ae82c2d031bd0b"
+            "sha256": "8b2339250f9851b58756ae191f97093a160d4941255dbf698c55715508cd61cf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -106,11 +106,33 @@
             "index": "pypi",
             "version": "==1.1"
         },
+        "mkdocs-material": {
+            "hashes": [
+                "sha256:1d486635b03f5a2ec87325842f7b10c7ae7daa0eef76b185572eece6a6ea212c",
+                "sha256:7f3afa0a09c07d0b89a6a9755fdb00513aee8f0cec3538bb903325c80f66f444"
+            ],
+            "index": "pypi",
+            "version": "==4.6.3"
+        },
         "nltk": {
             "hashes": [
                 "sha256:bed45551259aa2101381bbdd5df37d44ca2669c5c3dad72439fa459b29137d94"
             ],
             "version": "==3.4.5"
+        },
+        "pygments": {
+            "hashes": [
+                "sha256:647344a061c249a3b74e230c739f434d7ea4d8b1d5f3721bc0f3558049b38f44",
+                "sha256:ff7a40b4860b727ab48fad6360eb351cc1b33cbf9b15a0f689ca5353e9463324"
+            ],
+            "version": "==2.6.1"
+        },
+        "pymdown-extensions": {
+            "hashes": [
+                "sha256:71cbc748789959d4b964fe8dc038f5436779d244399fd5ba3a0bbfe9a0e43b1f",
+                "sha256:d27a8bc8bb7ecac589e832465dbefe24d7fedd9792636c6d0ac521e5045bedc0"
+            ],
+            "version": "==7.0"
         },
         "pyyaml": {
             "hashes": [

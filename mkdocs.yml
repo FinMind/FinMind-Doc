@@ -5,7 +5,7 @@ site_author: 'Sam'
 copyright: 'Copyright'
 
 theme:
-    name: 'readthedocs'
+    name: 'material'
     language: 'en'
 
 nav:
