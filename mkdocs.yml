@@ -5,8 +5,10 @@ site_author: 'Sam'
 copyright: 'Copyright'
 
 theme:
-    name: 'material'
+    name: 'readthedocs'
+    # name: 'material'
     language: 'en'
+
 
 nav:
     - Overview: 'index.md'
@@ -20,6 +22,26 @@ nav:
             - UnitedKingdomStock: "tutor/UnitedKingdomStock.md"
         - ExchangeRate: "tutor/ExchangeRate.md"
         - InterestRate: "tutor/InterestRate.md"
+
+markdown_extensions:
+    - toc:
+        permalink: true
+    - markdown.extensions.codehilite:
+        guess_lang: false
+    - markdown_include.include:
+        base_path: docs
+    - markdown.extensions.meta:
+    - admonition
+    - codehilite
+    - extra
+    - pymdownx.inlinehilite:
+    - pymdownx.emoji:
+        emoji_index: !!python/name:pymdownx.emoji.gemoji
+    - pymdownx.superfences:
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_div_format
 
 extra:
     social:
