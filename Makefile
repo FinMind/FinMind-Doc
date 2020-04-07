@@ -1,7 +1,10 @@
 install-python-evn:
 	apt-get update && \
 	apt-get install python3-pip -y && \
-	pip3 install mkdocs
+	pip3 install mkdocs &&\
+	pip3 install markdown-include &&\
+	pip3 install mkdocs-material &&\
+	pip3 install pymdown-extensions
 
 deploy-github-page:
 	mkdir github_page && cd github_page && git init && \

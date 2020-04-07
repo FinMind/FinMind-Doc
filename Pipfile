@@ -9,6 +9,7 @@ verify_ssl = true
 mkdocs = "*"
 mkdocs-material = "*"
 markdown-include = "*"
+pymdown-extensions = "*"
 
 [requires]
 python_version = "3.6"
