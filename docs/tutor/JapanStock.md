@@ -1,4 +1,4 @@
-在美國股票市場，我們擁有 1 種資料集，如下:
+在日本股票市場，我們擁有 1 種資料集，如下:
 
 - [日本股價資料表 JapanStockPrice](https://finmind.github.io/tutor/JapanStock/#日本股價資料表-JapanStockPrice)
 

@@ -1,4 +1,4 @@
-在美國股票市場，我們擁有 1 種資料集，如下:
+在歐洲股票市場，我們擁有 1 種資料集，如下:
 
 - [歐洲股價資料表 EuropeStockPrice](https://finmind.github.io/tutor/EuropeStock/#歐洲股價資料表-EuropeStockPrice)
 
