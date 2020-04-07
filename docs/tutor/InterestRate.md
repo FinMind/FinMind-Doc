@@ -1,10 +1,10 @@
 在利率市場，我們擁有 1 種資料集，如下:
 
-- [利率資料表 InterestRate](https://finmind.github.io/tutor/TaiwanStock/#利率資料表-InterestRate)
+- [利率資料表 InterestRate](https://finmind.github.io/tutor/InterestRate/#利率資料表-InterestRate)
 
 另外針對資料集整理出央行清單，目前有 12 國央行
 
-- [利率資料央行列表 InterestRate](https://finmind.github.io/tutor/TaiwanStock/#利率資料央行列表-InterestRate)
+- [利率資料央行列表 InterestRate](https://finmind.github.io/tutor/InterestRate/#利率資料央行列表-InterestRate)
 
 #### 利率資料央行列表 InterestRate
 
