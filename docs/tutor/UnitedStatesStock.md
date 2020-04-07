@@ -4,7 +4,7 @@
 
 另外針對資料集整理出的列表如下:
 
-- [美國股票清單列表 USStockInfo](https://finmind.github.io/tutor/TaiwanStock/#美國股票清單列表-USStockInfo)
+- [美國股票清單列表 USStockInfo](https://finmind.github.io/tutor/UnitedStatesStock/#美國股票清單列表-USStockInfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://finmindapi.servebeer.com/docs#/default/method_api_v2_data_get)
 
@@ -22,13 +22,12 @@ data = data.json()
 data = pd.DataFrame(data['data'])
 print(data.head())
 
-# FIXME:
-  industry_category stock_id stock_name  type
-0               ETF     0050     元大台灣50     1
-1               ETF     0051    元大中型100     1
-2               ETF     0052       富邦科技     1
-3               ETF     0053       元大電子     1
-4               ETF     0054     元大台商50     1
+        date              ...                                 stock_name
+0  2019-01-11              ...               Dow Jones Industrial Average
+1  2019-01-10              ...                                      sp500
+2  2019-01-11              ...                           NASDAQ Composite
+3  2019-01-01              ...                         PHLX Semiconductor
+4        None              ...                      CBOE Volatility Index
 ```
 
 #### 美國股價1分資料表 USStockPriceMinute
