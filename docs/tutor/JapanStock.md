@@ -1,10 +1,10 @@
 在日本股票市場，我們擁有 1 種資料集，如下:
 
-- [日本股價資料表 JapanStockPrice](https://finmind.github.io/tutor/JapanStock/#日本股價資料表-JapanStockPrice)
+- [日本股價資料表 JapanStockPrice](https://finmind.github.io/tutor/JapanStock/#japanstockprice)
 
 另外針對資料集整理出的列表如下:
 
-- [日本股票清單列表 JapanStockInfo](https://finmind.github.io/tutor/JapanStock/#日本股票清單列表-JapanStockInfo)
+- [日本股票清單列表 JapanStockInfo](https://finmind.github.io/tutor/JapanStock/#japanstockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://finmindapi.servebeer.com/docs#/default/method_api_v2_data_get)
 

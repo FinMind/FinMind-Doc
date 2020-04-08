@@ -1,19 +1,28 @@
 在台灣股票市場，我們擁有 10 種資料集，如下:
 
-- [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanStock/#台灣股價資料表-TaiwanStockPrice)
-- [資產損益表 FinancialStatements](https://finmind.github.io/tutor/TaiwanStock/#資產損益表-FinancialStatements)
-- [資產負債表 BalanceSheet](https://finmind.github.io/tutor/TaiwanStock/#資產負債表-BalanceSheet)
-- [股利政策表 StockDividend](https://finmind.github.io/tutor/TaiwanStock/#股利政策表-StockDividend)
-- [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanStock/#融資融劵表-TaiwanStockMarginPurchaseShortSale)
-- [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanStock/#法人買賣表-InstitutionalInvestorsBuySell)
-- [股權分散表 Shareholding](https://finmind.github.io/tutor/TaiwanStock/#股權分散表-Shareholding)
-- [現金流量表 TaiwanCashFlowsStatement](https://finmind.github.io/tutor/TaiwanStock/#現金流量表-TaiwanCashFlowsStatement)
-- [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanStock/#台灣股價及時資料表-TaiwanStockPriceMinute)
-- [相關新聞表 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanStock/#相關新聞表-TaiwanStockNews)
+- [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockinfo)
+
+- [資產損益表 FinancialStatements](https://finmind.github.io/tutor/TaiwanStock/#financialstatements)
+
+- [資產負債表 BalanceSheet](https://finmind.github.io/tutor/TaiwanStock/#balancesheet)
+
+- [股利政策表 StockDividend](https://finmind.github.io/tutor/TaiwanStock/#stockdividend)
+
+- [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockmarginpurchaseshortsale)
+
+- [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanStock/#institutionalinvestorsbuysell)
+
+- [股權分散表 Shareholding](https://finmind.github.io/tutor/TaiwanStock/#shareholding)
+
+- [現金流量表 TaiwanCashFlowsStatement](https://finmind.github.io/tutor/TaiwanStock/#taiwancashflowsstatement)
+
+- [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockpriceminute)
+
+- [相關新聞表 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanStock/#taiwanstocknews)
 
 另外針對資料集整理出的列表如下:
 
-- [台灣股票清單列表 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanStock/#台灣股票清單列表-TaiwanStockInfo)
+- [台灣股票清單列表 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://finmindapi.servebeer.com/docs#/default/method_api_v2_data_get)
 

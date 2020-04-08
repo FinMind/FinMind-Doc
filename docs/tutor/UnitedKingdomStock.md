@@ -1,10 +1,10 @@
 在英國股票市場，我們擁有 1 種資料集，如下:
 
-- [英國股價資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedKingdomStock/#英國股價資料表-USStockPriceMinute)
+- [英國股價資料表 UKStockPrice](https://finmind.github.io/tutor/UnitedKingdomStock/#ukstockprice)
 
 另外針對資料集整理出的列表如下:
 
-- [英國股票清單列表 UKStockInfo](https://finmind.github.io/tutor/UnitedKingdomStock/#英國股票清單列表-UKStockInfo)
+- [英國股票清單列表 UKStockInfo](https://finmind.github.io/tutor/UnitedKingdomStock/#ukstockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://finmindapi.servebeer.com/docs#/default/method_api_v2_data_get)
 
@@ -30,7 +30,7 @@ date stock_id Country   stock_name
 4  2019-01-31   59FK.L     AMD  EURO.BK. 20
 ```
 
-#### 英國股價資料表 USStockPriceMinute
+#### 英國股價資料表 UKStockPrice
 
 ```python
 import requests
