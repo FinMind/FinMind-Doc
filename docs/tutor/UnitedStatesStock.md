@@ -1,10 +1,10 @@
 在美國股票市場，我們擁有 1 種資料集，如下:
 
-- [美國股價1分資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesStock/#美國股價1分資料表-USStockPriceMinute)
+- [美國股價1分資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesStock/#usstockpriceminute)
 
 另外針對資料集整理出的列表如下:
 
-- [美國股票清單列表 USStockInfo](https://finmind.github.io/tutor/UnitedStatesStock/#美國股票清單列表-USStockInfo)
+- [美國股票清單列表 USStockInfo](https://finmind.github.io/tutor/UnitedStatesStock/#usstockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://finmindapi.servebeer.com/docs#/default/method_api_v2_data_get)
 
