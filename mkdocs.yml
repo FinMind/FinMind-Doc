@@ -44,7 +44,3 @@ markdown_extensions:
               class: mermaid
               format: !!python/name:pymdownx.superfences.fence_div_format
 
-extra:
-    social:
-        - type: 'github'
-          link: 'https://github.com/FinMind/FinMind'
