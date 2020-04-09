@@ -5,8 +5,10 @@ site_author: 'Sam'
 copyright: 'Copyright'
 
 theme:
-    name: 'readthedocs'
-    # name: 'material'
+    name: material
+    highlightjs: true
+    hljs_languages:
+        - python
     language: 'en'
 
 
