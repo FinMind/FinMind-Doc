@@ -6,7 +6,7 @@
 
 - [歐洲股票清單列表 EuropeStockInfo](https://finmind.github.io/tutor/EuropeStock/#europestockinfo)
 
-根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://finmindapi.servebeer.com/docs#/default/method_api_v2_data_get)
+根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
 
 #### 歐洲股票清單列表 EuropeStockInfo
 
@@ -16,7 +16,7 @@
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=EuropeStockInfo'
+url = 'http://api.finmindtrade.com/api/v2/data?dataset=EuropeStockInfo'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -36,7 +36,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=EuropeStockPrice&stock_id=AALB.AS&date=2019-01-01'
+url = 'http://api.finmindtrade.com/api/v2/data?dataset=EuropeStockPrice&stock_id=AALB.AS&date=2019-01-01'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
