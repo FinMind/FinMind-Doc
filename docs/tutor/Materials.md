@@ -1,12 +1,12 @@
 在原物料市場，我們擁有 2 種資料集，如下:
 
-- [黃金價格表 GoldPrice](https://finmind.github.io/tutor/TaiwanStock/#goldprice)
+- [黃金價格表 GoldPrice](https://finmind.github.io/tutor/Materials/#goldprice)
 
-- [原油資料表 CrudeOilPrices](https://finmind.github.io/tutor/TaiwanStock/#crudeoilprices)
+- [原油資料表 CrudeOilPrices](https://finmind.github.io/tutor/Materials/#crudeoilprices)
 
 針對不同資料集也對應整理出商品代碼清單
 
-- [原油資料列表 CrudeOilPrices](https://finmind.github.io/tutor/TaiwanStock/#crudeoilprices)
+- [原油資料列表 CrudeOilPrices](https://finmind.github.io/tutor/Materials/#crudeoilprices)
 
 #### 黃金價格表 GoldPrice
 
