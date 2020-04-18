@@ -1,4 +1,4 @@
-在台灣股票市場，我們擁有 10 種資料集，如下:
+在台灣股票市場，我們擁有 16 種資料集，如下:
 
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockinfo)
 
@@ -8,15 +8,27 @@
 
 - [股利政策表 StockDividend](https://finmind.github.io/tutor/TaiwanStock/#stockdividend)
 
+- [除權除息結果表 StockDividendResult](https://finmind.github.io/tutor/TaiwanStock/#stockdividendresult)
+
 - [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockmarginpurchaseshortsale)
+
+- [台灣市場整體融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanStock/#totalmarginpurchaseshortSale)
 
 - [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanStock/#institutionalinvestorsbuysell)
 
-- [股權分散表 Shareholding](https://finmind.github.io/tutor/TaiwanStock/#shareholding)
+- [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanStock/#shareholding)
+
+- [股東持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockholdingsharesper)
 
 - [現金流量表 TaiwanCashFlowsStatement](https://finmind.github.io/tutor/TaiwanStock/#taiwancashflowsstatement)
 
 - [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockpriceminute)
+
+- [台灣股價及時最佳五檔買賣價量資料表 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockpriceminutedidask)
+
+- [台灣期貨交易表 TaiwanFutures](https://finmind.github.io/tutor/TaiwanStock/#taiwanfutures)
+
+- [台灣選擇權交易表 TaiwanOption](https://finmind.github.io/tutor/TaiwanStock/#taiwanoption)
 
 - [相關新聞表 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanStock/#taiwanstocknews)
 
@@ -128,6 +140,26 @@ print(data.head())
 4  2019-06-30     2330  CashIncreaseSubscriptionpRrice            
 ```
 
+#### 除權除息結果表 StockDividendResult
+
+```python
+import requests
+import pandas as pd
+url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=StockDividendResult&stock_id=2330&date=2020-01-01'
+
+data = requests.get(url)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+
+         date stock_id          type   value
+0  2020-03-19     2330   after_price  257.50
+1  2020-03-19     2330  before_price  260.00
+2  2020-03-19     2330     max_price  283.00
+3  2020-03-19     2330     min_price  232.00
+4  2020-03-19     2330    open_price  257.50
+```
+
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
 ```python
@@ -146,6 +178,27 @@ print(data.head())
 2  2019-01-04            ...                                 2475
 3  2019-01-07            ...                                 2164
 4  2019-01-08            ...                                 2154
+```
+
+#### 台灣市場整體融資融劵表 TotalMarginPurchaseShortSale
+
+```python
+import requests
+import pandas as pd
+
+url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=TotalMarginPurchaseShortSale&date=2020-04-01'
+
+data = requests.get(url)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+
+   TodayBalance  YesBalance     buy        date            name    sell
+0       5463820     5471770  236127  2020-04-01  MarginPurchase  233091
+1       5496478     5463820  327741  2020-04-06  MarginPurchase  291292
+2       5506839     5496478  389543  2020-04-07  MarginPurchase  370022
+3       5533088     5506838  381063  2020-04-08  MarginPurchase  349361
+4       5561841     5533088  349129  2020-04-09  MarginPurchase  313083
 ```
 
 #### 法人買賣表 InstitutionalInvestorsBuySell
@@ -168,7 +221,7 @@ print(data.head())
 4  2019-01-02     2330    175000     Investment_Trust    166000
 ```
 
-#### 股權分散表 Shareholding
+#### 股東結構表 Shareholding
 
 ```python
 import requests
@@ -186,6 +239,27 @@ print(data.head())
 2  2019-01-02     2330         0  Foreign_Dealer_Self         0
 3  2019-01-02     2330  13633825     Foreign_Investor  22365017
 4  2019-01-02     2330    175000     Investment_Trust    166000
+```
+
+#### 股東持股分級表 TaiwanStockHoldingSharesPer
+
+```python
+import requests
+import pandas as pd
+
+url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=TaiwanStockHoldingSharesPer&stock_id=2330&date=2020-01-01'
+data = requests.get(url)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+
+
+         date stock_id HoldingSharesLevel  people  percent       unit
+0  2020-01-03     2330              1-999  152189     0.12   31620477
+1  2020-01-03     2330        1,000-5,000  162537     1.23  319338776
+2  2020-01-03     2330      10,001-15,000    9197     0.43  112485162
+3  2020-01-03     2330    100,001-200,000    1597     0.85  221839181
+4  2020-01-03     2330      15,001-20,000    4388     0.29   77359293
 ```
 
 #### 現金流量表 TaiwanCashFlowsStatement
@@ -230,6 +304,18 @@ print(data.head())
 3  2019-05-28 13:21:18.000000     2330       231.0       1
 4  2019-05-28 13:21:23.000000     2330       231.5       1
 ```
+
+#### 台灣股價及時最佳五檔買賣價量資料表 TaiwanStockPriceMinuteBidAsk
+
+- 開發中
+
+#### 台灣期貨交易表 TaiwanFutures
+
+- 開發中
+
+#### 台灣選擇權交易表 TaiwanOption
+
+- 開發中
 
 #### 相關新聞表 TaiwanStockNews
 
