@@ -24,6 +24,8 @@ nav:
             - UnitedKingdomStock: "tutor/UnitedKingdomStock.md"
         - ExchangeRate: "tutor/ExchangeRate.md"
         - InterestRate: "tutor/InterestRate.md"
+        - Materials: "tutor/Materials.md"
+        - Macroeconomy: "tutor/Macroeconomy.md"
 
 markdown_extensions:
     - toc:
