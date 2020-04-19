@@ -16,8 +16,15 @@ nav:
     - Overview: 'index.md'
     - QuickStart: "quickstart.md"
     - Data:
-        - Stock:
-            - TaiwanStock: "tutor/TaiwanStock.md"
+        - StockMarket:
+            - TaiwanMarket:
+                - TaiwanMarketDataList: "tutor/TaiwanMarket/TaiwanMarketDataList.md"
+                - TaiwanStock: "tutor/TaiwanMarket/TaiwanStock.md"
+                - Fundamental: "tutor/TaiwanMarket/Fundamental.md"
+                - Chip: "tutor/TaiwanMarket/Chip.md"
+                - FinancialStatements: "tutor/TaiwanMarket/FinancialStatements.md"
+                - Shareholders: "tutor/TaiwanMarket/Shareholders.md"
+                - Derivative: "tutor/TaiwanMarket/Derivative.md"
             - UnitedStatesStock: "tutor/UnitedStatesStock.md"
             - EuropeStock: "tutor/EuropeStock.md"
             - JapanStock: "tutor/JapanStock.md"
@@ -25,7 +32,9 @@ nav:
         - ExchangeRate: "tutor/ExchangeRate.md"
         - InterestRate: "tutor/InterestRate.md"
         - Materials: "tutor/Materials.md"
-        - Macroeconomy: "tutor/Macroeconomy.md"
+        - Macroeconomy: "tutor/Macroeconomy.md"    
+    - Versions:
+        - What's New: "WhatIsNew.md"
 
 markdown_extensions:
     - toc:
