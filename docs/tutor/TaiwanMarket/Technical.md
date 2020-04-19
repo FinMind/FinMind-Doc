@@ -1,16 +1,16 @@
-在台灣股票資料，我們擁有 3 種資料集，如下:
+在台灣股票資料，我們擁有 4 種資料集，如下:
 
-- [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/TaiwanStock/#taiwanstockinfo)
+- [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 
-- [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/TaiwanStock/#taiwanstockpriceminute)
+- [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
 
 - 台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk (dev)
 
-- 台股 PER、PBR
+- [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockper)
 
 另外針對資料集整理出的列表如下:
 
-- [台灣股票清單列表 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/TaiwanStock/#taiwanstockinfo)
+- [台灣股票清單列表 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
 
@@ -96,3 +96,21 @@ print(data.head())
 
 - 開發中
 
+#### 台灣個股PER、PBR資料表 TaiwanStockPER
+
+```python
+import requests
+import pandas as pd
+
+url = "http://api.finmindtrade.com/api/v2/data"
+parameter = {
+    "dataset": "TaiwanStockPER",
+    "stock_id": "2330",
+    "date": "2020-04-01",
+}
+
+data = requests.get(url, params=parameter)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+```

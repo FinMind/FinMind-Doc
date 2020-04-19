@@ -1,12 +1,12 @@
 
-在台灣股票基本面，我們擁有 5 種資料集，如下:
+在台灣股票基本面，我們擁有 6 種資料集，如下:
 
-- [綜合損益表 FinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/FinancialStatements/#financialstatements)
-- [資產負債表 BalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/FinancialStatements/#balancesheet)
+- [綜合損益表 FinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#financialstatements)
+- [資產負債表 BalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#balancesheet)
 - [現金流量表 TaiwanCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwancashflowsstatement)
-- [股利政策表 StockDividend](https://finmind.github.io/tutor/TaiwanMarket/Shareholders/#stockdividend)
-- [除權除息結果表 StockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Shareholders/#stockdividendresult)
-- 月營收
+- [股利政策表 StockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#stockdividend)
+- [除權除息結果表 StockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#stockdividendresult)
+- [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
 
 #### 綜合損益表 FinancialStatements
 
@@ -106,4 +106,24 @@ print(data.head())
 2  2020-03-19     2330     max_price  283.00
 3  2020-03-19     2330     min_price  232.00
 4  2020-03-19     2330    open_price  257.50
+```
+
+#### 月營收表 TaiwanStockMonthRevenue
+
+```python
+import requests
+import pandas as pd
+url = 'http://api.finmindtrade.com/api/v2/data?dataset=TaiwanStockMonthRevenue&stock_id=2330&date=2019-04-01'
+
+data = requests.get(url)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+
+         date stock_id      ...      revenue_month  revenue_year
+0  2019-04-01     2330      ...                  3          2019
+1  2019-05-01     2330      ...                  4          2019
+2  2019-06-01     2330      ...                  5          2019
+3  2019-07-01     2330      ...                  6          2019
+4  2019-08-01     2330      ...                  7          2019
 ```
