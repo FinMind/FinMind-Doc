@@ -1,7 +1,7 @@
 
 在台灣股票新聞面，我們擁有 1 種資料集，如下:
 
-- [相關新聞表 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocknews)
+- [相關新聞表 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstocknews)
 
 
 #### 相關新聞表 TaiwanStockNews

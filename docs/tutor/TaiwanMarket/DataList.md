@@ -4,10 +4,10 @@
 
 #### 股價 TaiwanStock
 
-- [台灣股價 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
+- [台灣股價 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台灣即時股價 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
 - [台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminutedidask)
-- [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/TaiwanStockPER/#taiwanstockper)
+- [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 
 #### 基本面 Fundamental
 
@@ -21,10 +21,10 @@
 #### 籌碼面 Chip
 
 - [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
-- [台灣市場整體融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortSale)
+- [台灣市場整體融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortsale)
 - [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
 - [台灣市場整體法人買賣表 InstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestors)
-- [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanStock/Chip/#shareholding)
+- [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
 - [股東持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 
 
