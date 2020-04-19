@@ -1,10 +1,13 @@
-在台灣股票籌碼面資料，我們擁有 5 種資料集，如下:
+在台灣股票籌碼面，我們擁有 5 種資料集，如下:
+
 
 - [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
 
 - [台灣市場整體融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortSale)
 
 - [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
+
+- 台灣市場整體法人買賣表 InstitutionalInvestors
 
 - [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
 

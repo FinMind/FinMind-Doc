@@ -1,11 +1,22 @@
-# Welcome to FinMind
+## 這是什麼? 
+**FinMind** 提供超過 50 種金融開源數據。
 
-FinMind is about Financial Data, Visualize and Mining.
+* 技術面 : 台股股價 daily、即時 tick data、即時最佳五檔、PER、PBR。
+* 基本面 : 綜合損益表、現金流量表、資產負債表、股利政策表、除權除息結果表、月營收。
+* 籌碼面 : 外資持股、股權分散表、融資融券、三大法人買賣。
+* 消息面 : 台股相關新聞。
+* 衍生性商品 : 期貨、選擇權交易明細。
+* 國際市場 : 美股股價 daily、minute、美國債券殖利率、貨幣發行量(美國)、黃金價格、原油價格、G8 央行利率、G8 匯率、
 
-### Introduce
+資料每天更新。你不需收集資料，就可進行分析。未來將持續新增更多 data。
 
-Stocks are financial products that most people are familiar with. The stock price will be affected by many factors, including central bank interest rates, exchange rates, raw material prices, and international oil prices.
+## What is it?
+**FinMind** is open source of more than [50 datasets](https://finmind.github.io/)  , contain
 
-Similarly, other financial products will interact with each other. If we conduct a holistic financial analysis, we can not only look at a single piece of data, but also extract valuable information from it.
+Taiwan stock trade data daily、tick, Financial Statements, Balance Sheet, Cash Flows Statement, Month Revenue, Holding Shares Per, Institutional Investors Buy Sell. Taiwan Futures Trade Detail, Taiwan Option Trade Detail.
 
-The following will introduce our products.
+US stock price daily, minute ( 2019-06-01 ~ now, total more than 80 million data ), oil price, gold price, [G7](https://zh.wikipedia.org/zh-tw/%E5%85%AB%E5%A4%A7%E5%B7%A5%E6%A5%AD%E5%9C%8B%E7%B5%84%E7%B9%94) exchange rate, interest rate. <br>
+US Government Bonds Yield.
+
+The datasets are automatically updated daily.
+You can analyze financial data without having to collect the data by yourself.<br>

@@ -2,6 +2,11 @@
 
 希望透過如下說明，可以快速了解 FinMind data api 使用方式
 
+* :warning: note 流量限制
+
+    限制 request 上限 : 600/hour。Limit amount of request, 600/hour. <br>
+    至 [FinMind](https://finmindtrade.com/register.html) 註冊後，request api add user_id, password 參數，使用上限可提高到 1500/hr。
+
 ## FinMind data api 主要有三種類型 API
 
 - 獲取資料 API
@@ -9,7 +14,7 @@
     根據你想使用的資料集來獲取資料，例如想要查詢台灣股票市場個股的價格，就可以透過 TaiwanStockPrice 資料集來查詢
     
     ```
-    url: http://api.finmindtrade.com/api/v2/data
+    http://api.finmindtrade.com/api/v2/data
     ```
 
 - 查詢資料參數清單 API
@@ -19,7 +24,7 @@
     只要資料集選擇 TaiwanExchangeRate 就可以透過這 API 來查詢目前跟台幣兌換的幣別
 
     ```
-    url: http://api.finmindtrade.com/api/v2/datalist
+    http://api.finmindtrade.com/api/v2/datalist
     ```
 
 - 查詢欄位名稱中英對照 API
@@ -28,7 +33,7 @@
     例如資產負債表中 **AccountsPayable**，透過這 API 得知中文叫 **應付帳款** ，藉此來幫助你了解資料 
 
     ```
-    url: http://api.finmindtrade.com/api/v2/translation
+    http://api.finmindtrade.com/api/v2/translation
     ```
 
 ## API 描述
@@ -80,4 +85,4 @@ dataset       | str |  Y | 資料集名稱
 user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
 password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
 
-更多資料相關資訊請參考 Data，會有更詳盡的說明
+

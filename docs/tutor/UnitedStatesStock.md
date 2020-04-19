@@ -1,6 +1,8 @@
-在美國股票市場，我們擁有 1 種資料集，如下:
+在美國股票市場，我們擁有 2 種資料集，如下:
 
-- [美國股價1分資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesStock/#usstockpriceminute)
+- [美國股價 minute 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesStock/#minute-usstockpriceminute)
+
+- 美國股價資料表
 
 另外針對資料集整理出的列表如下:
 
@@ -30,7 +32,7 @@ print(data.head())
 4        None              ...                      CBOE Volatility Index
 ```
 
-#### 美國股價1分資料表 USStockPriceMinute
+#### 美國股價 minute 資料表 USStockPriceMinute
 
 ```python
 import requests

@@ -24,7 +24,7 @@
 
 - [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockpriceminute)
 
-- [台灣股價及時最佳五檔買賣價量資料表 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockpriceminutedidask)
+- [台灣股價及時最佳五檔買賣價量資料表 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanStock/#taiwanstockpriceminutebidask)
 
 - [台灣期貨交易表 TaiwanFutures](https://finmind.github.io/tutor/TaiwanStock/#taiwanfutures)
 
