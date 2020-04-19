@@ -9,9 +9,9 @@
 
 #### 2020-04-15
 * 新增 document
-* 新增 [台股即時股價](https://finmind.github.io/tutor/TaiwanMarket/TaiwanStock/#taiwanstockpriceminute)
+* 新增 [台股即時股價](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
 * 新增 [美國債券殖利率](https://finmind.github.io/tutor/Macroeconomy/#governmentbondsyield)
-* 新增 台股 PER、PBR
+* 新增 [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockper)
 
 
 #### 2019-10-23

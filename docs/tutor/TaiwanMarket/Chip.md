@@ -7,7 +7,7 @@
 
 - [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
 
-- 台灣市場整體法人買賣表 InstitutionalInvestors
+- [台灣市場整體法人買賣表 InstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestors)
 
 - [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
 
@@ -72,6 +72,26 @@ print(data.head())
 2  2019-01-02     2330         0  Foreign_Dealer_Self         0
 3  2019-01-02     2330  13633825     Foreign_Investor  22365017
 4  2019-01-02     2330    175000     Investment_Trust    166000
+```
+
+#### 台灣市場整體法人買賣表 InstitutionalInvestors
+
+```python
+import requests
+import pandas as pd
+
+url = 'http://api.finmindtrade.com/api/v2/data?dataset=InstitutionalInvestors&stock_id=2330&date=2020-04-01'
+data = requests.get(url)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+
+           buy        date                 name         sell
+0       123150  2020-04-01  Foreign_Dealer_Self       266220
+1  41269248850  2020-04-01                total  45771643971
+2       188700  2020-04-06  Foreign_Dealer_Self       954220
+3  64348929380  2020-04-06                total  60616673273
+4       810310  2020-04-07  Foreign_Dealer_Self      1394680
 ```
 
 #### 股東結構表 Shareholding
