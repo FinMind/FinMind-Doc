@@ -22,10 +22,18 @@ nav:
         - Chip: "tutor/TaiwanMarket/Chip.md"
         - Derivative: "tutor/TaiwanMarket/Derivative.md"
         - Others: "tutor/TaiwanMarket/Others.md"
-    - UnitedStatesStock: "tutor/UnitedStatesStock.md"
-    - EuropeStock: "tutor/EuropeStock.md"
-    - JapanStock: "tutor/JapanStock.md"
-    - UnitedKingdomStock: "tutor/UnitedKingdomStock.md"
+    - UnitedStatesMarket:
+        - DataList: "tutor/UnitedStatesMarket/DataList.md"
+        - Technical: "tutor/UnitedStatesMarket/Technical.md"
+    - UnitedKingdomMarket:
+        - DataList: "tutor/UnitedKingdomMarket/DataList.md"
+        - Technical: "tutor/UnitedKingdomMarket/Technical.md"
+    - EuropeMarket:
+        - DataList: "tutor/EuropeMarket/DataList.md"
+        - Technical: "tutor/EuropeMarket/Technical.md"
+    - JapanMarket:
+        - DataList: "tutor/JapanMarket/DataList.md"
+        - Technical: "tutor/JapanMarket/Technical.md"
     - ExchangeRate: "tutor/ExchangeRate.md"
     - InterestRate: "tutor/InterestRate.md"
     - Materials: "tutor/Materials.md"

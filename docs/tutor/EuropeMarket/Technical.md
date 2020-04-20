@@ -1,10 +1,10 @@
-在歐洲股票市場，我們擁有 1 種資料集，如下:
+在歐洲股票資料，我們擁有 1 種資料集，如下:
 
-- [歐洲股價資料表 EuropeStockPrice](https://finmind.github.io/tutor/EuropeStock/#europestockprice)
+- [歐洲股價資料表 EuropeStockPrice](https://finmind.github.io/tutor/EuropeMarket/Technical/#europestockprice)
 
 另外針對資料集整理出的列表如下:
 
-- [歐洲股票清單列表 EuropeStockInfo](https://finmind.github.io/tutor/EuropeStock/#europestockinfo)
+- [歐洲股票清單列表 EuropeStockInfo](https://finmind.github.io/tutor/EuropeMarket/Technical/#europestockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
 

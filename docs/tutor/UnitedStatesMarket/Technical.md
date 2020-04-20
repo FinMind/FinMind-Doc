@@ -1,12 +1,10 @@
-在美國股票市場，我們擁有 2 種資料集，如下:
+在美國股票資料，我們擁有 1 種資料集，如下:
 
-- [美國股價 minute 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesStock/#minute-usstockpriceminute)
-
-- 美國股價資料表
+- [美國股價 minute 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#minute-usstockpriceminute)
 
 另外針對資料集整理出的列表如下:
 
-- [美國股票清單列表 USStockInfo](https://finmind.github.io/tutor/UnitedStatesStock/#usstockinfo)
+- [美國股票清單列表 USStockInfo](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#usstockinfo)
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
 
