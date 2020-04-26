@@ -5,7 +5,7 @@
 
 #### 2020-04-24
 * 新增 台股即時最佳五檔
-* 新增 [台股期貨即時報價](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttickinfo)
+* 新增 [台股期貨即時報價](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#info-taiwanfutopttickinfo)
 
 #### 2020-04-15
 * 新增 document
