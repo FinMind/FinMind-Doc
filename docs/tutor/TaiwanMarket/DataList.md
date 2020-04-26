@@ -1,4 +1,4 @@
-在台灣金融市場，我們擁有 19 種資料集，如下:
+在台灣金融市場，我們擁有 24 種資料集，如下:
 
 - [台灣股票清單列表 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 
