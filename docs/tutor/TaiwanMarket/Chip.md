@@ -1,17 +1,13 @@
-在台灣股票籌碼面，我們擁有 5 種資料集，如下:
+在台股籌碼面，我們擁有 7 種資料集，如下:
 
 
 - [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
-
 - [台灣市場整體融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortsale)
-
-- [法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
-
+- [三大法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
 - [台灣市場整體法人買賣表 InstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestors)
-
 - [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
-
 - [股東持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
+- [借券成交明細 SecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#SecuritiesLending)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
@@ -133,4 +129,22 @@ print(data.head())
 2  2020-01-03     2330      10,001-15,000    9197     0.43  112485162
 3  2020-01-03     2330    100,001-200,000    1597     0.85  221839181
 4  2020-01-03     2330      15,001-20,000    4388     0.29   77359293
+```
+
+#### 借券成交明細 SecuritiesLending
+
+```python
+import requests
+import pandas as pd
+
+url = "http://api.finmindtrade.com/api/v2/data"
+parameter = {
+    "dataset": "StockStatisticsOfOrderBookAndTrade",
+    "date": "2020-04-01",
+}
+
+data = requests.get(url, params=parameter)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
 ```

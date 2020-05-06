@@ -1,5 +1,5 @@
 
-在台灣股票基本面，我們擁有 6 種資料集，如下:
+在台股基本面，我們擁有 6 種資料集，如下:
 
 - [綜合損益表 FinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#financialstatements)
 - [資產負債表 BalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#balancesheet)

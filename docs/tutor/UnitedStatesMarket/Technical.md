@@ -1,6 +1,7 @@
-在美國股票資料，我們擁有 1 種資料集，如下:
+在美國股票資料，我們擁有 2 種資料集，如下:
 
 - [美國股價 minute 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#minute-usstockpriceminute)
+- [美國股價 daily 資料表 USStockPrice](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#daily-usstockprice)
 
 另外針對資料集整理出的列表如下:
 
@@ -48,4 +49,23 @@ print(data.head())
 2  2020-02-13 20:04:00     ^DJI  29468.7   ...    29467.3  29490.0  577330
 3  2020-02-13 20:05:00     ^DJI  29474.1   ...    29465.8  29468.0  439754
 4  2020-02-13 20:06:00     ^DJI  29473.3   ...    29473.3  29474.7  412897
+```
+
+#### 美國股價 daily 資料表 USStockPrice
+
+```python
+import requests
+import pandas as pd
+
+url = "http://api.finmindtrade.com/api/v2/data"
+parameter = {
+    "dataset": "USStockPrice",
+    "stock_Id": "AAPL",
+    "date": "2020-04-01",
+}
+
+data = requests.get(url, params=parameter)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
 ```

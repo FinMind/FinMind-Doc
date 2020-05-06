@@ -1,12 +1,10 @@
-在台灣股票資料，我們擁有 4 種資料集，如下:
+在台股技術面，我們擁有 5 種資料集，如下:
 
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-
 - [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
-
 - 台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk (dev)
-
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
+- [每5秒委託成交統計 StockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#StockStatisticsOfOrderBookAndTrade)
 
 另外針對資料集整理出的列表如下:
 
@@ -106,6 +104,25 @@ url = "http://api.finmindtrade.com/api/v2/data"
 parameter = {
     "dataset": "TaiwanStockPER",
     "stock_id": "2330",
+    "date": "2020-04-01",
+}
+
+data = requests.get(url, params=parameter)
+data = data.json()
+data = pd.DataFrame(data['data'])
+print(data.head())
+```
+
+#### 每5秒委託成交統計 StockStatisticsOfOrderBookAndTrade ()
+(由於資料量過大，只提供 date 當天 data)
+
+```python
+import requests
+import pandas as pd
+
+url = "http://api.finmindtrade.com/api/v2/data"
+parameter = {
+    "dataset": "StockStatisticsOfOrderBookAndTrade",
     "date": "2020-04-01",
 }
 
