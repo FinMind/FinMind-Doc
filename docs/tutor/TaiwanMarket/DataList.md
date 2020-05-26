@@ -31,13 +31,13 @@
 
 #### 衍生性金融商品 Derivative
 
-- [台灣期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
-- [台灣選擇權交易明細表 TaiwanOptionTIck](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
 - [台股期貨、選擇權即時報價 Info TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#info-taiwanfutopttickinfo)
 - [台股期貨、選擇權即時報價 TaiwanFutOptTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttick)
 - [台灣期貨、選擇權 daily data Info TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#daily-data-info-taiwanoptionfutureinfo)
 - [台股期貨 daily 交易資料 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [台股選擇權 daily 交易資料 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
+- [台灣期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
+- [台灣選擇權交易明細表 TaiwanOptionTIck](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
 
 #### 其他 Others
 

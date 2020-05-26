@@ -1,110 +1,14 @@
 
 在台股衍生性商品資料，我們擁有 7 種資料集，如下:
 
-- [台灣期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
-- [台灣選擇權交易明細表 TaiwanOptionTIck](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
 - [台股期貨、選擇權即時報價 Info TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#info-taiwanfutopttickinfo)
 - [台股期貨、選擇權即時報價 TaiwanFutOptTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttick)
 - [台灣期貨、選擇權 daily data Info TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#daily-data-info-taiwanoptionfutureinfo)
 - [台股期貨 daily 交易資料 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [台股選擇權 daily 交易資料 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
+- [台灣期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
+- [台灣選擇權交易明細表 TaiwanOptionTIck](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
 
-
-#### 台灣期貨交易明細表 TaiwanFuturesTick
-
-(由於資料量過大，只提供 date 當天 data)
-
-!!! example
-    === "Python"
-        ```python
-        import requests
-        import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
-        parameter = {
-            "dataset": "TaiwanFuturesTick",
-            "stock_id": "MTX",
-            "date": "2020-04-01",
-        }
-        data = requests.get(url, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
-        print(data.head())
-        contract_date                 date futures_id   price volume
-        0   202004       2020-04-01 00:00:01        MTX  9641.0      2
-        1   202004       2020-04-01 00:00:01        MTX  9641.0      2
-        2   202004       2020-04-01 00:00:01        MTX  9641.0      6
-        3   202004       2020-04-01 00:00:02        MTX  9640.0      2
-        4   202004       2020-04-01 00:00:02        MTX  9640.0      2
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesTick",
-                            stock_id="MTX",
-                            date= "2020-01-02"
-                            )
-        )
-        data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
-        head(df)
-
-        contract_date                date futures_id   price volume
-        1:   202001      2020-01-02 08:45:00        MTX 12045.0    852
-        2:   202001      2020-01-02 08:45:00        MTX 12045.0      2
-        3:   202001      2020-01-02 08:45:00        MTX 12045.0      2
-        4:   202001      2020-01-02 08:45:00        MTX 12045.0      2
-        5:   202001      2020-01-02 08:45:00        MTX 12045.0      2
-        6:   202001      2020-01-02 08:45:00        MTX 12045.0      2
-        ```
-
-
-#### 台灣選擇權交易明細表 TaiwanOptionTick
-(由於資料量過大，只提供 date 當天 data)
-
-!!! example
-    === "Python"
-        ```python
-        import requests
-        import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
-        parameter = {
-            "dataset": "TaiwanOptionTick",
-            "stock_id": "OCO",
-            "date": "2019-09-05",
-        }
-        data = requests.get(url, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
-        print(data.head())
-
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionTick",
-                            stock_id="OCO",
-                            date= "2019-09-05"
-                            )
-        )
-        data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
-        head(df)
-
-        ```
 
 
 #### 台灣期貨即時報價Info TaiwanFutOptTickInfo
@@ -371,4 +275,98 @@
 
 
 
+#### 台灣期貨交易明細表 TaiwanFuturesTick
 
+(由於資料量過大，只提供 date 當天 data)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "http://api.finmindtrade.com/api/v2/data"
+        parameter = {
+            "dataset": "TaiwanFuturesTick",
+            "stock_id": "MTX",
+            "date": "2020-04-01",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        contract_date                 date futures_id   price volume
+        0   202004       2020-04-01 00:00:01        MTX  9641.0      2
+        1   202004       2020-04-01 00:00:01        MTX  9641.0      2
+        2   202004       2020-04-01 00:00:01        MTX  9641.0      6
+        3   202004       2020-04-01 00:00:02        MTX  9640.0      2
+        4   202004       2020-04-01 00:00:02        MTX  9640.0      2
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = 'http://api.finmindtrade.com/api/v2/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFuturesTick",
+                            stock_id="MTX",
+                            date= "2020-01-02"
+                            )
+        )
+        data = content(response)
+        df = data.table(matrix(unlist(data$data), 
+                            nrow=length(unlist(data$data[1]))
+        ))
+        colnames(df) = names(data$data)
+        head(df)
+
+        contract_date                date futures_id   price volume
+        1:   202001      2020-01-02 08:45:00        MTX 12045.0    852
+        2:   202001      2020-01-02 08:45:00        MTX 12045.0      2
+        3:   202001      2020-01-02 08:45:00        MTX 12045.0      2
+        4:   202001      2020-01-02 08:45:00        MTX 12045.0      2
+        5:   202001      2020-01-02 08:45:00        MTX 12045.0      2
+        6:   202001      2020-01-02 08:45:00        MTX 12045.0      2
+        ```
+
+
+#### 台灣選擇權交易明細表 TaiwanOptionTick
+(由於資料量過大，只提供 date 當天 data)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "http://api.finmindtrade.com/api/v2/data"
+        parameter = {
+            "dataset": "TaiwanOptionTick",
+            "stock_id": "OCO",
+            "date": "2019-09-05",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = 'http://api.finmindtrade.com/api/v2/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionTick",
+                            stock_id="OCO",
+                            date= "2019-09-05"
+                            )
+        )
+        data = content(response)
+        df = data.table(matrix(unlist(data$data), 
+                            nrow=length(unlist(data$data[1]))
+        ))
+        colnames(df) = names(data$data)
+        head(df)
+
+        ```
