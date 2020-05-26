@@ -1,10 +1,11 @@
 
-在台股衍生性商品資料，我們擁有 6 種資料集，如下:
+在台股衍生性商品資料，我們擁有 7 種資料集，如下:
 
 - [台灣期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
 - [台灣選擇權交易明細表 TaiwanOptionTIck](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
 - [台股期貨、選擇權即時報價 Info TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#info-taiwanfutopttickinfo)
 - [台股期貨、選擇權即時報價 TaiwanFutOptTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttick)
+- [台灣期貨、選擇權 daily data Info TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#daily-data-info-taiwanoptionfutureinfo)
 - [台股期貨 daily 交易資料 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [台股選擇權 daily 交易資料 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 
@@ -12,6 +13,7 @@
 #### 台灣期貨交易明細表 TaiwanFuturesTick
 
 (由於資料量過大，只提供 date 當天 data)
+
 !!! example
     === "Python"
         ```python
@@ -106,7 +108,6 @@
 
 
 #### 台灣期貨即時報價Info TaiwanFutOptTickInfo
-(由於資料量過大，只提供 date 當天 data)
 
 !!! example
     === "Python"
@@ -201,6 +202,55 @@
         5: 2020/05/16 00:04:48.422000 <list> <list>     TXFE0        2
         6: 2020/05/16 00:00:38.929000 <list> <list>     TXFE0        2
         ```
+
+
+
+#### 台灣期貨、選擇權 daily data Info TaiwanOptionFutureInfo
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "http://api.finmindtrade.com/api/v2/data"
+        parameter = {
+            "dataset": "TaiwanOptionFutureInfo",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        code               type
+        0  AAA  TaiwanOptionDaily
+        1  AAB  TaiwanOptionDaily
+        2  AAO  TaiwanOptionDaily
+        3  ABA  TaiwanOptionDaily
+        4  ABO  TaiwanOptionDaily
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'http://api.finmindtrade.com/api/v2/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionFutureInfo"
+                            )
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        code              type
+        1:  AAA TaiwanOptionDaily
+        2:  AAB TaiwanOptionDaily
+        3:  AAO TaiwanOptionDaily
+        4:  ABA TaiwanOptionDaily
+        5:  ABO TaiwanOptionDaily
+        6:  ACA TaiwanOptionDaily
+        ```
+
 
 #### 台灣期貨 TaiwanFuturesDaily
 (由於資料量過大，只提供 date 當天 data)
