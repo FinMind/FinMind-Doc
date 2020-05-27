@@ -11,6 +11,8 @@ theme:
         - python
     language: 'en'
 
+repo_name: FinMind/FinMind
+repo_url: https://github.com/FinMind/FinMind
 
 nav:
     - Overview: 'index.md'
