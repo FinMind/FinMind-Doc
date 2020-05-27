@@ -157,7 +157,6 @@
 
 
 #### 台灣期貨 TaiwanFuturesDaily
-(由於資料量過大，只提供 date 當天 data)
 
 !!! example
     === "Python"
@@ -216,7 +215,6 @@
 
 
 #### 台灣選擇權 TaiwanOptionDaily
-(由於資料量過大，只提供 date 當天 data)
 
 !!! example
     === "Python"
