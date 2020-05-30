@@ -2,7 +2,7 @@
 
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
-- 台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk (dev)
+- [台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk]((https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminutebidask))
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [每5秒委託成交統計 StatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#StatisticsOfOrderBookAndTrade)
 
@@ -131,8 +131,7 @@
         url = "http://api.finmindtrade.com/api/v2/data"
         parameter = {
             "dataset": "TaiwanStockPriceMinute",
-            "stock_id": "2330",
-            "date": "2020-01-02",
+            "stock_id": "2330"
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -150,19 +149,17 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'http://api.finmindtrade.com/api/v2/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPriceMinute",
-                            stock_id= "2330",
-                            date= "2020-01-02"
+                            stock_id= "2330"
                             )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = do.call('cbind',data$data) %>%
+        data.table
         head(df)
 
                 date stock_id deal_price volume               Time
@@ -176,7 +173,30 @@
 
 #### 台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk
 
-- 開發中
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+
+        url = "http://api.finmindtrade.com/api/v2/data"
+        parameter = {
+            "dataset": "TaiwanStockPriceMinuteBidAsk",
+            "stock_id": "2330",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()["data"]
+        if data['date'] == []:
+            data.pop('date', None)
+        data = pd.DataFrame(data)
+        print(data.head())
+        stock_id                             AskPrice                  AskVolume                             BidPrice                    BidVolume             Time
+        0     2330  [292.5, 293.0, 293.5, 294.0, 294.5]  [174, 452, 245, 602, 291]  [292.0, 291.5, 291.0, 290.5, 290.0]  [67, 236, 1109, 1505, 7097]  13:24:54.559711
+        1     2330  [292.5, 293.0, 293.5, 294.0, 294.5]  [174, 452, 245, 602, 291]  [292.0, 291.5, 291.0, 290.5, 290.0]  [67, 236, 1112, 1505, 7097]  13:24:54.568170
+        2     2330  [292.5, 293.0, 293.5, 294.0, 294.5]  [174, 452, 245, 602, 291]  [292.0, 291.5, 291.0, 290.5, 290.0]  [67, 236, 1114, 1505, 7097]  13:24:54.592893
+        3     2330  [292.5, 293.0, 293.5, 294.0, 294.5]  [174, 452, 245, 602, 291]  [292.0, 291.5, 291.0, 290.5, 290.0]  [67, 236, 1114, 1506, 7097]  13:24:54.598656
+        4     2330  [292.5, 293.0, 293.5, 294.0, 294.5]  [174, 452, 245, 602, 291]  [292.0, 291.5, 291.0, 290.5, 290.0]  [67, 236, 1116, 1506, 7097]  13:24:54.907709
+        ```
 
 #### 台灣個股PER、PBR資料表 TaiwanStockPER
 
