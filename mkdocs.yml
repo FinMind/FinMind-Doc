@@ -13,7 +13,10 @@ theme:
 
 repo_name: FinMind/FinMind
 repo_url: https://github.com/FinMind/FinMind
-
+google_analytics:
+    - 'UA-142214222-1'
+    - 'auto'
+    
 nav:
     - Overview: 'index.md'
     - QuickStart: "quickstart.md"
