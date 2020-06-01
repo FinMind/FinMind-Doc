@@ -14,7 +14,7 @@
 import requests
 import pandas as pd
 
-url = "http://api.finmindtrade.com/api/v2/datalist?dataset=TaiwanExchangeRate"
+url = "http://api.finmindtrade.com/api/v3/datalist?dataset=TaiwanExchangeRate"
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -36,7 +36,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = "http://api.finmindtrade.com/api/v2/data?dataset=TaiwanExchangeRate&data_id=USD"
+url = "http://api.finmindtrade.com/api/v3/data?dataset=TaiwanExchangeRate&data_id=USD"
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])

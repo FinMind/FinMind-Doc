@@ -18,7 +18,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanFutOptTickInfo",
         }
@@ -37,7 +37,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFutOptTickInfo"
@@ -66,7 +66,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanFutOptTick",
             "data_id":"TXFE0"
@@ -88,7 +88,7 @@
         library(data.table)
         library(dplyr)
 
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFutOptTick",
@@ -116,7 +116,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanOptionFutureInfo",
         }
@@ -137,7 +137,7 @@
         library(data.table)
         library(dplyr)
 
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanOptionFutureInfo"
@@ -163,7 +163,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanFuturesDaily",
             "data_id":"TX",
@@ -186,7 +186,7 @@
         library(data.table)
         library(dplyr)
 
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFuturesDaily",
@@ -221,7 +221,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanOptionDaily",
             "data_id":"TXO",
@@ -244,7 +244,7 @@
         library(data.table)
         library(dplyr)
 
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanOptionDaily",
@@ -282,7 +282,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanFuturesTick",
             "stock_id": "MTX",
@@ -303,7 +303,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFuturesTick",
@@ -336,7 +336,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanOptionTick",
             "stock_id": "OCO",
@@ -352,7 +352,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanOptionTick",

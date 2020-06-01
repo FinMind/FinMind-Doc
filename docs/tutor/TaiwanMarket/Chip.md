@@ -16,7 +16,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockMarginPurchaseShortSale",
             "stock_id": "2330",
@@ -37,7 +37,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockMarginPurchaseShortSale",
@@ -90,7 +90,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TotalMarginPurchaseShortSale",
             "stock_id": "2330",
@@ -111,7 +111,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TotalMarginPurchaseShortSale",
@@ -143,7 +143,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "InstitutionalInvestorsBuySell",
             "stock_id": "2330",
@@ -164,7 +164,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="InstitutionalInvestorsBuySell",
@@ -195,7 +195,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "InstitutionalInvestors",
             "date": "2020-04-01",
@@ -215,7 +215,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="InstitutionalInvestors",
@@ -245,7 +245,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "Shareholding",
             "stock_id": "2330",
@@ -266,7 +266,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="Shareholding",
@@ -311,7 +311,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockHoldingSharesPer",
             "stock_id": "2330",
@@ -332,7 +332,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockHoldingSharesPer",
@@ -363,7 +363,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "SecuritiesLending",
             "stock_id": "2330",
@@ -384,7 +384,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="SecuritiesLending",

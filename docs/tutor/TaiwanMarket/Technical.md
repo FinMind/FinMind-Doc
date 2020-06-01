@@ -21,7 +21,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockInfo",
         }
@@ -41,7 +41,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
             query = list(
                 dataset = "TaiwanStockInfo"
@@ -70,7 +70,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPrice",
             "stock_id": "2330",
@@ -93,7 +93,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPrice",
@@ -128,14 +128,14 @@
         import requests
         import pandas as pd
 
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPriceMinute",
             "stock_id": "2330"
         }
         resp = requests.get(url, params=parameter)
-        data = resp.json()
-        data = pd.DataFrame(data["data"])
+        data = resp.json()["data"]
+        data = pd.DataFrame(data)
         print(data.head())
 
                         date stock_id  deal_price  volume
@@ -150,7 +150,7 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPriceMinute",
@@ -179,15 +179,13 @@
         import requests
         import pandas as pd
 
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPriceMinuteBidAsk",
             "stock_id": "2330",
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()["data"]
-        if data['date'] == []:
-            data.pop('date', None)
         data = pd.DataFrame(data)
         print(data.head())
         stock_id                             AskPrice                  AskVolume                             BidPrice                    BidVolume             Time
@@ -205,7 +203,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPER",
             "stock_id": "2330",
@@ -226,7 +224,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPER",
@@ -259,7 +257,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "StatisticsOfOrderBookAndTrade",
             "date": "2020-04-01",
@@ -273,7 +271,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="StatisticsOfOrderBookAndTrade",

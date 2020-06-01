@@ -11,7 +11,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "http://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockNews",
             "data_id":"2330",
@@ -35,7 +35,7 @@
         library(data.table)
         library(dplyr)
 
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'http://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockNews",

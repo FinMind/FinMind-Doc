@@ -17,7 +17,7 @@
 import requests
 import pandas as pd
 
-url = 'http://api.finmindtrade.com/api/v2/data?dataset=USStockInfo'
+url = 'http://api.finmindtrade.com/api/v3/data?dataset=USStockInfo'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -37,7 +37,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'http://api.finmindtrade.com/api/v2/data?dataset=USStockPriceMinute&stock_id=^DJI&date=2019-01-01'
+url = 'http://api.finmindtrade.com/api/v3/data?dataset=USStockPriceMinute&stock_id=^DJI&date=2019-01-01'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -57,7 +57,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = "http://api.finmindtrade.com/api/v2/data"
+url = "http://api.finmindtrade.com/api/v3/data"
 parameter = {
     "dataset": "USStockPrice",
     "stock_Id": "AAPL",

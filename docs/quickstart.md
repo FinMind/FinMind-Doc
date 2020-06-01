@@ -14,7 +14,7 @@
     根據你想使用的資料集來獲取資料，例如想要查詢台灣股票市場個股的價格，就可以透過 TaiwanStockPrice 資料集來查詢
     
     ```
-    http://api.finmindtrade.com/api/v2/data
+    http://api.finmindtrade.com/api/v3/data
     ```
 
 - 查詢資料參數清單 API
@@ -24,7 +24,7 @@
     只要資料集選擇 TaiwanExchangeRate 就可以透過這 API 來查詢目前跟台幣兌換的幣別
 
     ```
-    http://api.finmindtrade.com/api/v2/datalist
+    http://api.finmindtrade.com/api/v3/datalist
     ```
 
 - 查詢欄位名稱中英對照 API
@@ -33,7 +33,7 @@
     例如資產負債表中 **AccountsPayable**，透過這 API 得知中文叫 **應付帳款** ，藉此來幫助你了解資料 
 
     ```
-    http://api.finmindtrade.com/api/v2/translation
+    http://api.finmindtrade.com/api/v3/translation
     ```
 
 ## API 描述
@@ -41,7 +41,7 @@
 #### 獲取資料 API
 
 ```
-GET: http://api.finmindtrade.com/api/v2/data
+GET: http://api.finmindtrade.com/api/v3/data
 
 ```
 
@@ -60,7 +60,7 @@ password      | str |  N | 使用者密碼，申辦帳號可以使用更多用�
 #### 查詢資料參數清單 API
 
 ```
-GET: http://api.finmindtrade.com/api/v2/datalist?
+GET: http://api.finmindtrade.com/api/v3/datalist?
 ```
 
 請求參數:
@@ -74,7 +74,7 @@ password      | str |  N | 使用者密碼，申辦帳號可以使用更多用�
 #### 查詢欄位名稱中英對照 API
 
 ```
-GET: http://api.finmindtrade.com/api/v2/translation?
+GET: http://api.finmindtrade.com/api/v3/translation?
 ```
 
 請求參數:

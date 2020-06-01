@@ -16,7 +16,7 @@
 import requests
 import pandas as pd
 
-url = 'http://api.finmindtrade.com/api/v2/data?dataset=JapanStockInfo'
+url = 'http://api.finmindtrade.com/api/v3/data?dataset=JapanStockInfo'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -36,7 +36,7 @@ date             ...                              stock_name
 import requests
 import pandas as pd
 
-url = 'http://api.finmindtrade.com/api/v2/data?dataset=JapanStockPrice&stock_id=7203.T&date=2019-01-01'
+url = 'http://api.finmindtrade.com/api/v3/data?dataset=JapanStockPrice&stock_id=7203.T&date=2019-01-01'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])

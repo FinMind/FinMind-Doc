@@ -16,7 +16,7 @@
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/datalist?dataset=CurrencyCirculation'
+url = 'http://finmindapi.servebeer.com/api/v3/datalist?dataset=CurrencyCirculation'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -34,7 +34,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=CurrencyCirculation&date=2020-01-01&data_id=US'
+url = 'http://finmindapi.servebeer.com/api/v3/data?dataset=CurrencyCirculation&date=2020-01-01&data_id=US'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -53,7 +53,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/datalist?dataset=GovernmentBondsYield'
+url = 'http://finmindapi.servebeer.com/api/v3/datalist?dataset=GovernmentBondsYield'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -73,7 +73,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=GovernmentBondsYield&date=2020-01-01&data_id=United%20States%203-Year'
+url = 'http://finmindapi.servebeer.com/api/v3/data?dataset=GovernmentBondsYield&date=2020-01-01&data_id=United%20States%203-Year'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
