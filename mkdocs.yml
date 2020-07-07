@@ -45,6 +45,7 @@ nav:
     - Macroeconomy: "tutor/Macroeconomy.md"    
     - Versions:
         - What's New: "WhatIsNew.md"
+        - Release Note: "release.md"
     - Contact: "Contact.md"
 
 markdown_extensions:
