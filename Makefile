@@ -4,7 +4,8 @@ install-python-evn:
 	pip3 install mkdocs &&\
 	pip3 install markdown-include &&\
 	pip3 install mkdocs-material &&\
-	pip3 install pymdown-extensions
+	pip3 install pymdown-extensions &&\
+	pip3 install requests
 
 deploy-github-page:
 	mkdir github_page && cd github_page && git init && \
