@@ -9,8 +9,8 @@ deploy:githubpage:
   before_script:
     - make install-python-evn
   script:
-    - mkdocs build
     - python3 gen_release_note.py
+    - mkdocs build
     - make deploy-github-page
   only:
     - master
