@@ -288,3 +288,47 @@
         head(df)
         ```
 
+
+#### 台股加權指數 TaiwanVariousIndicators5Seconds
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "http://api.finmindtrade.com/api/v2/data"
+        parameter = {
+            "dataset": "TaiwanVariousIndicators5Seconds",
+            "date": "2020-07-01",
+            "end_date": "2020-07-27",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+                        date    TAIEX
+        0  2020-07-01 09:00:00  11621.2
+        1  2020-07-01 09:00:05  11622.6
+        2  2020-07-01 09:00:10  11632.4
+        3  2020-07-01 09:00:15  11643.5
+        4  2020-07-01 09:00:20  11644.2
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = 'http://api.finmindtrade.com/api/v2/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanVariousIndicators5Seconds",
+                            date= "2020-07-01",
+                            "end_date": "2020-07-27"
+                            )
+        )
+        data = content(response)
+        df = data.table(matrix(unlist(data$data), 
+                            nrow=length(unlist(data$data[1]))
+        ))
+        colnames(df) = names(data$data)
+        head(df)
+        ```
