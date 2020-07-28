@@ -9,7 +9,7 @@
 - [台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminutebidask)
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [每5秒委託成交統計 StatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#StatisticsOfOrderBookAndTrade)
-- [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#TaiwanVariousIndicators5Seconds)
+- [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanVariousIndicators5Seconds)
 
 #### 基本面 Fundamental
 
