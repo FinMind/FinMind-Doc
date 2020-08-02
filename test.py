@@ -1,6 +1,6 @@
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockNews",
             "data_id":"2330",

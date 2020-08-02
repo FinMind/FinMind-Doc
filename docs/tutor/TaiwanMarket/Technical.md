@@ -22,7 +22,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockInfo",
         }
@@ -42,7 +42,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'https://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
             query = list(
                 dataset = "TaiwanStockInfo"
@@ -71,7 +71,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPrice",
             "stock_id": "2330",
@@ -94,7 +94,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'https://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPrice",
@@ -129,7 +129,7 @@
         import requests
         import pandas as pd
 
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPriceMinute",
             "stock_id": "2330"
@@ -151,7 +151,7 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'https://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPriceMinute",
@@ -180,7 +180,7 @@
         import requests
         import pandas as pd
 
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPriceMinuteBidAsk",
             "stock_id": "2330",
@@ -206,7 +206,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanStockPER",
             "stock_id": "2330",
@@ -227,7 +227,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'https://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPER",
@@ -260,7 +260,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "StatisticsOfOrderBookAndTrade",
             "date": "2020-04-01",
@@ -274,7 +274,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'https://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="StatisticsOfOrderBookAndTrade",
@@ -297,7 +297,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "http://api.finmindtrade.com/api/v2/data"
+        url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
             "dataset": "TaiwanVariousIndicators5Seconds",
             "date": "2020-07-01",
@@ -318,7 +318,7 @@
         ```R
         library(httr)
         library(data.table)
-        url = 'http://api.finmindtrade.com/api/v2/data'
+        url = 'https://api.finmindtrade.com/api/v3/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanVariousIndicators5Seconds",
