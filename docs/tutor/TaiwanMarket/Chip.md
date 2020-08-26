@@ -1,12 +1,12 @@
 在台股籌碼面，我們擁有 7 種資料集，如下:
 
 
-- [融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
-- [台灣市場整體融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortsale)
-- [三大法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
-- [台灣市場整體法人買賣表 InstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestors)
-- [股東結構表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
-- [股東持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
+- [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
+- [整體市場融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortsale)
+- [個股三大法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
+- [整體市場三大法人買賣表 InstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestors)
+- [外資持股表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
+- [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 SecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#securitieslending)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale

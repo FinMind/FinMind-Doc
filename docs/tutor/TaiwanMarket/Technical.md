@@ -7,13 +7,10 @@
 - [每5秒委託成交統計 StatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-statisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
 
-另外針對資料集整理出的列表如下:
 
-- [台灣股票清單列表 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
+根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 
-根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
-
-#### 台灣股票清單列表 TaiwanStockInfo
+#### 台股總覽 TaiwanStockInfo
 
 - 這張資料表主要是列出台灣所有上市上櫃的股票名稱，代碼和產業類別
 
@@ -64,7 +61,7 @@
         6:               ETF     0055 元大MSCI金融 twse
         ```
 
-#### 台灣股價資料表 TaiwanStockPrice
+#### 股價日成交資訊 TaiwanStockPrice
 
 !!! example
     === "Python"
@@ -118,7 +115,7 @@
 
 
 
-#### 台灣即時股價資料表 TaiwanStockPriceMinute
+#### 即時股價 TaiwanStockPriceMinute
 
 - 輸入 dataset、stock_id 參數，會回傳當天最近 100 筆即時資料。
 - 輸入 dataset、stock_id、date，會回傳 date 當天 data。
@@ -172,7 +169,7 @@
         6: 2020-01-02     2330      333.0     20 09:00:25.000000000
         ```
 
-#### 台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk
+#### 即時最佳五檔 TaiwanStockPriceMinuteBidAsk
 
 !!! example
     === "Python"
@@ -199,7 +196,7 @@
         4     2330  [292.5, 293.0, 293.5, 294.0, 294.5]  [174, 452, 245, 602, 291]  [292.0, 291.5, 291.0, 290.5, 290.0]  [67, 236, 1116, 1506, 7097]  13:24:54.907709
         ```
 
-#### 台灣個股PER、PBR資料表 TaiwanStockPER
+#### 個股PER、PBR資料表 TaiwanStockPER
 
 !!! example
     === "Python"
@@ -290,7 +287,7 @@
         ```
 
 
-#### 台股加權指數 TaiwanVariousIndicators5Seconds
+#### 加權指數 TaiwanVariousIndicators5Seconds
 
 !!! example
     === "Python"

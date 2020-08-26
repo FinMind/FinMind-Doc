@@ -18,35 +18,35 @@ google_analytics:
     - 'auto'
     
 nav:
-    - Overview: 'index.md'
-    - QuickStart: "quickstart.md"
-    - TaiwanMarket:
-        - DataList: "tutor/TaiwanMarket/DataList.md"
-        - Technical: "tutor/TaiwanMarket/Technical.md"
-        - Fundamental: "tutor/TaiwanMarket/Fundamental.md"
-        - Chip: "tutor/TaiwanMarket/Chip.md"
-        - Derivative: "tutor/TaiwanMarket/Derivative.md"
-        - Others: "tutor/TaiwanMarket/Others.md"
-    - UnitedStatesMarket:
-        - DataList: "tutor/UnitedStatesMarket/DataList.md"
-        - Technical: "tutor/UnitedStatesMarket/Technical.md"
-    - UnitedKingdomMarket:
-        - DataList: "tutor/UnitedKingdomMarket/DataList.md"
-        - Technical: "tutor/UnitedKingdomMarket/Technical.md"
-    - EuropeMarket:
-        - DataList: "tutor/EuropeMarket/DataList.md"
-        - Technical: "tutor/EuropeMarket/Technical.md"
-    - JapanMarket:
-        - DataList: "tutor/JapanMarket/DataList.md"
-        - Technical: "tutor/JapanMarket/Technical.md"
-    - ExchangeRate: "tutor/ExchangeRate.md"
-    - InterestRate: "tutor/InterestRate.md"
-    - Materials: "tutor/Materials.md"
-    - Macroeconomy: "tutor/Macroeconomy.md"    
+    - 總覽: 'index.md'
+    - 快速開始: "quickstart.md"
+    - 台灣市場:
+        - 總覽: "tutor/TaiwanMarket/DataList.md"
+        - 技術面: "tutor/TaiwanMarket/Technical.md"
+        - 籌碼面: "tutor/TaiwanMarket/Chip.md"
+        - 基本面: "tutor/TaiwanMarket/Fundamental.md"
+        - 衍生性金融商品: "tutor/TaiwanMarket/Derivative.md"
+        - 其他: "tutor/TaiwanMarket/Others.md"
+    - 美國市場:
+        - 總覽: "tutor/UnitedStatesMarket/DataList.md"
+        - 技術面: "tutor/UnitedStatesMarket/Technical.md"
+    - 英國市場:
+        - 總覽: "tutor/UnitedKingdomMarket/DataList.md"
+        - 技術面: "tutor/UnitedKingdomMarket/Technical.md"
+    - 歐洲市場:
+        - 總覽: "tutor/EuropeMarket/DataList.md"
+        - 技術面: "tutor/EuropeMarket/Technical.md"
+    - 日本市場:
+        - 總覽: "tutor/JapanMarket/DataList.md"
+        - 技術面: "tutor/JapanMarket/Technical.md"
+    - 匯率: "tutor/ExchangeRate.md"
+    - 央行利率: "tutor/InterestRate.md"
+    - 原物料市場: "tutor/Materials.md"
+    - 債券: "tutor/Macroeconomy.md"    
     - Versions:
         - What's New: "WhatIsNew.md"
         - Release Note: "release.md"
-    - Contact: "Contact.md"
+    - 聯絡我們: "Contact.md"
 
 markdown_extensions:
     - toc:

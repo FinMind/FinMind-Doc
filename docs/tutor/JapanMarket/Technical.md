@@ -6,7 +6,7 @@
 
 - [日本股票清單列表 JapanStockInfo](https://finmind.github.io/tutor/JapanMarket/Technical/#japanstockinfo)
 
-根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
+根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 
 #### 日本股票清單列表 JapanStockInfo
 

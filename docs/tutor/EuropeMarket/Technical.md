@@ -6,7 +6,7 @@
 
 - [歐洲股票清單列表 EuropeStockInfo](https://finmind.github.io/tutor/EuropeMarket/Technical/#europestockinfo)
 
-根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v2_data_get)
+根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 
 #### 歐洲股票清單列表 EuropeStockInfo
 

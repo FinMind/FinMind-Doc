@@ -14,7 +14,7 @@
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=GoldPrice&date=2020-01-01'
+url = 'http://finmindapi.servebeer.com/api/v3/data?dataset=GoldPrice&date=2020-01-01'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -34,7 +34,7 @@ Price                 date
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/data?dataset=CrudeOilPrices&date=2020-01-01&data_id=WTI'
+url = 'http://finmindapi.servebeer.com/api/v3/data?dataset=CrudeOilPrices&date=2020-01-01&data_id=WTI'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
@@ -54,7 +54,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v2/datalist?dataset=CrudeOilPrices'
+url = 'http://finmindapi.servebeer.com/api/v3/datalist?dataset=CrudeOilPrices'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
