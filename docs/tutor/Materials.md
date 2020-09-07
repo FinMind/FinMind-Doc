@@ -4,9 +4,13 @@
 
 - [原油資料表 CrudeOilPrices](https://finmind.github.io/tutor/Materials/#crudeoilprices)
 
-針對不同資料集也對應整理出商品代碼清單
+另外針對資料集整理出原油清單，目前共有 2 種
 
-- [原油資料列表 CrudeOilPrices](https://finmind.github.io/tutor/Materials/#crudeoilprices)
+
+| data_id 	| Brent  	| WTI    	|
+|---------	|--------	|--------	|
+| 原油    	| 布蘭特 	| 西德州 	|
+
 
 #### 黃金價格表 GoldPrice
 
@@ -14,8 +18,12 @@
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v3/data?dataset=GoldPrice&date=2020-01-01'
-data = requests.get(url)
+url = 'http://finmindapi.servebeer.com/api/v3/data'
+parameter = {
+     "dataset": "GoldPrice",
+     "date": "2020-01-01",
+}
+data = requests.get(url, params=parameter)
 data = data.json()
 data = pd.DataFrame(data['data'])
 print(data.head())
@@ -34,8 +42,13 @@ Price                 date
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v3/data?dataset=CrudeOilPrices&date=2020-01-01&data_id=WTI'
-data = requests.get(url)
+url = 'http://finmindapi.servebeer.com/api/v3/data'
+parameter = {
+     "dataset": "CrudeOilPrices",
+     "data_id": "WTI",
+     "date": "2020-01-01",
+}
+data = requests.get(url, params=parameter)
 data = data.json()
 data = pd.DataFrame(data['data'])
 print(data.head())
@@ -46,21 +59,4 @@ print(data.head())
 2  2020-01-06  WTI  63.27
 3  2020-01-07  WTI   62.7
 4  2020-01-08  WTI  59.65
-```
-
-#### 原油資料列表 CrudeOilPrices
-
-```python
-import requests
-import pandas as pd
-
-url = 'http://finmindapi.servebeer.com/api/v3/datalist?dataset=CrudeOilPrices'
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
-
-       0
-0  Brent
-1    WTI
 ```

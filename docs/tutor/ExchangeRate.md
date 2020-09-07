@@ -1,32 +1,13 @@
-在匯率市場，我們擁有 1 種資料集，如下:
+在匯率市場，我們擁有 19 種幣別資料集，如下: (資料來源-台灣銀行)
 
 - [外幣對台幣資料表 TaiwanExchangeRate](https://finmind.github.io/tutor/InterestRate/#taiwanexchangerate)
 
 另外針對資料集整理出外幣兌換清單，目前共有 19 種幣別
 
-- [外幣對台幣列表 TaiwanExchangeRate](https://finmind.github.io/tutor/InterestRate/#taiwanexchangerate)
+| data_id 	| AUD  	| CAD    	| CHF      	| CNY    	| EUR  	| GBP  	| HKD  	| IDR    	| JPY  	| KRW  	| MYR    	| NZD  	| PHP      	| SEK    	| SGD      	| THB  	| USD  	| VND    	| ZAR    	|
+|---------	|------	|--------	|----------	|--------	|------	|------	|------	|--------	|------	|------	|--------	|------	|----------	|--------	|----------	|------	|------	|--------	|--------	|
+| 幣別    	| 澳洲 	| 加拿大 	| 瑞士法郎 	| 人民幣 	| 歐元 	| 英鎊 	| 港幣 	| 印尼幣 	| 日圓 	| 韓元 	| 馬來幣 	| 紐元 	| 菲國比索 	| 瑞典幣 	| 新加坡幣 	| 泰幣 	| 美金 	| 越南盾 	| 南非幣 	|
 
-#### 外幣對台幣列表 TaiwanExchangeRate
-
-- 這張資料表主要是列出目前外幣兌換台幣的幣別清單
-
-```python
-import requests
-import pandas as pd
-
-url = "https://api.finmindtrade.com/api/v3/datalist?dataset=TaiwanExchangeRate"
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
-
-     0
-0  AUD
-1  CAD
-2  CHF
-3  CNY
-4  EUR
-```
 
 #### 外幣對台幣資料表 TaiwanExchangeRate
 
@@ -35,9 +16,13 @@ print(data.head())
 ```python
 import requests
 import pandas as pd
-
-url = "https://api.finmindtrade.com/api/v3/data?dataset=TaiwanExchangeRate&data_id=USD"
-data = requests.get(url)
+url = "https://api.finmindtrade.com/api/v3/data"
+parameter = {
+     "dataset": "TaiwanExchangeRate",
+     "data_id": "USD",
+     "date": "2006-01-01",
+}
+data = requests.get(url, params=parameter)
 data = data.json()
 data = pd.DataFrame(data['data'])
 print(data.head())
