@@ -37,7 +37,7 @@ print(data.head())
 import requests
 import pandas as pd
 
-url = 'https://api.finmindtrade.com/api/v3/data?dataset=USStockPriceMinute&stock_id=^DJI&date=2019-01-01'
+url = 'https://api.finmindtrade.com/api/v3/data?dataset=USStockPriceMinute&stock_id=^DJI&date=2020-02-13'
 data = requests.get(url)
 data = data.json()
 data = pd.DataFrame(data['data'])
