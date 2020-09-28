@@ -60,7 +60,7 @@ import pandas as pd
 url = "https://api.finmindtrade.com/api/v3/data"
 parameter = {
     "dataset": "USStockPrice",
-    "stock_Id": "AAPL",
+    "stock_id": "AAPL",
     "date": "2020-04-01",
 }
 
