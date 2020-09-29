@@ -37,19 +37,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanStockMarginPurchaseShortSale",
-                            stock_id= "2330",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMarginPurchaseShortSale",
+            stock_id= "2330",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
                 date stock_id MarginPurchaseBuy MarginPurchaseCashRepayment MarginPurchaseLimit
@@ -111,20 +112,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TotalMarginPurchaseShortSale",
-                            stock_id= "2330",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TotalMarginPurchaseShortSale",
+            stock_id= "2330",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+
 
         TodayBalance YesBalance    buy       date           name   sell
         1:      7394954    7355321 173277 2019-01-02 MarginPurchase 129650
@@ -164,20 +167,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="InstitutionalInvestorsBuySell",
-                            stock_id= "2330",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="InstitutionalInvestorsBuySell",
+            stock_id= "2330",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+
 
                 date stock_id        buy                name       sell
         1: 2019-01-02     2330   183000.0      Dealer_Hedging   344000.0
@@ -215,18 +220,19 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="InstitutionalInvestors",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="InstitutionalInvestors",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
                 buy       date                name        sell
@@ -266,19 +272,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="Shareholding",
-                            stock_id= "2330",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="Shareholding",
+            stock_id= "2330",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
                 date stock_id ChineseInvestmentUpperLimitRatio ForeignInvestmentRemainingShares
@@ -332,19 +339,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanStockHoldingSharesPer",
-                            stock_id= "2330",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockHoldingSharesPer",
+            stock_id= "2330",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
                 date stock_id HoldingSharesLevel   people percent      unit
@@ -384,19 +392,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="SecuritiesLending",
-                            stock_id="2330",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="SecuritiesLending",
+            stock_id="2330",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
                 date stock_id transaction_type volume fee_rate close original_return_date

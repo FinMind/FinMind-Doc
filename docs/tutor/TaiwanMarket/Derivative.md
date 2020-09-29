@@ -37,17 +37,18 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFutOptTickInfo"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanFutOptTickInfo"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
                 code callput    date           name listing_date update_date expire_price
         1: TGO05200N1    賣權 2021/02     黃金選擇權   2020-03-17  2020-05-27        52000
@@ -303,19 +304,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesTick",
-                            stock_id="MTX",
-                            date= "2020-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanFuturesTick",
+            stock_id="MTX",
+            date= "2020-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
         contract_date                date futures_id   price volume
@@ -352,19 +354,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionTick",
-                            stock_id="OCO",
-                            date= "2019-09-05"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanOptionTick",
+            stock_id="OCO",
+            date= "2019-09-05"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
 
         ```

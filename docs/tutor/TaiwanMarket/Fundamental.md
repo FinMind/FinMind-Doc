@@ -37,19 +37,20 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="FinancialStatements",
-                            stock_id="2330",
-                            date= "2019-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="FinancialStatements",
+            stock_id="2330",
+            date= "2019-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
                 date stock_id            type          value                                  origin_name
         1: 2019-03-31     2330            ASSO    433491000.0 採用權益法認列之關聯企業及合資損益之份額淨額
@@ -90,20 +91,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="BalanceSheet",
-                            stock_id="2330",
-                            date= "2019-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="BalanceSheet",
+            stock_id="2330",
+            date= "2019-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+
                 date stock_id                                           type         value          origin_name
         1: 2019-03-31     2330                                AccountsPayable 27100909000.0             應付帳款
         2: 2019-03-31     2330                            AccountsPayable_per           1.0             應付帳款
@@ -143,20 +146,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanCashFlowsStatement",
-                            stock_id="2330",
-                            date= "2019-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanCashFlowsStatement",
+            stock_id="2330",
+            date= "2019-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+
                 date stock_id                          type          value                      origin_name
         1: 2019-03-31     2330               AccountsPayable   6105110000.0               應付帳款增加(減少)
         2: 2019-03-31     2330           AmortizationExpense   1355340000.0                         攤銷費用
@@ -195,20 +200,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="StockDividend",
-                            stock_id="2330",
-                            date= "2019-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="StockDividend",
+            stock_id="2330",
+            date= "2019-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+
                 date stock_id       year StockEarningsDistribution StockStatutorySurplus
         1: 2019-06-30     2330      107年                      None                  None
         2: 2019-09-25     2330 108年第1季                      None                  None
@@ -290,20 +297,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="StockDividendResult",
-                            stock_id="2330",
-                            date= "2019-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="StockDividendResult",
+            stock_id="2330",
+            date= "2019-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+
                 date stock_id            type  value
         1: 2019-06-24     2330     after_price 240.50
         2: 2019-06-24     2330    before_price 248.50
@@ -342,20 +351,22 @@
         ```R
         library(httr)
         library(data.table)
+        library(dplyr)
         url = 'https://api.finmindtrade.com/api/v3/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="StockDividendResult",
-                            stock_id="2330",
-                            date= "2019-01-02"
-                            )
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="StockDividendResult",
+            stock_id="2330",
+            date= "2019-01-02"
+        )
         )
         data = content(response)
-        df = data.table(matrix(unlist(data$data), 
-                            nrow=length(unlist(data$data[1]))
-        ))
-        colnames(df) = names(data$data)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
         head(df)
+        
                 date stock_id country     revenue revenue_month revenue_year
         1: 2019-02-01     2330  Taiwan 78093827000             1         2019
         2: 2019-03-01     2330  Taiwan 60889055000             2         2019
