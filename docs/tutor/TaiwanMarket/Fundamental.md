@@ -331,7 +331,7 @@
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v3/data"
         parameter = {
-            "dataset": "StockDividendResult",
+            "dataset": "TaiwanStockMonthRevenue",
             "stock_id": "2330",
             "date": "2019-01-01",
         }
