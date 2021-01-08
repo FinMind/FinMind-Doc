@@ -2,12 +2,12 @@
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
-- [整體市場融資融劵表 TotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#totalmarginpurchaseshortsale)
-- [個股三大法人買賣表 InstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestorsbuysell)
-- [整體市場三大法人買賣表 InstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#institutionalinvestors)
-- [外資持股表 Shareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#shareholding)
+- [整體市場融資融劵表 TaiwanStockTotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktotalmarginpurchaseshortsale)
+- [個股三大法人買賣表 TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
+- [整體市場三大法人買賣表 TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktotalinstitutionalinvestors)
+- [外資持股表 TaiwanStockShareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
-- [借券成交明細 SecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#securitieslending)
+- [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
@@ -16,11 +16,11 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockMarginPurchaseShortSale",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -38,13 +38,13 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
             dataset="TaiwanStockMarginPurchaseShortSale",
-            stock_id= "2330",
-            date= "2020-01-02"
+            data_id= "2330",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -83,19 +83,99 @@
         6:                      2219
         ```
 
-
-#### 台灣市場整體融資融劵表 TotalMarginPurchaseShortSale
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
 
 !!! example
     === "Python"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "TotalMarginPurchaseShortSale",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "dataset": "TaiwanStockMarginPurchaseShortSale",
+            "start_date": "2020-04-01",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        
+            date stock_id  MarginPurchaseBuy  MarginPurchaseCashRepayment  ...  ShortSaleLimit  ShortSaleSell  ShortSaleTodayBalance  ShortSaleYesterdayBalance
+        0  2020-04-01     0050                193                           15  ...          263750             13                   2283                       2336
+        1  2020-04-01     0051                  0                            0  ...            2375              0                      0                          0
+        2  2020-04-01     0052                  0                            0  ...            7500              0                      0                          0
+        3  2020-04-01     0053                  0                            0  ...            1622              0                      0                          0
+        4  2020-04-01     0054                  0                            0  ...            2531              0                      0                          0
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMarginPurchaseShortSale",
+            start_date= "2020-01-02"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                date stock_id MarginPurchaseBuy MarginPurchaseCashRepayment
+        1: 2020-01-02     0050                20                           0
+        2: 2020-01-02     0051                 0                           0
+        3: 2020-01-02     0052                 3                           0
+        4: 2020-01-02     0053                 0                           0
+        5: 2020-01-02     0054                 0                           0
+        6: 2020-01-02     0055                 0                           0
+        MarginPurchaseLimit MarginPurchaseSell MarginPurchaseTodayBalance
+        1:              171750                  6                        374
+        2:                2375                  0                          3
+        3:                8250                  1                         23
+        4:                1372                  0                         52
+        5:                2531                  0                          0
+        6:                9163                  0                         25
+        MarginPurchaseYesterdayBalance Note OffsetLoanAndShort ShortSaleBuy
+        1:                            360                       0            1
+        2:                              3                       0            0
+        3:                             21                       0            0
+        4:                             52                       0            0
+        5:                              0   X                   0            0
+        6:                             25                       0            0
+        ShortSaleCashRepayment ShortSaleLimit ShortSaleSell
+        1:                      0         171750             2
+        2:                      0           2375             0
+        3:                      0           8250             0
+        4:                      0           1372             0
+        5:                      0           2531             0
+        6:                      0           9163             0
+        ShortSaleTodayBalance ShortSaleYesterdayBalance
+        1:                   172                       171
+        2:                     0                         0
+        3:                     0                         0
+        4:                     4                         4
+        5:                     0                         0
+        6:                     1                         1
+        ```
+
+
+
+#### 台灣市場整體融資融劵表 TaiwanStockTotalMarginPurchaseShortSale
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockTotalMarginPurchaseShortSale",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -113,13 +193,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TotalMarginPurchaseShortSale",
-            stock_id= "2330",
-            date= "2020-01-02"
+            dataset="TaiwanStockTotalMarginPurchaseShortSale",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -139,18 +218,18 @@
         ```
 
 
-#### 法人買賣表 InstitutionalInvestorsBuySell
+#### 法人買賣表 TaiwanStockInstitutionalInvestorsBuySell
 
 !!! example
     === "Python"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "InstitutionalInvestorsBuySell",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "dataset": "TaiwanStockInstitutionalInvestorsBuySell",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -168,13 +247,13 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="InstitutionalInvestorsBuySell",
-            stock_id= "2330",
-            date= "2020-01-02"
+            dataset="TaiwanStockInstitutionalInvestorsBuySell",
+            data_id= "2330",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -193,17 +272,76 @@
         6: 2019-01-03     2330  1114000.0      Dealer_Hedging    81000.0
         ```
 
-#### 台灣市場整體法人買賣表 InstitutionalInvestors
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
 
 !!! example
     === "Python"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "InstitutionalInvestors",
-            "date": "2020-04-01",
+            "dataset": "TaiwanStockInstitutionalInvestorsBuySell",
+            "start_date": "2020-04-01",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data)
+
+                    date stock_id      buy                 name     sell
+        0     2020-04-01     0050  2050000       Dealer_Hedging   905000
+        1     2020-04-01     0050        0          Dealer_self        0
+        2     2020-04-01     0050        0  Foreign_Dealer_Self        0
+        3     2020-04-01     0050   458249     Foreign_Investor  4492000
+        4     2020-04-01     0050    54000     Investment_Trust        0
+        ...          ...      ...      ...                  ...      ...
+        8025  2020-04-01     9958   124000       Dealer_Hedging   199000
+        8026  2020-04-01     9958        0          Dealer_self        0
+        8027  2020-04-01     9958        0  Foreign_Dealer_Self        0
+        8028  2020-04-01     9958   346000     Foreign_Investor  1002000
+        8029  2020-04-01     9958   200000     Investment_Trust        0
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockInstitutionalInvestorsBuySell",
+            start_date= "2020-01-02"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                date stock_id    buy                name    sell
+        1: 2020-01-02     0050 633000      Dealer_Hedging 1192000
+        2: 2020-01-02     0050 197000         Dealer_self  357000
+        3: 2020-01-02     0050      0 Foreign_Dealer_Self       0
+        4: 2020-01-02     0050  41000    Foreign_Investor 1878000
+        5: 2020-01-02     0050 291000    Investment_Trust       0
+        6: 2020-01-02     0051  10000      Dealer_Hedging       0
+        ```
+
+
+#### 台灣市場整體法人買賣表 TaiwanStockTotalInstitutionalInvestors
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockTotalInstitutionalInvestors",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -221,12 +359,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="InstitutionalInvestors",
-            date= "2020-01-02"
+            dataset="TaiwanStockTotalInstitutionalInvestors",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -244,18 +382,18 @@
         6: 38029457325 2019-01-04               total 43592013337
         ```
 
-#### 股東結構表 Shareholding
+#### 股東結構表 TaiwanStockShareholding
 
 !!! example
     === "Python"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "Shareholding",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "dataset": "TaiwanStockShareholding",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -273,13 +411,13 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="Shareholding",
-            stock_id= "2330",
-            date= "2020-01-02"
+            dataset="TaiwanStockShareholding",
+            data_id= "2330",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -311,6 +449,86 @@
         6:          2018-05-28 None     台積電
         ```
 
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockShareholding",
+            "start_date": "2020-04-01",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+                date stock_id stock_name  ... NumberOfSharesIssued  RecentlyDeclareDate  note
+        0  2020-04-01     0050     元大台灣50  ...           1055000000           2019-07-18      
+        1  2020-04-01     0051    元大中型100  ...              9500000           2019-07-18      
+        2  2020-04-01     0052       富邦科技  ...             30000000           2019-07-18      
+        3  2020-04-01     0053       元大電子  ...              6488000           2019-07-18      
+        4  2020-04-01     0054     元大台商50  ...             10124000           2019-07-18   
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockShareholding",
+            start_date= "2020-01-02"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                date stock_id   stock_name InternationalCode
+        1: 2020-01-02     0050   元大台灣50      TW0000050004
+        2: 2020-01-02     0051  元大中型100      TW0000051002
+        3: 2020-01-02     0052     富邦科技      TW0000052000
+        4: 2020-01-02     0053     元大電子      TW0000053008
+        5: 2020-01-02     0054   元大台商50      TW0000054006
+        6: 2020-01-02     0055 元大MSCI金融      TW0000055003
+        ForeignInvestmentRemainingShares ForeignInvestmentShares
+        1:                        495506528               191493472
+        2:                          9471000                   29000
+        3:                         32955000                   45000
+        4:                          5465000                   23000
+        5:                          9957000                  167000
+        6:                         35465000                 1189000
+        ForeignInvestmentRemainRatio ForeignInvestmentSharesRatio
+        1:                            0                            0
+        2:                            0                            0
+        3:                            0                            0
+        4:                            0                            0
+        5:                            0                            0
+        6:                            0                            0
+        ForeignInvestmentUpperLimitRatio ChineseInvestmentUpperLimitRatio
+        1:                              100                              100
+        2:                              100                              100
+        3:                              100                              100
+        4:                              100                              100
+        5:                              100                              100
+        6:                              100                              100
+        NumberOfSharesIssued RecentlyDeclareDate note
+        1:            687000000          2019-07-18     
+        2:              9500000          2019-07-18     
+        3:             33000000          2019-07-18     
+        4:              5488000          2019-07-18     
+        5:             10124000          2019-07-18     
+        6:             36654000          2019-07-18     
+        ```
+
+
 #### 股東持股分級表 TaiwanStockHoldingSharesPer
 
 !!! example
@@ -318,11 +536,11 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockHoldingSharesPer",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -340,13 +558,13 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
             dataset="TaiwanStockHoldingSharesPer",
-            stock_id= "2330",
-            date= "2020-01-02"
+            data_id= "2330",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -364,18 +582,77 @@
         6: 2019-01-19     2330      20,001-30,000   4715.0    0.44 115199487
         ```
 
-#### 借券成交明細 SecuritiesLending
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
 
 !!! example
     === "Python"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "SecuritiesLending",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "dataset": "TaiwanStockHoldingSharesPer",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data)
+                    date stock_id   HoldingSharesLevel  people  percent       unit
+        0      2020-04-01     1101                1-999   78054     0.26   14398612
+        1      2020-04-01     1101          1,000-5,000   84289     3.21  175508653
+        2      2020-04-01     1101        10,001-15,000    7517     1.65   90220853
+        3      2020-04-01     1101      100,001-200,000    1090     2.69  147442198
+        4      2020-04-01     1101        15,001-20,000    3273     1.04   57295266
+        ...           ...      ...                  ...     ...      ...        ...
+        27595  2020-04-01     9962       50,001-100,000      80     6.29    5677217
+        27596  2020-04-01     9962      600,001-800,000       3     2.30    2083808
+        27597  2020-04-01     9962    800,001-1,000,000       1     0.91     826633
+        27598  2020-04-01     9962  more than 1,000,001      17    51.01   46030201
+        27599  2020-04-01     9962                total    4138   100.00   90220260
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockHoldingSharesPer",
+            start_date= "2020-04-01"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                date stock_id HoldingSharesLevel people percent      unit
+        1: 2020-04-01     1101              1-999  78054    0.26  14398612
+        2: 2020-04-01     1101        1,000-5,000  84289    3.21 175508653
+        3: 2020-04-01     1101      10,001-15,000   7517    1.65  90220853
+        4: 2020-04-01     1101    100,001-200,000   1090    2.69 147442198
+        5: 2020-04-01     1101      15,001-20,000   3273    1.04  57295266
+        6: 2020-04-01     1101      20,001-30,000   3670    1.62  88740328
+        ```
+
+
+#### 借券成交明細 TaiwanStockSecuritiesLending
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockSecuritiesLending",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -393,13 +670,13 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="SecuritiesLending",
-            stock_id="2330",
-            date= "2020-01-02"
+            dataset="TaiwanStockSecuritiesLending",
+            data_id="2330",
+            start_date= "2020-01-02"
         )
         )
         data = content(response)
@@ -423,3 +700,68 @@
         5:                     181
         6:                     181
         ```
+
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockSecuritiesLending",
+            "start_date": "2020-04-01",
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data)
+                date stock_id transaction_type  volume  fee_rate  close original_return_date  original_lending_period
+        0    2020-04-01     1101               競價     436      0.70   39.0           2020-09-30                      182
+        1    2020-04-01     1101               議借     397      0.25   39.0           2020-09-30                      182
+        2    2020-04-01     1101               議借     760      0.25   39.0           2020-09-30                      182
+        3    2020-04-01     1102               議借     150      0.25   38.6           2020-09-30                      182
+        4    2020-04-01     1102               議借     770      1.05   38.6           2020-09-30                      182
+        ..          ...      ...              ...     ...       ...    ...                  ...                      ...
+        500  2020-04-01     9938               議借      60      3.00   53.7           2020-09-30                      182
+        501  2020-04-01     9938               議借      60      3.00   53.7           2020-09-30                      182
+        502  2020-04-01     9944               議借      16     20.00   15.5           2020-09-30                      182
+        503  2020-04-01     9958               競價      60      6.00   78.9           2020-09-30                      182
+        504  2020-04-01     9958               競價      60      6.00   78.9           2020-09-30                      182
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockSecuritiesLending",
+            start_date= "2020-01-02"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                date stock_id transaction_type volume fee_rate close original_return_date
+        1: 2020-01-02     0050             競價    300      0.5 97.65           2020-07-01
+        2: 2020-01-02     0050             競價    300      0.5 97.65           2020-07-01
+        3: 2020-01-02     0052             競價     45        4  73.3           2020-07-02
+        4: 2020-01-02     0052             競價     45        4  73.3           2020-07-02
+        5: 2020-01-02   00633L             競價    150      1.5  51.1           2020-07-02
+        6: 2020-01-02   00633L             競價    150      1.5  51.1           2020-07-02
+        original_lending_period
+        1:                     181
+        2:                     181
+        3:                     182
+        4:                     182
+        5:                     182
+        6:                     182
+        ```
+

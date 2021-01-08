@@ -18,10 +18,10 @@
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v3/data'
+url = 'https://api.finmindtrade.com/api/v4/data'
 parameter = {
      "dataset": "GoldPrice",
-     "date": "2020-01-01",
+     "start_date": "2020-01-01",
 }
 data = requests.get(url, params=parameter)
 data = data.json()
@@ -42,7 +42,7 @@ Price                 date
 import requests
 import pandas as pd
 
-url = 'http://finmindapi.servebeer.com/api/v3/data'
+url = 'https://api.finmindtrade.com/api/v4/data'
 parameter = {
      "dataset": "CrudeOilPrices",
      "data_id": "WTI",

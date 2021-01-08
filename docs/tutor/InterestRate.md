@@ -13,11 +13,11 @@
 ```python
 import requests
 import pandas as pd
-url = "https://api.finmindtrade.com/api/v3/data"
+url = "https://api.finmindtrade.com/api/v4/data"
 parameter = {
      "dataset": "InterestRate",
      "data_id": "FED",
-     "date": "1982-01-01",
+     "start_date": "1982-01-01",
 }
 data = requests.get(url, params=parameter)
 data = data.json()

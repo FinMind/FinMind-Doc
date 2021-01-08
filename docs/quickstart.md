@@ -9,12 +9,20 @@
 
 ## FinMind data api 主要有三種類型 API
 
+- 登入 API
+
+    登入獲得 token，並在拿取資料時，帶 token，可增加使用限制
+    
+    ```
+    https://api.finmindtrade.com/api/v4/login
+    ```
+
 - 獲取資料 API
 
     根據你想使用的資料集來獲取資料，例如想要查詢台灣股票市場個股的價格，就可以透過 TaiwanStockPrice 資料集來查詢
     
     ```
-    https://api.finmindtrade.com/api/v3/data
+    https://api.finmindtrade.com/api/v4/data
     ```
 
 - 查詢資料參數清單 API
@@ -24,7 +32,7 @@
     只要資料集選擇 TaiwanExchangeRate 就可以透過這 API 來查詢目前跟台幣兌換的幣別
 
     ```
-    https://api.finmindtrade.com/api/v3/datalist
+    https://api.finmindtrade.com/api/v4/datalist
     ```
 
 - 查詢欄位名稱中英對照 API
@@ -33,15 +41,34 @@
     例如資產負債表中 **AccountsPayable**，透過這 API 得知中文叫 **應付帳款** ，藉此來幫助你了解資料 
 
     ```
-    https://api.finmindtrade.com/api/v3/translation
+    https://api.finmindtrade.com/api/v4/translation
     ```
 
 ## API 描述
 
+#### login
+
+```
+POST: https://api.finmindtrade.com/api/v4/login
+
+```
+
+請求參數:
+
+參數名稱       | 參數型別  | 必填	| 說明
+--------------|:-----:|-----:|------------------------
+user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
+password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
+
+```
+response: token
+```
+
+
 #### 獲取資料 API
 
 ```
-GET: https://api.finmindtrade.com/api/v3/data
+GET: https://api.finmindtrade.com/api/v4/data
 
 ```
 
@@ -50,17 +77,15 @@ GET: https://api.finmindtrade.com/api/v3/data
 參數名稱       | 參數型別  | 必填	| 說明
 --------------|:-----:|-----:|------------------------
 dataset       | str |  Y | 資料集名稱
-stock_id      | str |  Y | 股票代碼
-data_id       | str |  N | 非股票代碼以外的代碼，例如:匯率幣別，利率央行...等 
-date          | str |  N | 起始時間，如果跟 end_date 一起使用，會輸出 date 到 end_date 時間的資料，反之會輸出到最新的資料，date 和 end_date 至少則一使用
-end_date      | str |  N | 結束時間，如果跟 date  一起使用，會輸出 date 到 end_date 時間的資料，反之會輸出到 end_date 的資料，date 和 end_date 至少則一使用
-user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
-password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
+data_id       | str |  N | 資料代碼
+start_date    | str |  N | 起始時間，如果跟 end_date 一起使用，會輸出 start_date 到 end_date 時間的資料，反之會輸出到最新的資料，start_date 和 end_date 至少則一使用
+end_date      | str |  N | 結束時間，如果跟 start_date  一起使用，會輸出 start_date 到 end_date 時間的資料，反之會輸出到 end_date 的資料，start_date 和 end_date 至少則一使用
+token         | str |  N | 使用者 token，請先登入拿到 token
 
 #### 查詢資料參數清單 API
 
 ```
-GET: https://api.finmindtrade.com/api/v3/datalist?
+GET: https://api.finmindtrade.com/api/v4/datalist?
 ```
 
 請求參數:
@@ -68,13 +93,13 @@ GET: https://api.finmindtrade.com/api/v3/datalist?
 參數名稱       | 參數型別  | 必填	| 說明
 --------------|:-----:|-----:|------------------------
 dataset       | str |  Y | 資料集名稱
-user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
-password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
+user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
+password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
 
 #### 查詢欄位名稱中英對照 API
 
 ```
-GET: https://api.finmindtrade.com/api/v3/translation?
+GET: https://api.finmindtrade.com/api/v4/translation?
 ```
 
 請求參數:
@@ -82,7 +107,7 @@ GET: https://api.finmindtrade.com/api/v3/translation?
 參數名稱       | 參數型別  | 必填	| 說明
 --------------|:-----:|-----:|------------------------
 dataset       | str |  Y | 資料集名稱
-user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
-password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/login.html)吧!
+user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
+password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
 
 

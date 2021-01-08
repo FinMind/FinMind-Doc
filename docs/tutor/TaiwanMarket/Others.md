@@ -11,11 +11,11 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockNews",
             "data_id":"2330",
-            "date": "2020-04-01",
+            "start_date": "2020-04-01",
             "end_date": "2020-04-03"
         }
         data = requests.get(url, params=parameter)
@@ -35,12 +35,12 @@
         library(data.table)
         library(dplyr)
 
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockNews",
                             data_id="2330",
-                            date= "2020-04-01",
+                            start_date= "2020-04-01",
                             end_date='2020-04-03'
                             )
         )
