@@ -7,7 +7,7 @@
     限制 request 上限 : 600/hour。Limit amount of request, 600/hour. <br>
     至 [FinMind](https://finmindtrade.com/register.html) 註冊並驗證信箱後，request api add user_id, password 參數，使用上限可提高到 1500/hr。
 
-## FinMind data api 主要有三種類型 API
+## FinMind data api 主要有四種類型 API
 
 - 登入 API
 

@@ -22,6 +22,7 @@ url = 'https://api.finmindtrade.com/api/v4/data'
 parameter = {
      "dataset": "GoldPrice",
      "start_date": "2020-01-01",
+     "end_date": "2020-01-02",
 }
 data = requests.get(url, params=parameter)
 data = data.json()
@@ -46,7 +47,8 @@ url = 'https://api.finmindtrade.com/api/v4/data'
 parameter = {
      "dataset": "CrudeOilPrices",
      "data_id": "WTI",
-     "date": "2020-01-01",
+     "start_date": "2020-01-01",
+     "end_date": "2020-01-08",
 }
 data = requests.get(url, params=parameter)
 data = data.json()
