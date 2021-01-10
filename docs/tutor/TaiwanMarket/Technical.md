@@ -4,11 +4,11 @@
 - [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
 - [台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminutebidask)
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
-- [每5秒委託成交統計 StatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-statisticsoforderbookandtrade)
+- [每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
 
 
-根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
+根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v4_data_get)
 
 #### 台股總覽 TaiwanStockInfo
 
@@ -19,7 +19,7 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockInfo",
         }
@@ -40,7 +40,7 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(dataset = "TaiwanStockInfo")
@@ -67,11 +67,11 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockPrice",
-            "stock_id": "2330",
-            "date": "2020-04-02",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
             "end_date": "2020-04-12",
         }
         resp = requests.get(url, params=parameter)
@@ -91,13 +91,13 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
             dataset="TaiwanStockPrice",
-            stock_id= "2330",
-            date= "2020-04-02",
+            data_id= "2330",
+            start_date= "2020-04-02",
             end_date= "2020-04-08"
         )
         )
@@ -113,6 +113,64 @@
         3: 2020-04-08     2330       38698826   11016972354 285.0 285.5 283.0 285.0    2.0            19126
         ```
 
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockPrice",
+            "start_date": "2020-04-06",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+                date stock_id  Trading_Volume  Trading_money   open    max    min  close  spread  Trading_turnover
+        0  2020-04-06     0050        12207626      935731083  76.95  77.10  75.75  77.05    1.15              5824
+        1  2020-04-06     0051           33000         953030  29.05  29.05  28.74  29.05    0.38                21
+        2  2020-04-06     0052          178700       10660088  59.40  60.05  58.75  60.00    1.25                56
+        3  2020-04-06     0053           17000         589750  34.66  35.00  34.48  34.84    0.18                17
+        4  2020-04-06     0054           10000         200040  19.87  20.03  19.87  20.03    0.00                 4
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockPrice",
+            start_date= "2020-04-06"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                date stock_id Trading_Volume Trading_money  open   max   min close spread
+        1: 2020-04-06     0050       12207626     935731083 76.95  77.1 75.75 77.05   1.15
+        2: 2020-04-06     0051          33000        953030 29.05 29.05 28.74 29.05   0.38
+        3: 2020-04-06     0052         178700      10660088  59.4 60.05 58.75    60   1.25
+        4: 2020-04-06     0053          17000        589750 34.66    35 34.48 34.84   0.18
+        5: 2020-04-06     0054          10000        200040 19.87 20.03 19.87 20.03      0
+        6: 2020-04-06     0055          30070        463722 15.48  15.5  15.3 15.42  -0.03
+        Trading_turnover
+        1:             5824
+        2:               21
+        3:               56
+        4:               17
+        5:                4
+        6:               25
+        ```
 
 
 #### 即時股價 TaiwanStockPriceMinute
@@ -126,10 +184,10 @@
         import requests
         import pandas as pd
 
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "TaiwanStockPriceMinute",
-            "stock_id": "2330"
+            "dataset": "TaiwanStockPriceTick",
+            "data_id": "2330"
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -148,12 +206,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
             dataset="TaiwanStockPriceMinute",
-            stock_id= "2330"
+            data_id= "2330"
         )
         )
         data = content(response)
@@ -178,10 +236,10 @@
         import requests
         import pandas as pd
 
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockPriceMinuteBidAsk",
-            "stock_id": "2330",
+            "data_id": "2330",
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()["data"]
@@ -204,11 +262,11 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockPER",
-            "stock_id": "2330",
-            "date": "2020-04-01",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -226,12 +284,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanStockPER",
-                            stock_id= "2330",
-                            date= "2020-01-02"
+                            data_id= "2330",
+                            start_date= "2020-01-02"
                             )
         )
         data = content(response)
@@ -250,7 +308,7 @@
         ```
 
 
-#### 每5秒委託成交統計 StatisticsOfOrderBookAndTrade
+#### 每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade
 (由於資料量過大，只提供 date 當天 data)
 
 !!! example
@@ -258,10 +316,10 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "StatisticsOfOrderBookAndTrade",
-            "date": "2020-04-01",
+            "dataset": "TaiwanStockStatisticsOfOrderBookAndTrade",
+            "start_date": "2021-01-07",
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -273,12 +331,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="StatisticsOfOrderBookAndTrade",
-            date= "2020-01-02"
+            dataset="TaiwanStockStatisticsOfOrderBookAndTrade",
+            start_date= "2021-01-07"
         )
         )
         data = content(response)
@@ -296,10 +354,10 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v3/data"
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanVariousIndicators5Seconds",
-            "date": "2020-07-01",
+            "start_date": "2020-07-01",
             "end_date": "2020-07-27",
         }
         data = requests.get(url, params=parameter)
@@ -318,12 +376,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v3/data'
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
         query = list(
             dataset="TaiwanVariousIndicators5Seconds",
-            date="2020-07-01",
+            start_date="2020-07-01",
             end_date= "2020-07-27"
         )
         )

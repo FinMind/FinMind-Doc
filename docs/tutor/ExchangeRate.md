@@ -16,11 +16,11 @@
 ```python
 import requests
 import pandas as pd
-url = "https://api.finmindtrade.com/api/v3/data"
+url = "https://api.finmindtrade.com/api/v4/data"
 parameter = {
      "dataset": "TaiwanExchangeRate",
      "data_id": "USD",
-     "date": "2006-01-01",
+     "start_date": "2006-01-01",
 }
 data = requests.get(url, params=parameter)
 data = data.json()

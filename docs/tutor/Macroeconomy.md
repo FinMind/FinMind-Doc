@@ -19,7 +19,7 @@ import pandas as pd
 url = "https://api.finmindtrade.com/api/v3/data"
 parameter = {
      "dataset": "CurrencyCirculation",
-     "data_id": "US",# or "Taiwan"
+     "data_id": "US",
      "date": "2020-01-01",
 }
 data = requests.get(url, params=parameter)
