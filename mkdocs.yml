@@ -45,7 +45,8 @@ nav:
         - 原物料市場: "tutor/Materials.md"
         # - 債券: "tutor/Macroeconomy.md"   
     - 分析:
-        - 回測: "tutor/Backtesting.md"
+        - 回測: "tutor/analysis/Backtesting.md"
+        - 回測(引用外部 data): "tutor/analysis/BacktestingOtherData.md"
     - Versions:
         - What's New: "WhatIsNew.md"
         - Release Note: "release.md"

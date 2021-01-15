@@ -7,6 +7,7 @@ pip install FinMind
 
 
 !!! info "初始化，設定回測股票代碼、時間區間"
+
      ```python
      import pandas as pd
      import numpy as np
@@ -26,6 +27,7 @@ pip install FinMind
      ```
 
 !!! done "將會用以下 data 計算回測"
+
      ```python
                date stock_id  Trading_Volume  Trading_money   open    max    min  close  spread  Trading_turnover  CashEarningsDistribution  StockEarningsDistribution
      0    2018-01-02     0056         1868451       46856990  25.00  25.14  25.00  25.13    0.13             733.0                       0.0                        0.0
@@ -43,6 +45,7 @@ pip install FinMind
 
 
 !!! info "設計策略"
+
      ```python
      class Kd(Strategy):
      """
@@ -84,6 +87,7 @@ pip install FinMind
 
 
 !!! info "回測模擬交易"
+
      ```python
      obj.add_strategy(Kd)
      obj.simulate()
@@ -91,6 +95,7 @@ pip install FinMind
      ```
 
 !!! done "output"
+
      ```python
      MeanProfit          2366.450976
      MaxLoss            -1425.510000
@@ -104,11 +109,13 @@ pip install FinMind
      ```
 
 !!! info "交易明細"
+
      ```python
      obj.trade_detail
      ```
 
 !!! done "output"
+
      ```python
      stock_id        date  EverytimeProfit  RealizedProfit  UnrealizedProfit  board_lot  hold_cost  hold_volume  signal    tax       fee  trade_price   trader_fund
      0       0056  2018-01-03             0.00            0.00              0.00       1000   0.000000            0       0  0.001  0.001425        25.15  500000.00000
@@ -126,6 +133,7 @@ pip install FinMind
 
 
 !!! info "視覺化"
+
      ```python
      obj.plot()
      ```
