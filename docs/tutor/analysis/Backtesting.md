@@ -49,7 +49,6 @@ pip install FinMind
      ```python
      class Kd(Strategy):
      """
-     url: "https://www.mirrormedia.mg/story/20180719fin012/"
      summary:
           日KD 80 20
           日K線 <= 20 進場

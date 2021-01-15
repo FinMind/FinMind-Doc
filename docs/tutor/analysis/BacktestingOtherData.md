@@ -47,7 +47,6 @@ pip install FinMind
     ```python hl_lines="13 36"
     class ShortSaleMarginPurchaseRatio(Strategy):
         """
-        url: "https://blog.above.tw/2018/08/15/%E7%B1%8C%E7%A2%BC%E9%9D%A2%E7%9A%84%E9%97%9C%E9%8D%B5%E6%8C%87%E6%A8%99%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F/"
         summary:
             策略概念: 券資比越高代表散戶看空，法人買超股票會上漲，這時候賣可以跟大部分散戶進行相反的操作，反之亦然
             策略規則: 券資比>=30% 且法人買超股票, 賣
