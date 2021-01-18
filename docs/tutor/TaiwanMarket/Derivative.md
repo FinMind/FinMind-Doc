@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 7 種資料集，如下:
+在台股衍生性商品資料，我們擁有 10 種資料集，如下:
 
 - [期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttickinfo)
 - [期貨、選擇權即時報價 TaiwanFutOptTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttick)
@@ -7,7 +7,10 @@
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
-- [選擇權交易明細表 TaiwanOptionTIck](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
+- [選擇權交易明細表 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
+- [選擇權、期貨三大法人買賣 TaiwanFutOptInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptinstitutionalinvestors)
+- [期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdealertradingvolumedaily)
+- [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
 
 
 
@@ -459,6 +462,13 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
+        
+        ExercisePrice PutCall contract_date                 date option_id  price  volume
+        0           22.0       C        201909  2019-09-05 09:38:52       OCO   1.85      20
+        1           21.5       C        201909  2019-09-05 09:40:16       OCO   2.31      20
+        2           22.5       C        201909  2019-09-05 09:40:29       OCO   1.35      20
+        3           21.5       C        201909  2019-09-05 09:42:42       OCO   2.29       4
+        4           21.5       C        201909  2019-09-05 09:42:59       OCO   2.28       5
 
         ```
     === "R"
@@ -482,3 +492,296 @@
         head(df)
 
         ```
+
+#### 選擇權、期貨三大法人買賣 TaiwanFutOptInstitutionalInvestors
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFutOptInstitutionalInvestors",
+            "data_id": "TX",# "TXO"
+            "start_date": "2020-01-01",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df.head())
+        name        date institutional_investors  ...  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
+        0   TX  2020-01-02                      外資  ...                          147609850                               25535                            61794190
+        1   TX  2020-01-02                      投信  ...                            4041734                               24668                            59701494
+        2   TX  2020-01-02                     自營商  ...                           25378624                                8518                            20572664
+        3   TX  2020-01-03                      投信  ...                            3957284                               24655                            59600997
+        4   TX  2020-01-03                      外資  ...                          147233626                               26284                            63533909
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanFutOptInstitutionalInvestors",
+            data_id="TX",# "TXO"
+            start_date= "2020-01-01"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        ```
+
+
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFutOptInstitutionalInvestors",
+            "start_date": "2020-01-06",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df.head())
+        name        date institutional_investors  ...  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
+        0  ETF  2020-01-06                      外資  ...                            3316136                                1124                              489466
+        1  ETF  2020-01-06                      投信  ...                            1320779                                4079                             3546254
+        2  ETF  2020-01-06                     自營商  ...                             370988                                4489                             1544574
+        3  ETO  2020-01-06                     自營商  ...                                381                                  45                                 452
+        4  ETO  2020-01-06                      外資  ...                                  0                                   0                                   0
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFutOptInstitutionalInvestors",
+                            start_date= "2020-01-06"
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+
+#### 期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFuturesDealerTradingVolumeDaily",
+            "data_id": "TX",
+            "start_date": "2020-07-01",
+            "end_date": "2020-10-02",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df.head())
+                date dealer_code dealer_name futures_id  volume  is_after_hour
+        0  2020-07-01     B224999  中國信託商業銀行自營         TX    1500          False
+        1  2020-07-01     F001000        國泰期貨         TX    1789          False
+        2  2020-07-01     F002000        永豐期貨         TX    9664          False
+        3  2020-07-01     F002999      永豐期貨自營         TX       0          False
+        4  2020-07-01     F004000        凱基期貨         TX   43882          False
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanFuturesDealerTradingVolumeDaily",
+            data_id="TX",
+            start_date="2020-07-01",
+            end_date="2020-10-02"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        ```
+
+
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFuturesDealerTradingVolumeDaily",
+            "start_date": "2020-07-01",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        df
+                    date dealer_code dealer_name futures_id  volume  is_after_hour
+        0     2020-07-01     B224999  中國信託商業銀行自營        BRF       0          False
+        1     2020-07-01     F001000        國泰期貨        BRF       0          False
+        2     2020-07-01     F002000        永豐期貨        BRF       6          False
+        3     2020-07-01     F002999      永豐期貨自營        BRF       0          False
+        4     2020-07-01     F004000        凱基期貨        BRF       1          False
+        ...          ...         ...         ...        ...     ...            ...
+        1477  2020-07-01     S888999      國泰證券自營      total    9399          False
+        1478  2020-07-01     S890999    法銀巴黎證券自營      total     996          False
+        1479  2020-07-01     S920999      凱基證券自營      total     841          False
+        1480  2020-07-01     S960999      富邦證券自營      total     663          False
+        1481  2020-07-01     S980999      元大證券自營      total   19193          False
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFuturesDealerTradingVolumeDaily",
+                            start_date="2020-07-01"
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+
+
+#### 選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionDealerTradingVolumeDaily",
+            "data_id": "TXO",
+            "start_date": "2020-07-01",
+            "end_date": "2020-10-02"
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        df
+                    date dealer_code dealer_name option_id  volume  is_after_hour
+        0     2020-07-01     B224999  中國信託商業銀行自營       TXO   13390          False
+        1     2020-07-01     F001000        國泰期貨       TXO   17478          False
+        2     2020-07-01     F002000        永豐期貨       TXO   75395          False
+        3     2020-07-01     F002999      永豐期貨自營       TXO      98          False
+        4     2020-07-01     F004000        凱基期貨       TXO  159164          False
+        ...          ...         ...         ...       ...     ...            ...
+        5534  2020-09-30     S920999      凱基證券自營       TXO       0           True
+        5535  2020-09-30     S960999      富邦證券自營       TXO       0          False
+        5536  2020-09-30     S960999      富邦證券自營       TXO       0           True
+        5537  2020-09-30     S980999      元大證券自營       TXO   68807          False
+        5538  2020-09-30     S980999      元大證券自營       TXO   25932           True
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanOptionDealerTradingVolumeDaily",
+            data_id="TXO",
+            start_date="2020-07-01",
+            end_date="2020-10-02"
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        ```
+
+
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionDealerTradingVolumeDaily",
+            "start_date": "2020-07-01",
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        df
+                date dealer_code dealer_name option_id  volume  is_after_hour
+        0    2020-07-01     B224999  中國信託商業銀行自營       ETC     393          False
+        1    2020-07-01     F001000        國泰期貨       ETC       0          False
+        2    2020-07-01     F002000        永豐期貨       ETC      42          False
+        3    2020-07-01     F002999      永豐期貨自營       ETC       0          False
+        4    2020-07-01     F004000        凱基期貨       ETC      15          False
+        ..          ...         ...         ...       ...     ...            ...
+        454  2020-07-01     S888999      國泰證券自營     total    5718          False
+        455  2020-07-01     S890999    法銀巴黎證券自營     total  131727          False
+        456  2020-07-01     S920999      凱基證券自營     total      11          False
+        457  2020-07-01     S960999      富邦證券自營     total       0          False
+        458  2020-07-01     S980999      元大證券自營     total   90416          False
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionDealerTradingVolumeDaily",
+                            start_date="2020-07-01"
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
