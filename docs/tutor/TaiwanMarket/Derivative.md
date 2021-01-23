@@ -24,6 +24,7 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanFutOptTickInfo",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -45,7 +46,8 @@
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TaiwanFutOptTickInfo"
+            dataset="TaiwanFutOptTickInfo",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -73,7 +75,8 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanFutOptTick",
-            "data_id": "TXFA1"
+            "data_id": "TXFA1",# 期貨會過期，商品代碼請先查詢 TaiwanFutOptTickInfo
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -96,7 +99,8 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFutOptTick",
-                            data_id="TXFA1"
+                            data_id="TXFA1",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -123,6 +127,7 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanOptionFutureInfo",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -144,7 +149,8 @@
         url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(url = url,
                             query = list(
-                            dataset="TaiwanOptionFutureInfo"
+                            dataset="TaiwanOptionFutureInfo",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -171,7 +177,8 @@
         parameter = {
             "dataset": "TaiwanFuturesDaily",
             "data_id":"TX",
-            "start_date": "2020-04-01"
+            "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -195,7 +202,8 @@
                             query = list(
                             dataset="TaiwanFuturesDaily",
                             data_id="TX",
-                            start_date= "2020-04-01"
+                            start_date= "2020-04-01",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -227,7 +235,8 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanFuturesDaily",
-            "start_date": "2020-04-01"
+            "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -250,7 +259,8 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFuturesDaily",
-                            start_date= "2020-04-01"
+                            start_date= "2020-04-01",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -284,7 +294,8 @@
         parameter = {
             "dataset": "TaiwanOptionDaily",
             "data_id":"TXO",
-            "start_date": "2020-04-01"
+            "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -308,7 +319,8 @@
                             query = list(
                             dataset="TaiwanOptionDaily",
                             data_id="TXO",
-                            start_date= "2020-04-01"
+                            start_date= "2020-04-01",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -340,7 +352,8 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanOptionDaily",
-            "start_date": "2020-04-01"
+            "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -363,7 +376,8 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanOptionDaily",
-                            start_date= "2020-04-01"
+                            start_date= "2020-04-01",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -401,6 +415,7 @@
             "dataset": "TaiwanFuturesTick",
             "data_id": "MTX",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -424,7 +439,8 @@
         query = list(
             dataset="TaiwanFuturesTick",
             data_id="MTX",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -457,6 +473,7 @@
             "dataset": "TaiwanOptionTick",
             "data_id": "OCO",
             "start_date": "2019-09-05",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -482,7 +499,8 @@
         query = list(
             dataset="TaiwanOptionTick",
             data_id="OCO",
-            start_date= "2019-09-05"
+            start_date= "2019-09-05",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -505,6 +523,7 @@
             "dataset": "TaiwanFutOptInstitutionalInvestors",
             "data_id": "TX",# "TXO"
             "start_date": "2020-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -528,7 +547,8 @@
         query = list(
             dataset="TaiwanFutOptInstitutionalInvestors",
             data_id="TX",# "TXO"
-            start_date= "2020-01-01"
+            start_date= "2020-01-01",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -551,6 +571,7 @@
         parameter = {
             "dataset": "TaiwanFutOptInstitutionalInvestors",
             "start_date": "2020-01-06",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -573,7 +594,8 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFutOptInstitutionalInvestors",
-                            start_date= "2020-01-06"
+                            start_date= "2020-01-06",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -596,6 +618,7 @@
             "data_id": "TX",
             "start_date": "2020-07-01",
             "end_date": "2020-10-02",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -620,7 +643,8 @@
             dataset="TaiwanFuturesDealerTradingVolumeDaily",
             data_id="TX",
             start_date="2020-07-01",
-            end_date="2020-10-02"
+            end_date="2020-10-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -643,6 +667,7 @@
         parameter = {
             "dataset": "TaiwanFuturesDealerTradingVolumeDaily",
             "start_date": "2020-07-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -671,7 +696,8 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFuturesDealerTradingVolumeDaily",
-                            start_date="2020-07-01"
+                            start_date="2020-07-01",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
@@ -694,7 +720,8 @@
             "dataset": "TaiwanOptionDealerTradingVolumeDaily",
             "data_id": "TXO",
             "start_date": "2020-07-01",
-            "end_date": "2020-10-02"
+            "end_date": "2020-10-02",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -725,7 +752,8 @@
             dataset="TaiwanOptionDealerTradingVolumeDaily",
             data_id="TXO",
             start_date="2020-07-01",
-            end_date="2020-10-02"
+            end_date="2020-10-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -748,6 +776,7 @@
         parameter = {
             "dataset": "TaiwanOptionDealerTradingVolumeDaily",
             "start_date": "2020-07-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -776,7 +805,8 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanOptionDealerTradingVolumeDaily",
-                            start_date="2020-07-01"
+                            start_date="2020-07-01",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content

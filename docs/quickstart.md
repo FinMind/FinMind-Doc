@@ -80,7 +80,7 @@ dataset       | str |  Y | 資料集名稱
 data_id       | str |  N | 資料代碼
 start_date    | str |  N | 起始時間，如果跟 end_date 一起使用，會輸出 start_date 到 end_date 時間的資料，反之會輸出到最新的資料，start_date 和 end_date 至少則一使用
 end_date      | str |  N | 結束時間，如果跟 start_date  一起使用，會輸出 start_date 到 end_date 時間的資料，反之會輸出到 end_date 的資料，start_date 和 end_date 至少則一使用
-token         | str |  N | 使用者 token，請先登入拿到 token
+token         | str |  N | 使用者 token，請先[登入](https://finmind.github.io/login/)拿到 token
 
 #### 查詢資料參數清單 API
 

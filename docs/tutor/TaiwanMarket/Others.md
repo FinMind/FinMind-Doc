@@ -16,7 +16,8 @@
             "dataset": "TaiwanStockNews",
             "data_id":"2330",
             "start_date": "2020-04-01",
-            "end_date": "2020-04-03"
+            "end_date": "2020-04-03",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -41,7 +42,8 @@
                             dataset="TaiwanStockNews",
                             data_id="2330",
                             start_date= "2020-04-01",
-                            end_date='2020-04-03'
+                            end_date='2020-04-03',
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content

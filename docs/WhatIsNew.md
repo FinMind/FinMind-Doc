@@ -1,4 +1,20 @@
 
+#### 2021-01-18
+* 新增[期貨、選擇權三大法人買賣](https://finmind.github.io/tutor/TaiwanMarket/Derivative/)
+* 新增[期貨、選擇權各卷商日交易資訊](https://finmind.github.io/tutor/TaiwanMarket/Derivative/)
+* web 回測、策略分析功能，預計近期上線。可針對特定策略，分析全市場股票勝率，降低生存者偏差。
+* api v4 上線，可一次拿取特定日期，所有股價、三大法人、融資券等資訊，方便使用者進行每日更新時，只需要發少量 request。
+
+#### 2020-12-25
+* 資料已全部轉移到時間序列資料庫，針對 tick data，回應速度提升 10 倍以上。
+* [web data 下載](https://finmindtrade.com/analysis/#/data/document)
+* [FinMind 回測 package 說明文件](https://finmind.github.io/tutor/analysis/Backtesting/)，正在優化中。
+
+#### 2020-10-06
+* 預計改用時間序列資料庫，增加 api 效率。
+* 進行回測功能開發。
+* web 開發 data 下載功能，由於大多數人，使用 excel 進行金融分析，因此開發 web 下載 excel data 功能。
+
 #### 2020-05-06
 * 新增 [借券成交明細 SecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 * 新增 [每5秒委託成交統計 StockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)

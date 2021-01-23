@@ -21,6 +21,7 @@
             "dataset": "TaiwanStockMarginPurchaseShortSale",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -44,7 +45,8 @@
         query = list(
             dataset="TaiwanStockMarginPurchaseShortSale",
             data_id= "2330",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -94,6 +96,7 @@
         parameter = {
             "dataset": "TaiwanStockMarginPurchaseShortSale",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -117,7 +120,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockMarginPurchaseShortSale",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -176,6 +180,7 @@
         parameter = {
             "dataset": "TaiwanStockTotalMarginPurchaseShortSale",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -198,7 +203,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockTotalMarginPurchaseShortSale",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -230,6 +236,7 @@
             "dataset": "TaiwanStockInstitutionalInvestorsBuySell",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -253,7 +260,8 @@
         query = list(
             dataset="TaiwanStockInstitutionalInvestorsBuySell",
             data_id= "2330",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -283,6 +291,7 @@
         parameter = {
             "dataset": "TaiwanStockInstitutionalInvestorsBuySell",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -312,7 +321,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockInstitutionalInvestorsBuySell",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -342,6 +352,7 @@
         parameter = {
             "dataset": "TaiwanStockTotalInstitutionalInvestors",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -364,7 +375,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockTotalInstitutionalInvestors",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -394,6 +406,7 @@
             "dataset": "TaiwanStockShareholding",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -417,7 +430,8 @@
         query = list(
             dataset="TaiwanStockShareholding",
             data_id= "2330",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -460,6 +474,7 @@
         parameter = {
             "dataset": "TaiwanStockShareholding",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -482,7 +497,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockShareholding",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -541,6 +557,7 @@
             "dataset": "TaiwanStockHoldingSharesPer",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -564,7 +581,8 @@
         query = list(
             dataset="TaiwanStockHoldingSharesPer",
             data_id= "2330",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -594,6 +612,7 @@
             "dataset": "TaiwanStockHoldingSharesPer",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -622,7 +641,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockHoldingSharesPer",
-            start_date= "2020-04-01"
+            start_date= "2020-04-01",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -653,6 +673,7 @@
             "dataset": "TaiwanStockSecuritiesLending",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -676,7 +697,8 @@
         query = list(
             dataset="TaiwanStockSecuritiesLending",
             data_id="2330",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -712,6 +734,7 @@
         parameter = {
             "dataset": "TaiwanStockSecuritiesLending",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -740,7 +763,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockSecuritiesLending",
-            start_date= "2020-01-02"
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)

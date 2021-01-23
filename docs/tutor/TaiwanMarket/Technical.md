@@ -22,6 +22,7 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockInfo",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -43,7 +44,10 @@
         url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
         url = url,
-        query = list(dataset = "TaiwanStockInfo")
+        query = list(
+            dataset = "TaiwanStockInfo",
+            token = "" # 參考登入，獲取金鑰
+            )
         )
         data = content(response)
         df = data$data %>% 
@@ -73,6 +77,7 @@
             "data_id": "2330",
             "start_date": "2020-04-02",
             "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -98,7 +103,8 @@
             dataset="TaiwanStockPrice",
             data_id= "2330",
             start_date= "2020-04-02",
-            end_date= "2020-04-08"
+            end_date= "2020-04-08",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -124,6 +130,7 @@
         parameter = {
             "dataset": "TaiwanStockPrice",
             "start_date": "2020-04-06",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -147,7 +154,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockPrice",
-            start_date= "2020-04-06"
+            start_date= "2020-04-06",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -187,7 +195,8 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockPriceTick",
-            "data_id": "2330"
+            "data_id": "2330",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
@@ -211,7 +220,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockPriceMinute",
-            data_id= "2330"
+            data_id= "2330",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -240,6 +250,7 @@
         parameter = {
             "dataset": "TaiwanStockPriceMinuteBidAsk",
             "data_id": "2330",
+            "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()["data"]
@@ -267,6 +278,7 @@
             "dataset": "TaiwanStockPER",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -289,7 +301,8 @@
                             query = list(
                             dataset="TaiwanStockPER",
                             data_id= "2330",
-                            start_date= "2020-01-02"
+                            start_date= "2020-01-02",
+                            token = "" # 參考登入，獲取金鑰
                             )
         )
         data = content(response)
@@ -320,6 +333,7 @@
         parameter = {
             "dataset": "TaiwanStockStatisticsOfOrderBookAndTrade",
             "start_date": "2021-01-07",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -336,7 +350,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockStatisticsOfOrderBookAndTrade",
-            start_date= "2021-01-07"
+            start_date= "2021-01-07",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -359,6 +374,7 @@
             "dataset": "TaiwanVariousIndicators5Seconds",
             "start_date": "2020-07-01",
             "end_date": "2020-07-27",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -382,7 +398,8 @@
         query = list(
             dataset="TaiwanVariousIndicators5Seconds",
             start_date="2020-07-01",
-            end_date= "2020-07-27"
+            end_date= "2020-07-27",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)

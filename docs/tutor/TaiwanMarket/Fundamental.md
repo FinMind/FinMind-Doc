@@ -20,6 +20,7 @@
             "dataset": "TaiwanStockFinancialStatements",
             "data_id": "2330",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -44,7 +45,8 @@
         query = list(
             dataset="TaiwanStockFinancialStatements",
             data_id="2330",
-            start_date= "2019-01-02"
+            start_date= "2019-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -72,6 +74,7 @@
         parameter = {
             "dataset": "TaiwanStockFinancialStatements",
             "start_date": "2019-03-31",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -101,7 +104,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockFinancialStatements",
-            start_date= "2019-03-31"
+            start_date= "2019-03-31",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -131,6 +135,7 @@
             "dataset": "TaiwanStockBalanceSheet",
             "data_id": "2330",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -155,7 +160,8 @@
         query = list(
             dataset="TaiwanStockBalanceSheet",
             data_id="2330",
-            start_date= "2019-01-02"
+            start_date= "2019-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -185,6 +191,7 @@
         parameter = {
             "dataset": "TaiwanStockBalanceSheet",
             "start_date": "2019-03-31",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -208,7 +215,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockBalanceSheet",
-            start_date= "2019-03-31"
+            start_date= "2019-03-31",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -240,6 +248,7 @@
             "dataset": "TaiwanStockCashFlowsStatement",
             "data_id": "2330",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -264,7 +273,8 @@
         query = list(
             dataset="TaiwanStockCashFlowsStatement",
             data_id="2330",
-            start_date= "2019-01-02"
+            start_date= "2019-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -293,6 +303,7 @@
         parameter = {
             "dataset": "TaiwanStockCashFlowsStatement",
             "start_date": "2019-03-31",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -316,7 +327,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockCashFlowsStatement",
-            start_date= "2019-03-31"
+            start_date= "2019-03-31",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -347,6 +359,7 @@
             "dataset": "TaiwanStockStockDividend",
             "data_id": "2330",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -371,7 +384,8 @@
         query = list(
             dataset="TaiwanStockStockDividend",
             data_id="2330",
-            start_date= "2019-01-02"
+            start_date= "2019-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -444,6 +458,7 @@
             "dataset": "TaiwanStockDividendResult",
             "data_id": "2330",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -468,7 +483,8 @@
         query = list(
             dataset="TaiwanStockDividendResult",
             data_id="2330",
-            start_date= "2019-01-02"
+            start_date= "2019-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -504,6 +520,7 @@
         parameter = {
             "dataset": "TaiwanStockDividendResult",
             "start_date": "2019-06-24",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -527,7 +544,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockDividendResult",
-            start_date= "2019-06-24"
+            start_date= "2019-06-24",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -565,6 +583,7 @@
             "dataset": "TaiwanStockMonthRevenue",
             "data_id": "2330",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -589,7 +608,8 @@
         query = list(
             dataset="TaiwanStockMonthRevenue",
             data_id="2330",
-            start_date= "2019-01-02"
+            start_date= "2019-01-02",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
@@ -618,6 +638,7 @@
         parameter = {
             "dataset": "TaiwanStockMonthRevenue",
             "start_date": "2019-01-01",
+            "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
         data = data.json()
@@ -641,7 +662,8 @@
         url = url,
         query = list(
             dataset="TaiwanStockMonthRevenue",
-            start_date= "2019-01-01"
+            start_date= "2019-01-01",
+            token = "" # 參考登入，獲取金鑰
         )
         )
         data = content(response)
