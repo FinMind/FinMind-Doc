@@ -1,4 +1,13 @@
 
+#### 2021-01-26
+* 新增[CnnFearGreedIndex 恐懼與貪婪指數](https://finmind.github.io/tutor/Others/#cnnfeargreedindex)
+* 註冊會員突破500人
+
+#### 2021-01-25
+* [web](https://finmindtrade.com/) 正式上線，包含策略分析、回測功能，分析全市場股票勝率，降低生存者偏差。
+* 開始下一階段 web 開發。
+
+
 #### 2021-01-18
 * 新增[期貨、選擇權三大法人買賣](https://finmind.github.io/tutor/TaiwanMarket/Derivative/)
 * 新增[期貨、選擇權各卷商日交易資訊](https://finmind.github.io/tutor/TaiwanMarket/Derivative/)
