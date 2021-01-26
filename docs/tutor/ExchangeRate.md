@@ -13,24 +13,25 @@
 
 - 針對 USD 做示範
 
-```python
-import requests
-import pandas as pd
-url = "https://api.finmindtrade.com/api/v4/data"
-parameter = {
-     "dataset": "TaiwanExchangeRate",
-     "data_id": "USD",
-     "start_date": "2006-01-01",
-}
-data = requests.get(url, params=parameter)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
+!!! example
+     ```python
+     import requests
+     import pandas as pd
+     url = "https://api.finmindtrade.com/api/v4/data"
+     parameter = {
+          "dataset": "TaiwanExchangeRate",
+          "data_id": "USD",
+          "start_date": "2006-01-01",
+     }
+     data = requests.get(url, params=parameter)
+     data = data.json()
+     data = pd.DataFrame(data['data'])
+     print(data.head())
 
-         date currency  cash_buy  cash_sell  spot_buy  spot_sell
-0  2006-01-02      USD    32.470     33.005   -99.000    -99.000
-1  2006-01-03      USD    32.295     32.830    32.595     32.695
-2  2006-01-04      USD    31.985     32.520    32.285     32.385
-3  2006-01-05      USD    31.670     32.205    31.970     32.070
-4  2006-01-06      USD    31.830     32.372    32.130     32.230
-```
+          date currency  cash_buy  cash_sell  spot_buy  spot_sell
+     0  2006-01-02      USD    32.470     33.005   -99.000    -99.000
+     1  2006-01-03      USD    32.295     32.830    32.595     32.695
+     2  2006-01-04      USD    31.985     32.520    32.285     32.385
+     3  2006-01-05      USD    31.670     32.205    31.970     32.070
+     4  2006-01-06      USD    31.830     32.372    32.130     32.230
+     ```

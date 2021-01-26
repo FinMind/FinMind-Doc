@@ -33,39 +33,41 @@ print(data.head())
 
 #### 美國股價 minute 資料表 USStockPriceMinute
 
-```python
-import requests
-import pandas as pd
+!!! example
+    ```python
+    import requests
+    import pandas as pd
 
-url = 'https://api.finmindtrade.com/api/v3/data?dataset=USStockPriceMinute&stock_id=^DJI&date=2020-02-13'
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
+    url = 'https://api.finmindtrade.com/api/v3/data?dataset=USStockPriceMinute&stock_id=^DJI&date=2020-02-13'
+    data = requests.get(url)
+    data = data.json()
+    data = pd.DataFrame(data['data'])
+    print(data.head())
 
-                  date stock_id    close   ...        low     open  volume
-0  2020-02-13 20:02:00     ^DJI  29491.0   ...    29491.0  29510.4  708882
-1  2020-02-13 20:03:00     ^DJI  29490.5   ...    29477.4  29483.9  766202
-2  2020-02-13 20:04:00     ^DJI  29468.7   ...    29467.3  29490.0  577330
-3  2020-02-13 20:05:00     ^DJI  29474.1   ...    29465.8  29468.0  439754
-4  2020-02-13 20:06:00     ^DJI  29473.3   ...    29473.3  29474.7  412897
-```
+                    date stock_id    close   ...        low     open  volume
+    0  2020-02-13 20:02:00     ^DJI  29491.0   ...    29491.0  29510.4  708882
+    1  2020-02-13 20:03:00     ^DJI  29490.5   ...    29477.4  29483.9  766202
+    2  2020-02-13 20:04:00     ^DJI  29468.7   ...    29467.3  29490.0  577330
+    3  2020-02-13 20:05:00     ^DJI  29474.1   ...    29465.8  29468.0  439754
+    4  2020-02-13 20:06:00     ^DJI  29473.3   ...    29473.3  29474.7  412897
+    ```
 
 #### 美國股價 daily 資料表 USStockPrice
 
-```python
-import requests
-import pandas as pd
+!!! example
+    ```python
+    import requests
+    import pandas as pd
 
-url = "https://api.finmindtrade.com/api/v3/data"
-parameter = {
-    "dataset": "USStockPrice",
-    "stock_id": "AAPL",
-    "date": "2020-04-01",
-}
+    url = "https://api.finmindtrade.com/api/v3/data"
+    parameter = {
+        "dataset": "USStockPrice",
+        "stock_id": "AAPL",
+        "date": "2020-04-01",
+    }
 
-data = requests.get(url, params=parameter)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
-```
+    data = requests.get(url, params=parameter)
+    data = data.json()
+    data = pd.DataFrame(data['data'])
+    print(data.head())
+    ```

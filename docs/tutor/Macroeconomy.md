@@ -13,48 +13,50 @@
 
 #### 各國貨幣發行量表 CurrencyCirculation
 
-```python
-import requests
-import pandas as pd
-url = "https://api.finmindtrade.com/api/v3/data"
-parameter = {
-     "dataset": "CurrencyCirculation",
-     "data_id": "US",
-     "date": "2020-01-01",
-}
-data = requests.get(url, params=parameter)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
+!!! example
+     ```python
+     import requests
+     import pandas as pd
+     url = "https://api.finmindtrade.com/api/v3/data"
+     parameter = {
+          "dataset": "CurrencyCirculation",
+          "data_id": "US",
+          "date": "2020-01-01",
+     }
+     data = requests.get(url, params=parameter)
+     data = data.json()
+     data = pd.DataFrame(data['data'])
+     print(data.head())
 
-  country        date     type      value
-0      US  2020-01-01  Monthly  1798.984B
-1      US  2020-02-01  Monthly  1795.990B
-2      US  2020-03-01  Monthly  1826.102B
-3      US  2020-04-01  Monthly  1876.878B
-```
+     country        date     type      value
+     0      US  2020-01-01  Monthly  1798.984B
+     1      US  2020-02-01  Monthly  1795.990B
+     2      US  2020-03-01  Monthly  1826.102B
+     3      US  2020-04-01  Monthly  1876.878B
+     ```
 
 #### 政府公債殖利率表 GovernmentBondsYield
 
-```python
-import requests
-import pandas as pd
+!!! example
+     ```python
+     import requests
+     import pandas as pd
 
-url = "https://api.finmindtrade.com/api/v3/data"
-parameter = {
-     "dataset": "GovernmentBondsYield",
-     "data_id": "United States 1-Month",
-     "date": "2020-01-01",
-}
-data = requests.get(url, params=parameter)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
+     url = "https://api.finmindtrade.com/api/v3/data"
+     parameter = {
+          "dataset": "GovernmentBondsYield",
+          "data_id": "United States 1-Month",
+          "date": "2020-01-01",
+     }
+     data = requests.get(url, params=parameter)
+     data = data.json()
+     data = pd.DataFrame(data['data'])
+     print(data.head())
 
-         date                  name  value
-0  2020-01-02  United States 3-Year   1.59
-1  2020-01-03  United States 3-Year   1.54
-2  2020-01-06  United States 3-Year   1.56
-3  2020-01-07  United States 3-Year   1.55
-4  2020-01-08  United States 3-Year   1.61
-```
+          date                  name  value
+     0  2020-01-02  United States 3-Year   1.59
+     1  2020-01-03  United States 3-Year   1.54
+     2  2020-01-06  United States 3-Year   1.56
+     3  2020-01-07  United States 3-Year   1.55
+     4  2020-01-08  United States 3-Year   1.61
+     ```

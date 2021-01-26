@@ -44,6 +44,7 @@ nav:
         - 匯率: "tutor/ExchangeRate.md"
         - 央行利率: "tutor/InterestRate.md"
         - 原物料市場: "tutor/Materials.md"
+        - 其他: "tutor/Others.md"
         # - 債券: "tutor/Macroeconomy.md"   
     - 分析:
         - 回測: "tutor/analysis/Backtesting.md"
