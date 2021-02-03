@@ -347,7 +347,7 @@
         ```
 
 
-#### 股利政策表 TaiwanStockStockDividend
+#### 股利政策表 TaiwanStockDividend
 
 !!! example
     === "Python"
@@ -356,7 +356,7 @@
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "TaiwanStockStockDividend",
+            "dataset": "TaiwanStockDividend",
             "data_id": "2330",
             "start_date": "2019-01-01",
             "token": "", # 參考登入，獲取金鑰

@@ -25,8 +25,8 @@
 * web 開發 data 下載功能，由於大多數人，使用 excel 進行金融分析，因此開發 web 下載 excel data 功能。
 
 #### 2020-05-06
-* 新增 [借券成交明細 SecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
-* 新增 [每5秒委託成交統計 StockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
+* 新增 [借券成交明細 SecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
+* 新增 [每5秒委託成交統計 StockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
 
 
 #### 2020-05-01
