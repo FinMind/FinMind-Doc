@@ -76,6 +76,7 @@
         parameter = {
             "dataset": "TaiwanFutOptTick",
             "data_id": "TXFA1",# 期貨會過期，商品代碼請先查詢 TaiwanFutOptTickInfo
+            "streaming_all_data": True,# 拿取當天所有即時資料
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -100,6 +101,7 @@
                             query = list(
                             dataset="TaiwanFutOptTick",
                             data_id="TXFA1",
+                            streaming_all_data= true,# 拿取當天所有即時資料
                             token = "" # 參考登入，獲取金鑰
                             )
         )

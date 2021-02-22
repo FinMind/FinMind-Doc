@@ -1,8 +1,8 @@
 在台股技術面，我們擁有 6 種資料集，如下:
 
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-- [台灣股價及時資料表 TaiwanStockPriceMinute](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
-- [台灣即時最佳五檔 TaiwanStockPriceMinuteBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminutebidask)
+- [台灣股價及時資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick)
+- [台灣即時最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask)
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
@@ -181,7 +181,7 @@
         ```
 
 
-#### 即時股價 TaiwanStockPriceMinute
+#### 即時股價 TaiwanStockPriceTick
 
 - 輸入 dataset、stock_id 參數，會回傳當天最近 100 筆即時資料。
 - 輸入 dataset、stock_id、date，會回傳 date 當天 data。
@@ -196,6 +196,7 @@
         parameter = {
             "dataset": "TaiwanStockPriceTick",
             "data_id": "2330",
+            "streaming_all_data": True,# 拿取當天所有即時資料
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
@@ -221,6 +222,7 @@
         query = list(
             dataset="TaiwanStockPriceMinute",
             data_id= "2330",
+            streaming_all_data= true,# 拿取當天所有即時資料
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -238,7 +240,7 @@
         6: 2020-01-02     2330      333.0     20 09:00:25.000000000
         ```
 
-#### 即時最佳五檔 TaiwanStockPriceMinuteBidAsk
+#### 即時最佳五檔 TaiwanStockPriceBidAsk
 
 !!! example
     === "Python"
@@ -248,7 +250,7 @@
 
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "TaiwanStockPriceMinuteBidAsk",
+            "dataset": "TaiwanStockPriceBidAsk",
             "data_id": "2330",
             "token": "", # 參考登入，獲取金鑰
         }

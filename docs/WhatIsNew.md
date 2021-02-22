@@ -1,7 +1,9 @@
+#### 2021-02-22
+* 新增 `streaming_all_data` 參數，可拿取即時資料(tick)，開盤到當下所有 data。
 
 #### 2021-01-26
 * 新增[CnnFearGreedIndex 恐懼與貪婪指數](https://finmind.github.io/tutor/Others/#cnnfeargreedindex)
-* 註冊會員突破500人
+* 註冊會員突破500人。
 
 #### 2021-01-25
 * [web](https://finmindtrade.com/) 正式上線，包含策略分析、回測功能，分析全市場股票勝率，降低生存者偏差。
