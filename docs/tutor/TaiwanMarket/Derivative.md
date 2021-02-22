@@ -101,7 +101,7 @@
                             query = list(
                             dataset="TaiwanFutOptTick",
                             data_id="TXFA1",
-                            streaming_all_data= true,# 拿取當天所有即時資料
+                            streaming_all_data= TRUE,# 拿取當天所有即時資料
                             token = "" # 參考登入，獲取金鑰
                             )
         )
