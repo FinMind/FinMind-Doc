@@ -1,3 +1,7 @@
+#### 2021-03-18
+* 新增[當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)。
+
+
 #### 2021-02-22
 * 新增 `streaming_all_data` 參數，可拿取即時資料(tick)，開盤到當下所有 data。
 

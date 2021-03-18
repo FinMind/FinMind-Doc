@@ -1,4 +1,4 @@
-在台股技術面，我們擁有 6 種資料集，如下:
+在台股技術面，我們擁有 7 種資料集，如下:
 
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台灣股價及時資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick)
@@ -6,6 +6,7 @@
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
+- [當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)
 
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v4_data_get)
@@ -410,3 +411,113 @@
         data.table
         head(df)
         ```
+
+
+#### 當日沖銷交易標的及成交量值 TaiwanStockDayTrading
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockDayTrading",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        stock_id        date BuyAfterSale   Volume   BuyAmount  SellAmount
+        0     2330  2020-04-06            Y  8122000  2215280000  2218094500
+        1     2330  2020-04-07            Y  5128000  1450483500  1447872000
+        2     2330  2020-04-08            Y  2467000   702411500   702367000
+        3     2330  2020-04-09            Y  2583000   736745500   734035500
+        4     2330  2020-04-10            Y  1590000   445516000   444576000
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockDayTrading",
+            data_id= "2330",
+            start_date= "2020-04-02",
+            end_date= "2020-04-08",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+        stock_id date        BuyAfterSale Volume   BuyAmount  SellAmount
+        0: 2330  2020-04-06            Y  8122000  2215280000  2218094500
+        1: 2330  2020-04-07            Y  5128000  1450483500  1447872000
+        2: 2330  2020-04-08            Y  2467000   702411500   702367000
+        3: 2330  2020-04-09            Y  2583000   736745500   734035500
+        4: 2330  2020-04-10            Y  1590000   445516000   444576000
+        ```
+
+#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockDayTrading",
+            "start_date": "2020-04-06",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        res = requests.get(url, params=parameter)
+        temp = res.json()
+        data = pd.DataFrame(temp["data"])
+        print(data.head())
+
+        stock_id        date BuyAfterSale   Volume  BuyAmount  SellAmount
+        0     0050  2020-04-06               1296000   99116100    99343200
+        1     0051  2020-04-06                  2000      57680       57560
+        2     0052  2020-04-06                  9000     536200      537700
+        3     0053  2020-04-06                     0          0           0
+        4     0054  2020-04-06                     0          0           0
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockDayTrading",
+            start_date= "2020-04-06",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        stock_id        date BuyAfterSale   Volume  BuyAmount  SellAmount
+        0: 0050  2020-04-06               1296000   99116100    99343200
+        1: 0051  2020-04-06                  2000      57680       57560
+        2: 0052  2020-04-06                  9000     536200      537700
+        3: 0053  2020-04-06                     0          0           0
+        4: 0054  2020-04-06                     0          0           0
+
+        ```
+
