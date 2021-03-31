@@ -1,11 +1,13 @@
-在台灣金融市場，我們擁有 32 種資料集，如下:
+在台灣金融市場，我們擁有 34 種資料集，如下:
 
 #### 技術面 Technical
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
-- [股價日成交資訊 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-- [即時股價 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick)
-- [即時最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask)
+- [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
+- [台灣股價即時資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick)
+- [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick_1)
+- [台股即時最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask)
+- [歷史台股最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask_1)
 - [個股 PER、PBR 資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [每 5 秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#Taiwanstatisticsoforderbookandtrade)
 - [加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
