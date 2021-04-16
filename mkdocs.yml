@@ -54,6 +54,7 @@ nav:
         - Release Note: "release.md"
         - v4 (Latest): https://finmind.github.io/
         - v3: https://finmind.github.io/v3" target="_blank
+    - 壓力測試: "StressTest.md"
     - 聯絡我們: "Contact.md"
     - 使用條款: "License.md"
     - 贊助我們: "Donate.md"
