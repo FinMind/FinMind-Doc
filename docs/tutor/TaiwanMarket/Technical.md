@@ -123,7 +123,7 @@
         3: 2020-04-08     2330       38698826   11016972354 285.0 285.5 283.0 285.0    2.0            19126
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -185,7 +185,7 @@
         ```
 
 
-#### 台灣股價即時資料表 TaiwanStockPriceTick
+#### 台灣股價即時資料表 TaiwanStockPriceTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 輸入 dataset、stock_id 參數，會回傳當天最近 100 筆即時資料。
 
@@ -301,7 +301,7 @@
         6: 2020-01-02     2330      333.0     20 09:00:25.000000000
         ```
 
-#### 台股即時最佳五檔 TaiwanStockPriceBidAsk
+#### 台股即時最佳五檔 TaiwanStockPriceBidAsk (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/
 
 !!! example
     === "Python"
@@ -558,7 +558,7 @@
         4: 2330  2020-04-10            Y  1590000   445516000   444576000
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"

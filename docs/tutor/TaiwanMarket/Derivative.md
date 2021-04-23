@@ -64,7 +64,7 @@
         6: CAO00700O1    賣權 2021/03 南亞股票選擇權   2020-04-16  2020-05-27          700
         ```
 
-#### 期貨、選擇權即時報價 TaiwanFutOptTick
+#### 期貨、選擇權即時報價 TaiwanFutOptTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/
 由於資料量過大，只提供 date 當天 data
 
 !!! example
@@ -227,7 +227,7 @@
         6:              0.0             0        position
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -344,7 +344,7 @@
         6:           2080.0             4        position
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -562,7 +562,7 @@
         ```
 
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -658,7 +658,7 @@
         ```
 
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -767,7 +767,7 @@
         ```
 
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"

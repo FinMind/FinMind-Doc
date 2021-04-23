@@ -85,7 +85,7 @@
         6:                      2219
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -280,7 +280,7 @@
         6: 2019-01-03     2330  1114000.0      Dealer_Hedging    81000.0
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -463,7 +463,7 @@
         6:          2018-05-28 None     台積電
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -600,7 +600,7 @@
         6: 2019-01-19     2330      20,001-30,000   4715.0    0.44 115199487
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
@@ -723,7 +723,7 @@
         6:                     181
         ```
 
-#### 一次拿特定日期，所有資料(未來將只限贊助會員使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
     === "Python"
