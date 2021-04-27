@@ -63,7 +63,7 @@
         6: 2019-03-31     2330     GrossProfit  90352100000.0                               營業毛利(毛損)
         ```
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Python"
@@ -180,7 +180,7 @@
         ```
 
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Python"
@@ -292,7 +292,7 @@
         6: 2019-03-31     2330          CashBalancesIncrease  67855900000.0 本期現金及約當現金增加（減少）數
         ```
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Python"
@@ -509,7 +509,7 @@
         6:                      息       501       410      455.5           455.5
         ```
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Python"
@@ -627,7 +627,7 @@
         6: 2019-07-01     2330  Taiwan 85867929000             6         2019
         ```
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Python"
