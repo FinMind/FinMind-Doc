@@ -395,7 +395,7 @@
         6: 38029457325 2019-01-04               total 43592013337
         ```
 
-#### 股東結構表 TaiwanStockShareholding
+#### 外資持股表 TaiwanStockShareholding
 
 !!! example
     === "Python"

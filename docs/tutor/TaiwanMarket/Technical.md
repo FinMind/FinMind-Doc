@@ -223,7 +223,7 @@
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TaiwanStockPriceMinute",
+            dataset="TaiwanStockPriceTick",
             data_id= "2330",
             streaming_all_data= TRUE,# 拿取當天所有即時資料
             token = "" # 參考登入，獲取金鑰
@@ -281,7 +281,7 @@
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TaiwanStockPriceMinute",
+            dataset="TaiwanStockPriceTick",
             data_id= "2330",
             start_date= "2020-01-02",
             token = "" # 參考登入，獲取金鑰
