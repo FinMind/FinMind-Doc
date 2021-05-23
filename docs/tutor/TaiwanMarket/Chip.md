@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 7 種資料集，如下:
+在台股籌碼面，我們擁有 8 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -8,6 +8,7 @@
 - [外資持股表 TaiwanStockShareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
+- [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
@@ -789,3 +790,187 @@
         6:                     182
         ```
 
+
+#### 融券借券賣出 TaiwanDailyShortSaleBalances
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanDailyShortSaleBalances",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+                stock_id  MarginShortSalesPreviousDayBalance  MarginShortSalesShortSales  ...  SBLShortSalesQuota  SBLShortSalesShortCovering        date
+        0           2330                             1975000                           0  ...             7526895                           0  2020-04-01
+        1           2330                               24000                           0  ...             7563083                           0  2020-04-06
+        2           2330                                   0                           0  ...             7635835                           0  2020-04-07
+        3           2330                                   0                           0  ...             7688249                           0  2020-04-08
+        4           2330                                   0                      398000  ...             7642682                           0  2020-04-09
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanDailyShortSaleBalances",
+            data_id="2330",
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                stock_id MarginShortSalesPreviousDayBalance MarginShortSalesShortSales
+        1:          2330                             326000                     132000
+        2:          2330                             445000                     161000
+        3:          2330                             571000                      19000
+        4:          2330                             344000                      82000
+        5:          2330                             351000                     222000
+        6:          2330                             532000                     147000
+        MarginShortSalesShortCovering MarginShortSalesStockRedemption
+        1:                      13000                               0
+        2:                      35000                               0
+        3:                     246000                               0
+        4:                      75000                               0
+        5:                      41000                               0
+        6:                      37000                               0
+        MarginShortSalesCurrentDayBalance MarginShortSalesQuota
+        1:                         445000           -2107339478
+        2:                         571000           -2107339478
+        3:                         344000           -2107339478
+        4:                         351000           -2107339478
+        5:                         532000           -2107339478
+        6:                         642000           -2107339478
+        SBLShortSalesPreviousDayBalance SBLShortSalesShortSales SBLShortSalesReturns
+        1:                     19385310                       0                    0
+        2:                     19385310                    9000                    0
+        3:                     19394310                  103000               555000
+        4:                     18942310                    2000                    0
+        5:                     18944310                  192000               361000
+        6:                     18775310                  325000                    0
+        SBLShortSalesAdjustments SBLShortSalesCurrentDayBalance SBLShortSalesQuota
+        1:                     0                       19385310           10204355
+        2:                     0                       19394310           10322949
+        3:                     0                       18942310           10514790
+        4:                     0                       18944310           10833700
+        5:                     0                       18775310           10193671
+        6:                     0                       19100310           10332370
+        SBLShortSalesShortCovering       date
+        1:                       0 2020-01-02
+        2:                       0 2020-01-03
+        3:                       0 2020-01-06
+        4:                       0 2020-01-07
+        5:                       0 2020-01-08
+        6:                       0 2020-01-09
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanDailyShortSaleBalances",
+            "start_date": "2021-05-20",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data)
+                stock_id  MarginShortSalesPreviousDayBalance  MarginShortSalesShortSales  ...  SBLShortSalesQuota  SBLShortSalesShortCovering        date
+        0           0050                              164000                       61000  ...             3478376                           0  2021-05-20
+        1           0051                                   0                           0  ...               46797                           0  2021-05-20
+        2           0052                                7000                           0  ...              399362                           0  2021-05-20
+        3           0053                                   0                           0  ...                8548                           0  2021-05-20
+        4           0054                                   0                           0  ...                4085                           0  2021-05-20
+        ...          ...                                 ...                         ...  ...                 ...                         ...         ...
+        1850        9951                                1000                           0  ...              250293                           0  2021-05-20
+        1851        9955                               18000                           0  ...              720416                           0  2021-05-20
+        1852        9958                              157000                       34000  ...             2026204                           0  2021-05-20
+        1853        9960                                   0                           0  ...               18944                           0  2021-05-20
+        1854        9962                                   0                           0  ...              302372                           0  2021-05-20
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanDailyShortSaleBalances",
+            start_date= "2020-01-02",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+                stock_id MarginShortSalesPreviousDayBalance MarginShortSalesShortSales
+        1:          0050                             171000                       2000
+        2:          0051                                  0                          0
+        3:          0052                                  0                          0
+        4:          0053                               4000                          0
+        5:          0054                                  0                          0
+        6:          0055                               1000                          0
+        MarginShortSalesShortCovering MarginShortSalesStockRedemption
+        1:                        1000                               0
+        2:                           0                               0
+        3:                           0                               0
+        4:                           0                               0
+        5:                           0                               0
+        6:                           0                               0
+        MarginShortSalesCurrentDayBalance MarginShortSalesQuota
+        1:                         172000             171750000
+        2:                              0               2375000
+        3:                              0               8250000
+        4:                           4000               1372000
+        5:                              0               2531000
+        6:                           1000               9163500
+        SBLShortSalesPreviousDayBalance SBLShortSalesShortSales SBLShortSalesReturns
+        1:                      4686000                  327000                    0
+        2:                         1000                       0                    0
+        3:                        53000                   36000                    0
+        4:                            0                       0                    0
+        5:                            0                       0                    0
+        6:                        16000                       0                    0
+        SBLShortSalesAdjustments SBLShortSalesCurrentDayBalance SBLShortSalesQuota
+        1:                     0                        5013000            1006197
+        2:                     0                           1000               9236
+        3:                     0                          89000              36563
+        4:                     0                              0               4213
+        5:                     0                              0               2949
+        6:                     0                          16000              20919
+        SBLShortSalesShortCovering       date
+        1:                       0 2020-01-02
+        2:                       0 2020-01-02
+        3:                       0 2020-01-02
+        4:                       0 2020-01-02
+        5:                       0 2020-01-02
+        6:                       0 2020-01-02
+        ```
