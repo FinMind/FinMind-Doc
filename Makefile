@@ -12,7 +12,7 @@ deploy-github-page:
 	git config user.name "sam" && git config user.email "finmind.tw@gmail.com" && \
 	git remote add origin https://FinMind:${FINMIND_DOC_TOKEN}@github.com/FinMind/FinMind.github.io.git && \
 	git fetch origin && git reset --hard origin/master && \
-	rm -r * && \
-	cp -r ../site/* . && \
+	sudo rm -r * && \
+	sudo cp -r ../site/* . && \
 	git add . && git commit -m "${CI_COMMIT_TITLE}" && \
 	git push origin master
