@@ -1,18 +1,16 @@
 import os
 import requests
 
-TOKEN = os.environ.get("GITLAB_API_TOEKN", "")
-RELEASE_URL = "https://gitlab.com/api/v4/projects/19221467/releases"
-res = requests.get(RELEASE_URL, headers={"PRIVATE-TOKEN": TOKEN})
+
+RELEASE_URL = "https://api.github.com/repos/FinMind/FinMind/releases"
+res = requests.get(RELEASE_URL)
 releases = res.json()
 contents = [
-    f"""## version: {release["tag_name"]} ({release["released_at"][:10]})
+    f"""## version: {release["tag_name"]} ({release["published_at"][:10]})
 
-{release["description"]}
+{release["name"]}
 
-:octocat: commit_id: {release["commit"]["short_id"]}
-
-:zap: release_at: {release["released_at"].replace("T", " ").replace("Z", "")}
+:zap: release_at: {release["published_at"].replace("T", " ").replace("Z", "")}
 
 """
     for release in releases
