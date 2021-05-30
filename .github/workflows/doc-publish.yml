@@ -23,6 +23,17 @@ jobs:
         run: |
           python3 gen_release_note.py
       - name: Build and publish
+        env:
+          FINMIND_DOC_TOKEN: ${{ secrets.FINMIND_DOC_TOKEN }}
         run: |
           mkdocs build
-          make deploy-github-page
+          mkdir github_page
+          cd github_page && git init
+          git config user.name "sam"
+          git config user.email "finmind.tw@gmail.com"
+          git remote add origin https://gitlabci:${ FINMIND_DOC_TOKEN }@github.com/FinMind/FinMind.github.io.git
+          git fetch origin && git reset --hard origin/master
+          rm -r *
+          cp -r ../site/* .
+          git add . && git commit -m "add: update FinMind doc"
+          git push origin master
