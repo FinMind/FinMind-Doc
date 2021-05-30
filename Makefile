@@ -1,6 +1,6 @@
 install-python-evn:
-	apt-get update && \
-	apt-get install python3-pip -y && \
+	sudo apt-get update && \
+	sudo apt-get install python3-pip -y && \
 	pip3 install mkdocs &&\
 	pip3 install markdown-include &&\
 	pip3 install mkdocs-material &&\
