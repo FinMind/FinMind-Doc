@@ -1,0 +1,30 @@
+name: Upload FinMind Python Package Doc
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 3.6 ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          make install-python-evn
+      - name: Generate releaese note
+        run: |
+          python3 gen_release_note.py
+      - name: Build and publish
+        env:
+          FINMIND_DOC_TOKEN: ${{ secrets.FINMIND_DOC_TOKEN }}
+        run: |
+          mkdocs build
+          make deploy-github-page

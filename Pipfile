@@ -10,6 +10,7 @@ mkdocs = "*"
 mkdocs-material = "*"
 markdown-include = "*"
 pymdown-extensions = "*"
+requests = "*"
 
 [requires]
 python_version = "3.6"
