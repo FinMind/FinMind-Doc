@@ -1,5 +1,5 @@
 ### install
-    pip install mkdocs
+    pip install -r requirements.txt
     
 ### run dev 
     mkdocs serve

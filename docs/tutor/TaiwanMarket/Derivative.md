@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 10 種資料集，如下:
+在台股衍生性商品資料，我們擁有 11 種資料集，如下:
 
 - [期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttickinfo)
 - [期貨、選擇權即時報價 TaiwanFutOptTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttick-backersponsor)
@@ -8,7 +8,8 @@
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick)
 - [選擇權交易明細表 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick)
-- [選擇權、期貨三大法人買賣 TaiwanFutOptInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptinstitutionalinvestors)
+- [期貨三大法人買賣 TaiwanFuturesInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestors)
+- [選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestors)
 - [期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdealertradingvolumedaily)
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
 
@@ -510,10 +511,10 @@
         do.call('rbind',.) %>% 
         data.table
         head(df)
-
         ```
 
-#### 選擇權、期貨三大法人買賣 TaiwanFutOptInstitutionalInvestors
+
+#### 期貨三大法人買賣 TaiwanFuturesInstitutionalInvestors
 
 !!! example
     === "Python"
@@ -522,21 +523,20 @@
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "TaiwanFutOptInstitutionalInvestors",
+            "dataset": "TaiwanFuturesInstitutionalInvestors",
             "data_id": "TX",# "TXO"
-            "start_date": "2020-01-01",
+            "start_date": "2019-04-03",
+            "end_date": "2019-04-04",
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df.head())
-        name        date institutional_investors  ...  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
-        0   TX  2020-01-02                      外資  ...                          147609850                               25535                            61794190
-        1   TX  2020-01-02                      投信  ...                            4041734                               24668                            59701494
-        2   TX  2020-01-02                     自營商  ...                           25378624                                8518                            20572664
-        3   TX  2020-01-03                      投信  ...                            3957284                               24655                            59600997
-        4   TX  2020-01-03                      外資  ...                          147233626                               26284                            63533909
+            futures_id        date institutional_investors  ...  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
+        0         TX  2019-04-03                     自營商  ...                           21994847                               14704                            31412196
+        1         TX  2019-04-03                      投信  ...                            3338979                               28347                            60634209
+        2         TX  2019-04-03                      外資  ...                          162690881                               16340                            34926250
         ```
     === "R"
         ```R
@@ -547,9 +547,10 @@
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TaiwanFutOptInstitutionalInvestors",
-            data_id="TX",# "TXO"
-            start_date= "2020-01-01",
+            dataset="TaiwanFuturesInstitutionalInvestors",
+            data_id="TX",
+            start_date= "2019-04-03",
+            end_date= "2019-04-04",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -558,7 +559,6 @@
         do.call('rbind',.) %>% 
         data.table
         head(df)
-
         ```
 
 
@@ -571,20 +571,54 @@
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "TaiwanFutOptInstitutionalInvestors",
-            "start_date": "2020-01-06",
+            "dataset": "TaiwanFuturesInstitutionalInvestors",
+            "start_date": "2019-04-03",
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
-        print(df.head())
-        name        date institutional_investors  ...  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
-        0  ETF  2020-01-06                      外資  ...                            3316136                                1124                              489466
-        1  ETF  2020-01-06                      投信  ...                            1320779                                4079                             3546254
-        2  ETF  2020-01-06                     自營商  ...                             370988                                4489                             1544574
-        3  ETO  2020-01-06                     自營商  ...                                381                                  45                                 452
-        4  ETO  2020-01-06                      外資  ...                                  0                                   0                                   0
+        print(df)
+            futures_id        date institutional_investors  ...  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
+        0         ETF  2019-04-03                     自營商  ...                             657460                                6808                             2259250
+        1         ETF  2019-04-03                      投信  ...                            1133619                                4154                             3006468
+        2         ETF  2019-04-03                      外資  ...                            3560967                                 561                              139102
+        3         GTF  2019-04-03                     自營商  ...                              18592                                   6                                3374
+        4         GTF  2019-04-03                      投信  ...                               6197                                   0                                   0
+        5         GTF  2019-04-03                      外資  ...                                  0                                  39                               21973
+        6         I5F  2019-04-03                     自營商  ...                              24755                                   0                                   0
+        7         I5F  2019-04-03                      投信  ...                                  0                                   0                                   0
+        8         I5F  2019-04-03                      外資  ...                                  0                                   0                                   0
+        9         MTX  2019-04-03                     自營商  ...                           12219083                                2475                             1313135
+        10        MTX  2019-04-03                      投信  ...                              43850                                   0                                   0
+        11        MTX  2019-04-03                      外資  ...                             471510                                2470                             1320489
+        12         SF  2019-04-03                     自營商  ...                            4055357                               86979                            13264787
+        13         SF  2019-04-03                      投信  ...                                  0                                  94                               11731
+        14         SF  2019-04-03                      外資  ...                            7346598                               15984                             3758471
+        15        SPF  2019-04-03                     自營商  ...                             231615                                 152                               87689
+        16        SPF  2019-04-03                      投信  ...                                  0                                   0                                   0
+        17        SPF  2019-04-03                      外資  ...                              97344                                   0                                   0
+        18        T5F  2019-04-03                     自營商  ...                             192431                                 243                              194827
+        19        T5F  2019-04-03                      投信  ...                                  0                                   0                                   0
+        20        T5F  2019-04-03                      外資  ...                                  0                                   0                                   0
+        21         TE  2019-04-03                     自營商  ...                            1024746                                 485                              846741
+        22         TE  2019-04-03                      投信  ...                              85554                                 400                              698400
+        23         TE  2019-04-03                      外資  ...                            4064688                                 645                             1126162
+        24         TF  2019-04-03                     自營商  ...                             346628                                 426                              530292
+        25         TF  2019-04-03                      投信  ...                              13697                                   0                                   0
+        26         TF  2019-04-03                      外資  ...                            1465430                                1687                             2098942
+        27        TJF  2019-04-03                     自營商  ...                              94871                                 480                              156480
+        28        TJF  2019-04-03                      投信  ...                                  0                                   0                                   0
+        29        TJF  2019-04-03                      外資  ...                             103668                                  50                               16302
+        30         TX  2019-04-03                     自營商  ...                           21994847                               14704                            31412196
+        31         TX  2019-04-03                      投信  ...                            3338979                               28347                            60634209
+        32         TX  2019-04-03                      外資  ...                          162690881                               16340                            34926250
+        33        UDF  2019-04-03                     自營商  ...                            1718084                                 262                              137500
+        34        UDF  2019-04-03                      投信  ...                                  0                                   0                                   0
+        35        UDF  2019-04-03                      外資  ...                             872693                                   0                                   0
+        36        XIF  2019-04-03                     自營商  ...                             157926                                 147                              185716
+        37        XIF  2019-04-03                      投信  ...                               1263                                   0                                   0
+        38        XIF  2019-04-03                      外資  ...                                  0                                   0                                   0
         ```
     === "R"
         ```R
@@ -595,15 +629,140 @@
         url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(url = url,
                             query = list(
-                            dataset="TaiwanFutOptInstitutionalInvestors",
-                            start_date= "2020-01-06",
+                            dataset="TaiwanFuturesInstitutionalInvestors",
+                            start_date= "2019-04-03 ",
                             token = "" # 參考登入，獲取金鑰
                             )
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
         head(df)
+        ```
 
+
+#### 選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionInstitutionalInvestors",
+            "data_id": "TXO",
+            "start_date": "2019-04-03",
+            "end_date": "2019-04-04",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df)
+            option_id       date  call_put institutional_investors  ...  long_open_interest_balance_volume  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
+        0       TXO  2019-04-03       買權                     自營商  ...                              66254                             391372                               72951                             262709
+        1       TXO  2019-04-03       買權                      投信  ...                                  0                                  0                                 325                              990
+        2       TXO  2019-04-03       買權                      外資  ...                              75853                             443861                               16078                              176168
+        3       TXO  2019-04-03       賣權                     自營商  ...                              86375                             115554                               88433                             115068
+        4       TXO  2019-04-03       賣權                      投信  ...                               2200                               3740                                 312                              145
+        5       TXO  2019-04-03       賣權                      外資  ...                             124769                             172485                              164647                              231398
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanOptionInstitutionalInvestors",
+            data_id="TX",# "TXO"
+            start_date= "2019-04-03",
+            end_date= "2019-04-04",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+        ```
+
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionInstitutionalInvestors",
+            "start_date": "2019-04-03",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df)
+            option_id       date    call_put institutional_investors  long_deal_volume  long_deal_amount  short_deal_volume  short_deal_amount  long_open_interest_balance_volume  long_open_interest_balance_amount  short_open_interest_balance_volume  short_open_interest_balance_amount
+        0        ETO  2019-04-03       買權                     自營商                 7                16                 27                 18                                332                               5386                                 365                                5377
+        1        ETO  2019-04-03       買權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        2        ETO  2019-04-03       買權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        3        ETO  2019-04-03       賣權                     自營商                 0                 0                  0                  0                                122                                 85                                 111                                  84
+        4        ETO  2019-04-03       賣權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        5        ETO  2019-04-03       賣權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        6        GTO  2019-04-03       買權                     自營商                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        7        GTO  2019-04-03       買權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        8        GTO  2019-04-03       買權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        9        GTO  2019-04-03       賣權                     自營商                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        10       GTO  2019-04-03       賣權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        11       GTO  2019-04-03       賣權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        12        SO  2019-04-03       買權                     自營商               159               716                408                728                               1931                               5743                                2528                                5005
+        13        SO  2019-04-03       買權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        14        SO  2019-04-03       買權                      外資                 0                 0                  0                  0                                  1                                 55                                   0                                   0
+        15        SO  2019-04-03       賣權                     自營商               106               136                 55                 87                               2078                               2289                                1080                                2195
+        16        SO  2019-04-03       賣權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        17        SO  2019-04-03       賣權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        18       TEO  2019-04-03       買權                     自營商                40               285                 53                295                                800                              10992                                 863                               11811
+        19       TEO  2019-04-03       買權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        20       TEO  2019-04-03       買權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        21       TEO  2019-04-03       賣權                     自營商               172               476                185                529                               1576                               2851                                1652                                3157
+        22       TEO  2019-04-03       賣權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        23       TEO  2019-04-03       賣權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        24       TFO  2019-04-03       買權                     自營商                 0                 0                 68                 22                                390                                484                                 961                                 576
+        25       TFO  2019-04-03       買權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        26       TFO  2019-04-03       買權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        27       TFO  2019-04-03       賣權                     自營商                22                18                 23                 24                                707                               1025                                 529                                 797
+        28       TFO  2019-04-03       賣權                      投信                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        29       TFO  2019-04-03       賣權                      外資                 0                 0                  0                  0                                  0                                  0                                   0                                   0
+        30       TXO  2019-04-03       買權                     自營商            145766            306718             144354             306141                              66254                             391372                               72951                              262709
+        31       TXO  2019-04-03       買權                      投信                28                62                  0                  0                                  0                                  0                                 325                                 990
+        32       TXO  2019-04-03       買權                      外資             42640            127076              47659             145984                              75853                             443861                               16078                              176168
+        33       TXO  2019-04-03       賣權                     自營商            165318            217152             169880             195714                              86375                             115554                               88433                              115068
+        34       TXO  2019-04-03       賣權                      投信               229                 2                196                 72                               2200                               3740                                 312                                 145
+        35       TXO  2019-04-03       賣權                      外資             51169            105111              50787             108809                             124769                             172485                              164647                              231398
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionInstitutionalInvestors",
+                            start_date= "2019-04-03 ",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
         ```
 
 
@@ -654,7 +813,6 @@
         do.call('rbind',.) %>% 
         data.table
         head(df)
-
         ```
 
 
@@ -705,7 +863,6 @@
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
         head(df)
-
         ```
 
 
