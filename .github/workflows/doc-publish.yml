@@ -1,7 +1,7 @@
 name: Upload FinMind Python Package Doc
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
 
 jobs:
