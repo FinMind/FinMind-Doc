@@ -8,20 +8,23 @@ pip install FinMind
 
 !!! info "初始化，設定回測股票代碼、時間區間"
 
-    ```python hl_lines="6"
-    import pandas as pd
+    ```python
     import numpy as np
+    import pandas as pd
+    from FinMind import strategies
+    from FinMind.data import DataLoader
+    from FinMind.strategies.base import Strategy
     from ta.momentum import StochasticOscillator
-    from FinMind.BackTestSystem.BaseClass import Strategy
-    from FinMind.BackTestSystem import BackTest
-    from FinMind.Data import Load
 
-    obj = BackTest(
-        stock_id="2330",
+    data_loader = DataLoader()
+    # data_loader.login(user_id, password) # 可選
+    obj = strategies.BackTest(
+        stock_id="0056",
         start_date="2018-01-01",
-        end_date="2021-01-01",
+        end_date="2019-01-01",
         trader_fund=500000.0,
         fee=0.001425,
+        data_loader=data_loader,
     )
     obj.stock_price
     ```
@@ -56,11 +59,12 @@ pip install FinMind
         ShortSaleMarginPurchaseTodayRatioThreshold = 0.3
 
         def load_taiwan_stock_margin_purchase_short_sale(self):
-            self.TaiwanStockMarginPurchaseShortSale = Load.FinData(
-                dataset="TaiwanStockMarginPurchaseShortSale",
-                select=self.stock_id,
-                date=self.start_date,
-                end_date=self.end_date,
+            self.TaiwanStockMarginPurchaseShortSale = (
+                self.data_loader.taiwan_stock_margin_purchase_short_sale(
+                    stock_id=self.stock_id,
+                    start_date=self.start_date,
+                    end_date=self.end_date,
+                )
             )
             self.TaiwanStockMarginPurchaseShortSale[
                 ["ShortSaleTodayBalance", "MarginPurchaseTodayBalance"]
@@ -79,11 +83,12 @@ pip install FinMind
             )
 
         def load_institutional_investors_buy_sell(self):
-            self.InstitutionalInvestorsBuySell = Load.FinData(
-                dataset="InstitutionalInvestorsBuySell",
-                select=self.stock_id,
-                date=self.start_date,
-                end_date=self.end_date,
+            self.InstitutionalInvestorsBuySell = (
+                self.data_loader.taiwan_stock_institutional_investors(
+                    stock_id=self.stock_id,
+                    start_date=self.start_date,
+                    end_date=self.end_date,
+                )
             )
             self.InstitutionalInvestorsBuySell[["sell", "buy"]] = (
                 self.InstitutionalInvestorsBuySell[["sell", "buy"]]
@@ -136,7 +141,7 @@ pip install FinMind
 !!! info "回測模擬交易"
 
     ```python
-    obj.add_strategy(Kd)
+    obj.add_strategy(ShortSaleMarginPurchaseRatio)
     obj.simulate()
     obj.final_stats
     ```

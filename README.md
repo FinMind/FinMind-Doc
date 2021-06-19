@@ -1,5 +1,5 @@
 ### install
-    pip install -r requirements.txt
+    pipenv sync
     
 ### run dev 
-    mkdocs serve
+    pipenv run mkdocs serve
