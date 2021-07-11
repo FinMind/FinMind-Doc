@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 6 種資料集，如下:
+在台股基本面，我們擁有 7 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
@@ -7,6 +7,7 @@
 - [股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)
 - [除權除息結果表 TaiwanStockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividendresult)
 - [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
+- [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
 
 #### 綜合損益表 TaiwanStockFinancialStatements
 
@@ -679,4 +680,57 @@
         4: 2019-01-01     1104  Taiwan   465496000            12         2018
         5: 2019-01-01     1108  Taiwan   300034000            12         2018
         6: 2019-01-01     1109  Taiwan   707952000            12         2018
+        ```
+
+#### 減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockCapitalReductionReferencePrice",
+            "data_id": "2327",
+            "start_date": "2010-01-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+                date stock_id  ClosingPriceonTheLastTradingDay  PostReductionReferencePrice  LimitUp  LimitDown  OpeningReferencePrice  ExrightReferencePrice ReasonforCapitalReduction
+        0  2013-09-18     2327                            10.20                        10.28    10.95       9.57                   10.3                   -1.0               Cash refund
+        1  2014-10-09     2327                            22.05                        49.82    53.30      46.35                   49.8                   -1.0               Cash refund
+        2  2016-08-15     2327                            54.80                        65.96    72.50      59.40                   66.0                   -1.0               Cash refund
+        3  2017-08-18     2327                           120.50                       168.13   184.50     151.50                  168.0                   -1.0               Cash refund
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockCapitalReductionReferencePrice",
+            data_id="2327",
+            start_date= "2010-01-01",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+        
+                date stock_id  ClosingPriceonTheLastTradingDay  PostReductionReferencePrice  LimitUp  LimitDown  OpeningReferencePrice  ExrightReferencePrice ReasonforCapitalReduction
+        1  2013-09-18     2327                            10.20                        10.28    10.95       9.57                   10.3                   -1.0               Cash refund
+        2  2014-10-09     2327                            22.05                        49.82    53.30      46.35                   49.8                   -1.0               Cash refund
+        3  2016-08-15     2327                            54.80                        65.96    72.50      59.40                   66.0                   -1.0               Cash refund
+        4  2017-08-18     2327                           120.50                       168.13   184.50     151.50                  168.0                   -1.0               Cash refund
         ```

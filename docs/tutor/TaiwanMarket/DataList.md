@@ -1,4 +1,4 @@
-在台灣金融市場，我們擁有 38 種資料集，如下:
+在台灣金融市場，我們擁有 39 種資料集，如下:
 
 #### 技術面 Technical
 
@@ -34,6 +34,7 @@
 - [股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)
 - [除權除息結果表 TaiwanStockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividendresult)
 - [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
+- [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
 
 #### 衍生性金融商品 Derivative
 
