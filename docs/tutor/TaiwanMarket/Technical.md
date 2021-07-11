@@ -1,8 +1,9 @@
-在台股技術面，我們擁有 10 種資料集，如下:
+在台股技術面，我們擁有 12 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台灣股價即時資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)
+- [台股上市上櫃約2000檔股票，即時報價 TaiwanStockTickSnapshot](https://finmind.github.io/tutor/TaiwanMarket/Technical/#2000-taiwanstockticksnapshot-backersponsor)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick)
 - [台股即時最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask-backersponsor)
 - [歷史台股最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask)
@@ -10,6 +11,7 @@
 - [每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
 - [當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)
+- [報酬指數 TaiwanStockTotalReturnIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktotalreturnindex)
 
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v4_data_get)
@@ -184,6 +186,61 @@
         6:               25
         ```
 
+
+#### 台股上市上櫃約2000檔股票，即時報價 TaiwanStockTickSnapshot (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 台股上市上櫃約2000檔股票，即時報價
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        parameter = {
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+            date stock_id  deal_price  volume           Time  TickType
+        0         00878       18.41      38  14:30:00.000000         2
+        1          6752       62.50       1  14:30:00.000000         2
+        2          1325       92.00       8  14:30:00.000000         2
+        3          1906       21.70       3  14:30:00.000000         2
+        4          3685       28.05       3  14:30:00.000000         1
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockPriceTick",
+            data_id= "2330",
+            streaming_all_data= TRUE,# 拿取當天所有即時資料
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = do.call('cbind',data$data) %>%
+        data.table
+        head(df)
+
+                date stock_id deal_price volume               Time
+        1: 2020-01-02     2330      332.5    520 09:00:00.000000000
+        2: 2020-01-02     2330      333.0     45 09:00:05.000000000
+        3: 2020-01-02     2330      333.0     22 09:00:10.000000000
+        4: 2020-01-02     2330      333.0     15 09:00:15.000000000
+        5: 2020-01-02     2330      333.5      3 09:00:20.000000000
+        6: 2020-01-02     2330      333.0     20 09:00:25.000000000
+        ```
 
 #### 台灣股價即時資料表 TaiwanStockPriceTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
@@ -610,3 +667,62 @@
 
         ```
 
+
+
+#### 報酬指數 TaiwanStockTotalReturnIndex
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockTotalReturnIndex",
+            "data_id": "TAIEX", # 發行量加權股價報酬指數
+            # "data_id": "TPEx", # 櫃買指數與報酬指數
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+            price stock_id        date
+        0  18356.45    TAIEX  2020-04-06
+        1  18688.58    TAIEX  2020-04-07
+        2  18952.66    TAIEX  2020-04-08
+        3  18922.57    TAIEX  2020-04-09
+        4  18993.95    TAIEX  2020-04-10
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockTotalReturnIndex",
+            data_id= "TAIEX", # 發行量加權股價報酬指數
+            # data_id= "TPEx", # 櫃買指數與報酬指數
+            start_date= "2020-04-02",
+            end_date= "2020-04-08",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+            price stock_id        date
+        1:  18356.45    TAIEX  2020-04-06
+        2:  18688.58    TAIEX  2020-04-07
+        3:  18952.66    TAIEX  2020-04-08
+        4:  18922.57    TAIEX  2020-04-09
+        5:  18993.95    TAIEX  2020-04-10
+        ```
