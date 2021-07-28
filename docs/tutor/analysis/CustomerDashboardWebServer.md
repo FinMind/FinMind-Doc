@@ -1,5 +1,6 @@
 ## 客製化看盤儀表板、並在 local 架設 web
 
+![png](https://finmind.github.io/images/dashboard_flask.png)
 
 !!! info "K 線"
      ```python
@@ -140,5 +141,3 @@
      app.run(host="0.0.0.0", debug=True)
 
      ```
-
-![png](https://finmind.github.io/images/dashboard_flask.png)

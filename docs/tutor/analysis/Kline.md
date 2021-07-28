@@ -1,5 +1,7 @@
 #### [kbar_plotting.ipynb](https://colab.research.google.com/drive/1u1cJGFNCLOeBIR0PdeKlsqgKBJSvJg_y?usp=sharing)
 
+![gif](https://finmind.github.io/images/kbar_plotting.gif)
+
 !!! info "繪製 K 線"
      ```python
      # 取得股價
@@ -24,5 +26,3 @@
 
      plotting.kline(stock_data)
      ```
-
-![gif](https://finmind.github.io/images/kbar_plotting.gif)
