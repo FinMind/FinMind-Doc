@@ -1,10 +1,24 @@
 
 ### [線上連結](https://colab.research.google.com/drive/1Unn7pSbp4RxQQRWaBJaC3oACdUFML4Xu?usp=sharing)
 
-```
-pip install FinMind
-```
+如下程式說明如何使用 FinMind 進行策略回測，主要透過 **strategies** 來進行回測，**DataLoader** 讀取 FinMind 提供的資料。
 
+在進行回測的過程中，主要要先決定回測標的、回測區間、資金部位、交易稅以及策略的設計。
+
+回測邏輯主要是去決定**進場、維持和出場**的訊號 (signal)，例如:
+
+    - 今天計算出來的訊號為 -1，代表明天會以開盤價**賣掉** 1 張股票
+    - 今天計算出來的訊號為 0，代表明天什麼事都不做
+    - 今天計算出來的訊號為 1，代表明天會以開盤價**買進** 1 張股票
+
+回測結果提供資訊如下:
+
+    - trade_detail: 回測詳細資料
+    - compare_market_detail: 大盤累積報酬和回測累積報酬走勢
+    - final_stats: 回測結果
+    - compare_market_stats: 大盤年化報酬率和策略年化報酬率
+
+在範例程式中，主要分成使用 FinMind 提供的策略和客製化策略。
 
 !!! info "初始化，設定回測股票代碼、時間區間"
 

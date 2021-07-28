@@ -16,3 +16,9 @@ deploy-github-page:
 	cp -r ../site/* . && \
 	git add . && git commit -m "add: update FinMind doc" && \
 	git push origin master
+
+run-dev:
+	pipenv run mkdocs serve
+
+install:
+	pipenv sync
