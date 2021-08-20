@@ -49,7 +49,7 @@ nav:
     - 量化工具:
         - 回測: "tutor/analysis/Backtesting.md"
         - 回測(引用外部 data): "tutor/analysis/BacktestingOtherData.md"
-        - 訂閱即時報價: "tutor/analysis/RealTimeDataSubscription.md"
+        # - 訂閱即時報價: "tutor/analysis/RealTimeDataSubscription.md"
         - K 線: "tutor/analysis/Kline.md"
         - 客製化看盤儀表板: "tutor/analysis/CustomerDashboardWebServer.md"
     - Versions:
