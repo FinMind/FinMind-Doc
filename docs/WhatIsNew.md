@@ -1,3 +1,6 @@
+#### 2021-08-01
+* 由於資料源問題，移除即時報價
+
 #### 2021-05-23
 * 新增 [融券借券賣出 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
 

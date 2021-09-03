@@ -46,5 +46,3 @@
     Transfer rate:          581.49 [Kbytes/sec] received
     ```
 
-如需使用即時資料做交易的使用者，建議使用 gcp、aws、linode 等雲端環境，本地機器會受限於網速問題，無法達到最佳使用體驗。
-
