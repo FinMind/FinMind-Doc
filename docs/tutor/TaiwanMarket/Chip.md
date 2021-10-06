@@ -13,6 +13,19 @@
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_total_return_index(
+            index_id="TAIEX",
+            start_date='2020-04-02',
+            end_date='2020-04-12'
+        )
+        ```
     === "Python"
         ```python
         import requests
@@ -27,13 +40,6 @@
         data = requests.get(url, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
-        print(data.head())
-                date stock_id MarginPurchaseBuy MarginPurchaseCashRepayment MarginPurchaseLimit  ... ShortSaleCashRepayment ShortSaleLimit ShortSaleSell ShortSaleTodayBalance ShortSaleYesterdayBalance
-        0  2019-01-02     2330              1013                           7             6482595  ...                    0.0        6482595            66                  2782                      3179
-        1  2019-01-03     2330               830                           0             6482595  ...                    0.0        6482595           133                  2475                      2782
-        2  2019-01-04     2330              2153                           2             6482595  ...                    0.0        6482595           496                  2164                      2475
-        3  2019-01-07     2330               296                           7             6482595  ...                    0.0        6482595           198                  2154                      2164
-        4  2019-01-08     2330               264                           4             6482595  ...                    0.0        6482595           150                  2219                      2154
         ```
     === "R"
         ```R
@@ -54,42 +60,33 @@
         df = data$data %>% 
         do.call('rbind',.) %>% 
         data.table
-        head(df)
 
-                date stock_id MarginPurchaseBuy MarginPurchaseCashRepayment MarginPurchaseLimit
-        1: 2019-01-02     2330              1013                           7             6482595
-        2: 2019-01-03     2330               830                           0             6482595
-        3: 2019-01-04     2330              2153                           2             6482595
-        4: 2019-01-07     2330               296                           7             6482595
-        5: 2019-01-08     2330               264                           4             6482595
-        6: 2019-01-09     2330               173                          10             6482595
-        MarginPurchaseSell MarginPurchaseTodayBalance MarginPurchaseYesterdayBalance Note OffsetLoanAndShort
-        1:                221                      13389                          12604 None                  6
-        2:                120                      14099                          13389 None                 16
-        3:               1163                      15087                          14099 None                 25
-        4:               1188                      14188                          15087 None                  7
-        5:                201                      14247                          14188 None                  2
-        6:               1147                      13263                          14247 None                  3
-        ShortSaleBuy ShortSaleCashRepayment ShortSaleLimit ShortSaleSell ShortSaleTodayBalance
-        1:          463                    0.0        6482595            66                  2782
-        2:          440                    0.0        6482595           133                  2475
-        3:          807                    0.0        6482595           496                  2164
-        4:          208                    0.0        6482595           198                  2154
-        5:           85                    0.0        6482595           150                  2219
-        6:          136                    0.0        6482595           342                  2425
-        ShortSaleYesterdayBalance
-        1:                      3179
-        2:                      2782
-        3:                      2475
-        4:                      2164
-        5:                      2154
-        6:                      2219
         ```
+
+!!! output
+    |    | date       |   stock_id |   MarginPurchaseBuy |   MarginPurchaseCashRepayment |   MarginPurchaseLimit |   MarginPurchaseSell |   MarginPurchaseTodayBalance |   MarginPurchaseYesterdayBalance | Note   |   OffsetLoanAndShort |   ShortSaleBuy |   ShortSaleCashRepayment |   ShortSaleLimit |   ShortSaleSell |   ShortSaleTodayBalance |   ShortSaleYesterdayBalance |
+    |---:|:-----------|-----------:|--------------------:|------------------------------:|----------------------:|---------------------:|-----------------------------:|---------------------------------:|:-------|---------------------:|---------------:|-------------------------:|-----------------:|----------------:|------------------------:|----------------------------:|
+    |  0 | 2020-04-06 |       2330 |                1914 |                             8 |               6482595 |                 1269 |                        26285 |                            25648 | X      |                    0 |              0 |                       24 |          6482595 |               0 |                       0 |                          24 |
+    |  1 | 2020-04-07 |       2330 |                1049 |                            13 |               6482595 |                 2655 |                        24666 |                            26285 | X      |                    0 |              0 |                        0 |          6482595 |               0 |                       0 |                           0 |
+    |  2 | 2020-04-08 |       2330 |                1192 |                             3 |               6482595 |                 1569 |                        24286 |                            24666 |        |                    0 |              0 |                        0 |          6482595 |               0 |                       0 |                           0 |
+    |  3 | 2020-04-09 |       2330 |                 499 |                            28 |               6482595 |                 1362 |                        23395 |                            24286 |        |                  209 |              0 |                        0 |          6482595 |             398 |                     398 |                           0 |
+    |  4 | 2020-04-10 |       2330 |                1227 |                            24 |               6482595 |                  794 |                        23804 |                            23395 |        |                   53 |            156 |                        0 |          6482595 |             156 |                     398 |                         398 |
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_margin_purchase_short_sale(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -104,12 +101,6 @@
         data = pd.DataFrame(data['data'])
         print(data.head())
         
-            date stock_id  MarginPurchaseBuy  MarginPurchaseCashRepayment  ...  ShortSaleLimit  ShortSaleSell  ShortSaleTodayBalance  ShortSaleYesterdayBalance
-        0  2020-04-01     0050                193                           15  ...          263750             13                   2283                       2336
-        1  2020-04-01     0051                  0                            0  ...            2375              0                      0                          0
-        2  2020-04-01     0052                  0                            0  ...            7500              0                      0                          0
-        3  2020-04-01     0053                  0                            0  ...            1622              0                      0                          0
-        4  2020-04-01     0054                  0                            0  ...            2531              0                      0                          0
         ```
     === "R"
         ```R
@@ -131,49 +122,32 @@
         data.table
         head(df)
 
-                date stock_id MarginPurchaseBuy MarginPurchaseCashRepayment
-        1: 2020-01-02     0050                20                           0
-        2: 2020-01-02     0051                 0                           0
-        3: 2020-01-02     0052                 3                           0
-        4: 2020-01-02     0053                 0                           0
-        5: 2020-01-02     0054                 0                           0
-        6: 2020-01-02     0055                 0                           0
-        MarginPurchaseLimit MarginPurchaseSell MarginPurchaseTodayBalance
-        1:              171750                  6                        374
-        2:                2375                  0                          3
-        3:                8250                  1                         23
-        4:                1372                  0                         52
-        5:                2531                  0                          0
-        6:                9163                  0                         25
-        MarginPurchaseYesterdayBalance Note OffsetLoanAndShort ShortSaleBuy
-        1:                            360                       0            1
-        2:                              3                       0            0
-        3:                             21                       0            0
-        4:                             52                       0            0
-        5:                              0   X                   0            0
-        6:                             25                       0            0
-        ShortSaleCashRepayment ShortSaleLimit ShortSaleSell
-        1:                      0         171750             2
-        2:                      0           2375             0
-        3:                      0           8250             0
-        4:                      0           1372             0
-        5:                      0           2531             0
-        6:                      0           9163             0
-        ShortSaleTodayBalance ShortSaleYesterdayBalance
-        1:                   172                       171
-        2:                     0                         0
-        3:                     0                         0
-        4:                     4                         4
-        5:                     0                         0
-        6:                     1                         1
         ```
 
-
+!!! output
+    |    | date       |   stock_id |   MarginPurchaseBuy |   MarginPurchaseCashRepayment |   MarginPurchaseLimit |   MarginPurchaseSell |   MarginPurchaseTodayBalance |   MarginPurchaseYesterdayBalance | Note   |   OffsetLoanAndShort |   ShortSaleBuy |   ShortSaleCashRepayment |   ShortSaleLimit |   ShortSaleSell |   ShortSaleTodayBalance |   ShortSaleYesterdayBalance |
+    |---:|:-----------|-----------:|--------------------:|------------------------------:|----------------------:|---------------------:|-----------------------------:|---------------------------------:|:-------|---------------------:|---------------:|-------------------------:|-----------------:|----------------:|------------------------:|----------------------------:|
+    |  0 | 2020-04-01 |       0050 |                 193 |                            15 |                263750 |                  163 |                         3189 |                             3174 |        |                    0 |             65 |                        1 |           263750 |              13 |                    2283 |                        2336 |
+    |  1 | 2020-04-01 |       0051 |                   0 |                             0 |                  2375 |                    0 |                            5 |                                5 |        |                    0 |              0 |                        0 |             2375 |               0 |                       0 |                           0 |
+    |  2 | 2020-04-01 |       0052 |                   0 |                             0 |                  7500 |                    0 |                          128 |                              128 |        |                    0 |              0 |                        0 |             7500 |               0 |                       0 |                           0 |
+    |  3 | 2020-04-01 |       0053 |                   0 |                             0 |                  1622 |                    0 |                            1 |                                1 |        |                    0 |              0 |                        0 |             1622 |               0 |                       0 |                           0 |
+    |  4 | 2020-04-01 |       0054 |                   0 |                             0 |                  2531 |                    0 |                            0 |                                0 | X      |                    0 |              0 |                        0 |             2531 |               0 |                       0 |                           0 |
 
 #### 台灣市場整體融資融劵表 TaiwanStockTotalMarginPurchaseShortSale
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_margin_purchase_short_sale_total(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -187,12 +161,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-        TodayBalance  YesBalance     buy        date            name    sell
-        0       7394954     7355321  173277  2019-01-02  MarginPurchase  129650
-        1       7359773     7394951  132298  2019-01-03  MarginPurchase  157962
-        2       7279580     7359772  156698  2019-01-04  MarginPurchase  230462
-        3       7297059     7279573  203646  2019-01-07  MarginPurchase  180036
-        4       7299390     7297056  133556  2019-01-08  MarginPurchase  127360
+
         ```
     === "R"
         ```R
@@ -214,21 +183,34 @@
         data.table
         head(df)
 
-
-        TodayBalance YesBalance    buy       date           name   sell
-        1:      7394954    7355321 173277 2019-01-02 MarginPurchase 129650
-        2:      7359773    7394951 132298 2019-01-03 MarginPurchase 157962
-        3:      7279580    7359772 156698 2019-01-04 MarginPurchase 230462
-        4:      7297059    7279573 203646 2019-01-07 MarginPurchase 180036
-        5:      7299390    7297056 133556 2019-01-08 MarginPurchase 127360
-        6:      7243011    7299388 205733 2019-01-09 MarginPurchase 256017
         ```
 
+!!! output
+    |    |   TodayBalance |   YesBalance |        buy | date       | name                |    Return |       sell |
+    |---:|---------------:|-------------:|-----------:|:-----------|:--------------------|----------:|-----------:|
+    |  0 |        5463820 |      5471770 |     236127 | 2020-04-01 | MarginPurchase      |     10986 |     233091 |
+    |  1 |    91965082000 |  91898116000 | 4046643000 | 2020-04-01 | MarginPurchaseMoney | 196619000 | 3783058000 |
+    |  2 |         541704 |       556742 |      57266 | 2020-04-01 | ShortSale           |      6151 |      48379 |
+    |  3 |         535401 |       541704 |      50779 | 2020-04-06 | ShortSale           |      3700 |      48176 |
+    |  4 |    93198509000 |  91965082000 | 6440842000 | 2020-04-06 | MarginPurchaseMoney |  71638000 | 5135777000 |
 
 #### 法人買賣表 TaiwanStockInstitutionalInvestorsBuySell
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_institutional_investors(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -243,12 +225,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                date stock_id         buy                 name        sell
-        0  2019-01-02     2330    183000.0       Dealer_Hedging    344000.0
-        1  2019-01-02     2330    742000.0          Dealer_self   1375000.0
-        2  2019-01-02     2330         0.0  Foreign_Dealer_Self         0.0
-        3  2019-01-02     2330  13633825.0     Foreign_Investor  22365017.0
-        4  2019-01-02     2330    175000.0     Investment_Trust    166000.0
+
         ```
     === "R"
         ```R
@@ -261,7 +238,7 @@
         query = list(
             dataset="TaiwanStockInstitutionalInvestorsBuySell",
             data_id= "2330",
-            start_date= "2020-01-02",
+            start_date= "2020-04-01",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -271,20 +248,32 @@
         data.table
         head(df)
 
-
-                date stock_id        buy                name       sell
-        1: 2019-01-02     2330   183000.0      Dealer_Hedging   344000.0
-        2: 2019-01-02     2330   742000.0         Dealer_self  1375000.0
-        3: 2019-01-02     2330        0.0 Foreign_Dealer_Self        0.0
-        4: 2019-01-02     2330 13633825.0    Foreign_Investor 22365017.0
-        5: 2019-01-02     2330   175000.0    Investment_Trust   166000.0
-        6: 2019-01-03     2330  1114000.0      Dealer_Hedging    81000.0
         ```
+
+!!! output
+    |    | date       |   stock_id |      buy | name                |     sell |
+    |---:|:-----------|-----------:|---------:|:--------------------|---------:|
+    |  0 | 2020-04-01 |       2330 | 31304729 | Foreign_Investor    | 29057663 |
+    |  1 | 2020-04-01 |       2330 |        0 | Foreign_Dealer_Self |        0 |
+    |  2 | 2020-04-01 |       2330 |   900000 | Investment_Trust    |   239000 |
+    |  3 | 2020-04-01 |       2330 |    79000 | Dealer_self         |   807000 |
+    |  4 | 2020-04-01 |       2330 |   189000 | Dealer_Hedging      |   493500 
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_institutional_investors(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -299,18 +288,6 @@
         data = pd.DataFrame(data['data'])
         print(data)
 
-                    date stock_id      buy                 name     sell
-        0     2020-04-01     0050  2050000       Dealer_Hedging   905000
-        1     2020-04-01     0050        0          Dealer_self        0
-        2     2020-04-01     0050        0  Foreign_Dealer_Self        0
-        3     2020-04-01     0050   458249     Foreign_Investor  4492000
-        4     2020-04-01     0050    54000     Investment_Trust        0
-        ...          ...      ...      ...                  ...      ...
-        8025  2020-04-01     9958   124000       Dealer_Hedging   199000
-        8026  2020-04-01     9958        0          Dealer_self        0
-        8027  2020-04-01     9958        0  Foreign_Dealer_Self        0
-        8028  2020-04-01     9958   346000     Foreign_Investor  1002000
-        8029  2020-04-01     9958   200000     Investment_Trust        0
         ```
     === "R"
         ```R
@@ -332,20 +309,32 @@
         data.table
         head(df)
 
-                date stock_id    buy                name    sell
-        1: 2020-01-02     0050 633000      Dealer_Hedging 1192000
-        2: 2020-01-02     0050 197000         Dealer_self  357000
-        3: 2020-01-02     0050      0 Foreign_Dealer_Self       0
-        4: 2020-01-02     0050  41000    Foreign_Investor 1878000
-        5: 2020-01-02     0050 291000    Investment_Trust       0
-        6: 2020-01-02     0051  10000      Dealer_Hedging       0
         ```
 
+!!! output
+    |    | date       |   stock_id |     buy | name                |    sell |
+    |---:|:-----------|-----------:|--------:|:--------------------|--------:|
+    |  0 | 2020-04-01 |       0050 |  458249 | Foreign_Investor    | 4492000 |
+    |  1 | 2020-04-01 |       0050 |       0 | Foreign_Dealer_Self |       0 |
+    |  2 | 2020-04-01 |       0050 |   54000 | Investment_Trust    |       0 |
+    |  3 | 2020-04-01 |       0050 |       0 | Dealer_self         |       0 |
+    |  4 | 2020-04-01 |       0050 | 2050000 | Dealer_Hedging      |  905000 |
 
 #### 台灣市場整體法人買賣表 TaiwanStockTotalInstitutionalInvestors
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_institutional_investors_total(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -359,12 +348,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                buy        date                 name         sell
-        0      3997640  2019-01-02  Foreign_Dealer_Self      7825870
-        1  21588186132  2019-01-02                total  31594136973
-        2      7084620  2019-01-03  Foreign_Dealer_Self      5933140
-        3  32376561148  2019-01-03                total  38612010183
-        4      6378810  2019-01-04  Foreign_Dealer_Self      5684420
+
         ```
     === "R"
         ```R
@@ -386,19 +370,34 @@
         data.table
         head(df)
 
-                buy       date                name        sell
-        1:     3997640 2019-01-02 Foreign_Dealer_Self     7825870
-        2: 21588186132 2019-01-02               total 31594136973
-        3:     7084620 2019-01-03 Foreign_Dealer_Self     5933140
-        4: 32376561148 2019-01-03               total 38612010183
-        5:     6378810 2019-01-04 Foreign_Dealer_Self     5684420
-        6: 38029457325 2019-01-04               total 43592013337
         ```
+
+!!! output
+    |    |         buy | date       | name                |        sell |
+    |---:|------------:|:-----------|:--------------------|------------:|
+    |  0 |      123150 | 2020-04-01 | Foreign_Dealer_Self |      266220 |
+    |  1 |  3681729831 | 2020-04-01 | Dealer_Hedging      |  5539788946 |
+    |  2 | 33759089839 | 2020-04-01 | Foreign_Investor    | 38466572585 |
+    |  3 |  3039112340 | 2020-04-01 | Investment_Trust    |   853138940 |
+    |  4 |   789316840 | 2020-04-01 | Dealer_self         |   912143500 |
 
 #### 外資持股表 TaiwanStockShareholding
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_shareholding(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -413,12 +412,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                date stock_id ChineseInvestmentUpperLimitRatio ForeignInvestmentRemainingShares ForeignInvestmentShares  ... InternationalCode NumberOfSharesIssued RecentlyDeclareDate  note stock_name
-        0  2019-01-02     2330                            100.0                       5912146944             20018233344  ...      TW0002330008          25930381312          2018-05-28  None        台積電
-        1  2019-01-03     2330                            100.0                       5931491328             19998887936  ...      TW0002330008          25930381312          2018-05-28  None        台積電
-        2  2019-01-04     2330                            100.0                       5957547520             19972833280  ...      TW0002330008          25930381312          2018-05-28  None        台積電
-        3  2019-01-07     2330                            100.0                       5953922560             19976458240  ...      TW0002330008          25930381312          2018-05-28  None        台積電
-        4  2019-01-08     2330                            100.0                       5953176576             19977203712  ...      TW0002330008          25930381312          2018-05-28  None        台積電
+
         ```
     === "R"
         ```R
@@ -441,33 +435,33 @@
         data.table
         head(df)
 
-                date stock_id ChineseInvestmentUpperLimitRatio ForeignInvestmentRemainingShares
-        1: 2019-01-02     2330                            100.0                       5912146944
-        2: 2019-01-03     2330                            100.0                       5931491328
-        3: 2019-01-04     2330                            100.0                       5957547520
-        4: 2019-01-07     2330                            100.0                       5953922560
-        5: 2019-01-08     2330                            100.0                       5953176576
-        6: 2019-01-10     2330                            100.0                       5944186368
-        ForeignInvestmentShares ForeignInvestmentUpperLimitRatio InternationalCode NumberOfSharesIssued
-        1:             20018233344                            100.0      TW0002330008          25930381312
-        2:             19998887936                            100.0      TW0002330008          25930381312
-        3:             19972833280                            100.0      TW0002330008          25930381312
-        4:             19976458240                            100.0      TW0002330008          25930381312
-        5:             19977203712                            100.0      TW0002330008          25930381312
-        6:             19986194432                            100.0      TW0002330008          25930381312
-        RecentlyDeclareDate note stock_name
-        1:          2018-05-28 None     台積電
-        2:          2018-05-28 None     台積電
-        3:          2018-05-28 None     台積電
-        4:          2018-05-28 None     台積電
-        5:          2018-05-28 None     台積電
-        6:          2018-05-28 None     台積電
         ```
+
+!!! output
+    |    | date       |   stock_id | stock_name   | InternationalCode   |   ForeignInvestmentRemainingShares |   ForeignInvestmentShares |   ForeignInvestmentRemainRatio |   ForeignInvestmentSharesRatio |   ForeignInvestmentUpperLimitRatio |   ChineseInvestmentUpperLimitRatio |   NumberOfSharesIssued | RecentlyDeclareDate   | note   |
+    |---:|:-----------|-----------:|:-------------|:--------------------|-----------------------------------:|--------------------------:|-------------------------------:|-------------------------------:|-----------------------------------:|-----------------------------------:|-----------------------:|:----------------------|:-------|
+    |  0 | 2020-04-01 |       2330 | 台積電       | TW0002330008        |                         6309042842 |               19621337616 |                          24.33 |                          75.66 |                                100 |                                100 |            25930380458 | 2019-05-27            |        |
+    |  1 | 2020-04-06 |       2330 | 台積電       | TW0002330008        |                         6304552683 |               19625827775 |                          24.31 |                          75.68 |                                100 |                                100 |            25930380458 | 2019-05-27            |        |
+    |  2 | 2020-04-07 |       2330 | 台積電       | TW0002330008        |                         6283562246 |               19646818212 |                          24.23 |                          75.76 |                                100 |                                100 |            25930380458 | 2019-05-27            |        |
+    |  3 | 2020-04-08 |       2330 | 台積電       | TW0002330008        |                         6273338931 |               19657041527 |                          24.19 |                          75.8  |                                100 |                                100 |            25930380458 | 2019-05-27            |        |
+    |  4 | 2020-04-09 |       2330 | 台積電       | TW0002330008        |                         6267988722 |               19662391736 |                          24.17 |                          75.82 |                                100 |                                100 |            25930380458 | 2019-05-27            |        |
+
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_shareholding(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -481,12 +475,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                date stock_id stock_name  ... NumberOfSharesIssued  RecentlyDeclareDate  note
-        0  2020-04-01     0050     元大台灣50  ...           1055000000           2019-07-18      
-        1  2020-04-01     0051    元大中型100  ...              9500000           2019-07-18      
-        2  2020-04-01     0052       富邦科技  ...             30000000           2019-07-18      
-        3  2020-04-01     0053       元大電子  ...              6488000           2019-07-18      
-        4  2020-04-01     0054     元大台商50  ...             10124000           2019-07-18   
+
         ```
     === "R"
         ```R
@@ -507,49 +496,35 @@
         do.call('rbind',.) %>% 
         data.table
         head(df)
-
-                date stock_id   stock_name InternationalCode
-        1: 2020-01-02     0050   元大台灣50      TW0000050004
-        2: 2020-01-02     0051  元大中型100      TW0000051002
-        3: 2020-01-02     0052     富邦科技      TW0000052000
-        4: 2020-01-02     0053     元大電子      TW0000053008
-        5: 2020-01-02     0054   元大台商50      TW0000054006
-        6: 2020-01-02     0055 元大MSCI金融      TW0000055003
-        ForeignInvestmentRemainingShares ForeignInvestmentShares
-        1:                        495506528               191493472
-        2:                          9471000                   29000
-        3:                         32955000                   45000
-        4:                          5465000                   23000
-        5:                          9957000                  167000
-        6:                         35465000                 1189000
-        ForeignInvestmentRemainRatio ForeignInvestmentSharesRatio
-        1:                            0                            0
-        2:                            0                            0
-        3:                            0                            0
-        4:                            0                            0
-        5:                            0                            0
-        6:                            0                            0
-        ForeignInvestmentUpperLimitRatio ChineseInvestmentUpperLimitRatio
-        1:                              100                              100
-        2:                              100                              100
-        3:                              100                              100
-        4:                              100                              100
-        5:                              100                              100
-        6:                              100                              100
-        NumberOfSharesIssued RecentlyDeclareDate note
-        1:            687000000          2019-07-18     
-        2:              9500000          2019-07-18     
-        3:             33000000          2019-07-18     
-        4:              5488000          2019-07-18     
-        5:             10124000          2019-07-18     
-        6:             36654000          2019-07-18     
+ 
         ```
 
+!!! output
+    |    | date       |   stock_id | stock_name   | InternationalCode   |   ForeignInvestmentRemainingShares |   ForeignInvestmentShares |   ForeignInvestmentRemainRatio |   ForeignInvestmentSharesRatio |   ForeignInvestmentUpperLimitRatio |   ChineseInvestmentUpperLimitRatio |   NumberOfSharesIssued | RecentlyDeclareDate   | note   |
+    |---:|:-----------|-----------:|:-------------|:--------------------|-----------------------------------:|--------------------------:|-------------------------------:|-------------------------------:|-----------------------------------:|-----------------------------------:|-----------------------:|:----------------------|:-------|
+    |  0 | 2020-04-01 |       0050 | 元大台灣50   | TW0000050004        |                          960256795 |                  94743205 |                          91.01 |                           8.98 |                                100 |                                100 |             1055000000 | 2019-07-18            |        |
+    |  1 | 2020-04-01 |       0051 | 元大中型100  | TW0000051002        |                            9471000 |                     29000 |                          99.69 |                           0.3  |                                100 |                                100 |                9500000 | 2019-07-18            |        |
+    |  2 | 2020-04-01 |       0052 | 富邦科技     | TW0000052000        |                           29957000 |                     43000 |                          99.85 |                           0.14 |                                100 |                                100 |               30000000 | 2019-07-18            |        |
+    |  3 | 2020-04-01 |       0053 | 元大電子     | TW0000053008        |                            6466950 |                     21050 |                          99.67 |                           0.32 |                                100 |                                100 |                6488000 | 2019-07-18            |        |
+    |  4 | 2020-04-01 |       0054 | 元大台商50   | TW0000054006        |                            9955000 |                    169000 |                          98.33 |                           1.66 |                                100 |                                100 |               10124000 | 2019-07-18            |        |
 
 #### 股東持股分級表 TaiwanStockHoldingSharesPer
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_holding_shares_per(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -564,12 +539,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                date stock_id HoldingSharesLevel    people percent       unit
-        0  2019-01-19     2330              1-999  144921.0    0.12   31366096
-        1  2019-01-19     2330        1,000-5,000  153113.0    1.19  311094603
-        2  2019-01-19     2330      10,001-15,000    9248.0    0.43  112987890
-        3  2019-01-19     2330    100,001-200,000    1585.0    0.85  220910983
-        4  2019-01-19     2330      15,001-20,000    4411.0    0.29   77704397
+
         ```
     === "R"
         ```R
@@ -592,19 +562,32 @@
         data.table
         head(df)
 
-                date stock_id HoldingSharesLevel   people percent      unit
-        1: 2019-01-19     2330              1-999 144921.0    0.12  31366096
-        2: 2019-01-19     2330        1,000-5,000 153113.0    1.19 311094603
-        3: 2019-01-19     2330      10,001-15,000   9248.0    0.43 112987890
-        4: 2019-01-19     2330    100,001-200,000   1585.0    0.85 220910983
-        5: 2019-01-19     2330      15,001-20,000   4411.0    0.29  77704397
-        6: 2019-01-19     2330      20,001-30,000   4715.0    0.44 115199487
         ```
+
+!!! output
+    |    | date       |   stock_id | HoldingSharesLevel   |   people |   percent |      unit |
+    |---:|:-----------|-----------:|:---------------------|---------:|----------:|----------:|
+    |  0 | 2020-04-01 |       2330 | 1-999                |   165122 |      0.12 |  33289900 |
+    |  1 | 2020-04-01 |       2330 | 1,000-5,000          |   227692 |      1.69 | 440404454 |
+    |  2 | 2020-04-01 |       2330 | 10,001-15,000        |    10408 |      0.49 | 128127693 |
+    |  3 | 2020-04-01 |       2330 | 100,001-200,000      |     1628 |      0.86 | 225202876 |
+    |  4 | 2020-04-01 |       2330 | 15,001-20,000        |     5068 |      0.34 |  89929303 |
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_holding_shares_per(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -619,18 +602,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data)
-                    date stock_id   HoldingSharesLevel  people  percent       unit
-        0      2020-04-01     1101                1-999   78054     0.26   14398612
-        1      2020-04-01     1101          1,000-5,000   84289     3.21  175508653
-        2      2020-04-01     1101        10,001-15,000    7517     1.65   90220853
-        3      2020-04-01     1101      100,001-200,000    1090     2.69  147442198
-        4      2020-04-01     1101        15,001-20,000    3273     1.04   57295266
-        ...           ...      ...                  ...     ...      ...        ...
-        27595  2020-04-01     9962       50,001-100,000      80     6.29    5677217
-        27596  2020-04-01     9962      600,001-800,000       3     2.30    2083808
-        27597  2020-04-01     9962    800,001-1,000,000       1     0.91     826633
-        27598  2020-04-01     9962  more than 1,000,001      17    51.01   46030201
-        27599  2020-04-01     9962                total    4138   100.00   90220260
+
         ```
     === "R"
         ```R
@@ -652,20 +624,35 @@
         data.table
         head(df)
 
-                date stock_id HoldingSharesLevel people percent      unit
-        1: 2020-04-01     1101              1-999  78054    0.26  14398612
-        2: 2020-04-01     1101        1,000-5,000  84289    3.21 175508653
-        3: 2020-04-01     1101      10,001-15,000   7517    1.65  90220853
-        4: 2020-04-01     1101    100,001-200,000   1090    2.69 147442198
-        5: 2020-04-01     1101      15,001-20,000   3273    1.04  57295266
-        6: 2020-04-01     1101      20,001-30,000   3670    1.62  88740328
         ```
+
+!!! output
+    |    | date       |   stock_id | HoldingSharesLevel   |   people |   percent |      unit |
+    |---:|:-----------|-----------:|:---------------------|---------:|----------:|----------:|
+    |  0 | 2020-04-01 |       0050 | 1-999                |    44173 |      1.02 |  10834763 |
+    |  1 | 2020-04-01 |       0050 | 1,000-5,000          |    96465 |     17.7  | 186791648 |
+    |  2 | 2020-04-01 |       0050 | 5,001-10,000         |    10364 |      7.57 |  79902735 |
+    |  3 | 2020-04-01 |       0050 | 10,001-15,000        |     2819 |      3.41 |  36075583 |
+    |  4 | 2020-04-01 |       0050 | 15,001-20,000        |     1557 |      2.69 |  28426726 |
 
 
 #### 借券成交明細 TaiwanStockSecuritiesLending
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_securities_lending(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -680,12 +667,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                date stock_id transaction_type volume fee_rate  close original_return_date original_lending_period
-        0  2019-01-02     2330               競價    122      0.1  219.5           2019-07-02                     181
-        1  2019-01-03     2330               議借    600     0.17  215.5           2019-07-03                     181
-        2  2019-01-04     2330               競價    178      0.1  208.0           2019-07-04                     181
-        3  2019-01-07     2330               競價     64      0.1  213.0           2019-07-05                     179
-        4  2019-01-08     2330               議借    450     0.59  211.0           2019-07-08                     181
+
         ```
     === "R"
         ```R
@@ -708,25 +690,31 @@
         data.table
         head(df)
 
-                date stock_id transaction_type volume fee_rate close original_return_date
-        1: 2019-01-02     2330             競價    122      0.1 219.5           2019-07-02
-        2: 2019-01-03     2330             議借    600     0.17 215.5           2019-07-03
-        3: 2019-01-04     2330             競價    178      0.1 208.0           2019-07-04
-        4: 2019-01-07     2330             競價     64      0.1 213.0           2019-07-05
-        5: 2019-01-08     2330             議借    450     0.59 211.0           2019-07-08
-        6: 2019-01-09     2330             議借   3000     0.59 215.5           2019-07-09
-        original_lending_period
-        1:                     181
-        2:                     181
-        3:                     181
-        4:                     179
-        5:                     181
-        6:                     181
         ```
+
+!!! output
+    |    | date       |   stock_id | transaction_type   |   volume |   fee_rate |   close | original_return_date   |   original_lending_period |
+    |---:|:-----------|-----------:|:-------------------|---------:|-----------:|--------:|:-----------------------|--------------------------:|
+    |  0 | 2020-04-01 |       2330 | 議借               |     1330 |       1.36 |   271.5 | 2020-09-30             |                       182 |
+    |  1 | 2020-04-01 |       2330 | 議借               |      800 |       0.41 |   271.5 | 2020-09-30             |                       182 |
+    |  2 | 2020-04-01 |       2330 | 議借               |      850 |       0.41 |   271.5 | 2020-09-30             |                       182 |
+    |  3 | 2020-04-01 |       2330 | 議借               |      500 |       0.5  |   271.5 | 2020-09-30             |                       182 |
+    |  4 | 2020-04-01 |       2330 | 議借               |      160 |       0.36 |   271.5 | 2020-09-30             |                       182 |
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_securities_lending(
+            start_date='2020-04-01',
+        )
+        ```
     === "Python"
         ```python
         import requests
@@ -741,18 +729,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data)
-                date stock_id transaction_type  volume  fee_rate  close original_return_date  original_lending_period
-        0    2020-04-01     1101               競價     436      0.70   39.0           2020-09-30                      182
-        1    2020-04-01     1101               議借     397      0.25   39.0           2020-09-30                      182
-        2    2020-04-01     1101               議借     760      0.25   39.0           2020-09-30                      182
-        3    2020-04-01     1102               議借     150      0.25   38.6           2020-09-30                      182
-        4    2020-04-01     1102               議借     770      1.05   38.6           2020-09-30                      182
-        ..          ...      ...              ...     ...       ...    ...                  ...                      ...
-        500  2020-04-01     9938               議借      60      3.00   53.7           2020-09-30                      182
-        501  2020-04-01     9938               議借      60      3.00   53.7           2020-09-30                      182
-        502  2020-04-01     9944               議借      16     20.00   15.5           2020-09-30                      182
-        503  2020-04-01     9958               競價      60      6.00   78.9           2020-09-30                      182
-        504  2020-04-01     9958               競價      60      6.00   78.9           2020-09-30                      182
+
         ```
     === "R"
         ```R
@@ -774,27 +751,34 @@
         data.table
         head(df)
 
-                date stock_id transaction_type volume fee_rate close original_return_date
-        1: 2020-01-02     0050             競價    300      0.5 97.65           2020-07-01
-        2: 2020-01-02     0050             競價    300      0.5 97.65           2020-07-01
-        3: 2020-01-02     0052             競價     45        4  73.3           2020-07-02
-        4: 2020-01-02     0052             競價     45        4  73.3           2020-07-02
-        5: 2020-01-02   00633L             競價    150      1.5  51.1           2020-07-02
-        6: 2020-01-02   00633L             競價    150      1.5  51.1           2020-07-02
-        original_lending_period
-        1:                     181
-        2:                     181
-        3:                     182
-        4:                     182
-        5:                     182
-        6:                     182
         ```
 
+!!! output
+    |    | date       |   stock_id | transaction_type   |   volume |   fee_rate |   close | original_return_date   |   original_lending_period |
+    |---:|:-----------|-----------:|:-------------------|---------:|-----------:|--------:|:-----------------------|--------------------------:|
+    |  0 | 2020-04-01 |       1101 | 議借               |      760 |       0.25 |    39   | 2020-09-30             |                       182 |
+    |  1 | 2020-04-01 |       1101 | 議借               |      397 |       0.25 |    39   | 2020-09-30             |                       182 |
+    |  2 | 2020-04-01 |       1101 | 競價               |      436 |       0.7  |    39   | 2020-09-30             |                       182 |
+    |  3 | 2020-04-01 |       1102 | 議借               |      150 |       0.25 |    38.6 | 2020-09-30             |                       182 |
+    |  4 | 2020-04-01 |       1102 | 議借               |      770 |       1.05 |    38.6 | 2020-09-30             |                       182 |
 
 #### 融券借券賣出 TaiwanDailyShortSaleBalances
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_daily_short_sale_balances(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -809,12 +793,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-                stock_id  MarginShortSalesPreviousDayBalance  MarginShortSalesShortSales  ...  SBLShortSalesQuota  SBLShortSalesShortCovering        date
-        0           2330                             1975000                           0  ...             7526895                           0  2020-04-01
-        1           2330                               24000                           0  ...             7563083                           0  2020-04-06
-        2           2330                                   0                           0  ...             7635835                           0  2020-04-07
-        3           2330                                   0                           0  ...             7688249                           0  2020-04-08
-        4           2330                                   0                      398000  ...             7642682                           0  2020-04-09
+
         ```
     === "R"
         ```R
@@ -837,54 +816,32 @@
         data.table
         head(df)
 
-                stock_id MarginShortSalesPreviousDayBalance MarginShortSalesShortSales
-        1:          2330                             326000                     132000
-        2:          2330                             445000                     161000
-        3:          2330                             571000                      19000
-        4:          2330                             344000                      82000
-        5:          2330                             351000                     222000
-        6:          2330                             532000                     147000
-        MarginShortSalesShortCovering MarginShortSalesStockRedemption
-        1:                      13000                               0
-        2:                      35000                               0
-        3:                     246000                               0
-        4:                      75000                               0
-        5:                      41000                               0
-        6:                      37000                               0
-        MarginShortSalesCurrentDayBalance MarginShortSalesQuota
-        1:                         445000           -2107339478
-        2:                         571000           -2107339478
-        3:                         344000           -2107339478
-        4:                         351000           -2107339478
-        5:                         532000           -2107339478
-        6:                         642000           -2107339478
-        SBLShortSalesPreviousDayBalance SBLShortSalesShortSales SBLShortSalesReturns
-        1:                     19385310                       0                    0
-        2:                     19385310                    9000                    0
-        3:                     19394310                  103000               555000
-        4:                     18942310                    2000                    0
-        5:                     18944310                  192000               361000
-        6:                     18775310                  325000                    0
-        SBLShortSalesAdjustments SBLShortSalesCurrentDayBalance SBLShortSalesQuota
-        1:                     0                       19385310           10204355
-        2:                     0                       19394310           10322949
-        3:                     0                       18942310           10514790
-        4:                     0                       18944310           10833700
-        5:                     0                       18775310           10193671
-        6:                     0                       19100310           10332370
-        SBLShortSalesShortCovering       date
-        1:                       0 2020-01-02
-        2:                       0 2020-01-03
-        3:                       0 2020-01-06
-        4:                       0 2020-01-07
-        5:                       0 2020-01-08
-        6:                       0 2020-01-09
         ```
+
+!!! output
+    |    |   stock_id |   MarginShortSalesPreviousDayBalance |   MarginShortSalesShortSales |   MarginShortSalesShortCovering |   MarginShortSalesStockRedemption |   MarginShortSalesCurrentDayBalance |   MarginShortSalesQuota |   SBLShortSalesPreviousDayBalance |   SBLShortSalesShortSales |   SBLShortSalesReturns |   SBLShortSalesAdjustments |   SBLShortSalesCurrentDayBalance |   SBLShortSalesQuota |   SBLShortSalesShortCovering | date       |
+    |---:|-----------:|-------------------------------------:|-----------------------------:|--------------------------------:|----------------------------------:|------------------------------------:|------------------------:|----------------------------------:|--------------------------:|-----------------------:|---------------------------:|---------------------------------:|---------------------:|-----------------------------:|:-----------|
+    |  0 |       2330 |                              1975000 |                            0 |                         1573000 |                            378000 |                               24000 |             -2107339478 |                          47947858 |                    487000 |                      0 |                          0 |                         48434858 |              7526895 |                            0 | 2020-04-01 |
+    |  1 |       2330 |                                24000 |                            0 |                               0 |                             24000 |                                   0 |             -2107339478 |                          48434858 |                     44000 |                  60000 |                          0 |                         48418858 |              7563083 |                            0 | 2020-04-06 |
+    |  2 |       2330 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |             -2107339478 |                          48418858 |                     62000 |                      0 |                          0 |                         48480858 |              7635835 |                            0 | 2020-04-07 |
+    |  3 |       2330 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |             -2107339478 |                          48480858 |                    933000 |                7345000 |                          0 |                         42068858 |              7688249 |                            0 | 2020-04-08 |
+    |  4 |       2330 |                                    0 |                       398000 |                               0 |                                 0 |                              398000 |             -2107339478 |                          42068858 |                     46000 |                   2000 |                          0 |                         42112858 |              7642682 |                            0 | 2020-04-09 |
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_daily_short_sale_balances(
+            start_date='2020-04-01',
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -898,18 +855,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data)
-                stock_id  MarginShortSalesPreviousDayBalance  MarginShortSalesShortSales  ...  SBLShortSalesQuota  SBLShortSalesShortCovering        date
-        0           0050                              164000                       61000  ...             3478376                           0  2021-05-20
-        1           0051                                   0                           0  ...               46797                           0  2021-05-20
-        2           0052                                7000                           0  ...              399362                           0  2021-05-20
-        3           0053                                   0                           0  ...                8548                           0  2021-05-20
-        4           0054                                   0                           0  ...                4085                           0  2021-05-20
-        ...          ...                                 ...                         ...  ...                 ...                         ...         ...
-        1850        9951                                1000                           0  ...              250293                           0  2021-05-20
-        1851        9955                               18000                           0  ...              720416                           0  2021-05-20
-        1852        9958                              157000                       34000  ...             2026204                           0  2021-05-20
-        1853        9960                                   0                           0  ...               18944                           0  2021-05-20
-        1854        9962                                   0                           0  ...              302372                           0  2021-05-20
+
         ```
     === "R"
         ```R
@@ -931,46 +877,13 @@
         data.table
         head(df)
 
-                stock_id MarginShortSalesPreviousDayBalance MarginShortSalesShortSales
-        1:          0050                             171000                       2000
-        2:          0051                                  0                          0
-        3:          0052                                  0                          0
-        4:          0053                               4000                          0
-        5:          0054                                  0                          0
-        6:          0055                               1000                          0
-        MarginShortSalesShortCovering MarginShortSalesStockRedemption
-        1:                        1000                               0
-        2:                           0                               0
-        3:                           0                               0
-        4:                           0                               0
-        5:                           0                               0
-        6:                           0                               0
-        MarginShortSalesCurrentDayBalance MarginShortSalesQuota
-        1:                         172000             171750000
-        2:                              0               2375000
-        3:                              0               8250000
-        4:                           4000               1372000
-        5:                              0               2531000
-        6:                           1000               9163500
-        SBLShortSalesPreviousDayBalance SBLShortSalesShortSales SBLShortSalesReturns
-        1:                      4686000                  327000                    0
-        2:                         1000                       0                    0
-        3:                        53000                   36000                    0
-        4:                            0                       0                    0
-        5:                            0                       0                    0
-        6:                        16000                       0                    0
-        SBLShortSalesAdjustments SBLShortSalesCurrentDayBalance SBLShortSalesQuota
-        1:                     0                        5013000            1006197
-        2:                     0                           1000               9236
-        3:                     0                          89000              36563
-        4:                     0                              0               4213
-        5:                     0                              0               2949
-        6:                     0                          16000              20919
-        SBLShortSalesShortCovering       date
-        1:                       0 2020-01-02
-        2:                       0 2020-01-02
-        3:                       0 2020-01-02
-        4:                       0 2020-01-02
-        5:                       0 2020-01-02
-        6:                       0 2020-01-02
         ```
+
+!!! output
+    |    |   stock_id |   MarginShortSalesPreviousDayBalance |   MarginShortSalesShortSales |   MarginShortSalesShortCovering |   MarginShortSalesStockRedemption |   MarginShortSalesCurrentDayBalance |   MarginShortSalesQuota |   SBLShortSalesPreviousDayBalance |   SBLShortSalesShortSales |   SBLShortSalesReturns |   SBLShortSalesAdjustments |   SBLShortSalesCurrentDayBalance |   SBLShortSalesQuota |   SBLShortSalesShortCovering | date       |
+    |---:|-----------:|-------------------------------------:|-----------------------------:|--------------------------------:|----------------------------------:|------------------------------------:|------------------------:|----------------------------------:|--------------------------:|-----------------------:|---------------------------:|---------------------------------:|---------------------:|-----------------------------:|:-----------|
+    |  0 |       0050 |                              2336000 |                        13000 |                           65000 |                              1000 |                             2283000 |               263750000 |                          25527000 |                         0 |                      0 |                          0 |                         25527000 |              2397551 |                            0 | 2020-04-01 |
+    |  1 |       0051 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 2375000 |                              1000 |                         0 |                      0 |                          0 |                             1000 |                 4053 |                            0 | 2020-04-01 |
+    |  2 |       0052 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 7500000 |                             34000 |                         0 |                      0 |                          0 |                            34000 |                17168 |                            0 | 2020-04-01 |
+    |  3 |       0053 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 1622000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 3158 |                            0 | 2020-04-01 |
+    |  4 |       0054 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 2531000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 1357 |                            0 | 2020-04-01 |

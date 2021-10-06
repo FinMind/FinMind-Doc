@@ -16,7 +16,23 @@ password      | str |  N | 使用者密碼，申辦帳號可以使用更多用�
 response: token
 ```
 
-!!! example
+!!! package-example
+    === "Login by token"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        ```
+    === "Login by password"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login(user_id='user_id',password='password')
+        ```
+
+!!! request-example
     === "Python"
         ```python
         import requests

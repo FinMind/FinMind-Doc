@@ -1,3 +1,7 @@
+#### 2021-10-06
+* release FinMind package 1.5.3，處理 connect error 問題
+* 增加 FinMind package 文件
+
 #### 2021-08-01
 * 由於資料源問題，移除即時報價
 
