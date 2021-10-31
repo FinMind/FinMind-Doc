@@ -306,7 +306,7 @@
 
 #### 期貨交易明細表 TaiwanFuturesTick
 
-由於資料量過大，只提供 date 當天 data
+由於資料量過大，單次請求只提供一天資料
 
 !!! example
     === "Package"
@@ -371,7 +371,7 @@
 
 #### 選擇權交易明細表 TaiwanOptionTick
 
-由於資料量過大，只提供 date 當天 data
+由於資料量過大，單次請求只提供一天資料
 
 !!! example
     === "Package"

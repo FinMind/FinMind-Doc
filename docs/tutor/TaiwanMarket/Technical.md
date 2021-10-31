@@ -200,6 +200,7 @@
     |  4 | 2020-04-06 |       0054 |            10000 |          200040 |  19.87 | 20.03 | 19.87 |   20.03 |     0    |                  4 |
 
 #### 台灣股價歷史逐筆資料表 TaiwanStockPriceTick
+(由於資料量過大，單次請求只提供一天資料)
 
 - 輸入 dataset、stock_id、start_date 參數，會回傳 start_date 當天資料。
 
@@ -328,7 +329,7 @@
 
 
 #### 每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade
-(由於資料量過大，只提供 date 當天 data)
+(由於資料量過大，單次請求只提供一天資料)
 
 !!! example
     === "Package"
@@ -388,7 +389,7 @@
     |  4 | 09:00:20 |          310927 |          3345735 |           375220 |           1792055 |            47250 |            198536 |             9137 | 2021-01-07 |
 
 #### 加權指數 TaiwanVariousIndicators5Seconds
-(由於資料量過大，只提供 date 當天 data)
+(由於資料量過大，單次請求只提供一天資料)
 
 !!! example
     === "Package"
