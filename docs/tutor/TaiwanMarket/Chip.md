@@ -20,8 +20,8 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         # api.login(user_id='user_id',password='password')
-        df = api.taiwan_stock_total_return_index(
-            index_id="TAIEX",
+        df = api.taiwan_stock_margin_purchase_short_sale(
+            stock_id="2330",
             start_date='2020-04-02',
             end_date='2020-04-12'
         )

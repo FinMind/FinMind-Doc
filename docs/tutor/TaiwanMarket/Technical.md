@@ -388,6 +388,7 @@
     |  4 | 09:00:20 |          310927 |          3345735 |           375220 |           1792055 |            47250 |            198536 |             9137 | 2021-01-07 |
 
 #### 加權指數 TaiwanVariousIndicators5Seconds
+(由於資料量過大，只提供 date 當天 data)
 
 !!! example
     === "Package"
