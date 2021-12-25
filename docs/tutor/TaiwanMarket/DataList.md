@@ -1,10 +1,9 @@
-在台灣金融市場，我們擁有 33 種資料集，如下:
+在台灣金融市場，我們擁有 32 種資料集，如下:
 
 #### 技術面 Technical
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-- [歷史台股最佳五檔 TaiwanStockPriceBidAsk](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricebidask_1)
 - [個股 PER、PBR 資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [每 5 秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#Taiwanstatisticsoforderbookandtrade)
 - [加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
