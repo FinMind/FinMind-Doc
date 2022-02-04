@@ -1,7 +1,8 @@
-在台股技術面，我們擁有 8 種資料集，如下:
+在台股技術面，我們擁有 10 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
+- [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick)
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 - [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwan_stock_tick_snapshot-backersponsor)
@@ -70,7 +71,7 @@
     |  2 | ETF                 |       0052 | 富邦科技     | twse   | 2021-10-05 |
     |  3 | ETF                 |       0053 | 元大電子     | twse   | 2021-10-05 |
     |  4 | ETF                 |       0054 | 元大台商50   | twse   | 2021-10-05 |
-        
+
 
 #### 股價日成交資訊 TaiwanStockPrice
 
@@ -199,6 +200,37 @@
     |  2 | 2020-04-06 |       0052 |           178700 |        10660088 |  59.4  | 60.05 | 58.75 |   60    |     1.25 |                 56 |
     |  3 | 2020-04-06 |       0053 |            17000 |          589750 |  34.66 | 35    | 34.48 |   34.84 |     0.18 |                 17 |
     |  4 | 2020-04-06 |       0054 |            10000 |          200040 |  19.87 | 20.03 | 19.87 |   20.03 |     0    |                  4 |
+
+
+
+#### 台灣還原股價資料表 TaiwanStockPriceAdj
+
+!!! example
+    ```python
+    from FinMind.data import DataLoader
+
+    api = DataLoader()
+    # api.login_by_token(api_token='token')
+    # api.login(user_id='user_id',password='password')
+    df = api.taiwan_stock_daily_adj(
+        stock_id='2330',
+        start_date='2020-04-02',
+        end_date='2020-04-12'
+    )
+    ```
+
+
+
+!!! output
+    |    | date       |   stock_id |   Trading_Volume |   Trading_money |   open |   max |   min |   close |   spread |   Trading_turnover |
+    |---:|:-----------|-----------:|-----------------:|----------------:|-------:|------:|------:|--------:|---------:|-------------------:|
+    |  0 | 2020-04-06 |       2330 |         59712754 |     16324198154 |  273   | 275.5 | 270   |   275.5 |      4   |              19971 |
+    |  1 | 2020-04-07 |       2330 |         48887346 |     13817936851 |  283.5 | 284   | 280.5 |   283   |      7.5 |              24281 |
+    |  2 | 2020-04-08 |       2330 |         38698826 |     11016972354 |  285   | 285.5 | 283   |   285   |      2   |              19126 |
+    |  3 | 2020-04-09 |       2330 |         29276430 |      8346209654 |  287.5 | 288   | 282.5 |   283   |     -2   |              15271 |
+    |  4 | 2020-04-10 |       2330 |         28206858 |      7894277586 |  280   | 282   | 279   |   279.5 |     -3.5 |              15833 |
+
+
 
 #### 台灣股價歷史逐筆資料表 TaiwanStockPriceTick
 (由於資料量過大，單次請求只提供一天資料)
