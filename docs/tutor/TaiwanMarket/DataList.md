@@ -1,4 +1,4 @@
-在台灣金融市場，我們擁有 35 種資料集，如下:
+在台灣金融市場，我們擁有 36 種資料集，如下:
 
 #### 技術面 Technical
 
@@ -23,6 +23,7 @@
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#TaiwanStockSecuritiesLending)
 - [融券借券賣出 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#TaiwanDailyShortSaleBalances)
+- [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreport-backersponsor)
 
 #### 基本面 Fundamental
 

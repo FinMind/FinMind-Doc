@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 8 種資料集，如下:
+在台股籌碼面，我們擁有 9 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -9,6 +9,7 @@
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 - [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
+- [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreport-backersponsor)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
@@ -762,7 +763,7 @@
     |  3 | 2020-04-01 |       1102 | 議借               |      150 |       0.25 |    38.6 | 2020-09-30             |                       182 |
     |  4 | 2020-04-01 |       1102 | 議借               |      770 |       1.05 |    38.6 | 2020-09-30             |                       182 |
 
-#### 融券借券賣出 TaiwanDailyShortSaleBalances
+#### 融券借券賣出表 TaiwanDailyShortSaleBalances
 
 !!! example
     === "Package"
@@ -887,3 +888,57 @@
     |  2 |       0052 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 7500000 |                             34000 |                         0 |                      0 |                          0 |                            34000 |                17168 |                            0 | 2020-04-01 |
     |  3 |       0053 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 1622000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 3158 |                            0 | 2020-04-01 |
     |  4 |       0054 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 2531000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 1357 |                            0 | 2020-04-01 |
+
+#### 台股分點資料表 TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+資料時間長度：2021-06-30 ~ now
+
+(由於資料量過大，單次請求只提供一天資料)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReport",
+            "data_id": "2330",
+            "start_date": "2021-06-30",
+            "token": token, # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        df = pd.DataFrame(resp.json()['data'])
+        print(df.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockTradingDailyReport",
+            data_id="2330",
+            start_date= "2021-06-30",
+            token = token # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+|    | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
+|---:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
+|  0 | 合庫                |     595 |  1177 |     55 |                   1020 |       2330 | 2021-06-30 |
+|  1 | 合庫                |     596 |   267 |      0 |                   1020 |       2330 | 2021-06-30 |
+|  2 | 合庫                |     597 |     0 |  12000 |                   1020 |       2330 | 2021-06-30 |
+|  3 | 合庫                |     598 |  1000 |  10200 |                   1020 |       2330 | 2021-06-30 |
+|  4 | 合庫                |     599 |     0 |   3000 |                   1020 |       2330 | 2021-06-30 |
