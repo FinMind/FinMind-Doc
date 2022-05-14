@@ -4,16 +4,16 @@ variables:
 stages:
   - deploy
 
-deploy:githubpage:
-  stage: deploy
-  before_script:
-    - make install-python-evn
-  script:
-    - python3 gen_release_note.py
-    - mkdocs build
-    - make deploy-github-page
-  only:
-    - master
-    - schedules
-  tags:
-    - docker
+# deploy:githubpage:
+#   stage: deploy
+#   before_script:
+#     - make install-python-evn
+#   script:
+#     - python3 gen_release_note.py
+#     - mkdocs build
+#     - make deploy-github-page
+#   only:
+#     - master
+#     - schedules
+#   tags:
+#     - docker
