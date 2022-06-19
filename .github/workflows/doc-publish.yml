@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         python-version: [ 3.6 ]
@@ -21,10 +21,10 @@ jobs:
           make install-python-evn
       - name: Generate releaese note
         run: |
-          python3 gen_release_note.py
+          pipenv run python gen_release_note.py
       - name: Build and publish
         env:
           FINMIND_DOC_TOKEN: ${{ secrets.FINMIND_DOC_TOKEN }}
         run: |
-          mkdocs build
+          pipenv run mkdocs build
           make deploy-github-page

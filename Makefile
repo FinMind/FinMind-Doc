@@ -1,11 +1,8 @@
 install-python-evn:
 	sudo apt-get update && \
 	sudo apt-get install python3-pip -y && \
-	pip3 install mkdocs==1.1.2 &&\
-	pip3 install markdown-include==0.6.0 &&\
-	pip3 install mkdocs-material==7.1.5 &&\
-	pip3 install pymdown-extensions==8.2 &&\
-	pip3 install requests==2.25.1
+	pip3 install pipenv && \
+	pipenv sync
 
 deploy-github-page:
 	mkdir github_page && cd github_page && git init && \
