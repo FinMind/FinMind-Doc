@@ -9,7 +9,8 @@
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 - [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
-- [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreport-backersponsor)
+- [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor)
+- [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor_1)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
@@ -889,7 +890,7 @@
     |  3 |       0053 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 1622000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 3158 |                            0 | 2020-04-01 |
     |  4 |       0054 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 2531000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 1357 |                            0 | 2020-04-01 |
 
-#### 台股分點資料表 TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 資料時間長度：2021-06-30 ~ now
 
 (由於資料量過大，單次請求只提供一天資料)
@@ -899,16 +900,17 @@
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
+
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report'
         parameter = {
-            "dataset": "TaiwanStockTradingDailyReport",
             "data_id": "2330",
-            "start_date": "2021-06-30",
+            "date": "2022-06-16",
             "token": token, # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
-        df = pd.DataFrame(resp.json()['data'])
-        print(df.head())
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
 
         ```
     === "R"
@@ -916,13 +918,12 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v4/data'
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TaiwanStockTradingDailyReport",
             data_id="2330",
-            start_date= "2021-06-30",
+            start_date= "2022-06-16",
             token = token # 參考登入，獲取金鑰
         )
         )
@@ -937,8 +938,69 @@
 !!! output
 |    | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
 |---:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
-|  0 | 合庫                |     595 |  1177 |     55 |                   1020 |       2330 | 2021-06-30 |
-|  1 | 合庫                |     596 |   267 |      0 |                   1020 |       2330 | 2021-06-30 |
-|  2 | 合庫                |     597 |     0 |  12000 |                   1020 |       2330 | 2021-06-30 |
-|  3 | 合庫                |     598 |  1000 |  10200 |                   1020 |       2330 | 2021-06-30 |
-|  4 | 合庫                |     599 |     0 |   3000 |                   1020 |       2330 | 2021-06-30 |
+|  0 | 合庫                |     508 |  4000 |   2000 |                   1020 |       2330 | 2022-06-16 |
+|  1 | 合庫                |     509 |  3480 |      0 |                   1020 |       2330 | 2022-06-16 |
+|  2 | 合庫                |     510 |  2310 |     50 |                   1020 |       2330 | 2022-06-16 |
+|  3 | 合庫                |     511 |  1169 |      0 |                   1020 |       2330 | 2022-06-16 |
+|  4 | 合庫                |     512 |  1300 |  10000 |                   1020 |       2330 | 2022-06-16 |
+
+#### 台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+資料時間長度：2021-06-30 ~ now
+
+(由於資料量過大，單次請求只提供一天資料)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report'
+        parameter = {
+            "securities_trader_id": "1020",
+            "date": "2022-06-16",
+            "token": token, # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report'
+        response = httr::GET(
+        url = url,
+        query = list(
+            securities_trader_id="1020",
+            start_date= "2022-06-16",
+            token = token # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+|      | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
+|-----:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
+|    0 | 合庫                |  122.25 | 19000 |      0 |                   1020 |       0050 | 2022-06-16 |
+|    1 | 合庫                |  122.3  | 80000 |      0 |                   1020 |       0050 | 2022-06-16 |
+|    2 | 合庫                |  122.35 | 10000 |      0 |                   1020 |       0050 | 2022-06-16 |
+|    3 | 合庫                |  122.5  |  1300 |      0 |                   1020 |       0050 | 2022-06-16 |
+|    4 | 合庫                |  122.55 | 20000 |      0 |                   1020 |       0050 | 2022-06-16 |
+|  ... | ...                 |  ...    | ...   |   ... |                   ...   |       ...  | ...        |
+| 3211 | 合庫                |  107    |  1000 |  50000 |                   1020 |       9958 | 2022-06-16 |
+| 3212 | 合庫                |  107.5  |     0 |  32000 |                   1020 |       9958 | 2022-06-16 |
+| 3213 | 合庫                |  108    |     0 |   2000 |                   1020 |       9958 | 2022-06-16 |
+| 3214 | 合庫                |  108.5  |   150 |      0 |                   1020 |       9958 | 2022-06-16 |
+| 3215 | 合庫                |   16.05 |  1000 |      0 |                   1020 |       9962 | 2022-06-16 |
+
