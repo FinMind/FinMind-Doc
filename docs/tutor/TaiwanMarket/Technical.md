@@ -687,6 +687,8 @@
         url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
         parameter = {
             "data_id": "2330",
+            # "data_id": ["2330", "2317"], # 一次拿多個
+            # "data_id": "", # 一次全部
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
@@ -705,6 +707,8 @@
         url = url,
         query = list(
             data_id="2330",
+            # data_id=c("2330", "2317"), # 一次拿多個
+            # data_id="", # 一次全部
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -717,7 +721,6 @@
         ```
 
 !!! output
-
-|    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
-|---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
-|  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |
+    |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
+    |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
+    |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |

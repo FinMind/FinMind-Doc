@@ -12,40 +12,58 @@
 
 - 這張資料表主要是列出英國所有上市上櫃的股票名稱，代碼和產業類別
 
-```python
-import requests
-import pandas as pd
+!!! example
+   ```python
+   import requests
+   import pandas as pd
 
-url = 'https://api.finmindtrade.com/api/v3/data?dataset=UKStockInfo'
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
+   url = 'https://api.finmindtrade.com/api/v4/data'
+   parameter = {
+      "dataset": "UKStockInfo"
+   }
+   data = requests.get(url, params=parameter)
+   data = data.json()
+   data = pd.DataFrame(data['data'])
+   print(data.head())
+   ```
+!!! output
+   |    | date       | stock_id   | Country   | stock_name      |
+   |---:|:-----------|:-----------|:----------|:----------------|
+   |  0 | 2019-01-31 | 01IC.L     | USD       | QUEBEC FRN20    |
+   |  1 | 2019-01-31 | 01IE.L     | USD       | ROY.BK.SCOTSERB |
+   |  2 | 2019-01-31 | 01KG.L     | GBP       | SCOT.AMER.8%DB. |
+   |  3 | 2019-01-31 | 01LQ.L     | GBP       | SCOT.PWR.UK6T23 |
+   |  4 | 2019-01-31 | 01LT.L     | GBP       | RES.MORT.4CTBRA |
+    
 
-date stock_id Country   stock_name
-0  2019-01-31   17MA.L     AMD  EURO.BK. 22
-1  2019-01-31   44CI.L     AMD  EURO.BK. 21
-2  2019-01-31   47HF.L     AMD   EURO.BK.21
-3  2019-01-31   58MF.L     AMD   EURO.BK.21
-4  2019-01-31   59FK.L     AMD  EURO.BK. 20
-```
 
 #### 英國股價資料表 UKStockPrice
 
-```python
-import requests
-import pandas as pd
+!!! example
+   ```python
+   import requests
+   import pandas as pd
 
-url = 'https://api.finmindtrade.com/api/v3/data?dataset=UKStockPrice&stock_id=BP.L&date=2019-01-01'
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
+   url = 'https://api.finmindtrade.com/api/v4/data'
+   parameter = {
+      "dataset": "UKStockPrice",
+      "data_id": "BP.L",
+      "start_date": "2020-06-16",
+      "end_date": "2021-06-16",
+      "token": token, # 參考登入，獲取金鑰
+   }
+   data = requests.get(url, params=parameter)
+   data = data.json()
+   data = pd.DataFrame(data['data'])
+   print(data.head())
+   ```
+!!! output
+   |    | date       | stock_id   |   Adj_Close |   Close |   High |    Low |   Open |   Volume |
+   |---:|:-----------|:-----------|------------:|--------:|-------:|-------:|-------:|---------:|
+   |  0 | 2020-06-16 | BP.L       |      290.26 |  321.65 | 331.8  | 318.65 | 322.15 | 55470516 |
+   |  1 | 2020-06-17 | BP.L       |      285.84 |  316.75 | 328.35 | 315.1  | 322.85 | 38005133 |
+   |  2 | 2020-06-18 | BP.L       |      284.13 |  314.85 | 316.7  | 308.9  | 313.9  | 33988764 |
+   |  3 | 2020-06-19 | BP.L       |      290.08 |  321.45 | 325.95 | 315.7  | 316.8  | 95409968 |
+   |  4 | 2020-06-22 | BP.L       |      284.67 |  315.45 | 318.9  | 311.1  | 318.15 | 58369094 |
+    
 
-   Adj_Close  Close   High    ...       Volume        date  stock_id
-0    497.866  507.3  509.6    ...     33397201  2019-01-02      BP.L
-1    499.240  508.7  514.4    ...     38347439  2019-01-03      BP.L
-2    511.115  520.8  524.5    ...     34897489  2019-01-04      BP.L
-3    511.115  520.8  524.4    ...     32659884  2019-01-07      BP.L
-4    510.134  519.8  528.2    ...     28449464  2019-01-08      BP.L
-```

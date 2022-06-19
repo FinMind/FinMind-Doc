@@ -12,40 +12,56 @@
 
 - 這張資料表主要是列出歐洲所有上市上櫃的股票名稱，代碼和產業類別
 
-```python
-import requests
-import pandas as pd
+!!! example
+   ```python
+   import requests
+   import pandas as pd
 
-url = 'https://api.finmindtrade.com/api/v3/data?dataset=EuropeStockInfo'
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
-
-         date         ...                  stock_name
-0  2019-01-14         ...                       2CRSI
-1  2019-01-14         ...          AP ALTERNAT ASSETS
-2  2019-01-14         ...            AALBERTS INDUSTR
-3  2019-01-14         ...                  AB SCIENCE
-4  2019-01-14         ...               ABC ARBITRAGE
-```
+   url = 'https://api.finmindtrade.com/api/v4/data'
+   parameter = {
+      "dataset": "EuropeStockInfo"
+   }
+   data = requests.get(url, params=parameter)
+   data = data.json()
+   data = pd.DataFrame(data['data'])
+   print(data.head())
+   ```
+!!! output
+    |    | date       | stock_id   | Market             | stock_name         |
+    |---:|:-----------|:-----------|:-------------------|:-------------------|
+    |  0 | 2019-01-14 | 2CRSI.PA   | Euronext Paris     | 2CRSI              |
+    |  1 | 2019-01-14 | AAA.AS     | Euronext Amsterdam | AP ALTERNAT ASSETS |
+    |  2 | 2019-01-14 | AALB.AS    | Euronext Amsterdam | AALBERTS INDUSTR   |
+    |  3 | 2019-01-14 | AB.PA      | Euronext Paris     | AB SCIENCE         |
+    |  4 | 2019-01-14 | ABCA.PA    | Euronext Paris     | ABC ARBITRAGE      |
+    
 
 #### 歐洲股價資料表 EuropeStockPrice
 
-```python
-import requests
-import pandas as pd
+!!! example
+   ```python
+   import requests
+   import pandas as pd
 
-url = 'https://api.finmindtrade.com/api/v3/data?dataset=EuropeStockPrice&stock_id=AALB.AS&date=2019-01-01'
-data = requests.get(url)
-data = data.json()
-data = pd.DataFrame(data['data'])
-print(data.head())
-
-Adj_Close  Close   High    Low   Open  Volume        date stock_id
-0      28.39  28.39  28.80  28.09  28.80  328812  2019-01-02  AALB.AS
-1      27.52  27.52  28.13  27.52  28.04  271337  2019-01-03  AALB.AS
-2      28.81  28.81  28.90  27.70  27.72  311458  2019-01-04  AALB.AS
-3      28.82  28.82  29.16  28.46  29.10  319543  2019-01-07  AALB.AS
-4      29.25  29.25  29.62  28.89  28.89  355597  2019-01-08  AALB.A
-```
+   url = 'https://api.finmindtrade.com/api/v4/data'
+   parameter = {
+      "dataset": "EuropeStockPrice",
+      "data_id": "AALB.AS",
+      "start_date": "2020-06-16",
+      "end_date": "2021-06-16",
+      "token": token, # 參考登入，獲取金鑰
+   }
+   data = requests.get(url, params=parameter)
+   data = data.json()
+   data = pd.DataFrame(data['data'])
+   print(data.head())
+   ```
+!!! output
+    |    | date       | stock_id   |   Adj_Close |   Close |   High |   Low |   Open |   Volume |
+    |---:|:-----------|:-----------|------------:|--------:|-------:|------:|-------:|---------:|
+    |  0 | 2020-06-16 | AALB.AS    |       26.82 |   28.37 |  29.03 | 27.99 |  28.35 |   603839 |
+    |  1 | 2020-06-17 | AALB.AS    |       26.81 |   28.35 |  28.88 | 28.26 |  28.38 |   512502 |
+    |  2 | 2020-06-18 | AALB.AS    |       27.15 |   28.71 |  29.05 | 28.01 |  28.34 |   452985 |
+    |  3 | 2020-06-19 | AALB.AS    |       26.47 |   28    |  29    | 27.97 |  29    |  1466512 |
+    |  4 | 2020-06-22 | AALB.AS    |       26.57 |   28.1  |  28.34 | 27.5  |  28    |   281713 |
+    
