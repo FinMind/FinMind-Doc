@@ -21,6 +21,7 @@ nav:
     - 總覽: 'index.md'
     - 快速開始: "quickstart.md"
     - 登入: "login.md"
+    - API 使用次數: "api_usage_count.md"
     - 資料集:
         - 台灣市場:
             - 總覽: "tutor/TaiwanMarket/DataList.md"
