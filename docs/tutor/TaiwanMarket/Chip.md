@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 9 種資料集，如下:
+在台股籌碼面，我們擁有 10 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -9,6 +9,7 @@
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 - [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
+- [證券商資訊表 SecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#securitiestraderinfo)
 - [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor)
 - [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor_1)
 
@@ -889,6 +890,57 @@
     |  2 |       0052 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 7500000 |                             34000 |                         0 |                      0 |                          0 |                            34000 |                17168 |                            0 | 2020-04-01 |
     |  3 |       0053 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 1622000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 3158 |                            0 | 2020-04-01 |
     |  4 |       0054 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 2531000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 1357 |                            0 | 2020-04-01 |
+
+
+#### 證券商資訊表 SecuritiesTraderInfo
+
+- 提供證券商相關資訊，用於台股分點資料表(TaiwanStockTradingDailyReport )，使用卷商代碼，查詢特定卷商所有股票進出。
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "SecuritiesTraderInfo",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset = "SecuritiesTraderInfo",
+            token = "" # 參考登入，獲取金鑰
+            )
+        )
+        data = content(response)
+        df = data$data %>% 
+        do.call('rbind',.) %>% 
+        data.table
+        head(df)
+
+        ```
+!!! output
+    |    |   securities_trader_id | securities_trader   | date       | address                                                                                      | phone       |
+    |---:|-----------------------:|:--------------------|:-----------|:---------------------------------------------------------------------------------------------|:------------|
+    |  0 |                   1020 | 合庫                | 2011-12-02 | 台北市大安區忠孝東路四段325號2樓(部分)、經紀部複委託科地址：台北市松山區長安東路二段225號5樓 | 02-27528000 |
+    |  1 |                   1021 | 合庫- 台中          | 2011-12-02 | 台中市西區民權路91號6樓                                                                      | 04-22255141 |
+    |  2 |                   1022 | 合庫-台南           | 2011-12-02 | 台南市北區成功路48號3樓                                                                      | 06-2260148  |
+    |  3 |                   1023 | 合庫-高雄           | 2011-12-02 | 高雄市大勇路97號5樓                                                                          | 07-5319755  |
+    |  4 |                   1024 | 合庫-嘉義           | 2011-12-02 | 嘉義市國華街279號2樓                                                                         | 05-2220016  |
+
 
 #### 台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 資料時間長度：2021-06-30 ~ now
