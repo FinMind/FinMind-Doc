@@ -22,7 +22,7 @@ token         | str |  N | token
         parload = {
             "token": token,
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, params=parload)
         resp.json()["user_count"]  # 使用次數
         resp.json()["api_request_limit"]  # api 使用上限
 
