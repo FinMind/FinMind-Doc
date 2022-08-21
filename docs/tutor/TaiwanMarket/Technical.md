@@ -17,6 +17,7 @@
 #### 台股總覽 TaiwanStockInfo
 
 - 這張資料表主要是列出台灣所有上市上櫃的股票名稱，代碼和產業類別
+- 資料更新時間 **每天 1:30**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -57,8 +58,8 @@
             )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -74,6 +75,8 @@
 
 
 #### 股價日成交資訊 TaiwanStockPrice
+
+- 資料更新時間 **星期一至五 17:30**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -124,8 +127,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -185,8 +188,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -204,6 +207,8 @@
 
 
 #### 台灣還原股價資料表 TaiwanStockPriceAdj
+
+- 資料更新時間 **星期一至五 17:30**，實際更新時間以 API 資料為主
 
 !!! example
     ```python
@@ -236,6 +241,7 @@
 (由於資料量過大，單次請求只提供一天資料)
 
 - 輸入 dataset、stock_id、start_date 參數，會回傳 start_date 當天資料。
+- 資料更新時間 **星期一至五 15:30**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -301,6 +307,8 @@
 
 #### 個股PER、PBR資料表 TaiwanStockPER
 
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -345,8 +353,8 @@
                             )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -406,13 +414,13 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
 
-!!! output 
+!!! output
     |    | Time     |   TotalBuyOrder |   TotalBuyVolume |   TotalSellOrder |   TotalSellVolume |   TotalDealOrder |   TotalDealVolume |   TotalDealMoney | date       |
     |---:|:---------|----------------:|-----------------:|-----------------:|------------------:|-----------------:|------------------:|-----------------:|:-----------|
     |  0 | 09:00:00 |          298618 |          3229222 |           365465 |           1730137 |                0 |                 0 |                0 | 2021-01-07 |
@@ -466,8 +474,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
@@ -482,6 +490,9 @@
     |  4 | 2020-07-01 09:00:20 | 11644.2 |
 
 #### 當日沖銷交易標的及成交量值 TaiwanStockDayTrading
+
+- 資料更新時間 **星期一至五 21:30**，實際更新時間以 API 資料為主
+
 
 !!! example
     === "Package"
@@ -532,8 +543,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
@@ -590,8 +601,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -608,6 +619,8 @@
 
 
 #### 加權、櫃買報酬指數 TaiwanStockTotalReturnIndex
+
+- 資料更新時間 **星期一至五 16:50**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -660,8 +673,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -713,8 +726,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
