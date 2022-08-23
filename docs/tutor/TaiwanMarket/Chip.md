@@ -15,6 +15,8 @@
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -60,8 +62,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
 
         ```
@@ -103,7 +105,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-        
+
         ```
     === "R"
         ```R
@@ -120,8 +122,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -137,6 +139,8 @@
     |  4 | 2020-04-01 |       0054 |                   0 |                             0 |                  2531 |                    0 |                            0 |                                0 | X      |                    0 |              0 |                        0 |             2531 |               0 |                       0 |                           0 |
 
 #### 台灣市場整體融資融劵表 TaiwanStockTotalMarginPurchaseShortSale
+
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -181,8 +185,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -198,6 +202,8 @@
     |  4 |    93198509000 |  91965082000 | 6440842000 | 2020-04-06 | MarginPurchaseMoney |  71638000 | 5135777000 |
 
 #### 法人買賣表 TaiwanStockInstitutionalInvestorsBuySell
+
+- 資料更新時間 **星期一至五 20:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -246,8 +252,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -260,7 +266,7 @@
     |  1 | 2020-04-01 |       2330 |        0 | Foreign_Dealer_Self |        0 |
     |  2 | 2020-04-01 |       2330 |   900000 | Investment_Trust    |   239000 |
     |  3 | 2020-04-01 |       2330 |    79000 | Dealer_self         |   807000 |
-    |  4 | 2020-04-01 |       2330 |   189000 | Dealer_Hedging      |   493500 
+    |  4 | 2020-04-01 |       2330 |   189000 | Dealer_Hedging      |   493500
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
@@ -307,8 +313,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -324,6 +330,8 @@
     |  4 | 2020-04-01 |       0050 | 2050000 | Dealer_Hedging      |  905000 |
 
 #### 台灣市場整體法人買賣表 TaiwanStockTotalInstitutionalInvestors
+
+- 資料更新時間 **星期一至五 15:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -368,8 +376,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -385,6 +393,8 @@
     |  4 |   789316840 | 2020-04-01 | Dealer_self         |   912143500 |
 
 #### 外資持股表 TaiwanStockShareholding
+
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -433,8 +443,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -495,11 +505,11 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
- 
+
         ```
 
 !!! output
@@ -560,8 +570,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -622,8 +632,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -640,6 +650,8 @@
 
 
 #### 借券成交明細 TaiwanStockSecuritiesLending
+
+- 資料更新時間 **星期一至五 15:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -688,8 +700,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -749,8 +761,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -766,6 +778,8 @@
     |  4 | 2020-04-01 |       1102 | 議借               |      770 |       1.05 |    38.6 | 2020-09-30             |                       182 |
 
 #### 融券借券賣出表 TaiwanDailyShortSaleBalances
+
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -814,8 +828,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -875,8 +889,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -926,8 +940,8 @@
             )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -946,6 +960,8 @@
 資料時間長度：2021-06-30 ~ now
 
 (由於資料量過大，單次請求只提供一天資料)
+
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Python-request"
@@ -980,8 +996,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -1000,6 +1016,8 @@
 資料時間長度：2021-06-30 ~ now
 
 (由於資料量過大，單次請求只提供一天資料)
+
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Python-request"
@@ -1034,8 +1052,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
