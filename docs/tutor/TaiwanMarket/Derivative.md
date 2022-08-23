@@ -67,6 +67,8 @@
 
 #### 期貨日成交資訊 TaiwanFuturesDaily
 
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -186,6 +188,8 @@
 
 
 #### 選擇權日成交資訊 TaiwanOptionDaily
+
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -308,6 +312,8 @@
 
 由於資料量過大，單次請求只提供一天資料
 
+- 資料更新時間 **星期一至五 6:00**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -354,8 +360,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
@@ -372,6 +378,8 @@
 #### 選擇權交易明細表 TaiwanOptionTick
 
 由於資料量過大，單次請求只提供一天資料
+
+- 資料更新時間 **星期一至五 6:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -401,7 +409,7 @@
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-        
+
         ```
     === "R"
         ```R
@@ -419,8 +427,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
@@ -435,6 +443,8 @@
 
 
 #### 期貨三大法人買賣 TaiwanFuturesInstitutionalInvestors
+
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -484,8 +494,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
@@ -559,6 +569,8 @@
 
 #### 選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors
 
+- 資料更新時間 **星期一至五 16:00**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -607,8 +619,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
@@ -683,6 +695,8 @@
 
 #### 期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily
 
+- 資料更新時間 **星期一至五 19:00**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -731,8 +745,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
         ```
@@ -806,6 +820,8 @@
 
 #### 選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily
 
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
+
 !!! example
     === "Package"
         ```python
@@ -854,8 +870,8 @@
         )
         )
         data = content(response)
-        df = data$data %>% 
-        do.call('rbind',.) %>% 
+        df = data$data %>%
+        do.call('rbind',.) %>%
         data.table
         head(df)
 
