@@ -454,7 +454,7 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         # api.login(user_id='user_id',password='password')
-        df = api.taiwan_futopt_institutional_investors(
+        df = api.taiwan_futures_institutional_investors(
             data_id='TX',
             start_date='2020-04-01'
         )
@@ -579,7 +579,7 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         # api.login(user_id='user_id',password='password')
-        df = api.taiwan_futopt_institutional_investors(
+        df = api.taiwan_option_institutional_investors(
             data_id='TXO',
             start_date='2020-04-01'
         )
