@@ -454,7 +454,7 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         # api.login(user_id='user_id',password='password')
-        df = api.taiwan_futopt_institutional_investors(
+        df = api.taiwan_futures_institutional_investors(
             data_id='TX',
             start_date='2020-04-01'
         )
@@ -579,7 +579,7 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         # api.login(user_id='user_id',password='password')
-        df = api.taiwan_futopt_institutional_investors(
+        df = api.taiwan_option_institutional_investors(
             data_id='TXO',
             start_date='2020-04-01'
         )
@@ -626,13 +626,13 @@
         ```
 
 !!! output
-    |    | name   | date       | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |   long_open_interest_balance_volume |   long_open_interest_balance_amount |   short_open_interest_balance_volume |   short_open_interest_balance_amount |
+    |    | name   | date       | call_put   |  institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |   long_open_interest_balance_volume |   long_open_interest_balance_amount |   short_open_interest_balance_volume |   short_open_interest_balance_amount |
     |---:|:-------|:-----------|:--------------------------|-------------------:|-------------------:|--------------------:|--------------------:|------------------------------------:|------------------------------------:|-------------------------------------:|-------------------------------------:|
-    |  0 | TXO    | 2020-04-01 | 自營商                    |             139973 |             370181 |              163094 |              356201 |                               58152 |                              504601 |                                81614 |                               517097 |
-    |  1 | TXO    | 2020-04-01 | 投信                      |                  0 |                  0 |                   0 |                   0 |                                   0 |                                   0 |                                    0 |                                    0 |
-    |  2 | TXO    | 2020-04-01 | 外資                      |              69409 |             214529 |               61586 |              224112 |                               75953 |                              630438 |                                55645 |                               586723 |
-    |  3 | TXO    | 2020-04-06 | 自營商                    |             124528 |             453602 |              132575 |              475720 |                               67677 |                              646018 |                                99186 |                               671818 |
-    |  4 | TXO    | 2020-04-06 | 投信                      |                  0 |                  0 |                   0 |                   0 |                                   0 |                                   0 |                                    0 |                                    0 |
+    |  0 | TXO    | 2020-04-01 | 買權  | 自營商                    |             139973 |             370181 |              163094 |              356201 |                               58152 |                              504601 |                                81614 |                               517097 |
+    |  1 | TXO    | 2020-04-01 | 買權  | 投信                      |                  0 |                  0 |                   0 |                   0 |                                   0 |                                   0 |                                    0 |                                    0 |
+    |  2 | TXO    | 2020-04-01 | 買權  | 外資                      |              69409 |             214529 |               61586 |              224112 |                               75953 |                              630438 |                                55645 |                               586723 |
+    |  3 | TXO    | 2020-04-06 | 買權  | 自營商                    |             124528 |             453602 |              132575 |              475720 |                               67677 |                              646018 |                                99186 |                               671818 |
+    |  4 | TXO    | 2020-04-06 | 賣權  | 投信                      |                  0 |                  0 |                   0 |                   0 |                                   0 |                                   0 |                                    0 |                                    0 |
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
