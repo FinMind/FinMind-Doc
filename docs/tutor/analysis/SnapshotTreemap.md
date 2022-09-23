@@ -1,6 +1,6 @@
 ## 預期執行結果如下（已在程式碼 136 行，加入 html 語法，網頁會自動更新）
 
-![png](https://finmind.github.io/images/snapshot_treemap.png)
+![gif](https://finmind.github.io/images/snapshot_treemap.gif)
 
 ## 如何執行？
 * 將以下程式碼，儲存為，`FinMind - 台股 - 即時資訊 X 版塊圖 X flask.py`
