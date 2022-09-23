@@ -39,11 +39,11 @@ response: token
         ```python
         import requests
         url = "https://api.finmindtrade.com/api/v4/login"
-        parload = {
+        payload = {
             "user_id": "user_id",
             "password": "password",
         }
-        data = requests.post(url, data=parload)
+        data = requests.post(url, data=payload)
         data = data.json()
         print(data)
 

@@ -19,10 +19,10 @@ token         | str |  N | token
         ```python
         import requests
         url = "https://api.web.finmindtrade.com/v2/user_info"
-        parload = {
+        payload = {
             "token": token,
         }
-        resp = requests.get(url, params=parload)
+        resp = requests.get(url, params=payload)
         resp.json()["user_count"]  # 使用次數
         resp.json()["api_request_limit"]  # api 使用上限
 
