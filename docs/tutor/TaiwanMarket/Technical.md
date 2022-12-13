@@ -241,7 +241,29 @@
         data = pd.DataFrame(data["data"])
         print(data.head())
         ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockPriceAdj",
+            data_id= "2330",
+            start_date= "2020-04-02",
+            end_date= "2020-04-08",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
 
+        ```
 
 !!! output
     |    | date       |   stock_id |   Trading_Volume |   Trading_money |   open |   max |   min |   close |   spread |   Trading_turnover |
