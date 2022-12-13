@@ -211,19 +211,36 @@
 - 資料更新時間 **星期一至五 17:30**，實際更新時間以 API 資料為主
 
 !!! example
-    ```python
-    from FinMind.data import DataLoader
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
 
-    api = DataLoader()
-    # api.login_by_token(api_token='token')
-    # api.login(user_id='user_id',password='password')
-    df = api.taiwan_stock_daily_adj(
-        stock_id='2330',
-        start_date='2020-04-02',
-        end_date='2020-04-12'
-    )
-    ```
-
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_daily_adj(
+            stock_id='2330',
+            start_date='2020-04-02',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockPriceAdj",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
 
 
 !!! output
@@ -234,6 +251,57 @@
     |  2 | 2020-04-08 |       2330 |         38698826 |     11016972354 |  285   | 285.5 | 283   |   285   |      2   |              19126 |
     |  3 | 2020-04-09 |       2330 |         29276430 |      8346209654 |  287.5 | 288   | 282.5 |   283   |     -2   |              15271 |
     |  4 | 2020-04-10 |       2330 |         28206858 |      7894277586 |  280   | 282   | 279   |   279.5 |     -3.5 |              15833 |
+
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockPriceAdj",
+            "start_date": "2020-04-06",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockPriceAdj",
+            start_date= "2020-04-06",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    |    | date       |   stock_id |   Trading_Volume |   Trading_money |   open |   max |   min |   close |   spread |   Trading_turnover |
+    |---:|:-----------|-----------:|-----------------:|----------------:|-------:|------:|------:|--------:|---------:|-------------------:|
+    |  0 | 2020-04-06 |       0050 |         12207626 |       935731083 |  76.95 | 77.1  | 75.75 |   77.05 |     1.15 |               5824 |
+    |  1 | 2020-04-06 |       0051 |            33000 |          953030 |  29.05 | 29.05 | 28.74 |   29.05 |     0.38 |                 21 |
+    |  2 | 2020-04-06 |       0052 |           178700 |        10660088 |  59.4  | 60.05 | 58.75 |   60    |     1.25 |                 56 |
+    |  3 | 2020-04-06 |       0053 |            17000 |          589750 |  34.66 | 35    | 34.48 |   34.84 |     0.18 |                 17 |
+    |  4 | 2020-04-06 |       0054 |            10000 |          200040 |  19.87 | 20.03 | 19.87 |   20.03 |     0    |                  4 |
 
 
 
