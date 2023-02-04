@@ -3,7 +3,7 @@
 #### 使用 token，拿取 API 使用次數
 
 ```
-POST: https://api.web.finmindtrade.com/v2/user_info
+GET: https://api.web.finmindtrade.com/v2/user_info
 
 ```
 
