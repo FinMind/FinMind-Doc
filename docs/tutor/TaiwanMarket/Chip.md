@@ -12,6 +12,7 @@
 - [證券商資訊表 SecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#securitiestraderinfo)
 - [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor)
 - [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor_1)
+- [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-backersponsor)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
 
@@ -957,10 +958,9 @@
 
 
 #### 台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-資料時間長度：2021-06-30 ~ now
 
-(由於資料量過大，單次請求只提供一天資料)
-
+- 資料時間長度：2021-06-30 ~ now
+- 由於資料量過大，單次請求只提供一天資料)
 - 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
@@ -1013,10 +1013,9 @@
 |  4 | 合庫                |     512 |  1300 |  10000 |                   1020 |       2330 | 2022-06-16 |
 
 #### 台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-資料時間長度：2021-06-30 ~ now
 
-(由於資料量過大，單次請求只提供一天資料)
-
+- 資料時間長度：2021-06-30 ~ now
+- 由於資料量過大，單次請求只提供一天資料)
 - 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 
 !!! example
@@ -1074,3 +1073,67 @@
 | 3214 | 合庫                |  108.5  |   150 |      0 |                   1020 |       9958 | 2022-06-16 |
 | 3215 | 合庫                |   16.05 |  1000 |      0 |                   1020 |       9962 | 2022-06-16 |
 
+#### 台股八大行庫賣賣表 TaiwanStockGovernmentBankBuySell (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料時間長度：2021-06-30 ~ now
+- 由於資料量過大，單次請求只提供一天資料
+- 資料更新時間 **星期一至五 23:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_government_bank_buy_sell(
+            start_date='2023-01-17',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockGovernmentBankBuySell",
+            "start_date": "2023-01-17",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockGovernmentBankBuySell",
+            start_date= "2023-01-17",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+|     |       date       | stock_id |  buy_amount  |  sell_amount  |  buy   |  sell  |  bank_name |
+|----:|:-----------------|---------:|-------------:|--------------:|-------:|-------:|-----------:|
+|  0  |    2023-01-17    |   0050   |  43992298.6  |  53309904.25  |372595  |451744  |      兆豐  |
+|  1  |    2023-01-17    |  5202    |       288.0  |       303.50  |    20  |    20  |      第一  |
+|  2  |    2023-01-17    |  5202    |         0.0  |        59.45  |     0  |     4  |      華南  |
+|  3  |    2023-01-17    |  5203    |     82800.0  |         0.00  |  1000  |     0  |      兆豐  |
+|  4  |    2023-01-17    |  5203    |    249000.0  |    583600.00  |  3000  |  7000  |      臺銀  |
