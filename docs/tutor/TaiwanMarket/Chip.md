@@ -9,7 +9,7 @@
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 - [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
-- [證券商資訊表 SecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#securitiestraderinfo)
+- [證券商資訊表 TaiwanSecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo)
 - [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor)
 - [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor_1)
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
@@ -907,7 +907,7 @@
     |  4 |       0054 |                                    0 |                            0 |                               0 |                                 0 |                                   0 |                 2531000 |                                 0 |                         0 |                      0 |                          0 |                                0 |                 1357 |                            0 | 2020-04-01 |
 
 
-#### 證券商資訊表 SecuritiesTraderInfo
+#### 證券商資訊表 TaiwanSecuritiesTraderInfo
 
 - 提供證券商相關資訊，用於台股分點資料表(TaiwanStockTradingDailyReport )，使用卷商代碼，查詢特定卷商所有股票進出。
 
@@ -918,7 +918,7 @@
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
-            "dataset": "SecuritiesTraderInfo",
+            "dataset": "TaiwanSecuritiesTraderInfo",
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
@@ -936,7 +936,7 @@
         response = httr::GET(
         url = url,
         query = list(
-            dataset = "SecuritiesTraderInfo",
+            dataset = "TaiwanSecuritiesTraderInfo",
             token = "" # 參考登入，獲取金鑰
             )
         )
