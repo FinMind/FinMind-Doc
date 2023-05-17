@@ -206,7 +206,7 @@
 
 
 
-#### 台灣還原股價資料表 TaiwanStockPriceAdj
+#### 台灣還原股價資料表 TaiwanStockPriceAdj (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料更新時間 **星期一至五 17:30**，實際更新時間以 API 資料為主
 
@@ -327,7 +327,7 @@
 
 
 
-#### 台灣股價歷史逐筆資料表 TaiwanStockPriceTick
+#### 台灣股價歷史逐筆資料表 TaiwanStockPriceTick (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
 - 輸入 dataset、stock_id、start_date 參數，會回傳 start_date 當天資料。
@@ -779,7 +779,7 @@
     |  3 | 18922.6 | TAIEX      | 2020-04-09 |
     |  4 | 18994   | TAIEX      | 2020-04-10 |
 
-#### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (約 5 秒更新一次)
 
 !!! example
