@@ -10,8 +10,8 @@
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 - [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
 - [證券商資訊表 TaiwanSecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo)
-- [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor)
-- [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-backersponsor_1)
+- [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)
+- [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor_1)
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
