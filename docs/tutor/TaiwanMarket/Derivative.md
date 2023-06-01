@@ -308,7 +308,7 @@
     |  3 | 2020-04-01 | CAO         |          202004 |             41 | call       |   0    |  0    |  0    |    0    |        0 |              12.7  |               0 | position          |
     |  4 | 2020-04-01 | CAO         |          202004 |             41 | put        |   0    |  0    |  0    |    0    |        0 |               0.01 |               0 | position          |
 
-#### 期貨交易明細表 TaiwanFuturesTick
+#### 期貨交易明細表 TaiwanFuturesTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 由於資料量過大，單次請求只提供一天資料
 
@@ -375,7 +375,7 @@
     |  3 |          202004 | 2020-04-01 00:00:02 | MTX          |    9640 |        2 |
     |  4 |          202004 | 2020-04-01 00:00:02 | MTX          |    9640 |        2 |
 
-#### 選擇權交易明細表 TaiwanOptionTick
+#### 選擇權交易明細表 TaiwanOptionTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 由於資料量過大，單次請求只提供一天資料
 

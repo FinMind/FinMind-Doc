@@ -957,7 +957,7 @@
     |  4 |                   1024 | 合庫-嘉義           | 2011-12-02 | 嘉義市國華街279號2樓                                                                         | 05-2220016  |
 
 
-#### 台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料時間長度：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料)
@@ -1012,7 +1012,7 @@
 |  3 | 合庫                |     511 |  1169 |      0 |                   1020 |       2330 | 2022-06-16 |
 |  4 | 合庫                |     512 |  1300 |  10000 |                   1020 |       2330 | 2022-06-16 |
 
-#### 台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料時間長度：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料)
