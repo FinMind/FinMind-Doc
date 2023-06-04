@@ -1073,7 +1073,7 @@
 | 3214 | 合庫                |  108.5  |   150 |      0 |                   1020 |       9958 | 2022-06-16 |
 | 3215 | 合庫                |   16.05 |  1000 |      0 |                   1020 |       9962 | 2022-06-16 |
 
-#### 台股八大行庫賣賣表 TaiwanStockGovernmentBankBuySell (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料時間長度：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料
