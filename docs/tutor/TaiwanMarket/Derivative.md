@@ -1,7 +1,8 @@
 
-在台股衍生性商品資料，我們擁有 11 種資料集，如下:
+在台股衍生性商品資料，我們擁有 12 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
+- [期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttickinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)
@@ -66,6 +67,60 @@
     |  2 | AAO    | TaiwanOptionDaily |
     |  3 | ABA    | TaiwanOptionDaily |
     |  4 | ABO    | TaiwanOptionDaily |
+
+
+#### 期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo
+目前支援，台指期、台指選擇權，即時報價
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_futopt_tick_info()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFutOptTickInfo",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFutOptTickInfo",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    |    | code       | callput   | date    | name           | listing_date   |   expire_price | update_date   |
+    |---:|:-----------|:----------|:--------|:---------------|:---------------|---------------:|:--------------|
+    |  0 | CAO00675R3 | 賣權      | 2023/06 | 南亞股票選擇權 | 2023-04-20     |           67.5 | 2023-06-05    |
+    |  1 | CAO00850R3 | 賣權      | 2023/06 | 南亞股票選擇權 | 2023-01-31     |           85   | 2023-06-05    |
+    |  2 | CBO00360R3 | 賣權      | 2023/06 | 中鋼股票選擇權 | 2023-01-31     |           36   | 2023-06-05    |
+    |  3 | CCO00430R3 | 賣權      | 2023/06 | 聯電股票選擇權 | 2023-04-20     |           43   | 2023-06-05    |
+    |  4 | CCO00440R3 | 賣權      | 2023/06 | 聯電股票選擇權 | 2023-01-31     |           44   | 2023-06-05    |
 
 #### 期貨日成交資訊 TaiwanFuturesDaily
 
@@ -949,7 +1004,7 @@
 
 
 #### 台股期貨即時資訊 taiwan_futures_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(目前只支援台指期、約 10 秒更新一次)
+(目前支援台指期、約 10 秒更新一次)
 
 !!! example
     === "Python-request"
@@ -999,7 +1054,7 @@
 
 
 #### 台股選擇權即時資訊 taiwan_options_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(目前只支援台指選擇權、約 10 秒更新一次)
+(目前支援台指選擇權、約 10 秒更新一次)
 
 !!! example
     === "Python-request"
