@@ -1,11 +1,10 @@
-在台股技術面，我們擁有 10 種資料集，如下:
+在台股技術面，我們擁有 9 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-sponsor)
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
-- [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwan_stock_tick_snapshot-sponsor)
 - [每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
 - [當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)
@@ -778,52 +777,3 @@
     |  2 | 18952.7 | TAIEX      | 2020-04-08 |
     |  3 | 18922.6 | TAIEX      | 2020-04-09 |
     |  4 | 18994   | TAIEX      | 2020-04-10 |
-
-#### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(約 5 秒更新一次)
-
-!!! example
-    === "Python-request"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
-        parameter = {
-            "data_id": "2330",
-            # "data_id": ["2330", "2317"], # 一次拿多個
-            # "data_id": "", # 一次全部
-            "token": "", # 參考登入，獲取金鑰
-        }
-        resp = requests.get(url, params=parameter)
-        data = resp.json()
-        data = pd.DataFrame(data["data"])
-        print(data.head())
-
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        library(dplyr)
-        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
-        response = httr::GET(
-        url = url,
-        query = list(
-            data_id="2330",
-            # data_id=c("2330", "2317"), # 一次拿多個
-            # data_id="", # 一次全部
-            token = "" # 參考登入，獲取金鑰
-        )
-        )
-        data = content(response)
-        df = data$data %>%
-        do.call('rbind',.) %>%
-        data.table
-        head(df)
-
-        ```
-
-!!! output
-    |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
-    |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
-    |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |
