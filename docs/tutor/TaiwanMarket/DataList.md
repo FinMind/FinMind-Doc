@@ -37,6 +37,7 @@
 - [除權除息結果表 TaiwanStockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividendresult)
 - [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
 - [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
+- [台灣股價市值表 TaiwanStockMarketValue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalue)
 
 #### 衍生性金融商品 Derivative
 
