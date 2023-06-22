@@ -12,6 +12,15 @@
 (約 5 秒更新一次)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_tick_snapshot(stock_id="2330")
+        ```
     === "Python-request"
         ```python
         import requests
@@ -127,6 +136,15 @@
 (目前支援台指期、約 10 秒更新一次)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_futures_snapshot(futures_id="TXF")
+        ```
     === "Python-request"
         ```python
         import requests
@@ -177,6 +195,15 @@
 (目前支援台指選擇權、約 10 秒更新一次)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_options_snapshot(options_id="TXO")
+        ```
     === "Python-request"
         ```python
         import requests

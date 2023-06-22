@@ -1,6 +1,7 @@
-在台股技術面，我們擁有 9 種資料集，如下:
+在台股技術面，我們擁有 10 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
+- [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-sponsor)
@@ -53,6 +54,67 @@
         url = url,
         query = list(
             dataset = "TaiwanStockInfo",
+            token = "" # 參考登入，獲取金鑰
+            )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    |    | industry_category   |   stock_id | stock_name   | type   | date       |
+    |---:|:--------------------|-----------:|:-------------|:-------|:-----------|
+    |  0 | ETF                 |       0050 | 元大台灣50   | twse   | 2021-10-05 |
+    |  1 | ETF                 |       0051 | 元大中型100  | twse   | 2021-10-05 |
+    |  2 | ETF                 |       0052 | 富邦科技     | twse   | 2021-10-05 |
+    |  3 | ETF                 |       0053 | 元大電子     | twse   | 2021-10-05 |
+    |  4 | ETF                 |       0054 | 元大台商50   | twse   | 2021-10-05 |
+
+
+#### 台股總覽(含權證) TaiwanStockInfoWithWarrant
+
+- 這張資料表主要是列出台灣所有上市上櫃的股票、權證名稱，代碼和產業類別
+- 資料量超過 5 萬筆
+- 資料更新時間 **每天 1:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_info_with_warrant()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockInfoWithWarrant",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset = "TaiwanStockInfoWithWarrant",
             token = "" # 參考登入，獲取金鑰
             )
         )
