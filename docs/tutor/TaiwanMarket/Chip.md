@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 11 種資料集，如下:
+在台股籌碼面，我們擁有 12 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -12,6 +12,8 @@
 - [證券商資訊表 TaiwanSecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo)
 - [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)
 - [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor_1)
+- [台股權證分點資料表(query by 股票代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor)
+- [台股權證分點資料表(query by 券商代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor_1)
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
@@ -1072,6 +1074,113 @@
 | 3213 | 合庫                |  108    |     0 |   2000 |                   1020 |       9958 | 2022-06-16 |
 | 3214 | 合庫                |  108.5  |   150 |      0 |                   1020 |       9958 | 2022-06-16 |
 | 3215 | 合庫                |   16.05 |  1000 |      0 |                   1020 |       9962 | 2022-06-16 |
+
+
+#### 台股權證分點資料表(query by 股票代碼) TaiwanStockWarrantTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料時間長度：2023-06-21 ~ now
+- 由於資料量過大，單次請求只提供一天資料)
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_warrant_trading_daily_report'
+        parameter = {
+            "data_id": "084655",
+            "date": "2023-06-21",
+            "token": token, # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_warrant_trading_daily_report'
+        response = httr::GET(
+        url = url,
+        query = list(
+            data_id="084655",
+            start_date= "2023-06-21",
+            token = token # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+|    | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
+|---:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
+|  0 | 元富                |    2.48 |     0 |   4000 |                   5920 |     084655 | 2023-06-21 |
+|  1 | 凱基                |    2.48 |  4000 |      0 |                   9200 |     084655 | 2023-06-21 |
+
+#### 台股權證分點資料表(query by 券商代碼) TaiwanStockWarrantTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料時間長度：2023-06-21 ~ now
+- 由於資料量過大，單次請求只提供一天資料)
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_warrant_trading_daily_report'
+        parameter = {
+            "securities_trader_id": "5920",
+            "date": "2023-06-21",
+            "token": token, # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_warrant_trading_daily_report'
+        response = httr::GET(
+        url = url,
+        query = list(
+            securities_trader_id="5920",
+            start_date= "2023-06-21",
+            token = token # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+|     | securities_trader   |   price |    buy |   sell |   securities_trader_id | stock_id   | date       |
+|----:|:--------------------|--------:|-------:|-------:|-----------------------:|:-----------|:-----------|
+|   0 | 元富                |    0.97 |  50000 |      0 |                   5920 | 07741U     | 2023-06-21 |
+|   1 | 元富                |    0.98 |  50000 |      0 |                   5920 | 07741U     | 2023-06-21 |
+|   2 | 元富                |    1.52 | 100000 |      0 |                   5920 | 07742U     | 2023-06-21 |
+|   3 | 元富                |    1.56 |  49000 |      0 |                   5920 | 07742U     | 2023-06-21 |
 
 #### 台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
