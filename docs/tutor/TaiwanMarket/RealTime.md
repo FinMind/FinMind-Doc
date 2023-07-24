@@ -9,7 +9,7 @@
 
 
 #### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(約 5 秒更新一次)
+(約 10 秒更新一次)
 
 !!! example
     === "Package"
