@@ -10,6 +10,7 @@
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
 - [當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)
 - [加權、櫃買報酬指數 TaiwanStockTotalReturnIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktotalreturnindex)
+- [台灣各股十年線資料表 TaiwanStock10Year](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstock10year)
 
 
 根據上述資料表逐一說明怎麼使用，另外具體資料表 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v4_data_get)
@@ -839,3 +840,124 @@
     |  2 | 18952.7 | TAIEX      | 2020-04-08 |
     |  3 | 18922.6 | TAIEX      | 2020-04-09 |
     |  4 | 18994   | TAIEX      | 2020-04-10 |
+
+
+#### 台灣各股十年線資料表 TaiwanStock10Year (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 透過2500個交易日所計算出的平均價格
+- 資料更新時間 **星期一至五 20:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_10year(
+            stock_id='2330',
+            start_date='2020-04-02',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStock10Year",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStock10Year",
+            data_id= "2330",
+            start_date= "2020-04-02",
+            end_date= "2020-04-12",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    |    | date       |   stock_id |    close |
+    |---:|:-----------|-----------:|-----------------:|
+    |  0 | 2020-04-06 |       2330 | 150.16 |
+    |  1 | 2020-04-07 |       2330 | 150.25 |
+    |  2 | 2020-04-08 |       2330 | 150.34 |
+    |  3 | 2020-04-09 |       2330 | 150.43 |
+    |  4 | 2020-04-10 |       2330 | 150.52 |
+
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStock10Year",
+            "start_date": "2020-04-06",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStock10Year",
+            start_date= "2020-04-06",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    |    | date       |   stock_id |   close |
+    |---:|:-----------|-----------:|--------:|
+    |  0 | 2020-04-06 |       0050 |   66.5  |
+    |  1 | 2020-04-06 |       0053 |   28.68 |
+    |  2 | 2020-04-06 |       0055 |   14.31 |
+    |  3 | 2020-04-06 |       0056 |   24.59 |
+    |  4 | 2020-04-06 |       0061 |   16.28 |
