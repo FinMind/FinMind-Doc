@@ -8,7 +8,7 @@ releases = res.json()
 contents = [
     f"""## version: {release["tag_name"]} ({release["published_at"][:10]})
 
-{release["name"]}
+{release["body"]}
 
 :zap: release_at: {release["published_at"].replace("T", " ").replace("Z", "")}
 
