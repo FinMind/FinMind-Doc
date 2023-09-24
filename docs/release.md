@@ -2,13 +2,10 @@
 
 ## What's Changed
 * add: change the status code by @machineCYC in https://github.com/FinMind/FinMind/pull/262
-* Update README.md by @linsamtw in https://github.com/FinMind/FinMind/pull/263
 * add: tw 10 year avg close by @machineCYC in https://github.com/FinMind/FinMind/pull/267
 * add: remove the adj calculate code by @machineCYC in https://github.com/FinMind/FinMind/pull/269
 * feat: Use pandas concat instead of append by @linsamtw in https://github.com/FinMind/FinMind/pull/265
 
-
-**Full Changelog**: https://github.com/FinMind/FinMind/compare/1.6.1...1.6.2
 
 :zap: release_at: 2023-09-24 07:24:55
 
@@ -21,7 +18,7 @@
 * feat: add taiwan_stock_info_with_warrant, taiwan_stock_tick_snapshot, taiwan_futures_snapshot, taiwan_options_snapshot by @linsamtw in https://github.com/FinMind/FinMind/pull/258
 
 
-**Full Changelog**: https://github.com/FinMind/FinMind/compare/1.6.0...1.6.1
+
 
 :zap: release_at: 2023-06-22 05:51:52
 
@@ -108,4 +105,102 @@
 * fix: taiwan_stock_daily_adj
 
 :zap: release_at: 2021-06-27 14:13:56
+
+## version: 1.4.5 (2021-06-20)
+
+* feat: add kline institutional_investors
+* fix issue #153 
+
+:zap: release_at: 2021-06-20 05:25:40
+
+## version: 1.4.4 (2021-06-13)
+
+* feat: add start_date, end_date transfer, 
+* fix: [issue](https://github.com/FinMind/FinMind/issues/142) remove suspension trading data 
+
+:zap: release_at: 2021-06-13 07:14:19
+
+## version: 1.4.3 (2021-05-24)
+
+* feat: add streaming_all_data
+
+:zap: release_at: 2021-05-24 16:36:52
+
+## version: 1.4.2 (2021-05-24)
+
+* fix: event loop can not exit issue 
+
+:zap: release_at: 2021-05-24 12:57:07
+
+## version: 1.4.1 (2021-05-23)
+
+* feat: data loader add dataset
+* feat: add docstrings
+
+:zap: release_at: 2021-05-23 17:44:18
+
+## version: 1.4.0 (2021-05-23)
+
+* feat: add DataSubscriber
+* fix: kline ex-devidend date and trading date not match
+
+:zap: release_at: 2021-05-23 09:12:20
+
+## version: 1.3.9 (2021-04-26)
+
+* feat: add data loader, plotting
+
+:zap: release_at: 2021-04-26 00:36:30
+
+## version: 1.3.8 (2021-03-21)
+
+- 修復還原股價 spread
+
+:zap: release_at: 2021-03-21 13:03:10
+
+## version: 1.3.7 (2021-03-16)
+
+- 新增 台股還原股價 retroactive_price
+
+:zap: release_at: 2021-03-16 14:05:41
+
+## version: 1.3.6 (2021-03-09)
+
+* feat: add EarningsDistribution 
+
+:zap: release_at: 2021-03-09 05:49:14
+
+## version: 1.3.5 (2021-03-08)
+
+* fix: TAIEX dropna 
+
+:zap: release_at: 2021-03-08 10:52:44
+
+## version: 1.3.4 (2021-01-24)
+
+- 新增 回測 台灣大盤同期年化報酬率
+- 移除 回測 trade_detail property 中的 tax, fee
+- 新增 回測 trade_detail property 中的 EverytimeTotalProfit(總資產)
+- 新增 策略 kd, Naitvekd, ContinueHolding 描述
+- 新增 第一天回測結果
+
+:zap: release_at: 2021-01-24 08:22:30
+
+## version: 1.3.3 (2021-01-14)
+
+* feat: update pandas version
+
+:zap: release_at: 2021-01-14 07:45:49
+
+## version: 1.3.2 (2021-01-14)
+
+* feat: add add_strategy
+
+:zap: release_at: 2021-01-14 07:17:41
+
+## version: 1.3.0 (2021-01-10)
+
+* fix: version
+
+:zap: release_at: 2021-01-10 13:33:35
 

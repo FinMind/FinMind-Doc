@@ -8,7 +8,7 @@ releases = res.json()
 contents = [
     f"""## version: {release["tag_name"]} ({release["published_at"][:10]})
 
-{release["body"]}
+{release["body"].split("**Full Changelog")[0]}
 
 :zap: release_at: {release["published_at"].replace("T", " ").replace("Z", "")}
 
@@ -16,6 +16,6 @@ contents = [
     for release in releases
 ]
 
-content = f"""{("").join(contents[:15])}"""
+content = f"""{("").join(contents)}"""
 with open("docs/release.md", "w", encoding="utf8") as f:
     f.write(content)
