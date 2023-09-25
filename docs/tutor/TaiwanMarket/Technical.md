@@ -965,6 +965,7 @@
 
 
 #### 台股分 K 資料表 TaiwanStockKBar (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
 
 - 資料更新時間 **星期一至五 15:50**，實際更新時間以 API 資料為主
 
