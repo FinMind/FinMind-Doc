@@ -10,7 +10,10 @@
 - [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
 - [台灣股價市值表 TaiwanStockMarketValue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalue-backersponsor)
 
+----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
+
+- 資料區間：1990-03-01 ~ now
 
 !!! example
     === "Package"
@@ -135,7 +138,10 @@
     |  3 | 2019-03-31 |     000116 | Income                             | 1.07791e+09 | 收益                         |
     |  4 | 2019-03-31 |     000116 | IncomeAfterTaxes                   | 2.74322e+08 | 本期淨利（淨損）             |
 
+----------------------------------
 #### 資產負債表 TaiwanStockBalanceSheet
+
+- 資料區間：2011-12-01 ~ now
 
 !!! example
     === "Package"
@@ -259,7 +265,10 @@
     |  3 | 2019-03-31 |       1101 | AccountsReceivableDuefromRelatedPartiesNet_per | 0.07        | 應收帳款－關係人淨額 |
     |  4 | 2019-03-31 |       1101 | AccountsReceivableNet                          | 8.3396e+09  | 應收帳款淨額         |
 
+----------------------------------
 #### 現金流量表 TaiwanStockCashFlowsStatement
+
+- 資料區間：2008-06-01 ~ now
 
 !!! example
     === "Package"
@@ -385,7 +394,10 @@
     |  3 | 2019-03-31 |       1101 | NetIncomeBeforeTax                |  5.6035e+09  | 本期稅前淨利（淨損）       |
     |  4 | 2019-03-31 |       1101 | CashProvidedByInvestingActivities | -4.31058e+09 | 投資活動之淨現金流入(流出) |
 
+----------------------------------
 #### 股利政策表 TaiwanStockDividend
+
+- 資料區間：2005-05-01 ~ now
 
 !!! example
     === "Package"
@@ -450,7 +462,10 @@
     |  4 | 2020-06-24 |       2330 | 108年第4季 |                           0 |                       0 |                              |                            0 |                                  0 |                                     0 |                              0 |                        2.5 |                      0 | 2020-06-18                  | 2020-07-16                |                           0 |                                  0 |                              0 |                                0 |                                       0 |                            2.59304e+10 | 2020-02-14         | 15:10:50           |
 
 
+----------------------------------
 #### 除權除息結果表 TaiwanStockDividendResult
+
+- 資料區間：2003-05-01 ~ now
 
 !!! example
     === "Package"
@@ -575,7 +590,10 @@
     |  4 | 2019-06-24 | 1906       |          13.55 |         13.05 |                       0.5  | 息                        |       14.35 |       11.75 |        13.05 |             13.05 |
 
 
+----------------------------------
 #### 月營收表 TaiwanStockMonthRevenue
+
+- 資料區間：2002-02-01 ~ now
 
 !!! example
     === "Package"
@@ -700,6 +718,7 @@
     |  3 | 2019-05-01 |       1104 | Taiwan    |   418992000 |               4 |           2019 |
     |  4 | 2019-05-01 |       1108 | Taiwan    |   323834000 |               4 |           2019 |
 
+----------------------------------
 #### 減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice
 
 !!! example
@@ -754,9 +773,10 @@
         ```
 
 
+----------------------------------
 #### 台灣股價市值表 TaiwanStockMarketValue (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料時間長度：2004-01-01 ~ now
+- 資料區間：2004-01-01 ~ now
 - 資料更新時間 **星期一至五 23:30**，實際更新時間以 API 資料為主
 
 !!! example
