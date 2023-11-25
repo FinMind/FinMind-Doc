@@ -936,6 +936,17 @@
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_10year(
+            start_date='2020-04-06',
+        )
+        ```
     === "Python-request"
         ```python
         import requests
@@ -992,6 +1003,18 @@
 - 資料更新時間 **星期一至五 15:50**，實際更新時間以 API 資料為主
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_bar(
+            stock_id='2330',
+            date="2023-09-22"
+        )
+        ```
     === "Python-request"
         ```python
         import requests
