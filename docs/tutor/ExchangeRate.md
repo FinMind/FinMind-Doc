@@ -35,3 +35,15 @@
      3  2006-01-05      USD    31.670     32.205    31.970     32.070
      4  2006-01-06      USD    31.830     32.372    32.130     32.230
      ```
+!!! output
+    === "Schema"
+        ```
+        {
+            date: str,
+            currency: str,
+            cash_buy: float64,
+            cash_sell: float64,
+            spot_buy: float64,
+            spot_sell: float64
+        }
+        ```

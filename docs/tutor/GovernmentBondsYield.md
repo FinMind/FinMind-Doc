@@ -32,3 +32,12 @@
      3  2020-01-07  United States 1-Month   1.52
      4  2020-01-08  United States 1-Month   1.50
      ```
+!!! output
+    === "Schema"
+        ```
+        {
+            date: str,
+            name: str,
+            value: float32
+        }
+        ```

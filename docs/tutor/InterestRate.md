@@ -32,3 +32,13 @@
   3     FED  1982-11-19   Federal Reserve           9.00
   4     FED  1982-12-14   Federal Reserve           8.50
   ```
+!!! output
+    === "Schema"
+        ```
+        {
+            country: str,
+            date: str,
+            full_country_name: str,
+            interest_rate: float32
+        }
+        ```
