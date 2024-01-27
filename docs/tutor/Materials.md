@@ -37,6 +37,14 @@
      3  1517.2  2020-01-01 00:13:02
      4  1517.2  2020-01-01 00:18:01
      ```
+!!! output
+    === "Schema"
+        ```
+        {
+            Price: float32,
+            date: str
+        }
+        ```
 
 #### 原油資料表 CrudeOilPrices
 
@@ -64,3 +72,12 @@
      3  2020-01-07  WTI   62.7
      4  2020-01-08  WTI  59.65
      ```
+!!! output
+    === "Schema"
+        ```
+        {
+            date: str,
+            name: str,
+            price: float64
+        }
+        ```
