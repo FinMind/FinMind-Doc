@@ -318,7 +318,7 @@
             min: float64,
             close: float64,
             spread: float64,
-            Trading_turnover: float32
+            Trading_turnover: int64
         }
         ```
 
@@ -775,7 +775,13 @@
         |  2 | 2020-07-01 09:00:10 | 11632.4 |
         |  3 | 2020-07-01 09:00:15 | 11643.5 |
         |  4 | 2020-07-01 09:00:20 | 11644.2 |
-
+    === "Schema"
+        ```
+        {
+            date: str,
+            TAIEX: float64
+        }
+        ```
 ----------------------------------
 #### 當日沖銷交易標的及成交量值 TaiwanStockDayTrading
 
