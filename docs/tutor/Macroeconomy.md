@@ -60,3 +60,12 @@
      3  2020-01-07  United States 3-Year   1.55
      4  2020-01-08  United States 3-Year   1.61
      ```
+!!! output
+    === "Schema"
+        ```
+        {
+            date: str,
+            name: str,
+            value: float32
+        }
+        ```
