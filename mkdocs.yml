@@ -16,7 +16,12 @@ repo_url: https://github.com/FinMind/FinMind
 google_analytics:
     - 'UA-142214222-1'
     - 'auto'
-    
+
+extra:
+  analytics:
+    provider: google
+    property: G-N2YPL1PVLE
+
 nav:
     - 總覽: 'index.md'
     - 快速開始: "quickstart.md"
@@ -48,7 +53,7 @@ nav:
         - 原物料市場: "tutor/Materials.md"
         - 美國國債: "tutor/GovernmentBondsYield.md"
         - 其他: "tutor/Others.md"
-        # - 債券: "tutor/Macroeconomy.md"   
+        # - 債券: "tutor/Macroeconomy.md"
     - 量化工具:
         - 回測: "tutor/analysis/Backtesting.md"
         - 回測(引用外部 data): "tutor/analysis/BacktestingOtherData.md"
