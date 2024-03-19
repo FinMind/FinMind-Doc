@@ -9,6 +9,7 @@
 - [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
 - [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
 - [台灣股價市值表 TaiwanStockMarketValue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalue-backersponsor)
+- [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1066,5 +1067,76 @@
             date: str,
             stock_id: str,
             market_value: int64
+        }
+        ```
+
+
+----------------------------------
+#### 台灣股票下市櫃表 TaiwanStockDelisting
+
+- 資料區間：2001-01-01 ~ now
+- 資料更新時間 **星期一至五 23:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_delisting()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockDelisting",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockDelisting",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   stock_name |
+        |---:|:-----------|-----------:|-------------:|
+        |  0 | 2005-10-04 |       1204 |          津津 |
+        |  1 | 2001-11-01 |       1230 |      聯成食品 |
+        |  2 | 2005-10-04 |       1306 |      合發興業 |
+        |  3 | 2006-06-26 |       1408 |      中興紡織 |
+        |  4 | 2002-11-08 |       1431 |      新燕實業 |
+    === "Schema"
+        ```
+        {
+            date: str,
+            stock_id: str,
+            stock_name: str
         }
         ```
