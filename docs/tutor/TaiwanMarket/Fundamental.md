@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 8 種資料集，如下:
+在台股基本面，我們擁有 9 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
