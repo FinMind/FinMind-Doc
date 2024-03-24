@@ -32,6 +32,7 @@ nav:
             - 基本面: "tutor/TaiwanMarket/Fundamental.md"
             - 衍生性金融商品: "tutor/TaiwanMarket/Derivative.md"
             - 即時資料: "tutor/TaiwanMarket/RealTime.md"
+            - 可轉債: "tutor/TaiwanMarket/ConvertibleBond.md"
             - 其他: "tutor/TaiwanMarket/Others.md"
         - 美國市場:
             - 總覽: "tutor/UnitedStatesMarket/DataList.md"
