@@ -8,7 +8,6 @@
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)
 - [個股 PER、PBR 資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
-- [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwan_stock_tick_snapshot-sponsor)
 - [每 5 秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#Taiwanstatisticsoforderbookandtrade)
 - [台股加權指數 TaiwanVariousIndicators5Seconds](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
 - [當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)
@@ -57,8 +56,6 @@
 - [選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestors)
 - [期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdealertradingvolumedaily)
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
-- [台股期貨即時資訊 taiwan_futures_snapshot](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwan_futures_snapshot-sponsor)
-- [台股選擇權即時資訊 taiwan_options_snapshot](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwan_options_snapshot-sponsor)
 
 #### 即時資料 RealTime
 
