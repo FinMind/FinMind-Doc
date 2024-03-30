@@ -8,7 +8,7 @@
 - [外資持股表 TaiwanStockShareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
-- [融券借券賣出表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
+- [信用額度總量管制餘額表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
 - [證券商資訊表 TaiwanSecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo)
 - [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)
 - [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor_1)
@@ -972,7 +972,7 @@
         ```
 
 ----------------------------------
-#### 融券借券賣出表 TaiwanDailyShortSaleBalances
+#### 信用額度總量管制餘額表 TaiwanDailyShortSaleBalances
 
 - 資料區間：2005-07-01 ~ now
 - 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主

@@ -6,7 +6,7 @@
 * 由於資料源問題，移除即時報價
 
 #### 2021-05-23
-* 新增 [融券借券賣出 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
+* 新增 [信用額度總量管制餘額表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
 
 #### 2021-03-18
 * 新增[當日沖銷交易標的及成交量值 TaiwanStockDayTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)。
