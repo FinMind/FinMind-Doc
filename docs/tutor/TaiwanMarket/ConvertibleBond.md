@@ -10,7 +10,16 @@
 #### 可轉債總覽 TaiwanStockConvertibleBondInfo
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_convertible_bond_info()
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -66,7 +75,20 @@
 #### 可轉債日成交資訊 TaiwanStockConvertibleBondDaily
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_stock_convertible_bond_daily(
+            cb_id="15131",
+            start_date="2020-04-01",
+            end_date="2020-04-10",
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -137,6 +159,17 @@
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_stock_convertible_bond_daily(
+            start_date="2020-04-06",
+        )
+        ```
     === "Python-request"
         ```python
         import requests
@@ -211,7 +244,20 @@
 #### 可轉債三大法人日交易資訊 TaiwanStockConvertibleBondInstitutionalInvestors
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_stock_convertible_bond_institutional_investors(
+            cb_id="15131",
+            start_date="2020-04-01",
+            end_date="2020-04-10",
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -279,6 +325,17 @@
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_stock_convertible_bond_institutional_investors(
+            start_date="2020-04-06",
+        )
+        ```
     === "Python-request"
         ```python
         import requests
@@ -350,7 +407,20 @@
 #### 可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_stock_convertible_bond_daily_overview(
+            cb_id="15131",
+            start_date="2020-04-01",
+            end_date="2020-04-10",
+        )
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
@@ -428,6 +498,17 @@
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = data_loader.taiwan_stock_convertible_bond_daily_overview(
+            start_date="2020-04-06",
+        )
+        ```
     === "Python-request"
         ```python
         import requests
