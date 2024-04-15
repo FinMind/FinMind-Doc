@@ -52,6 +52,8 @@
 
 #### 美國股價 minute 資料表 USStockPriceMinute
 
+- 資料更新時間 **每天 08:00**，實際更新時間以 API 資料為主
+
 !!! example
     ```python
     import requests
@@ -92,6 +94,8 @@
         ```
 
 #### 美國股價 daily 資料表 USStockPrice
+
+- 資料更新時間 **每天 08:00**，實際更新時間以 API 資料為主
 
 !!! example
     ```python
