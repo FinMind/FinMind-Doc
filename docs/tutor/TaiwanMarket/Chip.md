@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 12 種資料集，如下:
+在台股籌碼面，我們擁有 13 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -8,6 +8,7 @@
 - [外資持股表 TaiwanStockShareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
+- [暫停融券賣出表(融券回補日) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginshortsalesuspension)
 - [信用額度總量管制餘額表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
 - [證券商資訊表 TaiwanSecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo)
 - [台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)
@@ -970,6 +971,131 @@
             original_lending_period: int64
         }
         ```
+
+
+----------------------------------
+#### 暫停融券賣出表(融券回補日) TaiwanStockMarginShortSaleSuspension
+
+- 資料區間：2005-01-01 ~ now
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockMarginShortSaleSuspension",
+            "data_id": "0050",
+            "start_date": "2015-01-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMarginShortSaleSuspension",
+            data_id="0050",
+            start_date= "2015-01-01",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   stock_id | date       | end_date   | reason   |
+        |---:|-----------:|:-----------|:-----------|:---------|
+        |  0 |       0050 | 2015-10-20 | 2015-10-23 | 分配收益 |
+        |  1 |       0050 | 2016-07-22 | 2016-07-27 | 分配收益 |
+        |  2 |       0050 | 2017-02-02 | 2017-02-07 | 分配收益 |
+        |  3 |       0050 | 2017-07-25 | 2017-07-28 | 分配收益 |
+        |  4 |       0050 | 2018-01-23 | 2018-01-26 | 分配收益 |
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            date: str, # 開始日期
+            end_date: str,
+            reason: str
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockMarginShortSaleSuspension",
+            "start_date": "2015-10-20",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data)
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMarginShortSaleSuspension",
+            start_date= "2015-10-20",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   stock_id | date       | end_date   | reason   |
+        |---:|-----------:|:-----------|:-----------|:---------|
+        |  0 |       0050 | 2015-10-20 | 2015-10-23 | 分配收益 |
+        |  1 |       0056 | 2015-10-20 | 2015-10-23 | 分配收益 |
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            date: str, # 開始日期
+            end_date: str,
+            reason: str
+        }
+        ```
+
 
 ----------------------------------
 #### 信用額度總量管制餘額表 TaiwanDailyShortSaleBalances
