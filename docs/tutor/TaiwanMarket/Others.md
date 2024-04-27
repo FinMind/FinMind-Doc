@@ -6,6 +6,8 @@
 
 #### 相關新聞表 TaiwanStockNews
 
+(由於資料量過大，單次請求只提供一天資料)
+
 !!! example
     === "Python"
         ```python
@@ -16,7 +18,6 @@
             "dataset": "TaiwanStockNews",
             "data_id":"2330",
             "start_date": "2020-04-01",
-            "end_date": "2020-04-03",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -36,7 +37,6 @@
                             dataset="TaiwanStockNews",
                             data_id="2330",
                             start_date= "2020-04-01",
-                            end_date='2020-04-03',
                             token = "" # 參考登入，獲取金鑰
                             )
         )
