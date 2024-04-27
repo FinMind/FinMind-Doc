@@ -91,3 +91,10 @@ markdown_extensions:
               class: mermaid
               format: !!python/name:pymdownx.superfences.fence_div_format
 
+plugins:
+    - search:
+        lang:
+            - en
+            - ja
+        separator: '[\s\-\.]+'
+
