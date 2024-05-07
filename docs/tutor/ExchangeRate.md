@@ -1,4 +1,4 @@
-在匯率市場，我們擁有 19 種幣別資料集，如下: (資料來源-台灣銀行)
+在匯率市場，我們擁有 19 種幣別資料集，如下: 
 
 - [外幣對台幣資料表 TaiwanExchangeRate](https://finmind.github.io/tutor/InterestRate/#taiwanexchangerate)
 
