@@ -161,7 +161,7 @@
 
 ----------------------------------
 #### 台股期貨即時資訊 taiwan_futures_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(目前支援台指期、約 10 秒更新一次)
+(目前支援台指期、約 30 秒更新一次)
 
 !!! example
     === "Package"
@@ -246,7 +246,7 @@
 
 ----------------------------------
 #### 台股選擇權即時資訊 taiwan_options_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(目前支援台指選擇權、約 10 秒更新一次)
+(目前支援台指選擇權、約 30 秒更新一次)
 
 !!! example
     === "Package"
