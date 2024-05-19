@@ -1275,6 +1275,15 @@
 - 提供證券商相關資訊，用於台股分點資料表(TaiwanStockTradingDailyReport )，使用卷商代碼，查詢特定卷商所有股票進出。
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_securities_trader_info()
+        ```
     === "Python-request"
         ```python
         import requests
