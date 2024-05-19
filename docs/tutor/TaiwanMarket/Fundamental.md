@@ -868,6 +868,8 @@
 ----------------------------------
 #### 減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice
 
+- 資料區間：2011-01-01 ~ now
+
 !!! example
     === "Python"
         ```python
