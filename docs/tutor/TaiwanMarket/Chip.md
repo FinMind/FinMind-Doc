@@ -1342,6 +1342,7 @@
 ----------------------------------
 #### 台股分點資料表(query by 股票代碼) TaiwanStockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
+- 提供台股，上市、上櫃、興櫃，的分點資訊！
 - 資料區間：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料)
 - 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
