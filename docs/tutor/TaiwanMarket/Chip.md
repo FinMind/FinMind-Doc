@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 13 種資料集，如下:
+在台股籌碼面，我們擁有 14 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -16,6 +16,8 @@
 - [台股權證分點資料表(query by 股票代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor)
 - [台股權證分點資料表(query by 券商代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor_1)
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
+- [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
+
 
 ----------------------------------
 #### 融資融劵表 TaiwanStockMarginPurchaseShortSale
@@ -1694,5 +1696,80 @@
             buy: int64,
             sell: int64,
             bank_name: str
+        }
+        ```
+
+#### 台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2001-01-05 ~ now
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_total_exchange_margin_maintenance(
+            start_date='2024-04-01',
+            end_date='2024-05-01'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanTotalExchangeMarginMaintenance",
+            "start_date": "2020-04-01",
+            "end_date": "2020-05-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanTotalExchangeMarginMaintenance",
+            start_date= "2024-04-01",
+            end_date='2024-05-01'
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   date | TotalExchangeMarginMaintenance       |
+        |---:|--------:|-------------------------------------:|
+        |  0  |    2024-04-01    |   166.007    |
+        |  1  |    2024-04-02    |   167.079    |
+        |  2  |    2024-04-03    |   167.085    |
+        |  3  |    2024-04-08    |   167.119    |
+        |  4  |    2024-04-09    |   167.095    |
+    === "Schema"
+        ```
+        {
+            date: str,
+            TotalExchangeMarginMaintenance: float64
         }
         ```
