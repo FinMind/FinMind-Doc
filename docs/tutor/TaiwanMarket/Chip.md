@@ -1490,8 +1490,8 @@
 #### 台股權證分點資料表(query by 股票代碼) TaiwanStockWarrantTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2023-06-21 ~ now
-- 由於資料量過大，單次請求只提供一天資料)
-- 資料更新時間 **星期一至五 23:00**，實際更新時間以 API 資料為主
+- 由於資料量過大，單次請求只提供一天資料
+- 資料更新時間 **星期一至五 01:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Python-request"
