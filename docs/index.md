@@ -24,7 +24,7 @@
 
 Taiwan stock trade data daily、tick, Financial Statements, Balance Sheet, Cash Flows Statement, Month Revenue, Holding Shares Per, Institutional Investors Buy Sell. Taiwan Futures Trade Detail, Taiwan Option Trade Detail.
 
-US stock price daily, minute ( 2019-06-01 ~ now, total more than 80 million data ), oil price, gold price, [G7](https://zh.wikipedia.org/zh-tw/%E5%85%AB%E5%A4%A7%E5%B7%A5%E6%A5%AD%E5%9C%8B%E7%B5%84%E7%B9%94) exchange rate, interest rate. <br>
+US stock price daily, minute ( 2021-04-28 ~ now, total more than 80 million data ), oil price, gold price, [G7](https://zh.wikipedia.org/zh-tw/%E5%85%AB%E5%A4%A7%E5%B7%A5%E6%A5%AD%E5%9C%8B%E7%B5%84%E7%B9%94) exchange rate, interest rate. <br>
 US Government Bonds Yield.
 
 The datasets are automatically updated daily.
