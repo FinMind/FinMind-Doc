@@ -1,8 +1,10 @@
-在台股技術面，我們擁有 12 種資料集，如下:
+在台股技術面，我們擁有 14 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
+- [台灣每周股價資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockweekprice)
+- [台灣每月股價資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockmonthprice)
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)
 - [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
@@ -325,6 +327,307 @@
 
 
 ----------------------------------
+
+#### 台灣每周股價資料表 TaiwanStockWeekPrice (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 提供台股，上市、上櫃、興櫃，的股票日成交資訊！
+- 資料區間：2000-01-01 ~ now
+- 資料更新時間 **星期一至五 17:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_weekly(
+            stock_id='2330',
+            start_date='2020-04-02',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockWeekPrice",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockWeekPrice",
+            data_id= "2330",
+            start_date= "2020-04-02",
+            end_date= "2020-04-08",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |  stock_id  |  yweek  | max | min | trading_volume | trading_money | trading_turnover |    date    |  close  |   open |   spread |
+        |---:|:-----------|:--------|-----|----:|---------------:|--------------:|-----------------:|-----------:|--------:|-------:|---------:|
+        |  0 |    2330    | 2020W15 | 288 | 270 |    409564428   |  114799189198 |      188964      | 2020-04-06 |  279.5  |   273  |      8   |
+
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            yweek: str,
+            max: float64,
+            min: float64,
+            trading_volume: int64,
+            trading_money: int64,
+            trading_turnover: float32,
+            date: str,
+            close: float64,
+            open: float64,
+            spread: float64,
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockWeekPrice",
+            "start_date": "2020-04-06",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockWeekPrice",
+            start_date= "2020-04-06",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |  stock_id  |  yweek  | max | min | trading_volume | trading_money | trading_turnover |    date    |  close  |   open |   spread |
+        |---:|:-----------|:--------|-----|----:|---------------:|--------------:|-----------------:|-----------:|--------:|-------:|---------:|
+        |  0 |    2330    | 2020W15 | 288 | 270 |    409564428   |  114799189198 |      188964      | 2020-04-06 |  279.5  |   273  |      8   |
+
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            yweek: str,
+            max: float64,
+            min: float64,
+            trading_volume: int64,
+            trading_money: int64,
+            trading_turnover: float32,
+            date: str,
+            close: float64,
+            open: float64,
+            spread: float64,
+        }
+        ```
+
+
+#### 台灣每月股價資料表 TaiwanStockMonthPrice (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 提供台股，上市、上櫃、興櫃，的股票日成交資訊！
+- 資料區間：2000-01-01 ~ now
+- 資料更新時間 **星期一至五 17:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_monthly(
+            stock_id='2330',
+            start_date='2020-04-02',
+            end_date='2020-04-12'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockMonthPrice",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMonthPrice",
+            data_id= "2330",
+            start_date= "2020-04-02",
+            end_date= "2020-05-08",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |  stock_id  |  ymonth  |  max  |  min  | trading_volume | trading_money | trading_turnover |    date    |  close  |   open   |  spread   |
+        |---:|:-----------|:---------|-------|------:|---------------:|--------------:|-----------------:|-----------:|--------:|---------:|----------:|
+        |  0 |    2330    | 2020M05  | 301.5 | 288.5 |   1744651784   |  513799591970 |      788158      | 2020-05-01 |   292   |   294.5  |   -12.5   |
+
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            ymonth: str,
+            max: float64,
+            min: float64,
+            trading_volume: int64,
+            trading_money: int64,
+            trading_turnover: float32,
+            date: str,
+            close: float64,
+            open: float64,
+            spread: float64,
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockMonthPrice",
+            "start_date": "2020-04-06",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMonthPrice",
+            start_date= "2020-04-06",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |  stock_id  |  ymonth  |  max  |  min  | trading_volume | trading_money | trading_turnover |    date    |  close  |   open   |  spread   |
+        |---:|:-----------|:---------|-------|------:|---------------:|--------------:|-----------------:|-----------:|--------:|---------:|----------:|
+        |  0 |    2330    | 2020M05  | 301.5 | 288.5 |   1744651784   |  513799591970 |      788158      | 2020-05-01 |   292   |   294.5  |   -12.5   |
+
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            ymonth: str,
+            max: float64,
+            min: float64,
+            trading_volume: int64,
+            trading_money: int64,
+            trading_turnover: float32,
+            date: str,
+            close: float64,
+            open: float64,
+            spread: float64,
+        }
+        ```
+
+
 #### 台灣還原股價資料表 TaiwanStockPriceAdj (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：1994-10-01 ~ now
