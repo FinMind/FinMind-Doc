@@ -858,7 +858,7 @@
             deal_price: float64,
             volume: int64,
             Time: str,
-            TickType: int64
+            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
         }
         ```
 

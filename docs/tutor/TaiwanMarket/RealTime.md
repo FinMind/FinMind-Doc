@@ -88,7 +88,7 @@
             yesterday_volume: int64,
             date: str,
             stock_id: str,
-            TickType: str
+            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
         }
         ```
 
@@ -240,7 +240,7 @@
             volume_ratio: float64,
             date: str,
             options_id: str,
-            TickType: str
+            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
         }
         ```
 
@@ -323,6 +323,6 @@
             volume_ratio: float64,
             date: str,
             options_id: str,
-            TickType: str
+            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
         }
         ```
