@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 15 種資料集，如下:
+在台股籌碼面，我們擁有 14 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -17,7 +17,6 @@
 - [台股權證分點資料表(query by 券商代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor_1)
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 - [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
-- [台股分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
 
 
 ----------------------------------
@@ -1774,89 +1773,3 @@
             TotalExchangeMarginMaintenance: float64
         }
         ```
-
-#### 台股分點統計表 TaiwanStockTradingDailyReportSecIdAgg (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-
-- 提供台股，上市、上櫃、興櫃，的分點資訊！
-- 資料區間：2021-06-30 ~ now
-- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
-
-!!! example
-    === "Package"
-        ```python
-        from FinMind.data import DataLoader
-
-        api = DataLoader()
-        # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
-        df = api.taiwan_stock_trading_daily_report_secid_agg(
-            stock_id="2330",
-            start_date='2024-01-31',
-            end_date='2024-05-01'
-        )
-        ```
-    === "Python-request"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
-        parameter = {
-            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
-            "stock_id": "2330",
-            "start_date": "2024-01-31",
-            "end_date": "2024-05-01",
-            "token": "", # 參考登入，獲取金鑰
-        }
-        data = requests.get(url, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
-        print(data.head())
-
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanStockTradingDailyReportSecIdAgg",
-            stock_id="2330",
-            start_date= "2024-01-31",
-            end_date='2024-05-01'
-            token = "" # 參考登入，獲取金鑰
-        )
-        )
-        data = content(response)
-        df = data$data %>%
-        do.call('rbind',.) %>%
-        data.table
-        head(df)
-
-        ```
-
-!!! output
-    === "DataFrame"
-        |    | securities_trader | securities_trader_id |   stock_id |      date     |   buy_volume |  sell_volume | buy_price  | sell_price |
-        |---:|:------------------|---------------------:|-----------:|---------------:|------------:|-------------:|------------|:-----------|
-        |  0 | 合庫桃園           |        102E          |     2330   |   2024-01-31  |    17764     |    4104     |    630.2   |   630.78    |
-        |  0 | 高橋龍潭           |        5321          |     2330   |   2024-01-31  |    17555     |    1000     |    630.74  |   628       |
-        |  0 | 高橋              |         5320         |     2330   |   2024-01-31  |    33281     |    15222    |    630.56  |   634.05    |
-        |  0 | 兆豐三重           |        7008          |     2330   |   2024-01-31  |    15416     |    3421     |    629.24  |   632.41    |
-        |  0 | 新百王             |        6210          |     2330   |   2024-01-31  |    75169     |    57050    |    629.56  |    628.9    |
-    === "Schema"
-        ```
-        {
-            securities_trader: str,
-            price: float64,
-            buy: int32,
-            sell: int32,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str
-        }
-        ```
-
-----------------------------------
