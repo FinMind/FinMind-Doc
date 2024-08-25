@@ -1850,12 +1850,13 @@
         ```
         {
             securities_trader: str,
-            price: float64,
-            buy: int32,
-            sell: int32,
             securities_trader_id: str,
             stock_id: str,
-            date: str
+            date: str,
+            buy_volume: int64,
+            sell_volume: int64,
+            buy_price: float,
+            sell_price: float,
         }
         ```
 
