@@ -1802,7 +1802,7 @@
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
-            "stock_id": "2330",
+            "data_id": "2330",
             "start_date": "2024-01-31",
             "end_date": "2024-05-01",
             "token": "", # 參考登入，獲取金鑰
@@ -1823,7 +1823,7 @@
         url = url,
         query = list(
             dataset="TaiwanStockTradingDailyReportSecIdAgg",
-            stock_id="2330",
+            data_id="2330",
             start_date= "2024-01-31",
             end_date='2024-05-01'
             token = "" # 參考登入，獲取金鑰
