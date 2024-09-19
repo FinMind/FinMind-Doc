@@ -89,7 +89,8 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_daily(
             futures_id='TX',
-            start_date='2020-04-01'
+            start_date='2020-04-01',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -101,6 +102,7 @@
             "dataset": "TaiwanFuturesDaily",
             "data_id":"TX",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -121,6 +123,7 @@
                             dataset="TaiwanFuturesDaily",
                             data_id="TX",
                             start_date= "2020-04-01",
+                            end_date= "2020-04-12",
                             token = "" # 參考登入，獲取金鑰
                             )
         )
@@ -179,6 +182,7 @@
         parameter = {
             "dataset": "TaiwanFuturesDaily",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -250,7 +254,8 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_daily(
             option_id='TXO',
-            start_date='2020-04-01'
+            start_date='2020-04-01',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -262,6 +267,7 @@
             "dataset": "TaiwanOptionDaily",
             "data_id":"TXO",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -282,6 +288,7 @@
                             dataset="TaiwanOptionDaily",
                             data_id="TXO",
                             start_date= "2020-04-01",
+                            end_date= "2020-04-12",
                             token = "" # 參考登入，獲取金鑰
                             )
         )
@@ -572,7 +579,8 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_institutional_investors(
             data_id='TX',
-            start_date='2020-04-01'
+            start_date='2020-04-01',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -583,8 +591,8 @@
         parameter = {
             "dataset": "TaiwanFuturesInstitutionalInvestors",
             "data_id": "TX",# "TXO"
-            "start_date": "2019-04-03",
-            "end_date": "2019-04-04",
+            "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
@@ -604,8 +612,8 @@
         query = list(
             dataset="TaiwanFuturesInstitutionalInvestors",
             data_id="TX",
-            start_date= "2019-04-03",
-            end_date= "2019-04-04",
+            start_date= "2020-04-01",
+            end_date= "2020-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -731,7 +739,8 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_institutional_investors(
             data_id='TXO',
-            start_date='2020-04-01'
+            start_date='2020-04-01',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -742,8 +751,8 @@
         parameter = {
             "dataset": "TaiwanOptionInstitutionalInvestors",
             "data_id": "TXO",
-            "start_date": "2019-04-03",
-            "end_date": "2019-04-04",
+            "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         resp = requests.get(url, params=parameter)
@@ -763,8 +772,8 @@
         query = list(
             dataset="TaiwanOptionInstitutionalInvestors",
             data_id="TX",# "TXO"
-            start_date= "2019-04-03",
-            end_date= "2019-04-04",
+            start_date= "2020-04-01",
+            end_date= "2020-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -893,6 +902,7 @@
         df = api.taiwan_futures_dealer_trading_volume_daily(
             futures_id='TX',
             start_date='2020-07-01'
+            end_date='2020-07-12',
         )
         ```
     === "Python-request"
@@ -1042,7 +1052,8 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_dealer_trading_volume_daily(
             option_id='TXO',
-            start_date='2020-07-01'
+            start_date='2020-07-01',
+            end_date='2020-07-12',
         )
         ```
     === "Pytho-request"

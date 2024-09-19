@@ -878,7 +878,8 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_per_pbr(
             stock_id='2330',
-            start_date='2020-01-02'
+            start_date='2020-01-02',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -890,6 +891,7 @@
             "dataset": "TaiwanStockPER",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -908,6 +910,7 @@
                             dataset="TaiwanStockPER",
                             data_id= "2330",
                             start_date= "2020-01-02",
+                            end_date= "2020-04-12",
                             token = "" # 參考登入，獲取金鑰
                             )
         )

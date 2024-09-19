@@ -21,7 +21,7 @@
 
 
 ----------------------------------
-#### 融資融劵表 TaiwanStockMarginPurchaseShortSale
+#### 個股融資融劵表 TaiwanStockMarginPurchaseShortSale
 
 - 資料區間：2001-01-01 ~ now
 - 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
@@ -37,7 +37,7 @@
         df = api.taiwan_stock_margin_purchase_short_sale(
             stock_id="2330",
             start_date='2020-04-02',
-            end_date='2020-04-12'
+            end_date='2020-04-12',
         )
         ```
     === "Python"
@@ -49,6 +49,7 @@
             "dataset": "TaiwanStockMarginPurchaseShortSale",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -67,6 +68,7 @@
             dataset="TaiwanStockMarginPurchaseShortSale",
             data_id= "2330",
             start_date= "2020-01-02",
+            end_date= "2020-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -207,6 +209,7 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_margin_purchase_short_sale_total(
             start_date='2020-04-01',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -217,6 +220,7 @@
         parameter = {
             "dataset": "TaiwanStockTotalMarginPurchaseShortSale",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -236,6 +240,7 @@
         query = list(
             dataset="TaiwanStockTotalMarginPurchaseShortSale",
             start_date= "2020-01-02",
+            end_date= "2020-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -286,7 +291,7 @@
         df = api.taiwan_stock_institutional_investors(
             stock_id="2330",
             start_date='2020-04-01',
-            end_date='2020-04-12'
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -298,6 +303,7 @@
             "dataset": "TaiwanStockInstitutionalInvestorsBuySell",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -318,6 +324,7 @@
             dataset="TaiwanStockInstitutionalInvestorsBuySell",
             data_id= "2330",
             start_date= "2020-04-01",
+            end_date= "2020-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -437,6 +444,7 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_institutional_investors_total(
             start_date='2020-04-01',
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -447,6 +455,7 @@
         parameter = {
             "dataset": "TaiwanStockTotalInstitutionalInvestors",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -466,6 +475,7 @@
         query = list(
             dataset="TaiwanStockTotalInstitutionalInvestors",
             start_date= "2020-01-02",
+            end_date='2020-04-12',
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -525,6 +535,7 @@
             "dataset": "TaiwanStockShareholding",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -545,6 +556,7 @@
             dataset="TaiwanStockShareholding",
             data_id= "2330",
             start_date= "2020-01-02",
+            end_date="2020-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -691,6 +703,7 @@
             "dataset": "TaiwanStockHoldingSharesPer",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -711,6 +724,7 @@
             dataset="TaiwanStockHoldingSharesPer",
             data_id= "2330",
             start_date= "2020-01-02",
+            end_date='2020-04-12',
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -846,6 +860,7 @@
             "dataset": "TaiwanStockSecuritiesLending",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -866,6 +881,7 @@
             dataset="TaiwanStockSecuritiesLending",
             data_id="2330",
             start_date= "2020-01-02",
+            end_date='2020-04-12',
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -992,6 +1008,7 @@
             "dataset": "TaiwanStockMarginShortSaleSuspension",
             "data_id": "0050",
             "start_date": "2015-01-01",
+            "end_date": "2015-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -1012,6 +1029,7 @@
             dataset="TaiwanStockMarginShortSaleSuspension",
             data_id="0050",
             start_date= "2015-01-01",
+            end_date= "2015-04-12",
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -1117,7 +1135,7 @@
         df = api.taiwan_daily_short_sale_balances(
             stock_id="2330",
             start_date='2020-04-01',
-            end_date='2020-04-12'
+            end_date='2020-04-12',
         )
         ```
     === "Python-request"
@@ -1129,6 +1147,7 @@
             "dataset": "TaiwanDailyShortSaleBalances",
             "data_id": "2330",
             "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -1149,6 +1168,7 @@
             dataset="TaiwanDailyShortSaleBalances",
             data_id="2330",
             start_date= "2020-01-02",
+            end_date='2020-04-12',
             token = "" # 參考登入，獲取金鑰
         )
         )
