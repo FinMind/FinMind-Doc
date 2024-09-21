@@ -58,18 +58,19 @@
         ```
 !!! output
     === "DataFrame"
-        |    | code   | type              |
-        |---:|:-------|:------------------|
-        |  0 | AAA    | TaiwanOptionDaily |
-        |  1 | AAB    | TaiwanOptionDaily |
-        |  2 | AAO    | TaiwanOptionDaily |
-        |  3 | ABA    | TaiwanOptionDaily |
-        |  4 | ABO    | TaiwanOptionDaily |
+        |    | code   | type              | name             |
+        |---:|:-------|:------------------|:-----------------|
+        |  0 | AAA    | TaiwanOptionDaily | 南亞1000股選擇權 |
+        |  1 | AAO    | TaiwanOptionDaily | 南亞選擇權       |
+        |  2 | ABA    | TaiwanOptionDaily | 中鋼1000股選擇權 |
+        |  3 | ABO    | TaiwanOptionDaily | 中鋼選擇權       |
+        |  4 | ACA    | TaiwanOptionDaily | 聯電選擇權       |
     === "Schema"
         ```
         {
             code: str,
-            type: str
+            type: str,
+            name: str
         }
         ```
 
