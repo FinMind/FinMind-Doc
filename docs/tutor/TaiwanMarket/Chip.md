@@ -1824,9 +1824,9 @@
         parameter = {
             "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
             "data_id": "2330",
-            securities_trader_id="1020",
-            start_date= "2024-07-01",
-            end_date='2024-07-15'
+            securities_trader_id: "1020",
+            start_date: "2024-07-01",
+            end_date: '2024-07-15'
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
