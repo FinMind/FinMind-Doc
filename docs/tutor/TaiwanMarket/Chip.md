@@ -1811,8 +1811,9 @@
         # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_trading_daily_report_secid_agg(
             stock_id="2330",
-            start_date='2024-01-31',
-            end_date='2024-05-01'
+            securities_trader_id="1020",
+            start_date= "2024-07-01",
+            end_date='2024-07-15'
         )
         ```
     === "Python-request"
@@ -1823,8 +1824,9 @@
         parameter = {
             "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
             "data_id": "2330",
-            "start_date": "2024-01-31",
-            "end_date": "2024-05-01",
+            securities_trader_id="1020",
+            start_date= "2024-07-01",
+            end_date='2024-07-15'
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -1844,8 +1846,9 @@
         query = list(
             dataset="TaiwanStockTradingDailyReportSecIdAgg",
             data_id="2330",
-            start_date= "2024-01-31",
-            end_date='2024-05-01'
+            securities_trader_id="1020",
+            start_date= "2024-07-01",
+            end_date='2024-07-15'
             token = "" # 參考登入，獲取金鑰
         )
         )
@@ -1861,86 +1864,11 @@
     === "DataFrame"
         |    | securities_trader | securities_trader_id |   stock_id |      date     |   buy_volume |  sell_volume | buy_price  | sell_price |
         |---:|:------------------|---------------------:|-----------:|---------------:|------------:|-------------:|------------|:-----------|
-        |  0 | 合庫桃園           |        102E          |     2330   |   2024-01-31  |    17764     |    4104     |    630.2   |   630.78    |
-        |  0 | 高橋龍潭           |        5321          |     2330   |   2024-01-31  |    17555     |    1000     |    630.74  |   628       |
-        |  0 | 高橋              |         5320         |     2330   |   2024-01-31  |    33281     |    15222    |    630.56  |   634.05    |
-        |  0 | 兆豐三重           |        7008          |     2330   |   2024-01-31  |    15416     |    3421     |    629.24  |   632.41    |
-        |  0 | 新百王             |        6210          |     2330   |   2024-01-31  |    75169     |    57050    |    629.56  |    628.9    |
-    === "Schema"
-        ```
-        {
-            securities_trader: str,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str,
-            buy_volume: int64,
-            sell_volume: int64,
-            buy_price: float,
-            sell_price: float,
-        }
-        ```
-
-#### 一次拿特定日期，所有資料(只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-
-!!! example
-    === "Package"
-        ```python
-        from FinMind.data import DataLoader
-
-        api = DataLoader()
-        # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
-        df = api.taiwan_stock_trading_daily_report_secid_agg(
-            start_date='2024-01-31',
-        )
-        ```
-    === "Python-request"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
-        parameter = {
-            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
-            "start_date": "2024-01-31",
-            "token": "", # 參考登入，獲取金鑰
-        }
-        data = requests.get(url, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
-        print(data)
-
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanStockTradingDailyReportSecIdAgg",
-            start_date= "2024-01-31",
-            token = "" # 參考登入，獲取金鑰
-        )
-        )
-        data = content(response)
-        df = data$data %>%
-        do.call('rbind',.) %>%
-        data.table
-        head(df)
-
-        ```
-
-!!! output
-    === "DataFrame"
-        |    | securities_trader | securities_trader_id |   stock_id |      date     |   buy_volume |  sell_volume | buy_price  | sell_price |
-        |---:|:------------------|---------------------:|-----------:|---------------:|------------:|-------------:|------------|:-----------|
-        |  0 | 合庫桃園           |        102E          |     2330   |   2024-01-31  |    17764     |    4104     |    630.2   |   630.78    |
-        |  0 | 高橋龍潭           |        5321          |     2330   |   2024-01-31  |    17555     |    1000     |    630.74  |   628       |
-        |  0 | 高橋              |         5320         |     2330   |   2024-01-31  |    33281     |    15222    |    630.56  |   634.05    |
-        |  0 | 兆豐三重           |        7008          |     2330   |   2024-01-31  |    15416     |    3421     |    629.24  |   632.41    |
-        |  0 | 新百王             |        6210          |     2330   |   2024-01-31  |    75169     |    57050    |    629.56  |    628.9    |
+        |  0 | 合庫             |        1020          |     2330   |   2024-07-01  |    12157     |    12460     |    968.08   |   973.84    |
+        |  0 | 合庫             |        1020          |     2330   |   2024-07-02  |    12735     |    21885     |    964.54   |   964.63    |
+        |  0 | 合庫             |        1020          |     2330   |   2024-07-03  |    10535     |    29381     |    973.16   |   974.69    |
+        |  0 | 合庫             |        1020          |     2330   |   2024-07-04  |    28107     |    59459     |    1001.99  |   1000.88   |
+        |  0 | 合庫             |        1020          |     2330   |   2024-07-05  |    10435     |    11075     |    1004.18  |    1004.5   |
     === "Schema"
         ```
         {
