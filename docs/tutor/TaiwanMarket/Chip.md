@@ -1813,20 +1813,19 @@
             stock_id="2330",
             securities_trader_id="1020",
             start_date= "2024-07-01",
-            end_date='2024-07-15'
+            end_date="2024-07-15",
         )
         ```
     === "Python-request"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report_secid_agg"
         parameter = {
-            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
             "data_id": "2330",
-            securities_trader_id: "1020",
-            start_date: "2024-07-01",
-            end_date: '2024-07-15'
+            "securities_trader_id": "1020",
+            "start_date": "2024-07-01",
+            "end_date": '2024-07-15',
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -1848,7 +1847,7 @@
             data_id="2330",
             securities_trader_id="1020",
             start_date= "2024-07-01",
-            end_date='2024-07-15'
+            end_date='2024-07-15',
             token = "" # 參考登入，獲取金鑰
         )
         )
