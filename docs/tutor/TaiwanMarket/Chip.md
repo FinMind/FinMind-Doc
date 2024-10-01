@@ -1839,11 +1839,10 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v4/data'
+        url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report_secid_agg'
         response = httr::GET(
         url = url,
         query = list(
-            dataset="TaiwanStockTradingDailyReportSecIdAgg",
             data_id="2330",
             securities_trader_id="1020",
             start_date= "2024-07-01",
