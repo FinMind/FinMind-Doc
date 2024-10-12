@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 9 種資料集，如下:
+在台股衍生性商品資料，我們擁有 11 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
@@ -10,7 +10,8 @@
 - [選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestors)
 - [期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdealertradingvolumedaily)
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
-
+- [期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesopeninterestlargetraders)
+- [選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders)
 
 ----------------------------------
 #### 期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo
@@ -1189,3 +1190,363 @@
             is_after_hour: int32
         }
         ```
+
+#### 期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders
+
+- 資料區間：1998-07-01 ~ now
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_futures_open_interest_large_traders(
+            futures_id='TJF',
+            start_date='2024-09-01',
+            end_date='2024-09-02',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFuturesOpenInterestLargeTraders",
+            "data_id":"TJF",
+            "start_date": "2024-09-01",
+            "end_date": "2024-09-02",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFuturesOpenInterestLargeTraders",
+                            data_id="TJF",
+                            start_date= "2024-09-01",
+                            end_date= "2024-09-02",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | name       | contract_type   |   buy_top5_trader_open_interest |   buy_top5_trader_open_interest_per |   buy_top10_trader_open_interest |   buy_top10_trader_open_interest_per |   sell_top5_trader_open_interest |   sell_top5_trader_open_interest_per |   sell_top10_trader_open_interest |   sell_top10_trader_open_interest_per |   market_open_interest |   buy_top5_specific_open_interest | buy_top5_specific_open_interest_per   |    buy_top10_specific_open_interest | buy_top10_specific_open_interest_per   |   sell_top5_specific_open_interest | sell_top5_specific_open_interest_per   |   sell_top10_specific_open_interest | sell_top10_specific_open_interest_per   |   date | futures_id   |
+        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|
+        |  0 | 東證期貨 | 202409  | 93 |   74.4 |  113 |  90.4 |    102 |     81.6 |  118 |   94.4 |  125 |  16 | 12.8     | 16 | 12.8 | 14 | 11.2 | 14 | 11.2 | 2024-09-02 | TJF |
+        |  1 |  東證期貨 | 202409  | 133 |   62.7 |  170 |  80.2 |  172 |     81.1 |  194 |   91.5 |  212 |  16 | 7.5     | 16 | 7.5 | 42 | 19.8 | 42 | 19.5 | 2024-09-02 | TJF |
+    === "Schema"
+        ```
+        {
+            name: str,
+            contract_type: str,
+            buy_top5_trader_open_interest: int32,
+            buy_top5_trader_open_interest_per: float32,
+            buy_top10_trader_open_interest: int32,
+            buy_top10_trader_open_interest_per: float32,
+            sell_top5_trader_open_interest: int32,
+            sell_top5_trader_open_interest_per: float32,
+            sell_top10_trader_open_interest: int32,
+            sell_top10_trader_open_interest_per: float32,
+            market_open_interest: int32,
+            buy_top5_specific_open_interest: int32,
+            buy_top5_specific_open_interest_per: float32,
+            buy_top10_specific_open_interest: int32,
+            buy_top10_specific_open_interest_per: float32,
+            sell_top5_specific_open_interest: int32,
+            sell_top5_specific_open_interest_per: float32,
+            sell_top10_specific_open_interest: int32,
+            sell_top10_specific_open_interest_per: float32,
+            date: str,
+            futures_id: str
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_futures_open_interest_large_traders(
+            start_date='2024-09-02'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFuturesOpenInterestLargeTraders",
+            "start_date": "2024-09-02",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFuturesOpenInterestLargeTraders",
+                            start_date= "2024-09-02",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | name       | contract_type   |   buy_top5_trader_open_interest |   buy_top5_trader_open_interest_per |   buy_top10_trader_open_interest |   buy_top10_trader_open_interest_per |   sell_top5_trader_open_interest |   sell_top5_trader_open_interest_per |   sell_top10_trader_open_interest |   sell_top10_trader_open_interest_per |   market_open_interest |   buy_top5_specific_open_interest | buy_top5_specific_open_interest_per   |    buy_top10_specific_open_interest | buy_top10_specific_open_interest_per   |   sell_top5_specific_open_interest | sell_top5_specific_open_interest_per   |   sell_top10_specific_open_interest | sell_top10_specific_open_interest_per   |   date | futures_id   |
+        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|
+        |  0 |  布蘭特原油期貨  | 202411  | 40  | 100 |  40 | 100 | 40 | 100 |  40 | 100 | 40 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | BRF |
+        |  1 |  布蘭特原油期貨  | all  | 155  | 96.9 |  160 | 100 | 160 | 100 |  160 | 100 | 160 |  0 | 0  | 0 | 0 | 120 | 75 | 120 | 75 | 2024-09-02 | BRF |
+        |  2 |  臺灣生技期貨  | 202409  | 15  | 78.9 |  19 | 100 | 19 | 100 |  19 | 100 | 19 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | BTF |
+        |  3 |  臺灣生技期貨  | all  | 16  | 80 |  20 | 100 | 20 | 100 |  20 | 100 | 20 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | BTF |
+        |  4 |  南亞期貨  | 202409  | 231  | 30.3 |  332 | 43.6 | 512 | 67.2 |  655 | 86 | 762 |  127 | 16.7  | 127 | 16.7 | 438 | 57.5 | 532 | 69.8 | 2024-09-02 | CA |
+    === "Schema"
+        ```
+        {
+            name: str,
+            contract_type: str,
+            buy_top5_trader_open_interest: int32,
+            buy_top5_trader_open_interest_per: float32,
+            buy_top10_trader_open_interest: int32,
+            buy_top10_trader_open_interest_per: float32,
+            sell_top5_trader_open_interest: int32,
+            sell_top5_trader_open_interest_per: float32,
+            sell_top10_trader_open_interest: int32,
+            sell_top10_trader_open_interest_per: float32,
+            market_open_interest: int32,
+            buy_top5_specific_open_interest: int32,
+            buy_top5_specific_open_interest_per: float32,
+            buy_top10_specific_open_interest: int32,
+            buy_top10_specific_open_interest_per: float32,
+            sell_top5_specific_open_interest: int32,
+            sell_top5_specific_open_interest_per: float32,
+            sell_top10_specific_open_interest: int32,
+            sell_top10_specific_open_interest_per: float32,
+            date: str,
+            futures_id: str
+        }
+        ```
+
+----------------------------------
+
+#### 選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders
+
+- 資料區間：1998-07-01 ~ now
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_option_open_interest_large_traders(
+            futures_id='CA',
+            start_date='2024-09-01',
+            end_date='2024-09-02',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionOpenInterestLargeTraders",
+            "data_id":"CA",
+            "start_date": "2024-09-01",
+            "end_date": "2024-09-02",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionOpenInterestLargeTraders",
+                            data_id="CA",
+                            start_date= "2024-09-01",
+                            end_date= "2024-09-02",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | contract_type   |   buy_top5_trader_open_interest |   buy_top5_trader_open_interest_per |   buy_top10_trader_open_interest |   buy_top10_trader_open_interest_per |   sell_top5_trader_open_interest |   sell_top5_trader_open_interest_per |   sell_top10_trader_open_interest |   sell_top10_trader_open_interest_per |   market_open_interest |   buy_top5_specific_open_interest | buy_top5_specific_open_interest_per   |    buy_top10_specific_open_interest | buy_top10_specific_open_interest_per   |   sell_top5_specific_open_interest | sell_top5_specific_open_interest_per   |   sell_top10_specific_open_interest | sell_top10_specific_open_interest_per   |   date | put_call | name   | option_id |
+        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|
+        |  0 | 202409  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | call  | 南亞 | CA |
+        |  1 | all  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | call  | 南亞 | CA |
+        |  2 | 202409  |  0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | put  | 南亞 | CA |
+        |  3 | all  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | put  | 南亞 | CA |
+    === "Schema"
+        ```
+        {
+            contract_type: str,
+            buy_top5_trader_open_interest: int32,
+            buy_top5_trader_open_interest_per: float32,
+            buy_top10_trader_open_interest: int32,
+            buy_top10_trader_open_interest_per: float32,
+            sell_top5_trader_open_interest: int32,
+            sell_top5_trader_open_interest_per: float32,
+            sell_top10_trader_open_interest: int32,
+            sell_top10_trader_open_interest_per: float32,
+            market_open_interest: int32,
+            buy_top5_specific_open_interest: int32,
+            buy_top5_specific_open_interest_per: float32,
+            buy_top10_specific_open_interest: int32,
+            buy_top10_specific_open_interest_per: float32,
+            sell_top5_specific_open_interest: int32,
+            sell_top5_specific_open_interest_per: float32,
+            sell_top10_specific_open_interest: int32,
+            sell_top10_specific_open_interest_per: float32,
+            date: str,
+            put_call: str,
+            name: str,
+            option_id: str
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_option_open_interest_large_traders(
+            start_date='2024-09-02'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionOpenInterestLargeTraders",
+            "start_date": "2024-09-02",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionOpenInterestLargeTraders",
+                            start_date= "2024-09-02",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | contract_type   |   buy_top5_trader_open_interest |   buy_top5_trader_open_interest_per |   buy_top10_trader_open_interest |   buy_top10_trader_open_interest_per |   sell_top5_trader_open_interest |   sell_top5_trader_open_interest_per |   sell_top10_trader_open_interest |   sell_top10_trader_open_interest_per |   market_open_interest |   buy_top5_specific_open_interest | buy_top5_specific_open_interest_per   |    buy_top10_specific_open_interest | buy_top10_specific_open_interest_per   |   sell_top5_specific_open_interest | sell_top5_specific_open_interest_per   |   sell_top10_specific_open_interest | sell_top10_specific_open_interest_per   |   date | put_call | name   | option_id |
+        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|:------------------|
+        |  0 | 202409  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | call  | 南亞 | CA |
+        |  1 | all  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | call  | 南亞 | CA |
+        |  2 | 202409  |  0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | put  | 南亞 | CA |
+        |  3 | all  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | put  | 南亞 | CA |
+        |  4 | 202409  | 0  | 0 |  0 | 0 | 0 | 0 |  0 | 0 | 0 |  0 | 0  | 0 | 0 | 0 | 0 | 0 | 0 | 2024-09-02 | call  | 中鋼 | CB |
+    === "Schema"
+        ```
+        {
+            contract_type: str,
+            buy_top5_trader_open_interest: int32,
+            buy_top5_trader_open_interest_per: float32,
+            buy_top10_trader_open_interest: int32,
+            buy_top10_trader_open_interest_per: float32,
+            sell_top5_trader_open_interest: int32,
+            sell_top5_trader_open_interest_per: float32,
+            sell_top10_trader_open_interest: int32,
+            sell_top10_trader_open_interest_per: float32,
+            market_open_interest: int32,
+            buy_top5_specific_open_interest: int32,
+            buy_top5_specific_open_interest_per: float32,
+            buy_top10_specific_open_interest: int32,
+            buy_top10_specific_open_interest_per: float32,
+            sell_top5_specific_open_interest: int32,
+            sell_top5_specific_open_interest_per: float32,
+            sell_top10_specific_open_interest: int32,
+            sell_top10_specific_open_interest_per: float32,
+            date: str,
+            put_call: str,
+            name: str,
+            option_id: str
+        }
+        ```
+
+----------------------------------
