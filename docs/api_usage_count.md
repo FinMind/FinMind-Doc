@@ -37,39 +37,33 @@ token         | str |  N | token
 
         ```
 
-#### API 用量超出上限時
+#### API 用量超出上限時，對 API 發送 Request 會回傳
 
-```
-GET: https://api.web.finmindtrade.com/v2/user_info
-
-```
-
-請求參數:
-
-參數名稱       | 參數型別  | 必填	| 說明
---------------|:-----:|-----:|------------------------
-token         | str |  N | token
-
-
-!!! example
-    === "Package"
-        ```python
-        from FinMind.data import FinMindApi
-
-        api = FinMindApi()
-        api.login_by_token(token)
-        print(api.api_usage)
-        ```
-    === "Python"
+!!! danger
+    === "Example"
         ```python
         import requests
-        
-        url = "https://api.web.finmindtrade.com/v2/user_info"
-        payload = {
-            "token": token,
+        import pandas as pd
+        from tqdm import tqdm
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockPrice",
+            "data_id": "2330",
+            "start_date": "2020-04-02",
+            "end_date": "2020-04-12",
+            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=payload)
-        resp.json()["user_count"]  # 使用次數
-        resp.json()["api_request_limit"]  # api 使用上限
+        resp = requests.get(url, params=parameter)
+        print(resp.status_code)
+        print(resp.json())
+        ```
 
+!!! output
+    === "resp.status_code"
+        ```python
+        402
+        ```
+    === "resp.json()"
+        ```python
+        {'msg': 'Requests reach the upper limit. https://finmindtrade.com/', 'status': 402}
         ```
