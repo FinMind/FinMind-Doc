@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 9 種資料集，如下:
+在台股衍生性商品資料，我們擁有 11 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
@@ -8,6 +8,8 @@
 - [選擇權交易明細表 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)
 - [期貨三大法人買賣 TaiwanFuturesInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestors)
 - [選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestors)
+- [期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestorsafterhours)
+- [選擇權夜盤三大法人買賣 TaiwanOptionInstitutionalInvestorsAfterHours](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestorsafterhours)
 - [期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdealertradingvolumedaily)
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
 
@@ -639,13 +641,13 @@
             name: str,
             date: str,
             institutional_investors: str,
-            long_deal_volume: str,
+            long_deal_volume: int32,
             long_deal_amount: int32,
             short_deal_volume: int32,
-            short_deal_amount: str,
+            short_deal_amount: int32,
             long_open_interest_balance_volume: int32,
             long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: str,
+            short_open_interest_balance_volume: int32,
             short_open_interest_balance_amount: int32
         }
         ```
@@ -690,7 +692,7 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanFuturesInstitutionalInvestors",
-                            start_date= "2019-04-03 ",
+                            start_date= "2019-04-03",
                             token = "" # 參考登入，獲取金鑰
                             )
         )
@@ -713,13 +715,13 @@
             name: str,
             date: str,
             institutional_investors: str,
-            long_deal_volume: str,
+            long_deal_volume: int32,
             long_deal_amount: int32,
             short_deal_volume: int32,
-            short_deal_amount: str,
+            short_deal_amount: int32,
             long_open_interest_balance_volume: int32,
             long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: str,
+            short_open_interest_balance_volume: int32,
             short_open_interest_balance_amount: int32
         }
         ```
@@ -800,13 +802,13 @@
             name: str,
             date: str,
             institutional_investors: str,
-            long_deal_volume: str,
+            long_deal_volume: int32,
             long_deal_amount: int32,
             short_deal_volume: int32,
-            short_deal_amount: str,
+            short_deal_amount: int32,
             long_open_interest_balance_volume: int32,
             long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: str,
+            short_open_interest_balance_volume: int32,
             short_open_interest_balance_amount: int32
         }
         ```
@@ -852,7 +854,7 @@
         response = httr::GET(url = url,
                             query = list(
                             dataset="TaiwanOptionInstitutionalInvestors",
-                            start_date= "2019-04-03 ",
+                            start_date= "2019-04-03",
                             token = "" # 參考登入，獲取金鑰
                             )
         )
@@ -875,14 +877,276 @@
             name: str,
             date: str,
             institutional_investors: str,
-            long_deal_volume: str,
+            long_deal_volume: int32,
             long_deal_amount: int32,
             short_deal_volume: int32,
-            short_deal_amount: str,
+            short_deal_amount: int32,
             long_open_interest_balance_volume: int32,
             long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: str,
+            short_open_interest_balance_volume: int32,
             short_open_interest_balance_amount: int32
+        }
+        ```
+
+----------------------------------
+
+#### 期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours
+
+- 資料區間：2021-10-12 ~ now
+- 資料更新時間 **星期一至六 05:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFuturesInstitutionalInvestorsAfterHours",
+            "data_id": "TX",
+            "start_date": "2021-10-12",
+            "end_date": "2024-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanFuturesInstitutionalInvestorsAfterHours",
+            data_id="TX",
+            start_date= "2021-10-12",
+            end_date= "2024-04-12",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | futures_id   | date       | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |
+        |---:|:-------------|:-----------|:--------------------------|-------------------:|-------------------:|--------------------:|--------------------:|
+        |  0 | TX           | 2021-10-12 | 自營商                    |               1690 |            5615098 |                1516 |             5034732 |
+        |  1 | TX           | 2021-10-12 | 投信                      |                  0 |                  0 |                   0 |                   0 |
+        |  2 | TX           | 2021-10-12 | 外資                      |              16315 |           54215114 |               14737 |            48973486 |
+        |  3 | TX           | 2021-10-13 | 自營商                    |               2307 |            7608759 |                2252 |             7427497 |
+        |  4 | TX           | 2021-10-13 | 投信                      |                  0 |                  0 |                   0 |                   0 |
+    === "Schema"
+        ```
+        {
+            name: str,
+            date: str,
+            institutional_investors: str,
+            long_deal_volume: int32,
+            long_deal_amount: int32,
+            short_deal_volume: int32,
+            short_deal_amount: int32,
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanFuturesInstitutionalInvestorsAfterHours",
+            "start_date": "2021-10-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df)
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanFuturesInstitutionalInvestorsAfterHours",
+                            start_date= "2021-10-12",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | futures_id   | date       | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |
+        |---:|:-------------|:-----------|:--------------------------|-------------------:|-------------------:|--------------------:|--------------------:|
+        |  0 | F1F          | 2021-10-12 | 自營商                    |                 39 |              13769 |                  41 |               14477 |
+        |  1 | F1F          | 2021-10-12 | 投信                      |                  0 |                  0 |                   0 |                   0 |
+        |  2 | F1F          | 2021-10-12 | 外資                      |                 83 |              29320 |                  35 |               12349 |
+        |  3 | MTX          | 2021-10-12 | 自營商                    |               2454 |            2037796 |                2761 |             2292564 |
+        |  4 | MTX          | 2021-10-12 | 投信                      |                  0 |                  0 |                   0 |                   0 |
+    === "Schema"
+        ```
+        {
+            name: str,
+            date: str,
+            institutional_investors: str,
+            long_deal_volume: int32,
+            long_deal_amount: int32,
+            short_deal_volume: int32,
+            short_deal_amount: int32,
+        }
+        ```
+
+----------------------------------
+#### 選擇權夜盤三大法人買賣 TaiwanOptionInstitutionalInvestorsAfterHours
+
+- 資料區間：2021-10-12 ~ now
+- 資料更新時間 **星期一至六 05:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionInstitutionalInvestorsAfterHours",
+            "data_id": "TXO",
+            "start_date": "2021-10-12",
+            "end_date": "2024-04-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df)
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanOptionInstitutionalInvestorsAfterHours",
+            data_id="TXO",
+            start_date= "2021-10-12",
+            end_date= "2024-04-12",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | option_id   | date       | call_put   | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |
+        |---:|:------------|:-----------|:-----------|:--------------------------|-------------------:|-------------------:|--------------------:|--------------------:|
+        |  0 | TXO         | 2021-10-12 | CALL       | 自營商                    |              14018 |              45608 |               14478 |               48062 |
+        |  1 | TXO         | 2021-10-12 | CALL       | 投信                      |                  0 |                  0 |                   0 |                   0 |
+        |  2 | TXO         | 2021-10-12 | CALL       | 外資                      |              16060 |              78585 |               14961 |               68018 |
+        |  3 | TXO         | 2021-10-12 | PUT        | 自營商                    |              12802 |              50821 |               15570 |               66005 |
+        |  4 | TXO         | 2021-10-12 | PUT        | 投信                      |                  0 |                  0 |                   0 |                   0 |
+    === "Schema"
+        ```
+        {
+            name: str,
+            date: str,
+            institutional_investors: str,
+            long_deal_volume: int32,
+            long_deal_amount: int32,
+            short_deal_volume: int32,
+            short_deal_amount: int32,
+            long_open_interest_balance_volume: int32,
+            long_open_interest_balance_amount: int32,
+            short_open_interest_balance_volume: int32,
+            short_open_interest_balance_amount: int32
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanOptionInstitutionalInvestorsAfterHours",
+            "start_date": "2021-10-12",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        df = pd.DataFrame(data["data"])
+        print(df)
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanOptionInstitutionalInvestorsAfterHours",
+                            start_date= "2021-10-12",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | option_id   | date       | call_put   | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |
+        |---:|:------------|:-----------|:-----------|:--------------------------|-------------------:|-------------------:|--------------------:|--------------------:|
+        |  0 | TXO         | 2021-10-12 | CALL       | 自營商                    |              14018 |              45608 |               14478 |               48062 |
+        |  1 | TXO         | 2021-10-12 | CALL       | 投信                      |                  0 |                  0 |                   0 |                   0 |
+        |  2 | TXO         | 2021-10-12 | CALL       | 外資                      |              16060 |              78585 |               14961 |               68018 |
+        |  3 | TXO         | 2021-10-12 | PUT        | 自營商                    |              12802 |              50821 |               15570 |               66005 |
+        |  4 | TXO         | 2021-10-12 | PUT        | 投信                      |                  0 |                  0 |                   0 |                   0 |
+    === "Schema"
+        ```
+        {
+            name: str,
+            date: str,
+            institutional_investors: str,
+            long_deal_volume: int32,
+            long_deal_amount: int32,
+            short_deal_volume: int32,
+            short_deal_amount: int32,
         }
         ```
 
