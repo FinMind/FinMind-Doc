@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 9 種資料集，如下:
+在台股基本面，我們擁有 10 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
@@ -10,6 +10,7 @@
 - [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
 - [台灣股價市值表 TaiwanStockMarketValue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalue-backersponsor)
 - [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
+- [台灣市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1140,5 +1141,158 @@
             date: str,
             stock_id: str,
             stock_name: str
+        }
+        ```
+
+
+----------------------------------
+#### 台灣市值比重表 TaiwanStockMarketValueWeight (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2024-10-30 ~ now
+- 資料更新時間 **每月1,2,3,28,29,30,31 23:45**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_market_value_weight(
+            stock_id='2330',
+            start_date='2024-01-01',
+            end_date='2025-01-01'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockMarketValueWeight",
+            "data_id": "2330",
+            "start_date": "2024-01-01",
+            "end_date": "2025-01-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMarketValueWeight",
+            data_id= "2330",
+            start_date= "2024-01-01",
+            end_date= "2025-01-01",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | rank |  stock_id  |  stock_name |  weight_per  |    date     |   type  |
+        |---:|:-----|-----------:|------------:|-------------:|------------:|--------:|
+        |  0 |   1  |    2330    |   台積電     |    36.8397   | 2024-10-30  |   twse  |
+    === "Schema"
+        ```
+        {
+            rank: int64,
+            stock_id: str,
+            stock_name: str,
+            weight_per: float32,
+            date: str,
+            type: str
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_market_value_weight(
+            start_date='2024-10-30',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockMarketValueWeight",
+            "start_date": "2024-10-30",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockMarketValueWeight",
+            start_date= "2024-10-30",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | rank  |  stock_id  |  stock_name |  weight_per  |    date     |   type  |
+        |---:|:------|-----------:|------------:|-------------:|------------:|--------:|
+        |  0 |   43  |    1101    |   台泥       |    0.3327    | 2024-10-30  |   twse  |
+        |  0 |   63  |    1102    |   亞泥       |    0.2282    | 2024-10-30  |   twse  |
+        |  0 |   394 |    1103    |   嘉泥       |    0.0192    | 2024-10-30  |   twse  |
+        |  0 |   305 |    1104    |   環泥       |    0.0286    | 2024-10-30  |   twse  |
+        |  0 |   651 |    1108    |   幸福       |    0.0082    | 2024-10-30  |   twse  |
+    === "Schema"
+        ```
+        {
+            rank: int64,
+            stock_id: str,
+            stock_name: str,
+            weight_per: float32,
+            date: str,
+            type: str
         }
         ```
