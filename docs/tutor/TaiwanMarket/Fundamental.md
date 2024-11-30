@@ -10,7 +10,7 @@
 - [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice)
 - [台灣股價市值表 TaiwanStockMarketValue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalue-backersponsor)
 - [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
-- [台灣市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
+- [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1146,7 +1146,7 @@
 
 
 ----------------------------------
-#### 台灣市值比重表 TaiwanStockMarketValueWeight (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股市值比重表 TaiwanStockMarketValueWeight (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2024-10-30 ~ now
 - 資料更新時間 **每月1,2,3,28,29,30,31 23:45**，實際更新時間以 API 資料為主
