@@ -1,7 +1,8 @@
 
-在台灣股票新聞面，我們擁有 1 種資料集，如下:
+在台灣股票新聞面，我們擁有 2 種資料集，如下:
 
 - [相關新聞表 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstocknews)
+- [台灣每月景氣對策信號表 TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
 
 
 #### 相關新聞表 TaiwanStockNews
@@ -62,5 +63,67 @@
             link: str,
             source: str,
             title: str
+        }
+        ```
+
+#### 台灣每月景氣對策信號表 TaiwanBusinessIndicator (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanBusinessIndicator",
+            "start_date": "2024-04-01",
+            "end_date": "2025-01-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(url = url,
+                            query = list(
+                            dataset="TaiwanBusinessIndicator",
+                            start_date= "2020-04-01",
+                            "end_date": "2025-01-01",
+                            token = "" # 參考登入，獲取金鑰
+                            )
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |      |    date     |   leading  | leading_notrend   | coincident  | coincident_notrend  | lagging |  lagging_notrend |  monitoring |  monitoring_color |
+        |-----:|:------------|-----------:|:-----------------:|:-----------:|:--------------------|:--------|:-----------------|:------------|:------------------|
+        | 0    | 2024-01-01  |    92.32   |      99.85        |      90.8   |          98.21      |  91.82  |         99.31    |      27     |         G         |
+        | 1    | 2024-02-01  |    92.71   |      100.35       |      91.45  |          98.99      |  91.68  |         99.25    |      29     |         G         |
+        | 2    | 2024-03-01  |    93.19   |      100.95       |      92.28  |          99.97      |  91.6   |         99.23    |      31     |         G         |
+        | 3    | 2024-04-01  |    93.75   |      101.63       |      93.23  |          101.07     |  91.52  |         99.22    |      35     |         YR        |
+        | 4    | 2024-05-01  |    94.29   |      102.28       |      94.21  |          102.19     |  91.41  |         99.16    |      36     |         YR        |
+    === "Schema"
+        ```
+        {
+            date: str,
+            leading: float32,
+            leading_notrend: float32,
+            coincident: float32,
+            coincident_notrend: float32,
+            lagging: float32,
+            lagging_notrend: float32,
+            monitoring: float32,
+            monitoring_color: str
         }
         ```
