@@ -2,6 +2,8 @@
 
 #### CnnFearGreedIndex 恐懼與貪婪指數
 
+- 資料區間：2011-01-03 ~ now
+
 !!! example
     ```python
     import requests
