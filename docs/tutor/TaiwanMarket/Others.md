@@ -68,6 +68,8 @@
 
 #### 台灣每月景氣對策信號表 TaiwanBusinessIndicator (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
+- 資料區間：1982-01-01 ~ now
+
 !!! example
     === "Python"
         ```python
