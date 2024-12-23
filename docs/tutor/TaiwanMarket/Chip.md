@@ -1370,8 +1370,64 @@
 - 由於資料量過大，單次請求只提供一天資料
 - 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
 - 部分資料缺失，缺失日期為：2022-10-31~2022-11-03, 2023-01-11~2023-01-17
+- 開啟 Async 功能，可大幅縮短資料更新時間，colab 實測 2175 檔股票，只需 4 分 20 秒即可完成下載。
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_trading_daily_report(
+            stock_id="2330",
+            date='2022-06-16',
+        )
+        print(df)
+        ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+
+        date = '2024-12-20'
+        taiwan_stock_price_df = api.taiwan_stock_daily(start_date=date)
+        # 只拿取當天交易量大於 0 的股票
+        taiwan_stock_price_df = taiwan_stock_price_df[
+            ["stock_id", "Trading_Volume"]
+        ]
+        taiwan_stock_price_df = taiwan_stock_price_df[
+            taiwan_stock_price_df["Trading_Volume"] > 0
+        ]
+        # 拿取當天上市櫃，industry_category 非大盤, index, 所有證券的股票 ID
+        # 因為這些股票沒有分點
+        stock_info_df = api.taiwan_stock_info()
+        stock_info = stock_info_df[stock_info_df["type"].isin(["twse", "tpex"])]
+        cate_mask = stock_info["industry_category"].isin(
+            ["大盤", "Index", "所有證券"]
+        )
+        id_mask = stock_info["stock_id"].isin(["TAIEX", "TPEx"])
+        stock_info = stock_info[~(cate_mask | id_mask)]
+        stock_info = stock_info.merge(
+            taiwan_stock_price_df, how="inner", on=["stock_id"]
+        )
+        stock_info = stock_info[~stock_info["stock_id"].isin(taiwan_stock_price_df)]
+        stock_id_list = list(set(stock_info["stock_id"].values))
+        logger.info(f"len: {len(stock_id_list)}")  # 2175
+        start = datetime.datetime.now()
+        df = data_loader.taiwan_stock_trading_daily_report(
+            stock_id_list=stock_id_list,
+            date=date,
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        # 0:04:20.405935
+        ```
     === "Python-request"
         ```python
         import requests
