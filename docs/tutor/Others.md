@@ -1,6 +1,6 @@
 
 
-#### CnnFearGreedIndex 恐懼與貪婪指數
+#### CnnFearGreedIndex 恐懼與貪婪指數(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2011-01-03 ~ now
 

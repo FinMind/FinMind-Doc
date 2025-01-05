@@ -7,7 +7,7 @@
 - [可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview)
 
 
-#### 可轉債總覽 TaiwanStockConvertibleBondInfo
+#### 可轉債總覽 TaiwanStockConvertibleBondInfo(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Package"
@@ -72,7 +72,7 @@
 
 ---
 
-#### 可轉債日成交資訊 TaiwanStockConvertibleBondDaily
+#### 可轉債日成交資訊 TaiwanStockConvertibleBondDaily(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Package"
@@ -241,7 +241,7 @@
 
 ---
 
-#### 可轉債三大法人日交易資訊 TaiwanStockConvertibleBondInstitutionalInvestors
+#### 可轉債三大法人日交易資訊 TaiwanStockConvertibleBondInstitutionalInvestors(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Package"
@@ -404,7 +404,7 @@
 
 ---
 
-#### 可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview
+#### 可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
     === "Package"

@@ -677,7 +677,7 @@
         ```
 
 ----------------------------------
-#### 股東持股分級表 TaiwanStockHoldingSharesPer
+#### 股東持股分級表 TaiwanStockHoldingSharesPer(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2001-01-01 ~ now
 !!! example

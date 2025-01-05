@@ -891,7 +891,7 @@
 
 ----------------------------------
 
-#### 期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours
+#### 期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2021-10-12 ~ now
 - 資料更新時間 **星期一至六 05:00**，實際更新時間以 API 資料為主
@@ -1019,7 +1019,7 @@
         ```
 
 ----------------------------------
-#### 選擇權夜盤三大法人買賣 TaiwanOptionInstitutionalInvestorsAfterHours
+#### 選擇權夜盤三大法人買賣 TaiwanOptionInstitutionalInvestorsAfterHours(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2021-10-12 ~ now
 - 資料更新時間 **星期一至六 05:00**，實際更新時間以 API 資料為主
@@ -1455,7 +1455,7 @@
         }
         ```
 
-#### 期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders
+#### 期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：1998-07-01 ~ now
 - 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
@@ -1633,7 +1633,7 @@
 
 ----------------------------------
 
-#### 選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders
+#### 選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：1998-07-01 ~ now
 - 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
