@@ -1392,10 +1392,13 @@
         from loguru import logger
         import datetime
 
-        api = DataLoader()
+        token = ""
+
+        data_loader = DataLoader()
+        data_loader.login_by_token(token)
 
         date = '2024-12-20'
-        taiwan_stock_price_df = api.taiwan_stock_daily(start_date=date)
+        taiwan_stock_price_df = data_loader.taiwan_stock_daily(start_date=date)
         # 只拿取當天交易量大於 0 的股票
         taiwan_stock_price_df = taiwan_stock_price_df[
             ["stock_id", "Trading_Volume"]
@@ -1405,7 +1408,7 @@
         ]
         # 拿取當天上市櫃，industry_category 非大盤, index, 所有證券的股票 ID
         # 因為這些股票沒有分點
-        stock_info_df = api.taiwan_stock_info()
+        stock_info_df = data_loader.taiwan_stock_info()
         stock_info = stock_info_df[stock_info_df["type"].isin(["twse", "tpex"])]
         cate_mask = stock_info["industry_category"].isin(
             ["大盤", "Index", "所有證券"]
