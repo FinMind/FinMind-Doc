@@ -1166,7 +1166,7 @@
         {
             stock_id: str,
             date: str,
-            BuyAfterSale: int64,
+            BuyAfterSale: str,
             Volume: int64,
             BuyAmount: int64,
             SellAmount: int64
@@ -1237,7 +1237,7 @@
         {
             stock_id: str,
             date: str,
-            BuyAfterSale: int64,
+            BuyAfterSale: str,
             Volume: int64,
             BuyAmount: int64,
             SellAmount: int64
