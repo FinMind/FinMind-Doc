@@ -6,7 +6,7 @@
 - [個股三大法人買賣表 TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
 - [整體市場三大法人買賣表 TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktotalinstitutionalinvestors)
 - [外資持股表 TaiwanStockShareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
-- [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper)
+- [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper-backersponsor)
 - [借券成交明細 TaiwanStockSecuritiesLending](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
 - [暫停融券賣出表(融券回補日) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginshortsalesuspension)
 - [信用額度總量管制餘額表 TaiwanDailyShortSaleBalances](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
