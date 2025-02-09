@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 15 種資料集，如下:
+在台股籌碼面，我們擁有 16 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -18,6 +18,7 @@
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 - [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
+- [公布處置有價證劵表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod)
 
 
 ----------------------------------
@@ -1940,6 +1941,159 @@
             sell_volume: int64,
             buy_price: float,
             sell_price: float,
+        }
+        ```
+
+#### 公布處置有價證劵表 TaiwanStockDispositionSecuritiesPeriod
+
+- 資料區間：2001-01-01 ~ now
+- 資料更新時間 **星期一至六 20:00~23:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_disposition_securities_period(
+            stock_id="6477",
+            start_date='2025-01-01',
+            end_date='2025-02-01',
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockDispositionSecuritiesPeriod",
+            "data_id": "6477",
+            "start_date": "2025-01-01",
+            "end_date": "2025-02-01",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockDispositionSecuritiesPeriod",
+            data_id= "6477",
+            start_date= "2025-01-01",
+            end_date= "2025-02-01",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   stock_name |   disposition_cnt |       condition     |   measure   |   period_start |   period_end |
+        |---:|:-----------|-----------:|-------------:|------------------:|--------------------:|-------------:|---------------|---------------|
+        |  0 | 2025-01-09 |       6477 |      安集    |         1         | 連續三次及當日沖銷標準 |   第一次處置 |    2025-01-10 |   2025-02-05 |
+    === "Schema"
+        ```
+        {
+            date: str,
+            stock_id: str,
+            stock_name: str,
+            disposition_cnt: int32,
+            condition: str,
+            measure: str,
+            period_start: str,
+            period_end: str,
+        }
+        ```
+
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_disposition_securities_period(
+            start_date='2025-01-09',
+            end_date: "2025-01-09",
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockDispositionSecuritiesPeriod",
+            "start_date": "2025-01-09",
+            "end_date": "2025-01-09",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockDispositionSecuritiesPeriod",
+            start_date= "2025-01-09",
+            end_date: "2025-01-09",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   stock_name |   disposition_cnt |       condition     |   measure   |   period_start |   period_end |
+        |---:|:-----------|-----------:|-------------:|------------------:|--------------------:|-------------:|---------------|---------------|
+        |  0 | 2025-01-09 |       6477 |      安集    |         1         | 連續三次及當日沖銷標準 |   第一次處置 |    2025-01-10 |   2025-02-05 |
+        |  1 | 2025-01-09 |       9103 | 美德醫療-DR  |         1         | 最近十個營業日已有六次 |   第二次處置 |    2025-01-10 |   2025-02-03 |
+    === "Schema"
+        ```
+        {
+            date: str,
+            stock_id: str,
+            stock_name: str,
+            disposition_cnt: int32,
+            condition: str,
+            measure: str,
+            period_start: str,
+            period_end: str,
         }
         ```
 
