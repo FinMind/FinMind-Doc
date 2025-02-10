@@ -259,7 +259,7 @@
         df = api.taiwan_option_daily(
             option_id='TXO',
             start_date='2020-04-01',
-            end_date='2020-04-12',
+            end_date='2020-04-02',
         )
         ```
     === "Python-request"
@@ -271,7 +271,7 @@
             "dataset": "TaiwanOptionDaily",
             "data_id":"TXO",
             "start_date": "2020-04-01",
-            "end_date": "2020-04-12",
+            "end_date": "2020-04-02",
             "token": "", # 參考登入，獲取金鑰
         }
         data = requests.get(url, params=parameter)
@@ -292,7 +292,7 @@
                             dataset="TaiwanOptionDaily",
                             data_id="TXO",
                             start_date= "2020-04-01",
-                            end_date= "2020-04-12",
+                            end_date= "2020-04-02",
                             token = "" # 參考登入，獲取金鑰
                             )
         )
@@ -302,25 +302,25 @@
         ```
 !!! output
     === "DataFrame"
-        |    | date       | futures_id   |   contract_date |   open |   max |   min |   close |   spread |   spread_per |   volume |   settlement_price |   open_interest | trading_session   |
-        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|
-        |  0 | 2020-04-01 | BRF          |          202005 |      0 |     0 |   0   |     0   |        0 |         0    |        0 |              681   |             381 | position          |
-        |  1 | 2020-04-01 | BRF          |          202005 |    690 |   704 | 681   |   681   |       -9 |        -1.3  |       45 |                0   |               0 | after_market      |
-        |  2 | 2020-04-01 | BRF          |          202006 |    795 |   799 | 774   |   774   |      -30 |        -3.73 |       63 |              774   |             435 | position          |
-        |  3 | 2020-04-01 | BRF          |          202006 |    818 |   833 | 789.5 |   791   |      -13 |        -1.62 |       77 |                0   |               0 | after_market      |
-        |  4 | 2020-04-01 | BRF          |          202007 |    881 |   881 | 874.5 |   874.5 |        7 |         0.81 |        3 |              874.5 |               3 | position          |
+        |    | date       | option_id   |   contract_date |   strike_price | call_put   |   open |   max |   min |   close |   volume |   settlement_price |   open_interest | trading_session   |
+        |---:|:-----------|:------------|----------------:|---------------:|:-----------|-------:|------:|------:|--------:|---------:|-------------------:|----------------:|:------------------|
+        |  0 | 2020-04-01 | TXO         |          202004W1 |             8300 | put        |   0.1 |  0.2 |  0.1 |    0.1 |      325 |               0 |            6253 | position          |
+        |  1 | 2020-04-01 | TXO         |          202004W1 |             8300 | put       |   0.2    |  0.2    |  0.1    |    0.2    |   382 |              0  |               0 | after_market          |
+        |  2 | 2020-04-01 | TXO         |          202004W1 |             8400 | put        |   0.1    |  0.1    |  0.1    |    0.1    |   152 |               0 |            1710 | position          |
+        |  3 | 2020-04-01 | TXO         |          202004W1 |             8400 | put       |   0.3    |  0.3    |  0.1    |    0.1    |       96 |              0  |               0 | after_market          |
+        |  4 | 2020-04-01 | TXO         |          202004W1 |             8500 | put        |   0.1    |  0.1    |  0.1    |    0.1    |       94 |               0 |               3464 | position          |
     === "Schema"
         ```
         {
             date: str,
-            futures_id: str,
+            option_id: str,
             contract_date: str,
+            strike_price:float32,
+            call_put: str,
             open: float32,
             max: float32,
             min: float32,
             close: float32,
-            spread: float32,
-            spread_per: float32,
             volume: float64,
             settlement_price: float32,
             open_interest: float64,
