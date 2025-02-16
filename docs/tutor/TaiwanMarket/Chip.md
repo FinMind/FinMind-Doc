@@ -18,7 +18,7 @@
 - [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 - [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
-- [公布處置有價證劵表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod)
+- [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod)
 
 
 ----------------------------------
@@ -1944,7 +1944,7 @@
         }
         ```
 
-#### 公布處置有價證劵表 TaiwanStockDispositionSecuritiesPeriod
+#### 公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod
 
 - 資料區間：2001-01-01 ~ now
 - 資料更新時間 **星期一至六 20:00~23:00**，實際更新時間以 API 資料為主
