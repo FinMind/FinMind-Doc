@@ -1,4 +1,4 @@
-在台灣金融市場，我們擁有 63 種資料集，如下:
+在台灣金融市場，我們擁有 64 種資料集，如下:
 
 #### 技術面 Technical
 
@@ -88,5 +88,6 @@
 
 - [相關新聞 TaiwanStockNews](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstocknews)
 - [台灣每月景氣對策信號表 TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
+- [個體公司所屬產業鏈 TaiwanStockIndustryChain](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor)
 
 具體 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs)
