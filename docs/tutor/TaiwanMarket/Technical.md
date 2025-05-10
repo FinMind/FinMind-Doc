@@ -1,4 +1,4 @@
-在台股技術面，我們擁有 14 種資料集，如下:
+在台股技術面，我們擁有 15 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
@@ -14,6 +14,7 @@
 - [加權、櫃買報酬指數 TaiwanStockTotalReturnIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktotalreturnindex)
 - [台灣個股十年線資料表 TaiwanStock10Year](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstock10year-backersponsor)
 - [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)
+- [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)
 
 
 ----------------------------------
@@ -1090,6 +1091,7 @@
             TAIEX: float64
         }
         ```
+
 ----------------------------------
 #### 當日沖銷交易標的及成交量值 TaiwanStockDayTrading
 
@@ -1605,3 +1607,78 @@
             volume: float32
         }
         ```
+---------------------------------------
+
+#### 每 5 秒指數統計 TaiwanStockEvery5SecondsIndex(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2005-01-03 ~ now
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_every5seconds_index(
+            date='2025-05-09'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        parameter = {
+            "dataset": "TaiwanStockEvery5SecondsIndex",
+            "start_date": "2025-05-09",
+            "token": "", # 參考登入，獲取金鑰
+        }
+        data = requests.get(url, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+        url = url,
+        query = list(
+            dataset="TaiwanStockEvery5SecondsIndex",
+            start_date="2025-05-09",
+            token = "" # 參考登入，獲取金鑰
+        )
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | time     | stock_id   |   price |
+        |---:|:-----------|:---------|:-----------|--------:|
+        |  0 | 2025-05-09 | 09:00:00 | Automobile |  358.19 |
+        |  1 | 2025-05-09 | 09:00:05 | Automobile |  358.45 |
+        |  2 | 2025-05-09 | 09:00:10 | Automobile |  358.19 |
+        |  3 | 2025-05-09 | 09:00:15 | Automobile |  357.63 |
+        |  4 | 2025-05-09 | 09:00:20 | Automobile |  357.65 |
+    === "Schema"
+        ```
+        {
+            date: str,
+            time: str,
+            stock_id: str,
+            price: float
+        }
+        ```
+
+----------------------------------
