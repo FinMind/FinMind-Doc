@@ -26,12 +26,12 @@ token         | str |  N | token
     === "Python"
         ```python
         import requests
-
+        headers = {"Authorization": f"Bearer {token}"}
         url = "https://api.web.finmindtrade.com/v2/user_info"
         payload = {
             "token": token,
         }
-        resp = requests.get(url, params=payload)
+        resp = requests.get(url, headers=headers)
         resp.json()["user_count"]  # 使用次數
         resp.json()["api_request_limit"]  # api 使用上限
 
@@ -46,14 +46,15 @@ token         | str |  N | token
         import pandas as pd
         from tqdm import tqdm
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockPrice",
             "data_id": "2330",
             "start_date": "2020-04-02",
             "end_date": "2020-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         print(resp.status_code)
         print(resp.json())
         ```

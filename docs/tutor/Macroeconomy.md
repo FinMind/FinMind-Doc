@@ -18,12 +18,14 @@
      import requests
      import pandas as pd
      url = "https://api.finmindtrade.com/api/v3/data"
+     token = "" # 參考登入，獲取金鑰
+     headers = {"Authorization": f"Bearer {token}"}
      parameter = {
           "dataset": "CurrencyCirculation",
           "data_id": "US",
           "date": "2020-01-01",
      }
-     data = requests.get(url, params=parameter)
+     data = requests.get(url, headers=headers, params=parameter)
      data = data.json()
      data = pd.DataFrame(data['data'])
      print(data.head())
@@ -43,12 +45,14 @@
      import pandas as pd
 
      url = "https://api.finmindtrade.com/api/v3/data"
+     token = "" # 參考登入，獲取金鑰
+     headers = {"Authorization": f"Bearer {token}"}
      parameter = {
           "dataset": "GovernmentBondsYield",
           "data_id": "United States 1-Month",
           "date": "2020-01-01",
      }
-     data = requests.get(url, params=parameter)
+     data = requests.get(url, headers=headers, params=parameter)
      data = data.json()
      data = pd.DataFrame(data['data'])
      print(data.head())

@@ -16,12 +16,14 @@
      import pandas as pd
 
      url = "https://api.finmindtrade.com/api/v4/data"
+    token = "" # 參考登入，獲取金鑰
+    headers = {"Authorization": f"Bearer {token}"}
      parameter = {
           "dataset": "GovernmentBondsYield",
           "data_id": "United States 1-Month",
           "start_date": "2020-01-01",
      }
-     data = requests.get(url, params=parameter)
+     data = requests.get(url, headers=headers, params=parameter)
      data = data.json()
      data = pd.DataFrame(data['data'])
      print(data.head())

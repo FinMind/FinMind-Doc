@@ -55,11 +55,11 @@ response: token
         library(data.table)
         url = 'https://api.finmindtrade.com/api/v4/login'
         response = httr::POST(
-        url = url,
-        body = list(
-            user_id="user_id",
-            password= "password"
-        )
+            url = url,
+            body = list(
+                user_id="user_id",
+                password= "password"
+            )
         )
         data = content(response)
         print(data)

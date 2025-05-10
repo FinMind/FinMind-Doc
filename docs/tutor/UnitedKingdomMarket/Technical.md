@@ -18,10 +18,12 @@
    import pandas as pd
 
    url = 'https://api.finmindtrade.com/api/v4/data'
+   token = "" # 參考登入，獲取金鑰
+   headers = {"Authorization": f"Bearer {token}"}
    parameter = {
       "dataset": "UKStockInfo"
    }
-   data = requests.get(url, params=parameter)
+   data = requests.get(url, headers=headers, params=parameter)
    data = data.json()
    data = pd.DataFrame(data['data'])
    print(data.head())
@@ -54,6 +56,8 @@
    import pandas as pd
 
    url = 'https://api.finmindtrade.com/api/v4/data'
+   token = "" # 參考登入，獲取金鑰
+   headers = {"Authorization": f"Bearer {token}"}
    parameter = {
       "dataset": "UKStockPrice",
       "data_id": "BP.L",
@@ -61,7 +65,7 @@
       "end_date": "2021-06-16",
       "token": token, # 參考登入，獲取金鑰
    }
-   data = requests.get(url, params=parameter)
+   data = requests.get(url, headers=headers, params=parameter)
    data = data.json()
    data = pd.DataFrame(data['data'])
    print(data.head())

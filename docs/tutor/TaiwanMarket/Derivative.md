@@ -33,11 +33,12 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFutOptDailyInfo",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -48,12 +49,14 @@
         library(data.table)
         library(dplyr)
 
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFutOptDailyInfo",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFutOptDailyInfo"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('cbind',data$data) %>%data.table
@@ -102,14 +105,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesDaily",
             "data_id":"TX",
             "start_date": "2020-04-01",
             "end_date": "2020-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -120,16 +124,17 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesDaily",
-                            data_id="TX",
-                            start_date= "2020-04-01",
-                            end_date= "2020-04-12",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesDaily",
+                data_id="TX",
+                start_date= "2020-04-01",
+                end_date= "2020-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('cbind',data$data) %>%data.table
@@ -183,13 +188,14 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesDaily",
             "start_date": "2020-04-01",
             "end_date": "2020-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -200,14 +206,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesDaily",
-                            start_date= "2020-04-01",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesDaily",
+                start_date= "2020-04-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -267,14 +274,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionDaily",
             "data_id":"TXO",
             "start_date": "2020-04-01",
             "end_date": "2020-04-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -285,16 +293,17 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionDaily",
-                            data_id="TXO",
-                            start_date= "2020-04-01",
-                            end_date= "2020-04-02",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionDaily",
+                data_id="TXO",
+                start_date= "2020-04-01",
+                end_date= "2020-04-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -347,12 +356,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionDaily",
             "start_date": "2020-04-01",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -363,14 +373,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionDaily",
-                            start_date= "2020-04-01",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionDaily",
+                start_date= "2020-04-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -431,13 +442,14 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesTick",
             "data_id": "MTX",
             "start_date": "2020-04-01",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -449,14 +461,16 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanFuturesTick",
-            data_id="MTX",
-            start_date= "2020-01-02",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesTick",
+                data_id="MTX",
+                start_date= "2020-01-02",
+                token = "" # 參考登入，獲取金鑰
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -512,13 +526,14 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionTick",
             "data_id": "OCO",
             "start_date": "2019-09-05",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -530,14 +545,16 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanOptionTick",
-            data_id="OCO",
-            start_date= "2019-09-05",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanOptionTick",
+                data_id="OCO",
+                start_date= "2019-09-05",
+                token = "" # 參考登入，獲取金鑰
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -592,14 +609,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesInstitutionalInvestors",
             "data_id": "TX",# "TXO"
             "start_date": "2020-04-01",
             "end_date": "2020-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df.head())
@@ -611,15 +629,17 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanFuturesInstitutionalInvestors",
-            data_id="TX",
-            start_date= "2020-04-01",
-            end_date= "2020-04-12",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesInstitutionalInvestors",
+                data_id="TX",
+                start_date= "2020-04-01",
+                end_date= "2020-04-12",
+                token = "" # 參考登入，獲取金鑰
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -672,12 +692,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesInstitutionalInvestors",
             "start_date": "2019-04-03",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df)
@@ -688,14 +709,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesInstitutionalInvestors",
-                            start_date= "2019-04-03",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesInstitutionalInvestors",
+                start_date= "2019-04-03"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -752,14 +774,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionInstitutionalInvestors",
             "data_id": "TXO",
             "start_date": "2020-04-01",
             "end_date": "2020-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df)
@@ -771,15 +794,17 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanOptionInstitutionalInvestors",
-            data_id="TX",# "TXO"
-            start_date= "2020-04-01",
-            end_date= "2020-04-12",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanOptionInstitutionalInvestors",
+                data_id="TX",# "TXO"
+                start_date= "2020-04-01",
+                end_date= "2020-04-12",
+                token = "" # 參考登入，獲取金鑰
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -834,12 +859,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionInstitutionalInvestors",
             "start_date": "2019-04-03",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df)
@@ -850,14 +876,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionInstitutionalInvestors",
-                            start_date= "2019-04-03",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionInstitutionalInvestors",
+                start_date= "2019-04-03"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -902,14 +929,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesInstitutionalInvestorsAfterHours",
             "data_id": "TX",
             "start_date": "2021-10-12",
             "end_date": "2024-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df.head())
@@ -921,15 +949,16 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanFuturesInstitutionalInvestorsAfterHours",
-            data_id="TX",
-            start_date= "2021-10-12",
-            end_date= "2024-04-12",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesInstitutionalInvestorsAfterHours",
+                data_id="TX",
+                start_date= "2021-10-12",
+                end_date= "2024-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -967,12 +996,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesInstitutionalInvestorsAfterHours",
             "start_date": "2021-10-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df)
@@ -983,14 +1013,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesInstitutionalInvestorsAfterHours",
-                            start_date= "2021-10-12",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesInstitutionalInvestorsAfterHours",
+                start_date= "2021-10-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -1030,14 +1061,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionInstitutionalInvestorsAfterHours",
             "data_id": "TXO",
             "start_date": "2021-10-12",
             "end_date": "2024-04-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df)
@@ -1049,15 +1081,16 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanOptionInstitutionalInvestorsAfterHours",
-            data_id="TXO",
-            start_date= "2021-10-12",
-            end_date= "2024-04-12",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanOptionInstitutionalInvestorsAfterHours",
+                data_id="TXO",
+                start_date= "2021-10-12",
+                end_date= "2024-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -1100,12 +1133,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionInstitutionalInvestorsAfterHours",
             "start_date": "2021-10-12",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df)
@@ -1116,14 +1150,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionInstitutionalInvestorsAfterHours",
-                            start_date= "2021-10-12",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionInstitutionalInvestorsAfterHours",
+                start_date= "2021-10-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -1176,14 +1211,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesDealerTradingVolumeDaily",
             "data_id": "TX",
             "start_date": "2020-07-01",
             "end_date": "2020-10-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         print(df.head())
@@ -1195,15 +1231,16 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanFuturesDealerTradingVolumeDaily",
-            data_id="TX",
-            start_date="2020-07-01",
-            end_date="2020-10-02",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesDealerTradingVolumeDaily",
+                data_id="TX",
+                start_date="2020-07-01",
+                end_date="2020-10-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -1252,12 +1289,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesDealerTradingVolumeDaily",
             "start_date": "2020-07-01",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         df
@@ -1268,14 +1306,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesDealerTradingVolumeDaily",
-                            start_date="2020-07-01",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesDealerTradingVolumeDaily",
+                start_date="2020-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -1327,14 +1366,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionDealerTradingVolumeDaily",
             "data_id": "TXO",
             "start_date": "2020-07-01",
             "end_date": "2020-10-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         df
@@ -1346,15 +1386,16 @@
         library(data.table)
         library(dplyr)
         url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
         response = httr::GET(
-        url = url,
-        query = list(
-            dataset="TaiwanOptionDealerTradingVolumeDaily",
-            data_id="TXO",
-            start_date="2020-07-01",
-            end_date="2020-10-02",
-            token = "" # 參考登入，獲取金鑰
-        )
+            url = url,
+            query = list(
+                dataset="TaiwanOptionDealerTradingVolumeDaily",
+                data_id="TXO",
+                start_date="2020-07-01",
+                end_date="2020-10-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
         df = data$data %>%
@@ -1403,12 +1444,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionDealerTradingVolumeDaily",
             "start_date": "2021-07-01",
-            "token": "", # 參考登入，獲取金鑰
         }
-        resp = requests.get(url, params=parameter)
+        resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         df = pd.DataFrame(data["data"])
         df
@@ -1419,14 +1461,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionDealerTradingVolumeDaily",
-                            start_date="2021-07-01",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionDealerTradingVolumeDaily",
+                start_date="2021-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -1479,14 +1522,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesOpenInterestLargeTraders",
             "data_id":"TJF",
             "start_date": "2024-09-01",
             "end_date": "2024-09-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -1497,16 +1541,17 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesOpenInterestLargeTraders",
-                            data_id="TJF",
-                            start_date= "2024-09-01",
-                            end_date= "2024-09-02",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesOpenInterestLargeTraders",
+                data_id="TJF",
+                start_date= "2024-09-01",
+                end_date= "2024-09-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('cbind',data$data) %>%data.table
@@ -1565,12 +1610,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesOpenInterestLargeTraders",
             "start_date": "2024-09-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -1581,14 +1627,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanFuturesOpenInterestLargeTraders",
-                            start_date= "2024-09-02",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesOpenInterestLargeTraders",
+                start_date= "2024-09-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table
@@ -1657,14 +1704,15 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionOpenInterestLargeTraders",
             "data_id":"CA",
             "start_date": "2024-09-01",
             "end_date": "2024-09-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -1675,16 +1723,17 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionOpenInterestLargeTraders",
-                            data_id="CA",
-                            start_date= "2024-09-01",
-                            end_date= "2024-09-02",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionOpenInterestLargeTraders",
+                data_id="CA",
+                start_date= "2024-09-01",
+                end_date= "2024-09-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('cbind',data$data) %>%data.table
@@ -1746,12 +1795,13 @@
         import requests
         import pandas as pd
         url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanOptionOpenInterestLargeTraders",
             "start_date": "2024-09-02",
-            "token": "", # 參考登入，獲取金鑰
         }
-        data = requests.get(url, params=parameter)
+        data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
@@ -1762,14 +1812,15 @@
         library(httr)
         library(data.table)
         library(dplyr)
-
+        token = "" # 參考登入，獲取金鑰
         url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(url = url,
-                            query = list(
-                            dataset="TaiwanOptionOpenInterestLargeTraders",
-                            start_date= "2024-09-02",
-                            token = "" # 參考登入，獲取金鑰
-                            )
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionOpenInterestLargeTraders",
+                start_date= "2024-09-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
         df = do.call('rbind',data$data) %>%data.table

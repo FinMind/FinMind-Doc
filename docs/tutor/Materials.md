@@ -20,12 +20,14 @@
      import pandas as pd
 
      url = 'https://api.finmindtrade.com/api/v4/data'
+     token = "" # 參考登入，獲取金鑰
+     headers = {"Authorization": f"Bearer {token}"}
      parameter = {
           "dataset": "GoldPrice",
           "start_date": "2020-01-01",
           "end_date": "2020-01-02",
      }
-     data = requests.get(url, params=parameter)
+     data = requests.get(url, headers=headers, params=parameter)
      data = data.json()
      data = pd.DataFrame(data['data'])
      print(data.head())
@@ -54,13 +56,15 @@
      import pandas as pd
 
      url = 'https://api.finmindtrade.com/api/v4/data'
+     token = "" # 參考登入，獲取金鑰
+     headers = {"Authorization": f"Bearer {token}"}
      parameter = {
           "dataset": "CrudeOilPrices",
           "data_id": "WTI",
           "start_date": "2020-01-01",
           "end_date": "2020-01-08",
      }
-     data = requests.get(url, params=parameter)
+     data = requests.get(url, headers=headers, params=parameter)
      data = data.json()
      data = pd.DataFrame(data['data'])
      print(data.head())
