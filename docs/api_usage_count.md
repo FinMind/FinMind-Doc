@@ -7,11 +7,11 @@ GET: https://api.web.finmindtrade.com/v2/user_info
 
 ```
 
-請求參數:
+Headers:
 
-參數名稱       | 參數型別  | 必填	| 說明
---------------|:-----:|-----:|------------------------
-token         | str |  N | token
+|參數名稱       | 說明  | 格式   |
+|:------------:|:-----:|:-----:|
+|Authorization | 金鑰，登入即可取得 | Bearer token |
 
 
 !!! example
