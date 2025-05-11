@@ -1,7 +1,7 @@
 在美國股票資料，我們擁有 2 種資料集，如下:
 
-- [美國股價 minute 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#minute-usstockpriceminute)
-- [美國股價 daily 資料表 USStockPrice](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#daily-usstockprice)
+- [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#k-usstockpriceminute)
+- [美國股價資料表 USStockPrice](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#usstockprice)
 
 另外針對資料集整理出的列表如下:
 
@@ -52,7 +52,7 @@
         }
         ```
 
-#### 美國股價 minute 資料表 USStockPriceMinute
+#### 美國股價分 K 資料表 USStockPriceMinute
 
 - 資料更新時間 **每天 08:00**，實際更新時間以 API 資料為主
 
@@ -97,7 +97,7 @@
         }
         ```
 
-#### 美國股價 daily 資料表 USStockPrice
+#### 美國股價資料表 USStockPrice
 
 - 資料更新時間 **每天 08:00**，實際更新時間以 API 資料為主
 
