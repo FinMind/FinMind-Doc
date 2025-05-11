@@ -139,7 +139,16 @@
 
 
 !!! example
-    === "Python"
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_industry_chain()
+        ```
+    === "Python-request"
         ```python
         import requests
         import pandas as pd
