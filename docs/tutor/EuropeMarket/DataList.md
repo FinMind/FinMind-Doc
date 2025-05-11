@@ -6,4 +6,4 @@
 
 - [歐洲股價資料表 EuropeStockPrice](https://finmind.github.io/tutor/EuropeMarket/Technical/#europestockprice)
 
-具體 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs)
+具體 schemas 請參考 [finmind](https://finmindtrade.com/analysis/#/data/document)

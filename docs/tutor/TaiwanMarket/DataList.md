@@ -91,4 +91,4 @@
 - [台灣每月景氣對策信號表 TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
 - [個體公司所屬產業鏈 TaiwanStockIndustryChain](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor)
 
-具體 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs)
+具體 schemas 請參考 [finmind](https://finmindtrade.com/analysis/#/data/document)

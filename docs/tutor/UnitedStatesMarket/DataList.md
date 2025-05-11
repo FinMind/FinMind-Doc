@@ -4,7 +4,8 @@
 
 #### 股價 TaiwanStock
 
-- [美國股價 minute 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#minute-usstockpriceminute)
-- [美國股價 daily 資料表 USStockPrice](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#daily-usstockprice)
+- [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#k-usstockpriceminute-backersponsor)
+- [美國股價資料表 USStockPrice](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#usstockprice)
 
-具體 schemas 請參考 [finmindapi](http://api.finmindtrade.com/docs)
+
+具體 schemas 請參考 [finmind](https://finmindtrade.com/analysis/#/data/document)

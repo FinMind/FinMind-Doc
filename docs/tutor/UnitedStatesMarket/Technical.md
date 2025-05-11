@@ -1,6 +1,6 @@
 在美國股票資料，我們擁有 2 種資料集，如下:
 
-- [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#k-usstockpriceminute)
+- [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#k-usstockpriceminute-backersponsor)
 - [美國股價資料表 USStockPrice](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#usstockprice)
 
 另外針對資料集整理出的列表如下:
@@ -52,7 +52,7 @@
         }
         ```
 
-#### 美國股價分 K 資料表 USStockPriceMinute
+#### 美國股價分 K 資料表 USStockPriceMinute (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料更新時間 **每天 08:00**，實際更新時間以 API 資料為主
 
