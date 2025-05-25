@@ -1539,6 +1539,19 @@
 - 部分資料缺失，缺失日期為：2022-10-31~2022-11-03, 2023-01-11~2023-01-17
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_trading_daily_report(
+            securities_trader_id="1102",
+            date='2022-06-16',
+        )
+        print(df)
+        ```
     === "Python-request"
         ```python
         import requests
