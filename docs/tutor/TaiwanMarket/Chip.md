@@ -1630,6 +1630,19 @@
 - 資料更新時間 **星期一至五 01:00**，實際更新時間以 API 資料為主
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_warrant_trading_daily_report(
+            stock_id="084655",
+            date='2023-06-21',
+        )
+        print(df)
+        ```
     === "Python-request"
         ```python
         import requests
