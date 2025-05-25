@@ -3,11 +3,17 @@
 ![gif](https://finmind.github.io/images/snapshot_treemap.gif)
 
 ## 如何執行？
-* 將以下程式碼，儲存為，`FinMind - 台股 - 即時資訊 X 版塊圖 X flask.py`
-* 執行以下指令
+* 將以下程式碼，儲存為，`FinMind_tree_map_flask.py`
+* 安裝 package
 
 ```python
-    FINMIND_API_TOKEN=your_token python FinMind - 台股 - 即時資訊 X 版塊圖 X flask.py
+pip install apscheduler plotly FinMind -q
+```
+
+* 執行以下指令 (將 your_token 改成用戶的 token)
+
+```python
+FINMIND_API_TOKEN=your_token python FinMind_tree_map_flask.py
 ```
 
 
