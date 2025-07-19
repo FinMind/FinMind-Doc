@@ -1,7 +1,9 @@
-在台股技術面，我們擁有 15 種資料集，如下:
+在台股技術面，我們擁有 17 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
+- [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
+- [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
 - [台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)
 - [台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)
@@ -161,6 +163,141 @@
             stock_id: str,
             stock_name: str,
             type: str,
+            date: str
+        }
+        ```
+
+----------------------------------
+#### 台股權證標的對照表 TaiwanStockInfoWithWarrantSummary(只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+- 提供權證標的對照表。( 由於包含權證資料，資料量大，約需等一分鐘時間。 )
+- 資料更新時間 **每天 1:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockInfoWithWarrantSummary",
+            "data_id": "2330",# 可不帶參數
+            "start_date": "2020-04-06",# 可不帶參數
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset = "TaiwanStockInfoWithWarrantSummary",
+                data_id = "2330",# 可不帶參數
+                start_date = "2020-04-06"# 可不帶參數
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    |   stock_id | date       |   close |   target_stock_id |   target_close | type   | fulfillment_method   | end_date   | fulfillment_start_date   | fulfillment_end_date   |   exercise_ratio |   fulfillment_price |
+        |---:|-----------:|:-----------|--------:|------------------:|---------------:|:-------|:---------------------|:-----------|:-------------------------|:-----------------------|-----------------:|--------------------:|
+        |  0 |     052018 | 2023-07-18 |       0 |              2330 |              0 | 認購   | 美式                 | 2025-07-15 | 2023-07-18               | 2025-07-17             |             0.1  |                   0 |
+        |  1 |     052405 | 2023-07-21 |       0 |              2330 |              0 | 認購   | 美式                 | 2025-07-17 | 2023-07-21               | 2025-07-21             |             0.01 |                   0 |
+        |  2 |     057397 | 2023-09-04 |       0 |              2330 |              0 | 認購   | 美式                 | 2025-09-01 | 2023-09-04               | 2025-09-03             |             0.03 |                   0 |
+        |  3 |     057607 | 2023-09-06 |       0 |              2330 |              0 | 認購   | 美式                 | 2025-09-03 | 2023-09-06               | 2025-09-05             |             0.06 |                   0 |
+        |  4 |     060985 | 2023-10-03 |       0 |              2330 |              0 | 認購   | 美式                 | 2025-09-30 | 2023-10-03               | 2025-10-02             |             0.03 |                   0 |
+    === "Schema"
+        ```
+        {
+            stock_id: str,
+            date: str,
+            close: float,
+            target_stock_id: str,
+            target_close: float,
+            type: str,
+            fulfillment_method: str,
+            end_date: str,
+            fulfillment_start_date: str,
+            fulfillment_end_date: str,
+            exercise_ratio: float,
+            fulfillment_price: float
+        }
+        ```
+
+----------------------------------
+#### 台股交易日 TaiwanStockTradingDate
+
+- 提供台股交易日。
+- 資料更新時間-星期一至五 18:00，實際更新時間以 API 資料為主。
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDate",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset = "TaiwanStockTradingDate"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       |
+        |---:|:-----------|
+        |  0 | 2005-01-03 |
+        |  1 | 2005-01-04 |
+        |  2 | 2005-01-05 |
+        |  3 | 2005-01-06 |
+        |  4 | 2005-01-07 |
+    === "Schema"
+        ```
+        {
             date: str
         }
         ```

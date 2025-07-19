@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 10 種資料集，如下:
+在台股基本面，我們擁有 11 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
@@ -11,6 +11,7 @@
 - [台灣股價市值表 TaiwanStockMarketValue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalue-backersponsor)
 - [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
 - [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
+- [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1330,3 +1331,72 @@
             type: str
         }
         ```
+
+
+----------------------------------
+#### 台股分割後參考價 TaiwanStockSplitPrice
+
+- 提供台股分割後參考價。
+- 資料更新時間-星期一至五 18:00，實際更新時間以 API 資料為主。
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockSplitPrice",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockSplitPrice"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | type   |   before_price |   after_price |   max_price |   min_price |   open_price |
+        |---:|:-----------|:-----------|:-------|---------------:|--------------:|------------:|------------:|-------------:|
+        |  0 | 2024-12-11 | 00632R     | 反分割 |           3.28 |         22.96 |       25.25 |       20.67 |        22.96 |
+        |  1 | 2025-02-19 | 00676R     | 反分割 |           2.04 |         12.23 |       13.45 |       11.01 |        12.23 |
+        |  2 | 2025-06-11 | 00663L     | 分割   |         170.15 |         24.3  |       29.16 |       19.44 |        24.3  |
+        |  3 | 2025-06-18 | 0050       | 分割   |         188.65 |         47.16 |       51.85 |       42.45 |        47.16 |
+    === "Schema"
+        ```
+        {
+            date: str
+            stock_id: str
+            type: str
+            before_price: float
+            after_price: float
+            max_price: float
+            min_price: float
+            open_price: float
+        }
+        ```
+
