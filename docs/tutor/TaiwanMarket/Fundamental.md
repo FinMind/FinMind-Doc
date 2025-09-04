@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 11 種資料集，如下:
+在台股基本面，我們擁有 12 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
@@ -12,6 +12,7 @@
 - [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
 - [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 - [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
+- [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwandtockparvaluechange)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1400,3 +1401,82 @@
         }
         ```
 
+----------------------------------
+#### 台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange
+
+- 資料區間：2020-01-01 ~ now
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_par_value_change(
+            start_date='2020-01-01',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockParValueChange",
+            "start_date": "2020-01-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockParValueChange",
+                start_date= "2020-01-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | stock_name   | before_close | after_ref_close | after_ref_max | after_ref_min | after_ref_open |
+        |---:|:-----------|-----------:|-------------:|-------------:|----------------:|-------------:|----------------:|-------------:|
+        |  0 | 2020-08-17 |       8070 | 長華         |      190       |      19        |      20.9     |      17.1      |      19      |
+        |  1 | 2021-10-18 |       6531 | 愛普         |      750       |     375        |     412.5     |     337.5      |     375      |
+        |  2 | 2022-07-13 |       6415 | 矽力-K       |     2485       |     621.25     |     683       |     560        |     621      |
+        |  3 | 2024-11-11 |       8476 | 台境         |       58.8     |      29.4      |      32.3     |      26.5      |      29.4    |
+        |  4 | 2025-06-30 |       4763 | 材料-KY      |      885       |      88.5      |      97.3     |      79.7      |      88.5    |
+    === "Schema"
+        ```
+        {
+            date: str,
+            stock_id: str,
+            stock_name: str,
+            before_close: float64,
+            after_ref_close: float64,
+            after_ref_max: float64,
+            after_ref_min: float64,
+            after_ref_open: float64
+        }
+        ```
