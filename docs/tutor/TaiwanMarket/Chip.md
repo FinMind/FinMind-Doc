@@ -1464,7 +1464,7 @@
         )
         cost = datetime.datetime.now() - start
         logger.info(cost)
-        # 0:04:20.405935
+        # 0:04:20
         ```
     === "Python-request"
         ```python
