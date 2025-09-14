@@ -12,7 +12,7 @@
 - [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
 - [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 - [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
-- [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwandtockparvaluechange)
+- [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockparvaluechange)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
