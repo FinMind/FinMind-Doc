@@ -1891,20 +1891,21 @@
 
 !!! output
     === "DataFrame"
-        |    | date       | time     | stock_id   |   price |
-        |---:|:-----------|:---------|:-----------|--------:|
-        |  0 | 2025-05-09 | 09:00:00 | Automobile |  358.19 |
-        |  1 | 2025-05-09 | 09:00:05 | Automobile |  358.45 |
-        |  2 | 2025-05-09 | 09:00:10 | Automobile |  358.19 |
-        |  3 | 2025-05-09 | 09:00:15 | Automobile |  357.63 |
-        |  4 | 2025-05-09 | 09:00:20 | Automobile |  357.65 |
+        |    | date       | time     | stock_id   |   price | kind   |
+        |---:|:-----------|:---------|:-----------|--------:|:-------|
+        |  0 | 2025-05-09 | 09:00:00 | Automobile |  358.19 | twse   |
+        |  1 | 2025-05-09 | 09:00:05 | Automobile |  358.45 | twse   |
+        |  2 | 2025-05-09 | 09:00:10 | Automobile |  358.19 | twse   |
+        |  3 | 2025-05-09 | 09:00:15 | Automobile |  357.63 | twse   |
+        |  4 | 2025-05-09 | 09:00:20 | Automobile |  357.65 | twse   |
     === "Schema"
         ```
         {
             date: str,
             time: str,
             stock_id: str,
-            price: float
+            price: float,
+            kind: str
         }
         ```
 
