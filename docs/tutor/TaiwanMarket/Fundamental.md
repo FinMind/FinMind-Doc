@@ -572,6 +572,96 @@
         }
         ```
 
+
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        # api.login(user_id='user_id',password='password')
+        df = api.taiwan_stock_dividend(
+            start_date='2025-10-06',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockDividend",
+            "start_date": "2025-10-06",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockStockDividend",
+                start_date= "2025-10-06"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | year   |   StockEarningsDistribution |   StockStatutorySurplus | StockExDividendTradingDate   |   TotalEmployeeStockDividend |   TotalEmployeeStockDividendAmount |   RatioOfEmployeeStockDividendOfTotal |   RatioOfEmployeeStockDividend |   CashEarningsDistribution |   CashStatutorySurplus | CashExDividendTradingDate   | CashDividendPaymentDate   |   TotalEmployeeCashDividend |   TotalNumberOfCashCapitalIncrease |   CashIncreaseSubscriptionRate |   CashIncreaseSubscriptionpRrice |   RemunerationOfDirectorsAndSupervisors |   ParticipateDistributionOfTotalShares | AnnouncementDate   | AnnouncementTime   |
+        |---:|:-----------|-----------:|:-------|----------------------------:|------------------------:|:-----------------------------|-----------------------------:|-----------------------------------:|--------------------------------------:|-------------------------------:|---------------------------:|-----------------------:|:----------------------------|:--------------------------|----------------------------:|-----------------------------------:|-------------------------------:|---------------------------------:|----------------------------------------:|---------------------------------------:|:-------------------|:-------------------|
+        |  0 | 2025-10-06 |       2540 | 113年  |                           3 |                0.999999 | 2025-09-30                   |                            0 |                                  0 |                                     0 |                              0 |                        0.4 |                    0.6 | 2025-09-30                  | 2025-10-31                |                           0 |                              0     |                           0    |                              0   |                                       0 |                            6.7491e+08  | 2025-09-12         | 17:35:32           |
+        |  1 | 2025-10-06 |       3312 | 不適用 |                           0 |                0        | 2025-09-30                   |                            0 |                                  0 |                                     0 |                              0 |                        0   |                    0   |                             |                           |                           0 |                              2e+07 |                           9.84 |                             39.8 |                                       0 |                            1.62627e+08 | 2025-09-22         | 16:52:52           |
+    === "Schema"
+        ```
+        {
+            date: str,
+            stock_id: str,
+            year: str,
+            StockEarningsDistribution: float64,
+            StockStatutorySurplus: float64,
+            StockExDividendTradingDate: str,
+            TotalEmployeeStockDividend: float64,
+            TotalEmployeeStockDividendAmount: float64,
+            RatioOfEmployeeStockDividendOfTotal: float64,
+            RatioOfEmployeeStockDividend: float64,
+            CashEarningsDistribution: float64,
+            CashStatutorySurplus: float64,
+            CashExDividendTradingDate: str,
+            CashDividendPaymentDate: str,
+            TotalEmployeeCashDividend: float64,
+            TotalNumberOfCashCapitalIncrease: float64,
+            CashIncreaseSubscriptionRate: float64,
+            CashIncreaseSubscriptionpRrice: float64,
+            RemunerationOfDirectorsAndSupervisors: float64,
+            ParticipateDistributionOfTotalShares: float64,
+            AnnouncementDate: str,
+            AnnouncementTime: str
+        }
+        ```
+
 ----------------------------------
 #### 除權除息結果表 TaiwanStockDividendResult
 
