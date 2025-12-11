@@ -1432,39 +1432,15 @@
         data_loader = DataLoader()
         data_loader.login_by_token(token)
 
-        date = '2024-12-20'
-        taiwan_stock_price_df = data_loader.taiwan_stock_daily(start_date=date)
-        # 只拿取當天交易量大於 0 的股票
-        taiwan_stock_price_df = taiwan_stock_price_df[
-            ["stock_id", "Trading_Volume"]
-        ]
-        taiwan_stock_price_df = taiwan_stock_price_df[
-            taiwan_stock_price_df["Trading_Volume"] > 0
-        ]
-        # 拿取當天上市櫃，industry_category 非大盤, index, 所有證券的股票 ID
-        # 因為這些股票沒有分點
-        stock_info_df = data_loader.taiwan_stock_info()
-        stock_info = stock_info_df[stock_info_df["type"].isin(["twse", "tpex"])]
-        cate_mask = stock_info["industry_category"].isin(
-            ["大盤", "Index", "所有證券"]
-        )
-        id_mask = stock_info["stock_id"].isin(["TAIEX", "TPEx"])
-        stock_info = stock_info[~(cate_mask | id_mask)]
-        stock_info = stock_info.merge(
-            taiwan_stock_price_df, how="inner", on=["stock_id"]
-        )
-        stock_info = stock_info[~stock_info["stock_id"].isin(taiwan_stock_price_df)]
-        stock_id_list = list(set(stock_info["stock_id"].values))
-        logger.info(f"len: {len(stock_id_list)}")  # 2175
+        date = "2025-12-08"
         start = datetime.datetime.now()
         df = data_loader.taiwan_stock_trading_daily_report(
-            stock_id_list=stock_id_list,
             date=date,
             use_async=True,
         )
         cost = datetime.datetime.now() - start
         logger.info(cost)
-        # 0:04:20
+        # 00:17:58
         ```
     === "Python-request"
         ```python
