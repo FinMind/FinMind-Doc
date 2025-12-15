@@ -999,7 +999,7 @@
         )
         cost = datetime.datetime.now() - start
         logger.info(cost)
-        # 00:08:39
+        # 00:03:41
         ```
     === "R"
         ```R
