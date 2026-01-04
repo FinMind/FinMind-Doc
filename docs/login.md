@@ -1,75 +1,49 @@
 # 登入
 
-#### 登入獲取 token，api v4 改用 token 取代 user_id、password，每次發 request 只需要帶 token 即可。
+#### 在[官網](https://finmindtrade.com/analysis/#/account/user)登入後，在使用者資訊頁面，取得 api token 金鑰，後續 FinMind 操作上，帶上。
 
-```
-POST: https://api.finmindtrade.com/api/v4/login
-
-```
-
-請求參數:
-
-參數名稱       | 參數型別  | 必填	| 說明
---------------|:-----:|-----:|------------------------
-user_id       | str |  N | 使用者 id ，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
-password      | str |  N | 使用者密碼，申辦帳號可以使用更多用量喔，快來[申請](https://finmindtrade.com/analysis/#/account/register)吧!
-
-```
-response: token
-```
 
 !!! package-example
     === "Login by token"
-        ```python
+        ```python hl_lines="4"
         from FinMind.data import DataLoader
 
         api = DataLoader()
         api.login_by_token(api_token='token')
         ```
-    === "Login by password"
-        ```python
-        from FinMind.data import DataLoader
-
-        api = DataLoader()
-        api.login(user_id='user_id',password='password')
-        ```
 
 !!! request-example
     === "Python"
-        ```python
+        ```python hl_lines="2 3"
         import requests
-        url = "https://api.finmindtrade.com/api/v4/login"
-        payload = {
-            "user_id": "user_id",
-            "password": "password",
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockPrice",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
         }
-        data = requests.post(url, data=payload)
-        data = data.json()
-        print(data)
+        resp = requests.get(url, headers=headers, params=parameter)
+        resp = data.json()
 
-        {'msg': 'success', 'status': 200, 'token': '7777777777777777777777777'}
         ```
     === "R"
-        ```R
+        ```R hl_lines="4 13"
         library(httr)
         library(data.table)
-        url = 'https://api.finmindtrade.com/api/v4/login'
-        response = httr::POST(
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
             url = url,
-            body = list(
-                user_id="user_id",
-                password= "password"
-            )
+            query = list(
+                dataset="TaiwanStockPrice",
+                data_id= "2330",
+                start_date= "2020-01-02",
+                end_date= "2020-04-12",
+            ),
+            add_headers(Authorization = paste("Bearer", token))
         )
         data = content(response)
-        print(data)
 
-        $msg
-        [1] "success"
-
-        $status
-        [1] 200
-
-        $token
-        [1] "777777777777777777777777"
         ```

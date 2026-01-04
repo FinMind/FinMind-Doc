@@ -18,7 +18,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_tick_snapshot(stock_id="2330")
         ```
     === "Python-request"
@@ -106,7 +105,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futopt_tick_info()
         ```
     === "Python-request"
@@ -175,7 +173,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_futures_snapshot(futures_id="TXF")
         ```
     === "Python-request"
@@ -262,7 +259,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_options_snapshot(options_id="TXO")
         ```
     === "Python-request"

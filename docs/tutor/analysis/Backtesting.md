@@ -32,7 +32,7 @@
 
 
      data_loader = DataLoader()
-     # data_loader.login(user_id, password) # 可選
+     # data_loader.login_by_token(api_token='token') # 可選
      obj = strategies.BackTest(
           stock_id="0056",
           start_date="2018-01-01",

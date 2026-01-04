@@ -34,7 +34,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_margin_purchase_short_sale(
             stock_id="2330",
             start_date='2020-04-02',
@@ -122,7 +121,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_margin_purchase_short_sale(
             start_date='2020-04-01',
         )
@@ -211,7 +209,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_margin_purchase_short_sale_total(
             start_date='2020-04-01',
             end_date='2020-04-12',
@@ -294,7 +291,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_institutional_investors(
             stock_id="2330",
             start_date='2020-04-01',
@@ -374,7 +370,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_institutional_investors(
             start_date='2020-04-01',
         )
@@ -452,7 +447,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_institutional_investors_total(
             start_date='2020-04-01',
             end_date='2020-04-12',
@@ -532,7 +526,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_shareholding(
             stock_id="2330",
             start_date='2020-04-01',
@@ -620,7 +613,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_shareholding(
             start_date='2020-04-01',
         )
@@ -704,7 +696,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_holding_shares_per(
             stock_id="2330",
             start_date='2020-04-01',
@@ -785,7 +776,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_holding_shares_per(
             start_date='2020-04-01',
         )
@@ -865,7 +855,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_securities_lending(
             stock_id="2330",
             start_date='2020-04-01',
@@ -948,7 +937,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_securities_lending(
             start_date='2020-04-01',
         )
@@ -1160,7 +1148,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_daily_short_sale_balances(
             stock_id="2330",
             start_date='2020-04-01',
@@ -1250,7 +1237,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_daily_short_sale_balances(
             start_date='2020-04-01',
         )
@@ -1337,7 +1323,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_securities_trader_info()
         ```
     === "Python-request"
@@ -1414,7 +1399,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_trading_daily_report(
             stock_id="2330",
             date='2022-06-16',
@@ -1521,7 +1505,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_trading_daily_report(
             securities_trader_id="1102",
             date='2022-06-16',
@@ -1612,7 +1595,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_warrant_trading_daily_report(
             stock_id="084655",
             date='2023-06-21',
@@ -1767,7 +1749,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_government_bank_buy_sell(
             start_date='2023-01-17',
         )
@@ -1846,7 +1827,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_total_exchange_margin_maintenance(
             start_date='2024-04-01',
             end_date='2024-05-01'
@@ -1924,7 +1904,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_trading_daily_report_secid_agg(
             stock_id="2330",
             securities_trader_id="1020",
@@ -2011,7 +1990,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_disposition_securities_period(
             stock_id="6477",
             start_date='2025-01-01',
@@ -2088,7 +2066,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_disposition_securities_period(
             start_date='2025-01-09',
             end_date: "2025-01-09",

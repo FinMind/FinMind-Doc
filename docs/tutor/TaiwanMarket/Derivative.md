@@ -25,7 +25,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futopt_daily_info()
         ```
     === "Python-request"
@@ -93,7 +92,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_daily(
             futures_id='TX',
             start_date='2020-04-01',
@@ -178,7 +176,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_daily(
             start_date='2020-04-01'
         )
@@ -262,7 +259,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_daily(
             option_id='TXO',
             start_date='2020-04-01',
@@ -346,7 +342,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_daily(
             start_date='2020-04-01'
         )
@@ -431,7 +426,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_tick(
             futures_id='MTX',
             date='2020-04-01'
@@ -515,7 +509,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_tick(
             option_id='OCO',
             date='2020-04-01'
@@ -597,7 +590,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_institutional_investors(
             data_id='TX',
             start_date='2020-04-01',
@@ -682,7 +674,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futopt_institutional_investors(
             start_date='2020-04-01'
         )
@@ -762,7 +753,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_institutional_investors(
             data_id='TXO',
             start_date='2020-04-01',
@@ -848,7 +838,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futopt_institutional_investors(
             data_id='TXO',
             start_date='2020-04-01'
@@ -1199,7 +1188,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_dealer_trading_volume_daily(
             futures_id='TX',
             start_date='2020-07-01'
@@ -1279,7 +1267,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_dealer_trading_volume_daily(
             start_date='2021-07-01'
         )
@@ -1354,7 +1341,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_dealer_trading_volume_daily(
             option_id='TXO',
             start_date='2020-07-01',
@@ -1434,7 +1420,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_dealer_trading_volume_daily(
             start_date='2021-07-01'
         )
@@ -1510,7 +1495,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_open_interest_large_traders(
             futures_id='TJF',
             start_date='2024-09-01',
@@ -1600,7 +1584,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_futures_open_interest_large_traders(
             start_date='2024-09-02'
         )
@@ -1692,7 +1675,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_open_interest_large_traders(
             futures_id='CA',
             start_date='2024-09-01',
@@ -1785,7 +1767,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_option_open_interest_large_traders(
             start_date='2024-09-02'
         )

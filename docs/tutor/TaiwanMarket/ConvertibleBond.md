@@ -16,7 +16,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_convertible_bond_info()
         ```
     === "Python-request"
@@ -83,7 +82,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_stock_convertible_bond_daily(
             cb_id="15131",
             start_date="2020-04-01",
@@ -170,7 +168,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_stock_convertible_bond_daily(
             start_date="2020-04-06",
         )
@@ -258,7 +255,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_stock_convertible_bond_institutional_investors(
             cb_id="15131",
             start_date="2020-04-01",
@@ -341,7 +337,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_stock_convertible_bond_institutional_investors(
             start_date="2020-04-06",
         )
@@ -426,7 +421,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_stock_convertible_bond_daily_overview(
             cb_id="15131",
             start_date="2020-04-01",
@@ -519,7 +513,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = data_loader.taiwan_stock_convertible_bond_daily_overview(
             start_date="2020-04-06",
         )

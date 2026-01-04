@@ -32,7 +32,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_info()
         ```
     === "Python-request"
@@ -107,7 +106,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_info_with_warrant()
         ```
     === "Python-request"
@@ -316,7 +314,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_daily(
             stock_id='2330',
             start_date='2020-04-02',
@@ -401,7 +398,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_daily(
             start_date='2020-04-06',
         )
@@ -487,7 +483,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_weekly(
             stock_id='2330',
             start_date='2020-04-02',
@@ -641,7 +636,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_monthly(
             stock_id='2330',
             start_date='2020-04-02',
@@ -794,7 +788,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_daily_adj(
             stock_id='2330',
             start_date='2020-04-02',
@@ -955,7 +948,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_tick(
             stock_id='2330',
             date='2020-01-02'
@@ -1058,7 +1050,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_per_pbr(
             stock_id='2330',
             start_date='2020-01-02',
@@ -1140,7 +1131,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_book_and_trade(
             date='2021-01-07'
         )
@@ -1220,7 +1210,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.tse(
             date='2020-07-01'
         )
@@ -1295,7 +1284,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_day_trading(
             stock_id='2330',
             start_date='2020-04-02',
@@ -1375,7 +1363,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_day_trading(
             start_date='2020-04-06',
         )
@@ -1452,7 +1439,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_total_return_index(
             index_id="TAIEX",
             start_date='2020-04-02',
@@ -1537,7 +1523,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_10year(
             stock_id='2330',
             start_date='2020-04-02',
@@ -1614,7 +1599,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_10year(
             start_date='2020-04-06',
         )
@@ -1694,7 +1678,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_kbar(
             stock_id='2330',
             date="2023-09-22"
@@ -1822,7 +1805,6 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # api.login(user_id='user_id',password='password')
         df = api.taiwan_stock_every5seconds_index(
             date='2025-05-09'
         )
