@@ -1432,10 +1432,11 @@
         import pandas as pd
 
         url = 'https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report'
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "data_id": "2330",
             "date": "2022-06-16",
-            "token": token, # 參考登入，獲取金鑰
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -1612,7 +1613,6 @@
         parameter = {
             "data_id": "084655",
             "date": "2023-06-21",
-            "token": token, # 參考登入，獲取金鑰
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -1682,7 +1682,6 @@
         parameter = {
             "securities_trader_id": "5920",
             "date": "2023-06-21",
-            "token": token, # 參考登入，獲取金鑰
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()

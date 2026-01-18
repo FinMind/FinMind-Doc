@@ -63,7 +63,6 @@
       "data_id": "BP.L",
       "start_date": "2020-06-16",
       "end_date": "2021-06-16",
-      "token": token, # 參考登入，獲取金鑰
    }
    data = requests.get(url, headers=headers, params=parameter)
    data = data.json()

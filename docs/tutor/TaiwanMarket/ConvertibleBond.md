@@ -182,7 +182,6 @@
         parameter = {
             "dataset": "TaiwanStockConvertibleBondDaily",
             "start_date": "2020-04-06",
-            "token": token, # 參考登入，獲取金鑰
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -351,7 +350,6 @@
         parameter = {
             "dataset": "TaiwanStockConvertibleBondInstitutionalInvestors",
             "start_date": "2020-04-06",
-            "token": token, # 參考登入，獲取金鑰
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -527,7 +525,6 @@
         parameter = {
             "dataset": "TaiwanStockConvertibleBondDailyOverview",
             "start_date": "2020-04-06",
-            "token": token, # 參考登入，獲取金鑰
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()

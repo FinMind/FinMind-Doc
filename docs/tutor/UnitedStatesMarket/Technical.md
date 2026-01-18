@@ -68,7 +68,6 @@
         "dataset": "USStockPriceMinute",
         "data_id": "^DJI",
         "start_date": "2022-06-16",
-        "token": token, # 參考登入，獲取金鑰
     }
     data = requests.get(url, headers=headers, params=parameter)
     data = data.json()
@@ -114,7 +113,6 @@
         "data_id": "^DJI",
         "start_date": "2020-06-16",
         "end_date": "2021-06-16",
-        "token": token, # 參考登入，獲取金鑰
     }
     data = requests.get(url, headers=headers, params=parameter)
     data = data.json()
