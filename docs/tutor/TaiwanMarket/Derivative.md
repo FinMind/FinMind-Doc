@@ -73,9 +73,9 @@
     === "Schema"
         ```
         {
-            code: str,
-            type: str,
-            name: str
+            code: str, # 商品代碼
+            type: str, # 種類
+            name: str # 商品名稱
         }
         ```
 
@@ -151,19 +151,19 @@
     === "Schema"
         ```
         {
-            date: str,
-            futures_id: str,
-            contract_date: str,
-            open: float32,
-            max: float32,
-            min: float32,
-            close: float32,
-            spread: float32,
-            spread_per: float32,
-            volume: float64,
-            settlement_price: float32,
-            open_interest: float64,
-            trading_session: str
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            close: float32, # 收盤價
+            spread: float32, # 漲跌幅
+            spread_per: float32, # 漲跌幅比例
+            volume: float64, # 成交量
+            settlement_price: float32, # 結算價
+            open_interest: float64, # 未沖銷契約量
+            trading_session: str # 交易時段
         }
         ```
 
@@ -230,19 +230,19 @@
     === "Schema"
         ```
         {
-            date: str,
-            futures_id: str,
-            contract_date: str,
-            open: float32,
-            max: float32,
-            min: float32,
-            close: float32,
-            spread: float32,
-            spread_per: float32,
-            volume: float64,
-            settlement_price: float32,
-            open_interest: float64,
-            trading_session: str
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            close: float32, # 收盤價
+            spread: float32, # 漲跌幅
+            spread_per: float32, # 漲跌幅比例
+            volume: float64, # 成交量
+            settlement_price: float32, # 結算價
+            open_interest: float64, # 未沖銷契約量
+            trading_session: str # 交易時段
         }
         ```
 
@@ -317,19 +317,19 @@
     === "Schema"
         ```
         {
-            date: str,
-            option_id: str,
-            contract_date: str,
-            strike_price:float32,
-            call_put: str,
-            open: float32,
-            max: float32,
-            min: float32,
-            close: float32,
-            volume: float64,
-            settlement_price: float32,
-            open_interest: float64,
-            trading_session: str
+            date: str, # 日期
+            option_id: str, # 選擇權代碼
+            contract_date: str, # 到期月份
+            strike_price:float32, # 履約價
+            call_put: str, # 買賣權
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            close: float32, # 收盤價
+            volume: float64, # 成交量
+            settlement_price: float32, # 結算價
+            open_interest: float64, # 未平倉合約
+            trading_session: str # 交易時段
         }
         ```
 
@@ -396,19 +396,19 @@
     === "Schema"
         ```
         {
-            date: str,
-            option_id: str,
-            contract_date: str,
-            strike_price: float32,
-            call_put: str,
-            open: float32,
-            max: float32,
-            min: float32,
-            close: float32,
-            volume: float64,
-            settlement_price: float32,
-            open_interest: float64,
-            trading_session: str
+            date: str, # 日期
+            option_id: str, # 選擇權代碼
+            contract_date: str, # 到期月份
+            strike_price: float32, # 履約價
+            call_put: str, # 買賣權
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            close: float32, # 收盤價
+            volume: float64, # 成交量
+            settlement_price: float32, # 結算價
+            open_interest: float64, # 未平倉合約
+            trading_session: str # 交易時段
         }
         ```
 
@@ -486,12 +486,12 @@
         ```
         {
             ExercisePrice: float32,
-            PutCall: str,
-            contract_date: str,
-            date: str,
-            futures_id: str,
-            price: float32,
-            volume: int32
+            PutCall: str, # 買賣權
+            contract_date: str, # 到期月份
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            price: float32, # 成交價
+            volume: int32 # 成交量
         }
         ```
 
@@ -568,12 +568,12 @@
         ```
         {
             ExercisePrice: float32,
-            PutCall: str,
-            contract_date: str,
-            date: str,
-            option_id: str,
-            price: float32,
-            volume: int32
+            PutCall: str, # 買賣權
+            contract_date: str, # 到期月份
+            date: str, # 日期
+            option_id: str, # 選擇權代碼
+            price: float32, # 成交價
+            volume: int32 # 成交量
         }
         ```
 
@@ -651,17 +651,17 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
-            long_open_interest_balance_volume: int32,
-            long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: int32,
-            short_open_interest_balance_amount: int32
+            name: str, # 商品名稱
+            date: str, # 日期
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32, # 空方契約金額
+            long_open_interest_balance_volume: int32, # 多方未平倉口數
+            long_open_interest_balance_amount: int32, # 多方未平倉契約金額
+            short_open_interest_balance_volume: int32, # 空方未平倉口數
+            short_open_interest_balance_amount: int32 # 空方未平倉契約金額
         }
         ```
 
@@ -726,17 +726,17 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
-            long_open_interest_balance_volume: int32,
-            long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: int32,
-            short_open_interest_balance_amount: int32
+            name: str, # 商品名稱
+            date: str, # 日期
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32, # 空方契約金額
+            long_open_interest_balance_volume: int32, # 多方未平倉口數
+            long_open_interest_balance_amount: int32, # 多方未平倉契約金額
+            short_open_interest_balance_volume: int32, # 空方未平倉口數
+            short_open_interest_balance_amount: int32 # 空方未平倉契約金額
         }
         ```
 
@@ -815,17 +815,18 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
-            long_open_interest_balance_volume: int32,
-            long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: int32,
-            short_open_interest_balance_amount: int32
+            name: str, # 商品名稱
+            date: str, # 日期
+            call_put: str, # 買權/賣權
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32, # 空方契約金額
+            long_open_interest_balance_volume: int32, # 多方未平倉口數
+            long_open_interest_balance_amount: int32, # 多方未平倉契約金額
+            short_open_interest_balance_volume: int32, # 空方未平倉口數
+            short_open_interest_balance_amount: int32 # 空方未平倉契約金額
         }
         ```
 
@@ -891,17 +892,18 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
-            long_open_interest_balance_volume: int32,
-            long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: int32,
-            short_open_interest_balance_amount: int32
+            name: str, # 商品名稱
+            date: str, # 日期
+            call_put: str, # 買權/賣權
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32, # 空方契約金額
+            long_open_interest_balance_volume: int32, # 多方未平倉口數
+            long_open_interest_balance_amount: int32, # 多方未平倉契約金額
+            short_open_interest_balance_volume: int32, # 空方未平倉口數
+            short_open_interest_balance_amount: int32 # 空方未平倉契約金額
         }
         ```
 
@@ -967,13 +969,13 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
+            name: str, # 商品名稱
+            date: str, # 日期
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32 # 空方契約金額
         }
         ```
 
@@ -1028,13 +1030,13 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
+            name: str, # 商品名稱
+            date: str, # 日期
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32 # 空方契約金額
         }
         ```
 
@@ -1100,17 +1102,18 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
-            long_open_interest_balance_volume: int32,
-            long_open_interest_balance_amount: int32,
-            short_open_interest_balance_volume: int32,
-            short_open_interest_balance_amount: int32
+            name: str, # 商品名稱
+            date: str, # 日期
+            call_put: str, # 買權/賣權
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32, # 空方契約金額
+            long_open_interest_balance_volume: int32, # 多方未平倉口數
+            long_open_interest_balance_amount: int32, # 多方未平倉契約金額
+            short_open_interest_balance_volume: int32, # 空方未平倉口數
+            short_open_interest_balance_amount: int32 # 空方未平倉契約金額
         }
         ```
 
@@ -1165,13 +1168,14 @@
     === "Schema"
         ```
         {
-            name: str,
-            date: str,
-            institutional_investors: str,
-            long_deal_volume: int32,
-            long_deal_amount: int32,
-            short_deal_volume: int32,
-            short_deal_amount: int32,
+            name: str, # 商品名稱
+            date: str, # 日期
+            call_put: str, # 買權/賣權
+            institutional_investors: str, # 身分別
+            long_deal_volume: int32, # 多方口數
+            long_deal_amount: int32, # 多方契約金額
+            short_deal_volume: int32, # 空方口數
+            short_deal_amount: int32 # 空方契約金額
         }
         ```
 
@@ -1249,12 +1253,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            dealer_code: str,
-            dealer_name: str,
-            futures_id: str,
-            volume: int32,
-            is_after_hour: int32
+            date: str, # 日期
+            dealer_code: str, # 期貨商代碼
+            dealer_name: str, # 期貨商名稱
+            futures_id: str, # 期貨代碼
+            volume: int32, # 成交量
+            is_after_hour: int32 # 盤後交易
         }
         ```
 
@@ -1319,12 +1323,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            dealer_code: str,
-            dealer_name: str,
-            futures_id: str,
-            volume: int32,
-            is_after_hour: int32
+            date: str, # 日期
+            dealer_code: str, # 期貨商代碼
+            dealer_name: str, # 期貨商名稱
+            futures_id: str, # 期貨代碼
+            volume: int32, # 成交量
+            is_after_hour: int32 # 盤後交易
         }
         ```
 
@@ -1402,12 +1406,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            dealer_code: str,
-            dealer_name: str,
-            option_id: str,
-            volume: int32,
-            is_after_hour: int32
+            date: str, # 日期
+            dealer_code: str, # 期貨商代碼
+            dealer_name: str, # 期貨商名稱
+            option_id: str, # 選擇權代碼
+            volume: int32, # 成交量
+            is_after_hour: int32 # 盤後交易
         }
         ```
 
@@ -1474,12 +1478,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            dealer_code: str,
-            dealer_name: str,
-            option_id: str,
-            volume: int32,
-            is_after_hour: int32
+            date: str, # 日期
+            dealer_code: str, # 期貨商代碼
+            dealer_name: str, # 期貨商名稱
+            option_id: str, # 選擇權代碼
+            volume: int32, # 成交量
+            is_after_hour: int32 # 盤後交易
         }
         ```
 
@@ -1551,27 +1555,27 @@
     === "Schema"
         ```
         {
-            name: str,
-            contract_type: str,
-            buy_top5_trader_open_interest: int32,
-            buy_top5_trader_open_interest_per: float32,
-            buy_top10_trader_open_interest: int32,
-            buy_top10_trader_open_interest_per: float32,
-            sell_top5_trader_open_interest: int32,
-            sell_top5_trader_open_interest_per: float32,
-            sell_top10_trader_open_interest: int32,
-            sell_top10_trader_open_interest_per: float32,
-            market_open_interest: int32,
-            buy_top5_specific_open_interest: int32,
-            buy_top5_specific_open_interest_per: float32,
-            buy_top10_specific_open_interest: int32,
-            buy_top10_specific_open_interest_per: float32,
-            sell_top5_specific_open_interest: int32,
-            sell_top5_specific_open_interest_per: float32,
-            sell_top10_specific_open_interest: int32,
-            sell_top10_specific_open_interest_per: float32,
-            date: str,
-            futures_id: str
+            name: str, # 商品名稱
+            contract_type: str, # 到期月份
+            buy_top5_trader_open_interest: int32, # 買方前五大交易人合計部位數
+            buy_top5_trader_open_interest_per: float32, # 買方前五大交易人合計百分比
+            buy_top10_trader_open_interest: int32, # 買方前十大交易人合計部位數
+            buy_top10_trader_open_interest_per: float32, # 買方前十大交易人合計百分比
+            sell_top5_trader_open_interest: int32, # 賣方前五大交易人合計部位數
+            sell_top5_trader_open_interest_per: float32, # 賣方前五大交易人合計百分比
+            sell_top10_trader_open_interest: int32, # 賣方前十大交易人合計部位數
+            sell_top10_trader_open_interest_per: float32, # 賣方前十大交易人合計百分比
+            market_open_interest: int32, # 全市場未沖銷部位數
+            buy_top5_specific_open_interest: int32, # 買方前五大特定法人合計部位數
+            buy_top5_specific_open_interest_per: float32, # 買方前五大特定法人合計百分比
+            buy_top10_specific_open_interest: int32, # 買方前十大特定法人合計部位數
+            buy_top10_specific_open_interest_per: float32, # 買方前十大特定法人合計百分比
+            sell_top5_specific_open_interest: int32, # 賣方前五大特定法人合計部位數
+            sell_top5_specific_open_interest_per: float32, # 賣方前五大特定法人合計百分比
+            sell_top10_specific_open_interest: int32, # 賣方前十大特定法人合計部位數
+            sell_top10_specific_open_interest_per: float32, # 賣方前十大特定法人合計百分比
+            date: str, # 日期
+            futures_id: str # 期貨代碼
         }
         ```
 
@@ -1637,27 +1641,27 @@
     === "Schema"
         ```
         {
-            name: str,
-            contract_type: str,
-            buy_top5_trader_open_interest: int32,
-            buy_top5_trader_open_interest_per: float32,
-            buy_top10_trader_open_interest: int32,
-            buy_top10_trader_open_interest_per: float32,
-            sell_top5_trader_open_interest: int32,
-            sell_top5_trader_open_interest_per: float32,
-            sell_top10_trader_open_interest: int32,
-            sell_top10_trader_open_interest_per: float32,
-            market_open_interest: int32,
-            buy_top5_specific_open_interest: int32,
-            buy_top5_specific_open_interest_per: float32,
-            buy_top10_specific_open_interest: int32,
-            buy_top10_specific_open_interest_per: float32,
-            sell_top5_specific_open_interest: int32,
-            sell_top5_specific_open_interest_per: float32,
-            sell_top10_specific_open_interest: int32,
-            sell_top10_specific_open_interest_per: float32,
-            date: str,
-            futures_id: str
+            name: str, # 商品名稱
+            contract_type: str, # 到期月份
+            buy_top5_trader_open_interest: int32, # 買方前五大交易人合計部位數
+            buy_top5_trader_open_interest_per: float32, # 買方前五大交易人合計百分比
+            buy_top10_trader_open_interest: int32, # 買方前十大交易人合計部位數
+            buy_top10_trader_open_interest_per: float32, # 買方前十大交易人合計百分比
+            sell_top5_trader_open_interest: int32, # 賣方前五大交易人合計部位數
+            sell_top5_trader_open_interest_per: float32, # 賣方前五大交易人合計百分比
+            sell_top10_trader_open_interest: int32, # 賣方前十大交易人合計部位數
+            sell_top10_trader_open_interest_per: float32, # 賣方前十大交易人合計百分比
+            market_open_interest: int32, # 全市場未沖銷部位數
+            buy_top5_specific_open_interest: int32, # 買方前五大特定法人合計部位數
+            buy_top5_specific_open_interest_per: float32, # 買方前五大特定法人合計百分比
+            buy_top10_specific_open_interest: int32, # 買方前十大特定法人合計部位數
+            buy_top10_specific_open_interest_per: float32, # 買方前十大特定法人合計百分比
+            sell_top5_specific_open_interest: int32, # 賣方前五大特定法人合計部位數
+            sell_top5_specific_open_interest_per: float32, # 賣方前五大特定法人合計百分比
+            sell_top10_specific_open_interest: int32, # 賣方前十大特定法人合計部位數
+            sell_top10_specific_open_interest_per: float32, # 賣方前十大特定法人合計百分比
+            date: str, # 日期
+            futures_id: str # 期貨代碼
         }
         ```
 
@@ -1733,28 +1737,28 @@
     === "Schema"
         ```
         {
-            contract_type: str,
-            buy_top5_trader_open_interest: int32,
-            buy_top5_trader_open_interest_per: float32,
-            buy_top10_trader_open_interest: int32,
-            buy_top10_trader_open_interest_per: float32,
-            sell_top5_trader_open_interest: int32,
-            sell_top5_trader_open_interest_per: float32,
-            sell_top10_trader_open_interest: int32,
-            sell_top10_trader_open_interest_per: float32,
-            market_open_interest: int32,
-            buy_top5_specific_open_interest: int32,
-            buy_top5_specific_open_interest_per: float32,
-            buy_top10_specific_open_interest: int32,
-            buy_top10_specific_open_interest_per: float32,
-            sell_top5_specific_open_interest: int32,
-            sell_top5_specific_open_interest_per: float32,
-            sell_top10_specific_open_interest: int32,
-            sell_top10_specific_open_interest_per: float32,
-            date: str,
-            put_call: str,
-            name: str,
-            option_id: str
+            contract_type: str, # 到期月份
+            buy_top5_trader_open_interest: int32, # 買方前五大交易人合計部位數
+            buy_top5_trader_open_interest_per: float32, # 買方前五大交易人合計百分比
+            buy_top10_trader_open_interest: int32, # 買方前十大交易人合計部位數
+            buy_top10_trader_open_interest_per: float32, # 買方前十大交易人合計百分比
+            sell_top5_trader_open_interest: int32, # 賣方前五大交易人合計部位數
+            sell_top5_trader_open_interest_per: float32, # 賣方前五大交易人合計百分比
+            sell_top10_trader_open_interest: int32, # 賣方前十大交易人合計部位數
+            sell_top10_trader_open_interest_per: float32, # 賣方前十大交易人合計百分比
+            market_open_interest: int32, # 全市場未沖銷部位數
+            buy_top5_specific_open_interest: int32, # 買方前五大特定法人合計部位數
+            buy_top5_specific_open_interest_per: float32, # 買方前五大特定法人合計百分比
+            buy_top10_specific_open_interest: int32, # 買方前十大特定法人合計部位數
+            buy_top10_specific_open_interest_per: float32, # 買方前十大特定法人合計百分比
+            sell_top5_specific_open_interest: int32, # 賣方前五大特定法人合計部位數
+            sell_top5_specific_open_interest_per: float32, # 賣方前五大特定法人合計百分比
+            sell_top10_specific_open_interest: int32, # 賣方前十大特定法人合計部位數
+            sell_top10_specific_open_interest_per: float32, # 賣方前十大特定法人合計百分比
+            date: str, # 日期
+            put_call: str, # 買賣權
+            name: str, # 商品名稱
+            option_id: str # 選擇權代碼
         }
         ```
 
@@ -1820,28 +1824,28 @@
     === "Schema"
         ```
         {
-            contract_type: str,
-            buy_top5_trader_open_interest: int32,
-            buy_top5_trader_open_interest_per: float32,
-            buy_top10_trader_open_interest: int32,
-            buy_top10_trader_open_interest_per: float32,
-            sell_top5_trader_open_interest: int32,
-            sell_top5_trader_open_interest_per: float32,
-            sell_top10_trader_open_interest: int32,
-            sell_top10_trader_open_interest_per: float32,
-            market_open_interest: int32,
-            buy_top5_specific_open_interest: int32,
-            buy_top5_specific_open_interest_per: float32,
-            buy_top10_specific_open_interest: int32,
-            buy_top10_specific_open_interest_per: float32,
-            sell_top5_specific_open_interest: int32,
-            sell_top5_specific_open_interest_per: float32,
-            sell_top10_specific_open_interest: int32,
-            sell_top10_specific_open_interest_per: float32,
-            date: str,
-            put_call: str,
-            name: str,
-            option_id: str
+            contract_type: str, # 到期月份
+            buy_top5_trader_open_interest: int32, # 買方前五大交易人合計部位數
+            buy_top5_trader_open_interest_per: float32, # 買方前五大交易人合計百分比
+            buy_top10_trader_open_interest: int32, # 買方前十大交易人合計部位數
+            buy_top10_trader_open_interest_per: float32, # 買方前十大交易人合計百分比
+            sell_top5_trader_open_interest: int32, # 賣方前五大交易人合計部位數
+            sell_top5_trader_open_interest_per: float32, # 賣方前五大交易人合計百分比
+            sell_top10_trader_open_interest: int32, # 賣方前十大交易人合計部位數
+            sell_top10_trader_open_interest_per: float32, # 賣方前十大交易人合計百分比
+            market_open_interest: int32, # 全市場未沖銷部位數
+            buy_top5_specific_open_interest: int32, # 買方前五大特定法人合計部位數
+            buy_top5_specific_open_interest_per: float32, # 買方前五大特定法人合計百分比
+            buy_top10_specific_open_interest: int32, # 買方前十大特定法人合計部位數
+            buy_top10_specific_open_interest_per: float32, # 買方前十大特定法人合計百分比
+            sell_top5_specific_open_interest: int32, # 賣方前五大特定法人合計部位數
+            sell_top5_specific_open_interest_per: float32, # 賣方前五大特定法人合計百分比
+            sell_top10_specific_open_interest: int32, # 賣方前十大特定法人合計部位數
+            sell_top10_specific_open_interest_per: float32, # 賣方前十大特定法人合計百分比
+            date: str, # 日期
+            put_call: str, # 買賣權
+            name: str, # 商品名稱
+            option_id: str # 選擇權代碼
         }
         ```
 

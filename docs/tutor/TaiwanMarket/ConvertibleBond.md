@@ -63,11 +63,11 @@
     === "Schema"
         ```
         {
-            cb_id: str,
-            cb_name: str,
-            InitialDateOfConversion: str,
-            DueDateOfConversion: str,
-            IssuanceAmount: int
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            InitialDateOfConversion: str, # 轉換起日
+            DueDateOfConversion: str, # 轉換迄日
+            IssuanceAmount: int # 原始發行總額
         }
         ```
 
@@ -140,22 +140,22 @@
     === "Schema"
         ```
         {
-            cb_id: str,
-            cb_name: str,
-            transaction_type: str,
-            close: float32,
-            change: float32,
-            open: float32,
-            max: float32,
-            min: float32,
-            no_of_transactions: int64,
-            unit: int64,
-            trading_value: int64,
-            avg_price: float32,
-            next_ref_price: float32,
-            next_max_limit: float32,
-            next_min_limit: float32,
-            date: str
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            transaction_type: str, # 交易狀態
+            close: float32, # 收盤價
+            change: float32, # 漲跌幅
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            no_of_transactions: int64, # 交易筆數
+            unit: int64, # 成交量
+            trading_value: int64, # 成交金額
+            avg_price: float32, # 成交均價
+            next_ref_price: float32, # 明日參考價
+            next_max_limit: float32, # 明日漲停價
+            next_min_limit: float32, # 明日跌停價
+            date: str # 日期
         }
         ```
 
@@ -224,22 +224,22 @@
     === "Schema"
         ```
         {
-            cb_id: str,
-            cb_name: str,
-            transaction_type: str,
-            close: float32,
-            change: float32,
-            open: float32,
-            max: float32,
-            min: float32,
-            no_of_transactions: int64,
-            unit: int64,
-            trading_value: int64,
-            avg_price: float32,
-            next_ref_price: float32,
-            next_max_limit: float32,
-            next_min_limit: float32,
-            date: str
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            transaction_type: str, # 交易狀態
+            close: float32, # 收盤價
+            change: float32, # 漲跌幅
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            no_of_transactions: int64, # 交易筆數
+            unit: int64, # 成交量
+            trading_value: int64, # 成交金額
+            avg_price: float32, # 成交均價
+            next_ref_price: float32, # 明日參考價
+            next_max_limit: float32, # 明日漲停價
+            next_min_limit: float32, # 明日跌停價
+            date: str # 日期
         }
         ```
 
@@ -311,19 +311,19 @@
     === "Schema"
         ```
         {
-            Foreign_Investor_Buy: int64,
-            Foreign_Investor_Sell: int64,
-            Foreign_Investor_Overbuy: int64,
-            Investment_Trust_Buy: int64,
-            Investment_Trust_Sell: int64,
-            Investment_Trust_Overbuy: int64,
-            Dealer_self_Buy: int64,
-            Dealer_self_Sell: int64,
-            Dealer_self_Overbuy: int64,
-            Total_Overbuy: int64,
-            cb_id: str,
-            cb_name: str,
-            date: str
+            Foreign_Investor_Buy: int64, # 外資買入數量
+            Foreign_Investor_Sell: int64, # 外資賣出數量
+            Foreign_Investor_Overbuy: int64, # 外資買超數量
+            Investment_Trust_Buy: int64, # 投信買入數量
+            Investment_Trust_Sell: int64, # 投信賣出數量
+            Investment_Trust_Overbuy: int64, # 投信買超數量
+            Dealer_self_Buy: int64, # 自營商買入數量
+            Dealer_self_Sell: int64, # 自營商賣出數量
+            Dealer_self_Overbuy: int64, # 自營商買超數量
+            Total_Overbuy: int64, # 總買超數量
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            date: str # 日期
         }
         ```
 
@@ -392,19 +392,19 @@
     === "Schema"
         ```
         {
-            Foreign_Investor_Buy: int64,
-            Foreign_Investor_Sell: int64,
-            Foreign_Investor_Overbuy: int64,
-            Investment_Trust_Buy: int64,
-            Investment_Trust_Sell: int64,
-            Investment_Trust_Overbuy: int64,
-            Dealer_self_Buy: int64,
-            Dealer_self_Sell: int64,
-            Dealer_self_Overbuy: int64,
-            Total_Overbuy: int64,
-            cb_id: str,
-            cb_name: str,
-            date: str
+            Foreign_Investor_Buy: int64, # 外資買入數量
+            Foreign_Investor_Sell: int64, # 外資賣出數量
+            Foreign_Investor_Overbuy: int64, # 外資買超數量
+            Investment_Trust_Buy: int64, # 投信買入數量
+            Investment_Trust_Sell: int64, # 投信賣出數量
+            Investment_Trust_Overbuy: int64, # 投信買超數量
+            Dealer_self_Buy: int64, # 自營商買入數量
+            Dealer_self_Sell: int64, # 自營商賣出數量
+            Dealer_self_Overbuy: int64, # 自營商買超數量
+            Total_Overbuy: int64, # 總買超數量
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            date: str # 日期
         }
         ```
 
@@ -476,29 +476,29 @@
     === "Schema"
         ```
         {
-            cb_id: str,
-            cb_name: str,
-            date: str,
-            InitialDateOfConversion: str,
-            DueDateOfConversion: str,
-            InitialDateOfStopConversion: str,
-            DueDateOfStopConversion: str,
-            ConversionPrice: float32,
-            NextEffectiveDateOfConversionPrice: str,
-            LatestInitialDateOfPut: str,
-            LatestDueDateOfPut: str,
-            LatestPutPrice: float32,
-            InitialDateOfEarlyRedemption: str,
-            DueDateOfEarlyRedemption: str,
-            EarlyRedemptionPrice: float32,
-            DateOfDelisted: str,
-            IssuanceAmount: float32,
-            OutstandingAmount: float32,
-            ReferencePrice: float32,
-            PriceOfUnderlyingStock: float32,
-            InitialDateOfSuspension: str,
-            DueDateOfSuspension: str,
-            CouponRate: float32
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            date: str, # 日期
+            InitialDateOfConversion: str, # 轉換起日
+            DueDateOfConversion: str, # 轉換迄日
+            InitialDateOfStopConversion: str, # 最近停止轉換起日
+            DueDateOfStopConversion: str, # 最近停止轉換迄日
+            ConversionPrice: float32, # 轉換價格
+            NextEffectiveDateOfConversionPrice: str, # 下次轉換價格生效日期
+            LatestInitialDateOfPut: str, # 最近賣回權起日
+            LatestDueDateOfPut: str, # 最近賣回權迄日
+            LatestPutPrice: float32, # 最近賣回權價格
+            InitialDateOfEarlyRedemption: str, # 強制贖回起日
+            DueDateOfEarlyRedemption: str, # 強制贖回迄日
+            EarlyRedemptionPrice: float32, # 強制贖回價格
+            DateOfDelisted: str, # 終止櫃檯買賣日
+            IssuanceAmount: float32, # 原始發行總額
+            OutstandingAmount: float32, # 上月底發行餘額
+            ReferencePrice: float32, # 轉債參考價格
+            PriceOfUnderlyingStock: float32, # 轉換標的股票價格
+            InitialDateOfSuspension: str, # 停止交易起日
+            DueDateOfSuspension: str, # 停止交易迄日
+            CouponRate: float32 # 票面利率
         }
         ```
 
@@ -567,28 +567,28 @@
     === "Schema"
         ```
         {
-            cb_id: str,
-            cb_name: str,
-            date: str,
-            InitialDateOfConversion: str,
-            DueDateOfConversion: str,
-            InitialDateOfStopConversion: str,
-            DueDateOfStopConversion: str,
-            ConversionPrice: float32,
-            NextEffectiveDateOfConversionPrice: str,
-            LatestInitialDateOfPut: str,
-            LatestDueDateOfPut: str,
-            LatestPutPrice: float32,
-            InitialDateOfEarlyRedemption: str,
-            DueDateOfEarlyRedemption: str,
-            EarlyRedemptionPrice: float32,
-            DateOfDelisted: str,
-            IssuanceAmount: float32,
-            OutstandingAmount: float32,
-            ReferencePrice: float32,
-            PriceOfUnderlyingStock: float32,
-            InitialDateOfSuspension: str,
-            DueDateOfSuspension: str,
-            CouponRate: float32
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            date: str, # 日期
+            InitialDateOfConversion: str, # 轉換起日
+            DueDateOfConversion: str, # 轉換迄日
+            InitialDateOfStopConversion: str, # 最近停止轉換起日
+            DueDateOfStopConversion: str, # 最近停止轉換迄日
+            ConversionPrice: float32, # 轉換價格
+            NextEffectiveDateOfConversionPrice: str, # 下次轉換價格生效日期
+            LatestInitialDateOfPut: str, # 最近賣回權起日
+            LatestDueDateOfPut: str, # 最近賣回權迄日
+            LatestPutPrice: float32, # 最近賣回權價格
+            InitialDateOfEarlyRedemption: str, # 強制贖回起日
+            DueDateOfEarlyRedemption: str, # 強制贖回迄日
+            EarlyRedemptionPrice: float32, # 強制贖回價格
+            DateOfDelisted: str, # 終止櫃檯買賣日
+            IssuanceAmount: float32, # 原始發行總額
+            OutstandingAmount: float32, # 上月底發行餘額
+            ReferencePrice: float32, # 轉債參考價格
+            PriceOfUnderlyingStock: float32, # 轉換標的股票價格
+            InitialDateOfSuspension: str, # 停止交易起日
+            DueDateOfSuspension: str, # 停止交易迄日
+            CouponRate: float32 # 票面利率
         }
         ```

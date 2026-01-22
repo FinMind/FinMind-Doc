@@ -71,26 +71,26 @@
     === "Schema"
         ```
         {
-            amount: int32,
-            average_price: float64,
-            buy_price: float64,
-            buy_volume: int64,
-            change_price: str,
-            change_rate: float64,
-            close: float64,
-            high: float64,
-            low: float64,
-            open: float64,
-            sell_price: float64,
-            sell_volume: int64,
-            total_amount: int32,
-            total_volume: int64,
-            volume: int64,
-            volume_ratio: float64,
-            yesterday_volume: int64,
-            date: str,
-            stock_id: str,
-            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
+            amount: int32, # 交易金額
+            average_price: float64, # 平均成交價
+            buy_price: float64, # 買入價
+            buy_volume: int64, # 買入量
+            change_price: str, # 漲跌
+            change_rate: float64, # 漲跌百分比
+            close: float64, # 最新成交價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            open: float64, # 開盤價
+            sell_price: float64, # 賣出價
+            sell_volume: int64, # 賣出量
+            total_amount: int32, # 累積交易金額
+            total_volume: int64, # 累積成交量
+            volume: int64, # 成交量
+            volume_ratio: float64, # 昨日與今日成交量比
+            yesterday_volume: int64, # 昨日成交量
+            date: str, # 成交時間
+            stock_id: str, # 股票代碼
+            TickType: str # 成交種類 (0: 無法判斷, 1: 賣盤成交, 2: 買盤成交)
         }
         ```
 
@@ -152,13 +152,13 @@
     === "Schema"
         ```
         {
-            code: str,
-            callput: str,
-            date: str,
-            name: str,
-            listing_date: str,
-            expire_price: float64,
-            update_date: str
+            code: str, # 代碼
+            callput: str, # 買賣權
+            date: str, # 日期
+            name: str, # 名稱
+            listing_date: str, # 上市日
+            expire_price: float64, # 履約價
+            update_date: str # 更新日期
         }
         ```
 
@@ -225,26 +225,26 @@
     === "Schema"
         ```
         {
-            open: float64,
-            high: float64,
-            low: float64,
-            close: float64,
-            change_price: float64,
-            change_rate: float64,
-            average_price: float64,
-            volume: int64,
-            total_volume" int64,
-            amount: str,
-            total_amount: str,
-            yesterday_volume: int64,
-            buy_price: float64,
-            buy_volume: int64,
-            sell_price: float64,
-            sell_volume: int64,
-            volume_ratio: float64,
-            date: str,
-            options_id: str,
-            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
+            open: float64, # 開盤價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            close: float64, # 最新成交價
+            change_price: float64, # 漲跌
+            change_rate: float64, # 漲跌百分比
+            average_price: float64, # 平均成交價
+            volume: int64, # 成交量
+            total_volume: int64, # 累積成交量
+            amount: str, # 交易金額
+            total_amount: str, # 累積交易金額
+            yesterday_volume: int64, # 昨日成交量
+            buy_price: float64, # 買入價
+            buy_volume: int64, # 買入量
+            sell_price: float64, # 賣出價
+            sell_volume: int64, # 賣出量
+            volume_ratio: float64, # 昨日與今日成交量比
+            date: str, # 成交時間
+            futures_id: str, # 期貨代碼
+            TickType: str # 成交種類 (0: 無法判斷, 1: 賣盤成交, 2: 買盤成交)
         }
         ```
 
@@ -311,25 +311,25 @@
     === "Schema"
         ```
         {
-            open: float64,
-            high: float64,
-            low: float64,
-            close: float64,
-            change_price: float64,
-            change_rate: float64,
-            average_price: float64,
-            volume: int64,
-            total_volume" int64,
-            amount: str,
-            total_amount: str,
-            yesterday_volume: int64,
-            buy_price: float64,
-            buy_volume: int64,
-            sell_price: float64,
-            sell_volume: int64,
-            volume_ratio: float64,
-            date: str,
-            options_id: str,
-            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
+            open: float64, # 開盤價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            close: float64, # 最新成交價
+            change_price: float64, # 漲跌
+            change_rate: float64, # 漲跌百分比
+            average_price: float64, # 平均成交價
+            volume: int64, # 成交量
+            total_volume: int64, # 累積成交量
+            amount: str, # 交易金額
+            total_amount: str, # 累積交易金額
+            yesterday_volume: int64, # 昨日成交量
+            buy_price: float64, # 買入價
+            buy_volume: int64, # 買入量
+            sell_price: float64, # 賣出價
+            sell_volume: int64, # 賣出量
+            volume_ratio: float64, # 昨日與今日成交量比
+            date: str, # 成交時間
+            options_id: str, # 選擇權代碼
+            TickType: str # 成交種類 (0: 無法判斷, 1: 賣盤成交, 2: 買盤成交)
         }
         ```

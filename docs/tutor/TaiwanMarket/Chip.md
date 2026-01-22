@@ -93,22 +93,22 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            MarginPurchaseBuy: int64,
-            MarginPurchaseCashRepayment: int64,
-            MarginPurchaseLimit: int64,
-            MarginPurchaseSell: int64,
-            MarginPurchaseTodayBalance: int64,
-            MarginPurchaseYesterdayBalance: int64,
-            Note: str,
-            OffsetLoanAndShort: int64,
-            ShortSaleBuy: int64,
-            ShortSaleCashRepayment: int64,
-            ShortSaleLimit: int64,
-            ShortSaleSell: int64,
-            ShortSaleTodayBalance: int64,
-            ShortSaleYesterdayBalance: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            MarginPurchaseBuy: int64, # 融資買進
+            MarginPurchaseCashRepayment: int64, # 融資現金償還
+            MarginPurchaseLimit: int64, # 融資限額
+            MarginPurchaseSell: int64, # 融資賣出
+            MarginPurchaseTodayBalance: int64, # 融資今日餘額
+            MarginPurchaseYesterdayBalance: int64, # 融資昨日餘額
+            Note: str, # 註記
+            OffsetLoanAndShort: int64, # 資券互抵
+            ShortSaleBuy: int64, # 融券買進
+            ShortSaleCashRepayment: int64, # 融券償還
+            ShortSaleLimit: int64, # 融券限額
+            ShortSaleSell: int64, # 融券賣出
+            ShortSaleTodayBalance: int64, # 融券今日餘額
+            ShortSaleYesterdayBalance: int64 # 融券昨日餘額
         }
         ```
 
@@ -177,22 +177,22 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            MarginPurchaseBuy: int64,
-            MarginPurchaseCashRepayment: int64,
-            MarginPurchaseLimit: int64,
-            MarginPurchaseSell: int64,
-            MarginPurchaseTodayBalance: int64,
-            MarginPurchaseYesterdayBalance: int64,
-            Note: str,
-            OffsetLoanAndShort: int64,
-            ShortSaleBuy: int64,
-            ShortSaleCashRepayment: int64,
-            ShortSaleLimit: int64,
-            ShortSaleSell: int64,
-            ShortSaleTodayBalance: int64,
-            ShortSaleYesterdayBalance: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            MarginPurchaseBuy: int64, # 融資買進
+            MarginPurchaseCashRepayment: int64, # 融資現金償還
+            MarginPurchaseLimit: int64, # 融資限額
+            MarginPurchaseSell: int64, # 融資賣出
+            MarginPurchaseTodayBalance: int64, # 融資今日餘額
+            MarginPurchaseYesterdayBalance: int64, # 融資昨日餘額
+            Note: str, # 註記
+            OffsetLoanAndShort: int64, # 資券互抵
+            ShortSaleBuy: int64, # 融券買進
+            ShortSaleCashRepayment: int64, # 融券償還
+            ShortSaleLimit: int64, # 融券限額
+            ShortSaleSell: int64, # 融券賣出
+            ShortSaleTodayBalance: int64, # 融券今日餘額
+            ShortSaleYesterdayBalance: int64 # 融券昨日餘額
         }
         ```
 
@@ -268,13 +268,13 @@
     === "Schema"
         ```
         {
-            TodayBalance: int64,
-            YesBalance: int64,
-            buy: int64,
-            date: str,
-            name: str,
-            Return: int64,
-            sell: int64
+            TodayBalance: int64, # 今日餘額
+            YesBalance: int64, # 昨日餘額
+            buy: int64, # 買進
+            date: str, # 日期
+            name: str, # 種類
+            Return: int64, # 現金/券償還
+            sell: int64 # 賣出
         }
         ```
 
@@ -353,11 +353,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            buy: int64,
-            name: str,
-            sell: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            buy: int64, # 買進
+            name: str, # 類別
+            sell: int64 # 賣出
         }
         ```
 
@@ -426,11 +426,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            buy: int64,
-            name: str,
-            sell: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            buy: int64, # 買進
+            name: str, # 類別
+            sell: int64 # 賣出
         }
         ```
 
@@ -506,10 +506,10 @@
     === "Schema"
         ```
         {
-            buy: int64,
-            date: str,
-            name: str,
-            sell: int64
+            buy: int64, # 買進
+            date: str, # 日期
+            name: str, # 種類
+            sell: int64 # 賣出
         }
         ```
 
@@ -588,19 +588,19 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            stock_name: str,
-            InternationalCode: str,
-            ForeignInvestmentRemainingShares: int64,
-            ForeignInvestmentShares: int64,
-            ForeignInvestmentRemainRatio: float64,
-            ForeignInvestmentSharesRatio: float64,
-            ForeignInvestmentUpperLimitRatio: float64,
-            ChineseInvestmentUpperLimitRatio: float64,
-            NumberOfSharesIssued: int64,
-            RecentlyDeclareDate: str,
-            note: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            InternationalCode: str, # 國際股票邊碼
+            ForeignInvestmentRemainingShares: int64, # 外資尚可投資股數
+            ForeignInvestmentShares: int64, # 外資持有股數
+            ForeignInvestmentRemainRatio: float64, # 外資尚可投資比例
+            ForeignInvestmentSharesRatio: float64, # 外資持股比例
+            ForeignInvestmentUpperLimitRatio: float64, # 外資投資上限
+            ChineseInvestmentUpperLimitRatio: float64, # 陸資投資上限
+            NumberOfSharesIssued: int64, # 發行股數
+            RecentlyDeclareDate: str, # 最近一次異動申報日期
+            note: str # 註
         }
         ```
 
@@ -669,19 +669,19 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            stock_name: str,
-            InternationalCode: str,
-            ForeignInvestmentRemainingShares: int64,
-            ForeignInvestmentShares: int64,
-            ForeignInvestmentRemainRatio: float64,
-            ForeignInvestmentSharesRatio: float64,
-            ForeignInvestmentUpperLimitRatio: float64,
-            ChineseInvestmentUpperLimitRatio: float64,
-            NumberOfSharesIssued: int64,
-            RecentlyDeclareDate: str,
-            note: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            InternationalCode: str, # 國際股票邊碼
+            ForeignInvestmentRemainingShares: int64, # 外資尚可投資股數
+            ForeignInvestmentShares: int64, # 外資持有股數
+            ForeignInvestmentRemainRatio: float64, # 外資尚可投資比例
+            ForeignInvestmentSharesRatio: float64, # 外資持股比例
+            ForeignInvestmentUpperLimitRatio: float64, # 外資投資上限
+            ChineseInvestmentUpperLimitRatio: float64, # 陸資投資上限
+            NumberOfSharesIssued: int64, # 發行股數
+            RecentlyDeclareDate: str, # 最近一次異動申報日期
+            note: str # 註
         }
         ```
 
@@ -758,12 +758,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            HoldingSharesLevel: str,
-            people: int64,
-            percent: float64,
-            unit: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            HoldingSharesLevel: str, # 持股分級
+            people: int64, # 人數
+            percent: float64, # 比例
+            unit: int64 # 股數
         }
         ```
 
@@ -833,12 +833,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            HoldingSharesLevel: str,
-            people: int64,
-            percent: float64,
-            unit: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            HoldingSharesLevel: str, # 持股分級
+            people: int64, # 人數
+            percent: float64, # 比例
+            unit: int64 # 股數
         }
         ```
 
@@ -917,14 +917,14 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            transaction_type: str,
-            volume: int64,
-            fee_rate: float64,
-            close: float64,
-            original_return_date: str,
-            original_lending_period: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            transaction_type: str, # 交易方式
+            volume: int64, # 成交量
+            fee_rate: float64, # 成交費率
+            close: float64, # 收盤價
+            original_return_date: str, # 約定還卷日期
+            original_lending_period: int64 # 約定借券天數
         }
         ```
 
@@ -993,14 +993,14 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            transaction_type: str,
-            volume: int64,
-            fee_rate: float64,
-            close: float64,
-            original_return_date: str,
-            original_lending_period: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            transaction_type: str, # 交易方式
+            volume: int64, # 成交量
+            fee_rate: float64, # 成交費率
+            close: float64, # 收盤價
+            original_return_date: str, # 約定還卷日期
+            original_lending_period: int64 # 約定借券天數
         }
         ```
 
@@ -1068,10 +1068,10 @@
     === "Schema"
         ```
         {
-            stock_id: str,
+            stock_id: str, # 股票代碼
             date: str, # 開始日期
-            end_date: str,
-            reason: str
+            end_date: str, # 結束日期
+            reason: str # 停券原因
         }
         ```
 
@@ -1127,10 +1127,10 @@
     === "Schema"
         ```
         {
-            stock_id: str,
+            stock_id: str, # 股票代碼
             date: str, # 開始日期
-            end_date: str,
-            reason: str
+            end_date: str, # 結束日期
+            reason: str # 停券原因
         }
         ```
 
@@ -1210,21 +1210,21 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            MarginShortSalesPreviousDayBalance: int32,
-            MarginShortSalesShortSales: int32,
-            MarginShortSalesShortCovering: int32,
-            MarginShortSalesStockRedemption: int32,
-            MarginShortSalesCurrentDayBalance: int32,
-            MarginShortSalesQuota: int32,
-            SBLShortSalesPreviousDayBalance: int32,
-            SBLShortSalesShortSales: int32,
-            SBLShortSalesReturns: int32,
-            SBLShortSalesAdjustments: int32,
-            SBLShortSalesCurrentDayBalance: int32,
-            SBLShortSalesQuota: int32,
-            SBLShortSalesShortCovering: int32,
-            date: str
+            stock_id: str, # 股票代碼
+            MarginShortSalesPreviousDayBalance: int32, # 前日餘額(融券)
+            MarginShortSalesShortSales: int32, # 賣出(融券)
+            MarginShortSalesShortCovering: int32, # 買進(融券)
+            MarginShortSalesStockRedemption: int32, # 現券(融券)
+            MarginShortSalesCurrentDayBalance: int32, # 今日餘額(融券)
+            MarginShortSalesQuota: int32, # 限額(融券)
+            SBLShortSalesPreviousDayBalance: int32, # 前日餘額(借券賣出)
+            SBLShortSalesShortSales: int32, # 賣出(借券賣出)
+            SBLShortSalesReturns: int32, # 還券(借券賣出)
+            SBLShortSalesAdjustments: int32, # 當日調整(借券賣出)
+            SBLShortSalesCurrentDayBalance: int32, # 當日餘額(借券賣出)
+            SBLShortSalesQuota: int32, # 限額(借券賣出)
+            SBLShortSalesShortCovering: int32, # 庫存異動(借券賣出)
+            date: str # 日期
         }
         ```
 
@@ -1293,21 +1293,21 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            MarginShortSalesPreviousDayBalance: int32,
-            MarginShortSalesShortSales: int32,
-            MarginShortSalesShortCovering: int32,
-            MarginShortSalesStockRedemption: int32,
-            MarginShortSalesCurrentDayBalance: int32,
-            MarginShortSalesQuota: int32,
-            SBLShortSalesPreviousDayBalance: int32,
-            SBLShortSalesShortSales: int32,
-            SBLShortSalesReturns: int32,
-            SBLShortSalesAdjustments: int32,
-            SBLShortSalesCurrentDayBalance: int32,
-            SBLShortSalesQuota: int32,
-            SBLShortSalesShortCovering: int32,
-            date: str
+            stock_id: str, # 股票代碼
+            MarginShortSalesPreviousDayBalance: int32, # 前日餘額(融券)
+            MarginShortSalesShortSales: int32, # 賣出(融券)
+            MarginShortSalesShortCovering: int32, # 買進(融券)
+            MarginShortSalesStockRedemption: int32, # 現券(融券)
+            MarginShortSalesCurrentDayBalance: int32, # 今日餘額(融券)
+            MarginShortSalesQuota: int32, # 限額(融券)
+            SBLShortSalesPreviousDayBalance: int32, # 前日餘額(借券賣出)
+            SBLShortSalesShortSales: int32, # 賣出(借券賣出)
+            SBLShortSalesReturns: int32, # 還券(借券賣出)
+            SBLShortSalesAdjustments: int32, # 當日調整(借券賣出)
+            SBLShortSalesCurrentDayBalance: int32, # 當日餘額(借券賣出)
+            SBLShortSalesQuota: int32, # 限額(借券賣出)
+            SBLShortSalesShortCovering: int32, # 庫存異動(借券賣出)
+            date: str # 日期
         }
         ```
 
@@ -1374,11 +1374,11 @@
     === "Schema"
         ```
         {
-            securities_trader_id: str,
-            securities_trader: str,
-            date: str,
-            address: str,
-            phone: str
+            securities_trader_id: str, # 券商代碼
+            securities_trader: str, # 券商名稱
+            date: str, # 開業日
+            address: str, # 地址
+            phone: str # 電話
         }
         ```
 
@@ -1480,13 +1480,13 @@
     === "Schema"
         ```
         {
-            securities_trader: str,
-            price: float64,
-            buy: int32,
-            sell: int32,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str
+            securities_trader: str, # 券商名稱
+            price: float64, # 成交價
+            buy: int32, # 買進股數
+            sell: int32, # 賣出股數
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str # 日期
         }
         ```
 
@@ -1572,13 +1572,13 @@
     === "Schema"
         ```
         {
-            securities_trader: str,
-            price: float64,
-            buy: int32,
-            sell: int32,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str
+            securities_trader: str, # 券商名稱
+            price: float64, # 成交價
+            buy: int32, # 買進股數
+            sell: int32, # 賣出股數
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str # 日期
         }
         ```
 
@@ -1653,13 +1653,13 @@
     === "Schema"
         ```
         {
-            securities_trader: str,
-            price: float64,
-            buy: int32,
-            sell: int32,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str
+            securities_trader: str, # 券商名稱
+            price: float64, # 成交價
+            buy: int32, # 買進股數
+            sell: int32, # 賣出股數
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str # 日期
         }
         ```
 
@@ -1724,13 +1724,13 @@
     === "Schema"
         ```
         {
-            securities_trader: str,
-            price: float64,
-            buy: int32,
-            sell: int32,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str
+            securities_trader: str, # 券商名稱
+            price: float64, # 成交價
+            buy: int32, # 買進股數
+            sell: int32, # 賣出股數
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str # 日期
         }
         ```
 
@@ -1804,13 +1804,13 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            buy_amount: float64,
-            sell_amount: float64,
-            buy: int64,
-            sell: int64,
-            bank_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            buy_amount: float64, # 買進金額
+            sell_amount: float64, # 買出金額
+            buy: int64, # 買進股數
+            sell: int64, # 賣出股數
+            bank_name: str # 銀行名稱
         }
         ```
 
@@ -1885,8 +1885,8 @@
     === "Schema"
         ```
         {
-            date: str,
-            TotalExchangeMarginMaintenance: float64
+            date: str, # 日期
+            TotalExchangeMarginMaintenance: float64 # 大盤融資維持率
         }
         ```
 
@@ -1966,14 +1966,14 @@
     === "Schema"
         ```
         {
-            securities_trader: str,
-            securities_trader_id: str,
-            stock_id: str,
-            date: str,
-            buy_volume: int64,
-            sell_volume: int64,
-            buy_price: float,
-            sell_price: float,
+            securities_trader: str, # 券商名稱
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str, # 日期
+            buy_volume: int64, # 買進總股數
+            sell_volume: int64, # 賣出總股數
+            buy_price: float, # 買進均價
+            sell_price: float, # 賣出均價
         }
         ```
 
@@ -2044,14 +2044,14 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            stock_name: str,
-            disposition_cnt: int32,
-            condition: str,
-            measure: str,
-            period_start: str,
-            period_end: str,
+            date: str, # 公布日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            disposition_cnt: int32, # 累計次數
+            condition: str, # 處置條件
+            measure: str, # 處置內容
+            period_start: str, # 處置開始日期
+            period_end: str, # 處置結束日期
         }
         ```
 
@@ -2122,14 +2122,14 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            stock_name: str,
-            disposition_cnt: int32,
-            condition: str,
-            measure: str,
-            period_start: str,
-            period_end: str,
+            date: str, # 公布日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            disposition_cnt: int32, # 累計次數
+            condition: str, # 處置條件
+            measure: str, # 處置內容
+            period_start: str, # 處置開始日期
+            period_end: str, # 處置結束日期
         }
         ```
 

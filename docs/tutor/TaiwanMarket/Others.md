@@ -60,12 +60,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            description: str,
-            link: str,
-            source: str,
-            title: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            description: str, # 描述
+            link: str, # 連結
+            source: str, # 來源
+            title: str # 標題
         }
         ```
 
@@ -123,15 +123,15 @@
     === "Schema"
         ```
         {
-            date: str,
-            leading: float32,
-            leading_notrend: float32,
-            coincident: float32,
-            coincident_notrend: float32,
-            lagging: float32,
-            lagging_notrend: float32,
-            monitoring: float32,
-            monitoring_color: str
+            date: str, # 日期
+            leading: float32, # 領先指標綜合指數
+            leading_notrend: float32, # 領先指標不含趨勢指數
+            coincident: float32, # 同時指標綜合指數
+            coincident_notrend: float32, # 同時指標不含趨勢指數
+            lagging: float32, # 落後指標綜合指數
+            lagging_notrend: float32, # 落後指標不含趨勢指數
+            monitoring: float32, # 景氣對策信號綜合分數
+            monitoring_color: str # 景氣對策信號
         }
         ```
 
@@ -192,9 +192,9 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            industry: str,
-            sub_industry: str,
-            date: str
+            stock_id: str, # 股票代碼
+            industry: str, # 所屬產業
+            sub_industry: str, # 子類別
+            date: str # 更新日期
         }
         ```

@@ -83,11 +83,11 @@
     === "Schema"
         ```
         {
-            industry_category: str,
-            stock_id: str,
-            stock_name: str,
-            type: str,
-            date: str
+            industry_category: str, # 產業別
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            type: str, # 市場別
+            date: str # 更新日期
         }
         ```
 
@@ -157,11 +157,11 @@
     === "Schema"
         ```
         {
-            industry_category: str,
-            stock_id: str,
-            stock_name: str,
-            type: str,
-            date: str
+            industry_category: str, # 產業別
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            type: str, # 市場別
+            date: str # 更新日期
         }
         ```
 
@@ -225,18 +225,18 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            date: str,
-            close: float,
-            target_stock_id: str,
-            target_close: float,
-            type: str,
-            fulfillment_method: str,
-            end_date: str,
-            fulfillment_start_date: str,
-            fulfillment_end_date: str,
-            exercise_ratio: float,
-            fulfillment_price: float
+            stock_id: str, # 股票代碼
+            date: str, # 上市日期
+            close: float, # 收盤價
+            target_stock_id: str, # 標的股票代碼
+            target_close: float, # 標的收盤價
+            type: str, # 權證類型
+            fulfillment_method: str, # 履約方式
+            end_date: str, # 最後交易日
+            fulfillment_start_date: str, # 履約開始日
+            fulfillment_end_date: str, # 履約截止日
+            exercise_ratio: float, # 行使比例
+            fulfillment_price: float # 履約價格
         }
         ```
 
@@ -296,7 +296,7 @@
     === "Schema"
         ```
         {
-            date: str
+            date: str # 交易日期
         }
         ```
 
@@ -376,16 +376,16 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            Trading_Volume: int64,
-            Trading_money: int64,
-            open: float64,
-            max: float64,
-            min: float64,
-            close: float64,
-            spread: float64,
-            Trading_turnover: float32
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            Trading_Volume: int64, # 成交量
+            Trading_money: int64, # 成交金額
+            open: float64, # 開盤價
+            max: float64, # 最高價
+            min: float64, # 最低價
+            close: float64, # 收盤價
+            spread: float64, # 漲跌幅
+            Trading_turnover: float32 # 交易筆數
         }
         ```
 
@@ -454,16 +454,16 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            Trading_Volume: int64,
-            Trading_money: int64,
-            open: float64,
-            max: float64,
-            min: float64,
-            close: float64,
-            spread: float64,
-            Trading_turnover: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            Trading_Volume: int64, # 成交量
+            Trading_money: int64, # 成交金額
+            open: float64, # 開盤價
+            max: float64, # 最高價
+            min: float64, # 最低價
+            close: float64, # 收盤價
+            spread: float64, # 漲跌幅
+            Trading_turnover: int64 # 交易筆數
         }
         ```
 
@@ -542,17 +542,17 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            yweek: str,
-            max: float64,
-            min: float64,
-            trading_volume: int64,
-            trading_money: int64,
-            trading_turnover: float32,
-            date: str,
-            close: float64,
-            open: float64,
-            spread: float64,
+            stock_id: str, # 股票代碼
+            yweek: str, # 週日期
+            max: float64, # 最高價
+            min: float64, # 最低價
+            trading_volume: int64, # 成交量
+            trading_money: int64, # 成交金額
+            trading_turnover: float32, # 交易筆數
+            date: str, # 日期
+            close: float64, # 收盤價
+            open: float64, # 開盤價
+            spread: float64 # 漲跌幅
         }
         ```
 
@@ -608,17 +608,17 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            yweek: str,
-            max: float64,
-            min: float64,
-            trading_volume: int64,
-            trading_money: int64,
-            trading_turnover: float32,
-            date: str,
-            close: float64,
-            open: float64,
-            spread: float64,
+            stock_id: str, # 股票代碼
+            yweek: str, # 週日期
+            max: float64, # 最高價
+            min: float64, # 最低價
+            trading_volume: int64, # 成交量
+            trading_money: int64, # 成交金額
+            trading_turnover: float32, # 交易筆數
+            date: str, # 日期
+            close: float64, # 收盤價
+            open: float64, # 開盤價
+            spread: float64 # 漲跌幅
         }
         ```
 
@@ -695,17 +695,17 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            ymonth: str,
-            max: float64,
-            min: float64,
-            trading_volume: int64,
-            trading_money: int64,
-            trading_turnover: float32,
-            date: str,
-            close: float64,
-            open: float64,
-            spread: float64,
+            stock_id: str, # 股票代碼
+            ymonth: str, # 月日期
+            max: float64, # 最高價
+            min: float64, # 最低價
+            trading_volume: int64, # 成交量
+            trading_money: int64, # 成交金額
+            trading_turnover: float32, # 交易筆數
+            date: str, # 日期
+            close: float64, # 收盤價
+            open: float64, # 開盤價
+            spread: float64 # 漲跌幅
         }
         ```
 
@@ -761,17 +761,17 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            ymonth: str,
-            max: float64,
-            min: float64,
-            trading_volume: int64,
-            trading_money: int64,
-            trading_turnover: float32,
-            date: str,
-            close: float64,
-            open: float64,
-            spread: float64,
+            stock_id: str, # 股票代碼
+            ymonth: str, # 月日期
+            max: float64, # 最高價
+            min: float64, # 最低價
+            trading_volume: int64, # 成交量
+            trading_money: int64, # 成交金額
+            trading_turnover: float32, # 交易筆數
+            date: str, # 日期
+            close: float64, # 收盤價
+            open: float64, # 開盤價
+            spread: float64 # 漲跌幅
         }
         ```
 
@@ -849,16 +849,16 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            Trading_Volume: int64,
-            Trading_money: int64,
-            open: float64,
-            max: float64,
-            min: float64,
-            close: float64,
-            spread: float64,
-            Trading_turnover: float32
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            Trading_Volume: int64, # 成交量
+            Trading_money: int64, # 成交金額
+            open: float64, # 開盤價
+            max: float64, # 最高價
+            min: float64, # 最低價
+            close: float64, # 收盤價
+            spread: float64, # 漲跌幅
+            Trading_turnover: float32 # 交易筆數
         }
         ```
 
@@ -917,16 +917,16 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            Trading_Volume: int64,
-            Trading_money: int64,
-            open: float64,
-            max: float64,
-            min: float64,
-            close: float64,
-            spread: float64,
-            Trading_turnover: float32
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            Trading_Volume: int64, # 成交量
+            Trading_money: int64, # 成交金額
+            open: float64, # 開盤價
+            max: float64, # 最高價
+            min: float64, # 最低價
+            close: float64, # 收盤價
+            spread: float64, # 漲跌幅
+            Trading_turnover: float32 # 交易筆數
         }
         ```
 
@@ -1028,12 +1028,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            deal_price: float64,
-            volume: int64,
-            Time: str,
-            TickType: str # 0: 無法判斷, 1: 賣盤成交, 2: 買盤成交
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            deal_price: float64, # 成交價
+            volume: int64, # 成交量
+            Time: str, # 時間
+            TickType: str # 成交種類 (0: 無法判斷, 1: 賣盤成交, 2: 買盤成交)
         }
         ```
 
@@ -1110,11 +1110,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            dividend_yield: float64,
-            PER: float64,
-            PBR: float64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            dividend_yield: float64, # 殖利率
+            PER: float64, # 本益比
+            PBR: float64 # 股價淨值比
         }
         ```
 
@@ -1185,15 +1185,15 @@
     === "Schema"
         ```
         {
-            Time: str,
-            TotalBuyOrder: str,
-            TotalBuyVolume: int64,
-            TotalSellOrder: int64,
-            TotalSellVolume: int64,
-            TotalDealOrder: int64,
-            TotalDealVolume: int64,
-            TotalDealMoney: int64,
-            date: str,
+            Time: str, # 時間
+            TotalBuyOrder: str, # 累積委託買進筆數
+            TotalBuyVolume: int64, # 累積委託買進數量
+            TotalSellOrder: int64, # 累積委託賣出筆數
+            TotalSellVolume: int64, # 累積委託賣出數量
+            TotalDealOrder: int64, # 累積成交筆數
+            TotalDealVolume: int64, # 累積成交數量
+            TotalDealMoney: int64, # 累積成交金額
+            date: str # 日期
         }
         ```
 
@@ -1264,8 +1264,8 @@
     === "Schema"
         ```
         {
-            date: str,
-            TAIEX: float64
+            date: str, # 日期
+            TAIEX: float64 # 加權指數
         }
         ```
 
@@ -1345,12 +1345,12 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            date: str,
-            BuyAfterSale: str,
-            Volume: int64,
-            BuyAmount: int64,
-            SellAmount: int64
+            stock_id: str, # 股票代碼
+            date: str, # 日期
+            BuyAfterSale: str, # 可否當沖
+            Volume: int64, # 成交量
+            BuyAmount: int64, # 買進金額
+            SellAmount: int64 # 賣出金額
         }
         ```
 
@@ -1417,12 +1417,12 @@
     === "Schema"
         ```
         {
-            stock_id: str,
-            date: str,
-            BuyAfterSale: str,
-            Volume: int64,
-            BuyAmount: int64,
-            SellAmount: int64
+            stock_id: str, # 股票代碼
+            date: str, # 日期
+            BuyAfterSale: str, # 可否當沖
+            Volume: int64, # 成交量
+            BuyAmount: int64, # 買進金額
+            SellAmount: int64 # 賣出金額
         }
         ```
 
@@ -1503,9 +1503,9 @@
     === "Schema"
         ```
         {
-            price: float64,
-            stock_id: str,
-            date: str
+            price: float64, # 報酬指數
+            stock_id: str, # 指數代碼
+            date: str # 日期
         }
         ```
 
@@ -1584,9 +1584,9 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            close: float64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            close: float64 # 股價
         }
         ```
 
@@ -1655,9 +1655,9 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            close: float64,
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            close: float64 # 股價
         }
         ```
 
@@ -1781,14 +1781,14 @@
     === "Schema"
         ```
         {
-            date: str,
-            minute: str,
-            stock_id: str,
-            open: float64,
-            high: float64,
-            low: float64,
-            close: float64,
-            volume: float32
+            date: str, # 日期
+            minute: str, # 分
+            stock_id: str, # 股票代碼
+            open: float64, # 開盤價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            close: float64, # 收盤價
+            volume: float32 # 成交量
         }
         ```
 ---------------------------------------
@@ -1859,11 +1859,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            time: str,
-            stock_id: str,
-            price: float,
-            kind: str
+            date: str, # 日期
+            time: str, # 時間
+            stock_id: str, # 產業代碼
+            price: float, # 價格
+            kind: str # 市場別
         }
         ```
 

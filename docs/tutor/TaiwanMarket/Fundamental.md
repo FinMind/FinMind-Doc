@@ -85,11 +85,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            type: str,
-            value: float64,
-            origin_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            type: str, # 類別
+            value: float64, # 數值
+            origin_name: str # 原始名稱
         }
         ```
 
@@ -158,11 +158,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            type: str,
-            value: float64,
-            origin_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            type: str, # 類別
+            value: float64, # 數值
+            origin_name: str # 原始名稱
         }
         ```
 
@@ -236,11 +236,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            type: str,
-            value: float64,
-            origin_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            type: str, # 類別
+            value: float64, # 數值
+            origin_name: str # 原始名稱
         }
         ```
 
@@ -309,11 +309,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            type: str,
-            value: float64,
-            origin_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            type: str, # 類別
+            value: float64, # 數值
+            origin_name: str # 原始名稱
         }
         ```
 
@@ -388,11 +388,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            type: str,
-            value: float64,
-            origin_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            type: str, # 類別
+            value: float64, # 數值
+            origin_name: str # 原始名稱
         }
         ```
 
@@ -461,11 +461,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            type: str,
-            value: float64,
-            origin_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            type: str, # 類別
+            value: float64, # 數值
+            origin_name: str # 原始名稱
         }
         ```
 
@@ -540,28 +540,28 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            year: str,
-            StockEarningsDistribution: float64,
-            StockStatutorySurplus: float64,
-            StockExDividendTradingDate: str,
-            TotalEmployeeStockDividend: float64,
-            TotalEmployeeStockDividendAmount: float64,
-            RatioOfEmployeeStockDividendOfTotal: float64,
-            RatioOfEmployeeStockDividend: float64,
-            CashEarningsDistribution: float64,
-            CashStatutorySurplus: float64,
-            CashExDividendTradingDate: str,
-            CashDividendPaymentDate: str,
-            TotalEmployeeCashDividend: float64,
-            TotalNumberOfCashCapitalIncrease: float64,
-            CashIncreaseSubscriptionRate: float64,
-            CashIncreaseSubscriptionpRrice: float64,
-            RemunerationOfDirectorsAndSupervisors: float64,
-            ParticipateDistributionOfTotalShares: float64,
-            AnnouncementDate: str,
-            AnnouncementTime: str
+            date: str, # 權利分派基準日
+            stock_id: str, # 股票代碼
+            year: str, # 股利所屬年度
+            StockEarningsDistribution: float64, # 股票股利:盈餘轉增資配股
+            StockStatutorySurplus: float64, # 股票股利:法定盈餘公積資本公積轉增資配股
+            StockExDividendTradingDate: str, # 除權交易日
+            TotalEmployeeStockDividend: float64, # 員工配股
+            TotalEmployeeStockDividendAmount: float64, # 員工配股金額
+            RatioOfEmployeeStockDividendOfTotal: float64, # 配股總股數佔盈餘配股總股數之比例
+            RatioOfEmployeeStockDividend: float64, # 員工紅利配股率
+            CashEarningsDistribution: float64, # 現金股利:盈餘轉增資配股
+            CashStatutorySurplus: float64, # 現金股利:法定盈餘公積資本公積轉增資配股
+            CashExDividendTradingDate: str, # 除息交易日
+            CashDividendPaymentDate: str, # 現金股利發放日
+            TotalEmployeeCashDividend: float64, # 員工紅利總金額
+            TotalNumberOfCashCapitalIncrease: float64, # 現金增資總股數
+            CashIncreaseSubscriptionRate: float64, # 現金增資認股比率
+            CashIncreaseSubscriptionpRrice: float64, # 現金增資認購價
+            RemunerationOfDirectorsAndSupervisors: float64, # 董監酬勞
+            ParticipateDistributionOfTotalShares: float64, # 參加分派總股數
+            AnnouncementDate: str, # 公告日期
+            AnnouncementTime: str # 公告時間
         }
         ```
 
@@ -629,28 +629,28 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            year: str,
-            StockEarningsDistribution: float64,
-            StockStatutorySurplus: float64,
-            StockExDividendTradingDate: str,
-            TotalEmployeeStockDividend: float64,
-            TotalEmployeeStockDividendAmount: float64,
-            RatioOfEmployeeStockDividendOfTotal: float64,
-            RatioOfEmployeeStockDividend: float64,
-            CashEarningsDistribution: float64,
-            CashStatutorySurplus: float64,
-            CashExDividendTradingDate: str,
-            CashDividendPaymentDate: str,
-            TotalEmployeeCashDividend: float64,
-            TotalNumberOfCashCapitalIncrease: float64,
-            CashIncreaseSubscriptionRate: float64,
-            CashIncreaseSubscriptionpRrice: float64,
-            RemunerationOfDirectorsAndSupervisors: float64,
-            ParticipateDistributionOfTotalShares: float64,
-            AnnouncementDate: str,
-            AnnouncementTime: str
+            date: str, # 權利分派基準日
+            stock_id: str, # 股票代碼
+            year: str, # 股利所屬年度
+            StockEarningsDistribution: float64, # 股票股利:盈餘轉增資配股
+            StockStatutorySurplus: float64, # 股票股利:法定盈餘公積資本公積轉增資配股
+            StockExDividendTradingDate: str, # 除權交易日
+            TotalEmployeeStockDividend: float64, # 員工配股
+            TotalEmployeeStockDividendAmount: float64, # 員工配股金額
+            RatioOfEmployeeStockDividendOfTotal: float64, # 配股總股數佔盈餘配股總股數之比例
+            RatioOfEmployeeStockDividend: float64, # 員工紅利配股率
+            CashEarningsDistribution: float64, # 現金股利:盈餘轉增資配股
+            CashStatutorySurplus: float64, # 現金股利:法定盈餘公積資本公積轉增資配股
+            CashExDividendTradingDate: str, # 除息交易日
+            CashDividendPaymentDate: str, # 現金股利發放日
+            TotalEmployeeCashDividend: float64, # 員工紅利總金額
+            TotalNumberOfCashCapitalIncrease: float64, # 現金增資總股數
+            CashIncreaseSubscriptionRate: float64, # 現金增資認股比率
+            CashIncreaseSubscriptionpRrice: float64, # 現金增資認購價
+            RemunerationOfDirectorsAndSupervisors: float64, # 董監酬勞
+            ParticipateDistributionOfTotalShares: float64, # 參加分派總股數
+            AnnouncementDate: str, # 公告日期
+            AnnouncementTime: str # 公告時間
         }
         ```
 
@@ -725,16 +725,16 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            before_price: float32,
-            after_price: float32,
-            stock_and_cache_dividend: float32,
-            stock_or_cache_dividend: float32,
-            max_price: float32,
-            min_price: float32,
-            open_price: float32,
-            reference_price: float32
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            before_price: float32, # 除權息前收盤價
+            after_price: float32, # 除權息後收盤價
+            stock_and_cache_dividend: float32, # 權息值
+            stock_or_cache_dividend: float32, # 權/息
+            max_price: float32, # 漲停價格
+            min_price: float32, # 跌停價格
+            open_price: float32, # 開盤價
+            reference_price: float32 # 減除股利參考價
         }
         ```
 
@@ -802,16 +802,16 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            before_price: float32,
-            after_price: float32,
-            stock_and_cache_dividend: float32,
-            stock_or_cache_dividend: float32,
-            max_price: float32,
-            min_price: float32,
-            open_price: float32,
-            reference_price: float32
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            before_price: float32, # 除權息前收盤價
+            after_price: float32, # 除權息後收盤價
+            stock_and_cache_dividend: float32, # 權息值
+            stock_or_cache_dividend: float32, # 權/息
+            max_price: float32, # 漲停價格
+            min_price: float32, # 跌停價格
+            open_price: float32, # 開盤價
+            reference_price: float32 # 減除股利參考價
         }
         ```
 
@@ -886,12 +886,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            country: str,
-            revenue: int64,
-            revenue_month: int64,
-            revenue_year: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            country: str, # 國家
+            revenue: int64, # 營收
+            revenue_month: int64, # 營收月份
+            revenue_year: int64 # 營收年份
         }
         ```
 
@@ -960,12 +960,12 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            country: str,
-            revenue: int64,
-            revenue_month: int64,
-            revenue_year: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            country: str, # 國家
+            revenue: int64, # 營收
+            revenue_month: int64, # 營收月份
+            revenue_year: int64 # 營收年份
         }
         ```
 ----------------------------------
@@ -1102,9 +1102,9 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            market_value: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            market_value: int64 # 市值
         }
         ```
 
@@ -1173,9 +1173,9 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            market_value: int64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            market_value: int64 # 市值
         }
         ```
 
@@ -1245,9 +1245,9 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            stock_name: str
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str # 股票名稱
         }
         ```
 
@@ -1323,12 +1323,12 @@
     === "Schema"
         ```
         {
-            rank: int64,
-            stock_id: str,
-            stock_name: str,
-            weight_per: float32,
-            date: str,
-            type: str
+            rank: int64, # 排名
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            weight_per: float32, # 權重百分比
+            date: str, # 日期
+            type: str # 上市(twse)/上櫃(tpex)
         }
         ```
 
@@ -1397,12 +1397,12 @@
     === "Schema"
         ```
         {
-            rank: int64,
-            stock_id: str,
-            stock_name: str,
-            weight_per: float32,
-            date: str,
-            type: str
+            rank: int64, # 排名
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            weight_per: float32, # 權重百分比
+            date: str, # 日期
+            type: str # 上市(twse)/上櫃(tpex)
         }
         ```
 
@@ -1463,14 +1463,14 @@
     === "Schema"
         ```
         {
-            date: str
-            stock_id: str
-            type: str
-            before_price: float
-            after_price: float
-            max_price: float
-            min_price: float
-            open_price: float
+            date: str, # 分割日期
+            stock_id: str, # 股票代碼
+            type: str, # 分割類型
+            before_price: float, # 分割前價格
+            after_price: float, # 分割後價格
+            max_price: float, # 分割後最高價
+            min_price: float, # 分割後最低價
+            open_price: float # 分割後開盤價
         }
         ```
 
@@ -1542,13 +1542,13 @@
     === "Schema"
         ```
         {
-            date: str,
-            stock_id: str,
-            stock_name: str,
-            before_close: float64,
-            after_ref_close: float64,
-            after_ref_max: float64,
-            after_ref_min: float64,
-            after_ref_open: float64
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            before_close: float64, # 停止買賣前收盤價格
+            after_ref_close: float64, # 恢復買賣參考價
+            after_ref_max: float64, # 漲停價格
+            after_ref_min: float64, # 跌停價格
+            after_ref_open: float64 # 開盤競價基準
         }
         ```
