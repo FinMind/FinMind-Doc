@@ -258,7 +258,8 @@
         from FinMind.data import DataLoader
 
         api = DataLoader()
-        # api.login_by_token(api_token='token')
+        api.login_by_token(api_token='token')
+        # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
         df = data_loader.taiwan_options_snapshot(options_id="TXO")
         ```
     === "Python-request"
@@ -269,7 +270,7 @@
         headers = {"Authorization": f"Bearer {token}"}
         url = "https://api.finmindtrade.com/api/v4/taiwan_options_snapshot"
         parameter = {
-            "data_id": "TXO", # 目前只支援台指選擇權
+            "data_id": "TXO", # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -286,7 +287,8 @@
         response = httr::GET(
             url = url,
             query = list(
-                data_id="TXO" # 目前只支援台指期
+                # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
+                data_id="TXO"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
