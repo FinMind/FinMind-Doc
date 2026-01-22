@@ -41,11 +41,11 @@
     === "Schema"
         ```
         {
-            date: str,
-            currency: str,
-            cash_buy: float64,
-            cash_sell: float64,
-            spot_buy: float64,
-            spot_sell: float64
+            date: str, # 日期
+            currency: str, # 幣別
+            cash_buy: float64, # 現金買入
+            cash_sell: float64, # 現金賣出
+            spot_buy: float64, # 即期買入
+            spot_sell: float64 # 即期賣出
         }
         ```

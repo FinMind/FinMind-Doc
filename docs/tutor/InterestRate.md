@@ -38,9 +38,9 @@
     === "Schema"
         ```
         {
-            country: str,
-            date: str,
-            full_country_name: str,
-            interest_rate: float32
+            country: str, # 國家
+            date: str, # 日期
+            full_country_name: str, # 全名
+            interest_rate: float32 # 利率
         }
         ```

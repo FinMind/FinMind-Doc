@@ -38,8 +38,8 @@
     === "Schema"
         ```
         {
-            date: str,
-            name: str,
-            value: float32
+            date: str, # 日期
+            name: str, # 類別
+            value: float32 # 價格
         }
         ```

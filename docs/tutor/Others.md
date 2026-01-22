@@ -31,8 +31,8 @@
     === "Schema"
         ```
         {
-            date: str,
-            fear_greed: int32,
-            fear_greed_emotion: str
+            date: str, # 日期
+            fear_greed: int32, # 恐懼貪婪指數
+            fear_greed_emotion: str # 恐懼貪婪情緒
         }
         ```
