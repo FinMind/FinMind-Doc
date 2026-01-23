@@ -15,7 +15,7 @@
 - [台股分點資料表(query by 券商代碼) TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor_1)
 - [台股權證分點資料表(query by 股票代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor)
 - [台股權證分點資料表(query by 券商代碼) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor_1)
-- [台股八大行庫賣賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
+- [台股八大行庫買賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 - [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
@@ -751,10 +751,10 @@
         |    | date       |   stock_id | HoldingSharesLevel   |   people |   percent |      unit |
         |---:|:-----------|-----------:|:---------------------|---------:|----------:|----------:|
         |  0 | 2020-04-01 |       2330 | 1-999                |   165122 |      0.12 |  33289900 |
-        |  1 | 2020-04-01 |       2330 | 1,000-5,000          |   227692 |      1.69 | 440404454 |
-        |  2 | 2020-04-01 |       2330 | 10,001-15,000        |    10408 |      0.49 | 128127693 |
-        |  3 | 2020-04-01 |       2330 | 100,001-200,000      |     1628 |      0.86 | 225202876 |
-        |  4 | 2020-04-01 |       2330 | 15,001-20,000        |     5068 |      0.34 |  89929303 |
+        |  1 | 2020-04-01 |       2330 | 1000-5000            |   227692 |      1.69 | 440404454 |
+        |  2 | 2020-04-01 |       2330 | 10001-15000          |    10408 |      0.49 | 128127693 |
+        |  3 | 2020-04-01 |       2330 | 100001-200000        |     1628 |      0.86 | 225202876 |
+        |  4 | 2020-04-01 |       2330 | 15001-20000          |     5068 |      0.34 |  89929303 |
     === "Schema"
         ```
         {
@@ -789,7 +789,6 @@
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockHoldingSharesPer",
-            "data_id": "2330",
             "start_date": "2020-04-01",
         }
         data = requests.get(url, headers=headers, params=parameter)
@@ -826,10 +825,10 @@
         |    | date       |   stock_id | HoldingSharesLevel   |   people |   percent |      unit |
         |---:|:-----------|-----------:|:---------------------|---------:|----------:|----------:|
         |  0 | 2020-04-01 |       0050 | 1-999                |    44173 |      1.02 |  10834763 |
-        |  1 | 2020-04-01 |       0050 | 1,000-5,000          |    96465 |     17.7  | 186791648 |
-        |  2 | 2020-04-01 |       0050 | 5,001-10,000         |    10364 |      7.57 |  79902735 |
-        |  3 | 2020-04-01 |       0050 | 10,001-15,000        |     2819 |      3.41 |  36075583 |
-        |  4 | 2020-04-01 |       0050 | 15,001-20,000        |     1557 |      2.69 |  28426726 |
+        |  1 | 2020-04-01 |       0050 | 1000-5000            |    96465 |     17.7  | 186791648 |
+        |  2 | 2020-04-01 |       0050 | 5001-10000           |    10364 |      7.57 |  79902735 |
+        |  3 | 2020-04-01 |       0050 | 10001-15000          |     2819 |      3.41 |  36075583 |
+        |  4 | 2020-04-01 |       0050 | 15001-20000          |     1557 |      2.69 |  28426726 |
     === "Schema"
         ```
         {

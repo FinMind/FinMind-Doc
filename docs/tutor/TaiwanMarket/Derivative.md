@@ -1194,7 +1194,7 @@
         # api.login_by_token(api_token='token')
         df = api.taiwan_futures_dealer_trading_volume_daily(
             futures_id='TX',
-            start_date='2020-07-01'
+            start_date='2020-07-01',
             end_date='2020-07-12',
         )
         ```
@@ -1351,7 +1351,7 @@
             end_date='2020-07-12',
         )
         ```
-    === "Pytho-request"
+    === "Python-request"
         ```python
         import requests
         import pandas as pd

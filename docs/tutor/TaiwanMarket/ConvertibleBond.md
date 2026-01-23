@@ -82,7 +82,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_stock_convertible_bond_daily(
+        df = api.taiwan_stock_convertible_bond_daily(
             cb_id="15131",
             start_date="2020-04-01",
             end_date="2020-04-10",
@@ -168,7 +168,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_stock_convertible_bond_daily(
+        df = api.taiwan_stock_convertible_bond_daily(
             start_date="2020-04-06",
         )
         ```
@@ -254,7 +254,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_stock_convertible_bond_institutional_investors(
+        df = api.taiwan_stock_convertible_bond_institutional_investors(
             cb_id="15131",
             start_date="2020-04-01",
             end_date="2020-04-10",
@@ -336,7 +336,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_stock_convertible_bond_institutional_investors(
+        df = api.taiwan_stock_convertible_bond_institutional_investors(
             start_date="2020-04-06",
         )
         ```
@@ -382,13 +382,13 @@
 
 !!! output
     === "DataFrame"
-        |    |   cb_id | cb_name   | transaction_type   |   close |   change |   open |   max |   min |   no_of_transactions |   unit |   trading_value |   avg_price |   next_ref_price |   next_max_limit |   next_min_limit | date       |
-        |---:|--------:|:----------|:-------------------|--------:|---------:|-------:|------:|------:|---------------------:|-------:|----------------:|------------:|-----------------:|-----------------:|-----------------:|:-----------|
-        |  0 |   12582 | 其祥二KY  | 等價               |       0 |        0 |      0 |     0 |     0 |                    0 |      0 |               0 |       87.43 |            87.2  |            95.9  |            78.5  | 2020-04-06 |
-        |  1 |   13163 | 上曜三    | 等價               |       0 |        0 |      0 |     0 |     0 |                    0 |      0 |               0 |      101.68 |           102    |           112.2  |            91.8  | 2020-04-06 |
-        |  2 |   14361 | 華友聯一  | 等價               |     107 |        0 |    107 |   107 |   107 |                    1 |      2 |          214000 |      107    |           107    |           117.7  |            96.3  | 2020-04-06 |
-        |  3 |   14423 | 名軒三    | 等價               |       0 |        0 |      0 |     0 |     0 |                    0 |      0 |               0 |      135    |           135    |           148.5  |           121.5  | 2020-04-06 |
-        |  4 |   14721 | 三洋紡一  | 等價               |       0 |        0 |      0 |     0 |     0 |                    0 |      0 |               0 |      100.35 |           100.35 |           110.35 |            90.35 | 2020-04-06 |
+        |    |   Foreign_Investor_Buy |   Foreign_Investor_Sell |   Foreign_Investor_Overbuy |   Investment_Trust_Buy |   Investment_Trust_Sell |   Investment_Trust_Overbuy |   Dealer_self_Buy |   Dealer_self_Sell |   Dealer_self_Overbuy |   Total_Overbuy |   cb_id | cb_name    | date       |
+        |---:|-----------------------:|------------------------:|---------------------------:|-----------------------:|------------------------:|---------------------------:|------------------:|-------------------:|----------------------:|----------------:|--------:|:-----------|:-----------|
+        |  0 |                      0 |                       0 |                          0 |                      0 |                       0 |                          0 |                 2 |                  2 |                     0 |               0 |   14361 | 華友聯一   | 2020-04-06 |
+        |  1 |                      0 |                       0 |                          0 |                      0 |                       0 |                          0 |                12 |                 28 |                   -16 |             -16 |   15131 | 中興電一   | 2020-04-06 |
+        |  2 |                      0 |                       0 |                          0 |                      0 |                       0 |                          0 |                 5 |                  0 |                     5 |               5 |   15981 | 岱宇一     | 2020-04-06 |
+        |  3 |                      0 |                      10 |                        -10 |                      0 |                       0 |                          0 |                13 |                  0 |                    13 |               3 |   16262 | 艾美特二KY | 2020-04-06 |
+        |  4 |                      0 |                       0 |                          0 |                      0 |                       0 |                          0 |                20 |                 20 |                     0 |               0 |   17333 | 五鼎三     | 2020-04-06 |
     === "Schema"
         ```
         {
@@ -419,7 +419,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_stock_convertible_bond_daily_overview(
+        df = api.taiwan_stock_convertible_bond_daily_overview(
             cb_id="15131",
             start_date="2020-04-01",
             end_date="2020-04-10",
@@ -511,7 +511,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_stock_convertible_bond_daily_overview(
+        df = api.taiwan_stock_convertible_bond_daily_overview(
             start_date="2020-04-06",
         )
         ```

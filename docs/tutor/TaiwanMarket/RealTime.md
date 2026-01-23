@@ -173,7 +173,7 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        df = data_loader.taiwan_futures_snapshot(futures_id="TXF")
+        df = api.taiwan_futures_snapshot(futures_id="TXF")
         ```
     === "Python-request"
         ```python
@@ -260,7 +260,7 @@
         api = DataLoader()
         api.login_by_token(api_token='token')
         # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
-        df = data_loader.taiwan_options_snapshot(options_id="TXO")
+        df = api.taiwan_options_snapshot(options_id="TXO")
         ```
     === "Python-request"
         ```python
