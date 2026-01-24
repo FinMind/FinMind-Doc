@@ -1873,6 +1873,7 @@
 #### 台股暫停交易公告 TaiwanStockSuspended (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2011-10-06 ~ now
+- 記錄個股因重大訊息、股東會、處置等原因暫停交易之公告，包含暫停交易日期時間及預計恢復交易日期時間
 
 !!! example
     === "Python-request"
@@ -1973,6 +1974,7 @@
 #### 暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2014-06-01 ~ now
+- 記錄個股暫停「先賣後買」當日沖銷交易之預告，常見原因包含除權、除息等，包含暫停期間起訖日期
 
 !!! example
     === "Python-request"
