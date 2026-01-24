@@ -1885,7 +1885,6 @@
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockSuspended",
-            "data_id": "1101",
             "start_date": "2017-04-01",
             "end_date": "2025-01-01",
         }
@@ -1905,7 +1904,6 @@
             url = url,
             query = list(
                 dataset="TaiwanStockSuspended",
-                data_id="1101",
                 start_date= "2017-04-01",
                 end_date= "2025-01-01"
             ),
@@ -1931,45 +1929,6 @@
         }
         ```
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
-
-!!! example
-    === "Python-request"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
-        token = "" # 參考登入，獲取金鑰
-        headers = {"Authorization": f"Bearer {token}"}
-        parameter = {
-            "dataset": "TaiwanStockSuspended",
-            "start_date": "2020-04-06",
-        }
-        resp = requests.get(url, headers=headers, params=parameter)
-        data = resp.json()
-        data = pd.DataFrame(data["data"])
-        print(data.head())
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        library(dplyr)
-        token = "" # 參考登入，獲取金鑰
-        url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(
-            url = url,
-            query = list(
-                dataset="TaiwanStockSuspended",
-                start_date= "2020-04-06"
-            ),
-            add_headers(Authorization = paste("Bearer", token))
-        )
-        data = response %>% content
-        df = do.call('cbind',data$data) %>%data.table
-        head(df)
-        ```
-
 ----------------------------------
 #### 暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
@@ -1986,7 +1945,6 @@
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockDayTradingSuspension",
-            "data_id": "00940",
             "start_date": "2024-12-01",
             "end_date": "2025-01-01",
         }
@@ -2006,7 +1964,6 @@
             url = url,
             query = list(
                 dataset="TaiwanStockDayTradingSuspension",
-                data_id="00940",
                 start_date= "2024-12-01",
                 end_date= "2025-01-01"
             ),
@@ -2029,45 +1986,6 @@
             end_date: str, # 停止先賣後買結束日
             reason: str # 原因
         }
-        ```
-
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
-
-!!! example
-    === "Python-request"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
-        token = "" # 參考登入，獲取金鑰
-        headers = {"Authorization": f"Bearer {token}"}
-        parameter = {
-            "dataset": "TaiwanStockDayTradingSuspension",
-            "start_date": "2024-12-27",
-        }
-        resp = requests.get(url, headers=headers, params=parameter)
-        data = resp.json()
-        data = pd.DataFrame(data["data"])
-        print(data.head())
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        library(dplyr)
-        token = "" # 參考登入，獲取金鑰
-        url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(
-            url = url,
-            query = list(
-                dataset="TaiwanStockDayTradingSuspension",
-                start_date= "2024-12-27"
-            ),
-            add_headers(Authorization = paste("Bearer", token))
-        )
-        data = response %>% content
-        df = do.call('cbind',data$data) %>%data.table
-        head(df)
         ```
 
 ----------------------------------
