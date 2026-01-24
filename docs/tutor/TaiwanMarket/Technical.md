@@ -1,4 +1,4 @@
-在台股技術面，我們擁有 17 種資料集，如下:
+在台股技術面，我們擁有 19 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
@@ -17,6 +17,8 @@
 - [台灣個股十年線資料表 TaiwanStock10Year](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstock10year-backersponsor)
 - [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)
 - [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)
+- [台股暫停交易公告 TaiwanStockSuspended](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)
+- [暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor)
 
 
 ----------------------------------
@@ -1864,6 +1866,130 @@
             stock_id: str, # 產業代碼
             price: float, # 價格
             kind: str # 市場別
+        }
+        ```
+
+----------------------------------
+#### 台股暫停交易公告 TaiwanStockSuspended (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2017-04-01 ~ now
+- 資料更新時間 **每天 18:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockSuspended",
+            "data_id": "1101",
+            "start_date": "2017-04-01",
+            "end_date": "2025-01-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockSuspended",
+                data_id="1101",
+                start_date= "2017-04-01",
+                end_date= "2025-01-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id | suspension_time | resumption_date | resumption_time |
+        |---:|:-----------|:---------|:----------------|:----------------|:----------------|
+        |  0 | 2017-04-19 | 1101     | 8:00            | 2017-04-21      | 8:00            |
+    === "Schema"
+        ```
+        {
+            date: str, # 停牌日期
+            stock_id: str, # 股票代碼
+            suspension_time: str, # 停牌時間
+            resumption_date: str, # 復牌日期
+            resumption_time: str # 復牌時間
+        }
+        ```
+
+----------------------------------
+#### 暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2014-06-30 ~ now
+- 資料來源：證交所、櫃買中心
+- 資料更新時間 **每天 18:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockDayTradingSuspension",
+            "data_id": "00940",
+            "start_date": "2024-12-01",
+            "end_date": "2025-01-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockDayTradingSuspension",
+                data_id="00940",
+                start_date= "2024-12-01",
+                end_date= "2025-01-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | stock_id | date       | end_date   | reason |
+        |---:|:---------|:-----------|:-----------|:-------|
+        |  0 | 00940    | 2024-12-27 | 2025-01-03 | 除息   |
+    === "Schema"
+        ```
+        {
+            stock_id: str, # 股票代碼
+            date: str, # 暫停開始日期
+            end_date: str, # 暫停結束日期
+            reason: str # 暫停原因
         }
         ```
 
