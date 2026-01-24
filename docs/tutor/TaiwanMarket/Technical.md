@@ -1923,12 +1923,51 @@
     === "Schema"
         ```
         {
-            date: str, # 停牌日期
             stock_id: str, # 股票代碼
-            suspension_time: str, # 停牌時間
-            resumption_date: str, # 復牌日期
-            resumption_time: str # 復牌時間
+            date: str, # 暫停交易日期
+            suspension_time: str, # 暫停交易時間
+            resumption_date: str, # 恢復交易日期
+            resumption_time: str # 恢復交易時間
         }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockSuspended",
+            "start_date": "2020-04-06",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockSuspended",
+                start_date= "2020-04-06"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
         ```
 
 ----------------------------------
@@ -1987,10 +2026,49 @@
         ```
         {
             stock_id: str, # 股票代碼
-            date: str, # 暫停開始日期
-            end_date: str, # 暫停結束日期
-            reason: str # 暫停原因
+            date: str, # 停止先賣後買開始日
+            end_date: str, # 停止先賣後買結束日
+            reason: str # 原因
         }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockDayTradingSuspension",
+            "start_date": "2024-12-27",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockDayTradingSuspension",
+                start_date= "2024-12-27"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
         ```
 
 ----------------------------------
