@@ -1876,6 +1876,17 @@
 - 記錄個股因重大訊息、股東會、處置等原因暫停交易之公告，包含暫停交易日期時間及預計恢復交易日期時間
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_suspended(
+            start_date='2017-04-01',
+            end_date='2025-01-01',
+        )
+        ```
     === "Python-request"
         ```python
         import requests
@@ -1936,6 +1947,17 @@
 - 記錄個股暫停「先賣後買」當日沖銷交易之預告，常見原因包含除權、除息等，包含暫停期間起訖日期
 
 !!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_day_trading_suspension(
+            start_date='2024-12-01',
+            end_date='2025-01-01',
+        )
+        ```
     === "Python-request"
         ```python
         import requests
