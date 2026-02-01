@@ -1,4 +1,4 @@
-在台灣金融市場，我們擁有 70 種資料集，如下:
+在台灣金融市場，我們擁有 72 種資料集，如下:
 
 #### 技術面 Technical
 
@@ -61,7 +61,7 @@
 
 #### 衍生性金融商品 Derivative
 
-- [期貨、選擇權日成交資訊總覽 TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfutureinfo)
+- [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutopttickinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
@@ -75,6 +75,8 @@
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
 - [期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesopeninterestlargetraders-backersponsor)
 - [選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
+- [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
+- [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 
 #### 即時資料 RealTime
 

@@ -1,7 +1,7 @@
 
-在台股衍生性商品資料，我們擁有 13 種資料集，如下:
+在台股衍生性商品資料，我們擁有 15 種資料集，如下:
 
-- [期貨、選擇權日成交資訊總覽 TaiwanOptionFutureInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
+- [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)
@@ -14,6 +14,8 @@
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
 - [期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesopeninterestlargetraders-backersponsor)
 - [選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
+- [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
+- [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 
 ----------------------------------
 #### 期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo
@@ -1846,6 +1848,145 @@
             put_call: str, # 買賣權
             name: str, # 商品名稱
             option_id: str # 選擇權代碼
+        }
+        ```
+
+----------------------------------
+#### 期貨最後結算價 TaiwanFuturesFinalSettlementPrice(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：1998-01-01 ~ now
+- 資料更新時間 **星期一至五 每3小時**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesFinalSettlementPrice",
+            "data_id": "TX",
+            "start_date": "2024-01-01",
+            "end_date": "2024-12-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesFinalSettlementPrice",
+                data_id="TX",
+                start_date= "2024-01-01",
+                end_date= "2024-12-31"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       | contract_month | futures_type | futures_id | futures_name | settlement_price | underlying_code | notional_value |
+        |---:|:-----------|:---------------|:-------------|:-----------|:-------------|:-----------------|:----------------|:---------------|
+        |  0 | 2024-01-17 | 202401         | index        | TX         | 臺股期貨     | 17881.0          |                 | 0.0            |
+        |  1 | 2024-02-21 | 202402         | index        | TX         | 臺股期貨     | 18658.0          |                 | 0.0            |
+        |  2 | 2024-03-20 | 202403         | index        | TX         | 臺股期貨     | 20199.0          |                 | 0.0            |
+    === "Schema"
+        ```
+        {
+            date: str, # 到期日
+            contract_month: str, # 契約月份
+            futures_type: str, # 期貨類型 (index/stock/commodity)
+            futures_id: str, # 期貨代碼
+            futures_name: str, # 期貨名稱
+            settlement_price: float64, # 最後結算價
+            underlying_code: str, # 標的證券代號
+            notional_value: float64 # 約定標的物價值
+        }
+        ```
+
+----------------------------------
+
+#### 選擇權最後結算價 TaiwanOptionFinalSettlementPrice(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2001-01-01 ~ now
+- 資料更新時間 **星期一至五 每3小時**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanOptionFinalSettlementPrice",
+            "data_id": "TXO",
+            "start_date": "2024-01-01",
+            "end_date": "2024-12-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionFinalSettlementPrice",
+                data_id="TXO",
+                start_date= "2024-01-01",
+                end_date= "2024-12-31"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       | contract_month | option_type | option_id | option_name      | settlement_price | underlying_code | notional_value |
+        |---:|:-----------|:---------------|:------------|:----------|:-----------------|:-----------------|:----------------|:---------------|
+        |  0 | 2024-01-17 | 202401         | index       | TXO       | 臺指選擇權       | 17881.0          |                 | 0.0            |
+        |  1 | 2024-02-21 | 202402         | index       | TXO       | 臺指選擇權       | 18658.0          |                 | 0.0            |
+        |  2 | 2024-03-20 | 202403         | index       | TXO       | 臺指選擇權       | 20199.0          |                 | 0.0            |
+    === "Schema"
+        ```
+        {
+            date: str, # 到期日
+            contract_month: str, # 契約月份
+            option_type: str, # 選擇權類型 (index/stock)
+            option_id: str, # 選擇權代碼
+            option_name: str, # 選擇權名稱
+            settlement_price: float64, # 最後結算價
+            underlying_code: str, # 標的證券代號
+            notional_value: float64 # 約定標的物價值
         }
         ```
 
