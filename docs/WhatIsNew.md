@@ -1,3 +1,6 @@
+#### 2026-02-07
+* 新增 [期貨價差行情表 TaiwanFuturesSpreadTrading](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)
+
 #### 2021-10-06
 * release FinMind package 1.5.3，處理 connect error 問題
 * 增加 FinMind package 文件
