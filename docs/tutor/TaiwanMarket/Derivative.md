@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 15 種資料集，如下:
+在台股衍生性商品資料，我們擁有 16 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
@@ -1848,6 +1848,80 @@
             put_call: str, # 買賣權
             name: str, # 商品名稱
             option_id: str # 選擇權代碼
+        }
+        ```
+
+----------------------------------
+#### 期貨價差行情表 TaiwanFuturesSpreadTrading(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2007-10-08 ~ now
+- 資料更新時間 **星期一至五 每3小時**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesSpreadTrading",
+            "data_id": "TX",
+            "start_date": "2024-01-01",
+            "end_date": "2024-12-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesSpreadTrading",
+                data_id="TX",
+                start_date= "2024-01-01",
+                end_date= "2024-12-31"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id | contract_date   | open  | max   | min   | close | best_bid | best_ask | historical_max | historical_min | spread_to_spread_volume | spread_to_single_volume | trading_session |
+        |---:|:-----------|:-----------|:----------------|:------|:------|:------|:------|:---------|:---------|:---------------|:---------------|:------------------------|:------------------------|:----------------|
+        |  0 | 2024-01-02 | TX         | 202401/202402   | -85.0 | -72.0 | -98.0 | -78.0 | -80.0    | -77.0    | 565.0          | -418.0         | 1234.0                  | 567.0                   | position        |
+        |  1 | 2024-01-02 | TX         | 202401/202403   | -90.0 | -80.0 | -105.0| -85.0 | -88.0    | -82.0    | 600.0          | -450.0         | 234.0                   | 123.0                   | position        |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            open: float64, # 開盤價
+            max: float64, # 最高價
+            min: float64, # 最低價
+            close: float64, # 收盤價
+            best_bid: float64, # 最佳買價
+            best_ask: float64, # 最佳賣價
+            historical_max: float64, # 歷史最高價
+            historical_min: float64, # 歷史最低價
+            spread_to_spread_volume: float64, # 價差對價差成交量
+            spread_to_single_volume: float64, # 價差對單式成交量
+            trading_session: str # 交易時段
         }
         ```
 
