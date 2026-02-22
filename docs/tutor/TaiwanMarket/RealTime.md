@@ -164,7 +164,7 @@
 
 ----------------------------------
 #### 台股期貨即時資訊 taiwan_futures_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(目前支援台指期、約 30 秒更新一次)
+(約 30 秒更新一次)
 
 !!! example
     === "Package"
@@ -183,7 +183,8 @@
         headers = {"Authorization": f"Bearer {token}"}
         url = "https://api.finmindtrade.com/api/v4/taiwan_futures_snapshot"
         parameter = {
-            "data_id": "TXF", # 目前只支援台指期
+            "data_id": "TXF", # TXF, TMF, CDF
+            # "data_id": "", # 一次全部
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -201,7 +202,8 @@
         response = httr::GET(
             url = url,
             query = list(
-                data_id="TXF" # 目前只支援台指期
+                data_id="TXF" # TXF, TMF, CDF
+                # data_id="" # 一次全部
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -250,7 +252,7 @@
 
 ----------------------------------
 #### 台股選擇權即時資訊 taiwan_options_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(目前支援台指選擇權、約 30 秒更新一次)
+(約 30 秒更新一次)
 
 !!! example
     === "Package"
@@ -270,7 +272,8 @@
         headers = {"Authorization": f"Bearer {token}"}
         url = "https://api.finmindtrade.com/api/v4/taiwan_options_snapshot"
         parameter = {
-            "data_id": "TXO", # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
+            "data_id": "TXO", # TXO, TX1, TX2, TX3, TX4, TX5
+            # "data_id": "", # 一次全部
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -287,8 +290,8 @@
         response = httr::GET(
             url = url,
             query = list(
-                # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
-                data_id="TXO"
+                data_id="TXO" # TXO, TX1, TX2, TX3, TX4, TX5
+                # data_id="" # 一次全部
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
