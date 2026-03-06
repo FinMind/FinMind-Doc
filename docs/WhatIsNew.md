@@ -1,3 +1,6 @@
+#### 2026-03-06
+* 新增 [每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)
+
 #### 2026-02-07
 * 新增 [期貨價差行情表 TaiwanFuturesSpreadTrading](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)
 

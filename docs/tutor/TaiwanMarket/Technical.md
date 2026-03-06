@@ -1,4 +1,4 @@
-在台股技術面，我們擁有 19 種資料集，如下:
+在台股技術面，我們擁有 20 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
@@ -19,6 +19,7 @@
 - [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)
 - [台股暫停交易公告 TaiwanStockSuspended](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)
 - [暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor)
+- [每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)
 
 
 ----------------------------------
@@ -2011,3 +2012,81 @@
         ```
 
 ----------------------------------
+#### 每日漲跌停價 TaiwanStockPriceLimit(只限 backer、sponsor 會員使用)
+
+- 資料區間：2000-01-01 ~ now
+- 資料更新時間 **星期一至五 18:00**
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_price_limit(
+            stock_id='2330',
+            start_date='2023-01-01',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockPriceLimit",
+            "data_id": "2330",
+            "start_date": "2023-01-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockPriceLimit",
+                data_id="2330",
+                start_date= "2023-01-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id | reference_price | limit_up | limit_down |
+        |---:|:-----------|:---------|----------------:|---------:|-----------:|
+        |  0 | 2023-01-03 | 2330     |          450.00 |   495.00 |     405.00 |
+        |  1 | 2023-01-04 | 2330     |          452.00 |   497.00 |     407.00 |
+        |  2 | 2023-01-05 | 2330     |          452.50 |   497.50 |     407.50 |
+        |  3 | 2023-01-06 | 2330     |          454.50 |   500.00 |     409.00 |
+        |  4 | 2023-01-09 | 2330     |          458.00 |   503.50 |     412.50 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            reference_price: float64, # 參考價
+            limit_up: float64, # 漲停價
+            limit_down: float64 # 跌停價
+        }
+        ```

@@ -1,4 +1,4 @@
-在台灣金融市場，我們擁有 74 種資料集，如下:
+在台灣金融市場，我們擁有 75 種資料集，如下:
 
 #### 技術面 Technical
 
@@ -21,6 +21,7 @@
 - [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)
 - [台股暫停交易公告 TaiwanStockSuspended](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)
 - [暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor)
+- [每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)
 
 #### 籌碼面 Chip
 
