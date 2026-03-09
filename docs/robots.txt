@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://finmind.github.io/llms.txt
+Sitemap: https://finmind.github.io/llms-full.txt
