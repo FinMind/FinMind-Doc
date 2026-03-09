@@ -29,3 +29,13 @@ US Government Bonds Yield.
 
 The datasets are automatically updated daily.
 You can analyze financial data without having to collect the data by yourself.<br>
+
+## LLM / AI 整合
+
+想用 ChatGPT、Claude 等 AI 工具查詢 FinMind 的資料集和 API 用法？我們提供 [llms.txt](https://finmind.github.io/llms.txt)，讓 AI 快速理解 FinMind 的所有資料集、API 端點與使用方式。
+
+只要將以下連結貼給你的 AI 助手，即可開始對話：
+
+```
+https://finmind.github.io/llms.txt
+```
