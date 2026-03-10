@@ -26,7 +26,7 @@ df = api.taiwan_stock_daily(stock_id='2330', start_date='2020-01-01')
 
 - [Quick Start](https://finmind.github.io/quickstart/): API usage guide with examples in Python and R
 - [Login](https://finmind.github.io/login/): Authentication methods
-- [API Usage Count](https://finmind.github.io/api_usage_count/): Check API usage limits
+- [API Usage Count](https://finmind.github.io/api_usage_count/): Check API usage via `GET https://api.web.finmindtrade.com/v2/user_info` (Authorization: Bearer {token}). Returns `user_count` (current usage) and `api_request_limit` (quota). HTTP 402 when quota exceeded.
 
 ### Taiwan Market (75 datasets)
 

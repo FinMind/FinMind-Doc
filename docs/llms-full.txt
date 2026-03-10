@@ -32,6 +32,38 @@ List available data_id values for a dataset.
 Column name Chinese-English mapping.
 - Params: dataset (str, required)
 
+### API Usage Count (API 使用次數)
+
+Check current API usage and quota.
+
+#### GET https://api.web.finmindtrade.com/v2/user_info
+- Headers: Authorization: Bearer {token}
+- Response fields: `user_count` (int, 使用次數), `api_request_limit` (int, api 使用上限)
+
+```python
+# Package
+from FinMind.data import FinMindApi
+api = FinMindApi()
+api.login_by_token(token)
+print(api.api_usage_limit)
+
+# Requests
+import requests
+headers = {"Authorization": f"Bearer {token}"}
+url = "https://api.web.finmindtrade.com/v2/user_info"
+resp = requests.get(url, headers=headers)
+resp.json()["user_count"]  # 使用次數
+resp.json()["api_request_limit"]  # api 使用上限
+```
+
+#### Rate Limit Exceeded (API 用量超出上限)
+When quota is exceeded, API returns HTTP 402:
+```
+{'msg': 'Requests reach the upper limit. https://finmindtrade.com/', 'status': 402}
+```
+
+---
+
 ### Example
 
 ```
