@@ -936,7 +936,7 @@
 
 ----------------------------------
 #### 台灣股價歷史逐筆資料表 TaiwanStockPriceTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(由於資料量過大，單次請求只提供一天資料)
+(由於資料量過大，單次請求只提供一天一檔個股資料)
 
 - 資料區間：2019-01-01 ~ now。
 - 輸入 dataset、stock_id、start_date 參數，會回傳 start_date 當天資料。
@@ -1039,6 +1039,89 @@
             TickType: str # 成交種類 (0: 無法判斷, 1: 賣盤成交, 2: 買盤成交)
         }
         ```
+
+
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2019-01-01 ~ now。
+- 輸入 dataset、date 參數，會回傳 date 當天資料。
+- 資料更新時間 **星期一至五 15:30**，實際更新時間以 API 資料為主。
+- 部分資料缺失，缺失日期為：2019-02-20。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_tick(
+            date='2019-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockPriceTick",
+            "date": '2019-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockPriceTick",
+                date= "2019-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   deal_price |   volume | Time     |   TickType |
+        |---:|:-----------|-----------:|-------------:|---------:|:---------|-----------:|
+        |  0 | 2019-01-02 |       0050 |        75.85 |      167 | 09:00:03 |          1 |
+        |  1 | 2019-01-02 |       0050 |        75.90 |       11 | 09:00:08 |          1 |
+        |  2 | 2019-01-02 |       0050 |        75.85 |        2 | 09:00:18 |          1 |
+        |  3 | 2019-01-02 |       0050 |        75.85 |       31 | 09:00:23 |          1 |
+        |  4 | 2019-01-02 |       0050 |        75.85 |       19 | 09:00:28 |          1 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            deal_price: float64, # 成交價
+            volume: int64, # 成交量
+            Time: str, # 時間
+            TickType: str # 成交種類 (0: 無法判斷, 1: 賣盤成交, 2: 買盤成交)
+        }
+        ```
+
 
 ----------------------------------
 #### 個股PER、PBR資料表 TaiwanStockPER
