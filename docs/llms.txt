@@ -61,6 +61,10 @@ df = api.taiwan_stock_daily(stock_id='2330', start_date='2020-01-01')
 - [Dashboard](https://finmind.github.io/tutor/analysis/CustomerDashboardWebServer/): Custom dashboard web server
 - [Treemap](https://finmind.github.io/tutor/analysis/SnapshotTreemap/): Real-time market treemap
 
+## Full API Reference
+
+- [llms-full.txt](https://finmind.github.io/llms-full.txt): Complete dataset schemas with all parameters, columns, tiers, and code examples
+
 ## Links
 
 - [GitHub](https://github.com/FinMind/FinMind)
