@@ -5,7 +5,7 @@
 ## API Overview
 
 - Base URL: `https://api.finmindtrade.com/api/v4`
-- Authentication: Register at finmindtrade.com, get token via login API or website. Pass token as `Authorization: Bearer {token}` header or `token` query parameter.
+- Authentication: Register at finmindtrade.com, get token via login API or website. Pass token as `Authorization: Bearer {token}` header.
 - Rate limit: 600 requests/hour (with token), 300/hour (without token).
 - Four endpoints:
   - `POST /login` - Get auth token (params: user_id, password)
