@@ -64,6 +64,7 @@ df = api.taiwan_stock_daily(stock_id='2330', start_date='2020-01-01')
 ## Full API Reference
 
 - [llms-full.txt](https://finmind.github.io/llms-full.txt): Complete dataset schemas with all parameters, columns, tiers, and code examples
+- [openapi.yaml](https://finmind.github.io/openapi.yaml): OpenAPI 3.1 schema for GPTs, Dify, Coze and other platforms
 
 ## Links
 

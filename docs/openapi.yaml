@@ -1,0 +1,218 @@
+openapi: 3.1.0
+info:
+  title: FinMind API
+  description: >
+    FinMind is an open-source financial data platform providing 75+ Taiwan market datasets
+    and international market data (US, UK, Europe, Japan) via REST API.
+    Data is updated daily. Register at https://finmindtrade.com/ to get a token.
+  version: v4
+  contact:
+    name: FinMind
+    url: https://finmind.github.io/
+servers:
+  - url: https://api.finmindtrade.com/api/v4
+
+paths:
+  /login:
+    post:
+      operationId: login
+      summary: Get auth token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [user_id, password]
+              properties:
+                user_id:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+
+  /data:
+    get:
+      operationId: getData
+      summary: Fetch dataset
+      description: >
+        Query any FinMind dataset. Use the `dataset` parameter to select data type,
+        `data_id` for specific stock/futures/currency, and date range to filter.
+      parameters:
+        - name: dataset
+          in: query
+          required: true
+          description: >
+            Dataset name. Taiwan Technical: TaiwanStockInfo, TaiwanStockPrice, TaiwanStockPriceAdj,
+            TaiwanStockPriceTick, TaiwanStockPER, TaiwanStockKBar, TaiwanStockWeekPrice,
+            TaiwanStockMonthPrice, TaiwanStockDayTrading, TaiwanStockTotalReturnIndex,
+            TaiwanVariousIndicators5Seconds, TaiwanStockStatisticsOfOrderBookAndTrade,
+            TaiwanStockTradingDate, TaiwanStock10Year, TaiwanStockEvery5SecondsIndex,
+            TaiwanStockInfoWithWarrant, TaiwanStockInfoWithWarrantSummary,
+            TaiwanStockSuspended, TaiwanStockDayTradingSuspension, TaiwanStockPriceLimit.
+            Taiwan Chip: TaiwanStockMarginPurchaseShortSale, TaiwanStockTotalMarginPurchaseShortSale,
+            TaiwanStockInstitutionalInvestorsBuySell, TaiwanStockTotalInstitutionalInvestors,
+            TaiwanStockShareholding, TaiwanStockHoldingSharesPer, TaiwanStockSecuritiesLending,
+            TaiwanStockMarginShortSaleSuspension, TaiwanDailyShortSaleBalances,
+            TaiwanSecuritiesTraderInfo, TaiwanStockTradingDailyReport,
+            TaiwanStockWarrantTradingDailyReport, TaiwanstockGovernmentBankBuySell,
+            TaiwanTotalExchangeMarginMaintenance, TaiwanStockTradingDailyReportSecIdAgg,
+            TaiwanStockDispositionSecuritiesPeriod.
+            Taiwan Fundamental: TaiwanStockFinancialStatements, TaiwanStockBalanceSheet,
+            TaiwanStockCashFlowsStatement, TaiwanStockDividend, TaiwanStockDividendResult,
+            TaiwanStockMonthRevenue, TaiwanStockCapitalReductionReferencePrice,
+            TaiwanStockMarketValue, TaiwanStockDelisting, TaiwanStockMarketValueWeight,
+            TaiwanStockSplitPrice, TaiwanStockParValueChange.
+            Taiwan Derivative: TaiwanFutOptDailyInfo, TaiwanFuturesDaily, TaiwanOptionDaily,
+            TaiwanFuturesTick, TaiwanOptionTIck, TaiwanFuturesInstitutionalInvestors,
+            TaiwanOptionInstitutionalInvestors, TaiwanFuturesInstitutionalInvestorsAfterHours,
+            TaiwanOptionInstitutionalInvestorsAfterHours, TaiwanFuturesDealerTradingVolumeDaily,
+            TaiwanOptionDealerTradingVolumeDaily, TaiwanFuturesOpenInterestLargeTraders,
+            TaiwanOptionOpenInterestLargeTraders, TaiwanFuturesSpreadTrading,
+            TaiwanFuturesFinalSettlementPrice, TaiwanOptionFinalSettlementPrice.
+            Taiwan Real-Time: taiwan_stock_tick_snapshot, TaiwanFutOptTickInfo,
+            taiwan_futures_snapshot, taiwan_options_snapshot.
+            Taiwan Convertible Bond: TaiwanStockConvertibleBondInfo, TaiwanStockConvertibleBondDaily,
+            TaiwanStockConvertibleBondInstitutionalInvestors, TaiwanStockConvertibleBondDailyOverview.
+            Taiwan Others: TaiwanStockNews, TaiwanBusinessIndicator, TaiwanStockIndustryChain.
+            International: USStockInfo, USStockPrice, USStockPriceMinute,
+            UKStockInfo, UKStockPrice, EuropeStockInfo, EuropeStockPrice,
+            JapanStockInfo, JapanStockPrice.
+            Global Economic: TaiwanExchangeRate, InterestRate, GoldPrice, CrudeOilPrices,
+            GovernmentBondsYield, CnnFearGreedIndex.
+          schema:
+            type: string
+        - name: data_id
+          in: query
+          required: false
+          description: >
+            Stock ID, futures ID, currency code, or other identifier.
+            Examples: 2330 (TSMC), 2317 (Foxconn), TX (TAIEX Futures), TXO (TAIEX Options),
+            USD, EUR, JPY, FED, WTI, Brent, "United States 10-Year".
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          required: false
+          description: Start date in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+        - name: end_date
+          in: query
+          required: false
+          description: End date in YYYY-MM-DD format.
+          schema:
+            type: string
+            format: date
+      responses:
+        "200":
+          description: Data returned successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: success
+                  status:
+                    type: integer
+                    example: 200
+                  data:
+                    type: array
+                    items:
+                      type: object
+        "402":
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: "Requests reach the upper limit. https://finmindtrade.com/"
+                  status:
+                    type: integer
+                    example: 402
+      security:
+        - bearerAuth: []
+
+  /datalist:
+    get:
+      operationId: getDataList
+      summary: List available data_id values for a dataset
+      parameters:
+        - name: dataset
+          in: query
+          required: true
+          description: Dataset name (e.g. TaiwanStockPrice, TaiwanExchangeRate)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of available data_id values
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+      security:
+        - bearerAuth: []
+
+  /translation:
+    get:
+      operationId: getTranslation
+      summary: Get column name Chinese-English mapping
+      parameters:
+        - name: dataset
+          in: query
+          required: true
+          description: Dataset name (e.g. TaiwanStockPrice, TaiwanStockBalanceSheet)
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Column name translations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                  status:
+                    type: integer
+                  data:
+                    type: array
+                    items:
+                      type: object
+      security:
+        - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >
+        Register at https://finmindtrade.com/ to get a token.
+        Rate limit: 600 requests/hour (with token), 300/hour (without token).
