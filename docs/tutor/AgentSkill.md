@@ -1,13 +1,28 @@
-FinMind 提供 [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) Agent Skill，讓你可以在 Claude Code 中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
+FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.com/)、[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)、[Cursor](https://www.cursor.com/)、[Windsurf](https://windsurf.com/) 等 AI 工具中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
 
 ## 安裝
 
 ### 步驟 1: 下載 Skill
 
-```bash
-mkdir -p ~/.claude/commands
-curl -o ~/.claude/commands/finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
-```
+!!! example
+    === "Claude Code"
+        ```bash
+        mkdir -p ~/.claude/commands
+        curl -o ~/.claude/commands/finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Cursor"
+        ```bash
+        mkdir -p .cursor/rules
+        curl -o .cursor/rules/finmind.mdc https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Windsurf"
+        ```bash
+        curl -o .windsurfrules https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Gemini"
+        ```bash
+        curl -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
 
 ### 步驟 2: 設定 Token
 
