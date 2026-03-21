@@ -51,6 +51,7 @@ nav:
         - 原物料市場: "tutor/Materials.md"
         - 美國國債: "tutor/GovernmentBondsYield.md"
         - 其他: "tutor/Others.md"
+    - Agent Skill: "tutor/AgentSkill.md"
     - 量化工具:
         - 回測: "tutor/analysis/Backtesting.md"
         - 回測(引用外部 data): "tutor/analysis/BacktestingOtherData.md"
