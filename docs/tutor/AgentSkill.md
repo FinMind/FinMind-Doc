@@ -4,10 +4,25 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 ### 步驟 1: 下載 Skill
 
-```bash
-mkdir -p ~/.claude/commands
-curl -o ~/.claude/commands/finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
-```
+!!! example
+    === "Claude Code"
+        ```bash
+        mkdir -p ~/.claude/commands
+        curl -o ~/.claude/commands/finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Cursor"
+        ```bash
+        mkdir -p .cursor/rules
+        curl -o .cursor/rules/finmind.mdc https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Windsurf"
+        ```bash
+        curl -o .windsurfrules https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Gemini"
+        ```bash
+        curl -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
 
 ### 步驟 2: 設定 Token
 
