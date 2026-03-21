@@ -80,6 +80,8 @@ export FINMIND_TOKEN="your_token_here"
 
 > 預期結果：回傳台積電外資持股張數與持股比例的歷史資料表格。
 
+![台積電外資持股比例變化](../img/tsmc_foreign_shareholding.png)
+
 ### 基本面
 
 ```
@@ -87,6 +89,8 @@ export FINMIND_TOKEN="your_token_here"
 ```
 
 > 預期結果：回傳台積電今年度各月份的營收數字。
+
+![台積電今年每月營收](../img/tsmc_monthly_revenue.png)
 
 ```
 /finmind 2330 近五年 PER 走勢
@@ -102,6 +106,8 @@ export FINMIND_TOKEN="your_token_here"
 
 > 預期結果：回傳台指期貨（TX）近一週的每日開高低收、成交量、未平倉量等資料。
 
+![台指期近月合約近一週成交資訊](../img/taiex_futures_weekly.png)
+
 ```
 /finmind 台指選擇權三大法人今日買賣
 ```
@@ -115,6 +121,8 @@ export FINMIND_TOKEN="your_token_here"
 ```
 
 > 預期結果：回傳近半年 USD/TWD 的每日即期買入、賣出匯率。
+
+![美元對台幣匯率近半年走勢](../img/usd_twd_exchange_rate.png)
 
 ```
 /finmind 聯準會近十年利率變化
