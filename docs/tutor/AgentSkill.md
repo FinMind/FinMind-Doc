@@ -1,4 +1,4 @@
-FinMind 提供 [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) Agent Skill，讓你可以在 Claude Code 中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
+FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.com/)、[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)、[Cursor](https://www.cursor.com/)、[Windsurf](https://windsurf.com/) 等 AI 工具中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
 
 ## 安裝
 
