@@ -1,5 +1,6 @@
 
 
-## Chat: [![Gitter](https://badges.gitter.im/FinMindTW/community.svg)](https://gitter.im/FinMindTW/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+## Chat: [Facebook 官方社團](https://www.facebook.com/groups/401634838071226)
+## 粉絲專頁: [FinMind](https://www.facebook.com/profile.php?id=100065614368124)
 ## Issue: [GitHub](https://github.com/FinMind/FinMind)
 ## other: FinMind.TW@gmail.com
