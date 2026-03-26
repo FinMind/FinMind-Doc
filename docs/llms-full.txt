@@ -279,7 +279,7 @@ data = resp.json()
 
 ### TaiwanStockHoldingSharesPer (股權持股分級表)
 - Tier: Backer/Sponsor
-- Data range: 2001-01-01 ~ now
+- Data range: 2010-01-29 ~ now
 - Params: dataset=TaiwanStockHoldingSharesPer, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockHoldingSharesPer, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date, stock_id, HoldingSharesLevel, people, percent, unit
