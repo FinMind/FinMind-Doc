@@ -16,15 +16,17 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
       - name: Install dependencies
         run: |
-          make install-python-evn
+          uv sync
       - name: Generate releaese note
         run: |
-          pipenv run python gen_release_note.py
+          uv run python gen_release_note.py
       - name: Build and publish
         env:
           FINMIND_DOC_TOKEN: ${{ secrets.FINMIND_DOC_TOKEN }}
         run: |
-          pipenv run mkdocs build
+          uv run mkdocs build
           make deploy-github-page
