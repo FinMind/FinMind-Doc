@@ -80,6 +80,26 @@
         data.table
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_margin_purchase_short_sale(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -340,6 +360,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_institutional_investors(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -575,6 +615,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_shareholding(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -745,6 +805,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_holding_shares_per(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -903,6 +983,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_securities_lending(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -1054,6 +1154,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_margin_short_sale_suspension(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -1196,6 +1316,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_daily_short_sale_balances(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -1642,6 +1782,25 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        date = '2025-12-08'
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_warrant_trading_daily_report(
+            date=date,
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
