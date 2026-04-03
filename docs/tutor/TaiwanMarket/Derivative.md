@@ -141,6 +141,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_daily(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | date       | futures_id   |   contract_date |   open |   max |   min |   close |   spread |   spread_per |   volume |   settlement_price |   open_interest | trading_session   |
@@ -307,6 +327,26 @@
         df = do.call('rbind',data$data) %>%data.table
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_option_daily(
+            option_id_list=['TXO', 'TEO'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | date       | option_id   |   contract_date |   strike_price | call_put   |   open |   max |   min |   close |   volume |   settlement_price |   open_interest | trading_session   |
@@ -557,6 +597,26 @@
         data.table
         head(df)
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        date = '2025-12-08'
+        start = datetime.datetime.now()
+        df = api.taiwan_option_tick(
+            option_id_list=['TXO', 'TEO'],
+            date=date,
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    |   ExercisePrice | PutCall   |   contract_date | date                | option_id   |   price |   volume |
@@ -641,6 +701,26 @@
         data.table
         head(df)
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_institutional_investors(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | name   | date       | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |   long_open_interest_balance_volume |   long_open_interest_balance_amount |   short_open_interest_balance_volume |   short_open_interest_balance_amount |
@@ -804,6 +884,26 @@
         data.table
         head(df)
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_option_institutional_investors(
+            option_id_list=['TXO', 'TEO'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -959,6 +1059,26 @@
         data.table
         head(df)
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_institutional_investors_after_hours(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | futures_id   | date       | institutional_investors   |   long_deal_volume |   long_deal_amount |   short_deal_volume |   short_deal_amount |
@@ -1091,6 +1211,26 @@
         data.table
         head(df)
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_option_institutional_investors_after_hours(
+            option_id_list=['TXO', 'TEO'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -1242,6 +1382,26 @@
         data.table
         head(df)
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_dealer_trading_volume_daily(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 
 !!! output
     === "DataFrame"
@@ -1396,6 +1556,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_option_dealer_trading_volume_daily(
+            option_id_list=['TXO', 'TEO'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | date       | dealer_code   | dealer_name          | option_id   |   volume | is_after_hour   |
@@ -1548,6 +1728,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_open_interest_large_traders(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | name       | contract_type   |   buy_top5_trader_open_interest |   buy_top5_trader_open_interest_per |   buy_top10_trader_open_interest |   buy_top10_trader_open_interest_per |   sell_top5_trader_open_interest |   sell_top5_trader_open_interest_per |   sell_top10_trader_open_interest |   sell_top10_trader_open_interest_per |   market_open_interest |   buy_top5_specific_open_interest | buy_top5_specific_open_interest_per   |    buy_top10_specific_open_interest | buy_top10_specific_open_interest_per   |   sell_top5_specific_open_interest | sell_top5_specific_open_interest_per   |   sell_top10_specific_open_interest | sell_top10_specific_open_interest_per   |   date | futures_id   |
@@ -1728,6 +1928,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_option_open_interest_large_traders(
+            option_id_list=['TXO', 'TEO'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | contract_type   |   buy_top5_trader_open_interest |   buy_top5_trader_open_interest_per |   buy_top10_trader_open_interest |   buy_top10_trader_open_interest_per |   sell_top5_trader_open_interest |   sell_top5_trader_open_interest_per |   sell_top10_trader_open_interest |   sell_top10_trader_open_interest_per |   market_open_interest |   buy_top5_specific_open_interest | buy_top5_specific_open_interest_per   |    buy_top10_specific_open_interest | buy_top10_specific_open_interest_per   |   sell_top5_specific_open_interest | sell_top5_specific_open_interest_per   |   sell_top10_specific_open_interest | sell_top10_specific_open_interest_per   |   date | put_call | name   | option_id |
@@ -1899,6 +2119,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_spread_trading(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | date       | futures_id | contract_date   | open  | max   | min   | close | best_bid | best_ask | historical_max | historical_min | spread_to_spread_volume | spread_to_single_volume | trading_session |
@@ -1973,6 +2213,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_futures_final_settlement_price(
+            futures_id_list=['TXF', 'MXF', 'EXF'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | date       | contract_month | futures_type | futures_id | futures_name | settlement_price | underlying_code | notional_value |
@@ -2043,6 +2303,26 @@
         head(df)
 
         ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_option_final_settlement_price(
+            option_id_list=['TXO', 'TEO'],
+            start_date='2024-01-01',
+            end_date='2024-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
 !!! output
     === "DataFrame"
         |    | date       | contract_month | option_type | option_id | option_name      | settlement_price | underlying_code | notional_value |

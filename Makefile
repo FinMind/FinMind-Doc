@@ -1,8 +1,8 @@
 install-python-evn:
 	sudo apt-get update && \
 	sudo apt-get install python3-pip -y && \
-	pip3 install pipenv && \
-	pipenv sync
+	pip3 install uv && \
+	uv sync
 
 deploy-github-page:
 	mkdir github_page && cd github_page && git init && \
@@ -15,7 +15,7 @@ deploy-github-page:
 	git push origin master
 
 run-dev:
-	pipenv run mkdocs serve
+	uv run mkdocs serve
 
 install:
-	pipenv sync
+	uv sync

@@ -1,0 +1,11 @@
+[project]
+name = "finmind-doc"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "mkdocs-material>=9.0,<10",
+    "markdown-include==0.8.1",
+    "pymdown-extensions>=10.14",
+    "requests>=2.31",
+    "mkdocs==1.5.3",
+]
