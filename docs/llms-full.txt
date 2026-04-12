@@ -252,6 +252,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockPriceLimit, data_id=2330, start_date=2023-01-01
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockPriceLimit, start_date=2023-01-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), reference_price (float64), limit_up (float64), limit_down (float64)
+- Note: limit_up/limit_down 為 0 表示無漲跌幅限制（槓桿型 ETF 如 00631L、反向型 ETF 如 00632R、興櫃股票）
 
 ---
 
