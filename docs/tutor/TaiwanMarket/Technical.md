@@ -2370,10 +2370,17 @@
             date: str, # 日期
             stock_id: str, # 股票代碼
             reference_price: float64, # 參考價
-            limit_up: float64, # 漲停價
-            limit_down: float64 # 跌停價
+            limit_up: float64, # 漲停價（0 表示無漲跌幅限制）
+            limit_down: float64 # 跌停價（0 表示無漲跌幅限制）
         }
         ```
+
+!!! note
+    `limit_up` 和 `limit_down` 為 **0** 時，表示該標的無漲跌幅限制，包含：
+
+    - 槓桿型 ETF（如 00631L）
+    - 反向型 ETF（如 00632R）
+    - 興櫃股票
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
