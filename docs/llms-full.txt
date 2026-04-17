@@ -369,6 +369,13 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockTradingDailyReportSecIdAgg, data_id=2330, start_date=2024-07-01, end_date=2024-07-15
 - Columns: securities_trader, securities_trader_id, stock_id, date, buy_volume, sell_volume, buy_price, sell_price
 
+### TaiwanStockBlockTradingDailyReport (鉅額交易買賣日報表)
+- Tier: Sponsor
+- Data range: 2026-04-10 ~ now
+- Update: Mon-Fri 21:00
+- Params: dataset=TaiwanStockBlockTradingDailyReport, start_date=2026-04-10
+- Columns: securities_trader, price, buy, sell, trade_type, securities_trader_id, stock_id, date
+
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
 - Data range: 2001-01-01 ~ now

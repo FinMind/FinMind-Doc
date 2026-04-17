@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 16 種資料集，如下:
+在台股籌碼面，我們擁有 17 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -18,6 +18,7 @@
 - [台股八大行庫買賣表 TaiwanstockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
 - [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
+- [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 
 
@@ -2132,6 +2133,61 @@
             sell_volume: int64, # 賣出總股數
             buy_price: float, # 買進均價
             sell_price: float, # 賣出均價
+        }
+        ```
+
+#### 鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2026-04-10 ~ now
+- 只需輸入日期，不需股票代碼
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        parameter = {
+            "dataset": "TaiwanStockBlockTradingDailyReport",
+            "start_date": "2026-04-10",
+            "token": token,
+        }
+        resp = requests.get(url, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockBlockTradingDailyReport",
+                start_date="2026-04-10",
+                token=""
+            )
+        )
+        data = content(response)
+        df = do.call('rbind', lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # 券商
+            price: float, # 價格
+            buy: int, # 買進股數
+            sell: int, # 賣出股數
+            trade_type: str, # 交易種類 (配對/轉換等)
+            securities_trader_id: str, # 券商代號
+            stock_id: str, # 股票代號
+            date: str, # 日期
         }
         ```
 
