@@ -20,6 +20,7 @@
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
 - [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
+- [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
 
 ----------------------------------
@@ -2345,6 +2346,161 @@
             measure: str, # 處置內容
             period_start: str, # 處置開始日期
             period_end: str, # 處置結束日期
+        }
+        ```
+
+----------------------------------
+
+#### 現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2015-06-01 ~ now
+- 資料更新時間 **星期一至五 19:00~22:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_day_trading_borrowing_fee_rate(
+            stock_id="2330",
+            start_date='2024-12-01',
+            end_date='2025-01-01',
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockDayTradingBorrowingFeeRate",
+            "data_id": "2330",
+            "start_date": "2024-12-01",
+            "end_date": "2025-01-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockDayTradingBorrowingFeeRate",
+                data_id= "2330",
+                start_date= "2024-12-01",
+                end_date= "2025-01-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   stock_name | InvestorBorrowedShares |  InvestorBorrowingFeeRate  |
+        |---:|:-----------|-----------:|-------------:|-----------------------:|---------------------------:|
+        |  0 | 2024-12-02 |       6477 |      安集    |         15000           |              7             |
+    === "Schema"
+        ```
+        {
+            date: str, # 公布日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            InvestorBorrowedShares: int32, # 借券股數
+            InvestorBorrowingFeeRate: float64, # 借券費率
+        }
+        ```
+
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_disposition_securities_period(
+            start_date='2024-12-02',
+            end_date: "2024-12-02",
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockDayTradingBorrowingFeeRate",
+            "start_date": "2024-12-02",
+            "end_date": "2024-12-02",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockDayTradingBorrowingFeeRate",
+                start_date= "2024-12-02",
+                end_date: "2024-12-02",
+                token = "" # 參考登入，獲取金鑰
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   stock_name     |   InvestorBorrowedShares |   InvestorBorrowingFeeRate   |
+        |---:|:-----------|-----------:|-----------------:|-------------------------:|-----------------------------:|
+        |  0 | 2024-12-02 |     00631L |   元大台灣50正2   |            5000          |              1               |
+        |  1 | 2024-12-02 |       1438 |      三地開發     |              1           |              3               |
+        |  2 | 2024-12-02 |       2312 |      金寶        |             1000          |              2               |
+        |  3 | 2024-12-02 |       2324 |      仁寶        |             1000          |            0.1               |
+        |  4 | 2024-12-02 |       2330 |      台積電      |            15000          |              7               |
+    === "Schema"
+        ```
+        {
+            date: str, # 公布日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            InvestorBorrowedShares: int32, # 借券股數
+            InvestorBorrowingFeeRate: float64, # 借券費率
         }
         ```
 
