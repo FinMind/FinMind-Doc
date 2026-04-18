@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 17 種資料集，如下:
+在台股籌碼面，我們擁有 18 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
