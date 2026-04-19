@@ -1,8 +1,168 @@
+#### 2026-04-19
+* 新增 [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
+
+#### 2026-04-17
+* 新增 [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
+
+#### 2026-04-12
+* [TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor) 文件補充：0 代表無漲跌幅限制
+
+#### 2026-04-03
+* 新增 async 批次查詢範例
+
+#### 2026-03-28
+* 更新 [TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor) 文件，補充 ESB、TWSE 資料
+
+#### 2026-03-26
+* 修正股權持股分級表資料區間誤植
+
+#### 2026-03-21
+* [Agent Skill](https://finmind.github.io/tutor/AgentSkill/) 新增 Claude Code、Cursor、Windsurf、Gemini 多工具安裝說明與範例截圖
+* 更新 [聯絡方式](https://finmind.github.io/Contact/)：Gitter 改為 Facebook 社團與粉絲專頁
+
+#### 2026-03-20
+* 新增 [Agent Skill](https://finmind.github.io/tutor/AgentSkill/) 文件，可在 Claude Code 等工具中透過 skill 快速查詢 FinMind 資料
+
+#### 2026-03-10
+* 新增 [llms.txt](https://finmind.github.io/llms.txt) 與 [llms-full.txt](https://finmind.github.io/llms-full.txt)，讓 AI 工具更快速理解 FinMind 文件
+* 新增 TaiwanStockPriceTick object method 文件
+* 首頁新增 LLM / AI 整合區塊
+
 #### 2026-03-06
 * 新增 [每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)
 
+#### 2026-02-22
+* 更新期貨及選擇權即時資訊文件，補充支援代碼及空值取得全部說明
+
 #### 2026-02-07
 * 新增 [期貨價差行情表 TaiwanFuturesSpreadTrading](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)
+
+#### 2026-02-01
+* 新增 [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
+* 新增 [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
+
+#### 2026-01-31
+* [TaiwanStockSuspended](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)、[TaiwanStockDayTradingSuspension](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor) 新增 FinMind package 範例
+
+#### 2026-01-24
+* 新增 [台股暫停交易公告 TaiwanStockSuspended](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)
+* 新增 [暫停先賣後買當沖預告表 TaiwanStockDayTradingSuspension](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor)
+
+#### 2026-01-23
+* 文件新增英文翻譯
+
+#### 2026-01-22
+* 更新 taiwan_options_snapshot 文件
+
+#### 2026-01-18
+* 移除 API URL query 中的 token 參數，改由 header 傳遞
+
+#### 2026-01-04
+* 移除 `login` 函式，登入僅支援 `login_by_token`
+
+#### 2025-12-15
+* 強化 tick data async 使用文件
+
+#### 2025-10-06
+* 新增 [股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)
+
+#### 2025-09-21
+* [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockevery5secondsindex-backersponsor) 新增 kind 參數
+
+#### 2025-09-11
+* FinMind package 新增 async 批次查詢功能
+
+#### 2025-08-31
+* 新增 [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockparvaluechange)
+
+#### 2025-08-13
+* 新增暫停先賣後買標記、修正期貨、選擇權三大法人文件
+
+#### 2025-07-20
+* 新增 [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
+* 新增 [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
+* 新增 [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
+
+#### 2025-05-25
+* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreport-sponsor) 新增 FinMind package 範例
+* [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockwarranttradingdailyreport-sponsor) 新增 FinMind package 範例
+
+#### 2025-05-11
+* 新增 [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#usstockpriceminute-backersponsor)
+* [個體公司所屬產業鏈 TaiwanStockIndustryChain](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor) 新增 FinMind package 範例
+
+#### 2025-05-10
+* 新增 [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockevery5secondsindex-backersponsor)
+* API 驗證方式調整，token 改由 header `Authorization: Bearer <token>` 傳遞
+
+#### 2025-04-06
+* 新增 [個體公司所屬產業鏈 TaiwanStockIndustryChain](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor)
+
+#### 2025-02-09
+* 新增 [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
+
+#### 2025-01-05
+* TaiwanStockConvertibleBond、CnnFearGreedIndex、Futures/OptionOpenInterestLargeTraders、Futures/OptionInstitutionalInvestorsAfterHours、TaiwanStockHoldingSharesPer 開放 backer 會員使用
+
+#### 2024-12-23
+* FinMind package 新增 async 批次查詢功能
+
+#### 2024-12-07
+* [TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)、[CnnFearGreedIndex](https://finmind.github.io/tutor/Others/#cnnfeargreedindex) 補上資料區間說明
+
+#### 2024-12-01
+* 新增 [台灣每月景氣對策信號表 TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
+
+#### 2024-11-17
+* 新增 [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
+
+#### 2024-10-12
+* 新增 [期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesopeninterestlargetraders-backersponsor)
+* 新增 [選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
+* 新增 [期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestorsafterhours-backersponsor)
+* 新增 [選擇權夜盤三大法人買賣 TaiwanOptionInstitutionalInvestorsAfterHours](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestorsafterhours-backersponsor)
+
+#### 2024-09-28
+* 新增 [API 使用量查詢](https://finmind.github.io/api_usage_count/)，可透過 package 查看 api_usage、api_usage_limit
+
+#### 2024-09-26
+* [TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 新增 securities_trader_id、end_date 參數
+
+#### 2024-08-25
+* 新增 [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
+
+#### 2024-07-14
+* 新增 [台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockweekprice-backersponsor)
+* 新增 [台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockmonthprice-backersponsor)
+
+#### 2024-05-28
+* 新增 [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
+
+#### 2024-05-19
+* 新增 [證券商資訊表 TaiwanSecuritiesTraderInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo) FinMind package 範例
+* 新增 [減資恢復買賣參考價格 TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice) 資料區間說明
+
+#### 2024-05-08
+* 移除匯率資料源
+
+#### 2024-04-18
+* 新增 [暫停融券賣出表(融券回補日) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginshortsalesuspension)
+
+#### 2024-04-01
+* [可轉債](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/) 系列資料集新增 FinMind package 範例
+
+#### 2024-03-24
+* 新增可轉債系列資料集：
+    * [可轉債總覽 TaiwanStockConvertibleBondInfo](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
+    * [可轉債日成交資訊 TaiwanStockConvertibleBondDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
+    * [可轉債三大法人日交易資訊 TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
+    * [可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
+
+#### 2024-03-19
+* 新增 [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
+
+#### 2024-01-27
+* 全市場資料集補上欄位 schema 說明文件
 
 #### 2021-10-06
 * release FinMind package 1.5.3，處理 connect error 問題
