@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 18 種資料集，如下:
+在台股籌碼面，我們擁有 19 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -19,6 +19,7 @@
 - [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
 - [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
+- [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -2139,7 +2140,7 @@
 
 #### 鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：2026-04-10 ~ now
+- 資料區間：2026-04-24 ~ now
 - 只需輸入日期，不需股票代碼
 
 !!! example
@@ -2151,7 +2152,7 @@
         token = "" # 參考登入，獲取金鑰
         parameter = {
             "dataset": "TaiwanStockBlockTradingDailyReport",
-            "start_date": "2026-04-10",
+            "start_date": "2026-04-24",
             "token": token,
         }
         resp = requests.get(url, params=parameter)
@@ -2168,7 +2169,7 @@
             url = url,
             query = list(
                 dataset="TaiwanStockBlockTradingDailyReport",
-                start_date="2026-04-10",
+                start_date="2026-04-24",
                 token=""
             )
         )
@@ -2189,6 +2190,77 @@
             securities_trader_id: str, # 券商代號
             stock_id: str, # 股票代號
             date: str, # 日期
+        }
+        ```
+
+#### 鉅額交易日成交資訊 TaiwanStockBlockTrade (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：TWSE 2005-04-04、TPEX 2007-01-01 ~ now
+- 資料更新時間 **星期一至五 盤後**，實際更新時間以 API 資料為主
+- 涵蓋上市櫃股票鉅額交易（逐筆）
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_block_trade(
+            stock_id="2330",
+            start_date="2026-04-01",
+            end_date="2026-04-30",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockBlockTrade",
+            "data_id": "2330",
+            "start_date": "2026-04-01",
+            "end_date": "2026-04-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockBlockTrade",
+                data_id="2330",
+                start_date="2026-04-01",
+                end_date="2026-04-30",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            trade_type: str, # 交易別 (配對交易等)
+            price: float, # 成交價
+            volume: int, # 成交股數
+            trading_money: int, # 成交金額
         }
         ```
 
