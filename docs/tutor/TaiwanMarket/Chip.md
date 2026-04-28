@@ -2140,7 +2140,7 @@
 
 #### 鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：2026-04-10 ~ now
+- 資料區間：2026-04-24 ~ now
 - 只需輸入日期，不需股票代碼
 
 !!! example
@@ -2152,7 +2152,7 @@
         token = "" # 參考登入，獲取金鑰
         parameter = {
             "dataset": "TaiwanStockBlockTradingDailyReport",
-            "start_date": "2026-04-10",
+            "start_date": "2026-04-24",
             "token": token,
         }
         resp = requests.get(url, params=parameter)
@@ -2169,7 +2169,7 @@
             url = url,
             query = list(
                 dataset="TaiwanStockBlockTradingDailyReport",
-                start_date="2026-04-10",
+                start_date="2026-04-24",
                 token=""
             )
         )
