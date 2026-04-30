@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 19 種資料集，如下:
+在台股籌碼面，我們擁有 20 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -20,6 +20,7 @@
 - [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
 - [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
+- [借貸款項擔保品餘額表 TaiwanStockLoanCollateralBalance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -2261,6 +2262,108 @@
             price: float, # 成交價
             volume: int, # 成交股數
             trading_money: int, # 成交金額
+        }
+        ```
+
+#### 借貸款項擔保品餘額表 TaiwanStockLoanCollateralBalance (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2006-10-02 ~ now
+- 資料更新時間 **星期一至五 盤後**，實際更新時間以 API 資料為主
+- 包含上市(櫃)股票之融資、證券商證券業務借貸款項、證券商不限用途款項借貸、證金擔保放款、證金交割融資的擔保品餘額（仟股）
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_loan_collateral_balance(
+            stock_id="2330",
+            start_date="2026-04-01",
+            end_date="2026-04-30",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockLoanCollateralBalance",
+            "data_id": "2330",
+            "start_date": "2026-04-01",
+            "end_date": "2026-04-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockLoanCollateralBalance",
+                data_id="2330",
+                start_date="2026-04-01",
+                end_date="2026-04-30",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            market: str, # 市場別 (集中市場/櫃檯買賣中心)
+            MarginPreviousDayBalance: int, # 融資-前日餘額
+            MarginBuy: int, # 融資-買進
+            MarginSell: int, # 融資-賣出
+            MarginCashRedemption: int, # 融資-現償
+            MarginCurrentDayBalance: int, # 融資-今日餘額
+            MarginNextDayQuota: int, # 融資-次一營業日限額
+            SecuritiesFirmLoanPreviousDayBalance: int, # 證券商證券業務借貸款項-前日餘額
+            SecuritiesFirmLoanBuy: int, # 證券商證券業務借貸款項-買進
+            SecuritiesFirmLoanSell: int, # 證券商證券業務借貸款項-賣出
+            SecuritiesFirmLoanCashRedemption: int, # 證券商證券業務借貸款項-現償
+            SecuritiesFirmLoanReplacement: int, # 證券商證券業務借貸款項-更換
+            SecuritiesFirmLoanCurrentDayBalance: int, # 證券商證券業務借貸款項-今日餘額
+            SecuritiesFirmLoanNextDayQuota: int, # 證券商證券業務借貸款項-次一營業日限額
+            UnrestrictedLoanPreviousDayBalance: int, # 證券商不限用途款項借貸-前日餘額
+            UnrestrictedLoanBuy: int, # 證券商不限用途款項借貸-買進
+            UnrestrictedLoanSell: int, # 證券商不限用途款項借貸-賣出
+            UnrestrictedLoanCashRedemption: int, # 證券商不限用途款項借貸-現償
+            UnrestrictedLoanReplacement: int, # 證券商不限用途款項借貸-更換
+            UnrestrictedLoanCurrentDayBalance: int, # 證券商不限用途款項借貸-今日餘額
+            UnrestrictedLoanNextDayQuota: int, # 證券商不限用途款項借貸-次一營業日限額
+            SecuritiesFinanceSecuredLoanPreviousDayBalance: int, # 證金擔保放款-前日餘額
+            SecuritiesFinanceSecuredLoanBuy: int, # 證金擔保放款-買進
+            SecuritiesFinanceSecuredLoanSell: int, # 證金擔保放款-賣出
+            SecuritiesFinanceSecuredLoanCashRedemption: int, # 證金擔保放款-現償
+            SecuritiesFinanceSecuredLoanReplacement: int, # 證金擔保放款-更換
+            SecuritiesFinanceSecuredLoanCurrentDayBalance: int, # 證金擔保放款-今日餘額
+            SecuritiesFinanceSecuredLoanNextDayQuota: int, # 證金擔保放款-次一營業日限額
+            SettlementMarginPreviousDayBalance: int, # 證金交割融資-前日餘額
+            SettlementMarginBuy: int, # 證金交割融資-買進
+            SettlementMarginSell: int, # 證金交割融資-賣出
+            SettlementMarginCashRedemption: int, # 證金交割融資-現償
+            SettlementMarginReplacement: int, # 證金交割融資-更換
+            SettlementMarginCurrentDayBalance: int, # 證金交割融資-今日餘額
+            SettlementMarginNextDayQuota: int, # 證金交割融資-次一營業日限額
         }
         ```
 
