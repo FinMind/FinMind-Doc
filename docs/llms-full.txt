@@ -376,6 +376,20 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockBlockTradingDailyReport, start_date=2026-04-28
 - Columns: securities_trader, price, buy, sell, trade_type, securities_trader_id, stock_id, date
 
+### TaiwanStockBlockTrade (鉅額交易日成交資訊)
+- Tier: Sponsor
+- Data range: 2005-04-04 ~ now
+- Params: dataset=TaiwanStockBlockTrade, data_id=2330, start_date=2026-04-01, end_date=2026-04-30
+- Params (all stocks for one day): dataset=TaiwanStockBlockTrade, start_date=2026-04-24, end_date=2026-04-24
+- Columns: date, stock_id, trade_type, price, volume, trading_money
+
+### TaiwanStockLoanCollateralBalance (借貸款項擔保品餘額表)
+- Tier: Sponsor
+- Data range: 2006-10-02 ~ now
+- Params: dataset=TaiwanStockLoanCollateralBalance, data_id=2330, start_date=2025-01-02, end_date=2025-01-31
+- Params (all stocks for one day): dataset=TaiwanStockLoanCollateralBalance, start_date=2025-01-02
+- Columns: date, stock_id, market, MarginPreviousDayBalance, MarginBuy, MarginSell, MarginCashRedemption, MarginCurrentDayBalance, MarginNextDayQuota, SecuritiesFirmLoanPreviousDayBalance, SecuritiesFirmLoanBuy, SecuritiesFirmLoanSell, SecuritiesFirmLoanCashRedemption, SecuritiesFirmLoanReplacement, SecuritiesFirmLoanCurrentDayBalance, SecuritiesFirmLoanNextDayQuota, UnrestrictedLoanPreviousDayBalance, UnrestrictedLoanBuy, UnrestrictedLoanSell, UnrestrictedLoanCashRedemption, UnrestrictedLoanReplacement, UnrestrictedLoanCurrentDayBalance, UnrestrictedLoanNextDayQuota, SecuritiesFinanceSecuredLoanPreviousDayBalance, SecuritiesFinanceSecuredLoanBuy, SecuritiesFinanceSecuredLoanSell, SecuritiesFinanceSecuredLoanCashRedemption, SecuritiesFinanceSecuredLoanReplacement, SecuritiesFinanceSecuredLoanCurrentDayBalance, SecuritiesFinanceSecuredLoanNextDayQuota, SettlementMarginPreviousDayBalance, SettlementMarginBuy, SettlementMarginSell, SettlementMarginCashRedemption, SettlementMarginReplacement, SettlementMarginCurrentDayBalance, SettlementMarginNextDayQuota
+
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
 - Data range: 2001-01-01 ~ now
