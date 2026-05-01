@@ -2140,7 +2140,7 @@
 
 #### 鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：2026-04-24 ~ now
+- 資料區間：2026-04-28 ~ now
 - 只需輸入日期，不需股票代碼
 
 !!! example
@@ -2152,7 +2152,7 @@
         token = "" # 參考登入，獲取金鑰
         parameter = {
             "dataset": "TaiwanStockBlockTradingDailyReport",
-            "start_date": "2026-04-24",
+            "start_date": "2026-04-28",
             "token": token,
         }
         resp = requests.get(url, params=parameter)
@@ -2169,7 +2169,7 @@
             url = url,
             query = list(
                 dataset="TaiwanStockBlockTradingDailyReport",
-                start_date="2026-04-24",
+                start_date="2026-04-28",
                 token=""
             )
         )
@@ -2195,8 +2195,7 @@
 
 #### 鉅額交易日成交資訊 TaiwanStockBlockTrade (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：TWSE 2005-04-04、TPEX 2007-01-01 ~ now
-- 資料更新時間 **星期一至五 盤後**，實際更新時間以 API 資料為主
+- 資料區間：2005-04-04 ~ now
 - 涵蓋上市櫃股票鉅額交易（逐筆）
 
 !!! example
