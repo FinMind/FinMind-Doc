@@ -24,7 +24,9 @@ extra:
 nav:
     - 總覽: 'index.md'
     - 快速開始: "quickstart.md"
-    - 登入: "login.md"
+    - 登入:
+        - 登入說明: "login.md"
+        - 更新 Token: "update_token.md"
     - API 使用次數: "api_usage_count.md"
     - 資料集:
         - 台灣市場:
