@@ -1,3 +1,6 @@
+#### 2026-05-05
+* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）
+
 #### 2026-05-02
 * 新增「[更新 Token](https://finmind.github.io/update_token/)」功能：可在使用者資訊頁面自主重置 Token，舊 Token 立即失效，無需聯繫客服
 
