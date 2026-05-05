@@ -1,3 +1,6 @@
+#### 2026-05-06
+* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/) storage_objects 文件補上 FinMind package 範例 (`taiwan_stock_trading_daily_report(use_object=True)`)
+
 #### 2026-05-05
 * [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）
 
