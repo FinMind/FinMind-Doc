@@ -336,10 +336,11 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Sponsor
 - Data range: 2021-06-30 ~ now
 - Update: Mon-Fri 21:00
-- Params (by stock): dataset=TaiwanStockTradingDailyReport, data_id=2330, start_date=2022-06-16
-- Params (by broker): dataset=TaiwanStockTradingDailyReport, data_id=1102, start_date=2022-06-16
+- Endpoint: `GET https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report` (專屬 endpoint，不走 /api/v4/data)
+- Params (by stock): data_id=2330, date=2022-06-16
+- Params (by broker): securities_trader_id=1020, date=2022-06-16
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
-- Note: Single day per request.
+- Note: Single day per request, only `date` (no start_date/end_date).
 
 ### TaiwanStockWarrantTradingDailyReport (台股權證分點資料表)
 - Tier: Sponsor
@@ -366,7 +367,8 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Sponsor
 - Data range: 2021-06-30 ~ now
 - Update: Mon-Fri 21:00
-- Params: dataset=TaiwanStockTradingDailyReportSecIdAgg, data_id=2330, start_date=2024-07-01, end_date=2024-07-15
+- Endpoint: `GET https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report_secid_agg` (專屬 endpoint，不走 /api/v4/data)
+- Params: data_id=2330, start_date=2024-07-01, end_date=2024-07-15
 - Columns: securities_trader, securities_trader_id, stock_id, date, buy_volume, sell_volume, buy_price, sell_price
 
 ### TaiwanStockBlockTradingDailyReport (鉅額交易買賣日報表)
