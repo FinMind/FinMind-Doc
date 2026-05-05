@@ -1725,6 +1725,79 @@
         }
         ```
 
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2021-06-30 ~ now
+- 輸入 dataset、date 參數，會回傳 date 當天所有股票的分點資料
+- 透過 signed URL 下載整日 parquet，免逐檔查詢，適合需要全市場分點的批次分析
+- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03, 2023-01-11~2023-01-17
+
+!!! example
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReport",
+            "date": "2022-06-16",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockTradingDailyReport",
+                date= "2022-06-16"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
+        |---:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
+        |  0 | 合庫                |     508 |  4000 |   2000 |                   1020 |       2330 | 2022-06-16 |
+        |  1 | 合庫                |     509 |  3480 |      0 |                   1020 |       2330 | 2022-06-16 |
+        |  2 | 合庫                |     510 |  2310 |     50 |                   1020 |       2330 | 2022-06-16 |
+        |  3 | 合庫                |     511 |  1169 |      0 |                   1020 |       2330 | 2022-06-16 |
+        |  4 | 合庫                |     512 |  1300 |  10000 |                   1020 |       2330 | 2022-06-16 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # 券商名稱
+            price: float64, # 成交價
+            buy: int32, # 買進股數
+            sell: int32, # 賣出股數
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str # 日期
+        }
+        ```
+
 ----------------------------------
 #### 台股權證分點資料表(query by 股票代碼) TaiwanStockWarrantTradingDailyReport (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
