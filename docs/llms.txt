@@ -7,11 +7,14 @@
 - Base URL: `https://api.finmindtrade.com/api/v4`
 - Authentication: Register at finmindtrade.com, get token via login API or website. Pass token as `Authorization: Bearer {token}` header.
 - Rate limit: 600 requests/hour (with token), 300/hour (without token).
-- Four endpoints:
+- Endpoints:
   - `POST /login` - Get auth token (params: user_id, password)
   - `GET /data` - Fetch dataset (params: dataset, data_id, start_date, end_date, token)
   - `GET /datalist` - List available data_id values for a dataset
   - `GET /translation` - Get English-Chinese column name mapping for a dataset
+  - Some heavy datasets have dedicated endpoints instead of `/data` — they will return 422 if queried via `/data?dataset=...`. See `llms-full.txt` for the exact endpoint of each dataset. Currently:
+    - `GET /taiwan_stock_trading_daily_report` (params: data_id or securities_trader_id, date) — TaiwanStockTradingDailyReport, single date per request
+    - `GET /taiwan_stock_trading_daily_report_secid_agg` (params: data_id, start_date, end_date) — TaiwanStockTradingDailyReportSecIdAgg
 
 ## Python SDK
 
