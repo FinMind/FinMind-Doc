@@ -156,6 +156,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockPriceTick, data_id=2330, start_date=2020-01-02
 - Columns: date (str), stock_id (str), deal_price (float64), volume (int64), Time (str), TickType (str: 0=unknown, 1=sell, 2=buy)
 - Note: Single day per request.
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockPriceTick&date=2019-01-02` returns whole-day parquet via signed URL, ignores data_id. Python SDK: `api.taiwan_stock_tick(date='2019-01-02', use_object=True)`.
 
 ### TaiwanStockPER (個股 PER、PBR 資料表)
 - Tier: Free
@@ -341,6 +342,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (by broker): securities_trader_id=1020, date=2022-06-16
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
 - Note: Single day per request, only `date` (no start_date/end_date).
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReport&date=2022-06-16` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_trading_daily_report(date='2022-06-16', use_object=True)`.
 
 ### TaiwanStockWarrantTradingDailyReport (台股權證分點資料表)
 - Tier: Sponsor
