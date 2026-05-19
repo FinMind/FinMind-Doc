@@ -12,6 +12,25 @@ Register at finmindtrade.com, get token via login API or website. Pass token as 
 
 Rate limit: 600 requests/hour (with token), 300/hour (without token).
 
+#### Update Token (Self-Service Reset)
+
+If you suspect your token has leaked, reset it yourself on the [user info page](https://finmindtrade.com/analysis/#/account/user) — no need to contact support.
+
+Steps:
+
+1. Open the [user info page](https://finmindtrade.com/analysis/#/account/user)
+2. Under the `api token` field, click the "Update Token" button
+3. Confirm — a new token is generated immediately
+
+Behavior:
+
+- Generates a new token in one click
+- Old token is invalidated immediately
+- All devices are signed out and must log in again to obtain the new token
+- Self-service — no support ticket required
+
+Tip: rotate your token regularly to keep your account secure.
+
 ### Endpoints
 
 #### POST /login
