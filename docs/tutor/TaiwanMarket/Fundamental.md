@@ -18,6 +18,7 @@
 #### 綜合損益表 TaiwanStockFinancialStatements
 
 - 資料區間：1990-03-01 ~ now
+- 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
 
 !!! example
     === "Package"
@@ -190,6 +191,7 @@
 #### 資產負債表 TaiwanStockBalanceSheet
 
 - 資料區間：2011-12-01 ~ now
+- 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
 
 !!! example
     === "Package"
@@ -361,6 +363,7 @@
 #### 現金流量表 TaiwanStockCashFlowsStatement
 
 - 資料區間：2008-06-01 ~ now
+- 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
 
 !!! example
     === "Package"
@@ -919,6 +922,7 @@
 #### 月營收表 TaiwanStockMonthRevenue
 
 - 資料區間：2002-02-01 ~ now
+- 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
 
 !!! example
     === "Package"

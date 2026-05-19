@@ -296,6 +296,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockInstitutionalInvestorsBuySell (個股三大法人買賣表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 2005-01-01 ~ now
+- Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
 - Update: Mon-Fri 20:00
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySell, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySell, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
@@ -427,6 +428,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockFinancialStatements (綜合損益表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 1990-03-01 ~ now
+- Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
 - Params: dataset=TaiwanStockFinancialStatements, data_id=2330, start_date=2019-01-01
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockFinancialStatements, start_date=2019-01-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), type (str), value (float64), origin_name (str)
@@ -434,6 +436,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockBalanceSheet (資產負債表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 2011-12-01 ~ now
+- Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
 - Params: dataset=TaiwanStockBalanceSheet, data_id=2330, start_date=2019-03-31
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockBalanceSheet, start_date=2019-03-31 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), type (str), value (float64), origin_name (str)
@@ -441,6 +444,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockCashFlowsStatement (現金流量表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 2008-06-01 ~ now
+- Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
 - Params: dataset=TaiwanStockCashFlowsStatement, data_id=2330, start_date=2019-03-31
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockCashFlowsStatement, start_date=2019-03-31 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), type (str), value (float64), origin_name (str)
@@ -462,6 +466,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockMonthRevenue (月營收表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 2002-02-01 ~ now
+- Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
 - Params: dataset=TaiwanStockMonthRevenue, data_id=2330, start_date=2019-03-31
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockMonthRevenue, start_date=2019-03-31 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), country (str), revenue (int64), revenue_month (int64), revenue_year (int64)

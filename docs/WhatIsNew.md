@@ -1,3 +1,11 @@
+#### 2026-05-19
+* 以下資料集新增**興櫃 (Emerging)** 公司涵蓋（以 `stock_id` 區分上市/上櫃/興櫃，可搭配 `TaiwanStockInfo` 查詢市場別）：
+    * [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
+    * [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
+    * [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
+    * [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)
+    * [個股三大法人買賣表 TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
+
 #### 2026-05-06
 * [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/) storage_objects 文件補上 FinMind package 範例 (`taiwan_stock_trading_daily_report(use_object=True)`)
 
