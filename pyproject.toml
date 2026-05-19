@@ -8,4 +8,5 @@ dependencies = [
     "pymdown-extensions>=10.14",
     "requests>=2.31",
     "mkdocs==1.5.3",
+    "mkdocs-static-i18n>=1.2",
 ]

@@ -1,0 +1,200 @@
+
+For Taiwan stock news and other data, we have 3 datasets, as listed below:
+
+- [Related News Table TaiwanStockNews](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanstocknews)
+- [Taiwan Monthly Business Indicator Table TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
+- [Per-Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor)
+
+
+#### Related News Table TaiwanStockNews
+
+(Because the data volume is large, only one day's worth of data is returned per request.)
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # See login section to obtain a token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockNews",
+            "data_id":"2330",
+            "start_date": "2020-04-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # See login section to obtain a token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockNews",
+                data_id="2330",
+                start_date= "2020-04-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        | date | stock_id             | description     | link         | source                | title |
+        |-----:|:---------------------|----------------:|:-------------:|:--------------------:|:------|
+        | 0    | 2020-04-01 00:00:00  |   2330          | &lt;a href="https://tw.news.yahoo.com/%E9%9B%B...  | https://tw.news.yahoo.com/%E9%9B%BB%E5%AD%90%E...    | Yahoo奇摩新聞  | 電子時報：台積電3奈米照走，三星衝擊大，蘋果下修5奈米訂單，NVIDIA補位 - Yahoo...
+        | 1    | 2020-04-01 00:57:33  |   2330          | &lt;a href="https://udn.com/news/story/6850/44...  | https://udn.com/news/story/6850/4458587              | udn 聯合新聞網                             | 世芯中國伺服器需求增 - udn 聯合新聞網
+        | 2    | 2020-04-01 00:58:42  |   2330          | &lt;a href="https://finance.technews.tw/2020/0...  | https://finance.technews.tw/2020/04/01/tsmc-wa...    | 科技新報 TechNews             | 台積電發展工業廢水再生技術，南科工程明年啟動 - 科技新報 TechNews
+        | 3    | 2020-04-01 00:59:38  |   2330          | &lt;a href="https://tw.news.yahoo.com/%E5%8F%B...  | https://tw.news.yahoo.com/%E5%8F%B0%E7%A9%8D%E...    | Yahoo奇摩股市     | 台積電ADR31日下跌0.03美元跌幅0.06%折台股289.17元 - Yahoo奇摩股市
+        | 4    | 2020-04-01 02:40:00  |   2330          | &lt;a href="https://fnc.ebc.net.tw/FncNews/Con...  | https://fnc.ebc.net.tw/FncNews/Content/117374        | 東森財經新聞        | 外資:半導體庫存面臨修正台積電營收成長、目標價遭雙降｜東森財經新聞 - 東森財經新聞
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock code
+            description: str, # description
+            link: str, # link
+            source: str, # source
+            title: str # title
+        }
+        ```
+
+#### Taiwan Monthly Business Indicator Table TaiwanBusinessIndicator (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 1982-01-01 ~ now
+
+!!! example
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # See login section to obtain a token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanBusinessIndicator",
+            "start_date": "2024-04-01",
+            "end_date": "2025-01-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # See login section to obtain a token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanBusinessIndicator",
+                start_date= "2020-04-01",
+                end_date= "2025-01-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |      |    date     |   leading  | leading_notrend   | coincident  | coincident_notrend  | lagging |  lagging_notrend |  monitoring |  monitoring_color |
+        |-----:|:------------|-----------:|:-----------------:|:-----------:|:--------------------|:--------|:-----------------|:------------|:------------------|
+        | 0    | 2024-01-01  |    92.32   |      99.85        |      90.8   |          98.21      |  91.82  |         99.31    |      27     |         G         |
+        | 1    | 2024-02-01  |    92.71   |      100.35       |      91.45  |          98.99      |  91.68  |         99.25    |      29     |         G         |
+        | 2    | 2024-03-01  |    93.19   |      100.95       |      92.28  |          99.97      |  91.6   |         99.23    |      31     |         G         |
+        | 3    | 2024-04-01  |    93.75   |      101.63       |      93.23  |          101.07     |  91.52  |         99.22    |      35     |         YR        |
+        | 4    | 2024-05-01  |    94.29   |      102.28       |      94.21  |          102.19     |  91.41  |         99.16    |      36     |         YR        |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            leading: float32, # leading composite indicator
+            leading_notrend: float32, # leading indicator excluding trend
+            coincident: float32, # coincident composite indicator
+            coincident_notrend: float32, # coincident indicator excluding trend
+            lagging: float32, # lagging composite indicator
+            lagging_notrend: float32, # lagging indicator excluding trend
+            monitoring: float32, # business indicator composite score
+            monitoring_color: str # business indicator signal
+        }
+        ```
+
+#### Per-Company Industry Chain TaiwanStockIndustryChain (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_industry_chain()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # See login section to obtain a token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockIndustryChain",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # See login section to obtain a token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockIndustryChain"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |      | stock_id  |   industry  |      sub_industry        |    date    |
+        |-----:|:----------|-----------:|:-------------------------:|:------------:|
+        | 0    |    1218   |    食品     | 冷凍、罐頭、脫水、醃漬食品 |   2025-03-30  |
+        | 1    |    1218   |    食品     |          加工食品        |   2025-03-30  |
+        | 2    |    1219   |    食品     |          加工食品        |   2025-03-30  |
+        | 3    |    1219   |    雲端運算 |          系統整合        |   2025-03-30 |
+        | 4    |    1236   |    食品     |          乳製品          |   2025-03-30 |
+    === "Schema"
+        ```
+        {
+            stock_id: str, # stock code
+            industry: str, # industry
+            sub_industry: str, # sub-industry
+            date: str # update date
+        }
+        ```

@@ -48,6 +48,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 - [Quick Start](https://finmind.github.io/quickstart/): API usage guide with examples in Python and R
 - [Login](https://finmind.github.io/login/): Authentication methods
+- [Update Token](https://finmind.github.io/update_token/): Self-service token reset on the [user info page](https://finmindtrade.com/analysis/#/account/user). Old token is invalidated immediately and all devices are signed out — no need to contact support.
 - [API Usage Count](https://finmind.github.io/api_usage_count/): Check API usage via `GET https://api.web.finmindtrade.com/v2/user_info` (Authorization: Bearer {token}). Returns `user_count` (current usage) and `api_request_limit` (quota). HTTP 402 when quota exceeded.
 
 ### Taiwan Market (77 datasets)
