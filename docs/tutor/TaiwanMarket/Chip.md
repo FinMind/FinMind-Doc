@@ -306,6 +306,7 @@
 #### 法人買賣表 TaiwanStockInstitutionalInvestorsBuySell
 
 - 資料區間：2005-01-01 ~ now
+- 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
 - 資料更新時間 **星期一至五 20:00**，實際更新時間以 API 資料為主
 
 !!! example

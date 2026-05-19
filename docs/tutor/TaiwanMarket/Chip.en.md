@@ -306,6 +306,7 @@ In Taiwan stock chip data, we have 20 datasets as follows:
 #### Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell
 
 - Data range: 2005-01-01 ~ now
+- Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
 
 !!! example

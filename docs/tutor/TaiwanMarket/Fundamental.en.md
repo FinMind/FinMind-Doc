@@ -18,6 +18,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 #### Income Statement TaiwanStockFinancialStatements
 
 - Data range: 1990-03-01 ~ now
+- Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
 !!! example
     === "Package"
@@ -190,6 +191,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 #### Balance Sheet TaiwanStockBalanceSheet
 
 - Data range: 2011-12-01 ~ now
+- Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
 !!! example
     === "Package"
@@ -361,6 +363,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 #### Cash Flows Statement TaiwanStockCashFlowsStatement
 
 - Data range: 2008-06-01 ~ now
+- Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
 !!! example
     === "Package"
@@ -919,6 +922,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 #### Monthly Revenue Table TaiwanStockMonthRevenue
 
 - Data range: 2002-02-01 ~ now
+- Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
 !!! example
     === "Package"
