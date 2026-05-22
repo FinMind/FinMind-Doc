@@ -1,3 +1,6 @@
+#### 2026-05-22
+* [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue) added a **creation time** `create_time` column (YYYY-MM-DD); empty string for older historical rows.
+
 #### 2026-05-19
 * The following datasets now cover **emerging market companies** in addition to TWSE-listed and TPEx OTC companies (distinguished by `stock_id`; use `TaiwanStockInfo` to look up market type):
     * [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)

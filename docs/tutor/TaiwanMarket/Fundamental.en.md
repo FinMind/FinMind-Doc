@@ -1000,13 +1000,13 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 
 !!! output
     === "DataFrame"
-        |    | date       |   stock_id | country   |     revenue |   revenue_month |   revenue_year |
-        |---:|:-----------|-----------:|:----------|------------:|----------------:|---------------:|
-        |  0 | 2019-04-01 |       2330 | Taiwan    | 79721587000 |               3 |           2019 |
-        |  1 | 2019-05-01 |       2330 | Taiwan    | 74693615000 |               4 |           2019 |
-        |  2 | 2019-06-01 |       2330 | Taiwan    | 80436931000 |               5 |           2019 |
-        |  3 | 2019-07-01 |       2330 | Taiwan    | 85867929000 |               6 |           2019 |
-        |  4 | 2019-08-01 |       2330 | Taiwan    | 84757724000 |               7 |           2019 |
+        |    | date       |   stock_id | country   |     revenue |   revenue_month |   revenue_year | create_time |
+        |---:|:-----------|-----------:|:----------|------------:|----------------:|---------------:|:------------|
+        |  0 | 2019-04-01 |       2330 | Taiwan    | 79721587000 |               3 |           2019 |             |
+        |  1 | 2019-05-01 |       2330 | Taiwan    | 74693615000 |               4 |           2019 |             |
+        |  2 | 2019-06-01 |       2330 | Taiwan    | 80436931000 |               5 |           2019 |             |
+        |  3 | 2019-07-01 |       2330 | Taiwan    | 85867929000 |               6 |           2019 |             |
+        |  4 | 2019-08-01 |       2330 | Taiwan    | 84757724000 |               7 |           2019 |             |
     === "Schema"
         ```
         {
@@ -1015,7 +1015,8 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
             country: str, # country
             revenue: int64, # revenue
             revenue_month: int64, # revenue month
-            revenue_year: int64 # revenue year
+            revenue_year: int64, # revenue year
+            create_time: str # creation time (YYYY-MM-DD); empty string for older historical rows
         }
         ```
 
@@ -1074,13 +1075,13 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 
 !!! output
     === "DataFrame"
-        |    | date       |   stock_id | country   |     revenue |   revenue_month |   revenue_year |
-        |---:|:-----------|-----------:|:----------|------------:|----------------:|---------------:|
-        |  0 | 2019-05-01 |       1101 | Taiwan    | 10596314000 |               4 |           2019 |
-        |  1 | 2019-05-01 |       1102 | Taiwan    |  8434811000 |               4 |           2019 |
-        |  2 | 2019-05-01 |       1103 | Taiwan    |   160751000 |               4 |           2019 |
-        |  3 | 2019-05-01 |       1104 | Taiwan    |   418992000 |               4 |           2019 |
-        |  4 | 2019-05-01 |       1108 | Taiwan    |   323834000 |               4 |           2019 |
+        |    | date       |   stock_id | country   |     revenue |   revenue_month |   revenue_year | create_time |
+        |---:|:-----------|-----------:|:----------|------------:|----------------:|---------------:|:------------|
+        |  0 | 2019-05-01 |       1101 | Taiwan    | 10596314000 |               4 |           2019 |             |
+        |  1 | 2019-05-01 |       1102 | Taiwan    |  8434811000 |               4 |           2019 |             |
+        |  2 | 2019-05-01 |       1103 | Taiwan    |   160751000 |               4 |           2019 |             |
+        |  3 | 2019-05-01 |       1104 | Taiwan    |   418992000 |               4 |           2019 |             |
+        |  4 | 2019-05-01 |       1108 | Taiwan    |   323834000 |               4 |           2019 |             |
     === "Schema"
         ```
         {
@@ -1089,7 +1090,8 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
             country: str, # country
             revenue: int64, # revenue
             revenue_month: int64, # revenue month
-            revenue_year: int64 # revenue year
+            revenue_year: int64, # revenue year
+            create_time: str # creation time (YYYY-MM-DD); empty string for older historical rows
         }
         ```
 ----------------------------------

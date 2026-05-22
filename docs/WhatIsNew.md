@@ -1,3 +1,6 @@
+#### 2026-05-22
+* [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue) 新增**建立時間** `create_time` 欄位（YYYY-MM-DD）；舊歷史資料為空字串
+
 #### 2026-05-19
 * 以下資料集新增**興櫃 (Emerging)** 公司涵蓋（以 `stock_id` 區分上市/上櫃/興櫃，可搭配 `TaiwanStockInfo` 查詢市場別）：
     * [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
