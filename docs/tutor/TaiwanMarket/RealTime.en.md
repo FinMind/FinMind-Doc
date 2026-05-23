@@ -94,6 +94,9 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         }
         ```
 
+!!! info "data_id index codes"
+    In addition to regular stock IDs (4 digits), `data_id` also supports 91 index codes (3 digits). For example, `001` = TAIEX, `101` = OTC weighted index. See the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
+
 ----------------------------------
 #### Futures and Options Real-Time Quote Overview TaiwanFutOptTickInfo
 Currently supports real-time quotes for TAIEX futures and TAIEX options.
