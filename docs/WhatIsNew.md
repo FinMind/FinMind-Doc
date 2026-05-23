@@ -1,3 +1,6 @@
+#### 2026-05-23
+* 新增 [台股指數代號對照表 IndexCodes](https://finmind.github.io/tutor/TaiwanMarket/IndexCodes/)：[台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) 的 `data_id` 除 4 碼個股代號外，亦支援 91 個 3 碼指數代號（例 `001` 加權指數、`101` 櫃買加權），完整對照分為大盤 / 產業 / 主題 Smart Beta / 槓桿反向 五組
+
 #### 2026-05-22
 * [月營收表 TaiwanStockMonthRevenue](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue) 新增**建立時間** `create_time` 欄位（YYYY-MM-DD）；舊歷史資料為空字串
 
