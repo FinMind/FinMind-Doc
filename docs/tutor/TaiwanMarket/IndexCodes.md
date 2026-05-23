@@ -130,6 +130,10 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         df = api.taiwan_stock_tick_snapshot(stock_id="001")  # 加權指數
+        # 一次拿多個（個股 + 指數可混搭）
+        df = api.taiwan_stock_tick_snapshot(stock_id=["001", "101", "2330"])
+        # 一次拿全部
+        df = api.taiwan_stock_tick_snapshot()
         ```
     === "Python-request"
         ```python
