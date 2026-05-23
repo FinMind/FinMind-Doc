@@ -628,6 +628,13 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Sponsor
 - Params: dataset=taiwan_stock_tick_snapshot, data_id=2330 (or empty for all)
 - Columns: amount, average_price, buy_price, buy_volume, change_price, change_rate, close, high, low, open, sell_price, sell_volume, total_amount, total_volume, volume, volume_ratio, yesterday_volume, date, stock_id, TickType
+- Index codes (3-digit data_id, 91 indices): besides 4-digit stock IDs, data_id also accepts 3-digit index codes:
+  - Broad market: 001=加權指數(TAIEX), 002=不含金融指數, 003=不含電子指數, 034=未含金電股發行量加權股價指數, 101=櫃檯買賣發行量加權股價指數(OTC)
+  - Sector (TWSE 28-sector): 015=水泥工業, 016=食品工業, 017=塑膠工業, 018=紡織纖維, 019=電機機械, 020=電器電纜, 021=化學生技醫療, 022=玻璃陶瓷, 023=造紙工業, 024=鋼鐵工業, 025=橡膠工業, 026=汽車工業, 027=電子工業, 028=建材營造, 029=航運業, 030=觀光事業, 031=金融保險, 032=貿易百貨, 033=其他, 035=油電燃氣業, 036=半導體業, 037=電腦及週邊設備業, 038=光電業, 039=通信網路業, 040=電子零組件業, 041=電子通路業, 042=資訊服務業, 043=其他電子業
+  - Sector (aggregated): 004=化學工業, 005=生技醫療業, 006=水泥窯製, 007=食品類股, 008=塑膠化工, 009=紡織纖維, 010=機電類, 011=造紙類, 012=建材營造類指數, 014=金融保險類指數
+  - Themed / Smart Beta / ESG: 046=低碳高息40指數, 047=成長高股息指數, 048=工業4.0指數, 049=半導體收益指數, 050=臺灣上市上櫃多因子優選成長30指數, 051=臺灣上市上櫃IC設計報酬指數, 052=台灣上市上櫃永續價值指數, 053=臺灣上市上櫃企業社會責任中小型指數, 056=智慧投資多因子30報酬指數, 057=智慧投資多因子30指數, 060=智慧中立指數, 061=勞工權益指數, 062=電子菁英30報酬指數, 064=臺灣上市500大報酬指數, 066=中小型300報酬指數, 067=中小型300指數, 068=特選大蘋果報酬指數, 069=存股雙十等權重報酬指數, 070=漲升股利150報酬指數, 071=臺灣中小型公司治理指數, 072=臺灣IPO指數, 073=價值投資指數, 074=臺灣永續指數, 076=特選高息低波指數, 077=臺灣生技指數, 079=中小型A級動能50指數, 082=低波動股利精選30指數, 083=電子菁英30指數, 084=工業菁英30指數, 085=藍籌30指數, 087=漲升股利150指數, 088=小型股300指數, 089=臺灣公司治理100指數, 092=臺灣高薪100指數, 093=寶島股價指數, 094=臺灣就業99指數, 095=臺灣中型100指數, 096=臺灣資訊科技指數, 097=臺灣發達指數, 098=台灣高股息指數, 099=台灣50指數
+  - Leverage / inverse / derivative: 054=特選大蘋果報酬反向一倍指數, 055=特選大蘋果報酬正向兩倍指數, 058=加權指數掩護性臺指買權價外5％報酬指數, 059=台股期貨指數, 090=電子類反向指數, 091=電子類兩倍槓桿指數
+- Full reference: https://finmind.github.io/tutor/TaiwanMarket/IndexCodes/
 
 ### TaiwanFutOptTickInfo (期貨、選擇權即時報價總覽)
 - Tier: Free

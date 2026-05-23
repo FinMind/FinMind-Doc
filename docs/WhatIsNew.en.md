@@ -1,3 +1,6 @@
+#### 2026-05-23
+* Added [Taiwan Stock Index Codes](https://finmind.github.io/en/tutor/TaiwanMarket/IndexCodes/): [taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) `data_id` also accepts 91 three-digit index codes in addition to 4-digit stock IDs (e.g. `001` = TAIEX, `101` = OTC weighted), grouped into broad market / sector / themed (Smart Beta) / leverage & inverse categories.
+
 #### 2026-05-22
 * [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue) added a **creation time** `create_time` column (YYYY-MM-DD); empty string for older historical rows.
 
