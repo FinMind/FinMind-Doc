@@ -35,8 +35,9 @@ nav:
             - 籌碼面: "tutor/TaiwanMarket/Chip.md"
             - 基本面: "tutor/TaiwanMarket/Fundamental.md"
             - 衍生性金融商品: "tutor/TaiwanMarket/Derivative.md"
-            - 即時資料: "tutor/TaiwanMarket/RealTime.md"
-            - 指數代號對照: "tutor/TaiwanMarket/IndexCodes.md"
+            - 即時資料:
+                - "tutor/TaiwanMarket/RealTime.md"
+                - 指數代號對照: "tutor/TaiwanMarket/IndexCodes.md"
             - 可轉債: "tutor/TaiwanMarket/ConvertibleBond.md"
             - 其他: "tutor/TaiwanMarket/Others.md"
         - 美國市場:
