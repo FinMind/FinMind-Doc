@@ -1,5 +1,11 @@
 FinMind provides an AI Agent Skill that lets you query 75+ FinMind datasets through natural language inside AI tools such as [Gemini](https://gemini.google.com/), [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [Codex](https://github.com/openai/codex), [Cursor](https://www.cursor.com/), and [Windsurf](https://windsurf.com/), without having to assemble API parameters yourself.
 
+There are three ways to use it — pick whichever fits:
+
+1. **Agent Skill file (CLI tools)**: download the `/finmind` command file into Claude Code / Codex / Cursor / Windsurf / Gemini — see "Installation" below.
+2. **MCP Server**: tools that support [MCP](https://modelcontextprotocol.io/) (Claude Desktop / Claude Code, Cursor, Windsurf, Gemini CLI) can connect directly to the official FinMind MCP server — see "MCP Server".
+3. **ChatGPT Custom GPT**: no installation needed for ChatGPT users — see "ChatGPT".
+
 ## Installation
 
 ### Step 1: Download the Skill
@@ -48,7 +54,53 @@ In Claude Code, type `/finmind` followed by what you want to query:
 
 ---
 
+## MCP Server
+
+If your AI tool supports [MCP (Model Context Protocol)](https://modelcontextprotocol.io/), you can use the official FinMind MCP server [`finmind-mcp`](https://pypi.org/project/finmind-mcp/) instead — the tool calls it automatically, with no skill file to download. First get your Token (see "Step 2" above) and install [uv](https://docs.astral.sh/uv/).
+
+**Claude Code (one-click):** first `export FINMIND_TOKEN=your_token_here`, then run inside Claude Code:
+
+```
+/plugin marketplace add FinMind/FinMind-MCP
+/plugin install finmind-mcp@finmind-official
+```
+
+After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugin reads `${FINMIND_TOKEN}` from the environment, so export it before launching Claude Code.)
+
+**Other tools (Claude Desktop / Cursor / Windsurf / Gemini CLI):** add this to the tool's MCP config file:
+
+```json
+{
+  "mcpServers": {
+    "finmind": {
+      "command": "uvx",
+      "args": ["finmind-mcp"],
+      "env": { "FINMIND_TOKEN": "your_token_here" }
+    }
+  }
+}
+```
+
+**Codex CLI** uses a different config format (`[mcp_servers]` in `~/.codex/config.toml`), or a one-liner: `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`.
+
+For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `codex mcp add` one-liners, and verification steps, see the [FinMind-MCP install guides](https://github.com/FinMind/FinMind-MCP/tree/master/install).
+
+## ChatGPT
+
+ChatGPT users can use the official FinMind Custom GPT to query data in natural language, with nothing to install.
+
+1. Open the official FinMind Custom GPT (GPT Store link to be added once live).
+2. On the first query, ChatGPT will prompt for an API key; paste your FinMind Token (see "Step 2: Set Up the Token" above).
+3. Then just ask, e.g. "TSMC stock prices for the past month".
+
+!!! note
+    The Custom GPT counts usage against your personal Token; do not paste your Token into chats or share it publicly.
+
+---
+
 ## Examples
+
+> The queries below work with all three methods: with the **Skill file** prefix them with `/finmind`; with **MCP** and the **Custom GPT** just ask in natural language.
 
 ### Stock Price Queries
 
