@@ -6,30 +6,49 @@ FinMind publishes a public, real-time status page:
 
 It shows the current API status, uptime over the past **24 hours** and **90 days**, and a history of past incidents.
 
+This uptime is also the **measurement basis for the FinMind enterprise plan SLA** — enterprise service levels are assessed with the same per-minute algorithm, kept transparent and consistent with what the status page shows.
+
 ## How uptime is calculated
 
-Uptime is measured from real API traffic, **minute by minute**:
+Uptime is measured from real API traffic, **minute by minute**. The full formula chain is:
 
-- A minute is counted as **down** only when more than **5%** of its valid requests fail with a **server-side error**.
-- A **server-side error** means an HTTP **5xx** response, plus a connection dropped by a server-side timeout (HTTP **499** — usually caused by the server being busy or slow, so it is treated as a server-side problem).
-- Ordinary **client errors** (e.g. `400` / `403` / `404` / `429`) and minutes with **no traffic** are **not** counted against uptime.
-
-Formula:
+**1. Valid requests**
 
 ```text
-uptime % = (minutes with traffic − down minutes) ÷ minutes with traffic
+valid requests = successful requests (2xx / 3xx) + server-side errors
 ```
 
-- The **24-hour** and **90-day** figures aggregate these per-minute results; the 90-day and monthly numbers are weighted by traffic.
+- A **server-side error** means an HTTP **5xx** response, plus a connection dropped by a server-side timeout (HTTP **499** — usually caused by the server being busy or slow, so it is treated as a server-side problem).
+- Ordinary **client errors** (e.g. `400` / `403` / `404` / `429`, excluding 499) are **not** counted as valid requests and do **not** affect uptime.
+
+**2. Per-minute error rate**
+
+```text
+per-minute error rate = server-side errors ÷ valid requests
+```
+
+- A minute with **traffic and an error rate > 5%** is counted as **down**.
+- Minutes with **no traffic** are **not** counted toward uptime.
+
+**3. Uptime**
+
+```text
+uptime % = (minutes with traffic − down minutes) ÷ minutes with traffic × 100
+```
+
+- The **24-hour** and **90-day** figures aggregate these per-minute results; the 90-day and monthly numbers are weighted by **minutes with traffic**.
 - **Scheduled maintenance** windows may be excluded.
 
 ## Status levels
 
-| Status | Meaning |
+When a time window has traffic, it is classified into four levels by that window's uptime:
+
+| Status | Uptime threshold |
 | --- | --- |
-| **Operational** | No down minutes in the period |
-| **Degraded** | Some downtime, but uptime ≥ 90% |
-| **Outage** | Uptime < 90% |
+| **Operational** | 100% (traffic present, no down minutes) |
+| **Degraded Performance** | ≥ 99% (some down minutes, but uptime still ≥ 99%) |
+| **Partial Outage** | 95% – 99% (95% ≤ uptime < 99%) |
+| **Major Outage** | < 95% |
 | **No data** | No traffic in the period |
 
 !!! tip

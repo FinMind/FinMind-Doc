@@ -90,6 +90,17 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - [llms-full.txt](https://finmind.github.io/llms-full.txt): Complete dataset schemas with all parameters, columns, tiers, and code examples
 - [openapi.yaml](https://finmind.github.io/openapi.yaml): OpenAPI 3.1 schema for GPTs, Dify, Coze and other platforms
 
+## Service Status / SLA
+
+- Public status page: [status.finmindtrade.com](https://status.finmindtrade.com) — current API status plus 24-hour and 90-day uptime.
+- Uptime is measured from real API traffic, minute by minute:
+  - valid requests = successful requests (2xx/3xx) + server-side errors (HTTP 5xx and 499 server-side timeouts)
+  - per-minute error rate = server-side errors ÷ valid requests; a minute with traffic and error rate > 5% is counted as down
+  - uptime % = (minutes with traffic − down minutes) ÷ minutes with traffic × 100
+  - client errors (4xx excluding 499) and no-traffic minutes are not counted; scheduled maintenance may be excluded
+- Status levels (when the window has traffic): Operational (100%), Degraded Performance (≥ 99%), Partial Outage (95%–99%), Major Outage (< 95%), No data (no traffic).
+- This uptime is the measurement basis for the FinMind enterprise plan SLA.
+
 ## Links
 
 - [GitHub](https://github.com/FinMind/FinMind)
