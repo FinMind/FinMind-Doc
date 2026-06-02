@@ -537,6 +537,86 @@ In Taiwan stock derivatives data, we have 16 datasets, as follows:
         }
         ```
 
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: Available from the day this feature launched, one trading day at a time (no historical backfill).
+- Providing the dataset and date parameters returns all market data for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query contract by contract.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_futures_tick(
+            date='2026-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesTick",
+            "date": '2026-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesTick",
+                date= "2026-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   contract_date | date                | futures_id   |   price |   volume |
+        |---:|----------------:|:--------------------|:-------------|--------:|---------:|
+        |  0 |          202601 | 2026-01-02 00:00:01 | MTX          |   23100 |        2 |
+        |  1 |          202601 | 2026-01-02 00:00:01 | MTX          |   23100 |        2 |
+        |  2 |          202601 | 2026-01-02 00:00:01 | MTX          |   23100 |        6 |
+        |  3 |          202601 | 2026-01-02 00:00:02 | MTX          |   23098 |        2 |
+        |  4 |          202601 | 2026-01-02 00:00:02 | MTX          |   23098 |        2 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            futures_id: str, # futures code
+            contract_date: str, # contract month
+            price: float32, # deal price
+            volume: int32 # volume
+        }
+        ```
+
 ----------------------------------
 #### Options Trading Detail Table TaiwanOptionTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
@@ -634,6 +714,88 @@ In Taiwan stock derivatives data, we have 16 datasets, as follows:
             contract_date: str, # contract month
             date: str, # date
             option_id: str, # option code
+            price: float32, # deal price
+            volume: int32 # volume
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: Available from the day this feature launched, one trading day at a time (no historical backfill).
+- Providing the dataset and date parameters returns all market data for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query contract by contract.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_option_tick(
+            date='2026-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanOptionTick",
+            "date": '2026-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionTick",
+                date= "2026-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   ExercisePrice | PutCall   |   contract_date | date                | option_id   |   price |   volume |
+        |---:|----------------:|:----------|----------------:|:--------------------|:------------|--------:|---------:|
+        |  0 |           22000 | C         |          202601 | 2026-01-02 10:00:01 | TXO         |    0.50 |        1 |
+        |  1 |           22000 | C         |          202601 | 2026-01-02 10:00:02 | TXO         |    0.50 |        1 |
+        |  2 |           22000 | P         |          202601 | 2026-01-02 10:00:03 | TXO         |    0.80 |        2 |
+        |  3 |           22000 | P         |          202601 | 2026-01-02 10:00:04 | TXO         |    0.80 |        2 |
+        |  4 |           22500 | C         |          202601 | 2026-01-02 10:00:05 | TXO         |    1.20 |        4 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            option_id: str, # option code
+            ExercisePrice: float32, # exercise price
+            contract_date: str, # contract month
+            PutCall: str, # call/put
             price: float32, # deal price
             volume: int32 # volume
         }

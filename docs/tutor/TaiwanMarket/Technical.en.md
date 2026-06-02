@@ -2038,6 +2038,89 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
             volume: float32 # trading volume
         }
         ```
+
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: Available from the day this feature launched, one trading day at a time (no historical backfill).
+- Providing the dataset and date parameters returns all market data for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query stock by stock.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_kbar(
+            date='2026-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockKBar",
+            "date": '2026-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockKBar",
+                date= "2026-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | minute   |   stock_id |   open |   high |   low |   close |   volume |
+        |---:|:-----------|:---------|-----------:|-------:|-------:|------:|--------:|---------:|
+        |  0 | 2026-01-02 | 09:00:00 |       2330 |    990 |    995 |   988 |     992 |     4100 |
+        |  1 | 2026-01-02 | 09:01:00 |       2330 |    992 |    993 |   990 |     991 |      210 |
+        |  2 | 2026-01-02 | 09:02:00 |       2330 |    991 |    992 |   990 |     990 |      310 |
+        |  3 | 2026-01-02 | 09:03:00 |       2330 |    990 |    991 |   989 |     990 |      190 |
+        |  4 | 2026-01-02 | 09:04:00 |       2330 |    990 |    991 |   989 |     991 |      170 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            minute: str, # minute
+            stock_id: str, # stock code
+            open: float64, # open price
+            high: float64, # high price
+            low: float64, # low price
+            close: float64, # close price
+            volume: float32 # trading volume
+        }
+        ```
 ---------------------------------------
 
 #### Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)

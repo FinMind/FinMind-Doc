@@ -229,6 +229,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockKBar, data_id=2330, start_date=2023-09-22
 - Columns: date (str), minute (str), stock_id (str), open (float64), high (float64), low (float64), close (float64), volume (float32)
 - Note: Single day per request.
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockKBar&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from feature launch date, no historical backfill. Python SDK: `api.taiwan_stock_kbar(date='2026-01-02', use_object=True)`.
 
 ### TaiwanStockWeekPrice (台股週K資料表)
 - Tier: Backer/Sponsor
@@ -538,6 +539,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanFuturesTick, data_id=MTX, start_date=2020-04-01
 - Columns: contract_date, date, futures_id, price, volume
 - Note: Single day per request.
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanFuturesTick&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from feature launch date, no historical backfill. Python SDK: `api.taiwan_futures_tick(date='2026-01-02', use_object=True)`.
 
 ### TaiwanOptionTick (選擇權交易明細表)
 - Tier: Backer/Sponsor
@@ -545,6 +547,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanOptionTick, data_id=OCO, start_date=2020-04-01
 - Columns: ExercisePrice, PutCall, contract_date, date, option_id, price, volume
 - Note: Single day per request.
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanOptionTick&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from feature launch date, no historical backfill. Python SDK: `api.taiwan_option_tick(date='2026-01-02', use_object=True)`.
 
 ### TaiwanFuturesInstitutionalInvestors (期貨三大法人買賣)
 - Tier: Free (with data_id) / Backer/Sponsor (all)

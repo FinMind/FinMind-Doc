@@ -2038,6 +2038,89 @@
             volume: float32 # 成交量
         }
         ```
+
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 輸入 dataset、date 參數，回傳該日全市場資料。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_kbar(
+            date='2026-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockKBar",
+            "date": '2026-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockKBar",
+                date= "2026-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | minute   |   stock_id |   open |   high |   low |   close |   volume |
+        |---:|:-----------|:---------|-----------:|-------:|-------:|------:|--------:|---------:|
+        |  0 | 2026-01-02 | 09:00:00 |       2330 |    990 |    995 |   988 |     992 |     4100 |
+        |  1 | 2026-01-02 | 09:01:00 |       2330 |    992 |    993 |   990 |     991 |      210 |
+        |  2 | 2026-01-02 | 09:02:00 |       2330 |    991 |    992 |   990 |     990 |      310 |
+        |  3 | 2026-01-02 | 09:03:00 |       2330 |    990 |    991 |   989 |     990 |      190 |
+        |  4 | 2026-01-02 | 09:04:00 |       2330 |    990 |    991 |   989 |     991 |      170 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            minute: str, # 分
+            stock_id: str, # 股票代碼
+            open: float64, # 開盤價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            close: float64, # 收盤價
+            volume: float32 # 成交量
+        }
+        ```
 ---------------------------------------
 
 #### 每 5 秒指數統計 TaiwanStockEvery5SecondsIndex(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
