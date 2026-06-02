@@ -1,26 +1,56 @@
+# ============================================================
+#  Site
+# ============================================================
 site_name: FinMind
 site_url: https://finmind.github.io/
 site_author: 'Sam'
-
 copyright: 'Copyright'
 
-theme:
-    name: material
-    language: 'zh-TW'
-    features:
-        - content.code.copy
-        - content.tabs.link
-        - navigation.top
-        - search.highlight
-
+# ============================================================
+#  Repository
+# ============================================================
 repo_name: FinMind/FinMind
 repo_url: https://github.com/FinMind/FinMind
 
-extra:
-  analytics:
-    provider: google
-    property: G-N2YPL1PVLE
+# ============================================================
+#  Theme
+# ============================================================
+theme:
+    name: material
+    language: 'zh-TW'
+    font:
+        text: Noto Sans TC   # 繁中友善（取代預設 Roboto）
+        code: JetBrains Mono
+    features:
+        - navigation.tracking
+        - navigation.top
+        - navigation.footer
+        - toc.follow
+        - content.code.copy
+        - content.code.annotate
+        - content.tabs.link
+        - search.highlight
+        - search.suggest
+        - search.share
+    icon:
+        repo: fontawesome/brands/github
 
+# ============================================================
+#  Extra（分析 + 社群）
+# ============================================================
+extra:
+    analytics:
+        provider: google
+        property: G-N2YPL1PVLE
+    social:
+        - icon: fontawesome/brands/github
+          link: https://github.com/FinMind/FinMind
+        - icon: fontawesome/solid/globe
+          link: https://finmindtrade.com/
+
+# ============================================================
+#  Navigation
+# ============================================================
 nav:
     - 總覽: 'index.md'
     - 快速開始: "quickstart.md"
@@ -64,20 +94,22 @@ nav:
         - K 線: "tutor/analysis/Kline.md"
         - 客製化看盤儀表板: "tutor/analysis/CustomerDashboardWebServer.md"
         - 即時股市資訊 X 板塊圖: "tutor/analysis/SnapshotTreemap.md"
-    - Versions:
-        - What's New: "WhatIsNew.md"
-        - Release Note: "release.md"
-        - v4 (Latest): https://finmind.github.io/
-        - v3: https://finmind.github.io/v3" target="_blank
-    - 服務狀態與可用率: "ServiceStatus.md"
-    - 壓力測試: "StressTest.md"
-    - IP 封鎖政策: "BanIPPolicy.md"
-    - 聯絡我們: "Contact.md"
-    - 使用條款: "License.md"
-    - 隱私權政策: "PrivacyPolicy.md"
-    - 贊助我們: "Donate.md"
-    - 官方網站: https://finmindtrade.com/" target="_blank
+    - 更新公告: "WhatIsNew.md"
+    - 版本紀錄: "release.md"
+    - 服務與政策:
+        - 服務狀態與可用率: "ServiceStatus.md"
+        - 壓力測試: "StressTest.md"
+        - IP 封鎖政策: "BanIPPolicy.md"
+    - 關於:
+        - 聯絡我們: "Contact.md"
+        - 使用條款: "License.md"
+        - 隱私權政策: "PrivacyPolicy.md"
+        - 贊助我們: "Donate.md"
+        - 官方網站: https://finmindtrade.com/
 
+# ============================================================
+#  Markdown extensions
+# ============================================================
 markdown_extensions:
     - toc:
         permalink: true
@@ -85,6 +117,8 @@ markdown_extensions:
         base_path: docs
     - markdown.extensions.meta:
     - admonition
+    - attr_list          # 連結/元素屬性（例如外連開新分頁）
+    - md_in_html
     - pymdownx.highlight:
         anchor_linenums: true
     - pymdownx.inlinehilite:
@@ -99,6 +133,9 @@ markdown_extensions:
               class: mermaid
               format: !!python/name:pymdownx.superfences.fence_code_format
 
+# ============================================================
+#  Plugins（搜尋 + i18n 雙語）
+# ============================================================
 plugins:
     - search:
         lang:
@@ -155,6 +192,10 @@ plugins:
                 K 線: K-Line
                 客製化看盤儀表板: Custom Dashboard
                 即時股市資訊 X 板塊圖: Snapshot Treemap
+                更新公告: What's New
+                版本紀錄: Release Note
+                服務與政策: Service & Policy
+                關於: About
                 服務狀態與可用率: Service Status & Uptime
                 壓力測試: Stress Test
                 IP 封鎖政策: IP Ban Policy

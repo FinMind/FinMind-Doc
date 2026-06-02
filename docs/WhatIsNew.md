@@ -1,3 +1,6 @@
+#### 2026-06-03
+* 新增 [服務狀態與可用率 ServiceStatus](https://finmind.github.io/ServiceStatus/) 頁面：提供公開即時狀態頁 [status.finmindtrade.com](https://status.finmindtrade.com)，說明 API 可用率 (uptime) 的計算方式與狀態分級（Operational / Degraded Performance / Partial Outage / Major Outage），作為企業方案 SLA 的衡量基準
+
 #### 2026-05-23
 * 新增 [台股指數代號對照表 IndexCodes](https://finmind.github.io/tutor/TaiwanMarket/IndexCodes/)：[台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) 的 `data_id` 除 4 碼個股代號外，亦支援 91 個 3 碼指數代號（例 `001` 加權指數、`101` 櫃買加權），完整對照分為大盤 / 產業 / 主題 Smart Beta / 槓桿反向 五組
 
