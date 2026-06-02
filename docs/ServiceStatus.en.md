@@ -2,7 +2,7 @@
 
 FinMind publishes a public, real-time status page:
 
-[**status.finmindtrade.com**](https://status.finmindtrade.com){ target="_blank" }
+[**status.finmindtrade.com**](https://status.finmindtrade.com)
 
 It shows the current API status, uptime over the past **24 hours** and **90 days**, and a history of past incidents.
 

@@ -2,7 +2,7 @@
 
 FinMind 提供對外即時狀態頁：
 
-[**status.finmindtrade.com**](https://status.finmindtrade.com){ target="_blank" }
+[**status.finmindtrade.com**](https://status.finmindtrade.com)
 
 該頁顯示 API 目前狀態、過去 **24 小時**與 **90 天**的可用率（uptime），以及歷史事件紀錄。
 
