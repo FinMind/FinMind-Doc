@@ -1,3 +1,6 @@
+#### 2026-06-03
+* Added [Service Status & Uptime](https://finmind.github.io/en/ServiceStatus/): a public, real-time status page at [status.finmindtrade.com](https://status.finmindtrade.com), explaining how API uptime is calculated and the status tiers (Operational / Degraded Performance / Partial Outage / Major Outage), which serve as the basis for the enterprise-plan SLA.
+
 #### 2026-05-23
 * Added [Taiwan Stock Index Codes](https://finmind.github.io/en/tutor/TaiwanMarket/IndexCodes/): [taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) `data_id` also accepts 91 three-digit index codes in addition to 4-digit stock IDs (e.g. `001` = TAIEX, `101` = OTC weighted), grouped into broad market / sector / themed (Smart Beta) / leverage & inverse categories.
 
