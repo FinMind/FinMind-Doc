@@ -73,6 +73,7 @@ nav:
     - IP 封鎖政策: "BanIPPolicy.md"
     - 聯絡我們: "Contact.md"
     - 使用條款: "License.md"
+    - 隱私權政策: "PrivacyPolicy.md"
     - 贊助我們: "Donate.md"
     - 官方網站: https://finmindtrade.com/" target="_blank
 
@@ -157,5 +158,6 @@ plugins:
                 IP 封鎖政策: IP Ban Policy
                 聯絡我們: Contact Us
                 使用條款: License
+                隱私權政策: Privacy Policy
                 贊助我們: Donate
                 官方網站: Official Website
