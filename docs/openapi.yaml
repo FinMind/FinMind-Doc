@@ -73,7 +73,7 @@ paths:
             TaiwanStockMarketValue, TaiwanStockDelisting, TaiwanStockMarketValueWeight,
             TaiwanStockSplitPrice, TaiwanStockParValueChange.
             Taiwan Derivative: TaiwanFutOptDailyInfo, TaiwanFuturesDaily, TaiwanOptionDaily,
-            TaiwanFuturesTick, TaiwanOptionTIck, TaiwanFuturesInstitutionalInvestors,
+            TaiwanFuturesTick, TaiwanOptionTick, TaiwanFuturesInstitutionalInvestors,
             TaiwanOptionInstitutionalInvestors, TaiwanFuturesInstitutionalInvestorsAfterHours,
             TaiwanOptionInstitutionalInvestorsAfterHours, TaiwanFuturesDealerTradingVolumeDaily,
             TaiwanOptionDealerTradingVolumeDaily, TaiwanFuturesOpenInterestLargeTraders,

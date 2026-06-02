@@ -539,10 +539,10 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Columns: contract_date, date, futures_id, price, volume
 - Note: Single day per request.
 
-### TaiwanOptionTIck (選擇權交易明細表)
+### TaiwanOptionTick (選擇權交易明細表)
 - Tier: Backer/Sponsor
 - Data range: 2011-01-03 ~ now
-- Params: dataset=TaiwanOptionTIck, data_id=OCO, start_date=2020-04-01
+- Params: dataset=TaiwanOptionTick, data_id=OCO, start_date=2020-04-01
 - Columns: ExercisePrice, PutCall, contract_date, date, option_id, price, volume
 - Note: Single day per request.
 
