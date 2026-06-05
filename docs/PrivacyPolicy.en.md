@@ -22,15 +22,15 @@ The server maintenance window is every Sunday from 00:00 to 03:00, during which 
 
 This policy explains how FinMind handles data when providing financial-data query services through its API and AI tools (such as a Custom GPT, MCP server, etc.).
 
-### Scope
+### 4. Scope
 
 This policy applies to your use of FinMind's public data query interfaces. The content provided is for educational and reference purposes only; for data accuracy and use of results, please refer to [Part I — Terms of Use](#terms).
 
-### Data We Process
+### 5. Data We Process
 
 To respond to your query, the service processes the query content you submit (such as dataset name, identifier, and date range) and the access credential (token) used to authenticate access.
 
-### How We Use Data
+### 6. How We Use Data
 
 The above data is used only for the following purposes:
 
@@ -38,20 +38,20 @@ The above data is used only for the following purposes:
 - To authenticate access and apply the corresponding usage plan
 - For operation, security, and quality improvement of the service
 
-### What We Do Not Do
+### 7. What We Do Not Do
 
 - We do not sell your personal data
 - We do not use the data for purposes unrelated to the service
 
-### Third-Party Platforms
+### 8. Third-Party Platforms
 
 When you use the service through a third-party AI platform (such as ChatGPT), your interaction with that platform is governed by that platform's own privacy policy and is outside the scope of this policy.
 
-### Data Security
+### 9. Data Security
 
 The service applies reasonable technical and organizational measures to protect the data it processes. Please keep your access credential secure and avoid disclosing it.
 
-### Updates to This Policy
+### 10. Updates to This Policy
 
 This policy may be updated from time to time as the service evolves; the updated version will be posted on this page.
 
