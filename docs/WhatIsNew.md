@@ -1,3 +1,6 @@
+#### 2026-06-05
+* [台股分 K TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)、[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) 新增 storage_objects 一次取得整日資料下載方式（只限 sponsorpro 會員）；資料自本功能上線後逐交易日提供，暫不含歷史回補
+
 #### 2026-06-03
 * 新增 [服務狀態與可用率 ServiceStatus](https://finmind.github.io/ServiceStatus/) 頁面：提供公開即時狀態頁 [status.finmindtrade.com](https://status.finmindtrade.com)，說明 API 可用率 (uptime) 的計算方式與狀態分級（Operational / Degraded Performance / Partial Outage / Major Outage），作為企業方案 SLA 的衡量基準
 

@@ -537,6 +537,86 @@
         }
         ```
 
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 輸入 dataset、date 參數，回傳該日全市場資料。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_futures_tick(
+            date='2026-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesTick",
+            "date": '2026-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesTick",
+                date= "2026-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   contract_date | date                | futures_id   |   price |   volume |
+        |---:|----------------:|:--------------------|:-------------|--------:|---------:|
+        |  0 |          202601 | 2026-01-02 00:00:01 | MTX          |   23100 |        2 |
+        |  1 |          202601 | 2026-01-02 00:00:01 | MTX          |   23100 |        2 |
+        |  2 |          202601 | 2026-01-02 00:00:01 | MTX          |   23100 |        6 |
+        |  3 |          202601 | 2026-01-02 00:00:02 | MTX          |   23098 |        2 |
+        |  4 |          202601 | 2026-01-02 00:00:02 | MTX          |   23098 |        2 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            price: float32, # 成交價
+            volume: int32 # 成交量
+        }
+        ```
+
 ----------------------------------
 #### 選擇權交易明細表 TaiwanOptionTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
@@ -634,6 +714,88 @@
             contract_date: str, # 到期月份
             date: str, # 日期
             option_id: str, # 選擇權代碼
+            price: float32, # 成交價
+            volume: int32 # 成交量
+        }
+        ```
+
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 輸入 dataset、date 參數，回傳該日全市場資料。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_option_tick(
+            date='2026-01-02',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanOptionTick",
+            "date": '2026-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionTick",
+                date= "2026-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |   ExercisePrice | PutCall   |   contract_date | date                | option_id   |   price |   volume |
+        |---:|----------------:|:----------|----------------:|:--------------------|:------------|--------:|---------:|
+        |  0 |           22000 | C         |          202601 | 2026-01-02 10:00:01 | TXO         |    0.50 |        1 |
+        |  1 |           22000 | C         |          202601 | 2026-01-02 10:00:02 | TXO         |    0.50 |        1 |
+        |  2 |           22000 | P         |          202601 | 2026-01-02 10:00:03 | TXO         |    0.80 |        2 |
+        |  3 |           22000 | P         |          202601 | 2026-01-02 10:00:04 | TXO         |    0.80 |        2 |
+        |  4 |           22500 | C         |          202601 | 2026-01-02 10:00:05 | TXO         |    1.20 |        4 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            option_id: str, # 選擇權代碼
+            ExercisePrice: float32, # 履約價
+            contract_date: str, # 到期月份
+            PutCall: str, # 買賣權
             price: float32, # 成交價
             volume: int32 # 成交量
         }
