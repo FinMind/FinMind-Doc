@@ -1,10 +1,11 @@
 
-在台股衍生性商品資料，我們擁有 16 種資料集，如下:
+在台股衍生性商品資料，我們擁有 17 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)
+- [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)
 - [選擇權交易明細表 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)
 - [期貨三大法人買賣 TaiwanFuturesInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestors)
 - [選擇權三大法人買賣 TaiwanOptionInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestors)
@@ -614,6 +615,89 @@
             contract_date: str, # 到期月份
             price: float32, # 成交價
             volume: int32 # 成交量
+        }
+        ```
+
+----------------------------------
+#### 期貨價差每筆成交資料 TaiwanFuturesSpreadTick (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 由於資料量過大，單次請求只提供一天資料
+- 資料區間：近 30 個交易日起每日累積（暫不含歷史回補）
+- 資料更新時間 **星期一至五 盤中、盤後**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_futures_spread_tick(
+            futures_id='CAF',
+            date='2026-06-09'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesSpreadTick",
+            "data_id": "CAF",
+            "start_date": "2026-06-09",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesSpreadTick",
+                data_id="CAF",
+                start_date= "2026-06-09",
+                token = "" # 參考登入，獲取金鑰
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | contract_date   | date                | futures_id   |   price |   volume |   near_price |   far_price |   spread_to_spread |
+        |---:|:----------------|:--------------------|:-------------|--------:|---------:|-------------:|------------:|-------------------:|
+        |  0 | 202606/202607   | 2026-06-09 08:45:03 | CAF          |    0.5  |        4 |       100.5  |     101     |                  0 |
+        |  1 | 202606/202607   | 2026-06-09 08:45:05 | CAF          |    0.5  |        4 |       101    |     101.5   |                  0 |
+        |  2 | 202606/202607   | 2026-06-09 08:50:38 | CAF          |    0.6  |        4 |       100    |     100.6   |                  1 |
+        |  3 | 202606/202607   | 2026-06-09 08:50:38 | CAF          |    0.61 |        4 |       100    |     100.61  |                  1 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份（近月/遠月）
+            price: float32, # 價差成交價
+            volume: int32, # 成交量
+            near_price: float32, # 近月價格
+            far_price: float32, # 遠月價格
+            spread_to_spread: int32 # 是否價差對價差成交（1 是、0 否）
         }
         ```
 

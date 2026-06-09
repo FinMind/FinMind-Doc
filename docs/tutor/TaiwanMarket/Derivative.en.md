@@ -1,10 +1,11 @@
 
-In Taiwan stock derivatives data, we have 16 datasets, as follows:
+In Taiwan stock derivatives data, we have 17 datasets, as follows:
 
 - [Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [Futures Daily Trading Information TaiwanFuturesDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
 - [Options Daily Trading Information TaiwanOptionDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [Futures Trading Detail Table TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)
+- [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)
 - [Options Trading Detail Table TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)
 - [Futures Top Three Institutional Investors Trading TaiwanFuturesInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestors)
 - [Options Top Three Institutional Investors Trading TaiwanOptionInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestors)
@@ -614,6 +615,89 @@ In Taiwan stock derivatives data, we have 16 datasets, as follows:
             contract_date: str, # contract month
             price: float32, # deal price
             volume: int32 # volume
+        }
+        ```
+
+----------------------------------
+#### Futures Spread Tick Table TaiwanFuturesSpreadTick (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Due to the large amount of data, only one day of data is provided per request
+- Data range: rolling, accumulated daily from the most recent 30 trading days (historical backfill not yet included)
+- Data update time **Monday to Friday, intraday and after market close**, actual update time is based on the API data
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_futures_spread_tick(
+            futures_id='CAF',
+            date='2026-06-09'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # login to get the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesSpreadTick",
+            "data_id": "CAF",
+            "start_date": "2026-06-09",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # login to get the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesSpreadTick",
+                data_id="CAF",
+                start_date= "2026-06-09",
+                token = "" # login to get the token
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | contract_date   | date                | futures_id   |   price |   volume |   near_price |   far_price |   spread_to_spread |
+        |---:|:----------------|:--------------------|:-------------|--------:|---------:|-------------:|------------:|-------------------:|
+        |  0 | 202606/202607   | 2026-06-09 08:45:03 | CAF          |    0.5  |        4 |       100.5  |     101     |                  0 |
+        |  1 | 202606/202607   | 2026-06-09 08:45:05 | CAF          |    0.5  |        4 |       101    |     101.5   |                  0 |
+        |  2 | 202606/202607   | 2026-06-09 08:50:38 | CAF          |    0.6  |        4 |       100    |     100.6   |                  1 |
+        |  3 | 202606/202607   | 2026-06-09 08:50:38 | CAF          |    0.61 |        4 |       100    |     100.61  |                  1 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            futures_id: str, # futures code
+            contract_date: str, # contract months (near/far)
+            price: float32, # spread deal price
+            volume: int32, # volume
+            near_price: float32, # near month price
+            far_price: float32, # far month price
+            spread_to_spread: int32 # spread-to-spread deal flag (1 yes, 0 no)
         }
         ```
 
