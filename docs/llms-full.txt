@@ -543,7 +543,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ### TaiwanFuturesSpreadTick (期貨價差每筆成交資料)
 - Tier: Sponsor
-- Data range: rolling, accumulated daily from the most recent 30 trading days (no historical backfill yet)
+- Data range: 2026-04-27 ~ now (accumulated daily since launch)
 - Params: dataset=TaiwanFuturesSpreadTick, data_id=CAF, start_date=2026-06-09
 - Columns: contract_date, date, time, futures_id, price, volume, near_price, far_price, spread_to_spread
 - Note: Futures calendar spread (near/far month) per-trade data. data_id is the spread product code (e.g. CAF). date and time are separate columns (date e.g. 2026-06-09, time e.g. 08:45:03). contract_date holds both legs (e.g. 202606/202607). price is the spread price (can be negative). spread_to_spread: 1 if spread-to-spread deal, else 0. Single day per request. Python SDK: `api.taiwan_futures_spread_tick(futures_id='CAF', date='2026-06-09')`.

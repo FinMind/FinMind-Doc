@@ -622,7 +622,7 @@
 #### 期貨價差每筆成交資料 TaiwanFuturesSpreadTick (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 由於資料量過大，單次請求只提供一天資料
-- 資料區間：近 30 個交易日起每日累積（暫不含歷史回補）
+- 資料區間：2026-04-27 ~ now（自上線後逐交易日累積）
 - 資料更新時間 **星期一至五 盤中、盤後**，實際更新時間以 API 資料為主
 
 !!! example

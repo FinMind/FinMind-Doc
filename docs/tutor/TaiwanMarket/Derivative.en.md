@@ -622,7 +622,7 @@ In Taiwan stock derivatives data, we have 17 datasets, as follows:
 #### Futures Spread Tick Table TaiwanFuturesSpreadTick (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Due to the large amount of data, only one day of data is provided per request
-- Data range: rolling, accumulated daily from the most recent 30 trading days (historical backfill not yet included)
+- Data range: 2026-04-27 ~ now (accumulated daily since launch)
 - Data update time **Monday to Friday, intraday and after market close**, actual update time is based on the API data
 
 !!! example
