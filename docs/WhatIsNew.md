@@ -1,5 +1,5 @@
 #### 2026-06-09
-* 新增 [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)（只限 sponsor 會員）：提供期貨價差（近月/遠月）每筆成交，含到期月份、成交時間、價差成交價、成交量、近月價格、遠月價格、是否價差對價差成交；單次請求只提供一天資料，資料自上線後逐交易日累積（暫不含歷史回補）
+* 新增 [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)（只限 sponsor 會員）：提供期貨價差（近月/遠月）每筆成交，含到期月份、成交時間、價差成交價、成交量、近月價格、遠月價格、是否價差對價差成交；單次請求只提供一天資料，資料自 2026-04-27 起逐交易日累積（暫不含更早歷史回補）
 
 #### 2026-06-05
 * [台股分 K TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)、[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) 新增 storage_objects 一次取得整日資料下載方式（只限 sponsorpro 會員）；資料自本功能上線後逐交易日提供，暫不含歷史回補
