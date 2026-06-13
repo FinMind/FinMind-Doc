@@ -1,4 +1,5 @@
 #### 2026-06-13
+* 新增 [個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)：與 `TaiwanStockInstitutionalInvestorsBuySell` 相同資料，改為寬表（橫式），每個交易日一列、各法人別買賣攤平成獨立欄位（外資、外資自營商、投信、自營商及其自行買賣／避險），免自行轉置。欄位涵蓋所有歷史法人別分類，尚未存在的年代該欄為 0（自營商於 2014-12-01 由合併拆為自行買賣／避險、外資自營商於 2018-01-15 起提供）；資料區間 2005-01-01 ~ now
 * FinMind Python 套件新增支援 **Python 3.12**（持續支援 Python 3.8–3.11）。本版起套件相依升級為 `pandas>=2.0`、`ta>=0.11`（`numpy`、`pydantic` 維持不變）。
     * 呼叫 FinMind 的程式碼**無需修改**：`DataLoader`、策略 (Strategy)、繪圖等對外介面皆不變。
     * :warning: **升級須知**：安裝／升級會一併將環境中的 `pandas` 升至 2.x、`ta` 升至 0.11。若你**其餘自有程式碼**仍使用 pandas 1.x 在 2.0 已移除的寫法，需自行調整，常見如：`df.append()` → `pd.concat([...])`、`df.to_dict("r")` → `df.to_dict("records")`、`df.iteritems()` → `df.items()`。若暫時無法調整，可先固定安裝舊版 FinMind。

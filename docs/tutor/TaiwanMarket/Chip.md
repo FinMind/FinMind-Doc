@@ -1,9 +1,10 @@
-在台股籌碼面，我們擁有 20 種資料集，如下:
+在台股籌碼面，我們擁有 21 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
 - [整體市場融資融劵表 TaiwanStockTotalMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktotalmarginpurchaseshortsale)
 - [個股三大法人買賣表 TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
+- [個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)
 - [整體市場三大法人買賣表 TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktotalinstitutionalinvestors)
 - [外資持股表 TaiwanStockShareholding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [股權持股分級表 TaiwanStockHoldingSharesPer](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper-backersponsor)
@@ -476,6 +477,112 @@
             buy: int64, # 買進
             name: str, # 類別
             sell: int64 # 賣出
+        }
+        ```
+
+----------------------------------
+#### 法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide
+
+- 與 `TaiwanStockInstitutionalInvestorsBuySell` 相同資料來源，改為 **寬表（橫式）**：每個交易日一列，將各法人別的買進、賣出攤平成獨立欄位，方便直接取用、免自行轉置。
+- 資料區間：2005-01-01 ~ now
+- 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
+- 資料更新時間 **星期一至五 20:00**，實際更新時間以 API 資料為主
+
+!!! note "新制 / 舊制欄位差異（重要）"
+    三大法人的分類方式歷年有調整，本寬表欄位涵蓋**所有歷史分類**，某一分類在尚未存在的年代該欄一律為 `0`：
+
+    | 欄位 | 提供年代 | 其它年代 |
+    |------|----------|----------|
+    | `Foreign_Investor`（外資，不含外資自營商） | 全期間 | — |
+    | `Investment_Trust`（投信） | 全期間 | — |
+    | `Dealer`（自營商，合併） | **舊制**（約 2014-12-01 前）及興櫃 | 之後為 `0` |
+    | `Dealer_self`（自營商，自行買賣） | **新制**（2014-12-01 起） | 之前為 `0` |
+    | `Dealer_Hedging`（自營商，避險） | **新制**（2014-12-01 起） | 之前為 `0` |
+    | `Foreign_Dealer_Self`（外資自營商） | **新制**（2018-01-15 起） | 之前為 `0` |
+
+    - 自營商在 **2014-12-01** 起由合併的 `Dealer` 拆成 `Dealer_self`（自行買賣）與 `Dealer_Hedging`（避險）。
+    - 外資在 **2018-01-15** 起再拆出 `Foreign_Dealer_Self`（外資自營商）。
+    - 若需「自營商合計」且跨年代連續，請自行加總 `Dealer + Dealer_self + Dealer_Hedging`（任一年代只有其中一組非 0，相加不會重複計算）。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_institutional_investors_wide(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockInstitutionalInvestorsBuySellWide",
+                data_id= "2330",
+                start_date= "2020-04-01",
+                end_date= "2020-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   Foreign_Investor_buy |   Foreign_Investor_sell |   Foreign_Dealer_Self_buy |   Foreign_Dealer_Self_sell |   Investment_Trust_buy |   Investment_Trust_sell |   Dealer_buy |   Dealer_sell |   Dealer_self_buy |   Dealer_self_sell |   Dealer_Hedging_buy |   Dealer_Hedging_sell |
+        |---:|:-----------|-----------:|-----------------------:|------------------------:|--------------------------:|---------------------------:|-----------------------:|------------------------:|-------------:|--------------:|------------------:|-------------------:|---------------------:|----------------------:|
+        |  0 | 2020-04-01 |       2330 |               31304729 |                29057663 |                         0 |                          0 |                 900000 |                  239000 |            0 |             0 |             79000 |             807000 |               189000 |                493500 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            Foreign_Investor_buy: int64, # 外資買進
+            Foreign_Investor_sell: int64, # 外資賣出
+            Foreign_Dealer_Self_buy: int64, # 外資自營商買進
+            Foreign_Dealer_Self_sell: int64, # 外資自營商賣出
+            Investment_Trust_buy: int64, # 投信買進
+            Investment_Trust_sell: int64, # 投信賣出
+            Dealer_buy: int64, # 自營商買進（合併，舊制）
+            Dealer_sell: int64, # 自營商賣出（合併，舊制）
+            Dealer_self_buy: int64, # 自營商買進（自行買賣）
+            Dealer_self_sell: int64, # 自營商賣出（自行買賣）
+            Dealer_Hedging_buy: int64, # 自營商買進（避險）
+            Dealer_Hedging_sell: int64 # 自營商賣出（避險）
         }
         ```
 
