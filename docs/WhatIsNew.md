@@ -1,3 +1,6 @@
+#### 2026-06-13
+* 新增 [個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)：與 `TaiwanStockInstitutionalInvestorsBuySell` 相同資料，改為寬表（橫式），每個交易日一列、各法人別買賣攤平成獨立欄位（外資、外資自營商、投信、自營商及其自行買賣／避險），免自行轉置。欄位涵蓋所有歷史法人別分類，尚未存在的年代該欄為 0（自營商於 2014-12-01 由合併拆為自行買賣／避險、外資自營商於 2018-01-15 起提供）；資料區間 2005-01-01 ~ now
+
 #### 2026-06-09
 * 新增 [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)（只限 sponsor 會員）：提供期貨價差（近月/遠月）每筆成交，含到期月份、成交時間、價差成交價、成交量、近月價格、遠月價格、是否價差對價差成交；單次請求只提供一天資料，資料自 2026-04-27 起逐交易日累積（暫不含更早歷史回補）
 

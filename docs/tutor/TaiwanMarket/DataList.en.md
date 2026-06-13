@@ -1,4 +1,4 @@
-In the Taiwan financial market, we have 80 datasets, as listed below:
+In the Taiwan financial market, we have 81 datasets, as listed below:
 
 #### Technical
 
@@ -28,6 +28,7 @@ In the Taiwan financial market, we have 80 datasets, as listed below:
 - [Per-Stock Margin Purchase / Short Sale Table TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
 - [Total Market Margin Purchase / Short Sale Table TaiwanStockTotalMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktotalmarginpurchaseshortsale)
 - [Per-Stock Institutional Investors Buy/Sell Table TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
+- [Per-Stock Institutional Investors Buy/Sell Table (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)
 - [Total Market Institutional Investors Buy/Sell Table TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktotalinstitutionalinvestors)
 - [Foreign Investors Shareholding Table TaiwanStockShareholding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [Shareholding by Tier Table TaiwanStockHoldingSharesPer](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper-backersponsor)

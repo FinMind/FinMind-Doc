@@ -1,3 +1,6 @@
+#### 2026-06-13
+* Added [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide): same data as `TaiwanStockInstitutionalInvestorsBuySell` but in wide format — one row per trading day with each institutional investor's buy/sell as its own column, no manual pivot needed. Columns cover all historical investor categories; a category is 0 in eras where it did not exist (dealer split into proprietary/hedging from 2014-12-01; foreign dealer self from 2018-01-15). Data range 2005-01-01 ~ now
+
 #### 2026-06-09
 * Added [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor) (sponsor members only): per-trade futures spread (near/far month) data, including contract months, deal time, spread deal price, volume, near month price, far month price, and spread-to-spread deal flag. Only one day of data is provided per request; data accumulates daily since 2026-04-27 (earlier historical backfill not yet included).
 
