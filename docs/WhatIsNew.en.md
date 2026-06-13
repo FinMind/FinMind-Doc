@@ -1,3 +1,8 @@
+#### 2026-06-13
+* The FinMind Python package now supports **Python 3.12** (Python 3.8–3.11 remain supported). Starting from this release, dependencies are upgraded to `pandas>=2.0` and `ta>=0.11` (`numpy` and `pydantic` unchanged).
+    * **No code changes are required** to call FinMind: the public `DataLoader`, strategy, and plotting interfaces are unchanged.
+    * :warning: **Upgrade note**: installing/upgrading also bumps `pandas` to 2.x and `ta` to 0.11 in your environment. If your **own surrounding code** still uses pandas 1.x APIs removed in 2.0, you will need to adjust it — common examples: `df.append()` → `pd.concat([...])`, `df.to_dict("r")` → `df.to_dict("records")`, `df.iteritems()` → `df.items()`. If you cannot adjust yet, pin an older FinMind version for now.
+
 #### 2026-06-09
 * Added [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor) (sponsor members only): per-trade futures spread (near/far month) data, including contract months, deal time, spread deal price, volume, near month price, far month price, and spread-to-spread deal flag. Only one day of data is provided per request; data accumulates daily since 2026-04-27 (earlier historical backfill not yet included).
 

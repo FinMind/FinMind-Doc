@@ -1,3 +1,8 @@
+#### 2026-06-13
+* FinMind Python 套件新增支援 **Python 3.12**（持續支援 Python 3.8–3.11）。本版起套件相依升級為 `pandas>=2.0`、`ta>=0.11`（`numpy`、`pydantic` 維持不變）。
+    * 呼叫 FinMind 的程式碼**無需修改**：`DataLoader`、策略 (Strategy)、繪圖等對外介面皆不變。
+    * :warning: **升級須知**：安裝／升級會一併將環境中的 `pandas` 升至 2.x、`ta` 升至 0.11。若你**其餘自有程式碼**仍使用 pandas 1.x 在 2.0 已移除的寫法，需自行調整，常見如：`df.append()` → `pd.concat([...])`、`df.to_dict("r")` → `df.to_dict("records")`、`df.iteritems()` → `df.items()`。若暫時無法調整，可先固定安裝舊版 FinMind。
+
 #### 2026-06-09
 * 新增 [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)（只限 sponsor 會員）：提供期貨價差（近月/遠月）每筆成交，含到期月份、成交時間、價差成交價、成交量、近月價格、遠月價格、是否價差對價差成交；單次請求只提供一天資料，資料自 2026-04-27 起逐交易日累積（暫不含更早歷史回補）
 
