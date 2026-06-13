@@ -303,6 +303,17 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySell, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date, stock_id, buy, name, sell
 
+### TaiwanStockInstitutionalInvestorsBuySellWide (個股三大法人買賣表（寬表）)
+- Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
+- Same data as TaiwanStockInstitutionalInvestorsBuySell but wide format: one row per (date, stock_id), each institutional investor's buy/sell as its own column
+- Data range: 2005-01-01 ~ now
+- Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
+- Update: Mon-Fri 20:00
+- Params: dataset=TaiwanStockInstitutionalInvestorsBuySellWide, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
+- Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySellWide, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
+- Columns: date, stock_id, Foreign_Investor_buy, Foreign_Investor_sell, Foreign_Dealer_Self_buy, Foreign_Dealer_Self_sell, Investment_Trust_buy, Investment_Trust_sell, Dealer_buy, Dealer_sell, Dealer_self_buy, Dealer_self_sell, Dealer_Hedging_buy, Dealer_Hedging_sell
+- Note: covers all historical investor categories; a category is 0 in eras where it did not exist. Dealer (combined) is pre-2014-12-01 (and Emerging); Dealer_self/Dealer_Hedging from 2014-12-01; Foreign_Dealer_Self from 2018-01-15. For a continuous dealer total, sum Dealer + Dealer_self + Dealer_Hedging.
+
 ### TaiwanStockTotalInstitutionalInvestors (整體三大市場法人買賣表)
 - Tier: Free
 - Data range: 2004-04-01 ~ now
