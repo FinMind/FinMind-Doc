@@ -1,9 +1,10 @@
-In Taiwan stock chip data, we have 20 datasets as follows:
+In Taiwan stock chip data, we have 21 datasets as follows:
 
 
 - [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
 - [Total Market Margin Purchase / Short Sale TaiwanStockTotalMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktotalmarginpurchaseshortsale)
 - [Individual Stock Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
+- [Individual Stock Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)
 - [Total Market Institutional Investors Buy/Sell TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktotalinstitutionalinvestors)
 - [Foreign Investor Shareholding TaiwanStockShareholding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
 - [Shareholders Holding Shares Distribution TaiwanStockHoldingSharesPer](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper-backersponsor)
@@ -476,6 +477,112 @@ In Taiwan stock chip data, we have 20 datasets as follows:
             buy: int64, # buy
             name: str, # category
             sell: int64 # sell
+        }
+        ```
+
+----------------------------------
+#### Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide
+
+- Same source data as `TaiwanStockInstitutionalInvestorsBuySell`, but in **wide format**: one row per trading day, with each institutional investor's buy/sell flattened into its own column — no manual pivot needed.
+- Data range: 2005-01-01 ~ now
+- Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
+- Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
+
+!!! note "New vs old era columns (important)"
+    The classification of the three institutional investors has changed over the years. This wide table includes **all historical classifications**; a classification is always `0` in eras where it did not yet exist:
+
+    | Column | Available era | Other eras |
+    |--------|---------------|------------|
+    | `Foreign_Investor` (foreign, excl. foreign dealer self) | all | — |
+    | `Investment_Trust` | all | — |
+    | `Dealer` (dealer, combined) | **old era** (before ~2014-12-01) and Emerging | `0` afterwards |
+    | `Dealer_self` (dealer, proprietary) | **new era** (from 2014-12-01) | `0` before |
+    | `Dealer_Hedging` (dealer, hedging) | **new era** (from 2014-12-01) | `0` before |
+    | `Foreign_Dealer_Self` (foreign dealer self) | **new era** (from 2018-01-15) | `0` before |
+
+    - From **2014-12-01**, the combined `Dealer` was split into `Dealer_self` (proprietary) and `Dealer_Hedging` (hedging).
+    - From **2018-01-15**, `Foreign_Dealer_Self` was split out from foreign investors.
+    - For a continuous "dealer total" across eras, sum `Dealer + Dealer_self + Dealer_Hedging` (only one group is non-zero in any era, so there is no double counting).
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_institutional_investors_wide(
+            stock_id="2330",
+            start_date='2020-04-01',
+            end_date='2020-04-12',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # login to get the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockInstitutionalInvestorsBuySellWide",
+            "data_id": "2330",
+            "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # login to get the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockInstitutionalInvestorsBuySellWide",
+                data_id= "2330",
+                start_date= "2020-04-01",
+                end_date= "2020-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   Foreign_Investor_buy |   Foreign_Investor_sell |   Foreign_Dealer_Self_buy |   Foreign_Dealer_Self_sell |   Investment_Trust_buy |   Investment_Trust_sell |   Dealer_buy |   Dealer_sell |   Dealer_self_buy |   Dealer_self_sell |   Dealer_Hedging_buy |   Dealer_Hedging_sell |
+        |---:|:-----------|-----------:|-----------------------:|------------------------:|--------------------------:|---------------------------:|-----------------------:|------------------------:|-------------:|--------------:|------------------:|-------------------:|---------------------:|----------------------:|
+        |  0 | 2020-04-01 |       2330 |               31304729 |                29057663 |                         0 |                          0 |                 900000 |                  239000 |            0 |             0 |             79000 |             807000 |               189000 |                493500 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock id
+            Foreign_Investor_buy: int64, # foreign investor buy
+            Foreign_Investor_sell: int64, # foreign investor sell
+            Foreign_Dealer_Self_buy: int64, # foreign dealer self buy
+            Foreign_Dealer_Self_sell: int64, # foreign dealer self sell
+            Investment_Trust_buy: int64, # investment trust buy
+            Investment_Trust_sell: int64, # investment trust sell
+            Dealer_buy: int64, # dealer buy (combined, old era)
+            Dealer_sell: int64, # dealer sell (combined, old era)
+            Dealer_self_buy: int64, # dealer proprietary buy
+            Dealer_self_sell: int64, # dealer proprietary sell
+            Dealer_Hedging_buy: int64, # dealer hedging buy
+            Dealer_Hedging_sell: int64 # dealer hedging sell
         }
         ```
 
