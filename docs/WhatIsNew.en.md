@@ -1,3 +1,6 @@
+#### 2026-06-15
+* [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) now supports storage_objects whole-day bulk download (sponsorpro members only); data is provided per trading day from feature launch, no historical backfill for now
+
 #### 2026-06-13
 * Added [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide): same data as `TaiwanStockInstitutionalInvestorsBuySell` but in wide format — one row per trading day with each institutional investor's buy/sell as its own column, no manual pivot needed. Columns cover all historical investor categories; a category is 0 in eras where it did not exist (dealer split into proprietary/hedging from 2014-12-01; foreign dealer self from 2018-01-15). Data range 2005-01-01 ~ now
 * The FinMind Python package now supports **Python 3.12** (Python 3.8–3.11 remain supported). Starting from this release, dependencies are upgraded to `pandas>=2.0` and `ta>=0.11` (`numpy` and `pydantic` unchanged).

@@ -2088,6 +2088,86 @@ In Taiwan stock chip data, we have 21 datasets as follows:
         }
         ```
 
+#### Fetch all warrant trading data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: 2023-06-21 ~ now.
+- Providing the dataset and date parameters returns the branch-level trading data of all warrants for that day.
+- Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering all warrants in the market.
+- Updated daily. The actual update time is based on the API data.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_warrant_trading_daily_report(
+            date='2023-06-21',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockWarrantTradingDailyReport",
+            "date": "2023-06-21",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockWarrantTradingDailyReport",
+                date= "2023-06-21"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
+        |---:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
+        |  0 | 元富                |    2.48 |     0 |   4000 |                   5920 |     084655 | 2023-06-21 |
+        |  1 | 凱基                |    2.48 |  4000 |      0 |                   9200 |     084655 | 2023-06-21 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # securities trader name
+            price: float64, # deal price
+            buy: int32, # shares bought
+            sell: int32, # shares sold
+            securities_trader_id: str, # securities trader code
+            stock_id: str, # stock symbol
+            date: str # date
+        }
+        ```
+
 ----------------------------------
 #### Taiwan Stock Government Bank Buy/Sell TaiwanStockGovernmentBankBuySell (only available for [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 

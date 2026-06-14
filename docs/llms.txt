@@ -15,7 +15,7 @@
   - Some heavy datasets have dedicated endpoints instead of `/data` — they will return 422 if queried via `/data?dataset=...`. See `llms-full.txt` for the exact endpoint of each dataset. Currently:
     - `GET /taiwan_stock_trading_daily_report` (params: data_id or securities_trader_id, date) — TaiwanStockTradingDailyReport, single date per request
     - `GET /taiwan_stock_trading_daily_report_secid_agg` (params: data_id, start_date, end_date) — TaiwanStockTradingDailyReportSecIdAgg
-  - `GET /storage_objects` (params: dataset, date) — sponsorpro-tier whole-day parquet via signed URL, ignores data_id. Currently supports: TaiwanStockPriceTick, TaiwanStockTradingDailyReport, TaiwanStockKBar, TaiwanFuturesTick, TaiwanOptionTick.
+  - `GET /storage_objects` (params: dataset, date) — sponsorpro-tier whole-day parquet via signed URL, ignores data_id. Currently supports: TaiwanStockPriceTick, TaiwanStockTradingDailyReport, TaiwanStockWarrantTradingDailyReport, TaiwanStockKBar, TaiwanFuturesTick, TaiwanOptionTick.
 
 ## Python SDK
 

@@ -2088,6 +2088,86 @@
         }
         ```
 
+#### 一次拿特定日期，所有權證分點資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2023-06-21 ~ now
+- 輸入 dataset、date 參數，會回傳 date 當天所有權證的分點資料
+- 透過 signed URL 下載整日 parquet，免逐檔查詢，適合需要全市場權證分點的批次分析
+- 每日更新，實際更新時間以 API 資料為主
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_warrant_trading_daily_report(
+            date='2023-06-21',
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockWarrantTradingDailyReport",
+            "date": "2023-06-21",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockWarrantTradingDailyReport",
+                date= "2023-06-21"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader   |   price |   buy |   sell |   securities_trader_id |   stock_id | date       |
+        |---:|:--------------------|--------:|------:|-------:|-----------------------:|-----------:|:-----------|
+        |  0 | 元富                |    2.48 |     0 |   4000 |                   5920 |     084655 | 2023-06-21 |
+        |  1 | 凱基                |    2.48 |  4000 |      0 |                   9200 |     084655 | 2023-06-21 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # 券商名稱
+            price: float64, # 成交價
+            buy: int32, # 買進股數
+            sell: int32, # 賣出股數
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str # 日期
+        }
+        ```
+
 ----------------------------------
 #### 台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
