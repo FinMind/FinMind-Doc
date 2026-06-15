@@ -172,6 +172,7 @@
 #### 台股權證標的對照表 TaiwanStockInfoWithWarrantSummary(只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
 
 - 提供權證標的對照表。( 由於包含權證資料，資料量大，約需等一分鐘時間。 )
+- 涵蓋**上市 (TWSE) 與上櫃 (TPEX)** 權證的標的（母股 `target_stock_id`）對照；上櫃權證的標的對照歷史回溯至 **2011-01-03**，可用母股代碼反查其對應權證（含已到期、代碼重用的歷史權證）。
 - 資料更新時間 **每天 1:30**，實際更新時間以 API 資料為主
 
 !!! example

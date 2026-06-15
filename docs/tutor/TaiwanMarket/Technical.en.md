@@ -172,6 +172,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Provides the warrant underlying reference table. (Since it includes warrant data, the data volume is large and takes about a minute.)
+- Covers both **listed (TWSE) and OTC (TPEX)** warrants' underlying (`target_stock_id`) reference; OTC warrant underlying history goes back to **2011-01-03**, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants).
 - Data update time: **1:30 daily**. The actual update time is based on the API data.
 
 !!! example
