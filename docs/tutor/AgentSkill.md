@@ -1,5 +1,10 @@
 FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.com/)、[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)、[Codex](https://github.com/openai/codex)、[Cursor](https://www.cursor.com/)、[Windsurf](https://windsurf.com/) 等 AI 工具中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
 
+共有兩種使用方式，擇一即可：
+
+1. **Agent Skill 檔（CLI 工具）**：下載 `/finmind` 指令檔到 Claude Code / Codex / Cursor / Windsurf / Gemini，見下方「安裝」。
+2. **MCP Server**：支援 [MCP](https://modelcontextprotocol.io/) 的工具（Claude Desktop / Claude Code、Cursor、Windsurf、Gemini CLI）可直接連 FinMind 官方 MCP server，見「MCP Server」。
+
 ## 安裝
 
 ### 步驟 1: 下載 Skill
@@ -48,7 +53,40 @@ export FINMIND_TOKEN="your_token_here"
 
 ---
 
+## MCP Server
+
+若你的 AI 工具支援 [MCP（Model Context Protocol）](https://modelcontextprotocol.io/)，可改用 FinMind 官方 MCP server [`finmind-mcp`](https://pypi.org/project/finmind-mcp/)，由工具自動呼叫，不需手動下載 skill 檔。請先準備好 Token（見上方「步驟 2」）並安裝 [uv](https://docs.astral.sh/uv/)。
+
+**Claude Code（一鍵安裝）：** 先 `export FINMIND_TOKEN=your_token_here`，再於 Claude Code 內輸入：
+
+```
+/plugin marketplace add FinMind/FinMind-MCP
+/plugin install finmind-mcp@finmind-official
+```
+
+裝好後 `/reload-plugins` 連線、`/mcp` 確認。（plugin 讀環境變數 `${FINMIND_TOKEN}`，需在啟動 Claude Code 前先 export。）
+
+**其他工具（Claude Desktop / Cursor / Windsurf / Gemini CLI）：** 在該工具的 MCP 設定檔加入：
+
+```json
+{
+  "mcpServers": {
+    "finmind": {
+      "command": "uvx",
+      "args": ["finmind-mcp"],
+      "env": { "FINMIND_TOKEN": "your_token_here" }
+    }
+  }
+}
+```
+
+**Codex CLI** 的設定格式不同（用 `~/.codex/config.toml` 的 `[mcp_servers]`），或一行 `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`。
+
+各 host 的設定檔位置、`claude mcp add` / `gemini mcp add` / `codex mcp add` 指令與驗證方式，詳見 [FinMind-MCP 安裝指南](https://github.com/FinMind/FinMind-MCP/tree/master/install)。
+
 ## 範例
+
+> 以下查詢兩種方式都適用：**Skill 檔**需在前面加 `/finmind`；**MCP** 直接用自然語言提問即可。
 
 ### 股價查詢
 
