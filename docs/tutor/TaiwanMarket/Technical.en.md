@@ -1480,8 +1480,8 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Day Trading Targets and Volume/Value TaiwanStockDayTrading
 
 - Data range: 2014-01-01 ~ now
-- Data update time: **Monday to Friday 21:30**. The actual update time is based on the API data.
-- Sell-first-then-buy suspension markers: Y, ＊
+- Data update time: the day-trading target list and the sell-first-then-buy marker (BuyAfterSale) are available before market open on the same day; the same-day day-trading volume/value (Volume, BuyAmount, SellAmount) is updated after market close at 21:30. The actual update time is based on the API data.
+- Sell-first-then-buy marker BuyAfterSale: ＊ = sell-first-then-buy suspended (intraday only buy-first-then-sell is allowed; day trading is still permitted); Y / blank = both buy-first-then-sell and sell-first-then-buy are allowed
 
 
 !!! example
