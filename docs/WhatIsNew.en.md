@@ -1,4 +1,5 @@
 #### 2026-06-15
+* [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) now covers **OTC (TPEX)** warrants' underlying (mother stock) reference in addition to listed (TWSE); OTC warrant underlying history goes back to 2011-01-03, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants)
 * [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) now supports storage_objects whole-day bulk download (sponsorpro members only); data is provided per trading day from feature launch, no historical backfill for now
 
 #### 2026-06-13
