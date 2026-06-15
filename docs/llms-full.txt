@@ -146,6 +146,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Sponsor
 - Params: dataset=TaiwanStockInfoWithWarrantSummary, data_id=2330, start_date=2020-04-06
 - Columns: stock_id (str), date (str), close (float), target_stock_id (str), target_close (float), type (str), fulfillment_method (str), end_date (str), fulfillment_start_date (str), fulfillment_end_date (str), exercise_ratio (float), fulfillment_price (float)
+- Note: data_id is the underlying (mother stock) target_stock_id, not the warrant code; covers both listed (TWSE) and OTC (TPEX) warrants, OTC history back to 2011-01-03. Omit data_id to fetch the whole table and reverse-lookup a warrant's underlying.
 
 ### TaiwanStockTradingDate (台股交易日)
 - Tier: Free
