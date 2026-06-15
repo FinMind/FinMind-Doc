@@ -383,6 +383,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (by stock): dataset=TaiwanStockWarrantTradingDailyReport, data_id=084655, start_date=2023-06-21
 - Params (by broker): dataset=TaiwanStockWarrantTradingDailyReport, data_id=5920, start_date=2023-06-21
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockWarrantTradingDailyReport&date=2023-06-21` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_warrant_trading_daily_report(date='2023-06-21', use_object=True)`.
 
 ### TaiwanstockGovernmentBankBuySell (台股八大行庫買賣表)
 - Tier: Sponsor

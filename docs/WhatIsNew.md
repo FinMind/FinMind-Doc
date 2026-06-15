@@ -1,3 +1,6 @@
+#### 2026-06-15
+* [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockwarranttradingdailyreport-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；資料自本功能上線後逐交易日提供，暫不含歷史回補
+
 #### 2026-06-13
 * 新增 [個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)：與 `TaiwanStockInstitutionalInvestorsBuySell` 相同資料，改為寬表（橫式），每個交易日一列、各法人別買賣攤平成獨立欄位（外資、外資自營商、投信、自營商及其自行買賣／避險），免自行轉置。欄位涵蓋所有歷史法人別分類，尚未存在的年代該欄為 0（自營商於 2014-12-01 由合併拆為自行買賣／避險、外資自營商於 2018-01-15 起提供）；資料區間 2005-01-01 ~ now
 * FinMind Python 套件新增支援 **Python 3.12**（持續支援 Python 3.8–3.11）。本版起套件相依升級為 `pandas>=2.0`、`ta>=0.11`（`numpy`、`pydantic` 維持不變）。
