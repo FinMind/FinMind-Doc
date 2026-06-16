@@ -1483,6 +1483,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Data range: 2014-01-01 ~ now
 - Data update time: the day-trading target list and the sell-first-then-buy marker (BuyAfterSale) are available before market open on the same day; the same-day day-trading volume/value (Volume, BuyAmount, SellAmount) is updated after market close at 21:30. The actual update time is based on the API data.
 - Sell-first-then-buy marker BuyAfterSale: ＊ = sell-first-then-buy suspended (intraday only buy-first-then-sell is allowed; day trading is still permitted); Y / blank = both buy-first-then-sell and sell-first-then-buy are allowed
+- Note: BuyAfterSale reflects the exchange-level eligibility for an individual security (i.e. whether the stock is on the suspended-sell-first list). Whether you can actually sell first still depends on your own account eligibility (completion of the required sell-first agreements and your trading quota) and your broker's current securities-lending availability. Therefore it is normal for a broker's software to show "buy-first-then-sell only" while this field shows both directions; the actual permission follows your individual broker's account eligibility and inventory
 
 
 !!! example
