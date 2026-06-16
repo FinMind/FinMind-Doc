@@ -33,6 +33,33 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
         curl -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
         ```
 
+??? note "🪟 Windows（PowerShell）安裝指令"
+    Windows 10/11 已內建 `curl.exe`，請把上方指令改用下列 PowerShell 版本（注意要打 `curl.exe`，因為 PowerShell 的 `curl` 是 `Invoke-WebRequest` 的別名、語法不同）。
+    === "Claude Code"
+        ```powershell
+        mkdir $HOME\.claude\commands -Force
+        curl.exe -o $HOME\.claude\commands\finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Codex"
+        ```powershell
+        curl.exe -o AGENTS.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Cursor"
+        ```powershell
+        mkdir .cursor\rules -Force
+        curl.exe -o .cursor\rules\finmind.mdc https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Windsurf"
+        ```powershell
+        curl.exe -o .windsurfrules https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Gemini"
+        ```powershell
+        curl.exe -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+
+    > 若你用 **WSL** 或 **Git Bash**，則上方 macOS / Linux 的指令可直接照用，不需改寫。
+
 ### 步驟 2: 設定 Token
 
 至 [FinMind](https://finmindtrade.com/analysis/#/account/register) 註冊並驗證信箱後，取得 Token。
@@ -42,6 +69,16 @@ export FINMIND_TOKEN="your_token_here"
 ```
 
 建議加到 `~/.bashrc` 或 `~/.zshrc`，這樣每次開終端都會自動載入。
+
+??? note "🪟 Windows（PowerShell）設定 Token"
+    PowerShell 不用 `export`，請改用：
+
+    ```powershell
+    $env:FINMIND_TOKEN="your_token_here"   # 僅本次終端有效
+    setx FINMIND_TOKEN "your_token_here"   # 永久保存（需重開終端才生效）
+    ```
+
+    用 **WSL** 或 **Git Bash** 的話，`export` 與 `~/.bashrc` 寫法與 macOS / Linux 相同。
 
 ### 步驟 3: 使用
 

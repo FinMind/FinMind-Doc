@@ -33,6 +33,33 @@ There are two ways to use it — pick whichever fits:
         curl -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
         ```
 
+??? note "🪟 Windows (PowerShell) install commands"
+    Windows 10/11 ships with `curl.exe` built in. Use the PowerShell versions below instead of the commands above (note the `.exe`: PowerShell's bare `curl` is an alias for `Invoke-WebRequest` and uses different syntax).
+    === "Claude Code"
+        ```powershell
+        mkdir $HOME\.claude\commands -Force
+        curl.exe -o $HOME\.claude\commands\finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Codex"
+        ```powershell
+        curl.exe -o AGENTS.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Cursor"
+        ```powershell
+        mkdir .cursor\rules -Force
+        curl.exe -o .cursor\rules\finmind.mdc https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Windsurf"
+        ```powershell
+        curl.exe -o .windsurfrules https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Gemini"
+        ```powershell
+        curl.exe -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+
+    > If you use **WSL** or **Git Bash**, the macOS / Linux commands above work as-is — no changes needed.
+
 ### Step 2: Set Up the Token
 
 Register at [FinMind](https://finmindtrade.com/analysis/#/account/register) and verify your email to obtain a token.
@@ -42,6 +69,16 @@ export FINMIND_TOKEN="your_token_here"
 ```
 
 We recommend adding this to `~/.bashrc` or `~/.zshrc` so it loads automatically every time you open a terminal.
+
+??? note "🪟 Windows (PowerShell) — set the Token"
+    PowerShell does not use `export`. Use this instead:
+
+    ```powershell
+    $env:FINMIND_TOKEN="your_token_here"   # current terminal only
+    setx FINMIND_TOKEN "your_token_here"   # persists (reopen the terminal to take effect)
+    ```
+
+    On **WSL** or **Git Bash**, `export` and `~/.bashrc` work the same as macOS / Linux.
 
 ### Step 3: Use It
 
