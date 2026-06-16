@@ -5,11 +5,16 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 1. **Agent Skill 檔（CLI 工具）**：下載 `/finmind` 指令檔到 Claude Code / Codex / Cursor / Windsurf / Gemini，見下方「安裝」。
 2. **MCP Server**：支援 [MCP](https://modelcontextprotocol.io/) 的工具（Claude Desktop / Claude Code、Cursor、Windsurf、Gemini CLI）可直接連 FinMind 官方 MCP server，見「MCP Server」。
 
-## 安裝
+!!! abstract "本頁目錄"
+    - [安裝](#install)：[① 下載 Skill](#download) · [② 設定 Token](#token) · [③ 使用](#usage)
+    - [MCP Server](#mcp-server)
+    - [使用範例](#examples)
 
-### 步驟 1: 下載 Skill
+## 安裝 { #install }
 
-!!! example
+### 步驟 1: 下載 Skill { #download }
+
+??? note "🍎 macOS / Linux 安裝指令"
     === "Claude Code"
         ```bash
         mkdir -p ~/.claude/commands
@@ -60,15 +65,16 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
     > 若你用 **WSL** 或 **Git Bash**，則上方 macOS / Linux 的指令可直接照用，不需改寫。
 
-### 步驟 2: 設定 Token
+### 步驟 2: 設定 Token { #token }
 
 至 [FinMind](https://finmindtrade.com/analysis/#/account/register) 註冊並驗證信箱後，取得 Token。
 
-```bash
-export FINMIND_TOKEN="your_token_here"
-```
+??? note "🍎 macOS / Linux 設定 Token"
+    ```bash
+    export FINMIND_TOKEN="your_token_here"
+    ```
 
-建議加到 `~/.bashrc` 或 `~/.zshrc`，這樣每次開終端都會自動載入。
+    建議加到 `~/.bashrc` 或 `~/.zshrc`，這樣每次開終端都會自動載入。
 
 ??? note "🪟 Windows（PowerShell）設定 Token"
     PowerShell 不用 `export`，請改用：
@@ -80,7 +86,7 @@ export FINMIND_TOKEN="your_token_here"
 
     用 **WSL** 或 **Git Bash** 的話，`export` 與 `~/.bashrc` 寫法與 macOS / Linux 相同。
 
-### 步驟 3: 使用
+### 步驟 3: 使用 { #usage }
 
 在 Claude Code 中輸入 `/finmind`，後面接你想查詢的內容：
 
@@ -121,7 +127,7 @@ export FINMIND_TOKEN="your_token_here"
 
 各 host 的設定檔位置、`claude mcp add` / `gemini mcp add` / `codex mcp add` 指令與驗證方式，詳見 [FinMind-MCP 安裝指南](https://github.com/FinMind/FinMind-MCP/tree/master/install)。
 
-## 範例
+## 範例 { #examples }
 
 > 以下查詢兩種方式都適用：**Skill 檔**需在前面加 `/finmind`；**MCP** 直接用自然語言提問即可。
 

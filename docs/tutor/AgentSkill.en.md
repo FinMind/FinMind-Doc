@@ -5,11 +5,16 @@ There are two ways to use it — pick whichever fits:
 1. **Agent Skill file (CLI tools)**: download the `/finmind` command file into Claude Code / Codex / Cursor / Windsurf / Gemini — see "Installation" below.
 2. **MCP Server**: tools that support [MCP](https://modelcontextprotocol.io/) (Claude Desktop / Claude Code, Cursor, Windsurf, Gemini CLI) can connect directly to the official FinMind MCP server — see "MCP Server".
 
-## Installation
+!!! abstract "On this page"
+    - [Installation](#install): [① Download](#download) · [② Token](#token) · [③ Use](#usage)
+    - [MCP Server](#mcp-server)
+    - [Examples](#examples)
 
-### Step 1: Download the Skill
+## Installation { #install }
 
-!!! example
+### Step 1: Download the Skill { #download }
+
+??? note "🍎 macOS / Linux install commands"
     === "Claude Code"
         ```bash
         mkdir -p ~/.claude/commands
@@ -60,15 +65,16 @@ There are two ways to use it — pick whichever fits:
 
     > If you use **WSL** or **Git Bash**, the macOS / Linux commands above work as-is — no changes needed.
 
-### Step 2: Set Up the Token
+### Step 2: Set Up the Token { #token }
 
 Register at [FinMind](https://finmindtrade.com/analysis/#/account/register) and verify your email to obtain a token.
 
-```bash
-export FINMIND_TOKEN="your_token_here"
-```
+??? note "🍎 macOS / Linux — set the Token"
+    ```bash
+    export FINMIND_TOKEN="your_token_here"
+    ```
 
-We recommend adding this to `~/.bashrc` or `~/.zshrc` so it loads automatically every time you open a terminal.
+    We recommend adding this to `~/.bashrc` or `~/.zshrc` so it loads automatically every time you open a terminal.
 
 ??? note "🪟 Windows (PowerShell) — set the Token"
     PowerShell does not use `export`. Use this instead:
@@ -80,7 +86,7 @@ We recommend adding this to `~/.bashrc` or `~/.zshrc` so it loads automatically 
 
     On **WSL** or **Git Bash**, `export` and `~/.bashrc` work the same as macOS / Linux.
 
-### Step 3: Use It
+### Step 3: Use It { #usage }
 
 In Claude Code, type `/finmind` followed by what you want to query:
 
@@ -121,7 +127,7 @@ After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugi
 
 For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `codex mcp add` one-liners, and verification steps, see the [FinMind-MCP install guides](https://github.com/FinMind/FinMind-MCP/tree/master/install).
 
-## Examples
+## Examples { #examples }
 
 > The queries below work with both methods: with the **Skill file** prefix them with `/finmind`; with **MCP** just ask in natural language.
 
