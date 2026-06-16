@@ -204,6 +204,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2014-01-01 ~ now
 - Update: target list & BuyAfterSale marker available pre-market same day; volume/value (Volume/BuyAmount/SellAmount) updated after close ~21:30
 - BuyAfterSale: ＊ = sell-first-then-buy suspended (intraday buy-first-then-sell only; day trading still allowed); Y / blank = both directions allowed
+- BuyAfterSale note: exchange-level eligibility for the security (whether the stock is on the suspended-sell-first list); actually being able to sell first also depends on the investor's account eligibility (required sell-first agreements, trading quota) and the broker's current securities-lending inventory, so a broker showing "buy-first-only" while this field shows both is normal
 - Params: dataset=TaiwanStockDayTrading, data_id=2330, start_date=2020-04-02, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockDayTrading, start_date=2020-04-06 (不帶 data_id，取得該日所有股票資料)
 - Columns: stock_id (str), date (str), BuyAfterSale (str), Volume (int64), BuyAmount (int64), SellAmount (int64)
