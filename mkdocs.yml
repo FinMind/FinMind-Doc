@@ -116,6 +116,7 @@ markdown_extensions:
         base_path: docs
     - markdown.extensions.meta:
     - admonition
+    - pymdownx.details   # 可摺疊的 admonition（??? 收合區塊）
     - attr_list          # 連結/元素屬性（例如外連開新分頁）
     - md_in_html
     - pymdownx.highlight:

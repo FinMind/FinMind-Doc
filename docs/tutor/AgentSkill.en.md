@@ -5,11 +5,16 @@ There are two ways to use it — pick whichever fits:
 1. **Agent Skill file (CLI tools)**: download the `/finmind` command file into Claude Code / Codex / Cursor / Windsurf / Gemini — see "Installation" below.
 2. **MCP Server**: tools that support [MCP](https://modelcontextprotocol.io/) (Claude Desktop / Claude Code, Cursor, Windsurf, Gemini CLI) can connect directly to the official FinMind MCP server — see "MCP Server".
 
-## Installation
+!!! abstract "On this page"
+    - [Installation](#install): [① Download](#download) · [② Token](#token) · [③ Use](#usage)
+    - [MCP Server](#mcp-server)
+    - [Examples](#examples)
 
-### Step 1: Download the Skill
+## Installation { #install }
 
-!!! example
+### Step 1: Download the Skill { #download }
+
+??? note "🍎 macOS / Linux install commands"
     === "Claude Code"
         ```bash
         mkdir -p ~/.claude/commands
@@ -33,17 +38,55 @@ There are two ways to use it — pick whichever fits:
         curl -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
         ```
 
-### Step 2: Set Up the Token
+??? note "🪟 Windows (PowerShell) install commands"
+    Windows 10/11 ships with `curl.exe` built in. Use the PowerShell versions below instead of the commands above (note the `.exe`: PowerShell's bare `curl` is an alias for `Invoke-WebRequest` and uses different syntax).
+    === "Claude Code"
+        ```powershell
+        mkdir $HOME\.claude\commands -Force
+        curl.exe -o $HOME\.claude\commands\finmind.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Codex"
+        ```powershell
+        curl.exe -o AGENTS.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Cursor"
+        ```powershell
+        mkdir .cursor\rules -Force
+        curl.exe -o .cursor\rules\finmind.mdc https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Windsurf"
+        ```powershell
+        curl.exe -o .windsurfrules https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+    === "Gemini"
+        ```powershell
+        curl.exe -o GEMINI.md https://raw.githubusercontent.com/FinMind/FinMind/master/.claude/commands/finmind.md
+        ```
+
+    > If you use **WSL** or **Git Bash**, the macOS / Linux commands above work as-is — no changes needed.
+
+### Step 2: Set Up the Token { #token }
 
 Register at [FinMind](https://finmindtrade.com/analysis/#/account/register) and verify your email to obtain a token.
 
-```bash
-export FINMIND_TOKEN="your_token_here"
-```
+??? note "🍎 macOS / Linux — set the Token"
+    ```bash
+    export FINMIND_TOKEN="your_token_here"
+    ```
 
-We recommend adding this to `~/.bashrc` or `~/.zshrc` so it loads automatically every time you open a terminal.
+    We recommend adding this to `~/.bashrc` or `~/.zshrc` so it loads automatically every time you open a terminal.
 
-### Step 3: Use It
+??? note "🪟 Windows (PowerShell) — set the Token"
+    PowerShell does not use `export`. Use this instead:
+
+    ```powershell
+    $env:FINMIND_TOKEN="your_token_here"   # current terminal only
+    setx FINMIND_TOKEN "your_token_here"   # persists (reopen the terminal to take effect)
+    ```
+
+    On **WSL** or **Git Bash**, `export` and `~/.bashrc` work the same as macOS / Linux.
+
+### Step 3: Use It { #usage }
 
 In Claude Code, type `/finmind` followed by what you want to query:
 
@@ -84,7 +127,7 @@ After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugi
 
 For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `codex mcp add` one-liners, and verification steps, see the [FinMind-MCP install guides](https://github.com/FinMind/FinMind-MCP/tree/master/install).
 
-## Examples
+## Examples { #examples }
 
 > The queries below work with both methods: with the **Skill file** prefix them with `/finmind`; with **MCP** just ask in natural language.
 
