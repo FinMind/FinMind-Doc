@@ -1643,6 +1643,13 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
 - Enabling Async can significantly reduce data fetch time. In Colab tests, downloading 2,175 stocks takes only 4 minutes 20 seconds.
 
+??? note "A `price` of 0 on emerging-stock dealer (自營商) branches is expected, not missing data"
+    Emerging stocks (where `TaiwanStockInfo` reports the `stock_id` as `emerging`) trade on a **quote-driven negotiation market run by recommending securities firms**, unlike the central-matching auction used for listed/OTC stocks. The recommending firms act as market makers, **continuously quoting bid/ask and filling orders with their own capital and inventory — i.e. the dealer (自營商) branch, whose `securities_trader_id` ends in `T`**. Because that daily market-making position trades both sides across many price levels, there is no single representative execution price, so `price` is reported as `0` for that branch row (`buy`/`sell` share counts are still correct).
+
+    - This is a structural characteristic of the emerging market, **not missing or erroneous data**; ordinary (non-dealer) branches of the same emerging stock still carry normal execution prices.
+    - Listed (TWSE) and OTC stocks are unaffected — every branch, including dealers, has an execution price.
+    - Reference: [TPEx — Emerging Stock Trading System](https://www.tpex.org.tw/web/emergingstock/trading_rule/rule.php?l=zh-tw).
+
 !!! example
     === "Package"
         ```python
