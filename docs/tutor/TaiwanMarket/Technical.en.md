@@ -323,8 +323,6 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
     **Example**: 6515 穎崴 on 2020-03-19 (emerging at the time) → `open=218.06`, `max=200`, `min=170`, `close=174.9`; 218.06 is exactly TPEx's previous-day average that day. The stock later moved to TWSE, after which its data is normal.
 
-    > This only occurs while a stock is **still on the emerging board**; spot it by `open` falling outside `[min, max]` and roughly equalling the previous trading day's average. Note that `type` in `TaiwanStockInfo` reflects the stock's **current** market, so a stock that later moved to TWSE/TPEx will **not** show its earlier emerging period there — cross-check TPEx emerging-board history when needed.
-
 !!! example
     === "Package"
         ```python
