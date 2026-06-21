@@ -161,6 +161,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockPrice, data_id=2330, start_date=2020-04-02, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockPrice, start_date=2020-04-02 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), Trading_Volume (int64), Trading_money (int64), open (float64), max (float64), min (float64), close (float64), spread (float64), Trading_turnover (float32)
+- Note: For emerging-board (興櫃) stocks, open is the previous-day average price (前日均價) published by TPEx, not an opening price, so it can fall outside [min, max] on volatile days. This is a field-definition difference, not a data error — max/min/close are the day's high/low/last and are correct. Listed (TWSE)/OTC (TPEX) stocks are unaffected. TaiwanStockInfo.type reflects the current market, so a stock that later moved to TWSE/TPEX no longer shows its earlier emerging period.
 
 ### TaiwanStockPriceAdj (台灣還原股價資料表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -378,6 +379,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (by broker): securities_trader_id=1020, date=2022-06-16
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
 - Note: Single day per request, only `date` (no start_date/end_date).
+- Note: For emerging-board (興櫃) stocks, the recommending securities dealer (market maker; securities_trader_id ends with `T`) quotes two-way across many price levels, so that branch row's price shows 0 (buy/sell share counts are still correct). This is normal for emerging stocks, not missing data; listed (TWSE)/OTC (TPEX) stocks are unaffected.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReport&date=2022-06-16` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_trading_daily_report(date='2022-06-16', use_object=True)`.
 
 ### TaiwanStockWarrantTradingDailyReport (台股權證分點資料表)
