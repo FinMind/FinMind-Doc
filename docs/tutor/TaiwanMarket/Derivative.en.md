@@ -1,5 +1,5 @@
 
-In Taiwan stock derivatives data, we have 17 datasets, as follows:
+In Taiwan stock derivatives data, we have 18 datasets, as follows:
 
 - [Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [Futures Daily Trading Information TaiwanFuturesDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
@@ -17,6 +17,7 @@ In Taiwan stock derivatives data, we have 17 datasets, as follows:
 - [Options Open Interest of Large Traders TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
 - [Futures Final Settlement Price TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [Options Final Settlement Price TaiwanOptionFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
+- [TAIEX Options Volatility Index TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)
 
 ----------------------------------
 #### Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo
@@ -2598,6 +2599,69 @@ In Taiwan stock derivatives data, we have 17 datasets, as follows:
             settlement_price: float64, # final settlement price
             underlying_code: str, # underlying security code
             notional_value: float64 # notional contract value
+        }
+        ```
+
+----------------------------------
+#### TAIEX Options Volatility Index TaiwanOptionVix
+
+- Data range: 2009-01-01 ~ now
+- Data update time: **Monday to Saturday, 00:00~06:00 and 14:00~20:00, every 15 minutes**. The actual update time is based on the API data.
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanOptionVix",
+            "start_date": "2026-06-01",
+            "end_date": "2026-06-02",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionVix",
+                start_date= "2026-06-01",
+                end_date= "2026-06-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | time     | vix   |
+        |---:|:-----------|:---------|:------|
+        |  0 | 2024-06-01 | 09:00:00 | 37.12 |
+        |  1 | 2024-06-01 | 12:07:45 | 36.05 |
+        |  2 | 2024-06-01 | 12:08:00 | 36.04 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            time: str, # time
+            vix: float64 # volatility index
         }
         ```
 
