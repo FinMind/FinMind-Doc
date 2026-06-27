@@ -1,4 +1,4 @@
-In the Taiwan financial market, we have 81 datasets, as listed below:
+In the Taiwan financial market, we have 82 datasets, as listed below:
 
 #### Technical
 
@@ -83,6 +83,7 @@ In the Taiwan financial market, we have 81 datasets, as listed below:
 - [Futures Spread Trading Quotes TaiwanFuturesSpreadTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)
 - [Futures Final Settlement Price TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [Options Final Settlement Price TaiwanOptionFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
+- [TAIEX Options Volatility Index TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)
 
 #### RealTime
 
