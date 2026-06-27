@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 17 種資料集，如下:
+在台股衍生性商品資料，我們擁有 18 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
@@ -17,6 +17,7 @@
 - [選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
 - [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
+- [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)
 
 ----------------------------------
 #### 期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo
@@ -2599,6 +2600,69 @@
             settlement_price: float64, # 最後結算價
             underlying_code: str, # 標的證券代號
             notional_value: float64 # 約定標的物價值
+        }
+        ```
+
+----------------------------------
+#### 臺指選擇權波動率指數 TaiwanOptionVix
+
+- 資料區間：2026-03-01 ~ now
+- 資料更新時間 **星期一至六 00:00~06:00、14:00~20:00 每15分鐘**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanOptionVix",
+            "start_date": "2026-06-01",
+            "end_date": "2026-06-02",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanOptionVix",
+                start_date= "2026-06-01",
+                end_date= "2026-06-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | time     | vix   |
+        |---:|:-----------|:---------|:------|
+        |  0 | 2026-06-01 | 09:00:00 | 37.12 |
+        |  1 | 2026-06-01 | 12:07:45 | 36.05 |
+        |  2 | 2026-06-01 | 12:08:00 | 36.04 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            time: str, # 時間
+            vix: float64 # 波動率指數
         }
         ```
 
