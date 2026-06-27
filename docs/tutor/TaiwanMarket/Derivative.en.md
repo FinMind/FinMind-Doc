@@ -2605,7 +2605,7 @@ In Taiwan stock derivatives data, we have 18 datasets, as follows:
 ----------------------------------
 #### TAIEX Options Volatility Index TaiwanOptionVix
 
-- Data range: 2009-01-01 ~ now
+- Data range: 2026-03-01 ~ now
 - Data update time: **Monday to Saturday, 00:00~06:00 and 14:00~20:00, every 15 minutes**. The actual update time is based on the API data.
 
 !!! example
