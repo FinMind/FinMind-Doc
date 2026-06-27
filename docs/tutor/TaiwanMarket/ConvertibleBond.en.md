@@ -1,10 +1,11 @@
 
-For Taiwan stock convertible bonds, we have 4 datasets, as listed below:
+For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
 
 - [Convertible Bond Overview TaiwanStockConvertibleBondInfo](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
 - [Convertible Bond Daily Trading Information TaiwanStockConvertibleBondDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
 - [Convertible Bond Institutional Investors Daily Trading TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
 - [Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
+- [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis)
 
 
 #### Convertible Bond Overview TaiwanStockConvertibleBondInfo (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
@@ -590,5 +591,76 @@ For Taiwan stock convertible bonds, we have 4 datasets, as listed below:
             InitialDateOfSuspension: str, # initial date of trading suspension
             DueDateOfSuspension: str, # due date of trading suspension
             CouponRate: float32 # coupon rate
+        }
+        ```
+
+----------------------------------
+#### Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis
+
+- Data range: 2026-05-01 ~ now
+- Data update time: **Monday to Saturday, 14:00~23:00, every 30 minutes**. The actual update time is based on the API data.
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockConvertibleBondMonthlyAnalysis",
+            "data_id": "13166",
+            "start_date": "2026-05-01",
+            "end_date": "2026-06-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockConvertibleBondMonthlyAnalysis",
+                data_id="13166",
+                start_date= "2026-05-01",
+                end_date= "2026-06-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | cb_id | cb_name | cb_name_en | custody_balance | last_month_balance | change | change_percent | issued_units | custody_accounts | pledged_units | date       |
+        |---:|:------|:--------|:-----------|----------------:|-------------------:|-------:|---------------:|-------------:|-----------------:|--------------:|:-----------|
+        |  0 | 13166 | 上曜六  | SUN YAD-CB6 |            4000 |               4000 |      0 |            0.0 |         4000 |               24 |             0 | 2026-05-01 |
+    === "Schema"
+        ```
+        {
+            cb_id: str, # convertible bond code
+            cb_name: str, # convertible bond name
+            cb_name_en: str, # convertible bond English name
+            custody_balance: int, # custody balance
+            last_month_balance: int, # last month balance
+            change: int, # change
+            change_percent: float64, # change percentage
+            issued_units: int, # issued units
+            custody_accounts: int, # custody accounts
+            pledged_units: int, # pledged units
+            date: str # date
         }
         ```
