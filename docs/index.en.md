@@ -1,11 +1,6 @@
 ## LLM / AI Integration
 
-Want to query FinMind datasets and APIs through ChatGPT, Claude, or other AI tools? We provide `llms.txt`, which lets AI assistants quickly understand every FinMind dataset, API endpoint, and usage pattern.
-
-Just paste the link below to your AI assistant to start:
-
-- [llms.txt](https://finmind.github.io/llms.txt) — concise version, dataset index and API overview
-- [llms-full.txt](https://finmind.github.io/llms-full.txt) — full version, with all dataset columns, SDK methods, and parameter examples
+Want to query FinMind datasets and APIs through ChatGPT, Claude, Cursor, Claude Code, or other AI tools? We provide three connection methods — **llms.txt, Agent Skill, and MCP** — letting AI query 75+ datasets in natural language. See [AI Agent / MCP / llms.txt](tutor/ai/Llms.md).
 
 ## What is FinMind?
 **FinMind** is an open-source platform offering more than 50 financial datasets focused on the Taiwan market, lowering the barrier to big data and financial analysis.

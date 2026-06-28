@@ -65,11 +65,11 @@
 * Fixed mistakenly entered data range for the shareholding distribution table.
 
 #### 2026-03-21
-* [Agent Skill](https://finmind.github.io/en/tutor/AgentSkill/) added installation instructions and example screenshots for Claude Code, Cursor, Windsurf, and Gemini.
+* [Agent Skill](https://finmind.github.io/en/tutor/ai/AgentSkill/) added installation instructions and example screenshots for Claude Code, Cursor, Windsurf, and Gemini.
 * Updated [Contact](https://finmind.github.io/en/Contact/): replaced Gitter with the Facebook group and fan page.
 
 #### 2026-03-20
-* Added [Agent Skill](https://finmind.github.io/en/tutor/AgentSkill/) documentation, allowing tools such as Claude Code to query FinMind data quickly via skill.
+* Added [Agent Skill](https://finmind.github.io/en/tutor/ai/AgentSkill/) documentation, allowing tools such as Claude Code to query FinMind data quickly via skill.
 
 #### 2026-03-10
 * Added [llms.txt](https://finmind.github.io/llms.txt) and [llms-full.txt](https://finmind.github.io/llms-full.txt), helping AI tools understand FinMind documentation more quickly.

@@ -1,14 +1,14 @@
+# Agent Skill (CLI Tools)
+
+Download FinMind's `/finmind` command file into CLI / editor tools such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [Codex](https://github.com/openai/codex), [Cursor](https://www.cursor.com/), [Windsurf](https://windsurf.com/), and [Gemini](https://gemini.google.com/) to query 75+ FinMind datasets through natural language and **fetch real data**, without having to assemble API parameters yourself.
+
+!!! tip "Other connection methods"
+    - Web ChatGPT / Claude: use [llms.txt](Llms.md) — no install.
+    - MCP-capable tools: use the [MCP Server](Mcp.md), called automatically by the tool.
+
 !!! abstract "On this page"
     - [Installation](#install): [① Download](#download) · [② Token](#token) · [③ Use](#usage)
-    - [MCP Server](#mcp-server)
     - [Examples](#examples): stock price, chip, fundamentals, futures & options, macroeconomy, charts, advanced analysis
-
-FinMind provides an AI Agent Skill that lets you query 75+ FinMind datasets through natural language inside AI tools such as [Gemini](https://gemini.google.com/), [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [Codex](https://github.com/openai/codex), [Cursor](https://www.cursor.com/), and [Windsurf](https://windsurf.com/), without having to assemble API parameters yourself.
-
-There are two ways to use it — pick whichever fits:
-
-1. **Agent Skill file (CLI tools)**: download the `/finmind` command file into Claude Code / Codex / Cursor / Windsurf / Gemini — see "Installation" below.
-2. **MCP Server**: tools that support [MCP](https://modelcontextprotocol.io/) (Claude Desktop / Claude Code, Cursor, Windsurf, Gemini CLI) can connect directly to the official FinMind MCP server — see "MCP Server".
 
 ## Installation { #install }
 
@@ -94,42 +94,9 @@ In Claude Code, type `/finmind` followed by what you want to query:
 /finmind TSMC stock prices for the past month
 ```
 
----
-
-## MCP Server
-
-If your AI tool supports [MCP (Model Context Protocol)](https://modelcontextprotocol.io/), you can use the official FinMind MCP server [`finmind-mcp`](https://pypi.org/project/finmind-mcp/) instead — the tool calls it automatically, with no skill file to download. First get your Token (see "Step 2" above) and install [uv](https://docs.astral.sh/uv/).
-
-**Claude Code (one-click):** first `export FINMIND_TOKEN=your_token_here`, then run inside Claude Code:
-
-```
-/plugin marketplace add FinMind/FinMind-MCP
-/plugin install finmind-mcp@finmind-official
-```
-
-After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugin reads `${FINMIND_TOKEN}` from the environment, so export it before launching Claude Code.)
-
-**Other tools (Claude Desktop / Cursor / Windsurf / Gemini CLI):** add this to the tool's MCP config file:
-
-```json
-{
-  "mcpServers": {
-    "finmind": {
-      "command": "uvx",
-      "args": ["finmind-mcp"],
-      "env": { "FINMIND_TOKEN": "your_token_here" }
-    }
-  }
-}
-```
-
-**Codex CLI** uses a different config format (`[mcp_servers]` in `~/.codex/config.toml`), or a one-liner: `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`.
-
-For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `codex mcp add` one-liners, and verification steps, see the [FinMind-MCP install guides](https://github.com/FinMind/FinMind-MCP/tree/master/install).
-
 ## Examples { #examples }
 
-> The queries below work with both methods: with the **Skill file** prefix them with `/finmind`; with **MCP** just ask in natural language.
+> Prefix the queries below with `/finmind`. If you use [MCP](Mcp.md) instead, just ask in natural language.
 
 ### Stock Price Queries
 
@@ -139,7 +106,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: returns a daily stock price table for TSMC (2330) over the past month, including columns such as date, open, high, low, close, and volume.
 
-![TSMC stock prices for the past month](../img/tsmc_1m_price.png)
+![TSMC stock prices for the past month](../../img/tsmc_1m_price.png)
 
 ```
 /finmind Compare 2330 and 2317 stock prices over the past three months
@@ -147,7 +114,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: queries TSMC and Hon Hai stock prices over the past three months and presents a closing-price comparison of both stocks in a table.
 
-![Compare 2330 and 2317 stock prices over the past three months](../img/compare_2330_2317.png)
+![Compare 2330 and 2317 stock prices over the past three months](../../img/compare_2330_2317.png)
 
 ### Chip / Institutional Data
 
@@ -157,7 +124,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: returns daily net buy/sell volumes (in lots) for foreign investors, investment trusts, and dealers for TSMC over the past week.
 
-![2330 institutional investors trading over the past week](../img/institutional_2330.png)
+![2330 institutional investors trading over the past week](../../img/institutional_2330.png)
 
 ```
 /finmind TSMC foreign investor shareholding ratio history
@@ -165,7 +132,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: returns a historical table of TSMC's foreign investor shareholding (in lots) and shareholding ratio.
 
-![TSMC foreign investor shareholding ratio history](../img/tsmc_foreign_shareholding.png)
+![TSMC foreign investor shareholding ratio history](../../img/tsmc_foreign_shareholding.png)
 
 ### Fundamentals
 
@@ -175,7 +142,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: returns TSMC's monthly revenue figures for the current year.
 
-![TSMC monthly revenue this year](../img/tsmc_monthly_revenue.png)
+![TSMC monthly revenue this year](../../img/tsmc_monthly_revenue.png)
 
 ```
 /finmind 2330 PER trend over the past five years
@@ -191,7 +158,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: returns daily open/high/low/close, volume, and open interest for TAIEX futures (TX) over the past week.
 
-![TAIEX near-month futures contract weekly trading info](../img/taiex_futures_weekly.png)
+![TAIEX near-month futures contract weekly trading info](../../img/taiex_futures_weekly.png)
 
 ```
 /finmind TAIEX options institutional investors trading today
@@ -207,7 +174,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: returns daily spot buy/sell USD/TWD exchange rates over the past six months.
 
-![USD/TWD exchange rate trend over the past six months](../img/usd_twd_exchange_rate.png)
+![USD/TWD exchange rate trend over the past six months](../../img/usd_twd_exchange_rate.png)
 
 ```
 /finmind Federal Reserve interest rate changes over the past ten years
@@ -229,7 +196,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: generates a candlestick chart for TSMC over the past three months, including OHLC, moving averages, and volume, saved as an image file.
 
-![TSMC 2330 Candlestick Chart](../img/tsmc_3m_kbar.png)
+![TSMC 2330 Candlestick Chart](../../img/tsmc_3m_kbar.png)
 
 ```
 /finmind Compare 2330 and 2317 stock prices over the past six months, plot a chart
@@ -237,7 +204,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 > Expected result: generates a line chart comparing the closing prices of the two stocks, saved as an image file.
 
-![2330 vs 2317 Stock Comparison](../img/stock_comparison_2330_2317.png)
+![2330 vs 2317 Stock Comparison](../../img/stock_comparison_2330_2317.png)
 
 ```
 /finmind USD exchange rate trend chart for the past year

@@ -1,14 +1,14 @@
+# Agent Skill（CLI 工具）
+
+下載 FinMind 的 `/finmind` 指令檔到 [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)、[Codex](https://github.com/openai/codex)、[Cursor](https://www.cursor.com/)、[Windsurf](https://windsurf.com/)、[Gemini](https://gemini.google.com/) 等 CLI / 編輯器工具，即可用自然語言查詢 FinMind 75+ 種資料集並**實際抓取資料**，不需要自己組 API 參數。
+
+!!! tip "其他串接方式"
+    - 網頁版 ChatGPT / Claude：用 [llms.txt](Llms.md)，免安裝。
+    - 支援 MCP 的工具：用 [MCP Server](Mcp.md)，由工具自動呼叫。
+
 !!! abstract "本頁目錄"
     - [安裝](#install)：[① 下載 Skill](#download) · [② 設定 Token](#token) · [③ 使用](#usage)
-    - [MCP Server](#mcp-server)
     - [使用範例](#examples)：股價、籌碼面、基本面、期貨選擇權、總體經濟、圖表、進階分析
-
-FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.com/)、[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)、[Codex](https://github.com/openai/codex)、[Cursor](https://www.cursor.com/)、[Windsurf](https://windsurf.com/) 等 AI 工具中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
-
-共有兩種使用方式，擇一即可：
-
-1. **Agent Skill 檔（CLI 工具）**：下載 `/finmind` 指令檔到 Claude Code / Codex / Cursor / Windsurf / Gemini，見下方「安裝」。
-2. **MCP Server**：支援 [MCP](https://modelcontextprotocol.io/) 的工具（Claude Desktop / Claude Code、Cursor、Windsurf、Gemini CLI）可直接連 FinMind 官方 MCP server，見「MCP Server」。
 
 ## 安裝 { #install }
 
@@ -94,42 +94,9 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 /finmind 台積電最近一個月股價
 ```
 
----
-
-## MCP Server
-
-若你的 AI 工具支援 [MCP（Model Context Protocol）](https://modelcontextprotocol.io/)，可改用 FinMind 官方 MCP server [`finmind-mcp`](https://pypi.org/project/finmind-mcp/)，由工具自動呼叫，不需手動下載 skill 檔。請先準備好 Token（見上方「步驟 2」）並安裝 [uv](https://docs.astral.sh/uv/)。
-
-**Claude Code（一鍵安裝）：** 先 `export FINMIND_TOKEN=your_token_here`，再於 Claude Code 內輸入：
-
-```
-/plugin marketplace add FinMind/FinMind-MCP
-/plugin install finmind-mcp@finmind-official
-```
-
-裝好後 `/reload-plugins` 連線、`/mcp` 確認。（plugin 讀環境變數 `${FINMIND_TOKEN}`，需在啟動 Claude Code 前先 export。）
-
-**其他工具（Claude Desktop / Cursor / Windsurf / Gemini CLI）：** 在該工具的 MCP 設定檔加入：
-
-```json
-{
-  "mcpServers": {
-    "finmind": {
-      "command": "uvx",
-      "args": ["finmind-mcp"],
-      "env": { "FINMIND_TOKEN": "your_token_here" }
-    }
-  }
-}
-```
-
-**Codex CLI** 的設定格式不同（用 `~/.codex/config.toml` 的 `[mcp_servers]`），或一行 `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`。
-
-各 host 的設定檔位置、`claude mcp add` / `gemini mcp add` / `codex mcp add` 指令與驗證方式，詳見 [FinMind-MCP 安裝指南](https://github.com/FinMind/FinMind-MCP/tree/master/install)。
-
 ## 範例 { #examples }
 
-> 以下查詢兩種方式都適用：**Skill 檔**需在前面加 `/finmind`；**MCP** 直接用自然語言提問即可。
+> 以下查詢請在前面加 `/finmind`。若你用的是 [MCP](Mcp.md)，直接用自然語言提問即可。
 
 ### 股價查詢
 
@@ -139,7 +106,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：回傳台積電（2330）近一個月的每日股價表格，包含日期、開盤價、最高價、最低價、收盤價、成交量等欄位。
 
-![台積電最近一個月股價](../img/tsmc_1m_price.png)
+![台積電最近一個月股價](../../img/tsmc_1m_price.png)
 
 ```
 /finmind 2330 跟 2317 近三個月股價比較
@@ -147,7 +114,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：分別查詢台積電和鴻海近三個月股價，並以表格呈現兩檔股票的收盤價走勢比較。
 
-![2330 跟 2317 近三個月股價比較](../img/compare_2330_2317.png)
+![2330 跟 2317 近三個月股價比較](../../img/compare_2330_2317.png)
 
 ### 籌碼面
 
@@ -157,7 +124,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：回傳台積電近一週外資、投信、自營商的每日買賣超張數。
 
-![2330 三大法人近一週買賣](../img/institutional_2330.png)
+![2330 三大法人近一週買賣](../../img/institutional_2330.png)
 
 ```
 /finmind 台積電外資持股比例變化
@@ -165,7 +132,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：回傳台積電外資持股張數與持股比例的歷史資料表格。
 
-![台積電外資持股比例變化](../img/tsmc_foreign_shareholding.png)
+![台積電外資持股比例變化](../../img/tsmc_foreign_shareholding.png)
 
 ### 基本面
 
@@ -175,7 +142,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：回傳台積電今年度各月份的營收數字。
 
-![台積電今年每月營收](../img/tsmc_monthly_revenue.png)
+![台積電今年每月營收](../../img/tsmc_monthly_revenue.png)
 
 ```
 /finmind 2330 近五年 PER 走勢
@@ -191,7 +158,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：回傳台指期貨（TX）近一週的每日開高低收、成交量、未平倉量等資料。
 
-![台指期近月合約近一週成交資訊](../img/taiex_futures_weekly.png)
+![台指期近月合約近一週成交資訊](../../img/taiex_futures_weekly.png)
 
 ```
 /finmind 台指選擇權三大法人今日買賣
@@ -207,7 +174,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：回傳近半年 USD/TWD 的每日即期買入、賣出匯率。
 
-![美元對台幣匯率近半年走勢](../img/usd_twd_exchange_rate.png)
+![美元對台幣匯率近半年走勢](../../img/usd_twd_exchange_rate.png)
 
 ```
 /finmind 聯準會近十年利率變化
@@ -229,7 +196,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：產生台積電近三個月的 K 線圖，包含開高低收、均線與成交量，儲存為圖片檔。
 
-![TSMC 2330 Candlestick Chart](../img/tsmc_3m_kbar.png)
+![TSMC 2330 Candlestick Chart](../../img/tsmc_3m_kbar.png)
 
 ```
 /finmind 2330 跟 2317 近半年股價比較，畫圖
@@ -237,7 +204,7 @@ FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.c
 
 > 預期結果：產生兩檔股票收盤價的折線比較圖，儲存為圖片檔。
 
-![2330 vs 2317 Stock Comparison](../img/stock_comparison_2330_2317.png)
+![2330 vs 2317 Stock Comparison](../../img/stock_comparison_2330_2317.png)
 
 ```
 /finmind 美元匯率近一年走勢圖
