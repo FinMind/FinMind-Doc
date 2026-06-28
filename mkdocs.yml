@@ -87,7 +87,10 @@ nav:
         - 原物料市場: "tutor/Materials.md"
         - 美國國債: "tutor/GovernmentBondsYield.md"
         - 其他: "tutor/Others.md"
-    - AI Agent Skill: "tutor/AgentSkill.md"
+    - AI Agent / MCP / llms.txt:
+        - llms.txt: "tutor/ai/Llms.md"
+        - Agent Skill: "tutor/ai/AgentSkill.md"
+        - MCP Server: "tutor/ai/Mcp.md"
     - 量化工具:
         - 回測: "tutor/analysis/Backtesting.md"
         - 回測(引用外部 data): "tutor/analysis/BacktestingOtherData.md"

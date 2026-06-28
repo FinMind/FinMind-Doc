@@ -65,11 +65,11 @@
 * 修正股權持股分級表資料區間誤植
 
 #### 2026-03-21
-* [Agent Skill](https://finmind.github.io/tutor/AgentSkill/) 新增 Claude Code、Cursor、Windsurf、Gemini 多工具安裝說明與範例截圖
+* [Agent Skill](https://finmind.github.io/tutor/ai/AgentSkill/) 新增 Claude Code、Cursor、Windsurf、Gemini 多工具安裝說明與範例截圖
 * 更新 [聯絡方式](https://finmind.github.io/Contact/)：Gitter 改為 Facebook 社團與粉絲專頁
 
 #### 2026-03-20
-* 新增 [Agent Skill](https://finmind.github.io/tutor/AgentSkill/) 文件，可在 Claude Code 等工具中透過 skill 快速查詢 FinMind 資料
+* 新增 [Agent Skill](https://finmind.github.io/tutor/ai/AgentSkill/) 文件，可在 Claude Code 等工具中透過 skill 快速查詢 FinMind 資料
 
 #### 2026-03-10
 * 新增 [llms.txt](https://finmind.github.io/llms.txt) 與 [llms-full.txt](https://finmind.github.io/llms-full.txt)，讓 AI 工具更快速理解 FinMind 文件
