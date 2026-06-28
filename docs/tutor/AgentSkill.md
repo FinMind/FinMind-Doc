@@ -1,14 +1,14 @@
+!!! abstract "本頁目錄"
+    - [安裝](#install)：[① 下載 Skill](#download) · [② 設定 Token](#token) · [③ 使用](#usage)
+    - [MCP Server](#mcp-server)
+    - [使用範例](#examples)：股價、籌碼面、基本面、期貨選擇權、總體經濟、圖表、進階分析
+
 FinMind 提供 AI Agent Skill，讓你可以在 [Gemini](https://gemini.google.com/)、[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview)、[Codex](https://github.com/openai/codex)、[Cursor](https://www.cursor.com/)、[Windsurf](https://windsurf.com/) 等 AI 工具中，透過自然語言查詢 FinMind 75+ 種資料集，不需要自己組 API 參數。
 
 共有兩種使用方式，擇一即可：
 
 1. **Agent Skill 檔（CLI 工具）**：下載 `/finmind` 指令檔到 Claude Code / Codex / Cursor / Windsurf / Gemini，見下方「安裝」。
 2. **MCP Server**：支援 [MCP](https://modelcontextprotocol.io/) 的工具（Claude Desktop / Claude Code、Cursor、Windsurf、Gemini CLI）可直接連 FinMind 官方 MCP server，見「MCP Server」。
-
-!!! abstract "本頁目錄"
-    - [安裝](#install)：[① 下載 Skill](#download) · [② 設定 Token](#token) · [③ 使用](#usage)
-    - [MCP Server](#mcp-server)
-    - [使用範例](#examples)
 
 ## 安裝 { #install }
 

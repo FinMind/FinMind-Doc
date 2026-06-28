@@ -1,14 +1,14 @@
+!!! abstract "On this page"
+    - [Installation](#install): [① Download](#download) · [② Token](#token) · [③ Use](#usage)
+    - [MCP Server](#mcp-server)
+    - [Examples](#examples): stock price, chip, fundamentals, futures & options, macroeconomy, charts, advanced analysis
+
 FinMind provides an AI Agent Skill that lets you query 75+ FinMind datasets through natural language inside AI tools such as [Gemini](https://gemini.google.com/), [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview), [Codex](https://github.com/openai/codex), [Cursor](https://www.cursor.com/), and [Windsurf](https://windsurf.com/), without having to assemble API parameters yourself.
 
 There are two ways to use it — pick whichever fits:
 
 1. **Agent Skill file (CLI tools)**: download the `/finmind` command file into Claude Code / Codex / Cursor / Windsurf / Gemini — see "Installation" below.
 2. **MCP Server**: tools that support [MCP](https://modelcontextprotocol.io/) (Claude Desktop / Claude Code, Cursor, Windsurf, Gemini CLI) can connect directly to the official FinMind MCP server — see "MCP Server".
-
-!!! abstract "On this page"
-    - [Installation](#install): [① Download](#download) · [② Token](#token) · [③ Use](#usage)
-    - [MCP Server](#mcp-server)
-    - [Examples](#examples)
 
 ## Installation { #install }
 
