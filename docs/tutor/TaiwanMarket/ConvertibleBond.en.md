@@ -598,7 +598,7 @@ For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
 #### Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis
 
 - Data range: 2026-05-01 ~ now
-- Data update time: **Monday to Saturday, 14:00~23:00, every 30 minutes**. The actual update time is based on the API data.
+- Data update time: **Monday to Saturday, 18:00**. The actual update time is based on the API data.
 
 !!! example
     === "Python-request"

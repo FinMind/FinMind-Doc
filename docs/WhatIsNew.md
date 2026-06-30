@@ -1,6 +1,6 @@
 #### 2026-07-01
-* 新增 [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)：資料區間 2026-03-01 ~ now，每 15 分鐘更新
-* 新增 [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis)：資料區間 2026-05-01 ~ now，每 30 分鐘更新
+* 新增 [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)：資料區間 2026-03-01 ~ now
+* 新增 [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis)：資料區間 2026-05-01 ~ now
 
 #### 2026-06-15
 * [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) 新增**上櫃 (TPEX)** 權證的標的（母股）對照涵蓋（原本僅上市 TWSE）；上櫃權證標的對照歷史回溯至 2011-01-03，可用母股代碼反查其對應權證（含已到期、代碼重用的歷史權證）
