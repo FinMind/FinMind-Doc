@@ -17,7 +17,7 @@ In Taiwan stock derivatives data, we have 18 datasets, as follows:
 - [Options Open Interest of Large Traders TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
 - [Futures Final Settlement Price TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [Options Final Settlement Price TaiwanOptionFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
-- [TAIEX Options Volatility Index TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)
+- [TAIEX Options Volatility Index TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)
 
 ----------------------------------
 #### Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo
@@ -2603,10 +2603,10 @@ In Taiwan stock derivatives data, we have 18 datasets, as follows:
         ```
 
 ----------------------------------
-#### TAIEX Options Volatility Index TaiwanOptionVix
+#### TAIEX Options Volatility Index TaiwanOptionVix (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Data range: 2026-03-01 ~ now
-- Data update time: **Monday to Saturday, 00:00~06:00 and 14:00~20:00, every 15 minutes**. The actual update time is based on the API data.
+- Data update time: **Monday to Saturday, 18:00**. The actual update time is based on the API data.
 
 !!! example
     === "Python-request"
