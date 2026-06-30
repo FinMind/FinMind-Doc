@@ -5,7 +5,7 @@ For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
 - [Convertible Bond Daily Trading Information TaiwanStockConvertibleBondDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
 - [Convertible Bond Institutional Investors Daily Trading TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
 - [Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
-- [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis)
+- [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)
 
 
 #### Convertible Bond Overview TaiwanStockConvertibleBondInfo (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
@@ -595,7 +595,7 @@ For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
         ```
 
 ----------------------------------
-#### Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis
+#### Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Data range: 2026-05-01 ~ now
 - Data update time: **Monday to Saturday, 18:00**. The actual update time is based on the API data.

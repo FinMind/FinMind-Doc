@@ -651,7 +651,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Columns: date, contract_month, option_type, option_id, option_name, settlement_price, underlying_code, notional_value
 
 ### TaiwanOptionVix (臺指選擇權波動率指數)
-- Tier: Free
+- Tier: Backer/Sponsor
 - Data range: 2026-03-01 ~ now
 - Update: Mon-Sat 18:00
 - Params: dataset=TaiwanOptionVix, start_date=2026-06-01, end_date=2026-06-02
@@ -716,7 +716,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Columns: cb_id, cb_name, date, InitialDateOfConversion, DueDateOfConversion, InitialDateOfStopConversion, DueDateOfStopConversion, ConversionPrice, NextEffectiveDateOfConversionPrice, LatestInitialDateOfPut, LatestDueDateOfPut, LatestPutPrice, InitialDateOfEarlyRedemption, DueDateOfEarlyRedemption, EarlyRedemptionPrice, DateOfDelisted, IssuanceAmount, OutstandingAmount, ReferencePrice, PriceOfUnderlyingStock, InitialDateOfSuspension, DueDateOfSuspension, CouponRate
 
 ### TaiwanStockConvertibleBondMonthlyAnalysis (可轉換公司債月份分析表)
-- Tier: Free
+- Tier: Backer/Sponsor
 - Data range: 2026-05-01 ~ now
 - Update: Mon-Sat 18:00
 - Params: dataset=TaiwanStockConvertibleBondMonthlyAnalysis, data_id=13166, start_date=2026-05-01, end_date=2026-06-01
