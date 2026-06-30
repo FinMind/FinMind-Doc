@@ -530,7 +530,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Derivative (16 datasets)
+## Taiwan Market - Derivative (17 datasets)
 
 ### TaiwanFutOptDailyInfo (期貨、選擇權日成交資訊總覽)
 - Tier: Free
@@ -650,6 +650,13 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanOptionFinalSettlementPrice, data_id=TXO, start_date=2020-04-01, end_date=2020-04-12
 - Columns: date, contract_month, option_type, option_id, option_name, settlement_price, underlying_code, notional_value
 
+### TaiwanOptionVix (臺指選擇權波動率指數)
+- Tier: Free
+- Data range: 2026-03-01 ~ now
+- Update: Mon-Sat 00:00–06:00 and 14:00–20:00, every 15 minutes
+- Params: dataset=TaiwanOptionVix, start_date=2026-06-01, end_date=2026-06-02
+- Columns: date (str), time (str), vix (float64)
+
 ---
 
 ## Taiwan Market - Real-Time (4 datasets)
@@ -683,7 +690,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Convertible Bond (4 datasets)
+## Taiwan Market - Convertible Bond (5 datasets)
 
 ### TaiwanStockConvertibleBondInfo (可轉債總覽)
 - Tier: Backer/Sponsor
@@ -707,6 +714,13 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockConvertibleBondDailyOverview, data_id=15131, start_date=2020-04-01, end_date=2020-04-10
 - Params (all, Backer/Sponsor): dataset=TaiwanStockConvertibleBondDailyOverview, start_date=2020-04-01 (不帶 data_id，取得該日所有可轉債資料)
 - Columns: cb_id, cb_name, date, InitialDateOfConversion, DueDateOfConversion, InitialDateOfStopConversion, DueDateOfStopConversion, ConversionPrice, NextEffectiveDateOfConversionPrice, LatestInitialDateOfPut, LatestDueDateOfPut, LatestPutPrice, InitialDateOfEarlyRedemption, DueDateOfEarlyRedemption, EarlyRedemptionPrice, DateOfDelisted, IssuanceAmount, OutstandingAmount, ReferencePrice, PriceOfUnderlyingStock, InitialDateOfSuspension, DueDateOfSuspension, CouponRate
+
+### TaiwanStockConvertibleBondMonthlyAnalysis (可轉換公司債月份分析表)
+- Tier: Free
+- Data range: 2026-05-01 ~ now
+- Update: Mon-Sat 14:00–23:00, every 30 minutes
+- Params: dataset=TaiwanStockConvertibleBondMonthlyAnalysis, data_id=13166, start_date=2026-05-01, end_date=2026-06-01
+- Columns: cb_id (str), cb_name (str), cb_name_en (str), custody_balance (int), last_month_balance (int), change (int), change_percent (float64), issued_units (int), custody_accounts (int), pledged_units (int), date (str)
 
 ---
 

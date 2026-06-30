@@ -1,3 +1,7 @@
+#### 2026-07-01
+* 新增 [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix)：資料區間 2026-03-01 ~ now，每 15 分鐘更新
+* 新增 [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis)：資料區間 2026-05-01 ~ now，每 30 分鐘更新
+
 #### 2026-06-15
 * [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) 新增**上櫃 (TPEX)** 權證的標的（母股）對照涵蓋（原本僅上市 TWSE）；上櫃權證標的對照歷史回溯至 2011-01-03，可用母股代碼反查其對應權證（含已到期、代碼重用的歷史權證）
 * [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockwarranttradingdailyreport-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；資料自本功能上線後逐交易日提供，暫不含歷史回補
@@ -283,31 +287,31 @@
 * 新增 TaiwanOption 台股選擇權交易明細
 
 
-#### FinMind 1.0.80 (2019-07-15) 
+#### FinMind 1.0.80 (2019-07-15)
 * 重大更新，過去是直接連 DataBase，目前改走 api 方式，未來舊版 package 將會失效，無法直接連 DataBase。請更新到最新版本，或是直接走 api。
- 
 
-#### FinMind 1.0.70 (2019-06-23) 
+
+#### FinMind 1.0.70 (2019-06-23)
 * add [api](https://github.com/linsamtw/FinMind/blob/master/api_demo.py)
 * add function `Mind.MoveAverage`, <br>
-e.g : 
-		
+e.g :
+
 		Mind.MoveAverage(_2330.StockPrice,days = 5,variable = 'close')
-		
+
 * add function `Mind.RSV`, <br>
-e.g : 
-	
+e.g :
+
 		Mind.RSV(_2330.StockPrice,days = 5)
-	
+
 * add function `Mind.BIAS`, <br>
-e.g : 
-	
+e.g :
+
 		Mind.BIAS(_2330.StockPrice,days = 5)
 
   ----------------------
-#### FinMind 1.0.60 (2019-05-24) 
+#### FinMind 1.0.60 (2019-05-24)
 * New data `TaiwanStockMonthRevenue`
-	
+
 		from FinMind.Data import Load
 		TaiwanStockMonthRevenue = Load.FinData(
 			dataset = 'TaiwanStockMonthRevenue',
@@ -319,17 +323,17 @@ e.g :
 	* Dow Jones Industrial Average : stock_id - `^DJI`
 
   ----------------------
-#### FinMind 1.0.57 (2019-04-28) 
+#### FinMind 1.0.57 (2019-04-28)
 * Change taiwan stock id, delete TWO and TW. ( eg. 2330.TW -> 2330 )
 
-#### FinMind 1.0.54 (2019-04-13) 
+#### FinMind 1.0.54 (2019-04-13)
 * Optimize speeds of loading TaiwanStockPrice, USStockPrice
 * Add [DataSource](https://github.com/linsamtw/FinMind/blob/master/Data/DataSource.md)
 
-#### FinMind 1.0.53 (2019-04-07) 
+#### FinMind 1.0.53 (2019-04-07)
 ##### Fix FinMind.Data.Load
 * optimize speeds of loading data , ex :
- 
+
 		from FinMind.Data import Load
 		import datetime
 
@@ -339,8 +343,8 @@ e.g :
 		t = datetime.datetime.now() - s
 		print(t)
 		0:00:01.861724
-  
-#### FinMind 1.0.52 (2019-04-06) 
+
+#### FinMind 1.0.52 (2019-04-06)
 ##### New Data
 * `BalanceSheet` ( Taiwan 資產負債表 )
 * `TaiwanStockHoldingSharesPer ` ( Taiwan 股權分散表 )
@@ -369,8 +373,8 @@ e.g :
 3. Government bond ->>>  https://data.oecd.org/interest/long-term-interest-rates.htm
 4. 期貨 ->>> https://www.investing.com/commodities/energies
 5. S&P 500指數，並爬取該 500 家股票股價 ->>>
- 
-#### 2018/7/5 
+
+#### 2018/7/5
 1. 國際油價 讀取範例 Load data example. (100%)
 3. 各國匯率  ( 53 Countrys, Contains G8 )  (100%)
 

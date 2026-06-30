@@ -1,3 +1,7 @@
+#### 2026-07-01
+* Added [Taiwan Option VIX TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix): data range 2026-03-01 ~ now, updated every 15 minutes
+* Added [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis): data range 2026-05-01 ~ now, updated every 30 minutes
+
 #### 2026-06-15
 * [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) now covers **OTC (TPEX)** warrants' underlying (mother stock) reference in addition to listed (TWSE); OTC warrant underlying history goes back to 2011-01-03, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants)
 * [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) now supports storage_objects whole-day bulk download (sponsorpro members only); data is provided per trading day from feature launch, no historical backfill for now
@@ -283,31 +287,31 @@
 * Added TaiwanOption: Taiwan options trading detail.
 
 
-#### FinMind 1.0.80 (2019-07-15) 
+#### FinMind 1.0.80 (2019-07-15)
 * Major update. Previously the package connected directly to the database; now it uses the API. Older versions of the package will stop working in the future and will not be able to connect directly to the database. Please upgrade to the latest version, or use the API directly.
- 
 
-#### FinMind 1.0.70 (2019-06-23) 
+
+#### FinMind 1.0.70 (2019-06-23)
 * add [api](https://github.com/linsamtw/FinMind/blob/master/api_demo.py)
 * add function `Mind.MoveAverage`, <br>
-e.g : 
-			
+e.g :
+
 			Mind.MoveAverage(_2330.StockPrice,days = 5,variable = 'close')
-			
+
 * add function `Mind.RSV`, <br>
-e.g : 
-	
+e.g :
+
 			Mind.RSV(_2330.StockPrice,days = 5)
-	
+
 * add function `Mind.BIAS`, <br>
-e.g : 
-	
+e.g :
+
 			Mind.BIAS(_2330.StockPrice,days = 5)
 
   ----------------------
-#### FinMind 1.0.60 (2019-05-24) 
+#### FinMind 1.0.60 (2019-05-24)
 * New data `TaiwanStockMonthRevenue`
-	
+
 			from FinMind.Data import Load
 			TaiwanStockMonthRevenue = Load.FinData(
 				dataset = 'TaiwanStockMonthRevenue',
@@ -319,17 +323,17 @@ e.g :
 	* Dow Jones Industrial Average : stock_id - `^DJI`
 
   ----------------------
-#### FinMind 1.0.57 (2019-04-28) 
+#### FinMind 1.0.57 (2019-04-28)
 * Change taiwan stock id, delete TWO and TW. ( eg. 2330.TW -> 2330 )
 
-#### FinMind 1.0.54 (2019-04-13) 
+#### FinMind 1.0.54 (2019-04-13)
 * Optimize speeds of loading TaiwanStockPrice, USStockPrice
 * Add [DataSource](https://github.com/linsamtw/FinMind/blob/master/Data/DataSource.md)
 
-#### FinMind 1.0.53 (2019-04-07) 
+#### FinMind 1.0.53 (2019-04-07)
 ##### Fix FinMind.Data.Load
 * optimize speeds of loading data , ex :
- 
+
 			from FinMind.Data import Load
 			import datetime
 
@@ -339,8 +343,8 @@ e.g :
 			t = datetime.datetime.now() - s
 			print(t)
 			0:00:01.861724
-  
-#### FinMind 1.0.52 (2019-04-06) 
+
+#### FinMind 1.0.52 (2019-04-06)
 ##### New Data
 * `BalanceSheet` ( Taiwan Balance Sheet )
 * `TaiwanStockHoldingSharesPer ` ( Taiwan Shareholding Distribution Table )
@@ -369,8 +373,8 @@ e.g :
 3. Government bond ->>>  https://data.oecd.org/interest/long-term-interest-rates.htm
 4. Futures ->>> https://www.investing.com/commodities/energies
 5. S&P 500 index, plus crawled prices of all 500 constituent stocks ->>>
- 
-#### 2018/7/5 
+
+#### 2018/7/5
 1. International oil prices: Load data example. (100%)
 3. Foreign exchange rates  ( 53 Countrys, Contains G8 )  (100%)
 

@@ -1,10 +1,11 @@
 
-在台股可轉換公司債，我們擁有 4 種資料集，如下:
+在台股可轉換公司債，我們擁有 5 種資料集，如下:
 
 - [可轉債總覽 TaiwanStockConvertibleBondInfo](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
 - [可轉債日成交資訊 TaiwanStockConvertibleBondDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
 - [可轉債三大法人日交易資訊 TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
 - [可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
+- [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis)
 
 
 #### 可轉債總覽 TaiwanStockConvertibleBondInfo(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
@@ -590,5 +591,76 @@
             InitialDateOfSuspension: str, # 停止交易起日
             DueDateOfSuspension: str, # 停止交易迄日
             CouponRate: float32 # 票面利率
+        }
+        ```
+
+----------------------------------
+#### 可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis
+
+- 資料區間：2026-05-01 ~ now
+- 資料更新時間 **星期一至六 14:00~23:00 每30分鐘**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockConvertibleBondMonthlyAnalysis",
+            "data_id": "13166",
+            "start_date": "2026-05-01",
+            "end_date": "2026-06-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockConvertibleBondMonthlyAnalysis",
+                data_id="13166",
+                start_date= "2026-05-01",
+                end_date= "2026-06-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | cb_id | cb_name | cb_name_en | custody_balance | last_month_balance | change | change_percent | issued_units | custody_accounts | pledged_units | date       |
+        |---:|:------|:--------|:-----------|----------------:|-------------------:|-------:|---------------:|-------------:|-----------------:|--------------:|:-----------|
+        |  0 | 13166 | 上曜六  | SUN YAD-CB6 |            4000 |               4000 |      0 |            0.0 |         4000 |               24 |             0 | 2026-05-01 |
+    === "Schema"
+        ```
+        {
+            cb_id: str, # 可轉債代號
+            cb_name: str, # 可轉債名稱
+            cb_name_en: str, # 可轉債英文名稱
+            custody_balance: int, # 保管餘額
+            last_month_balance: int, # 上月餘額
+            change: int, # 增減
+            change_percent: float64, # 增減百分比
+            issued_units: int, # 發行單位數
+            custody_accounts: int, # 保管戶數
+            pledged_units: int, # 設質單位數
+            date: str # 日期
         }
         ```
