@@ -1,6 +1,6 @@
 #### 2026-07-01
-* Added [Taiwan Option VIX TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix): data range 2026-03-01 ~ now, updated every 15 minutes
-* Added [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis): data range 2026-05-01 ~ now, updated every 30 minutes
+* Added [Taiwan Option VIX TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix): data range 2026-03-01 ~ now, updated daily at 18:00
+* Added [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis): data range 2026-05-01 ~ now, updated daily at 18:00
 
 #### 2026-06-15
 * [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) now covers **OTC (TPEX)** warrants' underlying (mother stock) reference in addition to listed (TWSE); OTC warrant underlying history goes back to 2011-01-03, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants)

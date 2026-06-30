@@ -598,7 +598,7 @@
 #### 可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis
 
 - 資料區間：2026-05-01 ~ now
-- 資料更新時間 **星期一至六 14:00~23:00 每30分鐘**，實際更新時間以 API 資料為主
+- 資料更新時間 **星期一至六 18:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Python-request"
