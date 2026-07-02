@@ -75,3 +75,24 @@ Which 5 stocks had the highest institutional net-buy value today?
 ```
 
 > Expected result: the tool queries today's institutional trading data, sorts it, and returns the top 5 stocks by net-buy value.
+
+## Data field caveats { #caveats }
+
+The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures ticks). They are not data errors:
+
+??? warning "Emerging stocks: `open` is the *previous-day average price*, and may fall outside the day's high/low (not a data error)"
+    Emerging-board stocks trade by negotiation and **have no opening price**. For emerging stocks this table therefore fills `open` with the **previous-day average price**, not an opening price; `max` / `min` / `close` are still the day's high / low / last traded price and are correct.
+
+    As a result, an emerging stock's `open` can sit above `max` or below `min` on volatile days. This is a **field-definition difference, not corrupt data**. For candlestick charts, use `max` / `min` / `close`, or treat `open` as the previous-day average.
+
+    **Example**: 6515 穎崴 on 2020-03-19 (emerging at the time) → `open=218.06`, `max=200`, `min=170`, `close=174.9`; 218.06 is exactly the previous-day average that day. The stock later moved to TWSE, after which its data is normal.
+
+??? note "Futures ticks (TaiwanFuturesTick): how volume is counted"
+    Tick volume is counted on a **double-sided** basis: each matched trade records both the buy side and the sell side once. As a result, the summed tick volume is about **2×** the (single-side) volume in the daily data TaiwanFuturesDaily; for spread / combination orders, which contain two legs, the tick volume is about **4×** the daily volume. Convert accordingly when reconciling tick volume against daily volume.
+
+??? note "Futures ticks: trading-day attribution of after-hours ticks"
+    The after-hours (night) session follows the TAIFEX rule of being attributed to the **next business day**. The after-hours session for trading day D is the segment running from 15:00 on the previous business day until 05:00 on day D. Therefore, within a tick file:
+
+    - **00:00–05:00** ticks belong to the after-hours (after_market) session of **trading day D** in TaiwanFuturesDaily.
+    - **08:45–13:45** ticks belong to the regular session (position) of trading day D.
+    - **15:00–24:00** ticks belong to the after-hours session of the **next trading day**.
