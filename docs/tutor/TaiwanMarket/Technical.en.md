@@ -317,11 +317,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Data update time: **Monday to Friday 17:30**. The actual update time is based on the API data.
 
 ??? warning "Emerging stocks: `open` is the *previous-day average price*, and may fall outside the day's high/low (not a data error)"
-    Emerging-board stocks trade by negotiation and **have no opening price**. For emerging stocks this table therefore fills `open` with the **previous-day average price** published by the Taipei Exchange (TPEx), not an opening price; `max` / `min` / `close` are still the day's high / low / last traded price and are correct.
+    Emerging-board stocks trade by negotiation and **have no opening price**. For emerging stocks this table therefore fills `open` with the **previous-day average price**, not an opening price; `max` / `min` / `close` are still the day's high / low / last traded price and are correct.
 
     As a result, an emerging stock's `open` can sit above `max` or below `min` on volatile days. This is a **field-definition difference, not corrupt data**. For candlestick charts, use `max` / `min` / `close`, or treat `open` as the previous-day average.
 
-    **Example**: 6515 穎崴 on 2020-03-19 (emerging at the time) → `open=218.06`, `max=200`, `min=170`, `close=174.9`; 218.06 is exactly TPEx's previous-day average that day. The stock later moved to TWSE, after which its data is normal.
+    **Example**: 6515 穎崴 on 2020-03-19 (emerging at the time) → `open=218.06`, `max=200`, `min=170`, `close=174.9`; 218.06 is exactly the previous-day average that day. The stock later moved to TWSE, after which its data is normal.
 
 !!! example
     === "Package"
