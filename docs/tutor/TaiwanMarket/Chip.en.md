@@ -310,6 +310,9 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
 
+!!! note "Values may be updated slightly after the initial release"
+    This data is the **original-trade statistics** of each institutional investor for the day. A small number of trades (e.g. after-hours fixed-price or block/matched trades) may be tallied into the day's statistics only after the initial release, so a given day's **buy/sell totals can be topped up afterwards**; when both sides of such a trade belong to the same investor category, buy and sell increase by the same amount and the **net (buy minus sell) is unaffected**. This is the completion of the day's original trades — not a data error, and not an error-account correction. There is no fixed "finalized" time; treat the value currently returned by the API as the latest. If you need finalized figures, retrieve them one or two business days after the trading day.
+
 !!! example
     === "Package"
         ```python
@@ -487,6 +490,9 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - Data range: 2005-01-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
+
+!!! note "Values may be updated slightly after the initial release"
+    This data is the **original-trade statistics** of each institutional investor for the day. A small number of trades (e.g. after-hours fixed-price or block/matched trades) may be tallied into the day's statistics only after the initial release, so a given day's **buy/sell totals can be topped up afterwards**; when both sides of such a trade belong to the same investor category, buy and sell increase by the same amount and the **net (buy minus sell) is unaffected**. This is the completion of the day's original trades — not a data error, and not an error-account correction. There is no fixed "finalized" time; treat the value currently returned by the API as the latest. If you need finalized figures, retrieve them one or two business days after the trading day.
 
 !!! note "New vs old era columns (important)"
     The classification of the three institutional investors has changed over the years. This wide table includes **all historical classifications**; a classification is always `0` in eras where it did not yet exist:
