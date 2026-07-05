@@ -818,6 +818,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=CrudeOilPrices, data_id=WTI, start_date=2020-01-01, end_date=2020-01-08
 - data_id values: WTI, Brent
 - Columns: date, name, price
+- Note: 現貨價（spot price），非即時報價；最新資料通常延遲數個交易日（約一週），與期貨即時報價不同，請以回傳最新 date 為準。
 
 ### GovernmentBondsYield (美國國債殖利率)
 - Tier: Free
