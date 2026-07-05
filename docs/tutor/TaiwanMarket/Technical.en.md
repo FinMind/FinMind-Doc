@@ -323,6 +323,10 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
     **Example**: 6515 穎崴 on 2020-03-19 (emerging at the time) → `open=218.06`, `max=200`, `min=170`, `close=174.9`; 218.06 is exactly the previous-day average that day. The stock later moved to TWSE, after which its data is normal.
 
+    **A related case: `open=0` on an emerging stock's first trading day.** Since an emerging stock's `open` is the *previous-day average*, on a stock's **very first trading day** there is no previous day to average, so `open` shows as `0`; `max` / `min` / `close` are still the day's correct values, and from the next day onward `open` carries a normal previous-day average. This too is a field-definition difference, not corrupt data.
+
+    **Example**: 8272 全景 on 2023-10-17 (its first day on the emerging board) → `open=0`, `max=136`, `min=112.5`, `close=130`; the next day, 2023-10-18, `open=129.39`, which is 2023-10-17's average price. The same rule holds for `TaiwanStockPriceAdj` (adjusted price): the adjusted price is the raw price times an adjustment factor, so `0` carries through unchanged.
+
 !!! example
     === "Package"
         ```python
