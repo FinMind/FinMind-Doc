@@ -1,6 +1,9 @@
 #### 2026-07-12
 * 新增 [免責聲明與資料授權說明](https://finmind.github.io/Disclaimer/) 頁面：說明 FinMind 之資料來源與授權依據（經政府資料開放平臺取得之資料，依《政府資料開放授權條款》使用）、使用者取得之授權範圍（本服務之使用權，不含對外再散布／轉售／鏡像），以及資料僅供參考等免責事項
 
+#### 2026-07-10
+* 新增 [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)：資料區間 2025-05-05 ~ now
+
 #### 2026-07-01
 * 新增 [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)：資料區間 2026-03-01 ~ now
 * 新增 [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)：資料區間 2026-05-01 ~ now
