@@ -22,6 +22,7 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - [Block Trading Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [Block Trade Daily Transactions TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [Loan Collateral Balance TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+- [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)
 - [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -2980,3 +2981,85 @@ In Taiwan stock chip data, we have 21 datasets as follows:
         ```
 
 ----------------------------------
+
+#### Active ETF Daily Holding TaiwanStockActiveETFHolding (only available for [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2025-05-05 ~ now
+- Data update time **Monday to Saturday after market close**, the actual update time is based on the API data.
+- Provides the full daily portfolio of Taiwan-listed active ETFs (TWSE + TPEx), including constituent code, name, asset type, shares, weight, market value and currency; buy/sell holdings can be derived by differencing consecutive trading days.
+- Query a single ETF via `data_id` (e.g. `00980A`), or query all active ETF holdings of a given date by date only.
+- Note: the start date differs per ETF (depending on listing date and source history depth); some ETFs accumulate daily from launch.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_holding(
+            stock_id="00980A",
+            start_date="2025-05-05",
+            end_date="2025-05-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to the login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFHolding",
+            "data_id": "00980A",
+            "start_date": "2025-05-05",
+            "end_date": "2025-05-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to the login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockActiveETFHolding",
+                data_id="00980A",
+                start_date="2025-05-05",
+                end_date="2025-05-31",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | component_stock_id   | component_stock_name   | asset_type   |   shares |   weight |   market_value | currency   |
+        |---:|:-----------|:-----------|:---------------------|:-----------------------|:-------------|---------:|---------:|---------------:|:-----------|
+        |  0 | 2025-05-05 | 00980A     | 2330                 | 台灣積體電路製造       | stock        |   634000 |     9.44 |              0 | TWD        |
+        |  1 | 2025-05-05 | 00980A     | 2454                 | 聯發科技               | stock        |   269000 |     6.49 |              0 | TWD        |
+        |  2 | 2025-05-05 | 00980A     | 2308                 | 台達電子工業           | stock        |   475000 |     5.41 |              0 | TWD        |
+    === "Schema"
+        ```
+        {
+            date: str, # date (holding as-of date)
+            stock_id: str, # ETF id (data_id)
+            component_stock_id: str, # constituent code (TW code / foreign ticker / bond CUSIP)
+            component_stock_name: str, # constituent name
+            asset_type: str, # asset type (stock/bond/futures/option/cash/etf/repo/other)
+            shares: float, # shares (par value for bonds, contracts for futures)
+            weight: float, # weight (%)
+            market_value: float, # market value
+            currency: str, # currency
+        }
+        ```

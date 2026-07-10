@@ -22,6 +22,7 @@
 - [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [借貸款項擔保品餘額表 TaiwanStockLoanCollateralBalance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+- [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -2980,3 +2981,84 @@
         ```
 
 ----------------------------------
+#### 主動式ETF每日持股明細 TaiwanStockActiveETFHolding (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2025-05-05 ~ now
+- 資料更新時間 **星期一至六 盤後**，實際更新時間以 API 資料為主
+- 提供台灣掛牌主動式ETF（上市 + 上櫃）每日完整投資組合，包含成份標的代號、名稱、資產類別、股數、權重、市值、幣別；買賣標的可由相鄰交易日持股差分取得
+- 可用 `data_id` 查詢單一 ETF（如 `00980A`），或僅用日期查詢當日全部主動式ETF持股
+- 備註：各檔起始日不一（依掛牌日與來源可回溯範圍），部分 ETF 自上線後起逐日累積
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_holding(
+            stock_id="00980A",
+            start_date="2025-05-05",
+            end_date="2025-05-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFHolding",
+            "data_id": "00980A",
+            "start_date": "2025-05-05",
+            "end_date": "2025-05-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockActiveETFHolding",
+                data_id="00980A",
+                start_date="2025-05-05",
+                end_date="2025-05-31",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | component_stock_id   | component_stock_name   | asset_type   |   shares |   weight |   market_value | currency   |
+        |---:|:-----------|:-----------|:---------------------|:-----------------------|:-------------|---------:|---------:|---------------:|:-----------|
+        |  0 | 2025-05-05 | 00980A     | 2330                 | 台灣積體電路製造       | stock        |   634000 |     9.44 |              0 | TWD        |
+        |  1 | 2025-05-05 | 00980A     | 2454                 | 聯發科技               | stock        |   269000 |     6.49 |              0 | TWD        |
+        |  2 | 2025-05-05 | 00980A     | 2308                 | 台達電子工業           | stock        |   475000 |     5.41 |              0 | TWD        |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期（持股基準日）
+            stock_id: str, # ETF代號（data_id）
+            component_stock_id: str, # 成份標的代號（台股代號 / 海外 ticker / 債券 CUSIP）
+            component_stock_name: str, # 成份標的名稱
+            asset_type: str, # 資產類別 (stock/bond/futures/option/cash/etf/repo/other)
+            shares: float, # 股數（債券為面額、期貨為口數）
+            weight: float, # 權重(%)
+            market_value: float, # 市值(元)
+            currency: str, # 幣別
+        }
+        ```
