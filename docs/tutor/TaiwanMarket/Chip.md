@@ -23,6 +23,7 @@
 - [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [借貸款項擔保品餘額表 TaiwanStockLoanCollateralBalance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
 - [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)
+- [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -3060,5 +3061,86 @@
             weight: float, # 權重(%)
             market_value: float, # 市值(元)
             currency: str, # 幣別
+        }
+        ```
+
+----------------------------------
+#### 主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2025-05-05 ~ now
+- 資料更新時間 **星期一至六 盤後**，實際更新時間以 API 資料為主
+- 由「主動式ETF每日持股明細 TaiwanStockActiveETFHolding」衍生：相鄰交易日的成份股持股股數相減，得每檔主動式ETF當日買/賣了哪些成份股
+- `action` 為買賣別（`buy`/`sell`）；`shares_change` 為股數變化（與前一有資料日 `shares` 差，`buy` 為正、`sell` 為負）
+- 可用 `data_id` 查詢單一 ETF（如 `00980A`），或僅用日期查詢當日全部主動式ETF持股異動
+- 備註：申購/贖回會讓成份股股數等比例變動，並計入 `shares_change`；故 `shares_change` 是「持股股數變化」，不等於「經理人主動買賣純額」
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_holding_change(
+            stock_id="00980A",
+            start_date="2025-05-05",
+            end_date="2025-05-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFHoldingChange",
+            "data_id": "00980A",
+            "start_date": "2025-05-05",
+            "end_date": "2025-05-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockActiveETFHoldingChange",
+                data_id="00980A",
+                start_date="2025-05-05",
+                end_date="2025-05-31",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | component_stock_id   | component_stock_name   | action   |   shares_change |
+        |---:|:-----------|:-----------|:---------------------|:-----------------------|:---------|----------------:|
+        |  0 | 2025-05-06 | 00980A     | 2330                 | 台灣積體電路製造       | buy      |           12000 |
+        |  1 | 2025-05-06 | 00980A     | 2454                 | 聯發科技               | sell     |           -5000 |
+        |  2 | 2025-05-06 | 00980A     | 2308                 | 台達電子工業           | buy      |            8000 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # ETF代號（data_id）
+            component_stock_id: str, # 成份標的代號
+            component_stock_name: str, # 成份標的名稱
+            action: str, # 買賣別 (buy/sell)
+            shares_change: float, # 股數變化（與前一有資料日 shares 差，buy 正 sell 負）
         }
         ```

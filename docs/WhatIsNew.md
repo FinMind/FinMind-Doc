@@ -1,3 +1,6 @@
+#### 2026-07-11
+* 新增 [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)：資料區間 2025-05-05 ~ now
+
 #### 2026-07-10
 * 新增 [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)：資料區間 2025-05-05 ~ now
 
