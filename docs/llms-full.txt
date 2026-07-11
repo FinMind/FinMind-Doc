@@ -446,9 +446,9 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2025-05-05 ~ now
 - Params: dataset=TaiwanStockActiveETFHoldingChange, data_id=00980A, start_date=2025-05-05, end_date=2025-05-31
 - Params (all active ETFs for one day): dataset=TaiwanStockActiveETFHoldingChange, start_date=2025-05-06
-- Columns: date, stock_id (ETF id), component_stock_id (constituent), component_stock_name, action (buy/sell), shares_change (change in shares vs previous day with data; positive buy, negative sell)
+- Columns: date, stock_id (ETF id), component_stock_id (constituent), component_stock_name, buy (integer shares bought that day; increase in constituent shares, 0 if none), sell (integer shares sold that day; decrease in constituent shares as a positive value, 0 if none); exactly one of buy/sell is non-zero per row
 - Derived from TaiwanStockActiveETFHolding by differencing consecutive trading days
-- Note: creations/redemptions scale constituent shares proportionally and are included in shares_change, so shares_change reflects the change in held shares and is not the manager's net discretionary buy/sell
+- Note: creations/redemptions scale constituent shares proportionally and are included in buy/sell, so buy/sell reflect the change in held shares and are not the manager's net discretionary buy/sell
 
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor

@@ -3071,9 +3071,9 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - Data range: 2025-05-05 ~ now
 - Data update time **Monday to Saturday after market close**, the actual update time is based on the API data.
 - Derived from "Active ETF Daily Holding TaiwanStockActiveETFHolding": differencing the constituent shares of consecutive trading days yields which constituents each active ETF bought/sold that day.
-- `action` is the buy/sell direction (`buy`/`sell`); `shares_change` is the change in shares (difference vs the previous day with data; positive for `buy`, negative for `sell`).
+- `buy` is the shares bought that day (increase in constituent shares; 0 if none), `sell` is the shares sold that day (decrease in constituent shares, as a positive value; 0 if none); both are integers (no decimals), and exactly one of `buy`/`sell` is non-zero per row.
 - Query a single ETF via `data_id` (e.g. `00980A`), or query all active ETF holding changes of a given date by date only.
-- Note: creations/redemptions scale constituent shares proportionally and are included in `shares_change`; therefore `shares_change` reflects the change in held shares and is **not** the manager's net discretionary buy/sell.
+- Note: creations/redemptions scale constituent shares proportionally and are included in `buy`/`sell`; therefore `buy`/`sell` reflect the change in held shares and are **not** the manager's net discretionary buy/sell.
 
 !!! example
     === "Package"
@@ -3129,11 +3129,11 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 
 !!! output
     === "DataFrame"
-        |    | date       | stock_id   | component_stock_id   | component_stock_name   | action   |   shares_change |
-        |---:|:-----------|:-----------|:---------------------|:-----------------------|:---------|----------------:|
-        |  0 | 2025-05-06 | 00980A     | 2330                 | 台灣積體電路製造       | buy      |           12000 |
-        |  1 | 2025-05-06 | 00980A     | 2454                 | 聯發科技               | sell     |           -5000 |
-        |  2 | 2025-05-06 | 00980A     | 2308                 | 台達電子工業           | buy      |            8000 |
+        |    | date       | stock_id   | component_stock_id   | component_stock_name   |   buy |   sell |
+        |---:|:-----------|:-----------|:---------------------|:-----------------------|------:|-------:|
+        |  0 | 2025-05-06 | 00980A     | 2330                 | 台灣積體電路製造       | 12000 |      0 |
+        |  1 | 2025-05-06 | 00980A     | 2454                 | 聯發科技               |     0 |   5000 |
+        |  2 | 2025-05-06 | 00980A     | 2308                 | 台達電子工業           |  8000 |      0 |
     === "Schema"
         ```
         {
@@ -3141,7 +3141,7 @@ In Taiwan stock chip data, we have 21 datasets as follows:
             stock_id: str, # ETF id (data_id)
             component_stock_id: str, # constituent code
             component_stock_name: str, # constituent name
-            action: str, # buy/sell direction (buy/sell)
-            shares_change: float, # change in shares (diff vs previous day with data; positive buy, negative sell)
+            buy: int, # shares bought that day (increase in constituent shares; 0 if none)
+            sell: int, # shares sold that day (decrease in constituent shares, positive; 0 if none)
         }
         ```
