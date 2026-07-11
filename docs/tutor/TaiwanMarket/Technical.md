@@ -1,6 +1,7 @@
-在台股技術面，我們擁有 20 種資料集，如下:
+在台股技術面，我們擁有 21 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
+- [主動式ETF清單 TaiwanStockActiveETFInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockactiveetfinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
 - [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
 - [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
@@ -91,6 +92,79 @@
             stock_name: str, # 股票名稱
             type: str, # 市場別
             date: str # 更新日期
+        }
+        ```
+
+
+----------------------------------
+#### 主動式ETF清單 TaiwanStockActiveETFInfo
+
+- 這張資料表列出台灣掛牌的主動式 ETF（上市 TWSE + 上櫃 TPEX）清單與基本資料，包含 ETF 代號、名稱、ETF 分類與市場別！
+- 資料來源為交易所官方清單，隨新主動式 ETF 掛牌自動更新
+- `category` 為 ETF 分類：`domestic`（國內投資）／`foreign`（跨國投資）
+- `type` 為市場別：`twse`（上市）／`tpex`（上櫃）
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_info()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFInfo",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset = "TaiwanStockActiveETFInfo"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | stock_name         | category   | type   |
+        |---:|:-----------|-----------:|:-------------------|:-----------|:-------|
+        |  0 | 2026-07-11 |     00980A | 主動野村臺灣優選   | domestic   | twse   |
+        |  1 | 2026-07-11 |     00981A | 主動統一台股增長   | domestic   | twse   |
+        |  2 | 2026-07-11 |     00982A | 主動群益台灣強棒   | domestic   | twse   |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # ETF 代號
+            stock_name: str, # ETF 名稱
+            category: str, # ETF 分類（domestic 國內／foreign 跨國）
+            type: str # 市場別（twse 上市／tpex 上櫃）
         }
         ```
 

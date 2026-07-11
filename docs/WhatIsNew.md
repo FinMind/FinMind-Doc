@@ -1,11 +1,10 @@
+#### 2026-07-13
+* 新增 [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)：資料區間 2025-05-05 ~ now
+* 新增 [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)：資料區間 2025-05-05 ~ now
+* 新增 [主動式ETF清單 TaiwanStockActiveETFInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockactiveetfinfo)：台灣掛牌主動式 ETF（上市 TWSE + 上櫃 TPEX）清單／基本資料，欄位含 `date`、`stock_id`（ETF 代號）、`stock_name`（ETF 名稱）、`category`（ETF 分類：domestic 國內／foreign 跨國）、`type`（市場別：twse 上市／tpex 上櫃）；來源為交易所官方清單，隨新主動式 ETF 掛牌自動更新
+
 #### 2026-07-12
 * 新增 [免責聲明與資料授權說明](https://finmind.github.io/Disclaimer/) 頁面：說明 FinMind 之資料來源與授權依據（經政府資料開放平臺取得之資料，依《政府資料開放授權條款》使用）、使用者取得之授權範圍（本服務之使用權，不含對外再散布／轉售／鏡像），以及資料僅供參考等免責事項
-
-#### 2026-07-11
-* 新增 [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)：資料區間 2025-05-05 ~ now
-
-#### 2026-07-10
-* 新增 [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)：資料區間 2025-05-05 ~ now
 
 #### 2026-07-01
 * 新增 [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)：資料區間 2026-03-01 ~ now
