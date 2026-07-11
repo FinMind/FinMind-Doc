@@ -51,10 +51,10 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - [Update Token](https://finmind.github.io/update_token/): Self-service token reset on the [user info page](https://finmindtrade.com/analysis/#/account/user). Old token is invalidated immediately and all devices are signed out — no need to contact support.
 - [API Usage Count](https://finmind.github.io/api_usage_count/): Check API usage via `GET https://api.web.finmindtrade.com/v2/user_info` (Authorization: Bearer {token}). Returns `user_count` (current usage) and `api_request_limit` (quota). HTTP 402 when quota exceeded.
 
-### Taiwan Market (79 datasets)
+### Taiwan Market (80 datasets)
 
-- [Taiwan DataList](https://finmind.github.io/tutor/TaiwanMarket/DataList/): Full list of 80 Taiwan datasets
-- [Technical](https://finmind.github.io/tutor/TaiwanMarket/Technical/): TaiwanStockInfo, TaiwanStockPrice, TaiwanStockPriceAdj, TaiwanStockPriceTick, TaiwanStockPER, TaiwanStockKBar, TaiwanStockWeekPrice, TaiwanStockMonthPrice, TaiwanStockDayTrading, TaiwanStockTotalReturnIndex, TaiwanVariousIndicators5Seconds, TaiwanStockTradingDate, etc.
+- [Taiwan DataList](https://finmind.github.io/tutor/TaiwanMarket/DataList/): Full list of 81 Taiwan datasets
+- [Technical](https://finmind.github.io/tutor/TaiwanMarket/Technical/): TaiwanStockInfo, TaiwanStockActiveETFInfo, TaiwanStockPrice, TaiwanStockPriceAdj, TaiwanStockPriceTick, TaiwanStockPER, TaiwanStockKBar, TaiwanStockWeekPrice, TaiwanStockMonthPrice, TaiwanStockDayTrading, TaiwanStockTotalReturnIndex, TaiwanVariousIndicators5Seconds, TaiwanStockTradingDate, etc.
 - [Chip (Institutional)](https://finmind.github.io/tutor/TaiwanMarket/Chip/): TaiwanStockMarginPurchaseShortSale, TaiwanStockInstitutionalInvestorsBuySell, TaiwanStockInstitutionalInvestorsBuySellWide, TaiwanStockShareholding, TaiwanStockHoldingSharesPer, TaiwanStockSecuritiesLending, TaiwanStockTradingDailyReport, TaiwanStockBlockTradingDailyReport, TaiwanStockBlockTrade, TaiwanStockLoanCollateralBalance, TaiwanstockGovernmentBankBuySell, etc.
 - [Fundamental](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/): TaiwanStockCashFlowsStatement, TaiwanStockFinancialStatements, TaiwanStockBalanceSheet, TaiwanStockDividend, TaiwanStockDividendResult, TaiwanStockMonthRevenue, TaiwanStockMarketValue, etc.
 - [Derivative](https://finmind.github.io/tutor/TaiwanMarket/Derivative/): TaiwanFuturesDaily, TaiwanOptionDaily, TaiwanFuturesTick, TaiwanFuturesSpreadTick, TaiwanOptionTick, TaiwanFuturesInstitutionalInvestors, TaiwanOptionInstitutionalInvestors, TaiwanFuturesDealerTradingVolumeDaily, TaiwanOptionDealerTradingVolumeDaily, TaiwanFuturesSpreadTrading, TaiwanOptionVix, etc.

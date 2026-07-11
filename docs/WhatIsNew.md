@@ -1,3 +1,6 @@
+#### 2026-07-11
+* 新增 [主動式ETF清單 TaiwanStockActiveETFInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockactiveetfinfo)：台灣掛牌主動式 ETF（上市 TWSE + 上櫃 TPEX）清單／基本資料，欄位含 `date`、`stock_id`（ETF 代號）、`stock_name`（ETF 名稱）、`category`（ETF 分類：domestic 國內／foreign 跨國）、`type`（市場別：twse 上市／tpex 上櫃）；來源為交易所官方清單，隨新主動式 ETF 掛牌自動更新
+
 #### 2026-07-01
 * 新增 [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)：資料區間 2026-03-01 ~ now
 * 新增 [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)：資料區間 2026-05-01 ~ now
