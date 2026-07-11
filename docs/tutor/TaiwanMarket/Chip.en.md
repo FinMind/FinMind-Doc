@@ -2989,6 +2989,7 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - Provides the full daily portfolio of Taiwan-listed active ETFs (TWSE + TPEx), including constituent code, name, asset type, shares, weight, market value and currency; buy/sell holdings can be derived by differencing consecutive trading days.
 - Query a single ETF via `data_id` (e.g. `00980A`), or query all active ETF holdings of a given date by date only.
 - Note: the start date differs per ETF (depending on listing date and source history depth); some ETFs accumulate daily from launch.
+- Note: `shares` is an integer; `market_value` is disclosed per holding by **only some** active ETFs' daily portfolios — where it is not disclosed the field is `0` (you can estimate it as `shares` times the constituent's closing price).
 
 !!! example
     === "Package"
