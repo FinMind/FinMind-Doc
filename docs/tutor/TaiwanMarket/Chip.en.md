@@ -2990,6 +2990,7 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - Query a single ETF via `data_id` (e.g. `00980A`), or query all active ETF holdings of a given date by date only.
 - Note: the start date differs per ETF (depending on listing date and source history depth); some ETFs accumulate daily from launch.
 - Note: `shares` is an integer; `market_value` is disclosed per holding by **only some** active ETFs' daily portfolios — where it is not disclosed the field is `0` (you can estimate it as `shares` times the constituent's closing price).
+- Note: an active ETF's portfolio includes derivatives and cash/liability line items, not only stocks. **For short derivative positions (written options, short futures) both `shares` (contracts) and `market_value` can be negative**; liability line items (e.g. payables) can also have a negative `market_value`. Use `asset_type` (`stock`/`option`/`future`/`bond`/`cash`/`other`) to filter — e.g. take `asset_type == "stock"` for equity holdings only.
 
 !!! example
     === "Package"

@@ -2989,6 +2989,7 @@
 - 可用 `data_id` 查詢單一 ETF（如 `00980A`），或僅用日期查詢當日全部主動式ETF持股
 - 備註：各檔起始日不一（依掛牌日與來源可回溯範圍），部分 ETF 自上線後起逐日累積
 - 備註：`shares`（股數）為整數；`market_value`（市值）僅**部分**主動式ETF於每日投資組合逐檔揭露，未揭露者該欄為 `0`，可自行以 `shares` 乘上成份股當日收盤價估算
+- 備註：主動式ETF 投資組合含衍生品與現金/負債科目，非僅股票。**賣出選擇權、期貨等空方部位的 `shares`（口數）與 `market_value` 可為負**；應付款項等負債科目 `market_value` 亦可為負。可用 `asset_type`（`stock`／`option`／`future`／`bond`／`cash`／`other`）篩選，例如只看純股票持股取 `asset_type == "stock"`
 
 !!! example
     === "Package"
