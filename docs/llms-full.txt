@@ -130,18 +130,12 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Technical (21 datasets)
+## Taiwan Market - Technical (20 datasets)
 
 ### TaiwanStockInfo (台股總覽)
 - Tier: Free
 - Params: dataset=TaiwanStockInfo
 - Columns: industry_category (str), stock_id (str), stock_name (str), type (str), date (str)
-
-### TaiwanStockActiveETFInfo (主動式ETF清單)
-- Tier: Free
-- Params: dataset=TaiwanStockActiveETFInfo
-- Columns: date (str), stock_id (str), stock_name (str), category (str), type (str)
-- Note: List / basic info of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC). category is the ETF category (domestic / foreign); type is the market type (twse / tpex). No data_id needed — the whole list is returned.
 
 ### TaiwanStockInfoWithWarrant (台股總覽含權證)
 - Tier: Free
@@ -288,7 +282,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Chip / Institutional (18 datasets)
+## Taiwan Market - Chip / Institutional (19 datasets)
 
 ### TaiwanStockMarginPurchaseShortSale (個股融資融劵表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -438,6 +432,12 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockLoanCollateralBalance, data_id=2330, start_date=2025-01-02, end_date=2025-01-31
 - Params (all stocks for one day): dataset=TaiwanStockLoanCollateralBalance, start_date=2025-01-02
 - Columns: date, stock_id, market, MarginPreviousDayBalance, MarginBuy, MarginSell, MarginCashRedemption, MarginCurrentDayBalance, MarginNextDayQuota, SecuritiesFirmLoanPreviousDayBalance, SecuritiesFirmLoanBuy, SecuritiesFirmLoanSell, SecuritiesFirmLoanCashRedemption, SecuritiesFirmLoanReplacement, SecuritiesFirmLoanCurrentDayBalance, SecuritiesFirmLoanNextDayQuota, UnrestrictedLoanPreviousDayBalance, UnrestrictedLoanBuy, UnrestrictedLoanSell, UnrestrictedLoanCashRedemption, UnrestrictedLoanReplacement, UnrestrictedLoanCurrentDayBalance, UnrestrictedLoanNextDayQuota, SecuritiesFinanceSecuredLoanPreviousDayBalance, SecuritiesFinanceSecuredLoanBuy, SecuritiesFinanceSecuredLoanSell, SecuritiesFinanceSecuredLoanCashRedemption, SecuritiesFinanceSecuredLoanReplacement, SecuritiesFinanceSecuredLoanCurrentDayBalance, SecuritiesFinanceSecuredLoanNextDayQuota, SettlementMarginPreviousDayBalance, SettlementMarginBuy, SettlementMarginSell, SettlementMarginCashRedemption, SettlementMarginReplacement, SettlementMarginCurrentDayBalance, SettlementMarginNextDayQuota
+
+### TaiwanStockActiveETFInfo (主動式ETF清單)
+- Tier: Free
+- Params: dataset=TaiwanStockActiveETFInfo
+- Columns: date (str), stock_id (str), stock_name (str), category (str), type (str)
+- Note: List / basic info of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC). category is the ETF category (domestic / foreign); type is the market type (twse / tpex). No data_id needed — the whole list is returned.
 
 ### TaiwanStockActiveETFHolding (主動式ETF每日持股明細)
 - Tier: Sponsor

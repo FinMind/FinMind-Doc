@@ -1,4 +1,4 @@
-In Taiwan stock chip data, we have 21 datasets as follows:
+In Taiwan stock chip data, we have 22 datasets as follows:
 
 
 - [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -22,6 +22,7 @@ In Taiwan stock chip data, we have 21 datasets as follows:
 - [Block Trading Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [Block Trade Daily Transactions TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [Loan Collateral Balance TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+- [Taiwan Active ETF List TaiwanStockActiveETFInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfinfo)
 - [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)
 - [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)
 - [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
@@ -2980,6 +2981,78 @@ In Taiwan stock chip data, we have 21 datasets as follows:
             InvestorBorrowingFeeRate: float64, # borrowing fee rate
         }
         ```
+
+----------------------------------
+#### Taiwan Active ETF List TaiwanStockActiveETFInfo
+
+- This table lists Taiwan-listed active ETFs (TWSE-listed + TPEx OTC), including the ETF code, name, ETF category, and market type!
+- `category` is the ETF category: `domestic` (invests domestically) / `foreign` (invests cross-border)
+- `type` is the market type: `twse` (listed) / `tpex` (OTC)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_info()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFInfo",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset = "TaiwanStockActiveETFInfo"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | stock_name         | category   | type   |
+        |---:|:-----------|-----------:|:-------------------|:-----------|:-------|
+        |  0 | 2026-07-11 |     00980A | 主動野村臺灣優選   | domestic   | twse   |
+        |  1 | 2026-07-11 |     00981A | 主動統一台股增長   | domestic   | twse   |
+        |  2 | 2026-07-11 |     00982A | 主動群益台灣強棒   | domestic   | twse   |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # ETF code
+            stock_name: str, # ETF name
+            category: str, # ETF category (domestic / foreign)
+            type: str # market type (twse / tpex)
+        }
+        ```
+
 
 ----------------------------------
 
