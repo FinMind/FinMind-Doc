@@ -6,9 +6,9 @@
 
 ## 1. Data Sources and Licensing Basis
 
-All data provided by FinMind comes from **publicly available disclosure channels** operated by the original data providers themselves, including exchanges, government open data platforms, central banks, and statistical agencies. FinMind does not use data obtained through any non-public channel.
+All data provided by FinMind comes from **publicly available disclosure channels** operated by the original data providers themselves, including government open data platforms, central banks, and statistical agencies. FinMind does not use data obtained through any non-public channel.
 
-For data obtained via government open data platforms, FinMind uses such data under the **Open Government Data License** of Taiwan. This license is a public license granted by government agencies for their open data; it permits value-added applications including commercial use, and is compatible with the internationally adopted CC BY 4.0 licensing framework.
+For data obtained via government open data platforms, FinMind uses such data under the **Open Government Data License** of Taiwan. This license is a public license granted by government agencies for their open data; it grants users the right to use the data **for any purpose, without limitation as to time or territory, on a non-exclusive, irrevocable, and royalty-free basis**. Permitted uses include reproduction, distribution, public transmission, public broadcasting, public recitation, public presentation, public performance, editing, and adaptation, including but not limited to the development of derivative works in the form of any product or service. The license is compatible with the internationally adopted CC BY 4.0 licensing framework.
 
 All other data is used in accordance with the public disclosure or open data rules published by each original data provider.
 
