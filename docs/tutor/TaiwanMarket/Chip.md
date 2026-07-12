@@ -3064,7 +3064,7 @@
 - 備註：各檔起始日不一（依掛牌日與來源可回溯範圍），部分 ETF 自上線後起逐日累積
 - 備註：個別主動式ETF若發行商未對外提供可取得的每日投資組合，該檔暫無持股資料（目前為「主動貝萊德優投等 `00985D`」），待來源開放後補上；此類 ETF 亦不會有對應的每日持股異動 `TaiwanStockActiveETFHoldingChange`
 - 備註：`shares`（股數）為整數；`market_value`（市值）僅**部分**主動式ETF於每日投資組合逐檔揭露，未揭露者該欄為 `0`，可自行以 `shares` 乘上成份股當日收盤價估算
-- 備註：主動式ETF 投資組合含衍生品與現金/負債科目，非僅股票。**賣出選擇權、期貨等空方部位的 `shares`（口數）與 `market_value` 可為負**；應付款項等負債科目 `market_value` 亦可為負。可用 `asset_type`（`stock`／`option`／`future`／`bond`／`cash`／`other`）篩選，例如只看純股票持股取 `asset_type == "stock"`
+- 備註：主動式ETF 投資組合含衍生品與現金/負債科目，非僅股票。**賣出選擇權、期貨等空方部位的 `shares`（口數）與 `market_value` 可為負**；應付款項等負債科目 `market_value` 亦可為負。可用 `asset_type`（`stock`／`bond`／`futures`／`option`／`cash`／`etf`／`repo`／`other`）篩選，例如只看純股票持股取 `asset_type == "stock"`
 
 !!! example
     === "Package"
@@ -3133,7 +3133,7 @@
             component_stock_id: str, # 成份標的代號（台股代號 / 海外 ticker / 債券 CUSIP）
             component_stock_name: str, # 成份標的名稱
             asset_type: str, # 資產類別 (stock/bond/futures/option/cash/etf/repo/other)
-            shares: float, # 股數（債券為面額、期貨為口數）
+            shares: int, # 股數（債券為面額、期貨為口數）
             weight: float, # 權重(%)
             market_value: float, # 市值(元)
             currency: str, # 幣別

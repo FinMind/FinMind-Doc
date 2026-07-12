@@ -3065,7 +3065,7 @@ In Taiwan stock chip data, we have 22 datasets as follows:
 - Note: the start date differs per ETF (depending on listing date and source history depth); some ETFs accumulate daily from launch.
 - Note: if an issuer does not publish an obtainable daily portfolio for a given active ETF, that ETF has no holding data for now (currently "主動貝萊德優投等 `00985D`") and will be backfilled once the source becomes available; such ETFs also have no corresponding `TaiwanStockActiveETFHoldingChange`.
 - Note: `shares` is an integer; `market_value` is disclosed per holding by **only some** active ETFs' daily portfolios — where it is not disclosed the field is `0` (you can estimate it as `shares` times the constituent's closing price).
-- Note: an active ETF's portfolio includes derivatives and cash/liability line items, not only stocks. **For short derivative positions (written options, short futures) both `shares` (contracts) and `market_value` can be negative**; liability line items (e.g. payables) can also have a negative `market_value`. Use `asset_type` (`stock`/`option`/`future`/`bond`/`cash`/`other`) to filter — e.g. take `asset_type == "stock"` for equity holdings only.
+- Note: an active ETF's portfolio includes derivatives and cash/liability line items, not only stocks. **For short derivative positions (written options, short futures) both `shares` (contracts) and `market_value` can be negative**; liability line items (e.g. payables) can also have a negative `market_value`. Use `asset_type` (`stock`/`bond`/`futures`/`option`/`cash`/`etf`/`repo`/`other`) to filter — e.g. take `asset_type == "stock"` for equity holdings only.
 
 !!! example
     === "Package"
@@ -3134,7 +3134,7 @@ In Taiwan stock chip data, we have 22 datasets as follows:
             component_stock_id: str, # constituent code (TW code / foreign ticker / bond CUSIP)
             component_stock_name: str, # constituent name
             asset_type: str, # asset type (stock/bond/futures/option/cash/etf/repo/other)
-            shares: float, # shares (par value for bonds, contracts for futures)
+            shares: int, # shares (par value for bonds, contracts for futures)
             weight: float, # weight (%)
             market_value: float, # market value
             currency: str, # currency
