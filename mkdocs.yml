@@ -106,6 +106,7 @@ nav:
     - 關於:
         - 聯絡我們: "Contact.md"
         - 使用條款與隱私權政策: "PrivacyPolicy.md"
+        - 免責聲明與資料授權: "Disclaimer.md"
         - 贊助我們: "Donate.md"
         - 官方網站: https://finmindtrade.com/
 
@@ -204,5 +205,6 @@ plugins:
                 IP 封鎖政策: IP Ban Policy
                 聯絡我們: Contact Us
                 使用條款與隱私權政策: Terms of Use & Privacy Policy
+                免責聲明與資料授權: Disclaimer & Data Licensing
                 贊助我們: Donate
                 官方網站: Official Website
