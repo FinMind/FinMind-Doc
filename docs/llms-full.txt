@@ -553,7 +553,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Derivative (17 datasets)
+## Taiwan Market - Derivative (18 datasets)
 
 ### TaiwanFutOptDailyInfo (期貨、選擇權日成交資訊總覽)
 - Tier: Free
