@@ -141,7 +141,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Free
 - Params: dataset=TaiwanStockActiveETFInfo
 - Columns: date (str), stock_id (str), stock_name (str), category (str), type (str)
-- Note: List / basic info of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC). category is the ETF category (domestic / foreign); type is the market type (twse / tpex). Sourced from the exchange's official list; no data_id needed — the whole list is returned and updates automatically as new active ETFs are listed.
+- Note: List / basic info of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC). category is the ETF category (domestic / foreign); type is the market type (twse / tpex). No data_id needed — the whole list is returned.
 
 ### TaiwanStockInfoWithWarrant (台股總覽含權證)
 - Tier: Free

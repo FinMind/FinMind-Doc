@@ -100,7 +100,6 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 #### Taiwan Active ETF List TaiwanStockActiveETFInfo
 
 - This table lists Taiwan-listed active ETFs (TWSE-listed + TPEx OTC), including the ETF code, name, ETF category, and market type!
-- The data source is the exchange's official list, and it updates automatically as new active ETFs are listed
 - `category` is the ETF category: `domestic` (invests domestically) / `foreign` (invests cross-border)
 - `type` is the market type: `twse` (listed) / `tpex` (OTC)
 

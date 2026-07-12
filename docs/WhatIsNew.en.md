@@ -1,7 +1,7 @@
 #### 2026-07-13
 * Added [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor): data range 2025-05-05 ~ now
 * Added [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor): data range 2025-05-05 ~ now
-* Added [Taiwan Active ETF List TaiwanStockActiveETFInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockactiveetfinfo): a list / basic-info table of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC), with columns `date`, `stock_id` (ETF code), `stock_name` (ETF name), `category` (ETF category: domestic / foreign), and `type` (market type: twse / tpex); the source is the exchange's official list and updates automatically as new active ETFs are listed
+* Added [Taiwan Active ETF List TaiwanStockActiveETFInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockactiveetfinfo): a list / basic-info table of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC), with columns `date`, `stock_id` (ETF code), `stock_name` (ETF name), `category` (ETF category: domestic / foreign), and `type` (market type: twse / tpex)
 
 #### 2026-07-12
 * Added [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/): explains FinMind's data sources and licensing basis (data obtained via government open data platforms is used under the Open Government Data License of Taiwan), the scope of the license granted to users (the right to use this service, excluding redistribution / resale / mirroring), and disclaimers such as all data being for reference only

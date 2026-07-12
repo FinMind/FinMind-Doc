@@ -100,7 +100,6 @@
 #### 主動式ETF清單 TaiwanStockActiveETFInfo
 
 - 這張資料表列出台灣掛牌的主動式 ETF（上市 TWSE + 上櫃 TPEX）清單與基本資料，包含 ETF 代號、名稱、ETF 分類與市場別！
-- 資料來源為交易所官方清單，隨新主動式 ETF 掛牌自動更新
 - `category` 為 ETF 分類：`domestic`（國內投資）／`foreign`（跨國投資）
 - `type` 為市場別：`twse`（上市）／`tpex`（上櫃）
 
