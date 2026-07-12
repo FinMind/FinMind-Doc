@@ -1,4 +1,4 @@
-In Taiwan stock chip data, we have 22 datasets as follows:
+In Taiwan stock chip data, we have 24 datasets as follows:
 
 
 - [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
