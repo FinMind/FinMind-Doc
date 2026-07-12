@@ -282,7 +282,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Chip / Institutional (19 datasets)
+## Taiwan Market - Chip / Institutional (23 datasets)
 
 ### TaiwanStockMarginPurchaseShortSale (個股融資融劵表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
