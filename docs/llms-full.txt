@@ -282,7 +282,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Chip / Institutional (18 datasets)
+## Taiwan Market - Chip / Institutional (23 datasets)
 
 ### TaiwanStockMarginPurchaseShortSale (個股融資融劵表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -433,6 +433,29 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (all stocks for one day): dataset=TaiwanStockLoanCollateralBalance, start_date=2025-01-02
 - Columns: date, stock_id, market, MarginPreviousDayBalance, MarginBuy, MarginSell, MarginCashRedemption, MarginCurrentDayBalance, MarginNextDayQuota, SecuritiesFirmLoanPreviousDayBalance, SecuritiesFirmLoanBuy, SecuritiesFirmLoanSell, SecuritiesFirmLoanCashRedemption, SecuritiesFirmLoanReplacement, SecuritiesFirmLoanCurrentDayBalance, SecuritiesFirmLoanNextDayQuota, UnrestrictedLoanPreviousDayBalance, UnrestrictedLoanBuy, UnrestrictedLoanSell, UnrestrictedLoanCashRedemption, UnrestrictedLoanReplacement, UnrestrictedLoanCurrentDayBalance, UnrestrictedLoanNextDayQuota, SecuritiesFinanceSecuredLoanPreviousDayBalance, SecuritiesFinanceSecuredLoanBuy, SecuritiesFinanceSecuredLoanSell, SecuritiesFinanceSecuredLoanCashRedemption, SecuritiesFinanceSecuredLoanReplacement, SecuritiesFinanceSecuredLoanCurrentDayBalance, SecuritiesFinanceSecuredLoanNextDayQuota, SettlementMarginPreviousDayBalance, SettlementMarginBuy, SettlementMarginSell, SettlementMarginCashRedemption, SettlementMarginReplacement, SettlementMarginCurrentDayBalance, SettlementMarginNextDayQuota
 
+### TaiwanStockActiveETFInfo (主動式ETF清單)
+- Tier: Free
+- Params: dataset=TaiwanStockActiveETFInfo
+- Columns: date (str), stock_id (str), stock_name (str), category (str), type (str)
+- Note: List / basic info of Taiwan-listed active ETFs (TWSE-listed + TPEx OTC). category is the ETF category (domestic / foreign); type is the market type (twse / tpex). No data_id needed — the whole list is returned.
+
+### TaiwanStockActiveETFHolding (主動式ETF每日持股明細)
+- Tier: Sponsor
+- Data range: 2025-05-05 ~ now
+- Params: dataset=TaiwanStockActiveETFHolding, data_id=00980A, start_date=2025-05-05, end_date=2025-05-31
+- Params (all active ETFs for one day): dataset=TaiwanStockActiveETFHolding, start_date=2025-05-05
+- Columns: date, stock_id (ETF id), component_stock_id (constituent), component_stock_name, asset_type, shares, weight, market_value, currency
+- Note: buy/sell holdings can be derived by differencing consecutive trading days; start date differs per ETF
+
+### TaiwanStockActiveETFHoldingChange (主動式ETF每日持股異動（買賣）)
+- Tier: Sponsor
+- Data range: 2025-05-05 ~ now
+- Params: dataset=TaiwanStockActiveETFHoldingChange, data_id=00980A, start_date=2025-05-05, end_date=2025-05-31
+- Params (all active ETFs for one day): dataset=TaiwanStockActiveETFHoldingChange, start_date=2025-05-06
+- Columns: date, stock_id (ETF id), component_stock_id (constituent), component_stock_name, buy (integer shares bought that day; increase in constituent shares, 0 if none), sell (integer shares sold that day; decrease in constituent shares as a positive value, 0 if none); exactly one of buy/sell is non-zero per row
+- Derived from TaiwanStockActiveETFHolding by differencing consecutive trading days
+- Note: creations/redemptions scale constituent shares proportionally and are included in buy/sell, so buy/sell reflect the change in held shares and are not the manager's net discretionary buy/sell
+
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
 - Data range: 2001-01-01 ~ now
@@ -530,7 +553,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Derivative (17 datasets)
+## Taiwan Market - Derivative (18 datasets)
 
 ### TaiwanFutOptDailyInfo (期貨、選擇權日成交資訊總覽)
 - Tier: Free

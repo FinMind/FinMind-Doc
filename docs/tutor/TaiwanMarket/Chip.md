@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 21 種資料集，如下:
+在台股籌碼面，我們擁有 24 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -22,6 +22,9 @@
 - [鉅額交易買賣日報表 TaiwanStockBlockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [借貸款項擔保品餘額表 TaiwanStockLoanCollateralBalance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+- [主動式ETF清單 TaiwanStockActiveETFInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfinfo)
+- [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)
+- [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -2980,3 +2983,240 @@
         ```
 
 ----------------------------------
+#### 主動式ETF清單 TaiwanStockActiveETFInfo
+
+- 這張資料表列出台灣掛牌的主動式 ETF（上市 TWSE + 上櫃 TPEX）清單與基本資料，包含 ETF 代號、名稱、ETF 分類與市場別！
+- `category` 為 ETF 分類：`domestic`（國內投資）／`foreign`（跨國投資）
+- `type` 為市場別：`twse`（上市）／`tpex`（上櫃）
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_info()
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFInfo",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset = "TaiwanStockActiveETFInfo"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | stock_name         | category   | type   |
+        |---:|:-----------|-----------:|:-------------------|:-----------|:-------|
+        |  0 | 2026-07-11 |     00980A | 主動野村臺灣優選   | domestic   | twse   |
+        |  1 | 2026-07-11 |     00981A | 主動統一台股增長   | domestic   | twse   |
+        |  2 | 2026-07-11 |     00982A | 主動群益台灣強棒   | domestic   | twse   |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # ETF 代號
+            stock_name: str, # ETF 名稱
+            category: str, # ETF 分類（domestic 國內／foreign 跨國）
+            type: str # 市場別（twse 上市／tpex 上櫃）
+        }
+        ```
+
+
+----------------------------------
+#### 主動式ETF每日持股明細 TaiwanStockActiveETFHolding (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2025-05-05 ~ now
+- 資料更新時間 **星期一至六 盤後**，實際更新時間以 API 資料為主
+- 提供台灣掛牌主動式ETF（上市 + 上櫃）每日完整投資組合，包含成份標的代號、名稱、資產類別、股數、權重、市值、幣別；買賣標的可由相鄰交易日持股差分取得
+- 可用 `data_id` 查詢單一 ETF（如 `00980A`），或僅用日期查詢當日全部主動式ETF持股
+- 備註：各檔起始日不一（依掛牌日與來源可回溯範圍），部分 ETF 自上線後起逐日累積
+- 備註：個別主動式ETF若發行商未對外提供可取得的每日投資組合，該檔暫無持股資料（目前為「主動貝萊德優投等 `00985D`」），待來源開放後補上；此類 ETF 亦不會有對應的每日持股異動 `TaiwanStockActiveETFHoldingChange`
+- 備註：`shares`（股數）為整數；`market_value`（市值）僅**部分**主動式ETF於每日投資組合逐檔揭露，未揭露者該欄為 `0`，可自行以 `shares` 乘上成份股當日收盤價估算
+- 備註：主動式ETF 投資組合含衍生品與現金/負債科目，非僅股票。**賣出選擇權、期貨等空方部位的 `shares`（口數）與 `market_value` 可為負**；應付款項等負債科目 `market_value` 亦可為負。可用 `asset_type`（`stock`／`bond`／`futures`／`option`／`cash`／`etf`／`repo`／`other`）篩選，例如只看純股票持股取 `asset_type == "stock"`
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_holding(
+            stock_id="00980A",
+            start_date="2025-05-05",
+            end_date="2025-05-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFHolding",
+            "data_id": "00980A",
+            "start_date": "2025-05-05",
+            "end_date": "2025-05-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockActiveETFHolding",
+                data_id="00980A",
+                start_date="2025-05-05",
+                end_date="2025-05-31",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | component_stock_id   | component_stock_name   | asset_type   |   shares |   weight |   market_value | currency   |
+        |---:|:-----------|:-----------|:---------------------|:-----------------------|:-------------|---------:|---------:|---------------:|:-----------|
+        |  0 | 2025-05-05 | 00980A     | 2330                 | 台灣積體電路製造       | stock        |   634000 |     9.44 |              0 | TWD        |
+        |  1 | 2025-05-05 | 00980A     | 2454                 | 聯發科技               | stock        |   269000 |     6.49 |              0 | TWD        |
+        |  2 | 2025-05-05 | 00980A     | 2308                 | 台達電子工業           | stock        |   475000 |     5.41 |              0 | TWD        |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期（持股基準日）
+            stock_id: str, # ETF代號（data_id）
+            component_stock_id: str, # 成份標的代號（台股代號 / 海外 ticker / 債券 CUSIP）
+            component_stock_name: str, # 成份標的名稱
+            asset_type: str, # 資產類別 (stock/bond/futures/option/cash/etf/repo/other)
+            shares: int, # 股數（債券為面額、期貨為口數）
+            weight: float, # 權重(%)
+            market_value: float, # 市值(元)
+            currency: str, # 幣別
+        }
+        ```
+
+----------------------------------
+#### 主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2025-05-05 ~ now
+- 資料更新時間 **星期一至六 盤後**，實際更新時間以 API 資料為主
+- 由「主動式ETF每日持股明細 TaiwanStockActiveETFHolding」衍生：相鄰交易日的成份股持股股數相減，得每檔主動式ETF當日買/賣了哪些成份股
+- `buy` 為當日買進股數（成份股股數增加量，未買則 0）、`sell` 為當日賣出股數（成份股股數減少量、取正值，未賣則 0）；兩者皆為整數（股數無小數點），每列僅其一非 0
+- 可用 `data_id` 查詢單一 ETF（如 `00980A`），或僅用日期查詢當日全部主動式ETF持股異動
+- 備註：申購/贖回會讓成份股股數等比例變動，並計入 `buy`/`sell`；故 `buy`/`sell` 是「持股股數變化」，不等於「經理人主動買賣純額」
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_active_etf_holding_change(
+            stock_id="00980A",
+            start_date="2025-05-05",
+            end_date="2025-05-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockActiveETFHoldingChange",
+            "data_id": "00980A",
+            "start_date": "2025-05-05",
+            "end_date": "2025-05-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockActiveETFHoldingChange",
+                data_id="00980A",
+                start_date="2025-05-05",
+                end_date="2025-05-31",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | component_stock_id   | component_stock_name   |   buy |   sell |
+        |---:|:-----------|:-----------|:---------------------|:-----------------------|------:|-------:|
+        |  0 | 2025-05-06 | 00980A     | 2330                 | 台灣積體電路製造       | 12000 |      0 |
+        |  1 | 2025-05-06 | 00980A     | 2454                 | 聯發科技               |     0 |   5000 |
+        |  2 | 2025-05-06 | 00980A     | 2308                 | 台達電子工業           |  8000 |      0 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # ETF代號（data_id）
+            component_stock_id: str, # 成份標的代號
+            component_stock_name: str, # 成份標的名稱
+            buy: int, # 當日買進股數（成份股股數增加量，未買則 0）
+            sell: int, # 當日賣出股數（成份股股數減少量、取正值，未賣則 0）
+        }
+        ```

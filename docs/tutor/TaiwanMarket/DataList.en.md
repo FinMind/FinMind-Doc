@@ -1,4 +1,4 @@
-In the Taiwan financial market, we have 83 datasets, as listed below:
+In the Taiwan financial market, we have 86 datasets, as listed below:
 
 #### Technical
 
@@ -46,6 +46,9 @@ In the Taiwan financial market, we have 83 datasets, as listed below:
 - [Block Trade Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
 - [Block Trade Daily Trading Information TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
 - [Loan Collateral Balance Table TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+- [Taiwan Active ETF List TaiwanStockActiveETFInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfinfo)
+- [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholding-sponsor)
+- [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockactiveetfholdingchange-sponsor)
 - [Disposition Securities Announcement Table TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [Cash Day-Trading Short-Borrow Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
