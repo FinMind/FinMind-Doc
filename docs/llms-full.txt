@@ -178,6 +178,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockPriceTick, data_id=2330, start_date=2020-01-02
 - Columns: date (str), stock_id (str), deal_price (float64), volume (int64), Time (str), TickType (str: 0=unknown, 1=sell, 2=buy)
 - Note: Single day per request.
+- Known limitation: TickType is always 1 for all 2019 data (buy/sell-side classification unavailable that year); complete 0/1/2 values start from 2020-01-02.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockPriceTick&date=2019-01-02` returns whole-day parquet via signed URL, ignores data_id. Python SDK: `api.taiwan_stock_tick(date='2019-01-02', use_object=True)`.
 
 ### TaiwanStockPER (個股 PER、PBR 資料表)
