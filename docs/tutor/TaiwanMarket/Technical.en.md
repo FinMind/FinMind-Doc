@@ -175,7 +175,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Covers both **listed (TWSE) and OTC (TPEX)** warrants' underlying (`target_stock_id`) reference; OTC warrant underlying history goes back to **2011-01-03**, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants).
 - Data update time: **1:30 daily**. The actual update time is based on the API data.
 
-!!! note "A single warrant code may map to different underlying stocks"
+??? note "A single warrant code may map to different underlying stocks"
     Warrants have an expiration date. **Once a warrant code (`stock_id`) expires and is delisted, that code is recycled and reissued to a new warrant on a (possibly different) underlying stock.** As a result, the same `stock_id` may appear in multiple rows in this table, each mapping to a different underlying (`target_stock_id`) and each with its own `date` (listing date) and `end_date` (last trading date).
 
     To determine which underlying a warrant code maps to on a given day, match by **"the query date falls within that row's `date` ~ `end_date` interval"**; reused codes from different periods are naturally distinguished by their non-overlapping intervals.
@@ -1039,8 +1039,10 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Providing the dataset, stock_id, and start_date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
-- Historical data limitation: for all of 2019, the TickType column is always 1, so buy/sell-side classification is not available for that year; complete TickType values (0, 1, 2) are available from 2020-01-02 onward.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,236 stocks took only 3 minutes 40 seconds.
+
+??? note "Historical limitation of TickType in 2019"
+    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: sell-side, 2: buy-side) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
 !!! example
     === "Package"
@@ -1147,7 +1149,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Providing the dataset and date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
-- Historical data limitation: for all of 2019, the TickType column is always 1, so buy/sell-side classification is not available for that year; complete TickType values (0, 1, 2) are available from 2020-01-02 onward.
+
+??? note "Historical limitation of TickType in 2019"
+    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: sell-side, 2: buy-side) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
 !!! example
     === "Package"
@@ -2478,7 +2482,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
         }
         ```
 
-!!! note
+??? note
     When `limit_up` and `limit_down` are **0**, this means the instrument has no price-limit, including:
 
     - Leveraged ETFs (e.g., 00631L)

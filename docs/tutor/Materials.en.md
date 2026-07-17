@@ -86,5 +86,5 @@ In addition, the following list summarizes the available crude oil benchmarks. T
         }
         ```
 
-!!! note "Data Update Note"
+??? note "Data Update Note"
     This table provides the crude oil **spot price**, not a real-time quote. The latest record is typically delayed by several trading days (about a week) before it updates, and differs from the **real-time crude oil futures quotes** commonly seen in the market. Please refer to the latest `date` in the returned data.
