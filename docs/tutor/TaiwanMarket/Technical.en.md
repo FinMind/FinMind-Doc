@@ -1039,8 +1039,10 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Providing the dataset, stock_id, and start_date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
-- Historical data limitation: for all of 2019, the TickType column is always 1, so buy/sell-side classification is not available for that year; complete TickType values (0, 1, 2) are available from 2020-01-02 onward.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,236 stocks took only 3 minutes 40 seconds.
+
+??? note "Historical limitation of TickType in 2019"
+    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: sell-side, 2: buy-side) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
 !!! example
     === "Package"
@@ -1147,7 +1149,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Providing the dataset and date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
-- Historical data limitation: for all of 2019, the TickType column is always 1, so buy/sell-side classification is not available for that year; complete TickType values (0, 1, 2) are available from 2020-01-02 onward.
+
+??? note "Historical limitation of TickType in 2019"
+    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: sell-side, 2: buy-side) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
 !!! example
     === "Package"
