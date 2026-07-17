@@ -35,6 +35,15 @@
 
 **Codex CLI** 的設定格式不同（用 `~/.codex/config.toml` 的 `[mcp_servers]`），或一行 `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`。
 
+!!! tip "Windows 使用者"
+    上述指令以 macOS / Linux 為例，Windows 請改在 **PowerShell** 操作：
+
+    - 安裝 uv：`winget install --id astral-sh.uv -e`（裝完關閉 PowerShell 重開新視窗讓 PATH 生效），驗證 `uvx finmind-mcp --help`。
+    - 設定 Token：`$env:FINMIND_TOKEN = "your_token_here"`（僅當前視窗）或 `setx FINMIND_TOKEN "your_token_here"`（永久，需重開程式生效）；也可直接填入上方設定檔的 `env` 區塊，最不易出錯。
+    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同，請用 `where.exe uvx` 查出完整路徑（通常是 `C:\Users\<帳號>\.local\bin\uvx.exe`），填入設定檔的 `command`；JSON 中反斜線要寫成 `\\`。
+
+    完整步驟（pipx 路線、各 host 的 Windows 設定檔路徑、常見問題）詳見 [Windows 安裝指引](https://github.com/FinMind/FinMind-MCP/blob/master/install/windows.md)。
+
 各 host 的設定檔位置、`claude mcp add` / `gemini mcp add` / `codex mcp add` 指令與驗證方式，詳見 [FinMind-MCP 安裝指南](https://github.com/FinMind/FinMind-MCP/tree/master/install)。
 
 ## 範例 { #examples }
