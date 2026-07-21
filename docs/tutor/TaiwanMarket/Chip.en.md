@@ -1,4 +1,4 @@
-In Taiwan stock chip data, we have 24 datasets as follows:
+In Taiwan stock chip data, we have 25 datasets as follows:
 
 
 - [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -25,6 +25,7 @@ In Taiwan stock chip data, we have 24 datasets as follows:
 - [Taiwan Active ETF List TaiwanStockActiveETFInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-active-etf-list-taiwanstockactiveetfinfo)
 - [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members)
 - [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members)
+- [Industry Chain Money Flow TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#industry-chain-money-flow-taiwanstockindustrychainmoneyflow-only-available-for-sponsor-members)
 - [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -3219,5 +3220,84 @@ In Taiwan stock chip data, we have 24 datasets as follows:
             component_stock_name: str, # constituent name
             buy: int, # shares bought that day (increase in constituent shares; 0 if none)
             sell: int, # shares sold that day (decrease in constituent shares, positive; 0 if none)
+        }
+        ```
+
+#### Industry Chain Money Flow TaiwanStockIndustryChainMoneyFlow (only available for [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 1992-01-04 ~ now
+- Update time: **Monday to Saturday, after market close**; actual update time subject to API data
+- Shows where the daily trading money goes across industry chains: daily per-stock trading data aggregated by "Per-Company Industry Chain TaiwanStockIndustryChain" (industry / sub_industry), including stock count, trading volume, trading money, and the percentage of the whole-market individual-stock trading money
+- Rows with an empty `sub_industry` are the industry-chain totals (each stock counted once; **not** equal to the sum of sub-industry rows, because one stock can belong to multiple sub-industries of the same chain); other rows are sub-industry details
+- The denominator of `trading_money_pct` is the whole-market individual-stock trading money of the day (ETF / ETN / beneficiary certificates / TDR excluded)
+- Query by date range (no `data_id`); returns all industry chains within the period
+- Note: one stock can belong to multiple industry chains, so the percentages across chains sum to more than 100%; the dataset is designed for comparing relative money strength and rotation between chains. Historical dates are calculated with the current industry-chain classification.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_stock_industry_chain_money_flow(
+            start_date="2026-07-01",
+            end_date="2026-07-17",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # api token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockIndustryChainMoneyFlow",
+            "start_date": "2026-07-01",
+            "end_date": "2026-07-17",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # api token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockIndustryChainMoneyFlow",
+                start_date="2026-07-01",
+                end_date="2026-07-17",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | industry   | sub_industry   |   stock_count |   trading_volume |   trading_money |   trading_money_pct |
+        |---:|:-----------|:-----------|:---------------|--------------:|-----------------:|----------------:|--------------------:|
+        |  0 | 2026-07-17 | 半導體     |                |           314 |       2083008796 |    693623697527 |             52.3044 |
+        |  1 | 2026-07-17 | 半導體     | 晶圓製造       |            23 |       1114571480 |    400277383605 |             30.1839 |
+        |  2 | 2026-07-17 | 半導體     | IC封裝測試     |            35 |        430118317 |     85061031396 |              6.4142 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            industry: str, # industry chain
+            sub_industry: str, # sub industry; empty string = industry-chain total row
+            stock_count: int, # number of component stocks traded that day
+            trading_volume: int, # total trading volume (shares)
+            trading_money: int, # total trading money
+            trading_money_pct: float, # % of whole-market individual-stock trading money
         }
         ```
