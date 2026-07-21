@@ -457,6 +457,14 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Derived from TaiwanStockActiveETFHolding by differencing consecutive trading days
 - Note: creations/redemptions scale constituent shares proportionally and are included in buy/sell, so buy/sell reflect the change in held shares and are not the manager's net discretionary buy/sell
 
+### TaiwanStockIndustryChainMoneyFlow (台股產業鏈資金流向)
+- Tier: Sponsor
+- Data range: 1992-01-04 ~ now
+- Params: dataset=TaiwanStockIndustryChainMoneyFlow, start_date=2026-07-01, end_date=2026-07-17 (no data_id; returns all industry chains in the period)
+- Columns: date, industry (industry chain), sub_industry (empty string = industry-chain total row), stock_count, trading_volume, trading_money, trading_money_pct (% of whole-market individual-stock trading money; ETF/ETN/beneficiary certificates/TDR excluded from the denominator)
+- Derived daily from TaiwanStockPrice aggregated by TaiwanStockIndustryChain (industry / sub_industry)
+- Note: industry-chain total rows count each stock once and do NOT equal the sum of sub-industry rows (one stock can belong to multiple sub-industries); one stock can belong to multiple chains, so percentages across chains sum to more than 100%; historical dates use the current industry-chain classification
+
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
 - Data range: 2001-01-01 ~ now

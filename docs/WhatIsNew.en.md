@@ -1,3 +1,6 @@
+#### 2026-07-21
+* Added [Industry Chain Money Flow TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#industry-chain-money-flow-taiwanstockindustrychainmoneyflow-only-available-for-sponsor-members): data range 1992-01-04 ~ now
+
 #### 2026-07-13
 * Added [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members): data range 2025-05-05 ~ now
 * Added [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members): data range 2025-05-05 ~ now

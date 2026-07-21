@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 24 種資料集，如下:
+在台股籌碼面，我們擁有 25 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -25,6 +25,7 @@
 - [主動式ETF清單 TaiwanStockActiveETFInfo](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfinfo)
 - [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)
 - [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)
+- [台股產業鏈資金流向 TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockindustrychainmoneyflow-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -3218,5 +3219,84 @@
             component_stock_name: str, # 成份標的名稱
             buy: int, # 當日買進股數（成份股股數增加量，未買則 0）
             sell: int, # 當日賣出股數（成份股股數減少量、取正值，未賣則 0）
+        }
+        ```
+
+#### 台股產業鏈資金流向 TaiwanStockIndustryChainMoneyFlow (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：1992-01-04 ~ now
+- 資料更新時間 **星期一至六 盤後**，實際更新時間以 API 資料為主
+- 計算每日交易資金在各產業鏈的分佈：以「個體公司所屬產業鏈 TaiwanStockIndustryChain」（industry / sub_industry）彙總每日個股成交，包含成分股數、成交股數、成交金額、佔全市場個股成交金額比重(%)
+- `sub_industry` 為空字串的列為該產業鏈總計（成分股不重複計算，**不等於**子產業列加總，因一檔股票可屬同產業鏈多個子產業）；其餘列為子產業明細
+- `trading_money_pct` 分母為當日全市場個股成交金額（排除 ETF／ETN／受益證券／存託憑證等非個股）
+- 以日期區間查詢（無 `data_id`），回傳期間內全部產業鏈
+- 備註：一檔股票可屬多條產業鏈，各產業鏈佔比加總會超過 100%，適合觀察產業鏈之間的相對資金強弱與輪動；歷史資料以目前的產業鏈分類回溯計算
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_stock_industry_chain_money_flow(
+            start_date="2026-07-01",
+            end_date="2026-07-17",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockIndustryChainMoneyFlow",
+            "start_date": "2026-07-01",
+            "end_date": "2026-07-17",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockIndustryChainMoneyFlow",
+                start_date="2026-07-01",
+                end_date="2026-07-17",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | industry   | sub_industry   |   stock_count |   trading_volume |   trading_money |   trading_money_pct |
+        |---:|:-----------|:-----------|:---------------|--------------:|-----------------:|----------------:|--------------------:|
+        |  0 | 2026-07-17 | 半導體     |                |           314 |       2083008796 |    693623697527 |             52.3044 |
+        |  1 | 2026-07-17 | 半導體     | 晶圓製造       |            23 |       1114571480 |    400277383605 |             30.1839 |
+        |  2 | 2026-07-17 | 半導體     | IC封裝測試     |            35 |        430118317 |     85061031396 |              6.4142 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            industry: str, # 產業鏈
+            sub_industry: str, # 子產業；空字串代表該產業鏈總計列
+            stock_count: int, # 成分股數（當日有成交）
+            trading_volume: int, # 成交股數合計
+            trading_money: int, # 成交金額合計
+            trading_money_pct: float, # 佔當日全市場個股成交金額比重(%)
         }
         ```

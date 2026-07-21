@@ -1,3 +1,6 @@
+#### 2026-07-21
+* 新增 [台股產業鏈資金流向 TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockindustrychainmoneyflow-sponsor)：資料區間 1992-01-04 ~ now
+
 #### 2026-07-13
 * 新增 [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)：資料區間 2025-05-05 ~ now
 * 新增 [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)：資料區間 2025-05-05 ~ now
