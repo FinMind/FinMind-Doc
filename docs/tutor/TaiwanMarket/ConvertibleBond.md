@@ -1,11 +1,12 @@
 
-在台股可轉換公司債，我們擁有 5 種資料集，如下:
+在台股可轉換公司債，我們擁有 6 種資料集，如下:
 
 - [可轉債總覽 TaiwanStockConvertibleBondInfo](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
 - [可轉債日成交資訊 TaiwanStockConvertibleBondDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
 - [可轉債三大法人日交易資訊 TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
 - [可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
 - [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)
+- [可轉債賣回權時程 TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)
 
 
 #### 可轉債總覽 TaiwanStockConvertibleBondInfo(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
@@ -668,5 +669,84 @@
             custody_accounts: int, # 保管戶數
             pledged_units: int, # 設質單位數
             date: str # 日期
+        }
+        ```
+
+---
+
+#### 可轉債賣回權時程 TaiwanStockConvertibleBondPutProvision(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2011-06-22 ~ now（含未來已公告場次）。
+- 提供每檔可轉債的賣回基準日、賣回金額、賣回收益率。
+- 資料更新時間 **星期一至五 19:00**，實際更新時間以 API 資料為主。
+
+??? note "包含未來已公告的賣回場次"
+    本資料集包含未來已公告的賣回場次（通常提前約一年公告），`end_date` 可設為未來日期，取得即將到來的賣回時程；不帶 `data_id` 則回傳區間內所有可轉債的賣回場次。與 `TaiwanStockConvertibleBondDailyOverview` 的賣回相關欄位（僅在賣回程序公告期間才有值）互補，若需完整賣回時程請使用本資料集。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_convertible_bond_put_provision(
+            cb_id="14773",
+            start_date="2011-06-01",
+            end_date="2011-06-30",
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockConvertibleBondPutProvision",
+            "data_id": "14773",
+            "start_date": "2011-06-01",
+            "end_date": "2011-06-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockConvertibleBondPutProvision",
+                data_id="14773",
+                start_date= "2011-06-01",
+                end_date='2011-06-30'
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       |   cb_id | cb_name   |   PutPrice |   PutYieldRate |
+        |---:|:-----------|--------:|:----------|-----------:|---------------:|
+        |  0 | 2011-06-22 |   14773 | 聚陽三    |     101.51 |           0.75 |
+    === "Schema"
+        ```
+        {
+            date: str, # 賣回基準日
+            cb_id: str, # 可轉債代碼
+            cb_name: str, # 可轉債名稱
+            PutPrice: float64, # 賣回金額
+            PutYieldRate: float64 # 賣回收益率
         }
         ```
