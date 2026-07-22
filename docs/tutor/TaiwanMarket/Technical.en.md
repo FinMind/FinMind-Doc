@@ -1042,7 +1042,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,236 stocks took only 3 minutes 40 seconds.
 
 ??? note "Historical limitation of TickType in 2019"
-    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: sell-side, 2: buy-side) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
 !!! example
     === "Package"
@@ -1137,7 +1137,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
             deal_price: float64, # deal price
             volume: int64, # volume
             Time: str, # time
-            TickType: str # tick type (0: undetermined, 1: sell-side, 2: buy-side)
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
         }
         ```
 
@@ -1151,7 +1151,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Some data is missing on this date: 2019-02-20.
 
 ??? note "Historical limitation of TickType in 2019"
-    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: sell-side, 2: buy-side) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
 !!! example
     === "Package"
@@ -1222,7 +1222,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
             deal_price: float64, # deal price
             volume: int64, # volume
             Time: str, # time
-            TickType: str # tick type (0: undetermined, 1: sell-side, 2: buy-side)
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
         }
         ```
 

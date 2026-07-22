@@ -90,7 +90,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
             yesterday_volume: int64, # yesterday's volume
             date: str, # transaction time
             stock_id: str, # stock code
-            TickType: str # tick type (0: undetermined, 1: sell-side, 2: buy-side)
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
         }
         ```
 
@@ -249,7 +249,7 @@ Currently supports real-time quotes for TAIEX futures and TAIEX options.
             volume_ratio: float64, # ratio of today's volume to yesterday's
             date: str, # transaction time
             futures_id: str, # futures code
-            TickType: str # tick type (0: undetermined, 1: sell-side, 2: buy-side)
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
         }
         ```
 
@@ -336,6 +336,6 @@ Currently supports real-time quotes for TAIEX futures and TAIEX options.
             volume_ratio: float64, # ratio of today's volume to yesterday's
             date: str, # transaction time
             options_id: str, # options code
-            TickType: str # tick type (0: undetermined, 1: sell-side, 2: buy-side)
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
         }
         ```
