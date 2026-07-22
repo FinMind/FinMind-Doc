@@ -413,6 +413,9 @@
 
 #### 可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
+??? note "賣回權／強制贖回相關欄位多為空值的說明"
+    `LatestInitialDateOfPut`（最近賣回權起日）、`LatestDueDateOfPut`（最近賣回權迄日）、`LatestPutPrice`（最近賣回權價格）、`InitialDateOfEarlyRedemption`（強制贖回起日）、`DueDateOfEarlyRedemption`（強制贖回迄日）、`EarlyRedemptionPrice`（強制贖回價格）等欄位，僅在該可轉債的賣回權或強制贖回程序公告期間才會有值，事件結束後即恢復為空值。因此多數日期、多數可轉債的這些欄位為空屬正常現象，並非資料缺漏。本資料集為每日總覽快照，不包含發行條款的完整靜態資訊（如完整賣回權時程、到期還本價格）。
+
 !!! example
     === "Package"
         ```python
@@ -504,6 +507,9 @@
         ```
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 使用)
+
+??? note "賣回權／強制贖回相關欄位多為空值的說明"
+    `LatestInitialDateOfPut`（最近賣回權起日）、`LatestDueDateOfPut`（最近賣回權迄日）、`LatestPutPrice`（最近賣回權價格）、`InitialDateOfEarlyRedemption`（強制贖回起日）、`DueDateOfEarlyRedemption`（強制贖回迄日）、`EarlyRedemptionPrice`（強制贖回價格）等欄位，僅在該可轉債的賣回權或強制贖回程序公告期間才會有值，事件結束後即恢復為空值。因此多數日期、多數可轉債的這些欄位為空屬正常現象，並非資料缺漏。本資料集為每日總覽快照，不包含發行條款的完整靜態資訊（如完整賣回權時程、到期還本價格）。
 
 !!! example
     === "Package"
