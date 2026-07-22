@@ -738,6 +738,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockConvertibleBondDailyOverview, data_id=15131, start_date=2020-04-01, end_date=2020-04-10
 - Params (all, Backer/Sponsor): dataset=TaiwanStockConvertibleBondDailyOverview, start_date=2020-04-01 (不帶 data_id，取得該日所有可轉債資料)
 - Columns: cb_id, cb_name, date, InitialDateOfConversion, DueDateOfConversion, InitialDateOfStopConversion, DueDateOfStopConversion, ConversionPrice, NextEffectiveDateOfConversionPrice, LatestInitialDateOfPut, LatestDueDateOfPut, LatestPutPrice, InitialDateOfEarlyRedemption, DueDateOfEarlyRedemption, EarlyRedemptionPrice, DateOfDelisted, IssuanceAmount, OutstandingAmount, ReferencePrice, PriceOfUnderlyingStock, InitialDateOfSuspension, DueDateOfSuspension, CouponRate
+- Note: the put/early-redemption fields (LatestInitialDateOfPut, LatestDueDateOfPut, LatestPutPrice, InitialDateOfEarlyRedemption, DueDateOfEarlyRedemption, EarlyRedemptionPrice) are populated only while a put or early-redemption process is publicly announced for that bond; empty values for most bonds on most dates are expected behavior, not missing data. The dataset does not include full static issuance terms (e.g., complete put schedule or redemption price at maturity).
 
 ### TaiwanStockConvertibleBondMonthlyAnalysis (可轉換公司債月份分析表)
 - Tier: Backer/Sponsor

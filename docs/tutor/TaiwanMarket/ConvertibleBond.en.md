@@ -413,6 +413,9 @@ For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
 
 #### Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
+??? note "Why the put / early-redemption fields are mostly empty"
+    The fields `LatestInitialDateOfPut`, `LatestDueDateOfPut`, `LatestPutPrice`, `InitialDateOfEarlyRedemption`, `DueDateOfEarlyRedemption`, and `EarlyRedemptionPrice` are only populated while a put or early-redemption process is publicly announced for that convertible bond; they revert to empty once the event window ends. Empty values for most bonds on most dates are therefore expected behavior, not missing data. This dataset is a daily overview snapshot and does not include full static issuance terms (e.g., the complete put schedule or the redemption price at maturity).
+
 !!! example
     === "Package"
         ```python
@@ -504,6 +507,9 @@ For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
         ```
 
 #### Fetch all data for a specific date in one request (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+??? note "Why the put / early-redemption fields are mostly empty"
+    The fields `LatestInitialDateOfPut`, `LatestDueDateOfPut`, `LatestPutPrice`, `InitialDateOfEarlyRedemption`, `DueDateOfEarlyRedemption`, and `EarlyRedemptionPrice` are only populated while a put or early-redemption process is publicly announced for that convertible bond; they revert to empty once the event window ends. Empty values for most bonds on most dates are therefore expected behavior, not missing data. This dataset is a daily overview snapshot and does not include full static issuance terms (e.g., the complete put schedule or the redemption price at maturity).
 
 !!! example
     === "Package"
