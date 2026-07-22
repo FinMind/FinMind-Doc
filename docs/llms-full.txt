@@ -749,6 +749,16 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
+### TaiwanStockConvertibleBondPutProvision (可轉債賣回權時程)
+- Tier: Backer/Sponsor
+- Data range: 2011-06-22 ~ now (includes announced future put dates, typically up to ~1 year ahead)
+- Update: Mon-Fri 19:00
+- Params: dataset=TaiwanStockConvertibleBondPutProvision, data_id=14773, start_date=2011-06-01, end_date=2011-06-30
+- Columns: date (str, put record date), cb_id (str), cb_name (str), PutPrice (float64), PutYieldRate (float64)
+- Note: set end_date to a future date to retrieve upcoming put schedules; omit data_id to retrieve all bonds in the range. Complements TaiwanStockConvertibleBondDailyOverview's put fields (which are only populated during announced put windows).
+
+---
+
 ## Taiwan Market - Others (3 datasets)
 
 ### TaiwanStockNews (相關新聞)

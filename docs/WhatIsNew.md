@@ -1,3 +1,6 @@
+#### 2026-07-23
+* 新增 [可轉債賣回權時程 TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)：每檔可轉債的賣回基準日、賣回金額、賣回收益率，含未來已公告場次；資料區間 2011-06-22 ~ now
+
 #### 2026-07-13
 * 新增 [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)：資料區間 2025-05-05 ~ now
 * 新增 [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)：資料區間 2025-05-05 ~ now
