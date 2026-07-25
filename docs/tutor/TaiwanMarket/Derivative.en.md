@@ -2671,7 +2671,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 #### Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily
 
 - Data range: 2026-06-01 ~ now
-- Data update time: **Monday to Friday 16:30**. The actual update time is based on the API data.
+- Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
 
 !!! example
     === "Python-request"
@@ -2806,7 +2806,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 #### Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily
 
 - Data range: 2026-06-01 ~ now
-- Data update time: **Monday to Friday 16:30**. The actual update time is based on the API data.
+- Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
 
 !!! example
     === "Python-request"
