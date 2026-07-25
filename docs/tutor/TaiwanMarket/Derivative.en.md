@@ -2683,9 +2683,9 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanAssetSwapFixedIncomeDaily",
-            "data_id": "2330",
-            "start_date": "2025-04-01",
-            "end_date": "2025-04-12",
+            "data_id": "17172",
+            "start_date": "2026-06-15",
+            "end_date": "2026-06-30",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -2704,9 +2704,9 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
             url = url,
             query = list(
                 dataset="TaiwanAssetSwapFixedIncomeDaily",
-                data_id="2330",
-                start_date= "2025-04-01",
-                end_date= "2025-04-12"
+                data_id="17172",
+                start_date= "2026-06-15",
+                end_date= "2026-06-30"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -2720,8 +2720,11 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
     === "DataFrame"
         |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
         |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
-        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |          1.25 |           1.85 |           1.55 |                   3.0 |
-        |  1 | 2025-04-02 | 2330       | 台積電       |         300000000 |                        3 |          1.30 |           1.80 |           1.50 |                   2.5 |
+        |  0 | 2026-06-15 | 17172      | 長興二       |         330000000 |                       13 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  1 | 2026-06-16 | 17172      | 長興二       |         265000000 |                       10 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  2 | 2026-06-17 | 17172      | 長興二       |          95000000 |                        4 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  3 | 2026-06-18 | 17172      | 長興二       |          40000000 |                        3 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  4 | 2026-06-22 | 17172      | 長興二       |           5000000 |                        1 |          3.25 |           3.25 |           3.25 |                     3 |
     === "Schema"
         ```
         {
@@ -2749,7 +2752,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanAssetSwapFixedIncomeDaily",
-            "start_date": "2025-04-01",
+            "start_date": "2026-06-15",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -2768,7 +2771,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
             url = url,
             query = list(
                 dataset="TaiwanAssetSwapFixedIncomeDaily",
-                start_date= "2025-04-01"
+                start_date= "2026-06-15"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -2782,8 +2785,8 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
     === "DataFrame"
         |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
         |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
-        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |          1.25 |           1.85 |           1.55 |                   3.0 |
-        |  1 | 2025-04-01 | 2317       | 鴻海         |         200000000 |                        2 |          1.40 |           1.75 |           1.58 |                   2.0 |
+        |  0 | 2026-06-15 | 17172      | 長興二       |         330000000 |                       13 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  1 | 2026-06-15 | 17182      | 長興三       |         100000000 |                        5 |          3.10 |           3.10 |           3.10 |                     3 |
     === "Schema"
         ```
         {
@@ -2815,9 +2818,9 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanAssetSwapOptionDaily",
-            "data_id": "2330",
-            "start_date": "2025-04-01",
-            "end_date": "2025-04-12",
+            "data_id": "17172",
+            "start_date": "2026-06-15",
+            "end_date": "2026-06-30",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -2836,9 +2839,9 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
             url = url,
             query = list(
                 dataset="TaiwanAssetSwapOptionDaily",
-                data_id="2330",
-                start_date= "2025-04-01",
-                end_date= "2025-04-12"
+                data_id="17172",
+                start_date= "2026-06-15",
+                end_date= "2026-06-30"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -2852,8 +2855,11 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
     === "DataFrame"
         |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
         |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
-        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |             2.50 |              4.20 |              3.35 |                   3.0 |
-        |  1 | 2025-04-02 | 2330       | 台積電       |         300000000 |                        3 |             2.80 |              4.00 |              3.40 |                   2.5 |
+        |  0 | 2026-06-15 | 17172      | 長興二       |        1079200000 |                      293 |            39.61 |             45.93 |           41.7304 |                     3 |
+        |  1 | 2026-06-16 | 17172      | 長興二       |         312800000 |                      128 |            38.50 |             42.48 |           39.4443 |                     3 |
+        |  2 | 2026-06-17 | 17172      | 長興二       |          26300000 |                       79 |            36.67 |             42.00 |           38.8259 |                     3 |
+        |  3 | 2026-06-18 | 17172      | 長興二       |          25000000 |                       48 |            38.85 |             41.8381 |          40.1887 |                     3 |
+        |  4 | 2026-06-22 | 17172      | 長興二       |          19700000 |                       57 |            39.24 |             42.42 |           40.5177 |                     3 |
     === "Schema"
         ```
         {
@@ -2881,7 +2887,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanAssetSwapOptionDaily",
-            "start_date": "2025-04-01",
+            "start_date": "2026-06-15",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -2900,7 +2906,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
             url = url,
             query = list(
                 dataset="TaiwanAssetSwapOptionDaily",
-                start_date= "2025-04-01"
+                start_date= "2026-06-15"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -2914,8 +2920,8 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
     === "DataFrame"
         |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
         |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
-        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |             2.50 |              4.20 |              3.35 |                   3.0 |
-        |  1 | 2025-04-01 | 2317       | 鴻海         |         200000000 |                        2 |             2.60 |              3.80 |              3.20 |                   2.0 |
+        |  0 | 2026-06-15 | 17172      | 長興二       |        1079200000 |                      293 |            39.61 |             45.93 |           41.7304 |                     3 |
+        |  1 | 2026-06-15 | 17182      | 長興三       |         500000000 |                      150 |            38.00 |             43.50 |           40.2500 |                     3 |
     === "Schema"
         ```
         {
