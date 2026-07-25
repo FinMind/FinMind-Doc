@@ -1,5 +1,5 @@
 
-在台股衍生性商品資料，我們擁有 18 種資料集，如下:
+在台股衍生性商品資料，我們擁有 20 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
@@ -18,6 +18,8 @@
 - [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 - [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)
+- [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily)
+- [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily)
 
 ----------------------------------
 #### 期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo
@@ -2663,6 +2665,270 @@
             date: str, # 日期
             time: str, # 時間
             vix: float64 # 波動率指數
+        }
+        ```
+
+----------------------------------
+#### 資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily
+
+- 資料區間：2026-06-01 ~ now
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapFixedIncomeDaily",
+            "data_id": "2330",
+            "start_date": "2025-04-01",
+            "end_date": "2025-04-12",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapFixedIncomeDaily",
+                data_id="2330",
+                start_date= "2025-04-01",
+                end_date= "2025-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
+        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |          1.25 |           1.85 |           1.55 |                   3.0 |
+        |  1 | 2025-04-02 | 2330       | 台積電       |         300000000 |                        3 |          1.30 |           1.80 |           1.50 |                   2.5 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            rate_lowest: float64, # 最低利率
+            rate_highest: float64, # 最高利率
+            rate_average: float64, # 平均利率
+            contract_term_years: float64 # 合約期間(年)
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapFixedIncomeDaily",
+            "start_date": "2025-04-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapFixedIncomeDaily",
+                start_date= "2025-04-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
+        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |          1.25 |           1.85 |           1.55 |                   3.0 |
+        |  1 | 2025-04-01 | 2317       | 鴻海         |         200000000 |                        2 |          1.40 |           1.75 |           1.58 |                   2.0 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            rate_lowest: float64, # 最低利率
+            rate_highest: float64, # 最高利率
+            rate_average: float64, # 平均利率
+            contract_term_years: float64 # 合約期間(年)
+        }
+        ```
+
+----------------------------------
+#### 資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily
+
+- 資料區間：2026-06-01 ~ now
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapOptionDaily",
+            "data_id": "2330",
+            "start_date": "2025-04-01",
+            "end_date": "2025-04-12",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapOptionDaily",
+                data_id="2330",
+                start_date= "2025-04-01",
+                end_date= "2025-04-12"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
+        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |             2.50 |              4.20 |              3.35 |                   3.0 |
+        |  1 | 2025-04-02 | 2330       | 台積電       |         300000000 |                        3 |             2.80 |              4.00 |              3.40 |                   2.5 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            premium_lowest: float64, # 最低權利金
+            premium_highest: float64, # 最高權利金
+            premium_average: float64, # 平均權利金
+            contract_term_years: float64 # 合約期間(年)
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapOptionDaily",
+            "start_date": "2025-04-01",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapOptionDaily",
+                start_date= "2025-04-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
+        |  0 | 2025-04-01 | 2330       | 台積電       |         500000000 |                        5 |             2.50 |              4.20 |              3.35 |                   3.0 |
+        |  1 | 2025-04-01 | 2317       | 鴻海         |         200000000 |                        2 |             2.60 |              3.80 |              3.20 |                   2.0 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            stock_name: str, # 股票名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            premium_lowest: float64, # 最低權利金
+            premium_highest: float64, # 最高權利金
+            premium_average: float64, # 平均權利金
+            contract_term_years: float64 # 合約期間(年)
         }
         ```
 
