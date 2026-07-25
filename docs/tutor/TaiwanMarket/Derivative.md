@@ -18,8 +18,8 @@
 - [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 - [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)
-- [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily)
-- [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily)
+- [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily-backersponsor)
+- [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily-backersponsor)
 
 ----------------------------------
 #### 期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo
@@ -2669,7 +2669,7 @@
         ```
 
 ----------------------------------
-#### 資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily
+#### 資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2026-06-01 ~ now
 - 資料更新時間 **星期一至五 22:00 ~ 24:00**，實際更新時間以 API 資料為主
@@ -2804,7 +2804,7 @@
         ```
 
 ----------------------------------
-#### 資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily
+#### 資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2026-06-01 ~ now
 - 資料更新時間 **星期一至五 22:00 ~ 24:00**，實際更新時間以 API 資料為主

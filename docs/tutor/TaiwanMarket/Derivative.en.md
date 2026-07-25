@@ -18,8 +18,8 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 - [Futures Final Settlement Price TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [Options Final Settlement Price TaiwanOptionFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 - [TAIEX Options Volatility Index TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)
-- [Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily)
-- [Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily)
+- [Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily-backersponsor)
+- [Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily-backersponsor)
 
 ----------------------------------
 #### Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo
@@ -2668,7 +2668,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
         ```
 
 ----------------------------------
-#### Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily
+#### Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Data range: 2026-06-01 ~ now
 - Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
@@ -2803,7 +2803,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
         ```
 
 ----------------------------------
-#### Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily
+#### Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Data range: 2026-06-01 ~ now
 - Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
