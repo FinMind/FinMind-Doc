@@ -3230,8 +3230,11 @@ In Taiwan stock chip data, we have 25 datasets as follows:
 - Shows where the daily trading money goes across industry chains: daily per-stock trading data aggregated by "Per-Company Industry Chain TaiwanStockIndustryChain" (industry / sub_industry), including stock count, trading volume, trading money, and the percentage of the whole-market individual-stock trading money
 - Rows with an empty `sub_industry` are the industry-chain totals (each stock counted once; **not** equal to the sum of sub-industry rows, because one stock can belong to multiple sub-industries of the same chain); other rows are sub-industry details
 - The denominator of `trading_money_pct` is the whole-market individual-stock trading money of the day (ETF / ETN / beneficiary certificates / TDR excluded)
-- Query by date range (no `data_id`); returns all industry chains within the period
+- **One day of data per request**: query with a single `start_date` (no `data_id`); returns all industry chains for that day
 - Note: one stock can belong to multiple industry chains, so the percentages across chains sum to more than 100%; the dataset is designed for comparing relative money strength and rotation between chains. Historical dates are calculated with the current industry-chain classification.
+
+??? note "One day of data per request"
+    This dataset returns about 558 rows per trading day (industry-chain totals + sub-industry details), so a single request only serves one day: pass a single `start_date` and do not pass `end_date` (passing an `end_date` different from `start_date` returns an error asking you to remove it). To cover a period, query day by day and concatenate the results.
 
 !!! example
     === "Package"
@@ -3241,8 +3244,7 @@ In Taiwan stock chip data, we have 25 datasets as follows:
         api = DataLoader()
         api.login_by_token(api_token='token')
         df = api.taiwan_stock_industry_chain_money_flow(
-            start_date="2026-07-01",
-            end_date="2026-07-17",
+            start_date="2026-07-17",
         )
         ```
     === "Python"
@@ -3254,8 +3256,7 @@ In Taiwan stock chip data, we have 25 datasets as follows:
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockIndustryChainMoneyFlow",
-            "start_date": "2026-07-01",
-            "end_date": "2026-07-17",
+            "start_date": "2026-07-17",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -3272,8 +3273,7 @@ In Taiwan stock chip data, we have 25 datasets as follows:
             url = url,
             query = list(
                 dataset="TaiwanStockIndustryChainMoneyFlow",
-                start_date="2026-07-01",
-                end_date="2026-07-17",
+                start_date="2026-07-17",
                 token=token
             )
         )

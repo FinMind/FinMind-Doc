@@ -3229,8 +3229,11 @@
 - 計算每日交易資金在各產業鏈的分佈：以「個體公司所屬產業鏈 TaiwanStockIndustryChain」（industry / sub_industry）彙總每日個股成交，包含成分股數、成交股數、成交金額、佔全市場個股成交金額比重(%)
 - `sub_industry` 為空字串的列為該產業鏈總計（成分股不重複計算，**不等於**子產業列加總，因一檔股票可屬同產業鏈多個子產業）；其餘列為子產業明細
 - `trading_money_pct` 分母為當日全市場個股成交金額（排除 ETF／ETN／受益證券／存託憑證等非個股）
-- 以日期區間查詢（無 `data_id`），回傳期間內全部產業鏈
+- **一次提供一天的資料**：以單一 `start_date` 查詢（無 `data_id`），回傳當日全部產業鏈
 - 備註：一檔股票可屬多條產業鏈，各產業鏈佔比加總會超過 100%，適合觀察產業鏈之間的相對資金強弱與輪動；歷史資料以目前的產業鏈分類回溯計算
+
+??? note "一次只提供一天的資料"
+    本資料集每個交易日約 558 列（產業鏈總計列 + 子產業明細列），因此單次查詢只提供一天：請帶單一 `start_date`，不要帶 `end_date`（帶了且與 `start_date` 不同會回傳錯誤，提示移除 `end_date`）。需要一段期間的資料請逐日查詢後自行合併。
 
 !!! example
     === "Package"
@@ -3240,8 +3243,7 @@
         api = DataLoader()
         api.login_by_token(api_token='token')
         df = api.taiwan_stock_industry_chain_money_flow(
-            start_date="2026-07-01",
-            end_date="2026-07-17",
+            start_date="2026-07-17",
         )
         ```
     === "Python"
@@ -3253,8 +3255,7 @@
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockIndustryChainMoneyFlow",
-            "start_date": "2026-07-01",
-            "end_date": "2026-07-17",
+            "start_date": "2026-07-17",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -3271,8 +3272,7 @@
             url = url,
             query = list(
                 dataset="TaiwanStockIndustryChainMoneyFlow",
-                start_date="2026-07-01",
-                end_date="2026-07-17",
+                start_date="2026-07-17",
                 token=token
             )
         )
