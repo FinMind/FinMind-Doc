@@ -1099,6 +1099,9 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 
 - Data range: 2011-01-01 ~ now
 
+??? note "data_id (stock id) is not required"
+    Omitting `data_id` and providing only the date range returns the capital reduction resumption reference prices of **all** stocks within that range. This whole-market query without `data_id` is available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members; free members should query a single stock with `data_id`.
+
 !!! example
     === "Python"
         ```python

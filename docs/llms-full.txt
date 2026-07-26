@@ -525,8 +525,9 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockCapitalReductionReferencePrice (減資恢復買賣參考價格)
 - Tier: Free
 - Data range: 2011-01-01 ~ now
-- Params: dataset=TaiwanStockCapitalReductionReferencePrice, data_id=2327, start_date=2010-01-01
+- Params: dataset=TaiwanStockCapitalReductionReferencePrice, data_id=2327, start_date=2010-01-01 (data_id is optional)
 - Columns: date (str), stock_id (str), ClosingPriceonTheLastTradingDay (float), PostReductionReferencePrice (float), LimitUp (float), LimitDown (float), OpeningReferencePrice (float), ExrightReferencePrice (float), ReasonforCapitalReduction (str)
+- Note: data_id (stock id) is optional - the date range alone returns all stocks in that range, but this whole-market query requires Backer/Sponsor; free members should pass data_id.
 
 ### TaiwanStockMarketValue (台灣股價市值表)
 - Tier: Backer/Sponsor
@@ -768,6 +769,16 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Update: Mon-Sat 18:00
 - Params: dataset=TaiwanStockConvertibleBondMonthlyAnalysis, data_id=13166, start_date=2026-05-01, end_date=2026-06-01
 - Columns: cb_id (str), cb_name (str), cb_name_en (str), custody_balance (int), last_month_balance (int), change (int), change_percent (float64), issued_units (int), custody_accounts (int), pledged_units (int), date (str)
+
+---
+
+### TaiwanStockConvertibleBondPutProvision (可轉債賣回權時程)
+- Tier: Backer/Sponsor
+- Data range: 2011-06-22 ~ now (includes announced future put dates, typically up to ~1 year ahead)
+- Update: Mon-Fri 19:00
+- Params: dataset=TaiwanStockConvertibleBondPutProvision, start_date=2011-06-01, end_date=2011-12-31 (data_id is optional)
+- Columns: date (str, put record date), cb_id (str), cb_name (str), PutPrice (float64), PutYieldRate (float64)
+- Note: data_id (convertible bond id) is NOT required - the date range alone returns the put dates of all convertible bonds in that range; add data_id only to filter a single bond. Set end_date to a future date to retrieve upcoming put schedules. Complements TaiwanStockConvertibleBondDailyOverview's put fields (which are only populated during announced put windows).
 
 ---
 

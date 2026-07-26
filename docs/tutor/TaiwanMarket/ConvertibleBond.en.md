@@ -1,11 +1,12 @@
 
-For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
+For Taiwan stock convertible bonds, we have 6 datasets, as listed below:
 
 - [Convertible Bond Overview TaiwanStockConvertibleBondInfo](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
 - [Convertible Bond Daily Trading Information TaiwanStockConvertibleBondDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
 - [Convertible Bond Institutional Investors Daily Trading TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
 - [Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
 - [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)
+- [Convertible Bond Put Provision Schedule TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)
 
 
 #### Convertible Bond Overview TaiwanStockConvertibleBondInfo (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
@@ -668,5 +669,90 @@ For Taiwan stock convertible bonds, we have 5 datasets, as listed below:
             custody_accounts: int, # custody accounts
             pledged_units: int, # pledged units
             date: str # date
+        }
+        ```
+
+---
+
+#### Convertible Bond Put Provision Schedule TaiwanStockConvertibleBondPutProvision (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2011-06-22 ~ now (including announced future put dates).
+- Provides each convertible bond's put record date, put price, and put yield rate.
+- **`data_id` (convertible bond id) is not required** — provide only the date range to retrieve every convertible bond's put dates within that range.
+- Data update time: **Mon-Fri 19:00**; the actual update time is subject to the API data.
+
+??? note "data_id (convertible bond id) is not required"
+    The query only needs `start_date` and `end_date`: omitting `data_id` returns the put dates of **all** convertible bonds within the range (a put provision is a per-bond event happening only a few times a year, so querying bond by bond is impractical). Add `data_id` if you want a single convertible bond.
+
+??? note "Includes announced future put dates"
+    This dataset includes put dates that have been announced but not yet occurred (typically announced about one year in advance). Set `end_date` to a future date to retrieve upcoming put schedules. It complements the put-related fields in `TaiwanStockConvertibleBondDailyOverview` (which are only populated while a put process is publicly announced) — use this dataset for the complete put schedule.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_convertible_bond_put_provision(
+            start_date="2011-06-01",
+            end_date="2011-12-31",
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to get the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockConvertibleBondPutProvision",
+            "start_date": "2011-06-01",
+            "end_date": "2011-12-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to get the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockConvertibleBondPutProvision",
+                start_date= "2011-06-01",
+                end_date='2011-12-31'
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       |   cb_id | cb_name   |   PutPrice |   PutYieldRate |
+        |---:|:-----------|--------:|:----------|-----------:|---------------:|
+        |  0 | 2011-06-22 |   14773 | 聚陽三    |     101.51 |           0.75 |
+        |  1 | 2011-07-01 |   33833 | 新世三    |     104.04 |           2    |
+        |  2 | 2011-08-07 |   26033 | 長榮三    |     101    |           0.5  |
+        |  3 | 2011-08-11 |   89331 | 愛地一    |    103.022 |           1.5  |
+        |  4 | 2011-09-29 |   55123 | 力麒三    |     101    |           0.5  |
+        |  5 | 2011-12-21 |   12251 | 福脂一    |     100    |           0    |
+    === "Schema"
+        ```
+        {
+            date: str, # put record date
+            cb_id: str, # convertible bond id
+            cb_name: str, # convertible bond name
+            PutPrice: float64, # put price
+            PutYieldRate: float64 # put yield rate (%)
         }
         ```
