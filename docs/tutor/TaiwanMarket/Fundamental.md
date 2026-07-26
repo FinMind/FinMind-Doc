@@ -1099,6 +1099,9 @@
 
 - 資料區間：2011-01-01 ~ now
 
+??? note "data_id（股票代碼）非必填"
+    省略 `data_id`、只帶日期區間，即回傳該區間內**所有**股票的減資恢復買賣參考價格。此不帶 `data_id` 的全市場查詢限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員；免費會員請帶 `data_id` 查詢個股。
+
 !!! example
     === "Python"
         ```python

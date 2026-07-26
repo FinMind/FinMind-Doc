@@ -678,10 +678,14 @@
 
 - 資料區間：2011-06-22 ~ now（含未來已公告場次）。
 - 提供每檔可轉債的賣回基準日、賣回金額、賣回收益率。
+- **不需帶 `data_id`（可轉債代碼）**，只要指定日期區間，即回傳該區間內所有可轉債的賣回場次。
 - 資料更新時間 **星期一至五 19:00**，實際更新時間以 API 資料為主。
 
+??? note "不需帶 data_id（可轉債代碼）"
+    查詢只需要 `start_date`、`end_date`：省略 `data_id` 即回傳該區間內**所有**可轉債的賣回場次（賣回權時程是每檔可轉債各自一年數次的事件，逐檔查詢並不方便）。若只想看單一可轉債，仍可加上 `data_id` 過濾。
+
 ??? note "包含未來已公告的賣回場次"
-    本資料集包含未來已公告的賣回場次（通常提前約一年公告），`end_date` 可設為未來日期，取得即將到來的賣回時程；不帶 `data_id` 則回傳區間內所有可轉債的賣回場次。與 `TaiwanStockConvertibleBondDailyOverview` 的賣回相關欄位（僅在賣回程序公告期間才有值）互補，若需完整賣回時程請使用本資料集。
+    本資料集包含未來已公告的賣回場次（通常提前約一年公告），`end_date` 可設為未來日期，取得即將到來的賣回時程。與 `TaiwanStockConvertibleBondDailyOverview` 的賣回相關欄位（僅在賣回程序公告期間才有值）互補，若需完整賣回時程請使用本資料集。
 
 !!! example
     === "Package"
@@ -691,9 +695,8 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         df = api.taiwan_stock_convertible_bond_put_provision(
-            cb_id="14773",
             start_date="2011-06-01",
-            end_date="2011-06-30",
+            end_date="2011-12-31",
         )
         ```
     === "Python-request"
@@ -705,9 +708,8 @@
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanStockConvertibleBondPutProvision",
-            "data_id": "14773",
             "start_date": "2011-06-01",
-            "end_date": "2011-06-30",
+            "end_date": "2011-12-31",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
@@ -725,9 +727,8 @@
             url = url,
             query = list(
                 dataset="TaiwanStockConvertibleBondPutProvision",
-                data_id="14773",
                 start_date= "2011-06-01",
-                end_date='2011-06-30'
+                end_date='2011-12-31'
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -740,6 +741,11 @@
         |    | date       |   cb_id | cb_name   |   PutPrice |   PutYieldRate |
         |---:|:-----------|--------:|:----------|-----------:|---------------:|
         |  0 | 2011-06-22 |   14773 | 聚陽三    |     101.51 |           0.75 |
+        |  1 | 2011-07-01 |   33833 | 新世三    |     104.04 |           2    |
+        |  2 | 2011-08-07 |   26033 | 長榮三    |     101    |           0.5  |
+        |  3 | 2011-08-11 |   89331 | 愛地一    |    103.022 |           1.5  |
+        |  4 | 2011-09-29 |   55123 | 力麒三    |     101    |           0.5  |
+        |  5 | 2011-12-21 |   12251 | 福脂一    |     100    |           0    |
     === "Schema"
         ```
         {
