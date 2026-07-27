@@ -861,6 +861,13 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Data range: 1994-10-01 ~ now
 - Data update time: **Monday to Friday 17:30**. The actual update time is based on the API data.
 
+??? note "When the adjustment factor updates, and which day is the baseline"
+    Adjusted prices are computed backwards: the most recent trading day in the data is the baseline, and adjustment factors are applied cumulatively to earlier days. As a result, **the adjusted price on the event day itself always equals that day's raw price** — the adjustment shows up in the history *before* that day.
+
+    For ex-dividend / ex-rights, capital reduction, stock split and par value change events, the adjustment factor is applied **in the post-close update on the event day itself**; it is not deferred to the next trading day.
+
+    If a scheduled event date falls on a market-wide closure (a typhoon suspension, for example) and is postponed, the adjustment follows **the day trading actually took place**, not the originally scheduled date.
+
 !!! example
     === "Package"
         ```python
