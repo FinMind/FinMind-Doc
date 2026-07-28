@@ -327,6 +327,25 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
     **Example**: 8272 全景 on 2023-10-17 (its first day on the emerging board) → `open=0`, `max=136`, `min=112.5`, `close=130`; the next day, 2023-10-18, `open=129.39`, which is 2023-10-17's average price. The same rule holds for `TaiwanStockPriceAdj` (adjusted price): the adjusted price is the raw price times an adjustment factor, so `0` carries through unchanged.
 
+??? warning "When no traded price is published for a stock on a given day, `open` / `max` / `min` / `close` are all `0` (not a data error)"
+    In the daily quote published by TWSE / TPEx, a stock with **no published traded price for that day** has its open/high/low/close shown as `--`. This table follows the original publication and converts that to the numeric value `0`, so `open` / `max` / `min` / `close` / `spread` are all `0` for that stock on that day. **The source publication itself carries no price** — this is not a crawling gap.
+
+    This can happen **in any market** (TWSE, TPEx, and Emerging alike) and is unrelated to the emerging-board `open` definition described above. A halted stock, a day with no trades at all, or a day with only sporadic trades that produce no published price all fall into this category.
+
+    **Example 1 (no trades at all)**: 2317 鴻海 on 2025-07-30 → `Trading_Volume=0`, and `open`/`max`/`min`/`close` are all `0`; the TWSE publication for that day literally reads "volume 0, open/high/low/close `--`". The previous trading day 2025-07-29 (`close=171.5`) and the next one 2025-07-31 (`close=178`) are both normal.
+
+    **Example 2 (volume present but no published price)**: 9929 秋雨 on 2025-07-31 → `Trading_Volume=451`, yet `open`/`max`/`min`/`close` are still `0`; the TWSE publication reads "volume 451, open/high/low/close `--`".
+
+    **How to detect it**: because of Example 2, **do not filter on `Trading_Volume > 0` alone** — that condition misses rows that have volume but no price. Filter on the price columns instead:
+
+    ```python
+    df = df[df["close"] > 0]          # keep only days with a published traded price
+    # or forward-fill from the previous trading day's close
+    df["close"] = df["close"].replace(0, method="ffill")
+    ```
+
+    **Difference from `TaiwanStockPriceAdj`**: the adjusted-price table is **not** `0` on these days — it carries forward the previous trading day's adjusted price (while `Trading_Volume` keeps the day's actual value). For instance, 2317 鴻海 on 2025-07-30 in `TaiwanStockPriceAdj` is `open=169.94`, `max=170.43`, `min=166.06`, `close=166.54`, i.e. 2025-07-29's adjusted price. Use `TaiwanStockPriceAdj` if you want a series with no `0` gaps; use `TaiwanStockPrice`'s `0` if you need to identify which days had no published price.
+
 !!! example
     === "Package"
         ```python
