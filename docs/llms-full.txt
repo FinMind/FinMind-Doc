@@ -170,6 +170,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockPriceAdj, data_id=2330, start_date=2020-04-02, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockPriceAdj, start_date=2020-04-06 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), Trading_Volume (int64), Trading_money (int64), open (float64), max (float64), min (float64), close (float64), spread (float64), Trading_turnover (float32)
+- Note: Adjusted prices are computed backwards from the most recent trading day, so the adjusted price on an event day equals that day's raw price and the adjustment appears in the history before it. Ex-dividend/ex-rights, capital reduction, stock split and par value change factors are applied in the post-close update on the event day itself, not deferred to the next trading day. If a scheduled event date falls on a market-wide closure (e.g. a typhoon suspension) and is postponed, the adjustment follows the day trading actually took place, not the originally scheduled date.
 
 ### TaiwanStockPriceTick (台灣股價歷史逐筆資料表)
 - Tier: Backer/Sponsor
