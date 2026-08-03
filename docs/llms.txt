@@ -93,12 +93,12 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ## Service Status / SLA
 
 - Public status page: [status.finmindtrade.com](https://status.finmindtrade.com) — current API status plus 24-hour and 90-day uptime.
-- Uptime is measured from real API traffic, minute by minute:
+- Uptime is measured from real API traffic, request by request:
   - valid requests = successful requests (2xx/3xx) + server-side errors (HTTP 5xx and 499 server-side timeouts)
-  - per-minute error rate = server-side errors ÷ valid requests; a minute with traffic and error rate > 5% is counted as down
-  - uptime % = (minutes with traffic − down minutes) ÷ minutes with traffic × 100
-  - client errors (4xx excluding 499) and no-traffic minutes are not counted; scheduled maintenance may be excluded
-- Status levels (when the window has traffic): Operational (100%), Degraded Performance (≥ 99%), Partial Outage (95%–99%), Major Outage (< 95%), No data (no traffic).
+  - uptime % = successful requests ÷ valid requests × 100
+  - the 24-hour, 90-day and month-to-date figures each sum the requests in that window; they are not averages of per-minute or per-day uptime
+  - client errors (4xx excluding 499) and no-traffic windows are not counted; scheduled maintenance may be excluded
+- Status levels (when the window has traffic): Operational (≥ 99.5%), Elevated Error Rates (95%–99.5%), Partial Outage (80%–95%), Major Outage (< 80%), No data (no traffic).
 - This uptime is the measurement basis for the FinMind enterprise plan SLA.
 
 ## Links

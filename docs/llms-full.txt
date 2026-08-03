@@ -901,27 +901,28 @@ FinMind publishes a public, real-time status page at https://status.finmindtrade
 
 ### How uptime is calculated
 
-Uptime is measured from real API traffic, minute by minute:
+Uptime is measured from real API traffic, request by request:
 
 1. Valid requests = successful requests (2xx / 3xx) + server-side errors.
    - A server-side error is an HTTP 5xx response, plus a connection dropped by a server-side timeout (HTTP 499 — usually the server being busy or slow, treated as a server-side problem).
    - Ordinary client errors (4xx excluding 499, e.g. 400 / 403 / 404 / 429) are not counted as valid requests and do not affect uptime.
-2. Per-minute error rate = server-side errors ÷ valid requests. A minute with traffic and an error rate > 5% is counted as down. Minutes with no traffic are not counted.
-3. uptime % = (minutes with traffic − down minutes) ÷ minutes with traffic × 100.
+2. uptime % = successful requests ÷ valid requests × 100.
 
-The 24-hour and 90-day figures aggregate these per-minute results; the 90-day and monthly numbers are weighted by minutes with traffic. Scheduled maintenance windows may be excluded.
+The 24-hour, 90-day and month-to-date figures each sum the requests in that window and compute the ratio once; they are not averages of per-minute or per-day uptime. Windows with no traffic are not counted. Scheduled maintenance windows may be excluded, and their requests count toward neither the numerator nor the denominator.
+
+Uptime is request-based so that an error rate is reflected proportionally: if 1.6% of the requests in a window end in a server-side error, uptime for that window is 98.4%. Measuring instead by whether each block of time counts as "down" would leave a persistent but low error rate looking healthy and uptime pinned at 100%.
 
 ### Status levels
 
 When a time window has traffic, it is classified by that window's uptime:
 
-- Operational: 100% (traffic present, no down minutes)
-- Degraded Performance: >= 99% (some down minutes, but uptime still >= 99%)
-- Partial Outage: 95% – 99% (95% <= uptime < 99%)
-- Major Outage: < 95%
+- Operational: >= 99.5%
+- Elevated Error Rates: 95% – 99.5% (95% <= uptime < 99.5%)
+- Partial Outage: 80% – 95% (80% <= uptime < 95%)
+- Major Outage: < 80%
 - No data: no traffic in the period
 
-This uptime is the measurement basis for the FinMind enterprise plan SLA — enterprise service levels are assessed with the same per-minute algorithm, kept transparent and consistent with the public status page.
+This uptime is the measurement basis for the FinMind enterprise plan SLA — enterprise service levels are assessed with the same algorithm, kept transparent and consistent with the public status page.
 
 ---
 
