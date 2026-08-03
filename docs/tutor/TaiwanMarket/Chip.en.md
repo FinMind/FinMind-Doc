@@ -1,4 +1,4 @@
-In Taiwan stock chip data, we have 25 datasets as follows:
+In Taiwan stock chip data, we have 26 datasets as follows:
 
 
 - [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -26,6 +26,7 @@ In Taiwan stock chip data, we have 25 datasets as follows:
 - [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members)
 - [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members)
 - [Industry Chain Money Flow TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#industry-chain-money-flow-taiwanstockindustrychainmoneyflow-only-available-for-sponsor-members)
+- [Individual Stock Margin Maintenance TaiwanStockMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-maintenance-taiwanstockmarginmaintenance-only-available-for-sponsor-members)
 - [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -3299,5 +3300,95 @@ In Taiwan stock chip data, we have 25 datasets as follows:
             trading_volume: int, # total trading volume (shares)
             trading_money: int, # total trading money
             trading_money_pct: float, # % of whole-market individual-stock trading money
+        }
+        ```
+
+#### Individual Stock Margin Maintenance TaiwanStockMarginMaintenance (only available for [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2001-01-05 ~ now (OTC / TPEx stocks start from 2007-01-04)
+- Data update time **Monday to Saturday 22:30**, the actual update time is based on the API data.
+- Provides the daily margin maintenance ratio (%), margin cost line, margin purchase balance (lots) and the margin purchase ratio actually applied, for each individual stock
+- `margin_maintenance` = closing price / (`margin_cost` x `margin_ratio`) x 100
+- `margin_cost` (margin cost line) is the moving weighted average cost of the margin position: each day the carried-over position (after that day's sells / cash redemptions) is weighted together with that day's new margin purchases; the state resets whenever the balance drops to zero
+- Covers all TWSE-listed and TPEx-listed instruments that have a margin purchase balance (including ETFs / ETNs / beneficiary certificates / depositary receipts). Emerging-market stocks have no margin trading and are therefore out of scope
+- Rows are not produced for a stock on days when its margin purchase balance is 0, or when the stock has no trade that day (suspended / no volume)
+- **Get all data for a specific date in one request**: omit `data_id` and pass only `start_date` to get the margin maintenance ratio of every stock for that day
+
+??? note "Read first: this dataset is an estimated indicator"
+    - **There is no official ground truth, and numbers will not match other services**: public disclosure only provides the margin purchase balance in **lots** for each stock, not the margin purchase **amount** at the individual-stock level. The margin cost line and the maintenance ratio can therefore only be estimated by rolling forward the historical margin buys and sells. Every service that publishes this indicator estimates it in its own way, so the numbers differ between services and will not match this dataset exactly. Please treat it as a **relative** indicator of margin pressure rather than an exact value.
+    - **The statutory maximum margin purchase ratio is used**: `margin_ratio` is always the maximum margin purchase ratio (60% for TWSE-listed stocks; 60% for TPEx-listed stocks from 2014-11-10, 50% before that). Stocks flagged for attention or under disposition may in practice be given a lower ratio, or have margin trading suspended, in which case the real maintenance ratio differs from this dataset.
+    - **The OTC start date differs from the listed-market start date**: TWSE-listed from 2001-01-05, TPEx-listed from 2007-01-04. Querying a TPEx stock for a period before 2007-01-04 returns empty data.
+    - **The cost line is a nominal value**: `margin_cost` is already adjusted for share-count events (stock splits / par value changes, capital reductions, stock dividends), and the cash dividend per share is deducted on the ex-dividend date (cash dividends are used to offset the margin loan). It is therefore an adjusted nominal cost, not the original purchase price.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_margin_maintenance(
+            stock_id="2330",
+            start_date="2026-07-22",
+            end_date="2026-07-28",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the API key
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockMarginMaintenance",
+            "data_id": "2330",
+            "start_date": "2026-07-22",
+            "end_date": "2026-07-28",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the API key
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockMarginMaintenance",
+                data_id="2330",
+                start_date="2026-07-22",
+                end_date="2026-07-28",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   margin_balance |   margin_cost |   margin_ratio |   margin_maintenance |
+        |---:|:-----------|-----------:|-----------------:|--------------:|---------------:|---------------------:|
+        |  0 | 2026-07-22 |       2330 |            24182 |        2349.5 |            0.6 |               160.32 |
+        |  1 | 2026-07-23 |       2330 |            24065 |        2349.1 |            0.6 |               162.83 |
+        |  2 | 2026-07-24 |       2330 |            24310 |        2348.6 |            0.6 |               163.57 |
+        |  3 | 2026-07-27 |       2330 |            24278 |        2347.4 |            0.6 |               162.59 |
+        |  4 | 2026-07-28 |       2330 |            24151 |        2346.9 |            0.6 |               161.92 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock id
+            margin_balance: int, # margin purchase balance (lots)
+            margin_cost: float, # margin cost line (estimated moving weighted average cost of the margin position)
+            margin_ratio: float, # margin purchase ratio applied (0.6 / 0.5)
+            margin_maintenance: float, # margin maintenance ratio (%), e.g. 156.1
         }
         ```
