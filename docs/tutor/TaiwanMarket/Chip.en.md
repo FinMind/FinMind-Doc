@@ -3308,11 +3308,35 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2001-01-05 ~ now (OTC / TPEx stocks start from 2007-01-04)
 - Data update time **Monday to Saturday 22:30**, the actual update time is based on the API data.
 - Provides the daily margin maintenance ratio (%), margin cost line, margin purchase balance (lots) and the margin purchase ratio actually applied, for each individual stock
-- `margin_maintenance` = closing price / (`margin_cost` x `margin_ratio`) x 100
-- `margin_cost` (margin cost line) is the moving weighted average cost of the margin position: each day the carried-over position (after that day's sells / cash redemptions) is weighted together with that day's new margin purchases; the state resets whenever the balance drops to zero
 - Covers all TWSE-listed and TPEx-listed instruments that have a margin purchase balance (including ETFs / ETNs / beneficiary certificates / depositary receipts). Emerging-market stocks have no margin trading and are therefore out of scope
 - Rows are not produced for a stock on days when its margin purchase balance is 0, or when the stock has no trade that day (suspended / no volume)
 - **Get all data for a specific date in one request**: omit `data_id` and pass only `start_date` to get the margin maintenance ratio of every stock for that day
+
+??? note "How it is calculated"
+    Margin maintenance ratio:
+
+    ```
+    margin_maintenance = closing price / (margin_cost * margin_ratio) * 100
+    ```
+
+    `margin_cost` (the margin cost line) is the moving weighted average cost of the margin position, rolled forward day by day. On each trading day the carried-over position is first reduced by that day's sells and cash redemptions, then that day's new margin purchases are blended in at that day's closing price:
+
+    ```
+    carried_position = max(today's margin balance - today's margin purchase, 0)
+    margin_cost      = (previous margin_cost * carried_position
+                        + today's closing price * today's margin purchase)
+                       / (carried_position + today's margin purchase)
+    ```
+
+    Both the margin balance and the margin purchase are in lots, taken from the individual stock margin purchase / short sale table. The daily margin purchase is used as published rather than derived from the change in balance, so a jump in balance caused by a share-count event is not mistaken for buying.
+
+    Boundary cases:
+
+    - The whole balance is new buying that day (carried position is 0) → the cost line equals that day's closing price
+    - The margin balance drops to zero → the position is treated as closed and the cost line resets; when a balance appears again it restarts from that day's closing price
+    - No trade that day (suspended / no volume) → the previous cost line is carried forward and no row is produced for that day
+
+    Share-count events and dividends: on an event day the previous cost line is adjusted first, then that day's purchases are applied. Stock splits, par value changes, capital reductions and stock dividends are scaled by the reference price ratio; on an ex-dividend date the cash dividend per share is deducted from the cost line (cash dividends are used to offset the margin loan).
 
 ??? note "Read first: this dataset is an estimated indicator"
     - **There is no official ground truth, and numbers will not match other services**: public disclosure only provides the margin purchase balance in **lots** for each stock, not the margin purchase **amount** at the individual-stock level. The margin cost line and the maintenance ratio can therefore only be estimated by rolling forward the historical margin buys and sells. Every service that publishes this indicator estimates it in its own way, so the numbers differ between services and will not match this dataset exactly. Please treat it as a **relative** indicator of margin pressure rather than an exact value.
