@@ -1,3 +1,8 @@
+#### 2026-08-08
+* 新增 [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily-backersponsor)：資產交換（Asset Swap）固定收益端的每日成交統計，欄位含名目本金 `notional_amount`、成交筆數 `number_of_transactions`、最低／最高／平均利率 `rate_lowest`／`rate_highest`／`rate_average`、合約年期 `contract_term_years`；資料區間 2026-06-01 ~ now
+* 新增 [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily-backersponsor)：資產交換選擇權端的每日成交統計，欄位含名目本金 `notional_amount`、成交筆數 `number_of_transactions`、最低／最高／平均權利金 `premium_lowest`／`premium_highest`／`premium_average`、合約年期 `contract_term_years`；資料區間 2026-06-01 ~ now
+    * :warning: 這兩個資料集的 `data_id`（`stock_id`）為**可轉債代號**（例 `17172`），不是普通股代號；帶普通股代號（例 `2330`）會查不到資料
+
 #### 2026-08-03
 * [服務狀態與可用率 ServiceStatus](https://finmind.github.io/ServiceStatus/) 可用率演算法調整：改以**請求數**計算（可用率 % = 成功請求 ÷ 有效請求 × 100），不再以「未中斷的分鐘數佔比」衡量；24 小時、90 天與當月數字皆為該區間內請求數加總後計算，錯誤比例會等比反映在可用率上
     * 狀態分級門檻同步調整為 **Operational ≥ 99.5%**、**Elevated Error Rates 95%～99.5%**、**Partial Outage 80%～95%**、**Major Outage < 80%**（原 Degraded Performance 更名為 Elevated Error Rates）
