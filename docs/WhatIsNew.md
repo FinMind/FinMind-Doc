@@ -2,6 +2,9 @@
 * [服務狀態與可用率 ServiceStatus](https://finmind.github.io/ServiceStatus/) 可用率演算法調整：改以**請求數**計算（可用率 % = 成功請求 ÷ 有效請求 × 100），不再以「未中斷的分鐘數佔比」衡量；24 小時、90 天與當月數字皆為該區間內請求數加總後計算，錯誤比例會等比反映在可用率上
     * 狀態分級門檻同步調整為 **Operational ≥ 99.5%**、**Elevated Error Rates 95%～99.5%**、**Partial Outage 80%～95%**、**Major Outage < 80%**（原 Degraded Performance 更名為 Elevated Error Rates）
 
+#### 2026-07-29
+* [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor) 修正資料缺漏問題。2026-06-12 起的資料已完成校正；2026-06-11 以前的資料存在缺漏、無法補齊，建議研究用途以 2026-06-12 起的資料為準
+
 #### 2026-07-23
 * 新增 [可轉債賣回權時程 TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)：每檔可轉債的賣回基準日、賣回金額、賣回收益率，含未來已公告場次；資料區間 2011-06-22 ~ now
 

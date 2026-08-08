@@ -636,6 +636,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 
 - Due to the large amount of data, only one day of data is provided per request
 - Data range: 2026-04-27 ~ now (accumulated daily since launch)
+- :warning: For research purposes, we recommend using data from **2026-06-12** onward; data before 2026-06-11 has gaps that cannot be backfilled
 - Data update time **Monday to Friday, intraday and after market close**, actual update time is based on the API data
 
 !!! example
