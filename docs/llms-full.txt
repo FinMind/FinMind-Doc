@@ -286,7 +286,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Chip / Institutional (24 datasets)
+## Taiwan Market - Chip / Institutional (25 datasets)
 
 ### TaiwanStockMarginPurchaseShortSale (個股融資融劵表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -467,6 +467,22 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Columns: date, industry (industry chain), sub_industry (empty string = industry-chain total row), stock_count, trading_volume, trading_money, trading_money_pct (% of whole-market individual-stock trading money; ETF/ETN/beneficiary certificates/TDR excluded from the denominator)
 - Derived daily from TaiwanStockPrice aggregated by TaiwanStockIndustryChain (industry / sub_industry)
 - Note: industry-chain total rows count each stock once and do NOT equal the sum of sub-industry rows (one stock can belong to multiple sub-industries); one stock can belong to multiple chains, so percentages across chains sum to more than 100%; historical dates use the current industry-chain classification
+
+### TaiwanStockMarginMaintenance (個股融資維持率)
+- Tier: Sponsor
+- Data range: 2001-01-05 ~ now (TPEx / OTC stocks from 2007-01-04)
+- Update: Mon-Sat 22:30
+- Params: dataset=TaiwanStockMarginMaintenance, data_id=2330, start_date=2026-07-22, end_date=2026-07-28
+- Params (all stocks for one day): dataset=TaiwanStockMarginMaintenance, start_date=2026-07-28
+- Columns: date, stock_id, margin_balance (margin purchase balance in lots), margin_cost (margin cost line, estimated moving weighted average cost of the margin position), margin_ratio (margin purchase ratio applied, 0.6 / 0.5), margin_maintenance (margin maintenance ratio in %, e.g. 156.1)
+- Formula: margin_maintenance = closing price / (margin_cost * margin_ratio) * 100
+- Formula (margin_cost, rolled forward day by day): carried_position = max(today's margin balance - today's margin purchase, 0); margin_cost = (previous margin_cost * carried_position + today's closing price * today's margin purchase) / (carried_position + today's margin purchase). Balance and purchase are in lots, taken from the individual stock margin purchase / short sale table; the daily purchase is used as published rather than derived from the change in balance, so a balance jump caused by a share-count event is not mistaken for buying
+- Formula (boundary cases): if the whole balance is new buying that day (carried position 0) the cost line equals that day's closing price; if the margin balance drops to zero the position is treated as closed and the cost line resets, restarting from the closing price when a balance appears again; on a day with no trade (suspended / no volume) the previous cost line is carried forward and no row is produced
+- Formula (event adjustment): on an event day the previous cost line is adjusted before that day's purchases are applied. Stock splits, par value changes, capital reductions and stock dividends are scaled by the reference price ratio; on an ex-dividend date the cash dividend per share is deducted from the cost line
+- Coverage: all TWSE-listed and TPEx-listed instruments with a margin purchase balance, including ETFs / ETNs / beneficiary certificates / depositary receipts; emerging-market stocks have no margin trading and are out of scope. No row is produced for a stock on days when its balance is 0 or it has no trade (suspended / no volume)
+- Note: this dataset is an ESTIMATED indicator. Public disclosure provides only the per-stock margin purchase balance in lots, not the per-stock margin purchase amount, so there is no official ground truth; every service that publishes this indicator estimates it differently and the numbers will not match. Use it as a relative measure of margin pressure, not an exact value
+- Note: margin_ratio always uses the statutory maximum margin purchase ratio (TWSE 60%; TPEx 60% from 2014-11-10, 50% before). Stocks flagged for attention or under disposition may in practice get a lower ratio or have margin trading suspended
+- Note: margin_cost is a nominal value already adjusted for share-count events (splits / par value changes, capital reductions, stock dividends) and with the cash dividend per share deducted on the ex-dividend date; it is not the original purchase price
 
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor

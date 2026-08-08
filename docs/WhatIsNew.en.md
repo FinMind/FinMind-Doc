@@ -1,3 +1,6 @@
+#### 2026-08-09
+* Added [Individual Stock Margin Maintenance TaiwanStockMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-maintenance-taiwanstockmarginmaintenance-only-available-for-sponsor-members): data range 2001-01-05 ~ now (TPEx stocks from 2007-01-04). Provides the daily margin maintenance ratio (%), margin cost line, margin purchase balance (lots) and the margin purchase ratio applied, per stock. This dataset is an **estimated indicator** (public disclosure does not provide the margin purchase amount at the individual-stock level), so the numbers will not match other services — see the documentation for details
+
 #### 2026-08-03
 * [Service Status & Uptime](https://finmind.github.io/en/ServiceStatus/) now measures uptime **request by request** (uptime % = successful requests ÷ valid requests × 100) instead of by the share of minutes not counted as down. The 24-hour, 90-day and month-to-date figures each sum the requests in that window, so an error rate is reflected proportionally in uptime
     * Status tiers were adjusted accordingly: **Operational ≥ 99.5%**, **Elevated Error Rates 95%–99.5%**, **Partial Outage 80%–95%**, **Major Outage < 80%** (the former Degraded Performance tier is now named Elevated Error Rates)

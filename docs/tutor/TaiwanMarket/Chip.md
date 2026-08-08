@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 25 種資料集，如下:
+在台股籌碼面，我們擁有 26 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -26,6 +26,7 @@
 - [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)
 - [主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)
 - [台股產業鏈資金流向 TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockindustrychainmoneyflow-sponsor)
+- [個股融資維持率 TaiwanStockMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginmaintenance-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
 
@@ -3298,5 +3299,118 @@
             trading_volume: int, # 成交股數合計
             trading_money: int, # 成交金額合計
             trading_money_pct: float, # 佔當日全市場個股成交金額比重(%)
+        }
+        ```
+
+#### 個股融資維持率 TaiwanStockMarginMaintenance (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2001-01-05 ~ now（上櫃自 2007-01-04 起）
+- 資料更新時間 **星期一至六 22:30**，實際更新時間以 API 資料為主
+- 提供個股每日的融資維持率（%）、融資成本線、融資餘額（張），以及計算時實際採用的融資成數
+- 涵蓋上市、上櫃所有有融資餘額的標的（含 ETF／ETN／受益證券／存託憑證）；興櫃無信用交易，不在涵蓋範圍
+- 當日融資餘額為 0，或當日無成交（停牌／處置無量）的標的，不輸出該日資料
+- **一次拿特定日期，所有資料**：不帶 `data_id`、只帶 `start_date`，即可取得該日全市場個股的融資維持率
+
+??? note "計算方式"
+    融資維持率：
+
+    ```
+    margin_maintenance = 當日收盤價 / (margin_cost * margin_ratio) * 100
+    ```
+
+    `margin_cost`（融資成本線）是融資部位的移動加權平均成本，逐日遞推。每個交易日先把當日賣出與現金償還從舊部位沖銷掉，再把當日新增的融資買進以當日收盤價混入：
+
+    ```
+    舊部位     = max(今日融資餘額 - 今日融資買進, 0)
+    margin_cost = (前一日 margin_cost * 舊部位 + 當日收盤價 * 今日融資買進)
+                  / (舊部位 + 今日融資買進)
+    ```
+
+    融資餘額與融資買進的單位皆為「張」，取自個股融資融劵表的當日餘額與當日買進；當日買進直接採用公告值，不是用餘額差推算，因此股數事件造成的餘額跳變不會被誤計為買進。
+
+    邊界情況：
+
+    - 今日餘額全數為當日新增買進（舊部位為 0）→ 成本線即為當日收盤價
+    - 融資餘額歸零 → 視為部位結清、成本線重置，之後再有融資餘額會從當日收盤價重新起算
+    - 當日無成交（停牌／處置無量）→ 沿用前一日成本線，且不輸出當日資料
+
+    股數事件與除權息：遇到事件時會先調整前一日的成本線，再套用當日買進。股票分割、面額變更、減資、除權配股依參考價比例等比調整；除息則自成本線扣除每股現金股利（現金股利會沖抵融資金額）。
+
+??? note "使用前必讀：本資料集為估算指標"
+    - **無官方真值，數字與其他服務不會一致**：公開資訊只揭露個股的融資餘額「張數」，並未揭露個股層級的「融資金額」，因此融資成本線與融資維持率只能由歷史融資買賣逐日推估。市面上提供此指標的服務同樣是各自估算，彼此數字互不相同，也不會與本資料集完全相同。建議作為觀察籌碼壓力的**相對指標**使用，不要當成精確值。
+    - **融資成數採法定上限**：`margin_ratio` 一律以最高融資比率計算（上市六成；上櫃 2014-11-10 起六成、之前五成）。個別標的若被列為警示股／處置股，實際融資成數可能較低，甚至暫停信用交易，此時實際維持率會與本資料集不同。
+    - **上櫃起始日與上市不同**：上市自 2001-01-05 起、上櫃自 2007-01-04 起。查詢上櫃標的在 2007-01-04 之前的區間會回傳空資料。
+    - **成本線為名目值**：`margin_cost` 已針對股票分割／面額變更、減資、除權配股等股數事件調整，並於除息日扣除每股現金股利（現金股利會沖抵融資金額），因此是調整後的名目成本，不等於原始買進價格。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_margin_maintenance(
+            stock_id="2330",
+            start_date="2026-07-22",
+            end_date="2026-07-28",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockMarginMaintenance",
+            "data_id": "2330",
+            "start_date": "2026-07-22",
+            "end_date": "2026-07-28",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockMarginMaintenance",
+                data_id="2330",
+                start_date="2026-07-22",
+                end_date="2026-07-28",
+                token=token
+            )
+        )
+        data = content(response)
+        df = do.call("rbind", lapply(data$data, as.data.frame))
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   margin_balance |   margin_cost |   margin_ratio |   margin_maintenance |
+        |---:|:-----------|-----------:|-----------------:|--------------:|---------------:|---------------------:|
+        |  0 | 2026-07-22 |       2330 |            24182 |        2349.5 |            0.6 |               160.32 |
+        |  1 | 2026-07-23 |       2330 |            24065 |        2349.1 |            0.6 |               162.83 |
+        |  2 | 2026-07-24 |       2330 |            24310 |        2348.6 |            0.6 |               163.57 |
+        |  3 | 2026-07-27 |       2330 |            24278 |        2347.4 |            0.6 |               162.59 |
+        |  4 | 2026-07-28 |       2330 |            24151 |        2346.9 |            0.6 |               161.92 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            margin_balance: int, # 融資餘額（張）
+            margin_cost: float, # 融資成本線（估算的融資部位移動加權平均成本）
+            margin_ratio: float, # 計算所採用的融資成數（0.6 / 0.5）
+            margin_maintenance: float, # 融資維持率（%），例 156.1
         }
         ```
