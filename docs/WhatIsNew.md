@@ -1,5 +1,7 @@
-#### 2026-08-03
+#### 2026-08-09
 * 新增 [個股融資維持率 TaiwanStockMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginmaintenance-sponsor)：資料區間 2001-01-05 ~ now（上櫃自 2007-01-04 起）。提供個股每日融資維持率(%)、融資成本線、融資餘額（張）與計算採用的融資成數；本資料集為**估算指標**（公開資訊未揭露個股層級的融資金額），與其他服務的數字不會一致，詳見文件說明
+
+#### 2026-08-03
 * [服務狀態與可用率 ServiceStatus](https://finmind.github.io/ServiceStatus/) 可用率演算法調整：改以**請求數**計算（可用率 % = 成功請求 ÷ 有效請求 × 100），不再以「未中斷的分鐘數佔比」衡量；24 小時、90 天與當月數字皆為該區間內請求數加總後計算，錯誤比例會等比反映在可用率上
     * 狀態分級門檻同步調整為 **Operational ≥ 99.5%**、**Elevated Error Rates 95%～99.5%**、**Partial Outage 80%～95%**、**Major Outage < 80%**（原 Degraded Performance 更名為 Elevated Error Rates）
 
