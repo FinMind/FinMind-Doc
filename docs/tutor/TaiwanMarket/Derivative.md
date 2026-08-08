@@ -555,7 +555,7 @@
 #### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
-- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 資料區間：2011-01-03 ~ now，逐交易日提供。
 - 輸入 dataset、date 參數，回傳該日全市場資料。
 - 透過 signed URL 下載整日 parquet，免逐檔查詢。
 
@@ -821,7 +821,7 @@
 #### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
-- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 資料區間：2011-01-03 ~ now，逐交易日提供 ( 2019-01-16~2019-06-30 缺少部分資料，不完整 )。
 - 輸入 dataset、date 參數，回傳該日全市場資料。
 - 透過 signed URL 下載整日 parquet，免逐檔查詢。
 

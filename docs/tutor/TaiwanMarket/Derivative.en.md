@@ -554,7 +554,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: Available from the day this feature launched, one trading day at a time (no historical backfill).
+- Data range: 2011-01-03 ~ now, one trading day at a time.
 - Providing the dataset and date parameters returns all market data for that day.
 - Downloads the whole-day parquet via a signed URL — no need to query contract by contract.
 
@@ -820,7 +820,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: Available from the day this feature launched, one trading day at a time (no historical backfill).
+- Data range: 2011-01-03 ~ now, one trading day at a time (data is incomplete between 2019-01-16 and 2019-06-30).
 - Providing the dataset and date parameters returns all market data for that day.
 - Downloads the whole-day parquet via a signed URL — no need to query contract by contract.
 
