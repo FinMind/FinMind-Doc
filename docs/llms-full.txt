@@ -286,7 +286,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Chip / Institutional (23 datasets)
+## Taiwan Market - Chip / Institutional (24 datasets)
 
 ### TaiwanStockMarginPurchaseShortSale (個股融資融劵表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -566,7 +566,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Derivative (18 datasets)
+## Taiwan Market - Derivative (20 datasets)
 
 ### TaiwanFutOptDailyInfo (期貨、選擇權日成交資訊總覽)
 - Tier: Free
@@ -740,7 +740,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Convertible Bond (5 datasets)
+## Taiwan Market - Convertible Bond (6 datasets)
 
 ### TaiwanStockConvertibleBondInfo (可轉債總覽)
 - Tier: Backer/Sponsor
