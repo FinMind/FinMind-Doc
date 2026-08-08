@@ -15,6 +15,7 @@
 - [選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
 - [期貨大額交易人未沖銷部位 TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesopeninterestlargetraders-backersponsor)
 - [選擇權大額交易人未沖銷部位 TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
+- [期貨價差行情表 TaiwanFuturesSpreadTrading](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)
 - [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 - [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)
@@ -555,7 +556,7 @@
 #### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
-- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 資料區間：2011-01-03 ~ now，逐交易日提供。
 - 輸入 dataset、date 參數，回傳該日全市場資料。
 - 透過 signed URL 下載整日 parquet，免逐檔查詢。
 
@@ -637,6 +638,7 @@
 
 - 由於資料量過大，單次請求只提供一天資料
 - 資料區間：2026-04-27 ~ now（自上線後逐交易日累積）
+- :warning: 建議研究用途以 **2026-06-12** 起的資料為準；2026-06-11 以前的資料存在缺漏，無法補齊
 - 資料更新時間 **星期一至五 盤中、盤後**，實際更新時間以 API 資料為主
 
 !!! example
@@ -821,7 +823,7 @@
 #### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
-- 資料區間：自本功能上線後，逐交易日提供（暫不含歷史回補）。
+- 資料區間：2011-01-03 ~ now，逐交易日提供 ( 2019-01-16~2019-06-30 缺少部分資料，不完整 )。
 - 輸入 dataset、date 參數，回傳該日全市場資料。
 - 透過 signed URL 下載整日 parquet，免逐檔查詢。
 

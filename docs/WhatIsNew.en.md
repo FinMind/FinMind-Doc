@@ -5,6 +5,9 @@
 * [Service Status & Uptime](https://finmind.github.io/en/ServiceStatus/) now measures uptime **request by request** (uptime % = successful requests ÷ valid requests × 100) instead of by the share of minutes not counted as down. The 24-hour, 90-day and month-to-date figures each sum the requests in that window, so an error rate is reflected proportionally in uptime
     * Status tiers were adjusted accordingly: **Operational ≥ 99.5%**, **Elevated Error Rates 95%–99.5%**, **Partial Outage 80%–95%**, **Major Outage < 80%** (the former Degraded Performance tier is now named Elevated Error Rates)
 
+#### 2026-07-29
+* [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-spread-tick-table-taiwanfuturesspreadtick-available-only-to-sponsor-members): fixed a missing-data issue. Data from 2026-06-12 onward has been corrected; data before 2026-06-11 has gaps that cannot be backfilled. For research purposes we recommend using data from 2026-06-12 onward
+
 #### 2026-07-23
 * Added [Convertible Bond Put Provision Schedule TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#convertible-bond-put-provision-schedule-taiwanstockconvertiblebondputprovision-only-available-to-backersponsor-members): each convertible bond's put record date, put price, and put yield rate, including announced future put dates; data range 2011-06-22 ~ now
 
@@ -25,7 +28,7 @@
 
 #### 2026-06-15
 * [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) now covers **OTC (TPEX)** warrants' underlying (mother stock) reference in addition to listed (TWSE); OTC warrant underlying history goes back to 2011-01-03, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants)
-* [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) now supports storage_objects whole-day bulk download (sponsorpro members only); data is provided per trading day from feature launch, no historical backfill for now
+* [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
 
 #### 2026-06-13
 * Added [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide): same data as `TaiwanStockInstitutionalInvestorsBuySell` but in wide format — one row per trading day with each institutional investor's buy/sell as its own column, no manual pivot needed. Columns cover all historical investor categories; a category is 0 in eras where it did not exist (dealer split into proprietary/hedging from 2014-12-01; foreign dealer self from 2018-01-15). Data range 2005-01-01 ~ now
@@ -37,7 +40,7 @@
 * Added [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor) (sponsor members only): per-trade futures spread (near/far month) data, including contract months, deal time, spread deal price, volume, near month price, far month price, and spread-to-spread deal flag. Only one day of data is provided per request; data accumulates daily since 2026-04-27 (earlier historical backfill not yet included).
 
 #### 2026-06-05
-* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor), [Futures Trading Detail TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor), and [Options Trading Detail TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) now support storage_objects bulk download to fetch a whole day's data at once (sponsorpro members only). Data is available from the feature launch date; no historical backfill.
+* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor), [Futures Trading Detail TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor), and [Options Trading Detail TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) now support storage_objects bulk download to fetch a whole day's data at once (sponsorpro members only). Historical data is also available for download.
 
 #### 2026-06-03
 * Added [Service Status & Uptime](https://finmind.github.io/en/ServiceStatus/): a public, real-time status page at [status.finmindtrade.com](https://status.finmindtrade.com), explaining how API uptime is calculated and the status tiers (Operational / Degraded Performance / Partial Outage / Major Outage), which serve as the basis for the enterprise-plan SLA.

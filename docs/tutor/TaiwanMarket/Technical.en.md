@@ -2092,7 +2092,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: Available from the day this feature launched, one trading day at a time (no historical backfill).
+- Data range: 2019-01-02 ~ now, one trading day at a time.
 - Providing the dataset and date parameters returns all market data for that day.
 - Downloads the whole-day parquet via a signed URL — no need to query stock by stock.
 
