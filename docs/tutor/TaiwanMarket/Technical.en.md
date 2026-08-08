@@ -1171,7 +1171,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: 2019-01-01 ~ now.
+- Data range: 2018-12-07 ~ now, one trading day at a time.
 - Providing the dataset and date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
