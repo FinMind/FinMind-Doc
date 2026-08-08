@@ -22,7 +22,7 @@
 
 #### 2026-06-15
 * [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) 新增**上櫃 (TPEX)** 權證的標的（母股）對照涵蓋（原本僅上市 TWSE）；上櫃權證標的對照歷史回溯至 2011-01-03，可用母股代碼反查其對應權證（含已到期、代碼重用的歷史權證）
-* [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；資料自本功能上線後逐交易日提供，暫不含歷史回補
+* [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 
 #### 2026-06-13
 * 新增 [個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)：與 `TaiwanStockInstitutionalInvestorsBuySell` 相同資料，改為寬表（橫式），每個交易日一列、各法人別買賣攤平成獨立欄位（外資、外資自營商、投信、自營商及其自行買賣／避險），免自行轉置。欄位涵蓋所有歷史法人別分類，尚未存在的年代該欄為 0（自營商於 2014-12-01 由合併拆為自行買賣／避險、外資自營商於 2018-01-15 起提供）；資料區間 2005-01-01 ~ now
@@ -34,7 +34,7 @@
 * 新增 [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)（只限 sponsor 會員）：提供期貨價差（近月/遠月）每筆成交，含到期月份、成交時間、價差成交價、成交量、近月價格、遠月價格、是否價差對價差成交；單次請求只提供一天資料，資料自 2026-04-27 起逐交易日累積（暫不含更早歷史回補）
 
 #### 2026-06-05
-* [台股分 K TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)、[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) 新增 storage_objects 一次取得整日資料下載方式（只限 sponsorpro 會員）；資料自本功能上線後逐交易日提供，暫不含歷史回補
+* [台股分 K TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)、[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) 新增 storage_objects 一次取得整日資料下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 
 #### 2026-06-03
 * 新增 [服務狀態與可用率 ServiceStatus](https://finmind.github.io/ServiceStatus/) 頁面：提供公開即時狀態頁 [status.finmindtrade.com](https://status.finmindtrade.com)，說明 API 可用率 (uptime) 的計算方式與狀態分級（Operational / Degraded Performance / Partial Outage / Major Outage），作為企業方案 SLA 的衡量基準
