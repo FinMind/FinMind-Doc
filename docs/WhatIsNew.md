@@ -1,4 +1,6 @@
 #### 2026-08-09
+* [台股選擇權即時資訊 taiwan_options_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_options_snapshot-sponsor) 增開臺指選擇權**週五到期**契約：`data_id` 新增 `TXU`、`TXV`、`TXX`、`TXY`、`TXZ`（當月第 1 ~ 5 個星期五到期）。原有的 `TXO`（月選）與 `TX1` ~ `TX5`（週三到期）不受影響
+    * 部分代碼在特定月份查無資料屬正常現象（契約尚未掛牌，或該月不存在對應週次，例如某月只有 4 個星期五）
 * 新增 [個股融資維持率 TaiwanStockMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginmaintenance-sponsor)：資料區間 2001-01-05 ~ now（上櫃自 2007-01-04 起）。提供個股每日融資維持率(%)、融資成本線、融資餘額（張）與計算採用的融資成數；本資料集為**估算指標**（公開資訊未揭露個股層級的融資金額），與其他服務的數字不會一致，詳見文件說明
 
 #### 2026-08-08

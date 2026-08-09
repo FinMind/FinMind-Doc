@@ -257,6 +257,19 @@
 #### 台股選擇權即時資訊 taiwan_options_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (約 30 秒更新一次)
 
+??? note "契約系列代碼（月選、週三到期週選、週五到期週選）"
+    臺指選擇權共有三組契約系列，`data_id` 請填入對應的期交所交易系統代碼：
+
+    | `data_id` | 契約 |
+    | --- | --- |
+    | `TXO` | 月選 |
+    | `TX1` `TX2` `TX3` `TX4` `TX5` | 週選，當月第 1 ~ 5 個**星期三**到期 |
+    | `TXU` `TXV` `TXX` `TXY` `TXZ` | 週選，當月第 1 ~ 5 個**星期五**到期 |
+
+    部分代碼在特定月份會查無資料，屬正常現象而非資料缺漏，原因有二：一是該契約尚未掛牌（週選於到期前一段期間才掛出），二是該月份不存在對應的週次（例如某月只有 4 個星期五，就不會有第 5 個星期五的契約）。
+
+    另外，若某契約當日尚無成交，回傳的會是該契約**最後一次有成交時**的價量。要判斷是否為當日即時報價，請以回傳的 `date` 欄位為準。
+
 !!! example
     === "Package"
         ```python
@@ -264,7 +277,8 @@
 
         api = DataLoader()
         api.login_by_token(api_token='token')
-        # 目前只支援台指選擇權, TXO, TX1, TX2, TX3, TX4
+        # 目前只支援台指選擇權
+        # 月選 TXO；週三到期週選 TX1~TX5；週五到期週選 TXU, TXV, TXX, TXY, TXZ
         df = api.taiwan_options_snapshot(options_id="TXO")
         ```
     === "Python-request"
@@ -275,7 +289,7 @@
         headers = {"Authorization": f"Bearer {token}"}
         url = "https://api.finmindtrade.com/api/v4/taiwan_options_snapshot"
         parameter = {
-            "data_id": "TXO", # TXO, TX1, TX2, TX3, TX4, TX5
+            "data_id": "TXO", # TXO(月選), TX1~TX5(週三到期), TXU/TXV/TXX/TXY/TXZ(週五到期)
             # "data_id": "", # 一次全部
         }
         resp = requests.get(url, headers=headers, params=parameter)
@@ -293,7 +307,7 @@
         response = httr::GET(
             url = url,
             query = list(
-                data_id="TXO" # TXO, TX1, TX2, TX3, TX4, TX5
+                data_id="TXO" # TXO(月選), TX1~TX5(週三到期), TXU/TXV/TXX/TXY/TXZ(週五到期)
                 # data_id="" # 一次全部
             ),
             add_headers(Authorization = paste("Bearer", token))

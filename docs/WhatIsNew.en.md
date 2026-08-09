@@ -1,4 +1,6 @@
 #### 2026-08-09
+* [Taiwan Options Real-Time Information taiwan_options_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-options-real-time-information-taiwan_options_snapshot-only-available-to-sponsor-members) now covers the **Friday-expiry** TAIEX option contracts: `data_id` accepts `TXU`, `TXV`, `TXX`, `TXY` and `TXZ` (expiring on the 1st ~ 5th Friday of the month). The existing `TXO` (monthly) and `TX1` ~ `TX5` (Wednesday-expiry) are unaffected
+    * A code returning no data in a given month is expected: the contract may not be listed yet, or that week does not exist in that month (e.g. a month with only 4 Fridays)
 * Added [Individual Stock Margin Maintenance TaiwanStockMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-maintenance-taiwanstockmarginmaintenance-only-available-for-sponsor-members): data range 2001-01-05 ~ now (TPEx stocks from 2007-01-04). Provides the daily margin maintenance ratio (%), margin cost line, margin purchase balance (lots) and the margin purchase ratio applied, per stock. This dataset is an **estimated indicator** (public disclosure does not provide the margin purchase amount at the individual-stock level), so the numbers will not match other services — see the documentation for details
 
 #### 2026-08-08
