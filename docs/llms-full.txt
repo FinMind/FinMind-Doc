@@ -752,6 +752,9 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### taiwan_options_snapshot (台股選擇權即時資訊)
 - Tier: Sponsor
 - Params: dataset=taiwan_options_snapshot, data_id=TXO (or empty for all)
+- data_id contract series: TXO = monthly; TX1, TX2, TX3, TX4, TX5 = weekly expiring on the 1st-5th Wednesday of the month; TXU, TXV, TXX, TXY, TXZ = weekly expiring on the 1st-5th Friday of the month
+- A series returns no rows when that contract is not listed yet, or when the month has no such week (e.g. no 5th Friday). This is expected, not missing data.
+- If a contract has not traded yet today, the row carries the price and volume from the last session in which it did trade; use the date field to tell whether a row is a same-day quote.
 - Columns: open, high, low, close, change_price, change_rate, average_price, volume, total_volume, amount, total_amount, yesterday_volume, buy_price, buy_volume, sell_price, sell_volume, volume_ratio, date, options_id, TickType
 
 ---

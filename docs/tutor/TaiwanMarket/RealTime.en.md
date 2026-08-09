@@ -1,10 +1,10 @@
 For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 
-- [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)
+- [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members)
 - [Futures and Options Real-Time Quote Overview TaiwanFutOptTickInfo](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwanfutopttickinfo)
-- [Taiwan Futures Real-Time Information taiwan_futures_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan_futures_snapshot-sponsor)
-- [Taiwan Options Real-Time Information taiwan_options_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan_options_snapshot-sponsor)
+- [Taiwan Futures Real-Time Information taiwan_futures_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-futures-real-time-information-taiwan_futures_snapshot-only-available-to-sponsor-members)
+- [Taiwan Options Real-Time Information taiwan_options_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-options-real-time-information-taiwan_options_snapshot-only-available-to-sponsor-members)
 
 
 ----------------------------------
@@ -257,6 +257,19 @@ Currently supports real-time quotes for TAIEX futures and TAIEX options.
 #### Taiwan Options Real-Time Information taiwan_options_snapshot (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (updated approximately every 30 seconds)
 
+??? note "Contract series codes (monthly, Wednesday-expiry weekly, Friday-expiry weekly)"
+    TAIEX options come in three contract series. Pass the corresponding TAIFEX trading-system code as `data_id`:
+
+    | `data_id` | Contract |
+    | --- | --- |
+    | `TXO` | Monthly |
+    | `TX1` `TX2` `TX3` `TX4` `TX5` | Weekly, expiring on the 1st ~ 5th **Wednesday** of the month |
+    | `TXU` `TXV` `TXX` `TXY` `TXZ` | Weekly, expiring on the 1st ~ 5th **Friday** of the month |
+
+    Some codes return no data in a given month. This is expected behaviour, not missing data, for two reasons: the contract may not be listed yet (weekly contracts are listed only a limited period before expiry), or that week does not exist in that month (e.g. a month with only 4 Fridays has no 5th-Friday contract).
+
+    Also note that if a contract has not traded yet on the current day, the response carries the price and volume from the **last session in which it did trade**. Use the returned `date` field to tell whether a row is a same-day quote.
+
 !!! example
     === "Package"
         ```python
@@ -264,7 +277,8 @@ Currently supports real-time quotes for TAIEX futures and TAIEX options.
 
         api = DataLoader()
         api.login_by_token(api_token='token')
-        # Currently only TAIEX options are supported: TXO, TX1, TX2, TX3, TX4
+        # Currently only TAIEX options are supported
+        # Monthly TXO; Wednesday-expiry weekly TX1~TX5; Friday-expiry weekly TXU, TXV, TXX, TXY, TXZ
         df = api.taiwan_options_snapshot(options_id="TXO")
         ```
     === "Python-request"
@@ -275,7 +289,7 @@ Currently supports real-time quotes for TAIEX futures and TAIEX options.
         headers = {"Authorization": f"Bearer {token}"}
         url = "https://api.finmindtrade.com/api/v4/taiwan_options_snapshot"
         parameter = {
-            "data_id": "TXO", # TXO, TX1, TX2, TX3, TX4, TX5
+            "data_id": "TXO", # TXO(monthly), TX1~TX5(Wed-expiry), TXU/TXV/TXX/TXY/TXZ(Fri-expiry)
             # "data_id": "", # fetch all at once
         }
         resp = requests.get(url, headers=headers, params=parameter)
@@ -293,7 +307,7 @@ Currently supports real-time quotes for TAIEX futures and TAIEX options.
         response = httr::GET(
             url = url,
             query = list(
-                data_id="TXO" # TXO, TX1, TX2, TX3, TX4, TX5
+                data_id="TXO" # TXO(monthly), TX1~TX5(Wed-expiry), TXU/TXV/TXX/TXY/TXZ(Fri-expiry)
                 # data_id="" # fetch all at once
             ),
             add_headers(Authorization = paste("Bearer", token))
