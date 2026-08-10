@@ -18,8 +18,8 @@ Uptime is measured from real API traffic, **request by request**. The full formu
 valid requests = successful requests (2xx / 3xx) + server-side errors
 ```
 
-- A **server-side error** means an HTTP **5xx** response, plus a connection dropped by a server-side timeout (HTTP **499** — usually caused by the server being busy or slow, so it is treated as a server-side problem).
-- Ordinary **client errors** (e.g. `400` / `403` / `404` / `429`, excluding 499) are **not** counted as valid requests and do **not** affect uptime.
+- A **server-side error** means an HTTP **5xx** response.
+- **Client errors** (e.g. `400` / `403` / `404` / `429`), along with connections closed by the client before a response was delivered, are **not** counted as valid requests and do **not** affect uptime.
 
 **2. Uptime**
 

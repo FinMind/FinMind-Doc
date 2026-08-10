@@ -923,8 +923,8 @@ FinMind publishes a public, real-time status page at https://status.finmindtrade
 Uptime is measured from real API traffic, request by request:
 
 1. Valid requests = successful requests (2xx / 3xx) + server-side errors.
-   - A server-side error is an HTTP 5xx response, plus a connection dropped by a server-side timeout (HTTP 499 — usually the server being busy or slow, treated as a server-side problem).
-   - Ordinary client errors (4xx excluding 499, e.g. 400 / 403 / 404 / 429) are not counted as valid requests and do not affect uptime.
+   - A server-side error is an HTTP 5xx response.
+   - Client errors (4xx, e.g. 400 / 403 / 404 / 429) and connections closed by the client before a response was delivered are not counted as valid requests and do not affect uptime.
 2. uptime % = successful requests ÷ valid requests × 100.
 
 The 24-hour, 90-day and month-to-date figures each sum the requests in that window and compute the ratio once; they are not averages of per-minute or per-day uptime. Windows with no traffic are not counted. Scheduled maintenance windows may be excluded, and their requests count toward neither the numerator nor the denominator.
