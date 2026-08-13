@@ -464,7 +464,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Sponsor
 - Data range: 1992-01-04 ~ now
 - Params: dataset=TaiwanStockIndustryChainMoneyFlow, start_date=2026-07-17 (no data_id; one day per request - do NOT pass end_date)
-- Columns: date, industry (industry chain), sub_industry (empty string = industry-chain total row), stock_count, trading_volume, trading_money, trading_money_pct (% of whole-market individual-stock trading money; ETF/ETN/beneficiary certificates/TDR excluded from the denominator)
+- Columns: date, industry (industry chain), sub_industry (empty string = industry-chain total row), stock_count, trading_volume, trading_money, trading_money_pct (% of TWSE+TPEX individual-stock trading money; emerging-market stocks and ETF/ETN/beneficiary certificates/TDR excluded; numerator and denominator use the same TWSE+TPEX scope)
 - Derived daily from TaiwanStockPrice aggregated by TaiwanStockIndustryChain (industry / sub_industry)
 - Note: industry-chain total rows count each stock once and do NOT equal the sum of sub-industry rows (one stock can belong to multiple sub-industries); one stock can belong to multiple chains, so percentages across chains sum to more than 100%; historical dates use the current industry-chain classification
 
