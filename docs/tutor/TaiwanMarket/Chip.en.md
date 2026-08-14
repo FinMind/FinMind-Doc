@@ -3228,9 +3228,9 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 1992-01-04 ~ now
 - Update time: **Monday to Saturday, after market close**; actual update time subject to API data
-- Shows where the daily trading money goes across industry chains: daily per-stock trading data aggregated by "Per-Company Industry Chain TaiwanStockIndustryChain" (industry / sub_industry), including stock count, trading volume, trading money, and the percentage of TWSE + TPEX individual-stock trading money
+- Shows where the daily trading money goes across industry chains: daily per-stock trading data aggregated by "Per-Company Industry Chain TaiwanStockIndustryChain" (industry / sub_industry), including stock count, trading volume, trading money, and the percentage of the whole-market individual-stock trading money
 - Rows with an empty `sub_industry` are the industry-chain totals (each stock counted once; **not** equal to the sum of sub-industry rows, because one stock can belong to multiple sub-industries of the same chain); other rows are sub-industry details
-- The denominator of `trading_money_pct` is the TWSE + TPEX individual-stock trading money of the day (emerging-market stocks and ETF / ETN / beneficiary certificates / TDR excluded); numerator and denominator use the same market scope, fixed to TWSE + TPEX
+- The denominator of `trading_money_pct` is the whole-market individual-stock trading money of the day (ETF / ETN / beneficiary certificates / TDR excluded)
 - **One day of data per request**: query with a single `start_date` (no `data_id`); returns all industry chains for that day
 - Note: one stock can belong to multiple industry chains, so the percentages across chains sum to more than 100%; the dataset is designed for comparing relative money strength and rotation between chains. Historical dates are calculated with the current industry-chain classification.
 
@@ -3287,9 +3287,9 @@ In Taiwan stock chip data, we have 26 datasets as follows:
     === "DataFrame"
         |    | date       | industry   | sub_industry   |   stock_count |   trading_volume |   trading_money |   trading_money_pct |
         |---:|:-----------|:-----------|:---------------|--------------:|-----------------:|----------------:|--------------------:|
-        |  0 | 2026-07-17 | 半導體     |                |           271 |       2071162807 |    690560820668 |             52.3755 |
+        |  0 | 2026-07-17 | 半導體     |                |           314 |       2083008796 |    693623697527 |             52.3044 |
         |  1 | 2026-07-17 | 半導體     | 晶圓製造       |            23 |       1114571480 |    400277383605 |             30.1839 |
-        |  2 | 2026-07-17 | 半導體     | IC封裝測試     |            32 |        429731360 |     84973154696 |              6.4448 |
+        |  2 | 2026-07-17 | 半導體     | IC封裝測試     |            35 |        430118317 |     85061031396 |              6.4142 |
     === "Schema"
         ```
         {
@@ -3299,7 +3299,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
             stock_count: int, # number of component stocks traded that day
             trading_volume: int, # total trading volume (shares)
             trading_money: int, # total trading money
-            trading_money_pct: float, # % of TWSE + TPEX individual-stock trading money
+            trading_money_pct: float, # % of whole-market individual-stock trading money
         }
         ```
 
