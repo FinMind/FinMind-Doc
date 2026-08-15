@@ -2192,6 +2192,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 23:30**, the actual update time is based on the API data.
+- Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
 
 !!! example
     === "Package"

@@ -383,6 +383,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (by broker): securities_trader_id=1020, date=2022-06-16
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
 - Note: Single day per request, only `date` (no start_date/end_date).
+- Note: Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
 - Note: For emerging-board (興櫃) stocks, the recommending securities dealer (market maker; securities_trader_id ends with `T`) quotes two-way across many price levels, so that branch row's price shows 0 (buy/sell share counts are still correct). This is normal for emerging stocks, not missing data; listed (TWSE)/OTC (TPEX) stocks are unaffected.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReport&date=2022-06-16` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_trading_daily_report(date='2022-06-16', use_object=True)`.
 
@@ -394,12 +395,13 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockWarrantTradingDailyReport&date=2023-06-21` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_warrant_trading_daily_report(date='2023-06-21', use_object=True)`.
 
-### TaiwanstockGovernmentBankBuySell (台股八大行庫買賣表)
+### TaiwanStockGovernmentBankBuySell (台股八大行庫買賣表)
 - Tier: Sponsor
 - Data range: 2021-06-30 ~ now
 - Update: Mon-Fri 23:30
-- Params: dataset=TaiwanstockGovernmentBankBuySell, start_date=2023-01-17
+- Params: dataset=TaiwanStockGovernmentBankBuySell, start_date=2023-01-17
 - Columns: date, stock_id, buy_amount, sell_amount, buy, sell, bank_name
+- Note: Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
 
 ### TaiwanTotalExchangeMarginMaintenance (台灣大盤融資維持率)
 - Tier: Backer/Sponsor
