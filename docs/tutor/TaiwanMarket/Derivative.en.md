@@ -1,8 +1,9 @@
 
-In Taiwan stock derivatives data, we have 18 datasets, as follows:
+In Taiwan stock derivatives data, we have 21 datasets, as follows:
 
 - [Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [Futures Daily Trading Information TaiwanFuturesDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
+- [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members)
 - [Options Daily Trading Information TaiwanOptionDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [Futures Trading Detail Table TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)
 - [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)
@@ -268,6 +269,87 @@ In Taiwan stock derivatives data, we have 18 datasets, as follows:
             settlement_price: float32, # settlement price
             open_interest: float64, # open interest
             trading_session: str # trading session
+        }
+        ```
+
+----------------------------------
+#### Futures Minute KBar TaiwanFuturesKBar (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2011-01-03 ~ now
+- Data update time: **Monday to Friday 16:30**. The actual update time is based on the API data.
+- Only one day of data can be queried at a time.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_futures_kbar(
+            futures_id='TX',
+            date='2024-01-02',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesKBar",
+            "data_id": "TX",
+            "start_date": "2024-01-02",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesKBar",
+                data_id="TX",
+                start_date="2024-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>% data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id | contract_date | minute   |  open |  high |   low | close | volume |
+        |---:|:-----------|:-----------|:--------------|:---------|------:|------:|------:|------:|-------:|
+        |  0 | 2024-01-02 | TX         | 202401        | 08:45:00 | 17800 | 17810 | 17795 | 17805 |    150 |
+        |  1 | 2024-01-02 | TX         | 202401        | 08:46:00 | 17805 | 17815 | 17800 | 17812 |     98 |
+        |  2 | 2024-01-02 | TX         | 202401        | 08:47:00 | 17812 | 17820 | 17810 | 17818 |     75 |
+        |  3 | 2024-01-02 | TX         | 202402        | 08:45:00 | 17750 | 17760 | 17745 | 17755 |     12 |
+        |  4 | 2024-01-02 | TX         | 202402        | 08:46:00 | 17755 | 17765 | 17750 | 17760 |      8 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            futures_id: str, # futures code
+            contract_date: str, # contract month
+            minute: str, # minute time
+            open: float32, # open price
+            high: float32, # high price
+            low: float32, # low price
+            close: float32, # close price
+            volume: int64, # trading volume
         }
         ```
 

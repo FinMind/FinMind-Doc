@@ -1,8 +1,9 @@
 
-在台股衍生性商品資料，我們擁有 18 種資料集，如下:
+在台股衍生性商品資料，我們擁有 21 種資料集，如下:
 
 - [期貨、選擇權日成交資訊總覽 TaiwanFutOptDailyInfo](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
+- [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutureskbar-sponsor)
 - [選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
 - [期貨交易明細表 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)
 - [期貨價差每筆成交資料 TaiwanFuturesSpreadTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor)
@@ -195,7 +196,7 @@
 ----------------------------------
 #### 期貨分K TaiwanFuturesKBar (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：2019-01-01 ~ now
+- 資料區間：2011-01-03 ~ now
 - 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
 - 一次只能查詢一天的資料
 
