@@ -28,6 +28,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - This table mainly lists all Taiwan listed (TWSE), OTC (TPEx), and Emerging stocks, including stock names, codes, and industry categories!
 - Data update time: **1:30 daily**. The actual update time is based on the API data.
 
+??? note "Transferred stocks keep multiple rows: take the row with the latest `date` as the current market"
+    If a stock moved from the Emerging board to TWSE / TPEx, this table keeps both an `emerging` row and a `twse` / `tpex` row. The `date` of the `emerging` row is frozen at the day the stock left the Emerging board, while the `twse` / `tpex` row carries the current date. **Filtering with `type == "emerging"` alone therefore also picks up stocks that have already transferred**; take the row with the latest `date` for each `stock_id` instead. This matters especially for `TaiwanStockPriceTick` and `TaiwanStockKBar`, whose `volume` unit differs by market (lots for TWSE / TPEx, shares for Emerging).
+
 !!! example
     === "Package"
         ```python
@@ -1070,6 +1073,15 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 ??? note "Historical limitation of TickType in 2019"
     For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
 
+??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
+    The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares**. Both units therefore appear in the same day of data. This is a difference between markets, not a data error. The same rule applies to `volume` in `TaiwanStockKBar` (minute K).
+
+    To tell which market a stock currently belongs to, use the `type` column of `TaiwanStockInfo` (`twse` / `tpex` / `emerging`). **Note**: a stock that moved from Emerging to TWSE / TPEx keeps both rows in `TaiwanStockInfo` — an `emerging` row and a `twse` / `tpex` row — and the `date` of the `emerging` row is frozen at the day the stock left the Emerging board. Filtering with `type == "emerging"` alone therefore also picks up stocks that have already moved, which makes the Emerging volume unit look inconsistent. Take the row with the latest `date` for each `stock_id` as the current market.
+
+    **Example**: for 1294, the `emerging` row has `date` 2024-09-25 while the `tpex` row carries the current date, so it is a TPEx stock today and its `volume` is in lots; 1260 has only an `emerging` row carrying the current date, so it is still an Emerging stock and its `volume` is in shares.
+
+    Also note, when reconciling tick data against the daily volume in `TaiwanStockPrice`: for TWSE / TPEx stocks the daily volume **includes block trades** (see `TaiwanStockBlockTrade`), while tick data does not, so the two will not match exactly.
+
 !!! example
     === "Package"
         ```python
@@ -1178,6 +1190,15 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 ??? note "Historical limitation of TickType in 2019"
     For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+
+??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
+    The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares**. Both units therefore appear in the same day of data. This is a difference between markets, not a data error. The same rule applies to `volume` in `TaiwanStockKBar` (minute K).
+
+    To tell which market a stock currently belongs to, use the `type` column of `TaiwanStockInfo` (`twse` / `tpex` / `emerging`). **Note**: a stock that moved from Emerging to TWSE / TPEx keeps both rows in `TaiwanStockInfo` — an `emerging` row and a `twse` / `tpex` row — and the `date` of the `emerging` row is frozen at the day the stock left the Emerging board. Filtering with `type == "emerging"` alone therefore also picks up stocks that have already moved, which makes the Emerging volume unit look inconsistent. Take the row with the latest `date` for each `stock_id` as the current market.
+
+    **Example**: for 1294, the `emerging` row has `date` 2024-09-25 while the `tpex` row carries the current date, so it is a TPEx stock today and its `volume` is in lots; 1260 has only an `emerging` row carrying the current date, so it is still an Emerging stock and its `volume` is in shares.
+
+    Also note, when reconciling tick data against the daily volume in `TaiwanStockPrice`: for TWSE / TPEx stocks the daily volume **includes block trades** (see `TaiwanStockBlockTrade`), while tick data does not, so the two will not match exactly.
 
 !!! example
     === "Package"
@@ -1967,6 +1988,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Data update time: **Monday to Friday 15:50**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
+
+??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
+    The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares** — the same rule as `TaiwanStockPriceTick`. For how to determine a stock's market (and the caveat that transferred stocks keep two rows in `TaiwanStockInfo`), see the note of the same name in the `TaiwanStockPriceTick` section.
 
 !!! example
     === "Package"
