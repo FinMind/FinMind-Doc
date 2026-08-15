@@ -44,6 +44,11 @@ df = api.taiwan_stock_daily(
 
 Async batch query is supported by datasets that require `data_id` parameter. Not supported by: info, snapshot, tick, total aggregation, and convertible bond datasets.
 
+## Data Conventions
+
+- Volume units differ by market in the intraday tables: `TaiwanStockPriceTick` and `TaiwanStockKBar` report `volume` in lots (1 lot = 1,000 shares) for TWSE/TPEX stocks, and in shares for emerging-board (興櫃) stocks — both units appear in the same day of data. Daily tables such as `TaiwanStockPrice` report `Trading_Volume` in shares for every market.
+- `TaiwanStockInfo` keeps one row per market a stock has belonged to. A stock that moved from the emerging board to TWSE/TPEX keeps its old `emerging` row, whose `date` is frozen at the day it left. Take the row with the latest `date` per `stock_id` as the current market — filtering on `type == "emerging"` alone also returns already-transferred stocks.
+
 ## Documentation
 
 - [Quick Start](https://finmind.github.io/quickstart/): API usage guide with examples in Python and R
