@@ -20,6 +20,17 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 - Data range: 1990-03-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
+??? note "EPS is a single-quarter figure and is retroactively restated after a stock dividend / split — summing quarters will not match the cumulative EPS"
+    The `EPS` (basic earnings per share) in this table is a **single-quarter** figure, and each quarter stores the value **as originally reported in that quarter's financial statements**.
+
+    Under IAS 33, share-count changes with no consideration received — stock dividends (bonus issues) and stock splits — require the weighted average number of shares to be **retroactively restated for every period presented**. So once a bonus issue happens, that quarter's report restates the EPS of all earlier quarters downward, but this table does not rewrite the values already published. The result: **within the same fiscal year, the share base behind each quarter's EPS is inconsistent, so summing them will not match the cumulative EPS in the financial statements**.
+
+    Example — 3081 (Landmark Optoelectronics), FY2026. The company went ex-rights on 2026-07-15 with a stock dividend of NT$1 (100 shares per 1,000 shares held, i.e. a 10% bonus issue). This table reports `EPS` of **3.44** for 2026 Q1 (as originally reported, pre-bonus share count) and **4.62** for 2026 Q2 (already on the restated share count), which sum to 8.06 — but the reported first-half cumulative EPS is **7.75**. The gap arises because Q1's 3.44 was restated in the Q2 report to `3.44 ÷ 1.1 = 3.13`, and `3.13 + 4.62 = 7.75`.
+
+    **Recommended approach**: to aggregate across quarters, do not sum `EPS`. Sum `IncomeAfterTaxes` (net income for the period) instead and divide by a single weighted average share count. For the example above: `(317,515 + 468,487) thousand TWD ÷ approx. 101,420 thousand shares = 7.75`.
+
+    To detect whether a bonus issue occurred within your query range, check the `StockEarningsDistribution` (stock dividend) field in `TaiwanStockDividend`; in the example above its value is 1.0.
+
 !!! example
     === "Package"
         ```python
