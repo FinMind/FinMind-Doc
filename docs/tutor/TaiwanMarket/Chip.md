@@ -872,6 +872,18 @@
 #### 股東持股分級表 TaiwanStockHoldingSharesPer(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2010-01-29 ~ now
+- 可用 `data_id` 查詢單一股票的完整期間；不帶 `data_id` 時為**單一日期**查詢，回傳該日全市場（此時 `end_date` 不生效）
+
+??? note "`HoldingSharesLevel` 含兩列非級距列，加總前請先排除"
+    同一檔股票、同一日期共 17 列，其中只有 15 列是持股級距（`1-999`、`1,000-5,000` … 一直到 `more than 1,000,001`），另外兩列不是級距：
+
+    - `total`：該期彙總列，`percent` 固定為 `100`
+    - `差異數調整（說明4）`：對應原始公告的調整項，`unit`／`percent` 可為負值
+
+    若直接對 `HoldingSharesLevel` 分組加總 `percent`，會把 `total` 這列一併算進去，得到約 `200` 這種明顯錯誤的數字。計算級距分布時請先濾掉這兩列，或直接取 `total` 列當分母。
+
+    另外，最高級距的名稱為 ASCII 寫法 `more than 1,000,001`（對應原始公告的「1,000,001以上」），與其餘級距的數字區間寫法不同，以字串比對判斷級距時需留意。
+
 !!! example
     === "Package"
         ```python
@@ -3069,6 +3081,15 @@
 - 備註：`shares`（股數）為整數；`market_value`（市值）僅**部分**主動式ETF於每日投資組合逐檔揭露，未揭露者該欄為 `0`，可自行以 `shares` 乘上成份股當日收盤價估算
 - 備註：主動式ETF 投資組合含衍生品與現金/負債科目，非僅股票。**賣出選擇權、期貨等空方部位的 `shares`（口數）與 `market_value` 可為負**；應付款項等負債科目 `market_value` 亦可為負。可用 `asset_type`（`stock`／`bond`／`futures`／`option`／`cash`／`etf`／`repo`／`other`）篩選，例如只看純股票持股取 `asset_type == "stock"`
 
+??? note "成份股名稱 `component_stock_name` 寫法不統一，請以 `component_stock_id` 分組"
+    `component_stock_name` 逐檔沿用各主動式ETF於投資組合公告中自報的名稱字串。各家寫法不一致，**同一檔成份股在不同 ETF 可能出現不同名稱**，例如：
+
+    - `2330`：「台積電」與「台灣積體電路製造」
+    - `2344`：「華邦電」與「華邦電子」
+    - `2886`：「兆豐金控」「兆豐金融控股」「兆豐金融」「兆豐金」
+
+    若以名稱字串作為分組鍵彙總（例如統計某檔股票被多少 ETF 持有、或加總持股股數），同一檔股票會被拆成數筆不同數字。請一律以 `component_stock_id` 作為分組與合併的鍵；需要統一顯示名稱時，再自行以 [台灣股票總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/DataList/) 對照。
+
 !!! example
     === "Package"
         ```python
@@ -3152,6 +3173,9 @@
 - `buy` 為當日買進股數（成份股股數增加量，未買則 0）、`sell` 為當日賣出股數（成份股股數減少量、取正值，未賣則 0）；兩者皆為整數（股數無小數點），每列僅其一非 0
 - 可用 `data_id` 查詢單一 ETF（如 `00980A`），或僅用日期查詢當日全部主動式ETF持股異動
 - 備註：申購/贖回會讓成份股股數等比例變動，並計入 `buy`/`sell`；故 `buy`/`sell` 是「持股股數變化」，不等於「經理人主動買賣純額」
+
+??? note "成份股名稱 `component_stock_name` 寫法不統一，請以 `component_stock_id` 分組"
+    同「主動式ETF每日持股明細 TaiwanStockActiveETFHolding」：`component_stock_name` 沿用各主動式ETF自報的名稱字串，同一檔成份股在不同 ETF 可能出現不同名稱（如 `2886` 有「兆豐金控」「兆豐金融控股」「兆豐金融」「兆豐金」）。彙總資金流向時請以 `component_stock_id` 作為分組鍵，以免同一檔股票被拆成數筆。
 
 !!! example
     === "Package"

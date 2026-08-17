@@ -872,6 +872,18 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 #### Shareholders Holding Shares Distribution TaiwanStockHoldingSharesPer (only available for [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Data range: 2010-01-29 ~ now
+- Query the full period of a single stock via `data_id`; without `data_id` the request is a **single-date** query returning the whole market for that date (`end_date` has no effect).
+
+??? note "`HoldingSharesLevel` contains two non-bucket rows — exclude them before summing"
+    For one stock on one date there are 17 rows, of which only 15 are holding buckets (`1-999`, `1,000-5,000` … up to `more than 1,000,001`). The other two are not buckets:
+
+    - `total`: the aggregate row for that period, with `percent` fixed at `100`
+    - `差異數調整（說明4）`: the adjustment line item of the original publication; its `unit` and `percent` can be negative
+
+    Grouping by `HoldingSharesLevel` and summing `percent` directly therefore includes the `total` row and yields an obviously wrong figure of around `200`. Filter both rows out before computing the distribution, or use the `total` row as the denominator.
+
+    Also note the top bucket is named in ASCII as `more than 1,000,001` (corresponding to 「1,000,001以上」 in the original publication), which does not follow the numeric-range form of the other buckets — take care when matching bucket names as strings.
+
 !!! example
     === "Package"
         ```python
@@ -3070,6 +3082,15 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Note: `shares` is an integer; `market_value` is disclosed per holding by **only some** active ETFs' daily portfolios — where it is not disclosed the field is `0` (you can estimate it as `shares` times the constituent's closing price).
 - Note: an active ETF's portfolio includes derivatives and cash/liability line items, not only stocks. **For short derivative positions (written options, short futures) both `shares` (contracts) and `market_value` can be negative**; liability line items (e.g. payables) can also have a negative `market_value`. Use `asset_type` (`stock`/`bond`/`futures`/`option`/`cash`/`etf`/`repo`/`other`) to filter — e.g. take `asset_type == "stock"` for equity holdings only.
 
+??? note "`component_stock_name` spellings are not standardised — group by `component_stock_id`"
+    `component_stock_name` reproduces, per ETF, the name string each active ETF reports in its own portfolio disclosure. The issuers do not use a common convention, so **the same constituent can appear under different names across ETFs**, for example:
+
+    - `2330`: 「台積電」 and 「台灣積體電路製造」
+    - `2344`: 「華邦電」 and 「華邦電子」
+    - `2886`: 「兆豐金控」, 「兆豐金融控股」, 「兆豐金融」, 「兆豐金」
+
+    Grouping by the name string (e.g. counting how many ETFs hold a stock, or summing held shares) therefore splits one stock into several rows with different numbers. Always group and join on `component_stock_id`; if you need a single display name, map it yourself via [TaiwanStockInfo](https://finmind.github.io/en/tutor/TaiwanMarket/DataList/).
+
 !!! example
     === "Package"
         ```python
@@ -3153,6 +3174,9 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - `buy` is the shares bought that day (increase in constituent shares; 0 if none), `sell` is the shares sold that day (decrease in constituent shares, as a positive value; 0 if none); both are integers (no decimals), and exactly one of `buy`/`sell` is non-zero per row.
 - Query a single ETF via `data_id` (e.g. `00980A`), or query all active ETF holding changes of a given date by date only.
 - Note: creations/redemptions scale constituent shares proportionally and are included in `buy`/`sell`; therefore `buy`/`sell` reflect the change in held shares and are **not** the manager's net discretionary buy/sell.
+
+??? note "`component_stock_name` spellings are not standardised — group by `component_stock_id`"
+    As in "Active ETF Daily Holding TaiwanStockActiveETFHolding": `component_stock_name` reproduces the name string each active ETF reports itself, so the same constituent can appear under different names across ETFs (e.g. `2886` appears as 「兆豐金控」, 「兆豐金融控股」, 「兆豐金融」 and 「兆豐金」). Group on `component_stock_id` when aggregating flows, otherwise one stock is split into several rows.
 
 !!! example
     === "Package"

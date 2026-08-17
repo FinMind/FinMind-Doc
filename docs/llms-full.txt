@@ -346,8 +346,9 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Tier: Backer/Sponsor
 - Data range: 2010-01-29 ~ now
 - Params: dataset=TaiwanStockHoldingSharesPer, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
-- Params (all stocks, Backer/Sponsor): dataset=TaiwanStockHoldingSharesPer, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
+- Params (all stocks, Backer/Sponsor): dataset=TaiwanStockHoldingSharesPer, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料；此時為單一日期查詢，end_date 不生效)
 - Columns: date, stock_id, HoldingSharesLevel, people, percent, unit
+- Known limitation: each stock/date has 17 rows, of which only 15 are holding buckets (1-999 ... more than 1,000,001); `total` (aggregate row, percent=100) and `差異數調整（說明4）` (adjustment line item, unit/percent can be negative) are not buckets. Summing percent grouped by HoldingSharesLevel without excluding them yields ~200%. The top bucket is named in ASCII as `more than 1,000,001` (原始公告為「1,000,001以上」), unlike the numeric-range form of the other buckets.
 
 ### TaiwanStockSecuritiesLending (借券成交明細)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -456,6 +457,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (all active ETFs for one day): dataset=TaiwanStockActiveETFHolding, start_date=2025-05-05
 - Columns: date, stock_id (ETF id), component_stock_id (constituent), component_stock_name, asset_type, shares, weight, market_value, currency
 - Note: buy/sell holdings can be derived by differencing consecutive trading days; start date differs per ETF
+- Known limitation: component_stock_name reproduces each ETF's self-reported name string, so the same constituent can appear under different names across ETFs (2330 as 「台積電」/「台灣積體電路製造」, 2886 as 「兆豐金控」/「兆豐金融控股」/「兆豐金融」/「兆豐金」); always group and join on component_stock_id, not on the name
 
 ### TaiwanStockActiveETFHoldingChange (主動式ETF每日持股異動（買賣）)
 - Tier: Sponsor
@@ -465,6 +467,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Columns: date, stock_id (ETF id), component_stock_id (constituent), component_stock_name, buy (integer shares bought that day; increase in constituent shares, 0 if none), sell (integer shares sold that day; decrease in constituent shares as a positive value, 0 if none); exactly one of buy/sell is non-zero per row
 - Derived from TaiwanStockActiveETFHolding by differencing consecutive trading days
 - Note: creations/redemptions scale constituent shares proportionally and are included in buy/sell, so buy/sell reflect the change in held shares and are not the manager's net discretionary buy/sell
+- Known limitation: component_stock_name reproduces each ETF's self-reported name string and is not standardised across ETFs; group on component_stock_id when aggregating flows
 
 ### TaiwanStockIndustryChainMoneyFlow (台股產業鏈資金流向)
 - Tier: Sponsor
@@ -797,7 +800,9 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2026-05-01 ~ now
 - Update: Mon-Sat 18:00
 - Params: dataset=TaiwanStockConvertibleBondMonthlyAnalysis, data_id=13166, start_date=2026-05-01, end_date=2026-06-01
+- Params (all convertible bonds): dataset=TaiwanStockConvertibleBondMonthlyAnalysis, start_date=2026-05-01, end_date=2026-07-01 (不帶 data_id，取得區間內所有可轉債資料)
 - Columns: cb_id (str), cb_name (str), cb_name_en (str), custody_balance (int), last_month_balance (int), change (int), change_percent (float64), issued_units (int), custody_accounts (int), pledged_units (int), date (str)
+- Note: monthly dataset; date is the first day of the month the report covers (2026-07-01 = July 2026). A range containing no first-of-month date, or starting before 2026-05-01, returns an empty result rather than an error.
 
 ---
 

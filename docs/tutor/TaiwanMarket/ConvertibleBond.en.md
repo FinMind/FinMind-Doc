@@ -606,6 +606,11 @@ For Taiwan stock convertible bonds, we have 6 datasets, as listed below:
 
 - Data range: 2026-05-01 ~ now
 - Data update time: **Monday to Saturday, 18:00**. The actual update time is based on the API data.
+- **Monthly** data: `date` is the first day of the month the report covers (e.g. the July 2026 report has `date` = `2026-07-01`).
+- Query a single convertible bond via `data_id` (e.g. `11011`), or query every convertible bond in the range by date only.
+
+??? note "Getting no data? Check `start_date` against the data range first"
+    This dataset is monthly, `date` only ever falls on the first day of a month, and data is available from 2026-05-01 onwards. If the start of your query range predates the data range, or the range contains no first-of-month date, the response is empty (not an error). Set `start_date` on or after 2026-05-01 and make sure the range spans at least one first-of-month date.
 
 !!! example
     === "Python-request"
