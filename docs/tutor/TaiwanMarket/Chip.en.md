@@ -882,7 +882,9 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
     Grouping by `HoldingSharesLevel` and summing `percent` directly therefore includes the `total` row and yields an obviously wrong figure of around `200`. Filter both rows out before computing the distribution, or use the `total` row as the denominator.
 
-    Also note the top bucket is named in ASCII as `more than 1,000,001` (corresponding to 「1,000,001以上」 in the original publication), which does not follow the numeric-range form of the other buckets — take care when matching bucket names as strings.
+    Also note the top bucket is named `more than 1,000,001` (corresponding to 「1,000,001以上」 in the original publication) — a phrase rather than a numeric range, unlike the other buckets — so take care when matching bucket names as strings.
+
+    This table is provided **exactly as the original publication is structured**: aggregate and detail rows are not split into separate tables and bucket names are not rewritten, so that every row maps one-to-one to the original publication. Apply the filtering above on your side.
 
 !!! example
     === "Package"

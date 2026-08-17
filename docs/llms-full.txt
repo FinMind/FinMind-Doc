@@ -348,7 +348,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockHoldingSharesPer, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockHoldingSharesPer, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料；此時為單一日期查詢，end_date 不生效)
 - Columns: date, stock_id, HoldingSharesLevel, people, percent, unit
-- Known limitation: each stock/date has 17 rows, of which only 15 are holding buckets (1-999 ... more than 1,000,001); `total` (aggregate row, percent=100) and `差異數調整（說明4）` (adjustment line item, unit/percent can be negative) are not buckets. Summing percent grouped by HoldingSharesLevel without excluding them yields ~200%. The top bucket is named in ASCII as `more than 1,000,001` (原始公告為「1,000,001以上」), unlike the numeric-range form of the other buckets.
+- Known limitation: each stock/date has 17 rows, of which only 15 are holding buckets (1-999 ... more than 1,000,001); `total` (aggregate row, percent=100) and `差異數調整（說明4）` (adjustment line item, unit/percent can be negative) are not buckets. Summing percent grouped by HoldingSharesLevel without excluding them yields ~200%. The top bucket is named `more than 1,000,001` (原始公告為「1,000,001以上」), a phrase rather than a numeric range unlike the other buckets. The table is provided as the original publication is structured — aggregate and detail rows are not split and bucket names are not rewritten; filter on the client side.
 
 ### TaiwanStockSecuritiesLending (借券成交明細)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
