@@ -2056,10 +2056,22 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Taiwan Stock Minute K Table TaiwanStockKBar (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: 2019-01-01 ~ now
+- Data range: individual stocks 2019-01-01 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
 - Data update time: **Monday to Friday 15:50**. The actual update time is based on the API data.
 - Some data is missing on this date: 2019-02-20.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
+
+??? note "This table also provides the TAIEX index minute K"
+    Besides individual stocks, passing `TAIEX` as `data_id` returns the **minute K of the Taiwan Capitalization Weighted Stock Index**:
+
+    ```python
+    df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
+    ```
+
+    - Data range **2005-01-03 ~ now**, longer than the individual-stock minute K (which starts 2019-01-01)
+    - **271 rows** per trading day, covering `09:00:00` ~ `13:30:00`, one row per minute
+    - An index has no trading volume, so `volume` is **always 0**; `open` / `high` / `low` / `close` are index values within that minute
+    - Make-up trading Saturdays are covered as well
 
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares** — the same rule as `TaiwanStockPriceTick`. For how to determine a stock's market (and the caveat that transferred stocks keep two rows in `TaiwanStockInfo`), see the note of the same name in the `TaiwanStockPriceTick` section.
