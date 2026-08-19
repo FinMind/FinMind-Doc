@@ -1375,6 +1375,78 @@
         }
         ```
 
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_per_pbr(
+            start_date='2020-04-06',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockPER",
+            "start_date": "2020-04-06",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockPER",
+                start_date= "2020-04-06"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   dividend_yield |   PER |   PBR |
+        |---:|:-----------|-----------:|-----------------:|------:|------:|
+        |  0 | 2020-04-06 |       1101 |             7.68 |  9.12 |  1.14 |
+        |  1 | 2020-04-06 |       1102 |             7.68 |  7.52 |  0.90 |
+        |  2 | 2020-04-06 |       1103 |             6.60 |  7.54 |  0.43 |
+        |  3 | 2020-04-06 |       1104 |             6.33 |  9.08 |  0.57 |
+        |  4 | 2020-04-06 |       1108 |             2.18 | 62.64 |  0.65 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代碼
+            dividend_yield: float64, # 殖利率
+            PER: float64, # 本益比
+            PBR: float64 # 股價淨值比
+        }
+        ```
+
 ----------------------------------
 #### 每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade
 (由於資料量過大，單次請求只提供一天資料)

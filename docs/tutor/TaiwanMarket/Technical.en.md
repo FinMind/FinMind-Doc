@@ -1375,6 +1375,78 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
         }
         ```
 
+#### Fetch all data for a specific date at once (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_per_pbr(
+            start_date='2020-04-06',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockPER",
+            "start_date": "2020-04-06",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockPER",
+                start_date= "2020-04-06"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id |   dividend_yield |   PER |   PBR |
+        |---:|:-----------|-----------:|-----------------:|------:|------:|
+        |  0 | 2020-04-06 |       1101 |             7.68 |  9.12 |  1.14 |
+        |  1 | 2020-04-06 |       1102 |             7.68 |  7.52 |  0.90 |
+        |  2 | 2020-04-06 |       1103 |             6.60 |  7.54 |  0.43 |
+        |  3 | 2020-04-06 |       1104 |             6.33 |  9.08 |  0.57 |
+        |  4 | 2020-04-06 |       1108 |             2.18 | 62.64 |  0.65 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock code
+            dividend_yield: float64, # dividend yield
+            PER: float64, # price-to-earnings ratio
+            PBR: float64 # price-to-book ratio
+        }
+        ```
+
 ----------------------------------
 #### Order and Trade Statistics Every 5 Seconds TaiwanStockStatisticsOfOrderBookAndTrade
 (Due to the large data volume, each request only provides one day's data.)
