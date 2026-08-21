@@ -548,6 +548,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockMonthRevenue, data_id=2330, start_date=2019-03-31
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockMonthRevenue, start_date=2019-03-31 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), country (str), revenue (int64), revenue_month (int64), revenue_year (int64), create_time (str, 建立時間 YYYY-MM-DD; empty for older historical rows)
+- Known limitation: create_time has only been recorded since 2026-04-21 (empty string before that), and it is the date the row entered the FinMind database, not the company's official announcement time; FinMind collects monthly revenue several times a day, so the gap should be negligible. Rows written on 2026-04-21 all carry create_time=2026-04-21 as the column's initial value.
 
 ### TaiwanStockCapitalReductionReferencePrice (減資恢復買賣參考價格)
 - Tier: Free

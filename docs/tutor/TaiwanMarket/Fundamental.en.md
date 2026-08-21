@@ -935,6 +935,13 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 - Data range: 2002-02-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
+??? note "`create_time` only exists from 2026-04-21 onwards, and reflects when the row entered the FinMind database"
+    `create_time` is the date (YYYY-MM-DD) on which the monthly revenue row **entered the FinMind database**. It has only been recorded since **2026-04-21**; rows older than that carry **no** `create_time` and the field is an empty string.
+
+    It is therefore **not the official announcement time** filed by the company on the Market Observation Post System - it only tells you when FinMind observed the row. That said, FinMind collects monthly revenue several times a day, so in practice the gap to the announcement time should be negligible, and the field can still be used as an approximation of "roughly when this revenue figure was published".
+
+    Note also that rows written on 2026-04-21 (the day the column went live) all carry `create_time` = 2026-04-21, which is the initial backfilled value of the column rather than the day those figures were announced.
+
 !!! example
     === "Package"
         ```python
@@ -1027,7 +1034,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
             revenue: int64, # revenue
             revenue_month: int64, # revenue month
             revenue_year: int64, # revenue year
-            create_time: str # creation time (YYYY-MM-DD); empty string for older historical rows
+            create_time: str # creation time (YYYY-MM-DD); recorded only since 2026-04-21, empty string for older historical rows
         }
         ```
 
@@ -1102,7 +1109,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
             revenue: int64, # revenue
             revenue_month: int64, # revenue month
             revenue_year: int64, # revenue year
-            create_time: str # creation time (YYYY-MM-DD); empty string for older historical rows
+            create_time: str # creation time (YYYY-MM-DD); recorded only since 2026-04-21, empty string for older historical rows
         }
         ```
 ----------------------------------
