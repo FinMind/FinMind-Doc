@@ -935,6 +935,13 @@
 - 資料區間：2002-02-01 ~ now
 - 資料涵蓋：上市、上櫃、興櫃公司，以 `stock_id` 區分（可搭配 `TaiwanStockInfo` 查詢市場別）
 
+??? note "`create_time` 自 2026-04-21 起才有值，且代表進入 FinMind 資料庫的時間"
+    `create_time` 是**該筆月營收進入 FinMind 資料庫的日期**（YYYY-MM-DD），自 **2026-04-21** 起才開始記錄，在此之前的歷史資料**沒有** `create_time`，該欄位為空字串。
+
+    因此它**不等於公司在公開資訊觀測站的正式公告時間**，僅能視為 FinMind 觀察到該筆資料的時間。不過 FinMind 一天內會多次收集月營收資料，理論上與公告時間不會有明顯差距，仍可作為「這筆營收大約何時公布」的近似參考。
+
+    另外，2026-04-21（欄位啟用當天）寫入的列，`create_time` 一律為 2026-04-21，是欄位啟用時的初始值，不代表那幾筆營收是在該日公告。
+
 !!! example
     === "Package"
         ```python
@@ -1027,7 +1034,7 @@
             revenue: int64, # 營收
             revenue_month: int64, # 營收月份
             revenue_year: int64, # 營收年份
-            create_time: str # 建立時間 (YYYY-MM-DD)，舊歷史資料為空字串
+            create_time: str # 建立時間 (YYYY-MM-DD)，2026-04-21 起才記錄，舊歷史資料為空字串
         }
         ```
 
@@ -1102,7 +1109,7 @@
             revenue: int64, # 營收
             revenue_month: int64, # 營收月份
             revenue_year: int64, # 營收年份
-            create_time: str # 建立時間 (YYYY-MM-DD)，舊歷史資料為空字串
+            create_time: str # 建立時間 (YYYY-MM-DD)，2026-04-21 起才記錄，舊歷史資料為空字串
         }
         ```
 ----------------------------------
