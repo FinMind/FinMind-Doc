@@ -89,8 +89,6 @@
 - [期貨最後結算價 TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
 - [選擇權最後結算價 TaiwanOptionFinalSettlementPrice](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
 - [臺指選擇權波動率指數 TaiwanOptionVix](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor)
-- [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily-backersponsor)
-- [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily-backersponsor)
 
 #### 即時資料 RealTime
 
@@ -107,6 +105,8 @@
 - [可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
 - [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)
 - [可轉債賣回權時程 TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)
+- [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanassetswapfixedincomedaily-backersponsor)
+- [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanassetswapoptiondaily-backersponsor)
 
 
 #### 其他 Others

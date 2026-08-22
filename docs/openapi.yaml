@@ -78,12 +78,12 @@ paths:
             TaiwanOptionInstitutionalInvestorsAfterHours, TaiwanFuturesDealerTradingVolumeDaily,
             TaiwanOptionDealerTradingVolumeDaily, TaiwanFuturesOpenInterestLargeTraders,
             TaiwanOptionOpenInterestLargeTraders, TaiwanFuturesSpreadTrading,
-            TaiwanFuturesFinalSettlementPrice, TaiwanOptionFinalSettlementPrice,
-            TaiwanAssetSwapFixedIncomeDaily, TaiwanAssetSwapOptionDaily.
+            TaiwanFuturesFinalSettlementPrice, TaiwanOptionFinalSettlementPrice.
             Taiwan Real-Time: taiwan_stock_tick_snapshot, TaiwanFutOptTickInfo,
             taiwan_futures_snapshot, taiwan_options_snapshot.
             Taiwan Convertible Bond: TaiwanStockConvertibleBondInfo, TaiwanStockConvertibleBondDaily,
-            TaiwanStockConvertibleBondInstitutionalInvestors, TaiwanStockConvertibleBondDailyOverview.
+            TaiwanStockConvertibleBondInstitutionalInvestors, TaiwanStockConvertibleBondDailyOverview,
+            TaiwanAssetSwapFixedIncomeDaily, TaiwanAssetSwapOptionDaily.
             Taiwan Others: TaiwanStockNews, TaiwanBusinessIndicator, TaiwanStockIndustryChain.
             International: USStockInfo, USStockPrice, USStockPriceMinute,
             UKStockInfo, UKStockPrice, EuropeStockInfo, EuropeStockPrice,

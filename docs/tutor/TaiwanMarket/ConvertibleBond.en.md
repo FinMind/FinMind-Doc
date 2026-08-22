@@ -1,5 +1,5 @@
 
-For Taiwan stock convertible bonds, we have 6 datasets, as listed below:
+For Taiwan stock convertible bonds, we have 8 datasets, as listed below:
 
 - [Convertible Bond Overview TaiwanStockConvertibleBondInfo](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
 - [Convertible Bond Daily Trading Information TaiwanStockConvertibleBondDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
@@ -7,6 +7,8 @@ For Taiwan stock convertible bonds, we have 6 datasets, as listed below:
 - [Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
 - [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)
 - [Convertible Bond Put Provision Schedule TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)
+- [Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#asset-swap-fixed-income-daily-trading-information-taiwanassetswapfixedincomedaily-available-only-to-backer-sponsor-members)
+- [Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#asset-swap-option-daily-trading-information-taiwanassetswapoptiondaily-available-only-to-backer-sponsor-members)
 
 
 #### Convertible Bond Overview TaiwanStockConvertibleBondInfo (only available to [backer/sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
@@ -754,5 +756,275 @@ For Taiwan stock convertible bonds, we have 6 datasets, as listed below:
             cb_name: str, # convertible bond name
             PutPrice: float64, # put price
             PutYieldRate: float64 # put yield rate (%)
+        }
+        ```
+
+----------------------------------
+#### Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2026-06-01 ~ now
+- Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapFixedIncomeDaily",
+            "data_id": "17172",
+            "start_date": "2026-06-15",
+            "end_date": "2026-06-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapFixedIncomeDaily",
+                data_id="17172",
+                start_date= "2026-06-15",
+                end_date= "2026-06-30"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |         330000000 |                       13 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  1 | 2026-06-16 | 17172      | 長興二       |         265000000 |                       10 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  2 | 2026-06-17 | 17172      | 長興二       |          95000000 |                        4 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  3 | 2026-06-18 | 17172      | 長興二       |          40000000 |                        3 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  4 | 2026-06-22 | 17172      | 長興二       |           5000000 |                        1 |          3.25 |           3.25 |           3.25 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # convertible bond code
+            stock_name: str, # convertible bond name
+            notional_amount: int64, # notional amount
+            number_of_transactions: int64, # number of transactions
+            rate_lowest: float64, # lowest rate
+            rate_highest: float64, # highest rate
+            rate_average: float64, # average rate
+            contract_term_years: float64 # contract term (years)
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapFixedIncomeDaily",
+            "start_date": "2026-06-15",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapFixedIncomeDaily",
+                start_date= "2026-06-15"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |         330000000 |                       13 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  1 | 2026-06-15 | 17182      | 長興三       |         100000000 |                        5 |          3.10 |           3.10 |           3.10 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # convertible bond code
+            stock_name: str, # convertible bond name
+            notional_amount: int64, # notional amount
+            number_of_transactions: int64, # number of transactions
+            rate_lowest: float64, # lowest rate
+            rate_highest: float64, # highest rate
+            rate_average: float64, # average rate
+            contract_term_years: float64 # contract term (years)
+        }
+        ```
+
+----------------------------------
+#### Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2026-06-01 ~ now
+- Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapOptionDaily",
+            "data_id": "17172",
+            "start_date": "2026-06-15",
+            "end_date": "2026-06-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapOptionDaily",
+                data_id="17172",
+                start_date= "2026-06-15",
+                end_date= "2026-06-30"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |        1079200000 |                      293 |            39.61 |             45.93 |           41.7304 |                     3 |
+        |  1 | 2026-06-16 | 17172      | 長興二       |         312800000 |                      128 |            38.50 |             42.48 |           39.4443 |                     3 |
+        |  2 | 2026-06-17 | 17172      | 長興二       |          26300000 |                       79 |            36.67 |             42.00 |           38.8259 |                     3 |
+        |  3 | 2026-06-18 | 17172      | 長興二       |          25000000 |                       48 |            38.85 |             41.8381 |          40.1887 |                     3 |
+        |  4 | 2026-06-22 | 17172      | 長興二       |          19700000 |                       57 |            39.24 |             42.42 |           40.5177 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # convertible bond code
+            stock_name: str, # convertible bond name
+            notional_amount: int64, # notional amount
+            number_of_transactions: int64, # number of transactions
+            premium_lowest: float64, # lowest premium
+            premium_highest: float64, # highest premium
+            premium_average: float64, # average premium
+            contract_term_years: float64 # contract term (years)
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapOptionDaily",
+            "start_date": "2026-06-15",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapOptionDaily",
+                start_date= "2026-06-15"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |        1079200000 |                      293 |            39.61 |             45.93 |           41.7304 |                     3 |
+        |  1 | 2026-06-15 | 17182      | 長興三       |         500000000 |                      150 |            38.00 |             43.50 |           40.2500 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # convertible bond code
+            stock_name: str, # convertible bond name
+            notional_amount: int64, # notional amount
+            number_of_transactions: int64, # number of transactions
+            premium_lowest: float64, # lowest premium
+            premium_highest: float64, # highest premium
+            premium_average: float64, # average premium
+            contract_term_years: float64 # contract term (years)
         }
         ```

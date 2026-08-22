@@ -8,8 +8,8 @@
 * 新增 [個股融資維持率 TaiwanStockMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginmaintenance-sponsor)：資料區間 2001-01-05 ~ now（上櫃自 2007-01-04 起）。提供個股每日融資維持率(%)、融資成本線、融資餘額（張）與計算採用的融資成數；本資料集為**估算指標**（公開資訊未揭露個股層級的融資金額），與其他服務的數字不會一致，詳見文件說明
 
 #### 2026-08-08
-* 新增 [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapfixedincomedaily-backersponsor)：資產交換（Asset Swap）固定收益端的每日成交統計，欄位含名目本金 `notional_amount`、成交筆數 `number_of_transactions`、最低／最高／平均利率 `rate_lowest`／`rate_highest`／`rate_average`、合約年期 `contract_term_years`；資料區間 2026-06-01 ~ now
-* 新增 [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanassetswapoptiondaily-backersponsor)：資產交換選擇權端的每日成交統計，欄位含名目本金 `notional_amount`、成交筆數 `number_of_transactions`、最低／最高／平均權利金 `premium_lowest`／`premium_highest`／`premium_average`、合約年期 `contract_term_years`；資料區間 2026-06-01 ~ now
+* 新增 [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanassetswapfixedincomedaily-backersponsor)：資產交換（Asset Swap）固定收益端的每日成交統計，欄位含名目本金 `notional_amount`、成交筆數 `number_of_transactions`、最低／最高／平均利率 `rate_lowest`／`rate_highest`／`rate_average`、合約年期 `contract_term_years`；資料區間 2026-06-01 ~ now
+* 新增 [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanassetswapoptiondaily-backersponsor)：資產交換選擇權端的每日成交統計，欄位含名目本金 `notional_amount`、成交筆數 `number_of_transactions`、最低／最高／平均權利金 `premium_lowest`／`premium_highest`／`premium_average`、合約年期 `contract_term_years`；資料區間 2026-06-01 ~ now
     * :warning: 這兩個資料集的 `data_id`（`stock_id`）為**可轉債代號**（例 `17172`），不是普通股代號；帶普通股代號（例 `2330`）會查不到資料
 
 #### 2026-08-03
