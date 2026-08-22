@@ -83,6 +83,7 @@ paths:
             taiwan_futures_snapshot, taiwan_options_snapshot.
             Taiwan Convertible Bond: TaiwanStockConvertibleBondInfo, TaiwanStockConvertibleBondDaily,
             TaiwanStockConvertibleBondInstitutionalInvestors, TaiwanStockConvertibleBondDailyOverview,
+            TaiwanStockConvertibleBondMonthlyAnalysis, TaiwanStockConvertibleBondPutProvision,
             TaiwanAssetSwapFixedIncomeDaily, TaiwanAssetSwapOptionDaily.
             Taiwan Others: TaiwanStockNews, TaiwanBusinessIndicator, TaiwanStockIndustryChain.
             International: USStockInfo, USStockPrice, USStockPriceMinute,
