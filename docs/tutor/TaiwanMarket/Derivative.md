@@ -2673,7 +2673,7 @@
 ----------------------------------
 #### 資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：2026-06-01 ~ now
+- 資料區間：2011-05-03 ~ now
 - 資料更新時間 **星期一至五 22:00 ~ 24:00**，實際更新時間以 API 資料為主
 
 !!! example
@@ -2808,7 +2808,7 @@
 ----------------------------------
 #### 資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
-- 資料區間：2026-06-01 ~ now
+- 資料區間：2011-05-03 ~ now
 - 資料更新時間 **星期一至五 22:00 ~ 24:00**，實際更新時間以 API 資料為主
 
 !!! example

@@ -2672,7 +2672,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 ----------------------------------
 #### Asset Swap Fixed Income Daily Trading Information TaiwanAssetSwapFixedIncomeDaily (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
-- Data range: 2026-06-01 ~ now
+- Data range: 2011-05-03 ~ now
 - Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
 
 !!! example
@@ -2807,7 +2807,7 @@ In Taiwan stock derivatives data, we have 20 datasets, as follows:
 ----------------------------------
 #### Asset Swap Option Daily Trading Information TaiwanAssetSwapOptionDaily (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
-- Data range: 2026-06-01 ~ now
+- Data range: 2011-05-03 ~ now
 - Data update time: **Monday to Friday 22:00 ~ 24:00**. The actual update time is based on the API data.
 
 !!! example
