@@ -1,5 +1,5 @@
 
-在台股可轉換公司債，我們擁有 6 種資料集，如下:
+在台股可轉換公司債，我們擁有 8 種資料集，如下:
 
 - [可轉債總覽 TaiwanStockConvertibleBondInfo](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
 - [可轉債日成交資訊 TaiwanStockConvertibleBondDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
@@ -7,6 +7,8 @@
 - [可轉債每日總覽資訊 TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
 - [可轉換公司債月份分析表 TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor)
 - [可轉債賣回權時程 TaiwanStockConvertibleBondPutProvision](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondputprovision-backersponsor)
+- [資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanassetswapfixedincomedaily-backersponsor)
+- [資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/ConvertibleBond/#taiwanassetswapoptiondaily-backersponsor)
 
 
 #### 可轉債總覽 TaiwanStockConvertibleBondInfo(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
@@ -754,5 +756,275 @@
             cb_name: str, # 可轉債名稱
             PutPrice: float64, # 賣回金額
             PutYieldRate: float64 # 賣回收益率
+        }
+        ```
+
+----------------------------------
+#### 資產交換固定收益日成交資訊 TaiwanAssetSwapFixedIncomeDaily (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2011-05-03 ~ now
+- 資料更新時間 **星期一至五 22:00 ~ 24:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapFixedIncomeDaily",
+            "data_id": "17172",
+            "start_date": "2026-06-15",
+            "end_date": "2026-06-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapFixedIncomeDaily",
+                data_id="17172",
+                start_date= "2026-06-15",
+                end_date= "2026-06-30"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |         330000000 |                       13 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  1 | 2026-06-16 | 17172      | 長興二       |         265000000 |                       10 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  2 | 2026-06-17 | 17172      | 長興二       |          95000000 |                        4 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  3 | 2026-06-18 | 17172      | 長興二       |          40000000 |                        3 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  4 | 2026-06-22 | 17172      | 長興二       |           5000000 |                        1 |          3.25 |           3.25 |           3.25 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 可轉債代碼
+            stock_name: str, # 可轉債名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            rate_lowest: float64, # 最低利率
+            rate_highest: float64, # 最高利率
+            rate_average: float64, # 平均利率
+            contract_term_years: float64 # 合約期間(年)
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapFixedIncomeDaily",
+            "start_date": "2026-06-15",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapFixedIncomeDaily",
+                start_date= "2026-06-15"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   rate_lowest |   rate_highest |   rate_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|--------------:|---------------:|---------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |         330000000 |                       13 |          3.25 |           3.25 |           3.25 |                     3 |
+        |  1 | 2026-06-15 | 17182      | 長興三       |         100000000 |                        5 |          3.10 |           3.10 |           3.10 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 可轉債代碼
+            stock_name: str, # 可轉債名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            rate_lowest: float64, # 最低利率
+            rate_highest: float64, # 最高利率
+            rate_average: float64, # 平均利率
+            contract_term_years: float64 # 合約期間(年)
+        }
+        ```
+
+----------------------------------
+#### 資產交換選擇權日成交資訊 TaiwanAssetSwapOptionDaily (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2011-05-03 ~ now
+- 資料更新時間 **星期一至五 22:00 ~ 24:00**，實際更新時間以 API 資料為主
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapOptionDaily",
+            "data_id": "17172",
+            "start_date": "2026-06-15",
+            "end_date": "2026-06-30",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapOptionDaily",
+                data_id="17172",
+                start_date= "2026-06-15",
+                end_date= "2026-06-30"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |        1079200000 |                      293 |            39.61 |             45.93 |           41.7304 |                     3 |
+        |  1 | 2026-06-16 | 17172      | 長興二       |         312800000 |                      128 |            38.50 |             42.48 |           39.4443 |                     3 |
+        |  2 | 2026-06-17 | 17172      | 長興二       |          26300000 |                       79 |            36.67 |             42.00 |           38.8259 |                     3 |
+        |  3 | 2026-06-18 | 17172      | 長興二       |          25000000 |                       48 |            38.85 |             41.8381 |          40.1887 |                     3 |
+        |  4 | 2026-06-22 | 17172      | 長興二       |          19700000 |                       57 |            39.24 |             42.42 |           40.5177 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 可轉債代碼
+            stock_name: str, # 可轉債名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            premium_lowest: float64, # 最低權利金
+            premium_highest: float64, # 最高權利金
+            premium_average: float64, # 平均權利金
+            contract_term_years: float64 # 合約期間(年)
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanAssetSwapOptionDaily",
+            "start_date": "2026-06-15",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanAssetSwapOptionDaily",
+                start_date= "2026-06-15"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | stock_name   |   notional_amount |   number_of_transactions |   premium_lowest |   premium_highest |   premium_average |   contract_term_years |
+        |---:|:-----------|:-----------|:-------------|------------------:|-------------------------:|-----------------:|------------------:|------------------:|----------------------:|
+        |  0 | 2026-06-15 | 17172      | 長興二       |        1079200000 |                      293 |            39.61 |             45.93 |           41.7304 |                     3 |
+        |  1 | 2026-06-15 | 17182      | 長興三       |         500000000 |                      150 |            38.00 |             43.50 |           40.2500 |                     3 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 可轉債代碼
+            stock_name: str, # 可轉債名稱
+            notional_amount: int64, # 名目本金
+            number_of_transactions: int64, # 成交筆數
+            premium_lowest: float64, # 最低權利金
+            premium_highest: float64, # 最高權利金
+            premium_average: float64, # 平均權利金
+            contract_term_years: float64 # 合約期間(年)
         }
         ```

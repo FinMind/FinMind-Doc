@@ -718,20 +718,6 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanOptionVix, start_date=2026-06-01, end_date=2026-06-02
 - Columns: date (str), time (str), vix (float64)
 
-### TaiwanAssetSwapFixedIncomeDaily (資產交換固定收益日成交資訊)
-- Tier: Backer/Sponsor
-- Data range: 2026-06-01 ~ now
-- Update: Mon-Fri 22:00~24:00
-- Params: dataset=TaiwanAssetSwapFixedIncomeDaily, data_id=2330, start_date=2025-04-01, end_date=2025-04-12
-- Columns: date (str), stock_id (str), stock_name (str), notional_amount (int64), number_of_transactions (int64), rate_lowest (float64), rate_highest (float64), rate_average (float64), contract_term_years (float64)
-
-### TaiwanAssetSwapOptionDaily (資產交換選擇權日成交資訊)
-- Tier: Backer/Sponsor
-- Data range: 2026-06-01 ~ now
-- Update: Mon-Fri 22:00~24:00
-- Params: dataset=TaiwanAssetSwapOptionDaily, data_id=2330, start_date=2025-04-01, end_date=2025-04-12
-- Columns: date (str), stock_id (str), stock_name (str), notional_amount (int64), number_of_transactions (int64), premium_lowest (float64), premium_highest (float64), premium_average (float64), contract_term_years (float64)
-
 ---
 
 ## Taiwan Market - Real-Time (4 datasets)
@@ -810,6 +796,20 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockConvertibleBondPutProvision, start_date=2011-06-01, end_date=2011-12-31 (data_id is optional)
 - Columns: date (str, put record date), cb_id (str), cb_name (str), PutPrice (float64), PutYieldRate (float64)
 - Note: data_id (convertible bond id) is NOT required - the date range alone returns the put dates of all convertible bonds in that range; add data_id only to filter a single bond. Set end_date to a future date to retrieve upcoming put schedules. Complements TaiwanStockConvertibleBondDailyOverview's put fields (which are only populated during announced put windows).
+
+### TaiwanAssetSwapFixedIncomeDaily (資產交換固定收益日成交資訊)
+- Tier: Backer/Sponsor
+- Data range: 2011-05-03 ~ now
+- Update: Mon-Fri 22:00~24:00
+- Params: dataset=TaiwanAssetSwapFixedIncomeDaily, data_id=17172, start_date=2026-06-15, end_date=2026-06-30
+- Columns: date (str), stock_id (str), stock_name (str), notional_amount (int64), number_of_transactions (int64), rate_lowest (float64), rate_highest (float64), rate_average (float64), contract_term_years (float64)
+
+### TaiwanAssetSwapOptionDaily (資產交換選擇權日成交資訊)
+- Tier: Backer/Sponsor
+- Data range: 2011-05-03 ~ now
+- Update: Mon-Fri 22:00~24:00
+- Params: dataset=TaiwanAssetSwapOptionDaily, data_id=17172, start_date=2026-06-15, end_date=2026-06-30
+- Columns: date (str), stock_id (str), stock_name (str), notional_amount (int64), number_of_transactions (int64), premium_lowest (float64), premium_highest (float64), premium_average (float64), contract_term_years (float64)
 
 ---
 
