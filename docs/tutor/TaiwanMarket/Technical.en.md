@@ -2061,12 +2061,21 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 - Some data is missing on this date: 2019-02-20.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
 
-??? note "This table also provides the TAIEX index minute K"
+??? note "This table also provides the index minute K — pass `TAIEX` as `data_id`"
     Besides individual stocks, passing `TAIEX` as `data_id` returns the **minute K of the Taiwan Capitalization Weighted Stock Index**:
 
-    ```python
-    df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
-    ```
+    === "Package"
+        ```python
+        df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
+        ```
+    === "Python-request"
+        ```python
+        parameter = {
+            "dataset": "TaiwanStockKBar",
+            "data_id": "TAIEX",
+            "start_date": "2026-08-19",
+        }
+        ```
 
     - Data range **2005-01-03 ~ now**, longer than the individual-stock minute K (which starts 2019-01-01)
     - **271 rows** per trading day, covering `09:00:00` ~ `13:30:00`, one row per minute

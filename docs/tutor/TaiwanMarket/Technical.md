@@ -2061,12 +2061,21 @@
 - 部分資料缺失，缺失日期為：2019-02-20。
 - 開啟 Async 功能，可大幅縮短資料更新時間，colab 實測 2175 檔股票，只需 2 分 31 秒即可完成下載。
 
-??? note "本表也提供加權指數（TAIEX）分 K"
+??? note "本表也提供加權指數分 K，`data_id` 帶 `TAIEX`"
     除了個股，把 `data_id` 帶 `TAIEX` 就能取得**臺灣加權股價指數的分 K**：
 
-    ```python
-    df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
-    ```
+    === "Package"
+        ```python
+        df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
+        ```
+    === "Python-request"
+        ```python
+        parameter = {
+            "dataset": "TaiwanStockKBar",
+            "data_id": "TAIEX",
+            "start_date": "2026-08-19",
+        }
+        ```
 
     - 資料區間 **2005-01-03 ~ now**，比個股分 K（2019-01-01 起）更長
     - 每個交易日 **271 筆**，涵蓋 `09:00:00` ~ `13:30:00` 每分鐘一筆
