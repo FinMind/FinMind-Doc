@@ -1,3 +1,14 @@
+#### 2026-09-01
+* **資料校正公告**：以下資料集經稽核後已完成歷史資料校正並上線；若您先前已下載這些資料，建議重新取得
+    * [台灣還原股價 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)：除權息遇休市順延、減資與除權息併存等情況的還原計算已修正，全歷史重算
+    * [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)：上櫃 (TPEX) 個股融券買進 / 賣出兩欄先前對調，已修正（融券餘額不受影響）
+    * [期貨價差行情表 TaiwanFuturesSpreadTrading](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)：負價差先前被存成正值，已完成全歷史重建
+    * [台股產業鏈資金流向 TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockindustrychainmoneyflow-sponsor)：市場口徑固定為上市 + 上櫃 + 興櫃，全歷史重建，數值與先前不同
+    * [台股分 K TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：部分交易日成交量因重複計入而偏高，整日檔已重新產製
+    * [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)：2019 ~ 2020 整日檔的 `contract_date` 含空白、部分交易日缺漏，已重產並補齊
+    * [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)：補齊上櫃 (TPEX) 終止上櫃資料
+    * [股價日成交資訊 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice) 等日頻資料集（PER、法人買賣、融資融券、當沖、外資持股）與 [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)：補齊週六補行交易日資料與缺漏的指數
+
 #### 2026-08-20
 * [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增**加權指數分 K**：`data_id` 帶 `TAIEX` 即可查詢，資料區間 **2005-01-03 ~ now**（比個股分 K 的 2019-01-01 更長），每個交易日 271 筆、涵蓋 09:00 ~ 13:30 每分鐘一筆
     * 指數本身沒有成交量，`volume` 固定為 0；`open` / `high` / `low` / `close` 為該分鐘內的指數值
