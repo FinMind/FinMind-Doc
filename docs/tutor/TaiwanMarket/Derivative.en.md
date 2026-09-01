@@ -474,6 +474,9 @@ In Taiwan stock derivatives data, we have 18 datasets, as follows:
     - **08:45–13:45** ticks belong to the regular session (position) of trading day D.
     - **15:00–24:00** ticks belong to the after-hours session of the **next trading day**.
 
+??? note "Known data gap"
+    - **2014-03-19**: the TAIFEX source tick file for that day no longer exists, so tick data for the whole day (all products) cannot be backfilled (TaiwanFuturesDaily daily data is unaffected).
+
 !!! example
     === "Package"
         ```python
