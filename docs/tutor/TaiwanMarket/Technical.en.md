@@ -349,6 +349,49 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
     **Difference from `TaiwanStockPriceAdj`**: the adjusted-price table is **not** `0` on these days — it carries forward the previous trading day's adjusted price (while `Trading_Volume` keeps the day's actual value). For instance, 2317 鴻海 on 2025-07-30 in `TaiwanStockPriceAdj` is `open=169.94`, `max=170.43`, `min=166.06`, `close=166.54`, i.e. 2025-07-29's adjusted price. Use `TaiwanStockPriceAdj` if you want a series with no `0` gaps; use `TaiwanStockPrice`'s `0` if you need to identify which days had no published price.
 
+??? note "Listed (TWSE) data before 2005: the history of delisted securities may be incomplete — mind survivorship bias in long backtests"
+    For the **listed (TWSE)** market **before 2005**, the universe covered by this table consists mainly of securities that kept trading afterwards. Securities that **were trading at the time but have since been delisted** may not have their history for that period fully covered, so the number of securities present is smaller than the number actually listed back then.
+
+    Some stocks also start **later in this table than their real listing date**. For example, 2311 and 2325 begin no earlier than `2004-02-11` here, and 2319 is absent entirely.
+
+    **Impact on backtests**: building a stock universe, an industry population or a custom index directly from this table's pre-2005 listed data skews the sample toward the securities that survived, which **systematically overstates returns and understates risk** (survivorship bias). We suggest:
+
+    - starting long backtests **after 2005**; or
+    - if you must cover earlier periods, stating explicitly in your methodology and conclusions that the pre-2005 listed sample is not the complete universe of that time, so the bias is not mistaken for strategy performance.
+
+    **OTC (TPEx) data is unaffected** — the pre-2005 OTC universe is normal. The same note applies to `TaiwanStockPriceAdj` (adjusted price), which is derived from this table.
+
+??? note "OTC (TPEx) daily quotes are missing for 2007-01-02 ~ 2007-04-20 (not published at the source)"
+    For the **OTC (TPEx)** market, this table has no per-stock daily trading information across the 71 trading days from **2007-01-02 to 2007-04-20**. TPEx did not publish a corresponding per-stock daily quote for that window, so this is **a gap at the source, not a crawling omission**.
+
+    **What you can observe**: 2006-12-29 and 2007-04-23 each carry roughly 400 OTC stocks, while the 71 trading days in between carry only a handful (mostly securities that traded on another board at the time and moved to TPEx later). **Listed (TWSE) data over the same period is normal.**
+
+    **Practical advice**: if your analysis window covers the first half of 2007, treat OTC data on those 71 trading days as **missing**, not as "no trades that day". Feeding them in as zeros distorts returns, turnover and market-breadth calculations; prefer listed data for that window, or skip the OTC sample there.
+
+??? note "When fetching a whole day without `data_id`, `stock_id` also contains index codes (not stocks)"
+    When you query with the "all data for a given date" form (no `data_id`), the response contains — besides stocks, ETFs and warrants — about **30 index rows** (currently 32 codes). Their `stock_id` is an **English index name** rather than a numeric code, for example:
+
+    - Market indices: `TAIEX` (the capitalization-weighted index) and `TPEx` (the OTC weighted index)
+    - Sector indices: `Cement`, `Food`, `Plastics`, `Semiconductor`, `FinancialInsurance`, `Optoelectronic`, and 24 more
+
+    On index rows, `open` / `max` / `min` / `close` are **index points** (e.g. `TAIEX` closed at `22553.72` on 2025-07-01), while `Trading_Volume` / `Trading_money` are that sector's traded volume and value for the day. If a downstream step treats every `stock_id` as a stock code (looking each one up for K-bars, chip data or financials, say), these index rows get picked up and return nothing.
+
+    **Two ways to filter them out**:
+
+    ```python
+    # Option 1: keep only codes starting with a digit (stocks, ETFs, warrants)
+    df = df[df["stock_id"].str[0].str.isdigit()]
+
+    # Option 2: exclude them via TaiwanStockInfo's industry_category
+    stock_info = api.taiwan_stock_info()
+    index_ids = stock_info.loc[
+        stock_info["industry_category"].isin(["大盤", "Index"]), "stock_id"
+    ]
+    df = df[~df["stock_id"].isin(index_ids)]
+    ```
+
+    Conversely, if the market and sector indices are exactly what you want, just invert either condition.
+
 !!! example
     === "Package"
         ```python
@@ -1453,6 +1496,34 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 - Data range: 2005-01-01 ~ now
 
+??? note "The disclosure interval varies by era — early data is not one row every 5 seconds"
+    Despite the "every 5 seconds" name, **TWSE raised its disclosure frequency over the years**, so earlier data comes at a coarser interval. Rows per trading day:
+
+    | Period | Disclosure interval | Rows per trading day |
+    |---|---|---|
+    | 2005-01-03 ~ 2011-01-14 | 60 seconds | 271 |
+    | 2011-01-17 ~ 2014-02-21 | 15 seconds | 1,081 |
+    | 2014-02-24 ~ 2014-12-27 | 10 seconds | 1,621 |
+    | 2014-12-29 ~ now | 5 seconds | 3,241 |
+
+    This is **the granularity published at the source at the time, not a gap in this table**: TWSE's own publication for those dates carries the same number of rows (2005-09-28, for instance, is 271 rows officially).
+
+    **Practical advice**: do not assume 3,241 rows on every trading day. When aligning time series across eras or computing fixed 5-second increments, resample on the day's actual `Time` column rather than slicing by a fixed row count or positional index.
+
+??? note "On 2023-08-04 the `09:00:00` open carries an extra row with the previous session's closing cumulative values"
+    Every column in this table is a **running total for the day** (cumulative order count/volume, cumulative deal count/volume/value), so `09:00:00` normally starts near zero. On **2023-08-04**, however, `09:00:00` carries — in addition to the normal opening row — a second row whose seven numeric columns are identical to the **previous trading day's close, 2023-08-02 `13:30:00`** (08-03 that week was a typhoon closure). **The TWSE source file for that day already contains this value**; it is not a processing error on our side.
+
+    **Practical impact**: if you difference this table (`diff()`) to recover the per-5-second increments, the first bar of that day comes out as a large negative number.
+
+    In spot checks across the 5-second era (from 2014-12-29) this is the only such case; no other trading day shows the same pattern. Before differencing, you can recover the true opening row by keeping only the smallest cumulative value per timestamp:
+
+    ```python
+    df = df.sort_values(["date", "Time"])
+    # where a timestamp has several rows, keep the smallest running total (the real opening row)
+    df = df.loc[df.groupby(["date", "Time"])["TotalDealVolume"].idxmin()]
+    inc = df.groupby("date")[["TotalDealVolume", "TotalDealMoney"]].diff()
+    ```
+
 !!! example
     === "Package"
         ```python
@@ -1531,6 +1602,20 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 (Due to the large data volume, each request only provides one day's data.)
 
 - Data range: 2005-01-01 ~ now
+
+??? note "The disclosure interval varies by era — early data is not one row every 5 seconds"
+    Despite the "every 5 seconds" name, **TWSE raised its disclosure frequency over the years**, so earlier data comes at a coarser interval. Rows per trading day:
+
+    | Period | Disclosure interval | Rows per trading day |
+    |---|---|---|
+    | 2005-01-03 ~ 2011-01-14 | 60 seconds | 271 |
+    | 2011-01-17 ~ 2014-02-21 | 15 seconds | 1,081 |
+    | 2014-02-24 ~ 2014-12-27 | 10 seconds | 1,621 |
+    | 2014-12-29 ~ now | 5 seconds | 3,241 |
+
+    This is **the granularity published at the source at the time, not a gap in this table**: TWSE's own publication for those dates carries the same number of rows (2005-09-28, for instance, is 271 rows officially).
+
+    **Practical advice**: do not assume 3,241 rows on every trading day. When computing returns or volatility across eras, or aligning time series, resample on the day's actual `date` column (which carries the time) rather than slicing by a fixed row count or positional index.
 
 !!! example
     === "Package"
@@ -2285,6 +2370,20 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 (Due to the large data volume, each request only provides one day's data.)
 
 - Data range: 2005-01-03 ~ now
+
+??? note "The disclosure interval varies by era — early data is not one row every 5 seconds"
+    Despite the "every 5 seconds" name, **TWSE raised its disclosure frequency over the years**, so earlier data comes at a coarser interval. Rows per trading day, per index:
+
+    | Period | Disclosure interval | Rows per trading day (per index) |
+    |---|---|---|
+    | 2005-01-03 ~ 2011-01-14 | 60 seconds | 271 |
+    | 2011-01-17 ~ 2014-02-21 | 15 seconds | 1,081 |
+    | 2014-02-24 ~ 2014-12-27 | 10 seconds | 1,621 |
+    | 2014-12-29 ~ now | 5 seconds | 3,241 |
+
+    This is **the granularity published at the source at the time, not a gap in this table**: TWSE's own publication for those dates carries the same number of rows (2005-09-28, for instance, is 271 rows officially).
+
+    **Practical advice**: do not assume 3,241 rows per index on every trading day. When aligning time series across eras or computing index momentum, resample on the day's actual `time` column rather than slicing by a fixed row count or positional index.
 
 !!! example
     === "Package"
