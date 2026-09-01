@@ -316,6 +316,8 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySell, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySell, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date, stock_id, buy, name, sell
+- name values: Foreign_Investor (all eras), Investment_Trust (all eras), Dealer (combined; pre-2014-12-01 and Emerging), Dealer_self / Dealer_Hedging (TWSE/TPEx from 2014-12-01), Foreign_Dealer_Self (from 2018-01-15)
+- Note: a category has NO row in eras where it did not exist — TWSE/TPEx stocks after 2014-12-01 have no Dealer row (values are in Dealer_self + Dealer_Hedging). For a continuous dealer total, sum Dealer + Dealer_self + Dealer_Hedging. Emerging market publishes net only, so buy/sell are reconstructed from net and one side is always 0.
 
 ### TaiwanStockInstitutionalInvestorsBuySellWide (個股三大法人買賣表（寬表）)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -326,7 +328,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySellWide, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySellWide, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date, stock_id, Foreign_Investor_buy, Foreign_Investor_sell, Foreign_Dealer_Self_buy, Foreign_Dealer_Self_sell, Investment_Trust_buy, Investment_Trust_sell, Dealer_buy, Dealer_sell, Dealer_self_buy, Dealer_self_sell, Dealer_Hedging_buy, Dealer_Hedging_sell
-- Note: covers all historical investor categories; a category is 0 in eras where it did not exist. Dealer (combined) is pre-2014-12-01 (and Emerging); Dealer_self/Dealer_Hedging from 2014-12-01; Foreign_Dealer_Self from 2018-01-15. For a continuous dealer total, sum Dealer + Dealer_self + Dealer_Hedging.
+- Note: covers all historical investor categories; a category is 0 in eras where it did not exist. Dealer (combined) is pre-2014-12-01 (and Emerging); Dealer_self/Dealer_Hedging from 2014-12-01; Foreign_Dealer_Self from 2018-01-15. Dealer_buy/Dealer_sell are therefore always 0 for TWSE/TPEx stocks after 2014-12-01 — this is expected, not missing data. For a continuous dealer total, sum Dealer + Dealer_self + Dealer_Hedging. Emerging market publishes net only, so its buy/sell are reconstructed from net and one side is always 0.
 
 ### TaiwanStockTotalInstitutionalInvestors (整體三大市場法人買賣表)
 - Tier: Free
