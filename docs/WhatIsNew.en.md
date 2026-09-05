@@ -21,6 +21,9 @@
 * [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) now provides the **TAIEX index minute K**: pass `TAIEX` as `data_id`. Range **2005-01-03 ~ now** (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00 ~ 13:30, one row per minute
     * An index has no trading volume, so `volume` is always 0; `open` / `high` / `low` / `close` are index values within that minute
 
+#### 2026-08-15
+* Added [Futures Minute KBar TaiwanFuturesKBar](https://finmindtrade.com/analysis/#/data/api_v4/taiwanfutureskbar): Data range 2011-01-03 ~ now
+
 #### 2026-08-09
 * [Taiwan Options Real-Time Information taiwan_options_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-options-real-time-information-taiwan_options_snapshot-only-available-to-sponsor-members) now covers the **Friday-expiry** TAIEX option contracts: `data_id` accepts `TXU`, `TXV`, `TXX`, `TXY` and `TXZ` (expiring on the 1st ~ 5th Friday of the month). The existing `TXO` (monthly) and `TX1` ~ `TX5` (Wednesday-expiry) are unaffected
     * A code returning no data in a given month is expected: the contract may not be listed yet, or that week does not exist in that month (e.g. a month with only 4 Fridays)

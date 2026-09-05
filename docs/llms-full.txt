@@ -593,7 +593,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Derivative (20 datasets)
+## Taiwan Market - Derivative (19 datasets)
 
 ### TaiwanFutOptDailyInfo (期貨、選擇權日成交資訊總覽)
 - Tier: Free
@@ -606,6 +606,13 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanFuturesDaily, data_id=TX, start_date=2020-04-01, end_date=2020-04-12
 - Params (all, Backer/Sponsor): dataset=TaiwanFuturesDaily, start_date=2020-04-01 (不帶 data_id，取得該日所有期貨資料)
 - Columns: date, futures_id, contract_date, open, max, min, close, spread, spread_per, volume, settlement_price, open_interest, trading_session
+
+### TaiwanFuturesKBar
+- Tier: Sponsor
+- Data range: 2011-01-03 ~ now
+- Update: Monday-Friday 16:30
+- Params: data_id (futures_id), start_date (single day only)
+- Columns: date, futures_id, contract_date, minute, open, high, low, close, volume
 
 ### TaiwanOptionDaily (選擇權日成交資訊)
 - Tier: Free (with data_id) / Backer/Sponsor (all)
@@ -756,7 +763,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ---
 
-## Taiwan Market - Convertible Bond (6 datasets)
+## Taiwan Market - Convertible Bond (8 datasets)
 
 ### TaiwanStockConvertibleBondInfo (可轉債總覽)
 - Tier: Backer/Sponsor

@@ -1,4 +1,4 @@
-In the Taiwan financial market, we have 91 datasets, as listed below:
+In the Taiwan financial market, we have 92 datasets, as listed below:
 
 #### Technical
 
@@ -73,6 +73,7 @@ In the Taiwan financial market, we have 91 datasets, as listed below:
 
 - [Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-and-options-daily-trading-information-overview-taiwanfutoptdailyinfo)
 - [Futures Daily Trading Information TaiwanFuturesDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-daily-trading-information-taiwanfuturesdaily)
+- [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members)
 - [Options Daily Trading Information TaiwanOptionDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-daily-trading-information-taiwanoptiondaily)
 - [Futures Trade Detail Table TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members)
 - [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-spread-tick-table-taiwanfuturesspreadtick-available-only-to-sponsor-members)
