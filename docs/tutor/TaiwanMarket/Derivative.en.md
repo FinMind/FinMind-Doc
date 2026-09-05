@@ -1,5 +1,5 @@
 
-In Taiwan stock derivatives data, we have 21 datasets, as follows:
+In Taiwan stock derivatives data, we have 19 datasets, as follows:
 
 - [Futures and Options Daily Trading Information Overview TaiwanFutOptDailyInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfutoptdailyinfo)
 - [Futures Daily Trading Information TaiwanFuturesDaily](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
