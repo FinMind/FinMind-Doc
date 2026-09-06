@@ -1,12 +1,12 @@
 #### 2026-09-06
-* **資料校正公告**：[資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet) **2024-06-30（113 年半年報）**單一期別資料缺漏，已完成回補，**曾查詢或下載過該期別資料的使用者請重新取得**
-    * 該期別涵蓋家數由 1,917 家增為 **2,233 家**（補回 316 家）；已逐季檢查 2014 ~ 2025 各期別，未再發現同規模的缺漏
-    * 另有 **25 家**在 2024 上半年仍掛牌並完成申報，但公司後續已下市或終止公開發行，原始來源已不再提供其歷史財報頁面，**此部分無法補齊**
-    * 同期間的 [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements) 與 [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) 資料完整，不受本次問題影響
+* **資料校正公告**：以下資料集已完成資料校正並上線；**若您先前曾查詢或下載過相關期別／日期的資料，請重新取得**
+    * [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)：**2024-06-30（113 年半年報）**單一期別資料缺漏，已完成回補，該期別涵蓋家數由 1,917 家增為 **2,233 家**（補回 316 家）；已逐季檢查 2014 ~ 2025 各期別，未再發現同規模的缺漏
+        * 另有 **25 家**在 2024 上半年仍掛牌並完成申報，但公司後續已下市或終止公開發行，原始來源已不再提供其歷史財報頁面，**此部分無法補齊**
+        * 同期間的 [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements) 與 [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) 資料完整，不受本次問題影響
+    * [除權除息結果表 TaiwanStockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividendresult)：**2026-09-02** 上市 (TWSE) 資料當日一度僅有部分公司，已補齊為當日全部 20 家
+        * 原因：當日有除權個股的權值加息值超過 1,000、數值帶千分位符號，導致該日整批資料寫入失敗；解析方式已修正，往後不會再發生
 
 #### 2026-09-02
-* **資料校正公告**：[除權除息結果表 TaiwanStockDividendResult](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividendresult) **2026-09-02** 上市 (TWSE) 資料當日一度僅有部分公司，已補齊為當日全部 20 家；**當天曾查詢過該日期資料的使用者請重新取得**
-    * 原因：當日有除權個股的權值加息值超過 1,000、數值帶千分位符號，導致該日整批資料寫入失敗；解析方式已修正，往後不會再發生
 * **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)：夜盤逐筆資料校正，**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
     * TaiwanFuturesTick：**2026-08-14**、**2019-04-19、2019-05-17、2019-06-21、2019-07-01、2019-07-03、2019-07-11**（以上皆補回 15:00～24:00 夜盤）、**2020-02-01**（週六檔移除重複列）
     * TaiwanOptionTick：**2026-08-14**（補回 15:00～24:00 夜盤）
