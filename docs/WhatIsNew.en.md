@@ -1,5 +1,10 @@
 #### 2026-09-13
 * Added [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members): Data range 2011-01-03 ~ now
+* [Futures tick TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members), [Options tick TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-trading-detail-table-taiwanoptiontick-available-only-to-backer-sponsor-members): historical gaps have been backfilled. **The dates below were regenerated and verified; if you downloaded or queried them before, please fetch the data again**
+    * TaiwanFuturesTick **2019-04-19 ~ 2019-05-13** (20 calendar days): restored the entire missing tick history for 16 FX, gold and overseas-index futures products (`GDF`, `NZF`, `OAF`, `OBF`, `OCF`, `OJF`, `OKF`, `OOF`, `RHF`, `RTF`, `TGF`, `TJF`, `XAF`, `XBF`, `XEF`, `XJF`). Other products in the same period are unaffected
+    * TaiwanFuturesTick **2014-03-19**: the whole day of tick data (235 products) has been backfilled. This day was previously announced as impossible to backfill; complete data has since been obtained and verified, and **the 2026-09-02 announcement is corrected accordingly**
+    * TaiwanOptionTick **2019-01-15 ~ 2019-06-28** (129 calendar days, 105 trading days): this period was previously flagged in the dataset documentation as incomplete; it is now complete and the caveat has been removed
+    * All three were verified day by day and product by product on both row counts and traded volume before going live
 
 #### 2026-09-06
 * **Data correction notice**: the datasets below have been corrected and are live. **If you previously queried or downloaded the affected periods / dates, please fetch them again**
@@ -15,7 +20,7 @@
     * TaiwanOptionTick: **2026-08-14** (15:00–24:00 after-hours session restored)
     * Cause for 2026-08-14: each trading day's after-hours session (15:00 that day until 05:00 the next morning) belongs to the **next trading day** by rule and only becomes complete then, but that day's whole-day file is generated the same evening and then completed by the next day's routine run. On the weekend of 08-14 the Saturday file was generated early, that routine run was skipped, and the Friday file stayed at the version without the after-hours session; because historical dates older than 14 days are served from whole-day files, the issue only became visible from 08-28. This was a one-off situation for that single weekend — every other trading day since the after-hours session launched in 2017-05 has been checked day by day and is unaffected; the generation logic has been fixed so it no longer depends on the next day's routine run
     * Cause for the 6 days in 2019: the historical backfill that year skipped the first half of Friday night sessions; now backfilled and verified
-    * Day-by-day check of 2011–2018: only **2014-03-19** is missing the whole day of tick data; the data for that day is no longer available from the source so it cannot be backfilled, and this is now noted in the dataset documentation
+    * Day-by-day check of 2011–2018: only **2014-03-19** is missing the whole day of tick data (**corrected on 2026-09-13: that day has since been obtained and backfilled, see the announcement above**)
 
 #### 2026-09-01
 * **Data correction notice**: the datasets below have been audited and their historical data corrected; if you downloaded them before, we recommend fetching them again
