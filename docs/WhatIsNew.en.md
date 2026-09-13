@@ -1,3 +1,6 @@
+#### 2026-09-13
+* Added [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members): Data range 2011-01-03 ~ now
+
 #### 2026-09-06
 * **Data correction notice**: the datasets below have been corrected and are live. **If you previously queried or downloaded the affected periods / dates, please fetch them again**
     * [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet): data for the single period **2024-06-30 (2024 half-year report)** was missing and has now been backfilled; coverage for that period grew from 1,917 to **2,233 companies** (316 restored). Every period from 2014 to 2025 has been checked quarter by quarter and no gap of comparable size was found
@@ -28,9 +31,6 @@
 #### 2026-08-20
 * [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) now provides the **TAIEX index minute K**: pass `TAIEX` as `data_id`. Range **2005-01-03 ~ now** (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00 ~ 13:30, one row per minute
     * An index has no trading volume, so `volume` is always 0; `open` / `high` / `low` / `close` are index values within that minute
-
-#### 2026-08-15
-* Added [Futures Minute KBar TaiwanFuturesKBar](https://finmindtrade.com/analysis/#/data/api_v4/taiwanfutureskbar): Data range 2011-01-03 ~ now
 
 #### 2026-08-09
 * [Taiwan Options Real-Time Information taiwan_options_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-options-real-time-information-taiwan_options_snapshot-only-available-to-sponsor-members) now covers the **Friday-expiry** TAIEX option contracts: `data_id` accepts `TXU`, `TXV`, `TXX`, `TXY` and `TXZ` (expiring on the 1st ~ 5th Friday of the month). The existing `TXO` (monthly) and `TX1` ~ `TX5` (Wednesday-expiry) are unaffected

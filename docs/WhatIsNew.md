@@ -1,3 +1,6 @@
+#### 2026-09-13
+* 新增 [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor): 資料區間 2011-01-03 ~ now
+
 #### 2026-09-06
 * **資料校正公告**：以下資料集已完成資料校正並上線；**若您先前曾查詢或下載過相關期別／日期的資料，請重新取得**
     * [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)：**2024-06-30（113 年半年報）**單一期別資料缺漏，已完成回補，該期別涵蓋家數由 1,917 家增為 **2,233 家**（補回 316 家）；已逐季檢查 2014 ~ 2025 各期別，未再發現同規模的缺漏
@@ -28,9 +31,6 @@
 #### 2026-08-20
 * [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增**加權指數分 K**：`data_id` 帶 `TAIEX` 即可查詢，資料區間 **2005-01-03 ~ now**（比個股分 K 的 2019-01-01 更長），每個交易日 271 筆、涵蓋 09:00 ~ 13:30 每分鐘一筆
     * 指數本身沒有成交量，`volume` 固定為 0；`open` / `high` / `low` / `close` 為該分鐘內的指數值
-
-#### 2026-08-15
-* 新增 [期貨分K TaiwanFuturesKBar](https://finmindtrade.com/analysis/#/data/api_v4/taiwanfutureskbar): 資料區間 2011-01-03 ~ now
 
 #### 2026-08-09
 * [台股選擇權即時資訊 taiwan_options_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_options_snapshot-sponsor) 增開臺指選擇權**週五到期**契約：`data_id` 新增 `TXU`、`TXV`、`TXX`、`TXY`、`TXZ`（當月第 1 ~ 5 個星期五到期）。原有的 `TXO`（月選）與 `TX1` ~ `TX5`（週三到期）不受影響
