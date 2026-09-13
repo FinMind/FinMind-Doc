@@ -30,7 +30,7 @@
     * 指數本身沒有成交量，`volume` 固定為 0；`open` / `high` / `low` / `close` 為該分鐘內的指數值
 
 #### 2026-08-15
-* 新增 [期貨分K TaiwanFuturesKBar](https://finmindtrade.com/analysis/#/data/api_v4/taiwanfutureskbar): 資料區間 2011-01-03 ~ now
+* 新增 [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor): 資料區間 2011-01-03 ~ now
 
 #### 2026-08-09
 * [台股選擇權即時資訊 taiwan_options_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_options_snapshot-sponsor) 增開臺指選擇權**週五到期**契約：`data_id` 新增 `TXU`、`TXV`、`TXX`、`TXY`、`TXZ`（當月第 1 ~ 5 個星期五到期）。原有的 `TXO`（月選）與 `TX1` ~ `TX5`（週三到期）不受影響

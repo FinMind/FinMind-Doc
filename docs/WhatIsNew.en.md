@@ -30,7 +30,7 @@
     * An index has no trading volume, so `volume` is always 0; `open` / `high` / `low` / `close` are index values within that minute
 
 #### 2026-08-15
-* Added [Futures Minute KBar TaiwanFuturesKBar](https://finmindtrade.com/analysis/#/data/api_v4/taiwanfutureskbar): Data range 2011-01-03 ~ now
+* Added [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members): Data range 2011-01-03 ~ now
 
 #### 2026-08-09
 * [Taiwan Options Real-Time Information taiwan_options_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-options-real-time-information-taiwan_options_snapshot-only-available-to-sponsor-members) now covers the **Friday-expiry** TAIEX option contracts: `data_id` accepts `TXU`, `TXV`, `TXX`, `TXY` and `TXZ` (expiring on the 1st ~ 5th Friday of the month). The existing `TXO` (monthly) and `TX1` ~ `TX5` (Wednesday-expiry) are unaffected
