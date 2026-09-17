@@ -1,3 +1,10 @@
+#### 2026-09-17
+* **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2017-05 ~ 2018-03 部分夜盤資料重複，已修正。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
+    * 影響日期（共 43 個日曆日，皆為只含夜盤尾段 00:00～05:00 的週六及休市日）：2017-05-20、2017-05-27、2017-06-10、2017-06-17、2017-06-24、2017-07-01、2017-07-08、2017-07-15、2017-07-22、2017-07-29、2017-08-05、2017-08-12、2017-08-19、2017-08-26、2017-09-02、2017-09-09、2017-09-16、2017-09-23、2017-10-04、2017-10-07、2017-10-14、2017-10-21、2017-10-28、2017-11-04、2017-11-11、2017-11-18、2017-11-25、2017-12-02、2017-12-09、2017-12-16、2017-12-23、2017-12-30、2018-01-06、2018-01-13、2018-01-20、2018-01-27、2018-02-03、2018-02-10、2018-02-24、2018-02-28、2018-03-03、2018-03-10、2018-03-17
+    * 問題：這些日期的每一筆逐筆資料都被重複寫入一份，重複的那份成交時間錯位成 00:HH:MM（例如 01:23:45 變成 00:01:23），全部擠在 00:00～00:04，使該段夜盤成交量變成 2 倍；期貨分K 同日期 00:00～00:04 的成交量也因此偏高
+    * 夜盤歸屬下一個交易日，所以實際受影響的是**這些日期之後第一個交易日的夜盤**，例如 2018-02-10 的資料屬於 2018-02-12 的夜盤
+    * 已移除重複列，逐日比對筆數與成交量後上線；2018-03-24 之後的日期，以及同期間的一般交易日，都沒有這個問題
+
 #### 2026-09-13
 * 新增 [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor): 資料區間 2011-01-03 ~ now
 * [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)：歷史資料補齊，**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
