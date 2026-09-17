@@ -99,6 +99,13 @@ The following are common field-definition differences to keep in mind when an AI
 ??? note "Futures ticks (TaiwanFuturesTick): how volume is counted"
     Tick volume is counted on a **double-sided** basis: each matched trade records both the buy side and the sell side once. As a result, the summed tick volume is about **2×** the (single-side) volume in the daily data TaiwanFuturesDaily; for spread / combination orders, which contain two legs, the tick volume is about **4×** the daily volume. Convert accordingly when reconciling tick volume against daily volume.
 
+    **Per-contract-month reconciliation**: for a given contract month (e.g. 202606) within the same trading session,
+
+    `sum of volume of outright rows (contract_date = 202606) + sum of volume of spread rows containing that month (e.g. 202606/202607) ÷ 2 = 2 × TaiwanFuturesDaily volume of that month − 2 × negotiated block-trade lots of that month`
+
+    - The volume of a spread row is exactly 4× the volume of the corresponding spread contract (contract_date with two months) in TaiwanFuturesDaily. Each spread lot counts toward the daily volume of both legs, so divide spread volume by 2 when attributing it to a single month; do not add it in full.
+    - **Negotiated block trades are not included in tick data, but are included in daily volume.** They occur mostly as rollovers ahead of settlement (equal lots in the near and next months) and are the main reason tick volume falls noticeably short of 2× daily volume around settlement week; this is not missing tick data. Details are published on the TAIFEX website under "Market Data > Daily Market Report > Block Trade > Negotiation": trades in the regular trading session count toward the regular session (position), and after-hours trades count toward that trading day's after-hours session (after_market).
+
 ??? note "Futures ticks: trading-day attribution of after-hours ticks"
     The after-hours (night) session follows the TAIFEX rule of being attributed to the **next business day**. The after-hours session for trading day D is the segment running from 15:00 on the previous business day until 05:00 on day D. Therefore, within a tick file:
 
