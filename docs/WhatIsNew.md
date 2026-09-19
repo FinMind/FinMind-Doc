@@ -1,3 +1,9 @@
+#### 2026-09-20
+* **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2018 年部分交易日逐筆資料缺漏，已依交易所原始資料重建。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
+    * 影響日期（共 70 個交易日）：2018-03-23、2018-03-26、2018-03-27、2018-04-03、2018-04-09、2018-04-13、2018-04-16、2018-04-23、2018-04-30、2018-05-02、2018-05-07、2018-05-11、2018-05-14、2018-05-21、2018-05-25、2018-05-28、2018-06-01、2018-06-04、2018-06-11、2018-06-19、2018-06-22、2018-06-25、2018-06-29、2018-07-02、2018-07-09、2018-07-16、2018-07-23、2018-07-30、2018-08-03、2018-08-06、2018-08-07、2018-08-10、2018-08-13、2018-08-17、2018-08-20、2018-08-24、2018-08-27、2018-08-28、2018-09-03、2018-09-07、2018-09-10、2018-09-14、2018-09-17、2018-09-25、2018-09-28、2018-10-01、2018-10-05、2018-10-08、2018-10-11、2018-10-15、2018-10-19、2018-10-22、2018-10-26、2018-10-29、2018-11-02、2018-11-05、2018-11-09、2018-11-12、2018-11-16、2018-11-19、2018-11-23、2018-11-26、2018-11-27、2018-11-30、2018-12-03、2018-12-04、2018-12-07、2018-12-10、2018-12-14、2018-12-17
+    * 問題：這些日期有部分成交未收錄，主要集中在週一（週末後第一個交易日）日盤開盤後的前幾秒；以臺股期貨 TX 為例，42 個交易日共缺 29,909 筆
+    * 已逐日比對筆數與成交量後上線；2018 全年臺股期貨 TX 逐筆資料亦已與交易所原始資料逐列比對，完全一致
+
 #### 2026-09-19
 * [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 * [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢須帶 `data_id`；一次取得整日資料請使用 storage_objects 下載方式
