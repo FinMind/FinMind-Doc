@@ -324,14 +324,15 @@ In Taiwan stock chip data, we have 26 datasets as follows:
     | `name` | Meaning | Available era |
     |--------|---------|---------------|
     | `Foreign_Investor` | Foreign investors (excl. foreign dealer self) | all |
-    | `Foreign_Dealer_Self` | Foreign dealer self | from 2018-01-15 |
+    | `Foreign_Dealer_Self` | Foreign dealer self | from 2017-12-18 (TWSE), 2018-01-15 (TPEx) |
     | `Investment_Trust` | Investment trust | all |
     | `Dealer` | Dealer (combined) | before ~2014-12-01, and Emerging market |
     | `Dealer_self` | Dealer (proprietary) | from 2014-12-01 (TWSE, TPEx) |
     | `Dealer_Hedging` | Dealer (hedging) | from 2014-12-01 (TWSE, TPEx) |
 
     - From **2014-12-01** the combined `Dealer` was split into `Dealer_self` (proprietary) and `Dealer_Hedging` (hedging). For TWSE / TPEx stocks after 2014-12-01 there is therefore **no `Dealer` row at all**; the values live in `Dealer_self` and `Dealer_Hedging`.
-    - From **2018-01-15**, `Foreign_Dealer_Self` (foreign dealer self) was split out from foreign investors.
+    - From **2017-12-18 (TWSE) / 2018-01-15 (TPEx)**, `Foreign_Dealer_Self` (foreign dealer self) was split out from foreign investors; before that, `Foreign_Investor` is the foreign total (including foreign dealer self).
+    - Exception: TPEx stocks between **2017-12-18 and 2018-01-12** still have a `Foreign_Dealer_Self` row whose `buy` / `sell` are always 0 (TPEx had not split the category yet); it does not represent actual trades.
     - For a continuous "dealer total" across eras, sum `Dealer + Dealer_self + Dealer_Hedging` (only one group has values in any era, so there is no double counting).
     - **Emerging market** stocks keep the combined `Dealer` and only the net (buy minus sell) is published, so `buy` / `sell` here are reconstructed from the net (net buy goes to `buy`, net sell goes to `sell`) and one side is always 0.
     - Even in the new era, `Foreign_Dealer_Self` is 0 on both `buy` and `sell` for most stocks on most days — that means the stock genuinely had no foreign-dealer-self trades that day; it is a real value, not a gap.
@@ -527,10 +528,10 @@ In Taiwan stock chip data, we have 26 datasets as follows:
     | `Dealer` (dealer, combined) | **old era** (before ~2014-12-01) and Emerging | `0` afterwards |
     | `Dealer_self` (dealer, proprietary) | **new era** (from 2014-12-01) | `0` before |
     | `Dealer_Hedging` (dealer, hedging) | **new era** (from 2014-12-01) | `0` before |
-    | `Foreign_Dealer_Self` (foreign dealer self) | **new era** (from 2018-01-15) | `0` before |
+    | `Foreign_Dealer_Self` (foreign dealer self) | **new era** (from 2017-12-18 TWSE, 2018-01-15 TPEx) | `0` before |
 
     - From **2014-12-01**, the combined `Dealer` was split into `Dealer_self` (proprietary) and `Dealer_Hedging` (hedging). For TWSE / TPEx stocks after 2014-12-01, `Dealer_buy` / `Dealer_sell` are therefore **always 0**; the values live in `Dealer_self_buy` / `Dealer_self_sell` and `Dealer_Hedging_buy` / `Dealer_Hedging_sell`.
-    - From **2018-01-15**, `Foreign_Dealer_Self` was split out from foreign investors.
+    - From **2017-12-18 (TWSE) / 2018-01-15 (TPEx)**, `Foreign_Dealer_Self` was split out from foreign investors; before that, `Foreign_Investor_buy` / `Foreign_Investor_sell` are the foreign total (including foreign dealer self) and `Foreign_Dealer_Self_buy` / `Foreign_Dealer_Self_sell` are 0.
     - For a continuous "dealer total" across eras, sum `Dealer + Dealer_self + Dealer_Hedging` (only one group is non-zero in any era, so there is no double counting).
     - **Emerging market** stocks keep the combined `Dealer`, and only the net (buy minus sell) is published, so `Dealer_buy` / `Dealer_sell` are reconstructed from the net (net buy goes to buy, net sell goes to sell) and one side is always 0; the same applies to foreign investors and investment trust.
     - Even in the new era, `Foreign_Dealer_Self_buy` / `Foreign_Dealer_Self_sell` are 0 for most stocks on most days — the stock genuinely had no foreign-dealer-self trades that day; a real value, not a gap.
