@@ -193,6 +193,85 @@
         }
         ```
 
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_futures_daily(
+            start_date='2020-04-01'
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesDaily",
+            "start_date": "2020-04-01",
+            "end_date": "2020-04-12",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesDaily",
+                start_date= "2020-04-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('rbind',data$data) %>%data.table
+        head(df)
+
+        ```
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id   |   contract_date |   open |   max |   min |   close |   spread |   spread_per |   volume |   settlement_price |   open_interest | trading_session   |
+        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|
+        |  0 | 2020-04-01 | BRF          |          202005 |      0 |     0 |   0   |     0   |        0 |         0    |        0 |              681   |             381 | position          |
+        |  1 | 2020-04-01 | BRF          |          202005 |    690 |   704 | 681   |   681   |       -9 |        -1.3  |       45 |                0   |               0 | after_market      |
+        |  2 | 2020-04-01 | BRF          |          202006 |    795 |   799 | 774   |   774   |      -30 |        -3.73 |       63 |              774   |             435 | position          |
+        |  3 | 2020-04-01 | BRF          |          202006 |    818 |   833 | 789.5 |   791   |      -13 |        -1.62 |       77 |                0   |               0 | after_market      |
+        |  4 | 2020-04-01 | BRF          |          202007 |    881 |   881 | 874.5 |   874.5 |        7 |         0.81 |        3 |              874.5 |               3 | position          |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            open: float32, # 開盤價
+            max: float32, # 最高價
+            min: float32, # 最低價
+            close: float32, # 收盤價
+            spread: float32, # 漲跌幅
+            spread_per: float32, # 漲跌幅比例
+            volume: float64, # 成交量
+            settlement_price: float32, # 結算價
+            open_interest: float64, # 未沖銷契約量
+            trading_session: str # 交易時段
+        }
+        ```
+
 ----------------------------------
 #### 期貨分K TaiwanFuturesKBar (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
@@ -274,7 +353,10 @@
         }
         ```
 
-#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 一次拿特定日期，所有資料(只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+(由於資料量過大，單次請求只提供一天資料)
+
+- 不帶 data_id，回傳該日所有期貨商品的分K。
 
 !!! example
     === "Package"
@@ -282,9 +364,9 @@
         from FinMind.data import DataLoader
 
         api = DataLoader()
-        # api.login_by_token(api_token='token')
-        df = api.taiwan_futures_daily(
-            start_date='2020-04-01'
+        api.login_by_token(api_token='token')
+        df = api.taiwan_futures_kbar(
+            date='2024-01-02',
         )
         ```
     === "Python-request"
@@ -295,15 +377,13 @@
         token = "" # 參考登入，獲取金鑰
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
-            "dataset": "TaiwanFuturesDaily",
-            "start_date": "2020-04-01",
-            "end_date": "2020-04-12",
+            "dataset": "TaiwanFuturesKBar",
+            "start_date": "2024-01-02",
         }
         data = requests.get(url, headers=headers, params=parameter)
         data = data.json()
         data = pd.DataFrame(data['data'])
         print(data.head())
-
         ```
     === "R"
         ```R
@@ -315,41 +395,37 @@
         response = httr::GET(
             url = url,
             query = list(
-                dataset="TaiwanFuturesDaily",
-                start_date= "2020-04-01"
+                dataset="TaiwanFuturesKBar",
+                start_date="2024-01-02"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
         data = response %>% content
-        df = do.call('rbind',data$data) %>%data.table
+        df = do.call('cbind',data$data) %>% data.table
         head(df)
-
         ```
+
 !!! output
     === "DataFrame"
-        |    | date       | futures_id   |   contract_date |   open |   max |   min |   close |   spread |   spread_per |   volume |   settlement_price |   open_interest | trading_session   |
-        |---:|:-----------|:-------------|----------------:|-------:|------:|------:|--------:|---------:|-------------:|---------:|-------------------:|----------------:|:------------------|
-        |  0 | 2020-04-01 | BRF          |          202005 |      0 |     0 |   0   |     0   |        0 |         0    |        0 |              681   |             381 | position          |
-        |  1 | 2020-04-01 | BRF          |          202005 |    690 |   704 | 681   |   681   |       -9 |        -1.3  |       45 |                0   |               0 | after_market      |
-        |  2 | 2020-04-01 | BRF          |          202006 |    795 |   799 | 774   |   774   |      -30 |        -3.73 |       63 |              774   |             435 | position          |
-        |  3 | 2020-04-01 | BRF          |          202006 |    818 |   833 | 789.5 |   791   |      -13 |        -1.62 |       77 |                0   |               0 | after_market      |
-        |  4 | 2020-04-01 | BRF          |          202007 |    881 |   881 | 874.5 |   874.5 |        7 |         0.81 |        3 |              874.5 |               3 | position          |
+        |    | date       | futures_id | contract_date | minute   |   open |   high |    low |  close | volume |
+        |---:|:-----------|:-----------|:--------------|:---------|-------:|-------:|-------:|-------:|-------:|
+        |  0 | 2024-01-02 | BRF        | 202403        | 09:01:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  1 | 2024-01-02 | BRF        | 202403        | 09:03:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  2 | 2024-01-02 | BRF        | 202403        | 09:32:00 | 2365.5 | 2365.5 | 2365.5 | 2365.5 |      2 |
+        |  3 | 2024-01-02 | BRF        | 202403        | 09:37:00 |   2365 |   2365 |   2365 |   2365 |     22 |
+        |  4 | 2024-01-02 | BRF        | 202403        | 09:50:00 |   2369 |   2369 |   2369 |   2369 |      2 |
     === "Schema"
         ```
         {
             date: str, # 日期
             futures_id: str, # 期貨代碼
             contract_date: str, # 到期月份
+            minute: str, # 分鐘時間
             open: float32, # 開盤價
-            max: float32, # 最高價
-            min: float32, # 最低價
+            high: float32, # 最高價
+            low: float32, # 最低價
             close: float32, # 收盤價
-            spread: float32, # 漲跌幅
-            spread_per: float32, # 漲跌幅比例
-            volume: float64, # 成交量
-            settlement_price: float32, # 結算價
-            open_interest: float64, # 未沖銷契約量
-            trading_session: str # 交易時段
+            volume: int64, # 成交量
         }
         ```
 

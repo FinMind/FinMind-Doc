@@ -353,6 +353,82 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
         }
         ```
 
+#### Fetch all data for a specific date at once (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+(Due to the large data volume, each request returns only one day of data)
+
+- Omit data_id to get the minute KBars of all futures products for that day.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_futures_kbar(
+            date='2024-01-02',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesKBar",
+            "start_date": "2024-01-02",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # Refer to login to obtain the token
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesKBar",
+                start_date="2024-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>% data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id | contract_date | minute   |   open |   high |    low |  close | volume |
+        |---:|:-----------|:-----------|:--------------|:---------|-------:|-------:|-------:|-------:|-------:|
+        |  0 | 2024-01-02 | BRF        | 202403        | 09:01:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  1 | 2024-01-02 | BRF        | 202403        | 09:03:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  2 | 2024-01-02 | BRF        | 202403        | 09:32:00 | 2365.5 | 2365.5 | 2365.5 | 2365.5 |      2 |
+        |  3 | 2024-01-02 | BRF        | 202403        | 09:37:00 |   2365 |   2365 |   2365 |   2365 |     22 |
+        |  4 | 2024-01-02 | BRF        | 202403        | 09:50:00 |   2369 |   2369 |   2369 |   2369 |      2 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            futures_id: str, # futures code
+            contract_date: str, # contract month
+            minute: str, # minute time
+            open: float32, # open price
+            high: float32, # high price
+            low: float32, # low price
+            close: float32, # close price
+            volume: int64, # trading volume
+        }
+        ```
+
 ----------------------------------
 #### Options Daily Trading Information TaiwanOptionDaily
 
