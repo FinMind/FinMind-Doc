@@ -1,3 +1,7 @@
+#### 2026-09-19
+* [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
+* [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢須帶 `data_id`；一次取得整日資料請使用 storage_objects 下載方式
+
 #### 2026-09-17
 * **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2017-05 ~ 2018-03 部分夜盤資料重複，已修正。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
     * 影響日期（共 43 個日曆日，皆為只含夜盤尾段 00:00～05:00 的週六及休市日）：2017-05-20、2017-05-27、2017-06-10、2017-06-17、2017-06-24、2017-07-01、2017-07-08、2017-07-15、2017-07-22、2017-07-29、2017-08-05、2017-08-12、2017-08-19、2017-08-26、2017-09-02、2017-09-09、2017-09-16、2017-09-23、2017-10-04、2017-10-07、2017-10-14、2017-10-21、2017-10-28、2017-11-04、2017-11-11、2017-11-18、2017-11-25、2017-12-02、2017-12-09、2017-12-16、2017-12-23、2017-12-30、2018-01-06、2018-01-13、2018-01-20、2018-01-27、2018-02-03、2018-02-10、2018-02-24、2018-02-28、2018-03-03、2018-03-10、2018-03-17

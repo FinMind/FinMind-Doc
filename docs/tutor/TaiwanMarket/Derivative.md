@@ -193,87 +193,6 @@
         }
         ```
 
-----------------------------------
-#### 期貨分K TaiwanFuturesKBar (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-
-- 資料區間：2011-01-03 ~ now
-- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
-- 一次只能查詢一天的資料
-
-!!! example
-    === "Package"
-        ```python
-        from FinMind.data import DataLoader
-
-        api = DataLoader()
-        api.login_by_token(api_token='token')
-        df = api.taiwan_futures_kbar(
-            futures_id='TX',
-            date='2024-01-02',
-        )
-        ```
-    === "Python-request"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
-        token = "" # 參考登入，獲取金鑰
-        headers = {"Authorization": f"Bearer {token}"}
-        parameter = {
-            "dataset": "TaiwanFuturesKBar",
-            "data_id": "TX",
-            "start_date": "2024-01-02",
-        }
-        data = requests.get(url, headers=headers, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
-        print(data.head())
-        ```
-    === "R"
-        ```R
-        library(httr)
-        library(data.table)
-        library(dplyr)
-        token = "" # 參考登入，獲取金鑰
-        url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(
-            url = url,
-            query = list(
-                dataset="TaiwanFuturesKBar",
-                data_id="TX",
-                start_date="2024-01-02"
-            ),
-            add_headers(Authorization = paste("Bearer", token))
-        )
-        data = response %>% content
-        df = do.call('cbind',data$data) %>% data.table
-        head(df)
-        ```
-
-!!! output
-    === "DataFrame"
-        |    | date       | futures_id | contract_date | minute   |  open |  high |   low | close | volume |
-        |---:|:-----------|:-----------|:--------------|:---------|------:|------:|------:|------:|-------:|
-        |  0 | 2024-01-02 | TX         | 202401        | 08:45:00 | 17800 | 17810 | 17795 | 17805 |    150 |
-        |  1 | 2024-01-02 | TX         | 202401        | 08:46:00 | 17805 | 17815 | 17800 | 17812 |     98 |
-        |  2 | 2024-01-02 | TX         | 202401        | 08:47:00 | 17812 | 17820 | 17810 | 17818 |     75 |
-        |  3 | 2024-01-02 | TX         | 202402        | 08:45:00 | 17750 | 17760 | 17745 | 17755 |     12 |
-        |  4 | 2024-01-02 | TX         | 202402        | 08:46:00 | 17755 | 17765 | 17750 | 17760 |      8 |
-    === "Schema"
-        ```
-        {
-            date: str, # 日期
-            futures_id: str, # 期貨代碼
-            contract_date: str, # 到期月份
-            minute: str, # 分鐘時間
-            open: float32, # 開盤價
-            high: float32, # 最高價
-            low: float32, # 最低價
-            close: float32, # 收盤價
-            volume: int64, # 成交量
-        }
-        ```
-
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 !!! example
@@ -350,6 +269,160 @@
             settlement_price: float32, # 結算價
             open_interest: float64, # 未沖銷契約量
             trading_session: str # 交易時段
+        }
+        ```
+
+----------------------------------
+#### 期貨分K TaiwanFuturesKBar (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2011-01-03 ~ now
+- 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
+- 一次只能查詢一天的資料
+- 必須帶 data_id（期貨代碼）；如需一次取得當日所有期貨商品，請使用 [一次拿特定日期，所有資料](#taiwanfutureskbar-sponsorpro)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_futures_kbar(
+            futures_id='TX',
+            date='2024-01-02',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesKBar",
+            "data_id": "TX",
+            "start_date": "2024-01-02",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesKBar",
+                data_id="TX",
+                start_date="2024-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = response %>% content
+        df = do.call('cbind',data$data) %>% data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id | contract_date | minute   |  open |  high |   low | close | volume |
+        |---:|:-----------|:-----------|:--------------|:---------|------:|------:|------:|------:|-------:|
+        |  0 | 2024-01-02 | TX         | 202401        | 08:45:00 | 17800 | 17810 | 17795 | 17805 |    150 |
+        |  1 | 2024-01-02 | TX         | 202401        | 08:46:00 | 17805 | 17815 | 17800 | 17812 |     98 |
+        |  2 | 2024-01-02 | TX         | 202401        | 08:47:00 | 17812 | 17820 | 17810 | 17818 |     75 |
+        |  3 | 2024-01-02 | TX         | 202402        | 08:45:00 | 17750 | 17760 | 17745 | 17755 |     12 |
+        |  4 | 2024-01-02 | TX         | 202402        | 08:46:00 | 17755 | 17765 | 17750 | 17760 |      8 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            minute: str, # 分鐘時間
+            open: float32, # 開盤價
+            high: float32, # 最高價
+            low: float32, # 最低價
+            close: float32, # 收盤價
+            volume: int64, # 成交量
+        }
+        ```
+
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用) { #taiwanfutureskbar-sponsorpro }
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2011-01-03 ~ now，逐交易日提供。
+- 輸入 dataset、date 參數，回傳該日所有期貨商品的分K。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢。
+
+!!! example
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesKBar",
+            "date": '2024-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesKBar",
+                date= "2024-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id | contract_date | minute   |   open |   high |    low |  close | volume |
+        |---:|:-----------|:-----------|:--------------|:---------|-------:|-------:|-------:|-------:|-------:|
+        |  0 | 2024-01-02 | BRF        | 202403        | 09:01:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  1 | 2024-01-02 | BRF        | 202403        | 09:03:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  2 | 2024-01-02 | BRF        | 202403        | 09:32:00 | 2365.5 | 2365.5 | 2365.5 | 2365.5 |      2 |
+        |  3 | 2024-01-02 | BRF        | 202403        | 09:37:00 |   2365 |   2365 |   2365 |   2365 |     22 |
+        |  4 | 2024-01-02 | BRF        | 202403        | 09:50:00 |   2369 |   2369 |   2369 |   2369 |      2 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            futures_id: str, # 期貨代碼
+            contract_date: str, # 到期月份
+            minute: str, # 分鐘時間
+            open: float64, # 開盤價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            close: float64, # 收盤價
+            volume: int64, # 成交量
         }
         ```
 
@@ -543,6 +616,7 @@
 #### 期貨交易明細表 TaiwanFuturesTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 由於資料量過大，單次請求只提供一天資料
+- 必須帶 data_id（期貨代碼）；如需一次取得當日所有期貨商品，請使用 [一次拿特定日期，所有資料](#sponsorpro)
 - 資料區間：2011-01-03 ~ now
 - 資料更新時間 **星期一至五 6:00**，實際更新時間以 API 資料為主
 
@@ -809,6 +883,7 @@
 #### 選擇權交易明細表 TaiwanOptionTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 由於資料量過大，單次請求只提供一天資料
+- 必須帶 data_id（選擇權代碼）；如需一次取得當日所有選擇權商品，請使用 [一次拿特定日期，所有資料](#sponsorpro_1)
 - 資料區間：2011-01-03 ~ now
 - 資料更新時間 **星期一至五 6:00**，實際更新時間以 API 資料為主
 

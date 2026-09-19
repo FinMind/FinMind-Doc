@@ -278,6 +278,7 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 - Data range: 2011-01-03 ~ now
 - Data update time: **Monday to Friday 16:30**. The actual update time is based on the API data.
 - Only one day of data can be queried at a time.
+- data_id (futures code) is required. To get all futures products for a day at once, use [Fetch all data for a specific date at once](#taiwanfutureskbar-sponsorpro).
 
 !!! example
     === "Package"
@@ -349,6 +350,78 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
             high: float32, # high price
             low: float32, # low price
             close: float32, # close price
+            volume: int64, # trading volume
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members) { #taiwanfutureskbar-sponsorpro }
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: 2011-01-03 ~ now, one trading day at a time.
+- Providing the dataset and date parameters returns the minute KBars of all futures products for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query contract by contract.
+
+!!! example
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanFuturesKBar",
+            "date": '2024-01-02',
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanFuturesKBar",
+                date= "2024-01-02"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | futures_id | contract_date | minute   |   open |   high |    low |  close | volume |
+        |---:|:-----------|:-----------|:--------------|:---------|-------:|-------:|-------:|-------:|-------:|
+        |  0 | 2024-01-02 | BRF        | 202403        | 09:01:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  1 | 2024-01-02 | BRF        | 202403        | 09:03:00 | 2353.5 | 2353.5 | 2353.5 | 2353.5 |      2 |
+        |  2 | 2024-01-02 | BRF        | 202403        | 09:32:00 | 2365.5 | 2365.5 | 2365.5 | 2365.5 |      2 |
+        |  3 | 2024-01-02 | BRF        | 202403        | 09:37:00 |   2365 |   2365 |   2365 |   2365 |     22 |
+        |  4 | 2024-01-02 | BRF        | 202403        | 09:50:00 |   2369 |   2369 |   2369 |   2369 |      2 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            futures_id: str, # futures code
+            contract_date: str, # contract month
+            minute: str, # minute time
+            open: float64, # open price
+            high: float64, # high price
+            low: float64, # low price
+            close: float64, # close price
             volume: int64, # trading volume
         }
         ```
@@ -543,6 +616,7 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 #### Futures Trading Detail Table TaiwanFuturesTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Due to the large data volume, each request only provides one day's data.
+- data_id (futures code) is required. To get all futures products for a day at once, use [Fetch all data for a specific date at once](#fetch-all-data-for-a-specific-date-at-once-available-only-to-sponsorpro-members).
 - Data range: 2011-01-03 ~ now
 - Data update time: **Monday to Friday 6:00**. The actual update time is based on the API data.
 
@@ -808,6 +882,7 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 #### Options Trading Detail Table TaiwanOptionTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Due to the large data volume, each request only provides one day's data.
+- data_id (option code) is required. To get all option products for a day at once, use [Fetch all data for a specific date at once](#fetch-all-data-for-a-specific-date-at-once-available-only-to-sponsorpro-members_1).
 - Data range: 2011-01-03 ~ now.
 - Data update time: **Monday to Friday 6:00**. The actual update time is based on the API data.
 
