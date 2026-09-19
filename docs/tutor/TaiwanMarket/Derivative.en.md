@@ -278,6 +278,7 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 - Data range: 2011-01-03 ~ now
 - Data update time: **Monday to Friday 16:30**. The actual update time is based on the API data.
 - Only one day of data can be queried at a time.
+- data_id (futures code) is required. To get all futures products for a day at once, use [Fetch all data for a specific date at once](#taiwanfutureskbar-sponsorpro).
 
 !!! example
     === "Package"
@@ -615,6 +616,7 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 #### Futures Trading Detail Table TaiwanFuturesTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Due to the large data volume, each request only provides one day's data.
+- data_id (futures code) is required. To get all futures products for a day at once, use [Fetch all data for a specific date at once](#fetch-all-data-for-a-specific-date-at-once-available-only-to-sponsorpro-members).
 - Data range: 2011-01-03 ~ now
 - Data update time: **Monday to Friday 6:00**. The actual update time is based on the API data.
 
@@ -880,6 +882,7 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 #### Options Trading Detail Table TaiwanOptionTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Due to the large data volume, each request only provides one day's data.
+- data_id (option code) is required. To get all option products for a day at once, use [Fetch all data for a specific date at once](#fetch-all-data-for-a-specific-date-at-once-available-only-to-sponsorpro-members_1).
 - Data range: 2011-01-03 ~ now.
 - Data update time: **Monday to Friday 6:00**. The actual update time is based on the API data.
 

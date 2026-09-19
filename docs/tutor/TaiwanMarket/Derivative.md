@@ -278,6 +278,7 @@
 - 資料區間：2011-01-03 ~ now
 - 資料更新時間 **星期一至五 16:30**，實際更新時間以 API 資料為主
 - 一次只能查詢一天的資料
+- 必須帶 data_id（期貨代碼）；如需一次取得當日所有期貨商品，請使用 [一次拿特定日期，所有資料](#taiwanfutureskbar-sponsorpro)
 
 !!! example
     === "Package"
@@ -615,6 +616,7 @@
 #### 期貨交易明細表 TaiwanFuturesTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 由於資料量過大，單次請求只提供一天資料
+- 必須帶 data_id（期貨代碼）；如需一次取得當日所有期貨商品，請使用 [一次拿特定日期，所有資料](#sponsorpro)
 - 資料區間：2011-01-03 ~ now
 - 資料更新時間 **星期一至五 6:00**，實際更新時間以 API 資料為主
 
@@ -881,6 +883,7 @@
 #### 選擇權交易明細表 TaiwanOptionTick (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 由於資料量過大，單次請求只提供一天資料
+- 必須帶 data_id（選擇權代碼）；如需一次取得當日所有選擇權商品，請使用 [一次拿特定日期，所有資料](#sponsorpro_1)
 - 資料區間：2011-01-03 ~ now
 - 資料更新時間 **星期一至五 6:00**，實際更新時間以 API 資料為主
 
