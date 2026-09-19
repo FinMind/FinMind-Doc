@@ -324,14 +324,15 @@
     | `name` | 中文 | 提供年代 |
     |--------|------|----------|
     | `Foreign_Investor` | 外資（不含外資自營商） | 全期間 |
-    | `Foreign_Dealer_Self` | 外資自營商 | 2018-01-15 起 |
+    | `Foreign_Dealer_Self` | 外資自營商 | 上市 2017-12-18 起、上櫃 2018-01-15 起 |
     | `Investment_Trust` | 投信 | 全期間 |
     | `Dealer` | 自營商（合併） | 約 2014-12-01 前，以及興櫃 |
     | `Dealer_self` | 自營商（自行買賣） | 2014-12-01 起（上市、上櫃） |
     | `Dealer_Hedging` | 自營商（避險） | 2014-12-01 起（上市、上櫃） |
 
     - 自營商自 **2014-12-01** 起由合併的 `Dealer` 拆成 `Dealer_self`（自行買賣）與 `Dealer_Hedging`（避險）。因此上市、上櫃個股在 2014-12-01 之後**查不到 `Dealer` 這一列**，數值都落在 `Dealer_self` 與 `Dealer_Hedging`。
-    - 外資自 **2018-01-15** 起再拆出 `Foreign_Dealer_Self`（外資自營商）。
+    - 外資自 **2017-12-18（上市）／2018-01-15（上櫃）** 起再拆出 `Foreign_Dealer_Self`（外資自營商）；在此之前 `Foreign_Investor` 為外資合計（含外資自營商）。
+    - 例外：上櫃個股在 **2017-12-18 ~ 2018-01-12** 期間仍會有 `Foreign_Dealer_Self` 列，`buy` / `sell` 恆為 0（上櫃當時尚未拆分），不代表實際成交。
     - 若需要跨年代連續的「自營商合計」，請自行加總 `Dealer + Dealer_self + Dealer_Hedging`（任一年代只有其中一組有值，相加不會重複計算）。
     - **興櫃**個股維持合併的 `Dealer`，且僅提供買賣超淨額，本資料的 `buy` / `sell` 由淨額還原（淨買超記入 `buy`、淨賣超記入 `sell`），故單邊恆為 0。
     - `Foreign_Dealer_Self` 即使在新制期間，多數個股當日 `buy` / `sell` 仍為 0，代表該股當日確實沒有外資自營商成交，屬正常值而非缺漏。
@@ -527,10 +528,10 @@
     | `Dealer`（自營商，合併） | **舊制**（約 2014-12-01 前）及興櫃 | 之後為 `0` |
     | `Dealer_self`（自營商，自行買賣） | **新制**（2014-12-01 起） | 之前為 `0` |
     | `Dealer_Hedging`（自營商，避險） | **新制**（2014-12-01 起） | 之前為 `0` |
-    | `Foreign_Dealer_Self`（外資自營商） | **新制**（2018-01-15 起） | 之前為 `0` |
+    | `Foreign_Dealer_Self`（外資自營商） | **新制**（上市 2017-12-18 起、上櫃 2018-01-15 起） | 之前為 `0` |
 
     - 自營商在 **2014-12-01** 起由合併的 `Dealer` 拆成 `Dealer_self`（自行買賣）與 `Dealer_Hedging`（避險）。因此上市、上櫃個股在 2014-12-01 之後 `Dealer_buy` / `Dealer_sell` **恆為 0**，數值都落在 `Dealer_self_buy` / `Dealer_self_sell` 與 `Dealer_Hedging_buy` / `Dealer_Hedging_sell`。
-    - 外資在 **2018-01-15** 起再拆出 `Foreign_Dealer_Self`（外資自營商）。
+    - 外資在 **2017-12-18（上市）／2018-01-15（上櫃）** 起再拆出 `Foreign_Dealer_Self`（外資自營商）；在此之前 `Foreign_Investor_buy` / `Foreign_Investor_sell` 為外資合計（含外資自營商），`Foreign_Dealer_Self_buy` / `Foreign_Dealer_Self_sell` 為 0。
     - 若需「自營商合計」且跨年代連續，請自行加總 `Dealer + Dealer_self + Dealer_Hedging`（任一年代只有其中一組非 0，相加不會重複計算）。
     - **興櫃**個股維持合併的 `Dealer`，且僅提供買賣超淨額，`Dealer_buy` / `Dealer_sell` 由淨額還原（淨買超記入 buy、淨賣超記入 sell），故單邊恆為 0；外資、投信同理。
     - `Foreign_Dealer_Self_buy` / `Foreign_Dealer_Self_sell` 即使在新制期間，多數個股當日仍為 0，代表該股當日確實沒有外資自營商成交，屬正常值而非缺漏。
