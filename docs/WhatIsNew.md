@@ -1,3 +1,9 @@
+#### 2026-09-20
+* **資料校正公告**：[個股三大法人買賣表 TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)、[個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)：上櫃 **2017-12-18 ~ 2018-01-12**（19 個交易日）的 `Foreign_Dealer_Self`（外資自營商）有誤，已修正。**曾下載或查詢過這段期間上櫃資料的使用者請重新取得資料**
+    * 問題：上櫃當時尚未單獨揭露外資自營商（2018-01-15 起才拆分），但此期間約 380 檔上櫃股票的 `Foreign_Dealer_Self` 被誤植為與 `Foreign_Investor` 相同的數值，加總各法人別時外資會被重複計算
+    * 修正後此期間上櫃的 `Foreign_Dealer_Self` 買進／賣出皆為 0；另 2018-01-12 有 7 檔上櫃股票的投信買賣股數一併校正為官方數值
+    * 已逐日比對官方公告；上市股票及其他期間不受影響
+
 #### 2026-09-19
 * [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 * [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢須帶 `data_id`；一次取得整日資料請使用 storage_objects 下載方式
