@@ -353,36 +353,29 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
         }
         ```
 
-#### Fetch all data for a specific date at once (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
-(Due to the large data volume, each request returns only one day of data)
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members) { #taiwanfutureskbar-sponsorpro }
+(Due to the large data volume, each request only provides one day's data.)
 
-- Omit data_id to get the minute KBars of all futures products for that day.
+- Data range: 2011-01-03 ~ now, one trading day at a time.
+- Providing the dataset and date parameters returns the minute KBars of all futures products for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query contract by contract.
 
 !!! example
-    === "Package"
-        ```python
-        from FinMind.data import DataLoader
-
-        api = DataLoader()
-        api.login_by_token(api_token='token')
-        df = api.taiwan_futures_kbar(
-            date='2024-01-02',
-        )
-        ```
     === "Python-request"
         ```python
+        import io
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
         token = "" # Refer to login to obtain the token
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesKBar",
-            "start_date": "2024-01-02",
+            "date": '2024-01-02',
         }
-        data = requests.get(url, headers=headers, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
         print(data.head())
         ```
     === "R"
@@ -390,19 +383,22 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
         library(httr)
         library(data.table)
         library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
         token = "" # Refer to login to obtain the token
-        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
             url = url,
             query = list(
                 dataset="TaiwanFuturesKBar",
-                start_date="2024-01-02"
+                date= "2024-01-02"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
-        data = response %>% content
-        df = do.call('cbind',data$data) %>% data.table
-        head(df)
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
         ```
 
 !!! output
@@ -421,10 +417,10 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
             futures_id: str, # futures code
             contract_date: str, # contract month
             minute: str, # minute time
-            open: float32, # open price
-            high: float32, # high price
-            low: float32, # low price
-            close: float32, # close price
+            open: float64, # open price
+            high: float64, # high price
+            low: float64, # low price
+            close: float64, # close price
             volume: int64, # trading volume
         }
         ```

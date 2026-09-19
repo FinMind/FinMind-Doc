@@ -353,36 +353,29 @@
         }
         ```
 
-#### 一次拿特定日期，所有資料(只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用) { #taiwanfutureskbar-sponsorpro }
 (由於資料量過大，單次請求只提供一天資料)
 
-- 不帶 data_id，回傳該日所有期貨商品的分K。
+- 資料區間：2011-01-03 ~ now，逐交易日提供。
+- 輸入 dataset、date 參數，回傳該日所有期貨商品的分K。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢。
 
 !!! example
-    === "Package"
-        ```python
-        from FinMind.data import DataLoader
-
-        api = DataLoader()
-        api.login_by_token(api_token='token')
-        df = api.taiwan_futures_kbar(
-            date='2024-01-02',
-        )
-        ```
     === "Python-request"
         ```python
+        import io
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
         token = "" # 參考登入，獲取金鑰
         headers = {"Authorization": f"Bearer {token}"}
         parameter = {
             "dataset": "TaiwanFuturesKBar",
-            "start_date": "2024-01-02",
+            "date": '2024-01-02',
         }
-        data = requests.get(url, headers=headers, params=parameter)
-        data = data.json()
-        data = pd.DataFrame(data['data'])
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
         print(data.head())
         ```
     === "R"
@@ -390,19 +383,22 @@
         library(httr)
         library(data.table)
         library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
         token = "" # 參考登入，獲取金鑰
-        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
             url = url,
             query = list(
                 dataset="TaiwanFuturesKBar",
-                start_date="2024-01-02"
+                date= "2024-01-02"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
-        data = response %>% content
-        df = do.call('cbind',data$data) %>% data.table
-        head(df)
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
         ```
 
 !!! output
@@ -421,10 +417,10 @@
             futures_id: str, # 期貨代碼
             contract_date: str, # 到期月份
             minute: str, # 分鐘時間
-            open: float32, # 開盤價
-            high: float32, # 最高價
-            low: float32, # 最低價
-            close: float32, # 收盤價
+            open: float64, # 開盤價
+            high: float64, # 最高價
+            low: float64, # 最低價
+            close: float64, # 收盤價
             volume: int64, # 成交量
         }
         ```

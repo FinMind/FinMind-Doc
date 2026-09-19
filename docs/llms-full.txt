@@ -612,7 +612,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2011-01-03 ~ now
 - Update: Monday-Friday 16:30
 - Params: dataset=TaiwanFuturesKBar, data_id=TX, start_date=2024-01-02 (single day only)
-- Params (all): dataset=TaiwanFuturesKBar, start_date=2024-01-02 (omit data_id to get all futures products for that day)
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanFuturesKBar&date=2024-01-02` returns whole-day parquet (all futures products) via signed URL. Available from 2011-01-03 onwards.
 - Columns: date, futures_id, contract_date, minute, open, high, low, close, volume
 
 ### TaiwanOptionDaily (選擇權日成交資訊)
