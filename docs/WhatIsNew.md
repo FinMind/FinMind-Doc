@@ -1,6 +1,9 @@
 #### 2026-09-19
 * [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 * [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢須帶 `data_id`；一次取得整日資料請使用 storage_objects 下載方式
+* **資料校正公告（補充 2026-09-17）**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：**2018-02-13** 有與 2026-09-17 公告相同的夜盤重複問題，先前未列入該次修正範圍，現已修正。**此日期已重新產製並驗證，曾下載或查詢過的使用者請重新取得資料**
+    * 2018-02-13 為春節前休市日（只含夜盤尾段 00:00～05:00），夜盤歸屬春節後第一個交易日 2018-02-21
+    * 已重新逐日檢查 2017-05 ~ 2018-03 全部日期，除上述 43 個日曆日與 2018-02-13 之外，沒有其他日期有此問題
 
 #### 2026-09-17
 * **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2017-05 ~ 2018-03 部分夜盤資料重複，已修正。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
