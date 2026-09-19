@@ -1,9 +1,6 @@
 #### 2026-09-19
-* [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：新增 [一次拿特定日期，所有資料](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutureskbar-sponsorpro)（只限 sponsorpro），一次下載整日所有期貨商品的分K，資料區間 2011-01-03 ~ now
-    * Python SDK：`api.taiwan_futures_kbar(date='2024-01-02', use_object=True)`（需更新至最新版 FinMind）
-* **查詢規則說明**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢時**必須帶 data_id**（期貨／選擇權代碼），與文件既有說明一致；不帶 data_id 將回傳錯誤訊息
-    * 如需一次取得特定日期的所有商品，請改用各資料集的「一次拿特定日期，所有資料」整日下載：[期貨交易明細](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#sponsorpro)、[選擇權交易明細](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#sponsorpro_1)、[期貨分K](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfutureskbar-sponsorpro)（只限 sponsorpro）
-    * Python SDK 的 `taiwan_stock_tick`、`taiwan_stock_kbar`、`taiwan_futures_tick`、`taiwan_futures_kbar`、`taiwan_option_tick` 未指定代號時會直接提示錯誤，請指定 `stock_id`／`futures_id`／`option_id`，或使用 `use_object=True` 下載整日資料
+* [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
+* [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢須帶 `data_id`；一次取得整日資料請使用 storage_objects 下載方式
 
 #### 2026-09-17
 * **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2017-05 ~ 2018-03 部分夜盤資料重複，已修正。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
