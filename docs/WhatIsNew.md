@@ -14,6 +14,10 @@
     * [期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestorsafterhours-backersponsor)：**2022-07-24**（週日）有與 2022-07-25 完全相同的重複資料，一併移除
     * [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)：**2026-07-10** 先前誤列為交易日，已更正
     * 逐筆與分 K 資料**不受影響，也不應一併剔除**：這類資料集的 `date` 為日曆時間，停市日 00:00～04:59 是前一交易日夜盤的真實成交
+* **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：**2024-04-26** 少 3 筆成交，已重新產製並驗證。**曾下載或查詢過該日的使用者請重新取得資料**
+    * 問題：臺股期貨 TX 202405 於 **15:07:30** 少 3 筆（價格 20163、數量 2），整日由 127,504 筆補回 **127,507 筆**，與交易所原始資料一致
+    * 分K 連帶更正：該日 15:07 這一分鐘的成交量由 490 更正為 **496**，TX 202405 整日成交量 389,496
+    * 其餘日期已抽驗逐筆與分K 的成交量對帳，無同類問題
 
 #### 2026-09-19
 * [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載

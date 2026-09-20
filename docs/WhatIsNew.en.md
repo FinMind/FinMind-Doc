@@ -14,6 +14,10 @@
     * [Futures After-Hours Top Three Institutional Investors Trading TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-after-hours-top-three-institutional-investors-trading-taiwanfuturesinstitutionalinvestorsafterhours-available-only-to-backer-sponsor-members): **2022-07-24** (a Sunday) carried rows identical to 2022-07-25; removed as well
     * [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-trading-date-taiwanstocktradingdate): **2026-07-10** was previously listed as a trading day; corrected
     * Tick and K-bar datasets are **not affected and should not be filtered out**: their `date` is a calendar timestamp, so 00:00-04:59 on a closed day are genuine trades from the previous trading day's after-hours session
+* **Data correction notice**: [Futures Trading Detail TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members), [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members): 3 trades were missing on **2024-04-26**; regenerated and verified. **If you downloaded or queried that date, please fetch the data again**
+    * Issue: TX 202405 was missing 3 trades at **15:07:30** (price 20163, volume 2); the whole day went from 127,504 back to **127,507** rows, matching the exchange's raw data
+    * Minute K-bar corrected accordingly: volume for the 15:07 minute went from 490 to **496**; TX 202405 whole-day volume is 389,496
+    * Other dates were spot-checked by reconciling tick volume against minute K-bar volume; no similar issue found
 
 #### 2026-09-19
 * [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
