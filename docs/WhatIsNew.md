@@ -7,6 +7,13 @@
     * 問題：上櫃當時尚未單獨揭露外資自營商（2018-01-15 起才拆分），但此期間約 380 檔上櫃股票的 `Foreign_Dealer_Self` 被誤植為與 `Foreign_Investor` 相同的數值，加總各法人別時外資會被重複計算
     * 修正後此期間上櫃的 `Foreign_Dealer_Self` 買進／賣出皆為 0；另 2018-01-12 有 7 檔上櫃股票的投信買賣股數一併校正為官方數值
     * 已逐日比對官方公告；上市股票及其他期間不受影響
+* **資料校正公告**：**颱風全日停市日**出現與**次一交易日盤後時段**完全相同的重複資料，已全數移除。**曾下載或查詢過這些日期的使用者請重新取得資料**
+    * 影響日期：**2023-08-03**、**2024-07-24**、**2024-07-25**、**2024-10-02**、**2024-10-03**、**2024-10-31**、**2026-07-10**
+    * 影響資料集：[期貨日成交資訊 TaiwanFuturesDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)、[選擇權日成交資訊 TaiwanOptionDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)、[期貨各卷商每日交易 TaiwanFuturesDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesdealertradingvolumedaily)、[選擇權各卷商每日交易 TaiwanOptionDealerTradingVolumeDaily](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiondealertradingvolumedaily)
+    * 問題：颱風全日停市時，當日已完成的盤後交易時段依規則改歸屬於**次一交易日**；停市日當下寫入的那份資料在歸屬更正後成為殘留，形成與次一交易日盤後列完全相同的重複。正式歸屬日為次一交易日，停市日本身不應有資料
+    * [期貨夜盤三大法人買賣 TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestorsafterhours-backersponsor)：**2022-07-24**（週日）有與 2022-07-25 完全相同的重複資料，一併移除
+    * [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)：**2026-07-10** 先前誤列為交易日，已更正
+    * 逐筆與分 K 資料**不受影響，也不應一併剔除**：這類資料集的 `date` 為日曆時間，停市日 00:00～04:59 是前一交易日夜盤的真實成交
 
 #### 2026-09-19
 * [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
