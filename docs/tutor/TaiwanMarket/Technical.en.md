@@ -1064,14 +1064,16 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one stock's data for one day.)
 
-- Data range: 2019-01-01 ~ now.
+- Data range: 2018-12-07 ~ now.
 - Providing the dataset, stock_id, and start_date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
-- Some data is missing on this date: 2019-02-20.
+- Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22. In addition, 2019-05-16 only has data for a small number of ETFs.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,236 stocks took only 3 minutes 40 seconds.
 
-??? note "Historical limitation of TickType in 2019"
-    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+??? note "TickType has been corrected across the full history (2018-12-07 ~ 2023-03-10)"
+    Before 2023-03-13, trades whose side could not be determined were all labelled 1 (buyer-initiated), which made the buyer-initiated share noticeably too high. Every trading day in this range has been regenerated using the same rule applied from 2023-03-13 onward. If you downloaded any of these dates before, please fetch the data again.
+
+    **For dates before 2021-06-22, about 8% ~ 10% of trades have TickType 0 (undetermined)**, because the source data itself carries no side information for those trades, while the old version labelled them all as buyer-initiated. If you group statistics by TickType, treat 0 separately rather than merging it into either side.
 
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares**. Both units therefore appear in the same day of data. This is a difference between markets, not a data error. The same rule applies to `volume` in `TaiwanStockKBar` (minute K).
@@ -1183,13 +1185,15 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: 2019-01-01 ~ now.
+- Data range: 2018-12-07 ~ now.
 - Providing the dataset and date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
-- Some data is missing on this date: 2019-02-20.
+- Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22. In addition, 2019-05-16 only has data for a small number of ETFs.
 
-??? note "Historical limitation of TickType in 2019"
-    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+??? note "TickType has been corrected across the full history (2018-12-07 ~ 2023-03-10)"
+    Before 2023-03-13, trades whose side could not be determined were all labelled 1 (buyer-initiated), which made the buyer-initiated share noticeably too high. Every trading day in this range has been regenerated using the same rule applied from 2023-03-13 onward. If you downloaded any of these dates before, please fetch the data again.
+
+    **For dates before 2021-06-22, about 8% ~ 10% of trades have TickType 0 (undetermined)**, because the source data itself carries no side information for those trades, while the old version labelled them all as buyer-initiated. If you group statistics by TickType, treat 0 separately rather than merging it into either side.
 
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares**. Both units therefore appear in the same day of data. This is a difference between markets, not a data error. The same rule applies to `volume` in `TaiwanStockKBar` (minute K).
@@ -1254,13 +1258,13 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 !!! output
     === "DataFrame"
-        |    | date       |   stock_id |   deal_price |   volume | Time     |   TickType |
-        |---:|:-----------|-----------:|-------------:|---------:|:---------|-----------:|
-        |  0 | 2019-01-02 |       0050 |        75.85 |      167 | 09:00:03 |          1 |
-        |  1 | 2019-01-02 |       0050 |        75.90 |       11 | 09:00:08 |          1 |
-        |  2 | 2019-01-02 |       0050 |        75.85 |        2 | 09:00:18 |          1 |
-        |  3 | 2019-01-02 |       0050 |        75.85 |       31 | 09:00:23 |          1 |
-        |  4 | 2019-01-02 |       0050 |        75.85 |       19 | 09:00:28 |          1 |
+        |    | date       |   stock_id |   deal_price |   volume | Time         |   TickType |
+        |---:|:-----------|-----------:|-------------:|---------:|:-------------|-----------:|
+        |  0 | 2019-01-02 |       0050 |        75.85 |      167 | 09:00:03.794 |          0 |
+        |  1 | 2019-01-02 |       0050 |        75.90 |       11 | 09:00:08.813 |          1 |
+        |  2 | 2019-01-02 |       0050 |        75.85 |        2 | 09:00:18.852 |          2 |
+        |  3 | 2019-01-02 |       0050 |        75.85 |       31 | 09:00:23.871 |          2 |
+        |  4 | 2019-01-02 |       0050 |        75.85 |       19 | 09:00:28.890 |          2 |
     === "Schema"
         ```
         {
