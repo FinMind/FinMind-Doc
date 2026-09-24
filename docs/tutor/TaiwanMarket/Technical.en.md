@@ -2058,7 +2058,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 - Data range: individual stocks 2019-01-01 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
 - Data update time: **Monday to Friday 15:50**. The actual update time is based on the API data.
-- Some data is missing on this date: 2019-02-20.
+- Some data is missing on these dates: 2019-02-20, 2019-02-21, 2019-02-22 (only the TAIEX index minute K is available on these three days; there is no individual-stock data). In addition, on 2019-05-16 only a small number of ETFs have individual-stock data.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
 
 ??? note "This table also provides the TAIEX index minute K"
