@@ -199,7 +199,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2005-01-01 ~ now
 - Params: dataset=TaiwanStockStatisticsOfOrderBookAndTrade, start_date=2021-01-07
 - Columns: Time (str), TotalBuyOrder (str), TotalBuyVolume (int64), TotalSellOrder (int64), TotalSellVolume (int64), TotalDealOrder (int64), TotalDealVolume (int64), TotalDealMoney (int64), date (str)
-- Note: Single day per request.
+- Note: Single day per request. Cumulative trades exclude odd-lot, block, after-hours fixed-price, auction and tender trades, so the closing total is slightly lower than the daily market volume. Interval: 1 min until 2011-01-14, 15 s from 2011-01-17, 10 s from 2014-02-24, 5 s from 2014-12-29.
 
 ### TaiwanVariousIndicators5Seconds (台股加權指數)
 - Tier: Free
