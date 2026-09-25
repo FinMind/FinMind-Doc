@@ -16,6 +16,15 @@
 * **資料校正公告**：[股價日成交資訊 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)、[台灣還原股價 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)、[台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)、[台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)：
     * 上櫃股票在 **2015-11-23**、**2020-03-09**、**2020-03-10**、**2020-04-24** 的成交股數、成交金額、成交筆數未計入盤後定價與零股交易，已更正為與其他交易日一致的全日口徑；開高低收與漲跌不受影響
     * 還原股價同步更新；上櫃週 K、月 K（2020-03 ~ 2024-12）已依日成交資料重新計算
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：**2018-12-07 ~ 2023-03-10** 共 **1,028 個交易日**的 `TickType`（內外盤）標記已全面修正。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
+    * 問題：2023-03-13 以前，來源無法判定內外盤的成交被一律標記為 1（外盤），使外盤占比明顯偏高，部分日期高達 0.82，修正後回到 0.50 左右
+    * 修正後改用與 2023-03-13 之後一致的判定規則。`TickType` 定義：1＝外盤成交（買方主動）、2＝內盤成交（賣方主動）、0＝無法判定
+    * **2021-06-22 以前的日期，約 8% ~ 10% 的成交其 `TickType` 為 0（無法判定）**，因為來源資料本身對這些成交沒有內外盤資訊。若以 `TickType` 分類統計，請將 0 單獨處理，不要併入外盤或內盤
+    * 另有約 152 萬筆（佔全區間 0.15%、分布於 187 個交易日）因來源已無法再次提供，保留原始資料與原標記，以免遺失成交紀錄
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：**2018-12-10** 整日資料重複，已重新產製。**曾以該日做過統計的使用者請重新計算**
+    * 問題：該日絕大多數個股的每一筆成交都存在完全相同的第二筆，使當日成交量約為實際的兩倍；重新產製後已逐股確認與官方日成交量一致
+    * 已就 2018-12-07 ~ 2022-09-30 全區間檢查是否有相同情形，確認僅此一日
+* [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：資料區間更正為 **2018-12-07 ~ now**（原記為 2019-01-01）；已知缺漏日期補列為 **2018-12-22、2019-02-20、2019-02-21、2019-02-22**，另 **2019-05-16** 僅有少數 ETF 的資料
 
 #### 2026-09-24
 * **資料校正公告**：[主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)、[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)：**2026-02-11**（春節前最後一個交易日）有 11 檔 ETF 缺持股資料，已補齊。**曾下載或查詢過 2026-02-11、2026-02-23 資料的使用者請重新取得資料**
