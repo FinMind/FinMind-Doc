@@ -1453,6 +1453,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 - Data range: 2005-01-01 ~ now
 
+??? note "Scope of cumulative trades"
+    Cumulative trades (`TotalDealOrder`, `TotalDealVolume`, `TotalDealMoney`) only count regular trades on the centralized market and **exclude odd-lot, block, after-hours fixed-price, auction and tender trades**, so the closing total is slightly lower than the daily market volume, and the gap widens on days with large block trades. Volume is in lots (1,000 shares) and value in millions of NTD.
+
+    Interval: one row per minute until 2011-01-14, every 15 seconds from 2011-01-17, every 10 seconds from 2014-02-24, and every 5 seconds from 2014-12-29.
+
 !!! example
     === "Package"
         ```python
