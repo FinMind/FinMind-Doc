@@ -201,7 +201,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2005-01-01 ~ now
 - Params: dataset=TaiwanStockStatisticsOfOrderBookAndTrade, start_date=2021-01-07
 - Columns: Time (str), TotalBuyOrder (str), TotalBuyVolume (int64), TotalSellOrder (int64), TotalSellVolume (int64), TotalDealOrder (int64), TotalDealVolume (int64), TotalDealMoney (int64), date (str)
-- Note: Single day per request.
+- Note: Single day per request. Cumulative trades exclude odd-lot, block, after-hours fixed-price, auction and tender trades, so the closing total is slightly lower than the daily market volume. Interval: 1 min until 2011-01-14, 15 s from 2011-01-17, 10 s from 2014-02-24, 5 s from 2014-12-29.
 
 ### TaiwanVariousIndicators5Seconds (台股加權指數)
 - Tier: Free
@@ -245,6 +245,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Note: Single day per request.
 - Note: `volume` keeps each market's native trading unit — lots (1 lot = 1,000 shares) for TWSE/TPEX stocks, shares for emerging-board (興櫃) stocks — the same rule as TaiwanStockPriceTick. Determine the market from TaiwanStockInfo by taking the row with the latest `date` per `stock_id`.
 - Note: the TAIEX index minute K is in this same dataset — use data_id=TAIEX. Range 2005-01-03 ~ now (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00:00-13:30:00, one row per minute; `volume` is always 0 because an index has no trading volume. Make-up trading Saturdays are covered.
+- Missing dates: 2019-02-20, 2019-02-21, 2019-02-22 have no individual-stock minute K (only TAIEX is available); on 2019-05-16 only a small number of ETFs have data.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockKBar&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from 2019-01-02 onwards. Python SDK: `api.taiwan_stock_kbar(date='2026-01-02', use_object=True)`.
 
 ### TaiwanStockWeekPrice (台股週K資料表)

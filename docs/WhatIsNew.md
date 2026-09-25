@@ -1,4 +1,21 @@
-#### 2026-09-21
+#### 2026-09-25
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：部分日期有重複或非實際成交的紀錄，已依證交所、櫃買中心公布的日成交量與盤後定價資料逐檔比對後移除，分 K 同步重新計算。**曾下載或查詢過以下日期的使用者請重新取得資料**
+    * **2018-12-07 ~ 2019-09-27**（190 個交易日）：同一筆成交多出一筆毫秒為 `.000` 的重複紀錄，共約 19.8 萬筆，已移除
+    * **13:30:00 收盤撮合列重複**：部分日期同一檔股票的收盤撮合出現多筆完全相同的紀錄（例如 2022-07-20 ~ 2022-10-18 的上櫃股票），現在每檔每日只保留一筆
+    * **2020-01-02 ~ 2020-04-28**：部分個股有重複收錄的成交，或多出非實際成交的 13:30:00 收盤列、14:30:00 盤後定價列，已移除
+    * **2025-06-16**：多數股票多出一筆與 13:30:00 收盤列相同的 14:30:00 紀錄（並非實際的盤後定價成交），已移除
+    * 分 K：**2020-03-06**、**2021-07-27** 有少數分 K 成交量為負值；**2020-03-23 ~ 2023-07-13** 部分分 K 的開高低收或最低價為 0。均來自原始資料中的非實際成交紀錄，已排除後重新計算
+    * 官方日成交量包含零股與鉅額交易，逐筆量合計略低於官方日成交量屬正常現象
+* **資料校正公告**：[每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)：
+    * 上櫃各指數 13:30:00 原本記錄的是收盤集合競價前最後一個揭示值，已全期間更正為官方收盤指數，與上市指數一致
+    * **2026-06-02** 多出 7 條舊制名稱的序列（其中 `CompositAveragePrice`、`IndustryAveragePrice` 整天為 0），已移除
+    * **2007-07-02 ~ 2014-01-03** 上櫃航運類的名稱前多一個 Tab 字元，已統一為 `ShippingTransportation`
+    * **2005-01-03 ~ 2008-09-18** 部分上市指數同時存在新舊兩個名稱（例如 `TSEWeighted` 與 `TAIEX`、`Electron` 與 `Electronic`，數值相同），已只保留現行名稱；**2005-09-16** 原本只有舊名稱，已改為現行名稱，當日 TAIEX 分 K 一併補齊
+    * **2017-05-08** 上櫃各指數的原始資料由 09:00:05 開始，沒有 09:00:00 這一點，無法補齊
+* **資料校正公告**：[每5秒委託成交統計 TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)：**2023-08-04** 09:00:00 的累積成交誤為前一交易日的收盤累計值，已更正為 0；**2011-01-21** 整日資料誤為其他日期的資料，已更正。另有部分日期同一時間點存有重複資料，已一併清除
+* **資料校正公告**：[股價日成交資訊 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)、[台灣還原股價 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)、[台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)、[台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)：
+    * 上櫃股票在 **2015-11-23**、**2020-03-09**、**2020-03-10**、**2020-04-24** 的成交股數、成交金額、成交筆數未計入盤後定價與零股交易，已更正為與其他交易日一致的全日口徑；開高低收與漲跌不受影響
+    * 還原股價同步更新；上櫃週 K、月 K（2020-03 ~ 2024-12）已依日成交資料重新計算
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：**2018-12-07 ~ 2023-03-10** 共 **1,028 個交易日**的 `TickType`（內外盤）標記已全面修正。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
     * 問題：2023-03-13 以前，來源無法判定內外盤的成交被一律標記為 1（外盤），使外盤占比明顯偏高，部分日期高達 0.82，修正後回到 0.50 左右
     * 修正後改用與 2023-03-13 之後一致的判定規則。`TickType` 定義：1＝外盤成交（買方主動）、2＝內盤成交（賣方主動）、0＝無法判定
@@ -8,6 +25,14 @@
     * 問題：該日絕大多數個股的每一筆成交都存在完全相同的第二筆，使當日成交量約為實際的兩倍；重新產製後已逐股確認與官方日成交量一致
     * 已就 2018-12-07 ~ 2022-09-30 全區間檢查是否有相同情形，確認僅此一日
 * [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：資料區間更正為 **2018-12-07 ~ now**（原記為 2019-01-01）；已知缺漏日期補列為 **2018-12-22、2019-02-20、2019-02-21、2019-02-22**，另 **2019-05-16** 僅有少數 ETF 的資料
+
+#### 2026-09-24
+* **資料校正公告**：[主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)、[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)：**2026-02-11**（春節前最後一個交易日）有 11 檔 ETF 缺持股資料，已補齊。**曾下載或查詢過 2026-02-11、2026-02-23 資料的使用者請重新取得資料**
+    * 補齊的 ETF：00980A、00981A、00981D、00982A、00983A、00985A、00988A、00990A、00992A、00994A、00995A
+    * 問題：春節前最後一個交易日的持股清單在春節後第一個交易日才公告，間隔超過收錄時的檢查上限，當日持股因此漏收；已修正，往後遇到長假也能正常收錄
+    * 持股異動同步重算：2026-02-11 補上當日買賣；2026-02-23 原本是與 2026-02-10 相減，改為與 2026-02-11 相減。2026-02-23 部分成份股會出現 `buy`、`sell` 皆為 0 的列，代表該成份股當日無異動，可直接略過
+    * 00981D、00983A、00988A、00990A 的 **2026-02-10** 資料來源本身未提供持股，**此日無法補齊**
+* [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：已知缺漏日期補列為 **2019-02-20、2019-02-21、2019-02-22**（這三天僅有加權指數 TAIEX 分 K，無個股資料），另 **2019-05-16** 個股僅有少數 ETF 的資料；與[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor) 的缺漏日期一致，來源於這些日期未提供逐筆資料，無法補齊
 
 #### 2026-09-20
 * **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2018 年部分交易日逐筆資料缺漏，已依交易所原始資料重建。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
@@ -31,6 +56,7 @@
     * 其餘日期已抽驗逐筆與分K 的成交量對帳，無同類問題
 
 #### 2026-09-19
+* [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)：修復相同股票在同一天只有一筆資料的問題（來源資料同一天同一檔股票會有多筆不同借券股數與費率），現已完整保留所有原始資料列，並回補歷史資料
 * [期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 * [期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[選擇權交易明細 TaiwanOptionTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor) 查詢須帶 `data_id`；一次取得整日資料請使用 storage_objects 下載方式
 * **資料校正公告（補充 2026-09-17）**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：**2018-02-13** 有與 2026-09-17 公告相同的夜盤重複問題，先前未列入該次修正範圍，現已修正。**此日期已重新產製並驗證，曾下載或查詢過的使用者請重新取得資料**
