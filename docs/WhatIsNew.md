@@ -4,6 +4,7 @@
     * 問題：春節前最後一個交易日的持股清單在春節後第一個交易日才公告，間隔超過收錄時的檢查上限，當日持股因此漏收；已修正，往後遇到長假也能正常收錄
     * 持股異動同步重算：2026-02-11 補上當日買賣；2026-02-23 原本是與 2026-02-10 相減，改為與 2026-02-11 相減。2026-02-23 部分成份股會出現 `buy`、`sell` 皆為 0 的列，代表該成份股當日無異動，可直接略過
     * 00981D、00983A、00988A、00990A 的 **2026-02-10** 資料來源本身未提供持股，**此日無法補齊**
+* [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：已知缺漏日期補列為 **2019-02-20、2019-02-21、2019-02-22**（這三天僅有加權指數 TAIEX 分 K，無個股資料），另 **2019-05-16** 個股僅有少數 ETF 的資料；與[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor) 的缺漏日期一致，來源於這些日期未提供逐筆資料，無法補齊
 
 #### 2026-09-20
 * **資料校正公告**：[期貨交易明細 TaiwanFuturesTick](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor)、[期貨分K TaiwanFuturesKBar](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#k-taiwanfutureskbar-sponsor)：2018 年部分交易日逐筆資料缺漏，已依交易所原始資料重建。**以下日期已重新產製並驗證，曾下載或查詢過這些日期的使用者請重新取得資料**
