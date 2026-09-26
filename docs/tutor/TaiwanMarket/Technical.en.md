@@ -2298,11 +2298,6 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 - Data range: 2005-01-03 ~ now
 
-??? note "13:30:00 closing value, index name history and known gaps"
-    - **13:30:00 is the official closing index**: for both TWSE and TPEx indices, the 13:30:00 value is the day's closing index. After TPEx indices enter the closing auction at 13:25, the published intraday value stops changing, so 13:25 ~ 13:29:55 stay at the same value and 13:30:00 is the closing index.
-    - **TPEx chemical index name**: `ChemicalEngineering` from 2007-07-02 to 2025-09-12 and `Chemical` from 2025-09-15; they are the same index, so please combine both names when querying across periods.
-    - **Known gap**: on 2017-05-08 the raw TPEx index data starts at 09:00:05, with no 09:00:00 point.
-
 !!! example
     === "Package"
         ```python
