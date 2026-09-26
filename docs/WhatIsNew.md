@@ -1,3 +1,8 @@
+#### 2026-09-26
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：以 `storage_objects` 下載的整日資料，部分日期同一檔股票的列沒有依時間排序（該股資料後面又接了一段較早的成交），依檔案順序取值會取錯。**2018-12-07 起全部交易日的整日資料已重新產製，曾下載過的使用者請重新取得**
+    * 修正後整日資料依 `stock_id`、`Time` 排序；同一時間有多筆成交時，依實際成交先後排列
+    * 受影響較明顯的日期如 2020-03-02、2020-03-12、2021-08-03（該日原始資料整天為時間倒序），其餘多為少數個股；資料內容與筆數不變，只調整排列順序
+
 #### 2026-09-25
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：部分日期有重複或非實際成交的紀錄，已依證交所、櫃買中心公布的日成交量與盤後定價資料逐檔比對後移除，分 K 同步重新計算。**曾下載或查詢過以下日期的使用者請重新取得資料**
     * **2018-12-07 ~ 2019-09-27**（190 個交易日）：同一筆成交多出一筆毫秒為 `.000` 的重複紀錄，共約 19.8 萬筆，已移除

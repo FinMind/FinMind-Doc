@@ -1204,6 +1204,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
     Also note, when reconciling tick data against the daily volume in `TaiwanStockPrice`: for TWSE / TPEx stocks the daily volume **includes block trades** (see `TaiwanStockBlockTrade`), while tick data does not, so the two will not match exactly.
 
+??? note "Row order of the whole-day files"
+    The whole-day files are sorted by `stock_id` and `Time`; when several trades share the same time, they are ordered by actual execution sequence. You can take each stock's first row (the open) or its last trade before a given time directly in file order.
+
 !!! example
     === "Package"
         ```python
@@ -2294,6 +2297,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 (Due to the large data volume, each request only provides one day's data.)
 
 - Data range: 2005-01-03 ~ now
+
+??? note "13:30:00 closing value, index name history and known gaps"
+    - **13:30:00 is the official closing index**: for both TWSE and TPEx indices, the 13:30:00 value is the day's closing index. After TPEx indices enter the closing auction at 13:25, the published intraday value stops changing, so 13:25 ~ 13:29:55 stay at the same value and 13:30:00 is the closing index.
+    - **TPEx chemical index name**: `ChemicalEngineering` from 2007-07-02 to 2025-09-12 and `Chemical` from 2025-09-15; they are the same index, so please combine both names when querying across periods.
+    - **Known gap**: on 2017-05-08 the raw TPEx index data starts at 09:00:05, with no 09:00:00 point.
 
 !!! example
     === "Package"
