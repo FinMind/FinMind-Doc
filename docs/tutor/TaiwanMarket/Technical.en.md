@@ -1204,6 +1204,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
     Also note, when reconciling tick data against the daily volume in `TaiwanStockPrice`: for TWSE / TPEx stocks the daily volume **includes block trades** (see `TaiwanStockBlockTrade`), while tick data does not, so the two will not match exactly.
 
+??? note "Row order of the whole-day files"
+    The whole-day files are sorted by `stock_id` and `Time`; when several trades share the same time, they are ordered by actual execution sequence. You can take each stock's first row (the open) or its last trade before a given time directly in file order.
+
 !!! example
     === "Package"
         ```python

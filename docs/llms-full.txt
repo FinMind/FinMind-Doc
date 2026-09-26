@@ -181,7 +181,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Update: Mon-Fri 15:30
 - Params: dataset=TaiwanStockPriceTick, data_id=2330, start_date=2020-01-02
 - Columns: date (str), stock_id (str), deal_price (float64), volume (int64), Time (str), TickType (str: 0=unknown, 1=buyer-initiated (trade at ask), 2=seller-initiated (trade at bid))
-- Note: Single day per request.
+- Note: Single day per request. Whole-day files (storage_objects) are sorted by stock_id, Time; trades at the same time are in execution order.
 - TickType correction: every trading day from 2018-12-07 to 2023-03-10 was regenerated using the same rule applied from 2023-03-13 onward; the old version labelled undeterminable trades as 1 (buyer-initiated), which inflated the buyer-initiated share. Re-download if you fetched these dates before.
 - Known limitation: for dates before 2021-06-22, roughly 8-10% of trades have TickType 0 (undetermined) because the source data carries no side information for them; treat 0 separately rather than merging it into either side.
 - Missing dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22 have no tick data; 2019-05-16 only has data for a small number of ETFs.
