@@ -1,3 +1,6 @@
+#### 2026-09-29
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：**2021-03-05 ~ 2021-04-14**（27 個交易日）興櫃股票的原始逐筆資料中，每 5 分鐘（xx:x0:00、xx:x5:00）重複出現一筆與前一筆相同的非實際成交紀錄，使逐筆與分 K 成交量偏高，並多出 15:00 之後的分 K，已移除並重新計算分 K（API 與整日下載檔皆已更新）。**曾下載或查詢過這段期間興櫃股票逐筆或分 K 的使用者請重新取得資料**
+
 #### 2026-09-28
 * **資料校正公告**：[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：移除 **2023-03-13 ~ 2026-01-22** 期間 `stock_id` 為 `001` 的加權指數分 K，大盤分 K 統一以 `TAIEX` 為準（API 與整日下載檔皆已更新）。**曾使用 `001` 的使用者請改用 `TAIEX`**
 * **資料校正公告**：[每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)：上櫃各指數 13:30:00 的歷史資料已完成全期間（2005-01-03 起）更正，現在皆為官方收盤指數，與上市指數一致。**曾下載或查詢過上櫃指數的使用者請重新取得資料**
