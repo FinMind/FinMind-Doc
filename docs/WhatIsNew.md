@@ -1,3 +1,7 @@
+#### 2026-09-28
+* **資料校正公告**：[每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)：上櫃各指數 13:30:00 的歷史資料已完成全期間（2005-01-03 起）更正，現在皆為官方收盤指數，與上市指數一致。**曾下載或查詢過上櫃指數的使用者請重新取得資料**
+    * 2005-01 ~ 2005-03 有 23 個交易日，原始資料公布的收盤值與日收盤指數相差 0.01，屬來源端的尾數差異
+
 #### 2026-09-26
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)：以 `storage_objects` 下載的整日資料，部分日期同一檔股票的列沒有依時間排序（該股資料後面又接了一段較早的成交），依檔案順序取值會取錯。**2018-12-07 起全部交易日的整日資料已重新產製，曾下載過的使用者請重新取得**
     * 修正後整日資料依 `stock_id`、`Time` 排序；同一時間有多筆成交時，依實際成交先後排列

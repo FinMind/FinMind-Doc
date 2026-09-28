@@ -1,3 +1,7 @@
+#### 2026-09-28
+* **Data correction notice**: [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members): the 13:30:00 values of TPEx indices have been corrected for the full history (from 2005-01-03) and are now the official closing index, consistent with TWSE indices. **If you downloaded or queried TPEx index data before, please fetch it again**
+    * On 23 trading days from 2005-01 to 2005-03, the closing value published in the raw data differs from the daily closing index by 0.01; this is a rounding difference at the source
+
 #### 2026-09-26
 * **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members): in the whole-day files downloaded via `storage_objects`, on some dates the rows of a stock were not in time order (an earlier block of trades was appended after the stock's later rows), so reading values in file order could give wrong results. **The whole-day files for all trading days since 2018-12-07 have been regenerated; if you downloaded them before, please fetch them again**
     * The whole-day files are now sorted by `stock_id` and `Time`; when several trades share the same time, they are ordered by actual execution sequence
