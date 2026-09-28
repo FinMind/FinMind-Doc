@@ -1,4 +1,5 @@
 #### 2026-09-28
+* **資料校正公告**：[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：移除 **2023-03-13 ~ 2026-01-22** 期間 `stock_id` 為 `001` 的加權指數分 K，大盤分 K 統一以 `TAIEX` 為準（API 與整日下載檔皆已更新）。**曾使用 `001` 的使用者請改用 `TAIEX`**
 * **資料校正公告**：[每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)：上櫃各指數 13:30:00 的歷史資料已完成全期間（2005-01-03 起）更正，現在皆為官方收盤指數，與上市指數一致。**曾下載或查詢過上櫃指數的使用者請重新取得資料**
     * 2005-01 ~ 2005-03 有 23 個交易日，原始資料公布的收盤值與日收盤指數相差 0.01，屬來源端的尾數差異
 
