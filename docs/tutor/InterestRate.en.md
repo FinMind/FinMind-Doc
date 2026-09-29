@@ -1,6 +1,6 @@
 In the interest rate market, we offer datasets from 12 central banks, as follows:
 
-- [Interest Rate Table InterestRate](https://finmind.github.io/en/tutor/InterestRate/#interestrate)
+- [Interest Rate Table InterestRate](https://finmind.github.io/en/tutor/InterestRate/#interest-rate-table-interestrate)
 
 | data_id 	| BOE        	| RBA          	| FED          	| PBOC         	| BOC      	| ECB          	| RBNZ           	| RBI          	| CBR            	| BCB              	| BOJ      	| SNB          	|
 |---------	|------------	|--------------	|--------------	|--------------	|----------	|--------------	|----------------	|--------------	|----------------	|------------------	|----------	|--------------	|

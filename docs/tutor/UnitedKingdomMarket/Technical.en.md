@@ -1,10 +1,10 @@
 In UK stock data, we offer 1 dataset, as follows:
 
-- [UK Stock Price Table UKStockPrice](https://finmind.github.io/en/tutor/UnitedKingdomMarket/Technical/#ukstockprice)
+- [UK Stock Price Table UKStockPrice](https://finmind.github.io/en/tutor/UnitedKingdomMarket/Technical/#uk-stock-price-table-ukstockprice)
 
 In addition, the following list summarizes the available datasets:
 
-- [UK Stock List UKStockInfo](https://finmind.github.io/en/tutor/UnitedKingdomMarket/Technical/#ukstockinfo)
+- [UK Stock List UKStockInfo](https://finmind.github.io/en/tutor/UnitedKingdomMarket/Technical/#uk-stock-list-ukstockinfo)
 
 The usage of each dataset is explained one by one below. For the specific dataset schemas, please refer to [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 

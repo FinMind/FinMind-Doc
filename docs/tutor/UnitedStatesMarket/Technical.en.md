@@ -1,11 +1,11 @@
 In US stock data, we offer 2 datasets, as follows:
 
-- [US Stock Minute K Price Table USStockPriceMinute](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#k-usstockpriceminute-backersponsor)
-- [US Stock Price Table USStockPrice](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#usstockprice)
+- [US Stock Minute K Price Table USStockPriceMinute](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#us-stock-minute-k-price-table-usstockpriceminute-available-only-to-backer-sponsor-members)
+- [US Stock Price Table USStockPrice](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#us-stock-price-table-usstockprice)
 
 In addition, the following list summarizes the available datasets:
 
-- [US Stock List USStockInfo](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#usstockinfo)
+- [US Stock List USStockInfo](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#us-stock-list-usstockinfo)
 
 The usage of each dataset is explained one by one below. For the specific dataset schemas, please refer to [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 

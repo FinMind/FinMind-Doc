@@ -274,7 +274,7 @@
 * 新增 [股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)
 
 #### 2025-09-21
-* [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockevery5secondsindex-backersponsor) 新增 kind 參數
+* [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor) 新增 kind 參數
 
 #### 2025-09-11
 * FinMind package 新增 async 批次查詢功能
@@ -291,15 +291,15 @@
 * 新增 [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
 
 #### 2025-05-25
-* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreport-sponsor) 新增 FinMind package 範例
-* [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockwarranttradingdailyreport-sponsor) 新增 FinMind package 範例
+* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor) 新增 FinMind package 範例
+* [台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) 新增 FinMind package 範例
 
 #### 2025-05-11
-* 新增 [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#usstockpriceminute-backersponsor)
+* 新增 [美國股價分 K 資料表 USStockPriceMinute](https://finmind.github.io/tutor/UnitedStatesMarket/Technical/#k-usstockpriceminute-backersponsor)
 * [個體公司所屬產業鏈 TaiwanStockIndustryChain](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor) 新增 FinMind package 範例
 
 #### 2025-05-10
-* 新增 [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockevery5secondsindex-backersponsor)
+* 新增 [每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)
 * API 驗證方式調整，token 改由 header `Authorization: Bearer <token>` 傳遞
 
 #### 2025-04-06
@@ -315,7 +315,7 @@
 * FinMind package 新增 async 批次查詢功能
 
 #### 2024-12-07
-* [TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)、[CnnFearGreedIndex](https://finmind.github.io/tutor/Others/#cnnfeargreedindex) 補上資料區間說明
+* [TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)、[CnnFearGreedIndex](https://finmind.github.io/tutor/Others/#cnnfeargreedindex-backersponsor) 補上資料區間說明
 
 #### 2024-12-01
 * 新增 [台灣每月景氣對策信號表 TaiwanBusinessIndicator](https://finmind.github.io/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
@@ -339,8 +339,8 @@
 * 新增 [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
 
 #### 2024-07-14
-* 新增 [台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockweekprice-backersponsor)
-* 新增 [台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockmonthprice-backersponsor)
+* 新增 [台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)
+* 新增 [台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)
 
 #### 2024-05-28
 * 新增 [台灣大盤融資維持率 TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
@@ -389,7 +389,7 @@
 * 新增 `streaming_all_data` 參數，可拿取即時資料(tick)，開盤到當下所有 data。
 
 #### 2021-01-26
-* 新增[CnnFearGreedIndex 恐懼與貪婪指數](https://finmind.github.io/tutor/Others/#cnnfeargreedindex)
+* 新增[CnnFearGreedIndex 恐懼與貪婪指數](https://finmind.github.io/tutor/Others/#cnnfeargreedindex-backersponsor)
 * 註冊會員突破500人。
 
 #### 2021-01-25
@@ -424,13 +424,13 @@
 
 #### 2020-04-24
 * 新增 台股即時最佳五檔
-* 新增 [台股期貨即時報價](https://finmind.github.io/tutor/TaiwanMarket/Derivative/#info-taiwanfutopttickinfo)
+* 新增 [台股期貨即時報價](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwanfutopttickinfo)
 
 #### 2020-04-15
 * 新增 document
-* 新增 [台股即時股價](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
+* 新增 [台股即時股價](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)
 * 新增 [美國債券殖利率](https://finmind.github.io/tutor/Macroeconomy/#governmentbondsyield)
-* 新增 [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockper)
+* 新增 [台灣個股PER、PBR資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
 
 
 #### 2019-10-23
