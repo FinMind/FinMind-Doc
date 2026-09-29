@@ -1682,6 +1682,15 @@ In Taiwan stock chip data, we have 26 datasets as follows:
     - Listed (TWSE) and OTC stocks are unaffected — every branch, including dealers, has an execution price.
     - Reference: [TPEx — Emerging Stock Trading System](https://www.tpex.org.tw/web/emergingstock/trading_rule/rule.php?l=zh-tw).
 
+??? note "Total branch buy and total branch sell for the same stock and day may not be equal"
+    In the source data, total branch buy and total branch sell are not equal for some stocks. FinMind's data matches the source, so this is **not missing data or a processing error**; please do not balance or fill the difference yourself.
+
+    - It occurs for a few dozen stocks per trading day, almost all of them listed (TWSE) stocks.
+    - The difference is usually whole board lots, occasionally odd lots; in most cases only one side is short, occasionally both sides are.
+    - It is unrelated to block trades: this dataset excludes block trades, and most affected stocks have no block trade that day.
+    - Branch net buy/sell reflects only the disclosed portion, so it does not necessarily sum to zero across the market.
+    - To get the day's regular trading volume (excluding block trades), use `Trading_Volume` from `TaiwanStockPrice` minus the block trade volume from [TaiwanStockBlockTrade](#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members), rather than deriving it from branch totals.
+
 !!! example
     === "Package"
         ```python
