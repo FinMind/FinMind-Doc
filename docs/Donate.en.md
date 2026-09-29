@@ -7,6 +7,8 @@ All FinMind sponsorship plans (Backer / Sponsor / Sponsor Pro, monthly or yearly
 - **No cancellation needed**: when your plan expires, the access level automatically falls back to Free. There is nothing to cancel.
 - **To renew**: simply visit the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor) and make another payment manually.
 
+For plan prices, API limits and license comparison, see [Pricing](Pricing.md).
+
 ## [Sponsor us to develop more features (you decide the amount)](https://p.ecpay.com.tw/8196A98)
 
 

@@ -6,7 +6,7 @@
 
 - Base URL: `https://api.finmindtrade.com/api/v4`
 - Authentication: Register at finmindtrade.com, get token via login API or website. Pass token as `Authorization: Bearer {token}` header.
-- Rate limit: 600 requests/hour (with token), 300/hour (without token).
+- Rate limit: 300 requests/hour (without token), 600/hour (free registered token); paid plans up to 20,000/hour — see Pricing below.
 - Endpoints:
   - `POST /login` - Get auth token (params: user_id, password)
   - `GET /data` - Fetch dataset (params: dataset, data_id, start_date, end_date, token)
@@ -16,6 +16,23 @@
     - `GET /taiwan_stock_trading_daily_report` (params: data_id or securities_trader_id, date) — TaiwanStockTradingDailyReport, single date per request
     - `GET /taiwan_stock_trading_daily_report_secid_agg` (params: data_id, start_date, end_date) — TaiwanStockTradingDailyReportSecIdAgg
   - `GET /storage_objects` (params: dataset, date) — sponsorpro-tier whole-day parquet via signed URL, ignores data_id. Currently supports: TaiwanStockPriceTick, TaiwanStockTradingDailyReport, TaiwanStockWarrantTradingDailyReport, TaiwanStockKBar, TaiwanFuturesTick, TaiwanOptionTick.
+
+## Pricing
+
+All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the plan falls back to Free when it expires. Buy at the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor). Full comparison: [Pricing](https://finmind.github.io/en/Pricing/).
+
+| Plan | Monthly | Yearly | API limit | Datasets | License |
+|---|---|---|---|---|---|
+| Free | NT$0 | NT$0 | 300 req/hour (600 with registered token) | 45 | Non-commercial |
+| Backer | NT$699 | NT$5,499 | 1,600 req/hour | 81 | Non-commercial |
+| Sponsor (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 97 | Non-commercial |
+| Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 97 + whole-day all-symbol download | Commercial (SaaS / AI / app / internal systems) |
+
+- Each higher plan includes everything in the lower plans. Upgrade anytime by paying the prorated difference (minimum NT$100).
+- Backer adds: all-stocks-by-date queries (no `data_id`), adjusted price, stock tick history, futures/options tick, convertible bonds, price limits, US stock minute K, etc.
+- Sponsor adds: stock minute K, broker branch trading report, real-time stock/futures/options data, active ETF holdings, per-stock margin maintenance ratio, block trades, futures minute K, etc.
+- Sponsor Pro adds: commercial license and whole-day all-symbol download (stock tick, broker branch reports, stock minute K, futures/options tick).
+- All plans: no redistribution of raw data, no mirror APIs, no displaying real-time data directly on public web/app interfaces; attribution "FinMind" required.
 
 ## Python SDK
 

@@ -10,7 +10,7 @@ Base URL: `https://api.finmindtrade.com/api/v4`
 
 Register at finmindtrade.com, get token via login API or website. Pass token as `Authorization: Bearer {token}` header.
 
-Rate limit: 600 requests/hour (with token), 300/hour (without token).
+Rate limit: 300 requests/hour (without token), 600/hour (free registered token); paid plans up to 20,000/hour — see Membership Tiers & Pricing below.
 
 #### Update Token (Self-Service Reset)
 
@@ -122,11 +122,23 @@ df = api.taiwan_stock_daily(
 
 Async batch query is supported by datasets that require `data_id` parameter. Not supported by: info, snapshot, tick, total aggregation, and convertible bond datasets.
 
-## Membership Tiers
+## Membership Tiers & Pricing
 
-- **Free**: Basic datasets, 600 req/hour
-- **Backer**: More datasets (marked "backer" below), higher limits
-- **Sponsor**: Full access to all datasets including real-time data, branch trading data, and minute-level data
+All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the plan falls back to Free when it expires. Buy at the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor). Full comparison: [Pricing](https://finmind.github.io/en/Pricing/).
+
+| Plan | Monthly | Yearly | API limit | Datasets | License |
+|---|---|---|---|---|---|
+| Free | NT$0 | NT$0 | 300 req/hour (600 with registered token) | 45 | Non-commercial |
+| Backer | NT$699 | NT$5,499 | 1,600 req/hour | 81 | Non-commercial |
+| Sponsor (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 97 | Non-commercial |
+| Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 97 + whole-day all-symbol download | Commercial |
+
+- **Free**: Basic datasets.
+- **Backer**: More datasets (marked "backer" below), all-stocks-by-date queries without `data_id`.
+- **Sponsor**: Full access to all datasets including real-time data, branch trading data, and minute-level data.
+- **Sponsor Pro**: Everything in Sponsor, plus commercial license (SaaS / AI / web / app / internal systems) and whole-day all-symbol download via `/storage_objects`.
+- Upgrade anytime by paying the prorated difference for the remaining days (minimum NT$100).
+- All plans: no redistribution of raw data, no mirror APIs, no displaying real-time data directly on public web/app interfaces; attribution "FinMind" required.
 
 ---
 
