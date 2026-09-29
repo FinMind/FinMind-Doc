@@ -1682,6 +1682,15 @@
     - 上市、上櫃股票不受影響，各分點（含自營商）皆有成交價。
     - 參考：[櫃買中心〈興櫃股票交易制度〉](https://www.tpex.org.tw/web/emergingstock/trading_rule/rule.php?l=zh-tw)。
 
+??? note "同一股票同一天，分點買進合計與賣出合計不一定相等"
+    來源資料本身即有部分個股的分點買進合計與賣出合計不相等，FinMind 的資料與來源一致，**並非資料缺漏或處理錯誤**，請勿自行平衡或補值。
+
+    - 每個交易日約有數十檔個股出現，幾乎都是上市股票。
+    - 差額多為整張，少數為零股；多數情況只有一邊短少，少數情況兩邊都短少。
+    - 與鉅額交易無關：本資料集不含鉅額交易，出現差額的個股當日多半沒有鉅額交易。
+    - 分點買賣超為「已揭露部分」的統計，全市場加總不一定為零。
+    - 若需要當日一般交易（不含鉅額）的總量，建議以 `TaiwanStockPrice` 的 `Trading_Volume` 減去 [TaiwanStockBlockTrade](#taiwanstockblocktrade-sponsor) 的鉅額成交量為準，而不是以分點合計反推。
+
 !!! example
     === "Package"
         ```python
