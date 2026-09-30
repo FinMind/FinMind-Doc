@@ -1,3 +1,7 @@
+#### 2026-09-30
+* [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)、[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor) 新增 5 檔主動式ETF：00408A 主動第一金優股息、00409A 主動復華全球50、00410A 主動永豐科技趨勢、00411A 主動統一前沿科技、00987D 主動統一美債量化，歷史資料已回補至各檔建倉日；00411A、00987D 的 2026-09-07 資料來源未提供，無法補齊
+* **資料校正公告**：[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)：2026-07-27 ~ 2026-07-29 部分 ETF、以及 00400A 的 2026-09-07 ~ 2026-09-08，持股明細更新後異動未同步重算，已更正。更正後原本有異動、現已無異動的成份股會出現 `buy`、`sell` 皆為 0 的列，可直接略過。**曾下載或查詢過這幾天資料的使用者請重新取得資料**
+
 #### 2026-09-29
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：**2021-03-05 ~ 2021-04-14**（27 個交易日）興櫃股票的原始逐筆資料中，每 5 分鐘（xx:x0:00、xx:x5:00）重複出現一筆與前一筆相同的非實際成交紀錄，使逐筆與分 K 成交量偏高，並多出 15:00 之後的分 K，已移除並重新計算分 K（API 與整日下載檔皆已更新）。**曾下載或查詢過這段期間興櫃股票逐筆或分 K 的使用者請重新取得資料**
 
