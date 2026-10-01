@@ -40,7 +40,7 @@
 
     - 安裝 uv：`winget install --id astral-sh.uv -e`（裝完關閉 PowerShell 重開新視窗讓 PATH 生效），驗證 `uvx finmind-mcp --help`。
     - 設定 Token：`$env:FINMIND_TOKEN = "your_token_here"`（僅當前視窗）或 `setx FINMIND_TOKEN "your_token_here"`（永久，需重開程式生效）；也可直接填入上方設定檔的 `env` 區塊，最不易出錯。
-    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同，請用 `where.exe uvx` 查出完整路徑（通常是 `C:\Users\<帳號>\.local\bin\uvx.exe`），填入設定檔的 `command`；JSON 中反斜線要寫成 `\\`。
+    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同，請用 `where.exe uvx` 查出完整路徑（winget 安裝通常是 `C:\Users\<帳號>\AppData\Local\Microsoft\WinGet\Links\uvx.exe`，請以實際印出的第一行為準），填入設定檔的 `command`。JSON 中每個反斜線都要寫成 `\\`（或改用正斜線 `/`），直接貼上單一反斜線會讓設定檔變成不合法的 JSON。
 
     完整步驟（pipx 路線、各 host 的 Windows 設定檔路徑、常見問題）詳見 [Windows 安裝指引](https://github.com/FinMind/FinMind-MCP/blob/master/install/windows.md)。
 
