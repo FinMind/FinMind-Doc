@@ -8,7 +8,9 @@
 
 ## 安裝 { #install }
 
-請先至 [FinMind](https://finmindtrade.com/analysis/#/account/register) 註冊取得 Token，並安裝 [uv](https://docs.astral.sh/uv/)。
+請先至 [FinMind](https://finmindtrade.com/analysis/#/account/register) 註冊取得 Token。
+
+**Claude Desktop（一鍵安裝，免裝 Python、免改設定檔）：** 下載 [finmind.mcpb](https://github.com/FinMind/FinMind-MCP/releases/latest/download/finmind.mcpb)，在檔案上點兩下，於安裝視窗貼上 Token 即可。若點兩下沒有反應，開啟 Claude Desktop「設定 → 擴充功能（Extensions）」，把檔案拖進視窗。
 
 **Claude Code（一鍵安裝）：** 先 `export FINMIND_TOKEN=your_token_here`，再於 Claude Code 內輸入：
 
@@ -19,7 +21,7 @@
 
 裝好後 `/reload-plugins` 連線、`/mcp` 確認。（plugin 讀環境變數 `${FINMIND_TOKEN}`，需在啟動 Claude Code 前先 export。）
 
-**其他工具（Claude Desktop / Cursor / Windsurf / Gemini CLI）：** 在該工具的 MCP 設定檔加入：
+**其他工具（Cursor / Windsurf / Gemini CLI，或想手動設定的 Claude Desktop）：** 先安裝 [uv](https://docs.astral.sh/uv/)，再於該工具的 MCP 設定檔加入：
 
 ```json
 {
@@ -36,11 +38,11 @@
 **Codex CLI** 的設定格式不同（用 `~/.codex/config.toml` 的 `[mcp_servers]`），或一行 `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`。
 
 !!! tip "Windows 使用者"
-    上述指令以 macOS / Linux 為例，Windows 請改在 **PowerShell** 操作：
+    Claude Desktop 用上方一鍵安裝即可，不需要以下步驟。其他工具的指令以 macOS / Linux 為例，Windows 請改在 **PowerShell** 操作：
 
     - 安裝 uv：`winget install --id astral-sh.uv -e`（裝完關閉 PowerShell 重開新視窗讓 PATH 生效），驗證 `uvx finmind-mcp --help`。
     - 設定 Token：`$env:FINMIND_TOKEN = "your_token_here"`（僅當前視窗）或 `setx FINMIND_TOKEN "your_token_here"`（永久，需重開程式生效）；也可直接填入上方設定檔的 `env` 區塊，最不易出錯。
-    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同，請用 `where.exe uvx` 查出完整路徑（winget 安裝通常是 `C:\Users\<帳號>\AppData\Local\Microsoft\WinGet\Links\uvx.exe`，請以實際印出的第一行為準），填入設定檔的 `command`。JSON 中每個反斜線都要寫成 `\\`（或改用正斜線 `/`），直接貼上單一反斜線會讓設定檔變成不合法的 JSON。
+    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同。先把該工具**完全結束後重開**，多半就能解決；仍不行再用 `where.exe uvx` 查出完整路徑（winget 安裝通常是 `C:\Users\<帳號>\AppData\Local\Microsoft\WinGet\Links\uvx.exe`，請以實際印出的第一行為準），填入設定檔的 `command`。JSON 中每個反斜線都要寫成 `\\`（或改用正斜線 `/`），直接貼上單一反斜線會讓設定檔變成不合法的 JSON。
 
     完整步驟（pipx 路線、各 host 的 Windows 設定檔路徑、常見問題）詳見 [Windows 安裝指引](https://github.com/FinMind/FinMind-MCP/blob/master/install/windows.md)。
 

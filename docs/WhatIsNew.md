@@ -1,4 +1,5 @@
 #### 2026-10-01
+* [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#install) 新增 Claude Desktop 一鍵安裝：下載 finmind.mcpb 點兩下、貼上 Token 即可使用，不需安裝 Python 或編輯設定檔
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
     * **2019 ~ 2026** 興櫃股票：上市櫃收盤撮合、盤後定價的重複紀錄處理誤套用到興櫃，使 13:30:00、14:30:00 同一秒內相同價量的多筆成交只保留一筆。分 K 共 117 個興櫃股分鐘（13:30、14:30）成交量少算，已重新產製；透過資料 API 查詢興櫃逐筆時，這兩秒的多筆成交會少列，已修正（Sponsor Pro 整日下載檔未受影響）
     * **2019-01-02 ~ 2020-02-05**（242 個交易日）：分 K 缺少興櫃股票與部分 ETN 等商品（每日約 80 ~ 150 檔），已補齊
