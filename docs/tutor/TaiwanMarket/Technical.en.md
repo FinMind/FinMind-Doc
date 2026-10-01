@@ -2088,6 +2088,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares** — the same rule as `TaiwanStockPriceTick`. For how to determine a stock's market (and the caveat that transferred stocks keep two rows in `TaiwanStockInfo`), see the note of the same name in the `TaiwanStockPriceTick` section.
 
+??? note "A 13:33 minute K for TWSE / TPEx stocks is the delayed closing auction"
+    When the closing call auction of a TWSE or TPEx stock triggers the price stabilization measure, the closing match is delayed and executes at **13:33**, so that day has an extra 13:33 minute K. This bar is **the official closing match of the day** — a valid trade that should be kept. Its `close` equals the official closing price of the day (`close` in `TaiwanStockPrice`), which you can use to identify delayed-close days.
+
+    Emerging stocks trade continuously until 15:00, so 13:33 is just an ordinary intraday minute for them and has nothing to do with a delayed close. Because a stock may move from the Emerging board to TWSE / TPEx, decide the market by its status on that day.
+
 !!! example
     === "Package"
         ```python
