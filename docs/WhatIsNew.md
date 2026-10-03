@@ -1,3 +1,6 @@
+#### 2026-10-04
+* [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor) 新增上市「股票組合」鉅額交易，歷史資料已回補至 2005-04-04；同一天同一檔股票、同價同量的多筆鉅額成交現在每筆都會列出，內容相同的多列各代表一筆實際成交
+
 #### 2026-10-01
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#install) 新增 Claude Desktop 一鍵安裝：下載 finmind.mcpb 點兩下、貼上 Token 即可使用，不需安裝 Python 或編輯設定檔
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
