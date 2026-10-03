@@ -1,3 +1,6 @@
+#### 2026-10-04
+* [Block Trade Daily Transactions TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members) now includes TWSE "stock portfolio" block trades, with historical data backfilled to 2005-04-04; multiple block trades of the same stock on the same day with the same price and volume are now each listed, so identical rows each represent an actual trade
+
 #### 2026-10-01
 * [MCP Server](https://finmind.github.io/en/tutor/ai/Mcp/#install) now supports one-click install for Claude Desktop: download finmind.mcpb, double-click it and paste your token, with no Python installation or config file editing needed.
 * **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issues have been corrected and the data regenerated. **If you downloaded or queried data for the dates below, please fetch it again**
