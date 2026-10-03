@@ -1,5 +1,15 @@
 #### 2026-10-04
 * [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor) 新增上市「股票組合」鉅額交易，歷史資料已回補至 2005-04-04；同一天同一檔股票、同價同量的多筆鉅額成交現在每筆都會列出，內容相同的多列各代表一筆實際成交
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
+    * **2025-10-01 ~ 2026-07-15**：部分由興櫃轉上市櫃的股票，當日盤中逐筆被收錄兩份（2025-10 ~ 2026-03 整日下載檔約多出 42 萬筆），已只保留一份；同批股票 14:30:00 與 13:30:00 收盤列相同、並非實際盤後定價成交的紀錄一併移除
+    * **2020-02-25 ~ 2020-02-27**：同一筆成交因價格的浮點數表示不同（如 3.47 與 3.4699999999999998）多出一筆，已移除
+    * **2019-10-01 ~ 2020-03-20**：部分股票同一筆成交被重複收錄一次（重複的那筆排在該股資料最後），已移除
+    * **2022-07-20 ~ 2022-10-18**：以上櫃股票為主，每日約 165 檔多出一筆非實際成交的 13:30:00 收盤列（價格為收盤價、量為當日最後一筆盤中成交的複本），另有少數價格為 0 的 13:30:00 列，已移除
+    * **13:33:00 延緩收盤撮合**：2020-03 ~ 2020-04、2022-07 ~ 2022-10 等共 99 個交易日，部分股票同一筆延緩收盤成交出現多份，已只保留一筆
+* **資料校正公告**：[每 5 秒指數統計 TaiwanStockEvery5SecondsIndex](https://finmind.github.io/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)：以下問題已修正。**曾下載或查詢過以下資料的使用者請重新取得資料**
+    * 上櫃化學工業類指數：2007-07-02 ~ 2025-09-12 名稱為 `ChemicalEngineering`，其中 2014-10-01 ~ 2025-09-12 與 `Chemical` 兩個名稱並存（數值相同）；現全期間統一為 `Chemical`，**`ChemicalEngineering` 不再提供，請改用 `Chemical`**
+    * **2005-01-03 ~ 2006-12-29** 上櫃各指數：移除 13:31 ~ 13:34 的收盤前凍結值，當日最後一點即為 13:30:00 收盤，與 2007 年以後一致
+    * **2005-03-01 ~ 2005-12-30** `NonFinanceNonElectronicsSubIndex`（未含金融電子股指數）：原始資料以 100 倍數值發布，已統一除以 100，與前後交易日可正常銜接
 
 #### 2026-10-01
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#install) 新增 Claude Desktop 一鍵安裝：下載 finmind.mcpb 點兩下、貼上 Token 即可使用，不需安裝 Python 或編輯設定檔
