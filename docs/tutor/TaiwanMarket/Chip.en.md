@@ -1691,6 +1691,12 @@ In Taiwan stock chip data, we have 26 datasets as follows:
     - Branch net buy/sell reflects only the disclosed portion, so it does not necessarily sum to zero across the market.
     - To get the day's regular trading volume (excluding block trades), use `Trading_Volume` from `TaiwanStockPrice` minus the block trade volume from [TaiwanStockBlockTrade](#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members), rather than deriving it from branch totals.
 
+??? note "Emerging stocks: total buy and sell value of regular branches may not equal the day's trading value"
+    When checking an emerging-board (興櫃) stock's daily trading value against "buy value + sell value of regular branches (excluding recommending securities dealers)", the two match on most trading days, but differ in the two cases below. FinMind's data matches the emerging-stock daily broker report published by TPEx, so this is **not missing data**.
+
+    - **Trades between recommending securities dealers** (regular-branch total is lower than the trading value): when both sides of a trade are recommending dealers, the trade does not appear in any regular branch. "Recommending dealers' buy shares + sell shares − daily trading volume" equals the shares traded between recommending dealers, e.g. 6,000 shares for 6696 on 2026-06-26 (at 397, a difference of 2,382,000).
+    - **Off-system negotiated trades** (regular-branch total is higher than the trading value): besides trades on the computerized negotiation system, the daily broker report also includes "off-system negotiated trades" (系統外議價交易). These appear in the branch data but are not counted in the daily trading value of `TaiwanStockPrice`.
+
 !!! example
     === "Package"
         ```python
