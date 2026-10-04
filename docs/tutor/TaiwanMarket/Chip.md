@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 26 種資料集，如下:
+在台股籌碼面，我們擁有 27 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -29,6 +29,7 @@
 - [個股融資維持率 TaiwanStockMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginmaintenance-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
+- [每日主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-backersponsor)
 
 
 ----------------------------------
@@ -3449,5 +3450,88 @@
             margin_cost: float, # 融資成本線（估算的融資部位移動加權平均成本）
             margin_ratio: float, # 計算所採用的融資成數（0.6 / 0.5）
             margin_maintenance: float, # 融資維持率（%），例 156.1
+        }
+        ```
+
+-----------------------------------
+#### 每日主力集中度 TaiwanStockBrokerDailyConcentration (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2021-06-30 ~ now
+- 資料更新時間 **星期一至五 盤後**，實際更新時間以 API 資料為主
+- 統計每支股票當日前 K 大買超券商的買超股數總和（`top_buy_volume`）與前 K 大賣超券商的賣超股數總和（`top_sell_volume`，正值）
+- 計算方式：從當日券商分點資料（TaiwanStockTradingDailyReport）計算每家券商淨買超（買 − 賣），取前 `top_k` 大買超加總為 `top_buy_volume`，前 `top_k` 大賣超加總為 `top_sell_volume`
+- 目前 `top_k` 固定為 **15**
+- 單位為**股**（非張）
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_stock_broker_daily_concentration(
+            stock_id="2330",
+            start_date="2024-01-01",
+            end_date="2024-01-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockBrokerDailyConcentration",
+            "data_id": "2330",
+            "start_date": "2024-01-01",
+            "end_date": "2024-01-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockBrokerDailyConcentration",
+                data_id= "2330",
+                start_date= "2024-01-01",
+                end_date= "2024-01-31"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   |   top_k |   top_buy_volume |   top_sell_volume |
+        |---:|:-----------|:-----------|--------:|-----------------:|------------------:|
+        |  0 | 2024-01-02 | 2330       |      15 |         12345678 |           9876543 |
+        |  1 | 2024-01-03 | 2330       |      15 |         11234567 |          10234567 |
+        |  2 | 2024-01-04 | 2330       |      15 |         13456789 |           8765432 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            top_k: int, # 前 K 大（目前固定為 15）
+            top_buy_volume: int, # 前 top_k 大買超券商買超股數總和（股）
+            top_sell_volume: int, # 前 top_k 大賣超券商賣超股數總和（股，正值）
         }
         ```
