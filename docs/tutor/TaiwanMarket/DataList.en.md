@@ -1,4 +1,4 @@
-In the Taiwan financial market, we have 92 datasets, as listed below:
+In the Taiwan financial market, we have 93 datasets, as listed below:
 
 #### Technical
 
@@ -53,6 +53,7 @@ In the Taiwan financial market, we have 92 datasets, as listed below:
 - [Individual Stock Margin Maintenance TaiwanStockMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-maintenance-taiwanstockmarginmaintenance-only-available-for-sponsor-members)
 - [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#disposition-securities-period-taiwanstockdispositionsecuritiesperiod-only-available-for-backer-sponsor-members)
 - [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#day-trading-borrowing-fee-rate-taiwanstockdaytradingborrowingfeerate-only-available-for-backer-sponsor-members)
+- [Daily Stock Broker Concentration TaiwanStockBrokerDailyConcentration](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-stock-broker-concentration-taiwanstockbrokerdailyconcentration-only-available-for-sponsor-members)
 
 #### Fundamental
 

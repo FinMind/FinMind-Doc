@@ -510,6 +510,15 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Note: margin_ratio always uses the statutory maximum margin purchase ratio (TWSE 60%; TPEx 60% from 2014-11-10, 50% before). Stocks flagged for attention or under disposition may in practice get a lower ratio or have margin trading suspended
 - Note: margin_cost is a nominal value already adjusted for share-count events (splits / par value changes, capital reductions, stock dividends) and with the cash dividend per share deducted on the ex-dividend date; it is not the original purchase price
 
+### TaiwanStockBrokerDailyConcentration (每日個股主力集中度)
+- Tier: Sponsor
+- Data range: 2021-06-30 ~ now
+- Update: Mon-Fri after market close
+- Params: dataset=TaiwanStockBrokerDailyConcentration, data_id=2330, start_date=2024-01-02, end_date=2024-01-04
+- Columns: date, stock_id, top_k (currently fixed at 15), top_buy_volume (total net buy volume of the top_k net-buying brokers, shares), top_sell_volume (total net sell volume of the top_k net-selling brokers, shares, positive value)
+- Formula: from TaiwanStockTradingDailyReport, net buy per broker = buy - sell; top_buy_volume = sum of the top_k largest net buys; top_sell_volume = sum of the top_k largest net sells
+- Unit: shares (not lots)
+
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
 - Data range: 2001-01-01 ~ now
