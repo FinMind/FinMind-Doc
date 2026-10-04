@@ -1,3 +1,11 @@
+#### 2026-10-05
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
+    * **2020-03-24 ~ 2023-03-01**：部分股票同一筆成交被重複補進一次（補進的那筆排在該股資料最後、時間早於前面的資料），共 194 個交易日、1,874 檔·日，已移除
+    * **2020-03-02 ~ 2020-04-30**：當日沒有盤後定價成交的上市櫃股票（以 ETF 為主）出現 14:30:00 列（為收盤列或最後一筆盤中成交的複本），共 35 個交易日、653 筆，已移除
+    * **2020-03-06、2021-07-27**：14 檔股票在完整的當日逐筆之後，又被附加一段非實際成交的資料（第一筆成交量為負數，價格可能超出當日最高／最低價，如 2939 2021-07-27），已移除，各股成交量回到與交易所一致
+    * **2020-03-06**：29 檔股票多出一筆非實際成交的紀錄（多為當日最後一筆，如 0052、2429、4555），已移除
+    * **2021-11-15**：2303 一筆價格 68.8、高於當日最高價的錯誤紀錄，已移除
+
 #### 2026-10-04
 * 新增 [每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor)：統計每支股票當日前 15 大買超券商買超股數總和與前 15 大賣超券商賣超股數總和；資料區間 2021-06-30 ~ now（只限 sponsor 會員使用）
 * [鉅額交易日成交資訊 TaiwanStockBlockTrade](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor) 新增上市「股票組合」鉅額交易，歷史資料已回補至 2005-04-04；同一天同一檔股票、同價同量的多筆鉅額成交現在每筆都會列出，內容相同的多列各代表一筆實際成交
