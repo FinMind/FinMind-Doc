@@ -1671,7 +1671,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 21:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 - Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
 - Enabling Async can significantly reduce data fetch time. In Colab tests, downloading 2,175 stocks takes only 4 minutes 20 seconds.
 
@@ -1801,7 +1801,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 21:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 - Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
 
 !!! example
@@ -1893,7 +1893,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2021-06-30 ~ now.
 - Providing the dataset and date parameters returns the branch-level trading data of all stocks for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering the entire market.
-- Data update time: **Monday to Friday 21:00**. The actual update time is based on the API data.
+- Data update time: **Monday to Friday 18:00**. The actual update time is based on the API data.
 - Some data is missing on these dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
 
 !!! example
@@ -1976,7 +1976,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 2023-06-21 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 01:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
 !!! example
     === "Package"
@@ -2076,7 +2076,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 2023-06-21 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 23:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
 !!! example
     === "Python-request"
@@ -2148,7 +2148,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2023-06-21 ~ now.
 - Providing the dataset and date parameters returns the branch-level trading data of all warrants for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering all warrants in the market.
-- Updated daily. The actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
 !!! example
     === "Package"
@@ -2383,7 +2383,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
-- Data update time **Monday to Friday 21:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
 
 !!! example
     === "Package"
