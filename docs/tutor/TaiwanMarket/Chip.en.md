@@ -2227,8 +2227,11 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 23:30**, the actual update time is based on the API data.
+- Data update time **every 15 minutes on trading days from 16:05 until 05:50 the next day**, the actual update time is based on the API data.
 - Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
+
+??? note "Same-day data is filled in progressively"
+    Each update recalculates the most recent 3 trading days (including the current day). Branch data for TPEx, emerging stocks and others arrives gradually, so the current day's data is filled in progressively from the evening until early the next morning, and values may change in the meantime. For complete data of a given day, it is recommended to fetch it after 06:00 the next day.
 
 !!! example
     === "Package"
