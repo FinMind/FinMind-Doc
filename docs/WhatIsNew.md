@@ -1,3 +1,6 @@
+#### 2026-10-09
+* [台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor) 資料更新時間提早至星期一至五 18:30（原為 23:30）
+
 #### 2026-10-06
 * [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)、[台股權證分點資料表 TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) 資料更新時間提早至星期一至五 18:00（原為 21:00、權證 23:00 ~ 01:00），[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 提早至 18:30（原為 21:00）
 

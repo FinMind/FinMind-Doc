@@ -422,7 +422,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 ### TaiwanStockGovernmentBankBuySell (台股八大行庫買賣表)
 - Tier: Sponsor
 - Data range: 2021-06-30 ~ now
-- Update: Mon-Fri 23:30
+- Update: Mon-Fri 18:30
 - Params: dataset=TaiwanStockGovernmentBankBuySell, start_date=2023-01-17
 - Columns: date, stock_id, buy_amount, sell_amount, buy, sell, bank_name
 - Note: Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
