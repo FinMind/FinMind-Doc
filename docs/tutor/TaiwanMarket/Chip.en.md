@@ -2384,6 +2384,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
+- To get all stocks and all securities trader branches for a day at once, use [Fetch all data for a specific date at once](#taiwanstocktradingdailyreportsecidagg-sponsorpro).
 
 !!! example
     === "Package"
@@ -2463,6 +2464,88 @@ In Taiwan stock chip data, we have 26 datasets as follows:
             sell_volume: int64, # total shares sold
             buy_price: float, # average buy price
             sell_price: float, # average sell price
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members) { #taiwanstocktradingdailyreportsecidagg-sponsorpro }
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: 2021-06-30 ~ now, one trading day at a time; historical data is also available for download. There is no file for non-trading days.
+- Providing the dataset and date parameters returns the aggregate statistics of all stocks and all securities trader branches for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query stock by stock. Rows are sorted by stock_id and securities_trader_id.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_trading_daily_report_secid_agg(
+            start_date="2024-07-01",
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the API key
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
+            "date": "2024-07-01",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the API key
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockTradingDailyReportSecIdAgg",
+                date= "2024-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader | securities_trader_id | stock_id | date       | buy_volume | sell_volume | buy_price | sell_price |
+        |---:|:------------------|:---------------------|:---------|:-----------|-----------:|------------:|----------:|-----------:|
+        |  0 | 合庫              | 1020                 | 2330     | 2024-07-01 |      12157 |       12460 |    968.08 |     973.84 |
+        |  1 | 合庫台中          | 1021                 | 2330     | 2024-07-01 |       7995 |        7091 |    970.11 |     971.08 |
+        |  2 | 合庫台南          | 1022                 | 2330     | 2024-07-01 |      16449 |        4520 |    971.72 |     972.68 |
+        |  3 | 合庫高雄          | 1023                 | 2330     | 2024-07-01 |      13793 |       10271 |    972.53 |      973.1 |
+        |  4 | 土銀              | 1030                 | 2330     | 2024-07-01 |       5497 |        5810 |    970.06 |     972.57 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # securities trader name
+            securities_trader_id: str, # securities trader code
+            stock_id: str, # stock symbol
+            date: str, # date
+            buy_volume: int64, # total shares bought
+            sell_volume: int64, # total shares sold
+            buy_price: float64, # average buy price (rounded to 2 decimals)
+            sell_price: float64, # average sell price (rounded to 2 decimals)
         }
         ```
 

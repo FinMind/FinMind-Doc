@@ -1,3 +1,6 @@
+#### 2026-10-10
+* [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
+
 #### 2026-10-09
 * [台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor) 資料更新時間提早至星期一至五 18:30（原為 23:30）
 
