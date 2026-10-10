@@ -1672,7 +1672,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
-- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11 (TPEx-listed stocks only).
 - Enabling Async can significantly reduce data fetch time. In Colab tests, downloading 2,175 stocks takes only 4 minutes 20 seconds.
 
 ??? note "A `price` of 0 on emerging-stock dealer (自營商) branches is expected, not missing data"
@@ -1802,7 +1802,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
-- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11 (TPEx-listed stocks only).
 
 !!! example
     === "Package"
@@ -1894,7 +1894,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Providing the dataset and date parameters returns the branch-level trading data of all stocks for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering the entire market.
 - Data update time: **Monday to Friday 18:00**. The actual update time is based on the API data.
-- Some data is missing on these dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Some data is missing on these dates: 2022-10-31~2022-11-03, 2023-01-11 (TPEx-listed stocks only).
 
 !!! example
     === "Package"
