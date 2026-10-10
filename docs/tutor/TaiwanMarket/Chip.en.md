@@ -2230,6 +2230,9 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
 - Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
 
+??? note "bank_name values"
+    `bank_name` has 9 values: 合庫, 華南, 彰銀, 第一, 兆豐, 臺銀, 土銀, 台企銀, and `八大官股`. `八大官股` is the total of all branches of the eight government banks above; its values equal the sum of the eight banks' rows for the same date and stock.
+
 !!! example
     === "Package"
         ```python
