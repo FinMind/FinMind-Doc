@@ -3,6 +3,8 @@
     * **2019-10-01 ~ 2020-02-05**: 43 stock-days had residual duplicate records: two records with the same stock, time and price but different volumes, where the extra one was not an actual trade; 44 records in total (9904 on 2019-10-01 had 2 extra, the others 1 each); removed, and the ticks now match the actual trades one by one. E.g. 6147 on 2019-11-26 changed from 1,976 records / 19,907 lots to 1,975 records / 19,902 lots, and its 09:37 minute K volume from 106 to 101 lots
     * Affected dates and stocks: 2019-10-01 9904; 2019-10-02 00753L; 2019-10-03 3042; 2019-10-09 2383; 2019-10-22 2801; 2019-10-24 4744; 2019-11-06 6235; 2019-11-08 3645; 2019-11-12 0056, 2385, 2408, 2892; 2019-11-13 2330, 6180, 8109; 2019-11-14 4977; 2019-11-21 1303, 2448, 3682; 2019-11-26 00677U, 2887, 3062, 3406, 4155, 5351, 6147; 2019-12-02 4157; 2019-12-05 2812; 2019-12-19 4908; 2019-12-20 1560; 2020-01-08 1309, 2303, 2376, 2383, 3530, 6288, 6667, 6679; 2020-01-10 2379; 2020-01-15 1227; 2020-01-17 1314, 3661; 2020-02-05 4974
 
+* [Taiwan Stock Government Bank Buy/Sell TaiwanStockGovernmentBankBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-government-bank-buysell-taiwanstockgovernmentbankbuysell-only-available-for-sponsor-members): `bank_name` adds `八大官股` (total of the eight banks); historical data has been backfilled to 2021-06-30
+
 #### 2026-10-09
 * [Taiwan Stock Government Bank Buy/Sell TaiwanStockGovernmentBankBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-government-bank-buysell-taiwanstockgovernmentbankbuysell-only-available-for-sponsor-members): data update time moved earlier to Monday to Friday 18:30 (previously 23:30)
 
