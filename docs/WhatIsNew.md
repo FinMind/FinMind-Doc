@@ -1,4 +1,4 @@
-#### TBD
+#### 2026-10-11
 * **資料校正公告**：[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 透過資料 API 查詢時，現在回傳完整交易時段的分 K，包含上市櫃 14:30 盤後定價那一根，以及興櫃 13:30 之後至 15:00 的分 K，與整日下載檔一致。先前透過 API 取得的分 K 缺少這些時段，**如有需要請重新取得資料**
 
 #### 2026-10-10

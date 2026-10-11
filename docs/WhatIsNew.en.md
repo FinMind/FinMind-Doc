@@ -1,4 +1,4 @@
-#### TBD
+#### 2026-10-11
 * **Data correction notice**: [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) queried through the data API now returns minute K for the full trading session, including the 14:30 after-hours fixed-price bar of TWSE/TPEx stocks and the emerging-market minute bars after 13:30 (up to 15:00), consistent with the whole-day download files. Minute K previously obtained through the API was missing these periods. **If needed, please fetch the data again**
 
 #### 2026-10-10
