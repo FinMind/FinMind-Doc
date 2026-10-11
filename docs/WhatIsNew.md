@@ -1,3 +1,6 @@
+#### 2026-10-11
+* **資料校正公告**：[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 透過資料 API 查詢時，現在回傳完整交易時段的分 K，包含上市櫃 14:30 盤後定價那一根，以及興櫃 13:30 之後至 15:00 的分 K，與整日下載檔一致。先前透過 API 取得的分 K 缺少這些時段，**如有需要請重新取得資料**
+
 #### 2026-10-10
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
     * **2019-10-01 ~ 2020-02-05**：43 檔·日殘留重複紀錄，同一股票、同一時間、同一價格出現兩筆但成交量不同，多出的那筆並非實際成交，共 44 筆（9904 2019-10-01 多 2 筆，其餘各 1 筆），已移除，修正後與實際成交逐筆一致。例：6147 2019-11-26 由 1,976 筆、19,907 張修正為 1,975 筆、19,902 張，09:37 分 K 成交量由 106 張修正為 101 張
