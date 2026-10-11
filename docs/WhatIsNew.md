@@ -1,5 +1,6 @@
 #### 2026-10-11
 * **資料校正公告**：[綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)：**2026-03-31、2026-06-30** 兩季部分金融保險業（金控、銀行、票券、保險）股票缺 `EPS`（2026-03-31 共 38 家、2026-06-30 共 41 家），其他科目不受影響，已補齊上市、上櫃、興櫃公司這兩季的 `EPS`。**曾下載或查詢過這兩季資料的使用者請重新取得資料**
+* **資料校正公告**：[綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)：公開發行公司（非上市、上櫃、興櫃）自 **2025-12-31** 起缺 `EPS`（2025-12-31 共 173 家、2026-03-31 共 38 家、2026-06-30 共 280 家），其他科目不受影響，已補齊。**曾下載或查詢過這三季公開發行公司資料的使用者請重新取得資料**
 * **資料校正公告**：[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 透過資料 API 查詢時，現在回傳完整交易時段的分 K，包含上市櫃 14:30 盤後定價那一根，以及興櫃 13:30 之後至 15:00 的分 K，與整日下載檔一致。先前透過 API 取得的分 K 缺少這些時段，**如有需要請重新取得資料**
 
 #### 2026-10-10
