@@ -1164,11 +1164,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
     === "DataFrame"
         |    | date       |   stock_id |   deal_price |   volume | Time         |   TickType |
         |---:|:-----------|-----------:|-------------:|---------:|:-------------|-----------:|
-        |  0 | 2020-01-02 |       2330 |        332.5 |      520 | 09:00:00.000 |          0 |
-        |  1 | 2020-01-02 |       2330 |        332.5 |      520 | 09:00:00.646 |          0 |
-        |  2 | 2020-01-02 |       2330 |        333   |       45 | 09:00:05.000 |          0 |
-        |  3 | 2020-01-02 |       2330 |        333   |       45 | 09:00:05.660 |          0 |
-        |  4 | 2020-01-02 |       2330 |        333   |       22 | 09:00:10.000 |          0 |
+        |  0 | 2020-01-02 |       2330 |        332.5 |      520 | 09:00:00.646 |          0 |
+        |  1 | 2020-01-02 |       2330 |        333   |       45 | 09:00:05.660 |          0 |
+        |  2 | 2020-01-02 |       2330 |        333   |       22 | 09:00:10.672 |          1 |
+        |  3 | 2020-01-02 |       2330 |        333   |       15 | 09:00:15.686 |          1 |
+        |  4 | 2020-01-02 |       2330 |        333.5 |        3 | 09:00:20.700 |          1 |
     === "Schema"
         ```
         {
@@ -1206,6 +1206,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 ??? note "Row order of the whole-day files"
     The whole-day files are sorted by `stock_id` and `Time`; when several trades share the same time, they are ordered by actual execution sequence. You can take each stock's first row (the open) or its last trade before a given time directly in file order.
+
+??? note "Multiple rows with the same time, price and volume are not duplicates"
+    Under continuous trading, a stock can have several rows with identical time, deal price and volume. These are usually separate real trades from one large order being matched in several fills, not duplicate data, so please do not deduplicate them. You can reconcile them against the daily trade count (`Trading_turnover`) and volume in `TaiwanStockPrice`.
 
 !!! example
     === "Package"
