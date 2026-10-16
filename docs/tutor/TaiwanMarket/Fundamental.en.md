@@ -1,5 +1,5 @@
 
-In Taiwan stock fundamental data, we have 12 datasets, as follows:
+In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
 - [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements)
 - [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet)
@@ -13,6 +13,7 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
 - [Taiwan Stock Market Value Weight Table TaiwanStockMarketValueWeight](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-market-value-weight-table-taiwanstockmarketvalueweight-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Post-Split Reference Price TaiwanStockSplitPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-post-split-reference-price-taiwanstocksplitprice)
 - [Taiwan Stock Par Value Change Resumption Reference Price TaiwanStockParValueChange](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-par-value-change-resumption-reference-price-taiwanstockparvaluechange)
+- [Taiwan Stock Financial Report and Annual Report Files TaiwanStockFinancialReportFile](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-financial-report-and-annual-report-files-taiwanstockfinancialreportfile-available-only-to-sponsorpro-members)
 
 ----------------------------------
 #### Income Statement TaiwanStockFinancialStatements
@@ -1740,3 +1741,122 @@ In Taiwan stock fundamental data, we have 12 datasets, as follows:
         }
         ```
 
+----------------------------------
+#### Taiwan Stock Financial Report and Annual Report Files TaiwanStockFinancialReportFile (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Provides download links to the full PDF files of financial reports and annual shareholders' meeting reports of TWSE-listed, TPEx-listed and emerging-market companies.
+- Data range: financial reports 2013-03-31 ~ now (from 2013 Q1, one per quarter); annual reports 2013-12-31 ~ now (from fiscal year 2013, one per year)
+- `data_id` (stock id) is required; whole-market queries without a stock id are not supported.
+
+??? note "Returns PDF download links, not financial statement figures"
+    This dataset returns a download link (`url`) to the report PDF file. For financial statement figures such as income, balance sheet and cash flow items, please use [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements), [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet) and [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement).
+
+??? note "Download links are valid for 1 hour"
+    `url` is a temporary download link **valid for 1 hour**. After it expires the file can no longer be downloaded from it; query again to get a new link. Do not store links for reuse.
+
+??? note "Coverage"
+    - Financial reports (`financial_report`) are the Chinese consolidated financial reports; for companies without subsidiaries, the Chinese individual financial reports. Parent-company-only financial reports and English versions are not included.
+    - Annual reports (`annual_report`) are the Chinese annual shareholders' meeting reports.
+    - The text layer of some annual report PDFs may be garbled or incomplete (as in the source files); OCR may be needed if you need to extract text.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_financial_report_file(
+            stock_id='2330',
+            start_date='2025-01-01',
+            end_date='2026-10-16',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockFinancialReportFile",
+            "data_id": "2330",
+            "start_date": "2025-01-01",
+            "end_date": "2026-10-16",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockFinancialReportFile",
+                data_id= "2330",
+                start_date= "2025-01-01",
+                end_date= "2026-10-16"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+    === "Download PDF"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockFinancialReportFile",
+            "data_id": "2330",
+            "start_date": "2025-01-01",
+            "end_date": "2026-10-16",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        df = pd.DataFrame(resp.json()["data"])
+        # The download link is valid for 1 hour; download soon after querying
+        for _, row in df.iterrows():
+            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.pdf"
+            pdf = requests.get(row["url"])
+            pdf.raise_for_status()
+            with open(file_name, "wb") as f:
+                f.write(pdf.content)
+            print(file_name, len(pdf.content))
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | report_category   |   file_size | url        |
+        |---:|:-----------|-----------:|:------------------|------------:|:-----------|
+        |  0 | 2025-03-31 |       2330 | financial_report  |     5715493 | https://... |
+        |  1 | 2025-06-30 |       2330 | financial_report  |     5771204 | https://... |
+        |  2 | 2025-09-30 |       2330 | financial_report  |     5345863 | https://... |
+        |  3 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
+        |  4 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
+    === "Schema"
+        ```
+        {
+            date: str, # period end date (quarter end for financial_report, fiscal year end for annual_report)
+            stock_id: str, # stock id
+            report_category: str, # report category: financial_report / annual_report
+            file_size: int, # file size (bytes)
+            url: str # temporary PDF download link (valid for 1 hour)
+        }
+        ```

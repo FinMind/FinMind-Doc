@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 12 種資料集，如下:
+在台股基本面，我們擁有 13 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
@@ -13,6 +13,7 @@
 - [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 - [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
 - [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockparvaluechange)
+- [台股財報與年報檔案 TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialreportfile-sponsorpro)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1740,3 +1741,122 @@
         }
         ```
 
+----------------------------------
+#### 台股財報與年報檔案 TaiwanStockFinancialReportFile (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 提供上市、上櫃、興櫃公司財務報告書與股東會年報的完整 PDF 檔案下載連結。
+- 資料區間：財務報告書 2013-03-31 ~ now（2013 年第一季起，每季一份）；股東會年報 2013-12-31 ~ now（2013 年度起，每年一份）
+- `data_id`（股票代號）為必填，不提供不帶股票代號的全市場查詢。
+
+??? note "回傳的是 PDF 下載連結，不是財報數字"
+    本資料集回傳的是報告 PDF 檔的下載連結（`url`）。如需損益、資產負債、現金流量等財報數字，請使用 [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)、[資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)、[現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)。
+
+??? note "下載連結 1 小時內有效"
+    `url` 為暫時下載連結，**有效期 1 小時**，過期後無法下載，需要重新查詢以取得新的連結。請勿將連結保存後重複使用。
+
+??? note "收錄範圍"
+    - 財務報告書（`financial_report`）收錄中文版合併財務報告；沒有子公司的公司收錄中文版個別財務報告。不含個體財務報告與英文版。
+    - 股東會年報（`annual_report`）收錄中文版年報。
+    - 部分年報 PDF 的文字層可能為亂碼或殘缺（來源檔本身如此），如需擷取文字可能需要使用 OCR。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_financial_report_file(
+            stock_id='2330',
+            start_date='2025-01-01',
+            end_date='2026-10-16',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockFinancialReportFile",
+            "data_id": "2330",
+            "start_date": "2025-01-01",
+            "end_date": "2026-10-16",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockFinancialReportFile",
+                data_id= "2330",
+                start_date= "2025-01-01",
+                end_date= "2026-10-16"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+    === "下載 PDF"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockFinancialReportFile",
+            "data_id": "2330",
+            "start_date": "2025-01-01",
+            "end_date": "2026-10-16",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        df = pd.DataFrame(resp.json()["data"])
+        # 下載連結 1 小時內有效，取得後請盡快下載
+        for _, row in df.iterrows():
+            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.pdf"
+            pdf = requests.get(row["url"])
+            pdf.raise_for_status()
+            with open(file_name, "wb") as f:
+                f.write(pdf.content)
+            print(file_name, len(pdf.content))
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | report_category   |   file_size | url        |
+        |---:|:-----------|-----------:|:------------------|------------:|:-----------|
+        |  0 | 2025-03-31 |       2330 | financial_report  |     5715493 | https://... |
+        |  1 | 2025-06-30 |       2330 | financial_report  |     5771204 | https://... |
+        |  2 | 2025-09-30 |       2330 | financial_report  |     5345863 | https://... |
+        |  3 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
+        |  4 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
+    === "Schema"
+        ```
+        {
+            date: str, # 期間截止日（財報為季底，年報為年度末）
+            stock_id: str, # 股票代號
+            report_category: str, # 報告類別：financial_report（財務報告書）/ annual_report（股東會年報）
+            file_size: int, # 檔案大小（位元組）
+            url: str # 下載連結（1 小時內有效）
+        }
+        ```
