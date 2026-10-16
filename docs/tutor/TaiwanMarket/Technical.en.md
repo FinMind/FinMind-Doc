@@ -1,10 +1,11 @@
-In Taiwan stock technical data, we have 20 datasets, as follows:
+In Taiwan stock technical data, we have 21 datasets, as follows:
 
 - [Taiwan Stock Overview TaiwanStockInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-overview-taiwanstockinfo)
 - [Taiwan Stock Overview (with Warrants) TaiwanStockInfoWithWarrant](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-overview-with-warrants-taiwanstockinfowithwarrant)
 - [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-warrant-underlying-reference-table-taiwanstockinfowithwarrantsummary-available-only-to-sponsor-members)
 - [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-trading-date-taiwanstocktradingdate)
 - [Taiwan Stock Price Table TaiwanStockPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-stock-price-information-taiwanstockprice)
+- [Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-after-hours-fixed-price-trading-taiwanstockafterhoursfixedpricetrading-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Weekly K Table TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-weekly-k-table-taiwanstockweekprice-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Monthly K Table TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-monthly-k-table-taiwanstockmonthprice-available-only-to-backer-sponsor-members)
 - [Taiwan Adjusted Stock Price Table TaiwanStockPriceAdj](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-adjusted-stock-price-table-taiwanstockpriceadj-available-only-to-backer-sponsor-members)
@@ -526,6 +527,204 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
             close: float64, # close price
             spread: float64, # price change
             Trading_turnover: int64 # number of trades
+        }
+        ```
+
+
+----------------------------------
+
+#### Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Provides the daily after-hours fixed-price trading results (matched at the day's closing price) for each Taiwan listed (TWSE) and OTC (TPEx) security, including the trading price, volume, number of transactions, trading value, and the unfilled buy / sell volume remaining after matching
+- Data range: 2004-12-24 ~ now (TWSE from 2004-12-24, TPEx from 2011-01-03)
+- Data update time: **Monday to Friday 15:00**. The actual update time is based on the API data.
+
+??? note "`volume`, `unfilled_buy_volume` and `unfilled_sell_volume` are in lots, not shares"
+    `volume` (trading volume), `unfilled_buy_volume` (unfilled buy volume) and `unfilled_sell_volume` (unfilled sell volume) keep the exchange's **trading unit (lots)**: 1 lot = 1,000 shares for ordinary stocks, while foreign-currency ETFs and similar securities use their own trading unit. This table does not convert them to shares. This differs from `Trading_Volume` in `TaiwanStockPrice` (in shares), so convert before comparing.
+
+??? note "Every security of the day is included, even rows with no after-hours trade"
+    This table includes **every security** in the exchange's published table, so a security with no after-hours fixed-price trade on the day still has a row, with `volume`, `trading_turnover` and `trading_money` equal to `0`. The `price` of such no-trade rows is:
+
+    - **TWSE** (`market="twse"`): the day's fixed price, i.e. the day's closing price
+    - **TPEx** (`market="tpex"`): `0`
+
+    If you only need rows with an actual after-hours trade, filter with `volume > 0`.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_after_hours_fixed_price_trading(
+            stock_id='2330',
+            start_date='2025-09-22',
+            end_date='2025-09-26',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockAfterHoursFixedPriceTrading",
+            "data_id": "2330",
+            "start_date": "2025-09-22",
+            "end_date": "2025-09-26",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockAfterHoursFixedPriceTrading",
+                data_id= "2330",
+                start_date= "2025-09-22",
+                end_date= "2025-09-26"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_after_hours_fixed_price_trading(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2025-01-01',
+            end_date='2025-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | market   |   price |   volume |   trading_turnover |   trading_money |   unfilled_buy_volume |   unfilled_sell_volume |
+        |---:|:-----------|-----------:|:---------|--------:|---------:|-------------------:|----------------:|----------------------:|-----------------------:|
+        |  0 | 2025-09-22 |       2330 | twse     |    1295 |       97 |                 68 |       125615000 |                    50 |                      0 |
+        |  1 | 2025-09-23 |       2330 | twse     |    1340 |       97 |                 75 |       129980000 |                     0 |                    158 |
+        |  2 | 2025-09-24 |       2330 | twse     |    1340 |      100 |                 76 |       134000000 |                    20 |                      0 |
+        |  3 | 2025-09-25 |       2330 | twse     |    1320 |       57 |                 50 |        75240000 |                   231 |                      0 |
+        |  4 | 2025-09-26 |       2330 | twse     |    1300 |       77 |                 68 |       100100000 |                    84 |                      0 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock code
+            market: str, # market (twse: listed, tpex: OTC)
+            price: float64, # fixed trading price (TWD)
+            volume: int64, # trading volume (lots)
+            trading_turnover: int64, # number of transactions
+            trading_money: int64, # trading value (TWD)
+            unfilled_buy_volume: int64, # unfilled buy volume remaining after matching (lots)
+            unfilled_sell_volume: int64 # unfilled sell volume remaining after matching (lots)
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_after_hours_fixed_price_trading(
+            start_date='2025-09-22',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockAfterHoursFixedPriceTrading",
+            "start_date": "2025-09-22",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockAfterHoursFixedPriceTrading",
+                start_date= "2025-09-22"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id | market   |   price |   volume |   trading_turnover |   trading_money |   unfilled_buy_volume |   unfilled_sell_volume |
+        |---:|:-----------|:---------|:---------|--------:|---------:|-------------------:|----------------:|----------------------:|-----------------------:|
+        |  0 | 2025-09-22 | 0050     | twse     |   57.4  |      155 |                105 |         8897000 |                   123 |                      0 |
+        |  1 | 2025-09-22 | 0051     | twse     |   86.3  |        0 |                  0 |               0 |                     4 |                      0 |
+        |  2 | 2025-09-22 | 0052     | twse     |  226.25 |        0 |                  0 |               0 |                     0 |                      0 |
+        |  3 | 2025-09-22 | 0053     | twse     |  125.55 |        0 |                  0 |               0 |                     0 |                      0 |
+        |  4 | 2025-09-22 | 0055     | twse     |   30.74 |        0 |                  0 |               0 |                     0 |                      0 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock code
+            market: str, # market (twse: listed, tpex: OTC)
+            price: float64, # fixed trading price (TWD)
+            volume: int64, # trading volume (lots)
+            trading_turnover: int64, # number of transactions
+            trading_money: int64, # trading value (TWD)
+            unfilled_buy_volume: int64, # unfilled buy volume remaining after matching (lots)
+            unfilled_sell_volume: int64 # unfilled sell volume remaining after matching (lots)
         }
         ```
 

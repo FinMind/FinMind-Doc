@@ -142,7 +142,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 
 ---
 
-## Taiwan Market - Technical (20 datasets)
+## Taiwan Market - Technical (21 datasets)
 
 ### TaiwanStockInfo (台股總覽)
 - Tier: Free
@@ -176,6 +176,16 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Columns: date (str), stock_id (str), Trading_Volume (int64), Trading_money (int64), open (float64), max (float64), min (float64), close (float64), spread (float64), Trading_turnover (float32)
 - Note: For emerging-board (興櫃) stocks, open is the previous-day average price (前日均價) published by TPEx, not an opening price, so it can fall outside [min, max] on volatile days. This is a field-definition difference, not a data error — max/min/close are the day's high/low/last and are correct. Listed (TWSE)/OTC (TPEX) stocks are unaffected. To tell which market a stock is in, use TaiwanStockInfo and take the row with the latest `date` per `stock_id` — a stock that later moved to TWSE/TPEX keeps its old `emerging` row (see the TaiwanStockInfo note). Trading_Volume here is in shares for every market, unlike the intraday tick/K-bar tables.
 - Note: When TWSE/TPEx publishes no traded price for a stock on a given day, open/max/min/close are shown as `--` in the source and are stored here as 0, so open/max/min/close/spread are all 0 for that row. The source publication carries no price — this is not a crawling gap. It can occur in any market (TWSE/TPEX/Emerging): a halted stock, a day with no trades, or a day with only sporadic trades that produce no published price. Example (no trades): 2317 on 2025-07-30 has Trading_Volume=0 and open/max/min/close=0, while 2025-07-29 (close=171.5) and 2025-07-31 (close=178) are normal. Example (volume but no price): 9929 on 2025-07-31 has Trading_Volume=451 yet open/max/min/close=0. Because of the second case, do NOT filter these rows with `Trading_Volume > 0` alone — filter on the price column instead, e.g. `df[df["close"] > 0]`, or forward-fill from the previous trading day. TaiwanStockPriceAdj does NOT show 0 on these days (see its own note).
+
+### TaiwanStockAfterHoursFixedPriceTrading (盤後定價交易)
+- Tier: Backer/Sponsor
+- Data range: 2004-12-24 ~ now (TWSE from 2004-12-24, TPEx from 2011-01-03)
+- Update: Mon-Fri 15:00
+- Params: dataset=TaiwanStockAfterHoursFixedPriceTrading, data_id=2330, start_date=2025-09-22, end_date=2025-09-26
+- Params (all stocks for one day): dataset=TaiwanStockAfterHoursFixedPriceTrading, start_date=2025-09-22 (不帶 data_id，取得該日所有股票資料)
+- Columns: date (str), stock_id (str), market (str: twse=listed, tpex=OTC), price (float64, fixed trading price in TWD), volume (int64, lots), trading_turnover (int64, number of transactions), trading_money (int64, TWD), unfilled_buy_volume (int64, lots), unfilled_sell_volume (int64, lots)
+- Note: volume, unfilled_buy_volume and unfilled_sell_volume are in the exchange trading unit (lots; 1 lot = 1,000 shares for ordinary stocks, foreign-currency ETFs use their own unit), NOT shares — unlike TaiwanStockPrice.Trading_Volume (shares). unfilled_buy_volume / unfilled_sell_volume are the buy / sell volume remaining after the fixed-price matching.
+- Note: every security in the exchange's table is included, including rows with no after-hours trade that day (volume=0, trading_turnover=0, trading_money=0). For such no-trade rows, price is the day's fixed price (= closing price) for TWSE (market=twse) and 0 for TPEx (market=tpex). Filter with `volume > 0` to keep only actual after-hours trades.
 
 ### TaiwanStockPriceAdj (台灣還原股價資料表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
