@@ -13,7 +13,7 @@
 - [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 - [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
 - [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockparvaluechange)
-- [台股財報與年報檔案 TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialreportfile-sponsorpro)
+- [台股財報與年報 PDF TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)
 
 ----------------------------------
 #### 綜合損益表 TaiwanStockFinancialStatements
@@ -1742,7 +1742,7 @@
         ```
 
 ----------------------------------
-#### 台股財報與年報檔案 TaiwanStockFinancialReportFile (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 台股財報與年報 PDF TaiwanStockFinancialReportFile (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 提供上市、上櫃、興櫃公司財務報告書與股東會年報的完整 PDF 檔案下載連結。
 - 資料區間：財務報告書 2013-03-31 ~ now（2013 年第一季起，每季一份）；股東會年報 2013-12-31 ~ now（2013 年度起，每年一份）

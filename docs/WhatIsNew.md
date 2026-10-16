@@ -1,5 +1,5 @@
 #### 2026-10-16
-* 新增 [台股財報與年報檔案 TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialreportfile-sponsorpro)：提供財務報告書與股東會年報的完整 PDF 檔案下載連結；資料區間財務報告書 2013 年第一季 ~ now、股東會年報 2013 年度 ~ now（只限 sponsorpro 會員使用）
+* 新增 [台股財報與年報 PDF TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)：提供財務報告書與股東會年報的完整 PDF 檔案下載連結；資料區間財務報告書 2013 年第一季 ~ now、股東會年報 2013 年度 ~ now（只限 sponsorpro 會員使用）
 
 #### 2026-10-11
 * **資料校正公告**：[綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements) 的 `EPS` 已校正，其他科目不受影響：(1) **2026-03-31、2026-06-30** 兩季部分金融保險業（金控、銀行、票券、保險）股票缺 `EPS`（2026-03-31 共 38 家、2026-06-30 共 41 家），已補齊上市、上櫃、興櫃公司這兩季的 `EPS`；(2) 公開發行公司（非上市、上櫃、興櫃）自 **2025-12-31** 起缺 `EPS`（2025-12-31 共 173 家、2026-03-31 共 38 家、2026-06-30 共 280 家），已補齊；(3) 只申報半年報的公司（以興櫃公司為主），**2013～2025 年各年 12-31** 的 `EPS` 原為全年數值，已校正為下半年數值（全年減上半年），與其他季別同為單季口徑，上市、上櫃及按季申報的公司不受影響。**曾下載或查詢過上述資料的使用者請重新取得資料**

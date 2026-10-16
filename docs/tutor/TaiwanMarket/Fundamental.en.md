@@ -13,7 +13,7 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 - [Taiwan Stock Market Value Weight Table TaiwanStockMarketValueWeight](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-market-value-weight-table-taiwanstockmarketvalueweight-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Post-Split Reference Price TaiwanStockSplitPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-post-split-reference-price-taiwanstocksplitprice)
 - [Taiwan Stock Par Value Change Resumption Reference Price TaiwanStockParValueChange](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-par-value-change-resumption-reference-price-taiwanstockparvaluechange)
-- [Taiwan Stock Financial Report and Annual Report Files TaiwanStockFinancialReportFile](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-financial-report-and-annual-report-files-taiwanstockfinancialreportfile-available-only-to-sponsorpro-members)
+- [Taiwan Stock Financial Report and Annual Report PDF TaiwanStockFinancialReportFile](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-financial-report-and-annual-report-pdf-taiwanstockfinancialreportfile-available-only-to-sponsorpro-members)
 
 ----------------------------------
 #### Income Statement TaiwanStockFinancialStatements
@@ -1742,7 +1742,7 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
         ```
 
 ----------------------------------
-#### Taiwan Stock Financial Report and Annual Report Files TaiwanStockFinancialReportFile (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+#### Taiwan Stock Financial Report and Annual Report PDF TaiwanStockFinancialReportFile (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Provides download links to the full PDF files of financial reports and annual shareholders' meeting reports of TWSE-listed, TPEx-listed and emerging-market companies.
 - Data range: financial reports 2013-03-31 ~ now (from 2013 Q1, one per quarter); annual reports 2013-12-31 ~ now (from fiscal year 2013, one per year)

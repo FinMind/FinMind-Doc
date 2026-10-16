@@ -609,7 +609,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: dataset=TaiwanStockParValueChange, start_date=2020-01-01
 - Columns: date (str), stock_id (str), stock_name (str), before_close (float64), after_ref_close (float64), after_ref_max (float64), after_ref_min (float64), after_ref_open (float64)
 
-### TaiwanStockFinancialReportFile (台股財報與年報檔案)
+### TaiwanStockFinancialReportFile (台股財報與年報 PDF)
 - Tier: Sponsor Pro
 - Data range: financial_report 2013-03-31 ~ now (quarterly, from 2013 Q1); annual_report 2013-12-31 ~ now (yearly, from fiscal year 2013)
 - Update: Daily
