@@ -1755,7 +1755,8 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
     `url` is a temporary download link **valid for 1 hour**. After it expires the file can no longer be downloaded from it; query again to get a new link. Do not store links for reuse.
 
 ??? note "Coverage"
-    - Financial reports (`financial_report`) are the Chinese consolidated financial reports; for companies without subsidiaries, the Chinese individual financial reports. Parent-company-only financial reports and English versions are not included.
+    - Financial reports (`financial_report`): one Chinese report per period, primarily the consolidated financial report; when no consolidated financial report is available, the individual, restated, or parent-company-only financial report is included, in that order. English versions are not included.
+    - For a small number of 2013 financial reports, the source only provides a Word file, so the download link is a .doc file.
     - Annual reports (`annual_report`) are the Chinese annual shareholders' meeting reports.
     - The text layer of some annual report PDFs may be garbled or incomplete (as in the source files); OCR may be needed if you need to extract text.
 
@@ -1832,12 +1833,14 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
         df = pd.DataFrame(resp.json()["data"])
         # The download link is valid for 1 hour; download soon after querying
         for _, row in df.iterrows():
-            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.pdf"
-            pdf = requests.get(row["url"])
-            pdf.raise_for_status()
+            file = requests.get(row["url"])
+            file.raise_for_status()
+            # A few 2013 financial reports are Word files (.doc); the rest are PDF
+            ext = "doc" if file.headers.get("Content-Type") == "application/msword" else "pdf"
+            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.{ext}"
             with open(file_name, "wb") as f:
-                f.write(pdf.content)
-            print(file_name, len(pdf.content))
+                f.write(file.content)
+            print(file_name, len(file.content))
 
         ```
 

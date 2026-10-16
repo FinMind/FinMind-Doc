@@ -1755,7 +1755,8 @@
     `url` 為暫時下載連結，**有效期 1 小時**，過期後無法下載，需要重新查詢以取得新的連結。請勿將連結保存後重複使用。
 
 ??? note "收錄範圍"
-    - 財務報告書（`financial_report`）收錄中文版合併財務報告；沒有子公司的公司收錄中文版個別財務報告。不含個體財務報告與英文版。
+    - 財務報告書（`financial_report`）每期一份中文版報告，以合併財務報告為主；沒有合併財務報告時，依序收錄個別、重編、個體財務報告。不含英文版。
+    - 少數 2013 年財務報告來源僅提供 Word 檔，下載連結為 .doc 檔。
     - 股東會年報（`annual_report`）收錄中文版年報。
     - 部分年報 PDF 的文字層可能為亂碼或殘缺（來源檔本身如此），如需擷取文字可能需要使用 OCR。
 
@@ -1832,12 +1833,14 @@
         df = pd.DataFrame(resp.json()["data"])
         # 下載連結 1 小時內有效，取得後請盡快下載
         for _, row in df.iterrows():
-            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.pdf"
-            pdf = requests.get(row["url"])
-            pdf.raise_for_status()
+            file = requests.get(row["url"])
+            file.raise_for_status()
+            # 少數 2013 年財務報告為 Word 檔（.doc），其餘為 PDF
+            ext = "doc" if file.headers.get("Content-Type") == "application/msword" else "pdf"
+            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.{ext}"
             with open(file_name, "wb") as f:
-                f.write(pdf.content)
-            print(file_name, len(pdf.content))
+                f.write(file.content)
+            print(file_name, len(file.content))
 
         ```
 
