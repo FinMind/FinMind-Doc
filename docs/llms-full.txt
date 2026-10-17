@@ -623,8 +623,8 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Tier: Sponsor Pro
 - Data range: financial_report 2013-03-31 ~ now (quarterly, from 2013 Q1); annual_report 2013-12-31 ~ now (yearly, from fiscal year 2013)
 - Update: Daily
-- Params: dataset=TaiwanStockFinancialReportFile, data_id=2330, start_date=2025-01-01, end_date=2026-10-16 (data_id is required)
-- Python SDK: `api.taiwan_stock_financial_report_file(stock_id='2330', start_date='2025-01-01', end_date='2026-10-16')`
+- Params: dataset=TaiwanStockFinancialReportFile, data_id=2330, year=2025, quarter=4 (data_id, year and quarter are all required; quarter must be 1-4; one period per query; quarter=4 returns the annual financial report and the annual report)
+- Python SDK: `api.taiwan_stock_financial_report_file(stock_id="2330", year=2025, quarter=4)`
 - Columns: date (str, period end date: quarter end for financial_report, fiscal year end for annual_report), stock_id (str), report_category (str: financial_report/annual_report), file_size (int, bytes), url (str, temporary PDF download link valid for 1 hour; query again for a new link)
 - Note: returns PDF download links, not financial figures (use TaiwanStockFinancialStatements / TaiwanStockBalanceSheet / TaiwanStockCashFlowsStatement for figures). Financial reports are Chinese consolidated reports (Chinese individual reports for companies without subsidiaries); parent-company-only reports and English versions are not included. The text layer of some annual report PDFs may be garbled or incomplete; OCR may be needed.
 

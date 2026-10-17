@@ -1747,6 +1747,14 @@
 - 提供上市、上櫃、興櫃公司財務報告書與股東會年報的完整 PDF 檔案下載連結。
 - 資料區間：財務報告書 2013-03-31 ~ now（2013 年第一季起，每季一份）；股東會年報 2013-12-31 ~ now（2013 年度起，每年一份）
 - `data_id`（股票代號）為必填，不提供不帶股票代號的全市場查詢。
+- 查詢參數：`data_id`（股票代號）、`year`（西元年，例 `2025`）、`quarter`（季別，1～4），三者皆必填。
+
+??? note "一次查詢一期"
+    - 每次查詢以 `year` + `quarter` 指定一期，回傳該期的檔案；需要多期請逐期查詢。
+    - `quarter` 只能為 1～4。
+    - `quarter=1`～`3` 回傳該季財務報告書（`date` 為該季季底）。
+    - `quarter=4` 回傳年度財務報告書與股東會年報（`date` 為該年 12-31），最多 2 筆。
+    - 該期沒有檔案時回傳空資料。
 
 ??? note "回傳的是 PDF 下載連結，不是財報數字"
     本資料集回傳的是報告 PDF 檔的下載連結（`url`）。如需損益、資產負債、現金流量等財報數字，請使用 [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)、[資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)、[現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)。
@@ -1768,9 +1776,9 @@
         api = DataLoader()
         # api.login_by_token(api_token='token')
         df = api.taiwan_stock_financial_report_file(
-            stock_id='2330',
-            start_date='2025-01-01',
-            end_date='2026-10-16',
+            stock_id="2330",
+            year=2025,
+            quarter=4,
         )
         ```
     === "Python-request"
@@ -1783,8 +1791,8 @@
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
-            "start_date": "2025-01-01",
-            "end_date": "2026-10-16",
+            "year": 2025,
+            "quarter": 4,
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -1804,8 +1812,8 @@
             query = list(
                 dataset="TaiwanStockFinancialReportFile",
                 data_id= "2330",
-                start_date= "2025-01-01",
-                end_date= "2026-10-16"
+                year= 2025,
+                quarter= 4
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -1826,8 +1834,8 @@
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
-            "start_date": "2025-01-01",
-            "end_date": "2026-10-16",
+            "year": 2025,
+            "quarter": 4,
         }
         resp = requests.get(url, headers=headers, params=parameter)
         df = pd.DataFrame(resp.json()["data"])
@@ -1848,11 +1856,8 @@
     === "DataFrame"
         |    | date       |   stock_id | report_category   |   file_size | url        |
         |---:|:-----------|-----------:|:------------------|------------:|:-----------|
-        |  0 | 2025-03-31 |       2330 | financial_report  |     5715493 | https://... |
-        |  1 | 2025-06-30 |       2330 | financial_report  |     5771204 | https://... |
-        |  2 | 2025-09-30 |       2330 | financial_report  |     5345863 | https://... |
-        |  3 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
-        |  4 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
+        |  0 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
+        |  1 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
     === "Schema"
         ```
         {

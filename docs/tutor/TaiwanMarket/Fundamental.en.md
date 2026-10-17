@@ -1747,6 +1747,14 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 - Provides download links to the full PDF files of financial reports and annual shareholders' meeting reports of TWSE-listed, TPEx-listed and emerging-market companies.
 - Data range: financial reports 2013-03-31 ~ now (from 2013 Q1, one per quarter); annual reports 2013-12-31 ~ now (from fiscal year 2013, one per year)
 - `data_id` (stock id) is required; whole-market queries without a stock id are not supported.
+- Query parameters: `data_id` (stock id), `year` (calendar year, e.g. `2025`) and `quarter` (1 to 4); all three are required.
+
+??? note "One period per query"
+    - Each query specifies one period with `year` + `quarter` and returns the files for that period; query period by period if you need several.
+    - `quarter` must be 1 to 4.
+    - `quarter=1` to `3` returns the financial report for that quarter (`date` is the quarter end).
+    - `quarter=4` returns the annual financial report and the annual shareholders' meeting report (`date` is 12-31 of that year), up to 2 rows.
+    - An empty result is returned when there is no file for that period.
 
 ??? note "Returns PDF download links, not financial statement figures"
     This dataset returns a download link (`url`) to the report PDF file. For financial statement figures such as income, balance sheet and cash flow items, please use [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements), [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet) and [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement).
@@ -1768,9 +1776,9 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
         api = DataLoader()
         # api.login_by_token(api_token='token')
         df = api.taiwan_stock_financial_report_file(
-            stock_id='2330',
-            start_date='2025-01-01',
-            end_date='2026-10-16',
+            stock_id="2330",
+            year=2025,
+            quarter=4,
         )
         ```
     === "Python-request"
@@ -1783,8 +1791,8 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
-            "start_date": "2025-01-01",
-            "end_date": "2026-10-16",
+            "year": 2025,
+            "quarter": 4,
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
@@ -1804,8 +1812,8 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
             query = list(
                 dataset="TaiwanStockFinancialReportFile",
                 data_id= "2330",
-                start_date= "2025-01-01",
-                end_date= "2026-10-16"
+                year= 2025,
+                quarter= 4
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -1826,8 +1834,8 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
-            "start_date": "2025-01-01",
-            "end_date": "2026-10-16",
+            "year": 2025,
+            "quarter": 4,
         }
         resp = requests.get(url, headers=headers, params=parameter)
         df = pd.DataFrame(resp.json()["data"])
@@ -1848,11 +1856,8 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
     === "DataFrame"
         |    | date       |   stock_id | report_category   |   file_size | url        |
         |---:|:-----------|-----------:|:------------------|------------:|:-----------|
-        |  0 | 2025-03-31 |       2330 | financial_report  |     5715493 | https://... |
-        |  1 | 2025-06-30 |       2330 | financial_report  |     5771204 | https://... |
-        |  2 | 2025-09-30 |       2330 | financial_report  |     5345863 | https://... |
-        |  3 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
-        |  4 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
+        |  0 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
+        |  1 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
     === "Schema"
         ```
         {
