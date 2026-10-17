@@ -1,5 +1,16 @@
-#### 2026-10-10
+#### 2026-10-17
 * [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
+
+#### 2026-10-11
+* **資料校正公告**：[綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements) 的 `EPS` 已校正，其他科目不受影響：(1) **2026-03-31、2026-06-30** 兩季部分金融保險業（金控、銀行、票券、保險）股票缺 `EPS`（2026-03-31 共 38 家、2026-06-30 共 41 家），已補齊上市、上櫃、興櫃公司這兩季的 `EPS`；(2) 公開發行公司（非上市、上櫃、興櫃）自 **2025-12-31** 起缺 `EPS`（2025-12-31 共 173 家、2026-03-31 共 38 家、2026-06-30 共 280 家），已補齊；(3) 只申報半年報的公司（以興櫃公司為主），**2013～2025 年各年 12-31** 的 `EPS` 原為全年數值，已校正為下半年數值（全年減上半年），與其他季別同為單季口徑，上市、上櫃及按季申報的公司不受影響。**曾下載或查詢過上述資料的使用者請重新取得資料**
+* **資料校正公告**：[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 透過資料 API 查詢時，現在回傳完整交易時段的分 K，包含上市櫃 14:30 盤後定價那一根，以及興櫃 13:30 之後至 15:00 的分 K，與整日下載檔一致。先前透過 API 取得的分 K 缺少這些時段，**如有需要請重新取得資料**
+
+#### 2026-10-10
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
+    * **2019-10-01 ~ 2020-02-05**：43 檔·日殘留重複紀錄，同一股票、同一時間、同一價格出現兩筆但成交量不同，多出的那筆並非實際成交，共 44 筆（9904 2019-10-01 多 2 筆，其餘各 1 筆），已移除，修正後與實際成交逐筆一致。例：6147 2019-11-26 由 1,976 筆、19,907 張修正為 1,975 筆、19,902 張，09:37 分 K 成交量由 106 張修正為 101 張
+    * 受影響的日期與股票：2019-10-01 9904；2019-10-02 00753L；2019-10-03 3042；2019-10-09 2383；2019-10-22 2801；2019-10-24 4744；2019-11-06 6235；2019-11-08 3645；2019-11-12 0056、2385、2408、2892；2019-11-13 2330、6180、8109；2019-11-14 4977；2019-11-21 1303、2448、3682；2019-11-26 00677U、2887、3062、3406、4155、5351、6147；2019-12-02 4157；2019-12-05 2812；2019-12-19 4908；2019-12-20 1560；2020-01-08 1309、2303、2376、2383、3530、6288、6667、6679；2020-01-10 2379；2020-01-15 1227；2020-01-17 1314、3661；2020-02-05 4974
+
+* [台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor) `bank_name` 新增 `八大官股`（八家行庫合計），歷史資料已回補至 2021-06-30
 
 #### 2026-10-09
 * [台股八大行庫買賣表 TaiwanStockGovernmentBankBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor) 資料更新時間提早至星期一至五 18:30（原為 23:30）

@@ -426,6 +426,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: dataset=TaiwanStockGovernmentBankBuySell, start_date=2023-01-17
 - Columns: date, stock_id, buy_amount, sell_amount, buy, sell, bank_name
 - Note: Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
+- Note: bank_name values: 合庫, 華南, 彰銀, 第一, 兆豐, 臺銀, 土銀, 台企銀, and 八大官股 (total of the eight banks, equal to the sum of their rows for the same date and stock).
 
 ### TaiwanTotalExchangeMarginMaintenance (台灣大盤融資維持率)
 - Tier: Backer/Sponsor
