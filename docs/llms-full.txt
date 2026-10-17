@@ -530,7 +530,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 
 ---
 
-## Taiwan Market - Fundamental (13 datasets)
+## Taiwan Market - Fundamental (12 datasets)
 
 ### TaiwanStockFinancialStatements (綜合損益表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -618,15 +618,6 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Data range: 2020-01-01 ~ now
 - Params: dataset=TaiwanStockParValueChange, start_date=2020-01-01
 - Columns: date (str), stock_id (str), stock_name (str), before_close (float64), after_ref_close (float64), after_ref_max (float64), after_ref_min (float64), after_ref_open (float64)
-
-### TaiwanStockFinancialReportFile (台股財報與年報 PDF)
-- Tier: Sponsor Pro
-- Data range: financial_report 2013-03-31 ~ now (quarterly, from 2013 Q1); annual_report 2013-12-31 ~ now (yearly, from fiscal year 2013)
-- Update: Daily
-- Params: dataset=TaiwanStockFinancialReportFile, data_id=2330, start_date=2025-01-01, end_date=2026-10-16 (data_id is required)
-- Python SDK: `api.taiwan_stock_financial_report_file(stock_id='2330', start_date='2025-01-01', end_date='2026-10-16')`
-- Columns: date (str, period end date: quarter end for financial_report, fiscal year end for annual_report), stock_id (str), report_category (str: financial_report/annual_report), file_size (int, bytes), url (str, temporary PDF download link valid for 1 hour; query again for a new link)
-- Note: returns PDF download links, not financial figures (use TaiwanStockFinancialStatements / TaiwanStockBalanceSheet / TaiwanStockCashFlowsStatement for figures). Financial reports are Chinese consolidated reports (Chinese individual reports for companies without subsidiaries); parent-company-only reports and English versions are not included. The text layer of some annual report PDFs may be garbled or incomplete; OCR may be needed.
 
 ---
 
