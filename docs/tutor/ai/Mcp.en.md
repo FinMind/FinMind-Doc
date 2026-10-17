@@ -89,7 +89,7 @@ Which 5 stocks had the highest institutional net-buy value today?
 
 ## Data field caveats { #caveats }
 
-The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures ticks). They are not data errors:
+The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures / options ticks). They are not data errors:
 
 ??? warning "Emerging stocks: `open` is the *previous-day average price*, and may fall outside the day's high/low (not a data error)"
     Emerging-board stocks trade by negotiation and **have no opening price**. For emerging stocks this table therefore fills `open` with the **previous-day average price**, not an opening price; `max` / `min` / `close` are still the day's high / low / last traded price and are correct.
@@ -114,3 +114,14 @@ The following are common field-definition differences to keep in mind when an AI
     - **00:00–05:00** ticks belong to the after-hours (after_market) session of **trading day D** in TaiwanFuturesDaily.
     - **08:45–13:45** ticks belong to the regular session (position) of trading day D.
     - **15:00–24:00** ticks belong to the after-hours session of the **next trading day**.
+
+??? note "Options ticks (TaiwanOptionTick): how volume is counted"
+    As with futures ticks, options tick volume is counted on a **double-sided** basis: each matched trade records both the buy side and the sell side once, typically appearing as two identical rows; these are not duplicates. The summed tick volume is about **2×** the (single-side) volume in the daily data TaiwanOptionDaily.
+
+    **Per-series reconciliation**: for a given series (same contract_date, strike and call/put) within the same trading session,
+
+    `sum of tick volume of that series = 2 × TaiwanOptionDaily volume of that series − 2 × negotiated block-trade lots of that series`
+
+    - Negotiated block trades are not included in tick data, but are included in daily volume; this is not missing tick data.
+    - Tick data has **no buy/sell-initiated (aggressor side) field**.
+    - Trading-day attribution of after-hours ticks is the same as for futures: 00:00–05:00 belongs to trading day D's after-hours session (after_market), 15:00–24:00 to the next trading day's after-hours session.
