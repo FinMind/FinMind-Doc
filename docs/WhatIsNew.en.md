@@ -1,4 +1,5 @@
 #### 2026-10-17
+* [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement) `type` adds `EffectOfExchangeRateChangesOnCashAndCashEquivalents` (effect of exchange rate changes on cash and cash equivalents); historical data has been backfilled to 2013-03-31
 * [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
 
 #### 2026-10-11
