@@ -1743,19 +1743,13 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
 ----------------------------------
 #### Taiwan Stock Financial Report and Annual Report PDF TaiwanStockFinancialReportFile (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
 - Provides the full PDF files of financial reports and annual shareholders' meeting reports of TWSE-listed, TPEx-listed and emerging-market companies.
 - Data range: financial reports 2013-03-31 ~ now (from 2013 Q1, one per quarter); annual reports 2013-12-31 ~ now (from fiscal year 2013, one per year)
 - `data_id` (stock id) is required; whole-market queries without a stock id are not supported.
 - Usage takes two steps:
-    1. **Query**: call `/api/v4/data` with `data_id` (stock id), `year` (calendar year, e.g. `2025`) and `quarter` (1 to 4); all three are required. It returns the files available for that period and their sizes.
-    2. **Download**: call `/api/v4/storage_objects` with `data_id`, `year`, `quarter` and `report_category` to download one file per request.
-
-??? note "Query: one period per query"
-    - Each query specifies one period with `year` + `quarter` and returns the file list for that period; query period by period if you need several.
-    - `quarter` must be 1 to 4.
-    - `quarter=1` to `3` returns the financial report for that quarter (`date` is the quarter end).
-    - `quarter=4` returns the annual financial report and the annual shareholders' meeting report (`date` is 12-31 of that year), up to 2 rows.
-    - An empty result is returned when there is no file for that period.
+    1. **Query**: call `/api/v4/data` with `data_id` (stock id), `start_date` and `end_date` (optional) to find which files the company has within the date range and their sizes (`date` is the period end date: the quarter end for financial reports; on 12-31 of Q4 there are both the annual financial report and the annual shareholders' meeting report).
+    2. **Download**: then download them one at a time with `/api/v4/storage_objects`, passing `data_id`, `year`, `quarter` and `report_category`; one file per request.
 
 ??? note "Download: storage_objects parameters"
     | Parameter | Description |
@@ -1786,11 +1780,11 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # Query: files available for the period and their sizes
+        # Query: files within the date range and their sizes
         df = api.taiwan_stock_financial_report_file(
             stock_id="2330",
-            year=2025,
-            quarter=4,
+            start_date="2024-01-01",
+            end_date="2025-12-31",
         )
         # Download: one file per request
         api.taiwan_stock_financial_report_file_download(
@@ -1808,13 +1802,13 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
         token = "" # Refer to login to obtain the token
         headers = {"Authorization": f"Bearer {token}"}
 
-        # Query: files available for the period and their sizes
+        # Query: files within the date range and their sizes
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
-            "year": 2025,
-            "quarter": 4,
+            "start_date": "2024-01-01",
+            "end_date": "2025-12-31",
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = pd.DataFrame(resp.json()["data"])
@@ -1845,15 +1839,15 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
         token = "" # Refer to login to obtain the token
 
-        # Query: files available for the period and their sizes
+        # Query: files within the date range and their sizes
         url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
             url = url,
             query = list(
                 dataset="TaiwanStockFinancialReportFile",
                 data_id= "2330",
-                year= 2025,
-                quarter= 4
+                start_date= "2024-01-01",
+                end_date= "2025-12-31"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -1885,8 +1879,12 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
     === "DataFrame"
         |    | date       |   stock_id | report_category   |   file_size |
         |---:|:-----------|-----------:|:------------------|------------:|
-        |  0 | 2025-12-31 |       2330 | annual_report     |     7006132 |
-        |  1 | 2025-12-31 |       2330 | financial_report  |    10175740 |
+        |  ... | ...      |        ... | ...               |         ... |
+        |  5 | 2025-03-31 |       2330 | financial_report  |     5715493 |
+        |  6 | 2025-06-30 |       2330 | financial_report  |     5771204 |
+        |  7 | 2025-09-30 |       2330 | financial_report  |     5345863 |
+        |  8 | 2025-12-31 |       2330 | annual_report     |     7006132 |
+        |  9 | 2025-12-31 |       2330 | financial_report  |    10175740 |
     === "Schema"
         ```
         {

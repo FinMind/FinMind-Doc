@@ -1743,19 +1743,13 @@
 
 ----------------------------------
 #### 台股財報與年報 PDF TaiwanStockFinancialReportFile (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
 - 提供上市、上櫃、興櫃公司財務報告書與股東會年報的完整 PDF 檔案。
 - 資料區間：財務報告書 2013-03-31 ~ now（2013 年第一季起，每季一份）；股東會年報 2013-12-31 ~ now（2013 年度起，每年一份）
 - `data_id`（股票代號）為必填，不提供不帶股票代號的全市場查詢。
 - 使用方式分兩步：
-    1. **查詢**：`/api/v4/data` 輸入 `data_id`（股票代號）、`year`（西元年，例 `2025`）、`quarter`（季別，1～4），三者皆必填，回傳該期有哪些檔案與檔案大小。
-    2. **下載**：`/api/v4/storage_objects` 輸入 `data_id`、`year`、`quarter`、`report_category`，一次下載一個檔案。
-
-??? note "查詢：一次查詢一期"
-    - 每次查詢以 `year` + `quarter` 指定一期，回傳該期的檔案清單；需要多期請逐期查詢。
-    - `quarter` 只能為 1～4。
-    - `quarter=1`～`3` 回傳該季財務報告書（`date` 為該季季底）。
-    - `quarter=4` 回傳年度財務報告書與股東會年報（`date` 為該年 12-31），最多 2 筆。
-    - 該期沒有檔案時回傳空資料。
+    1. **查詢**：`/api/v4/data` 輸入 `data_id`（股票代號）、`start_date`、`end_date`（可省略），查詢該公司在日期區間內有哪些檔案與檔案大小（`date` 為期間截止日：財務報告書為季底；第四季 12-31 同時有年度財務報告書與股東會年報）。
+    2. **下載**：再以 `/api/v4/storage_objects` 輸入 `data_id`、`year`、`quarter`、`report_category`，逐一下載，一次下載一個檔案。
 
 ??? note "下載：storage_objects 參數"
     | 參數 | 說明 |
@@ -1786,11 +1780,11 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # 查詢：該期有哪些檔案與檔案大小
+        # 查詢：日期區間內有哪些檔案與檔案大小
         df = api.taiwan_stock_financial_report_file(
             stock_id="2330",
-            year=2025,
-            quarter=4,
+            start_date="2024-01-01",
+            end_date="2025-12-31",
         )
         # 下載：一次下載一個檔案
         api.taiwan_stock_financial_report_file_download(
@@ -1808,13 +1802,13 @@
         token = "" # 參考登入，獲取金鑰
         headers = {"Authorization": f"Bearer {token}"}
 
-        # 查詢：該期有哪些檔案與檔案大小
+        # 查詢：日期區間內有哪些檔案與檔案大小
         url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
-            "year": 2025,
-            "quarter": 4,
+            "start_date": "2024-01-01",
+            "end_date": "2025-12-31",
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = pd.DataFrame(resp.json()["data"])
@@ -1845,15 +1839,15 @@
 
         token = "" # 參考登入，獲取金鑰
 
-        # 查詢：該期有哪些檔案與檔案大小
+        # 查詢：日期區間內有哪些檔案與檔案大小
         url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
             url = url,
             query = list(
                 dataset="TaiwanStockFinancialReportFile",
                 data_id= "2330",
-                year= 2025,
-                quarter= 4
+                start_date= "2024-01-01",
+                end_date= "2025-12-31"
             ),
             add_headers(Authorization = paste("Bearer", token))
         )
@@ -1885,8 +1879,12 @@
     === "DataFrame"
         |    | date       |   stock_id | report_category   |   file_size |
         |---:|:-----------|-----------:|:------------------|------------:|
-        |  0 | 2025-12-31 |       2330 | annual_report     |     7006132 |
-        |  1 | 2025-12-31 |       2330 | financial_report  |    10175740 |
+        |  ... | ...      |        ... | ...               |         ... |
+        |  5 | 2025-03-31 |       2330 | financial_report  |     5715493 |
+        |  6 | 2025-06-30 |       2330 | financial_report  |     5771204 |
+        |  7 | 2025-09-30 |       2330 | financial_report  |     5345863 |
+        |  8 | 2025-12-31 |       2330 | annual_report     |     7006132 |
+        |  9 | 2025-12-31 |       2330 | financial_report  |    10175740 |
     === "Schema"
         ```
         {
