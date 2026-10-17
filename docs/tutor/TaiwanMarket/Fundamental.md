@@ -1743,28 +1743,39 @@
 
 ----------------------------------
 #### 台股財報與年報 PDF TaiwanStockFinancialReportFile (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-
-- 提供上市、上櫃、興櫃公司財務報告書與股東會年報的完整 PDF 檔案下載連結。
+- 提供上市、上櫃、興櫃公司財務報告書與股東會年報的完整 PDF 檔案。
 - 資料區間：財務報告書 2013-03-31 ~ now（2013 年第一季起，每季一份）；股東會年報 2013-12-31 ~ now（2013 年度起，每年一份）
 - `data_id`（股票代號）為必填，不提供不帶股票代號的全市場查詢。
-- 查詢參數：`data_id`（股票代號）、`year`（西元年，例 `2025`）、`quarter`（季別，1～4），三者皆必填。
+- 使用方式分兩步：
+    1. **查詢**：`/api/v4/data` 輸入 `data_id`（股票代號）、`year`（西元年，例 `2025`）、`quarter`（季別，1～4），三者皆必填，回傳該期有哪些檔案與檔案大小。
+    2. **下載**：`/api/v4/storage_objects` 輸入 `data_id`、`year`、`quarter`、`report_category`，一次下載一個檔案。
 
-??? note "一次查詢一期"
-    - 每次查詢以 `year` + `quarter` 指定一期，回傳該期的檔案；需要多期請逐期查詢。
+??? note "查詢：一次查詢一期"
+    - 每次查詢以 `year` + `quarter` 指定一期，回傳該期的檔案清單；需要多期請逐期查詢。
     - `quarter` 只能為 1～4。
     - `quarter=1`～`3` 回傳該季財務報告書（`date` 為該季季底）。
     - `quarter=4` 回傳年度財務報告書與股東會年報（`date` 為該年 12-31），最多 2 筆。
     - 該期沒有檔案時回傳空資料。
 
-??? note "回傳的是 PDF 下載連結，不是財報數字"
-    本資料集回傳的是報告 PDF 檔的下載連結（`url`）。如需損益、資產負債、現金流量等財報數字，請使用 [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)、[資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)、[現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)。
+??? note "下載：storage_objects 參數"
+    | 參數 | 說明 |
+    |---|---|
+    | `dataset` | `TaiwanStockFinancialReportFile` |
+    | `data_id` | 股票代號，必填 |
+    | `year` | 西元年，必填 |
+    | `quarter` | 季別 1～4，必填 |
+    | `report_category` | `financial_report`（財務報告書）或 `annual_report`（股東會年報），必填；`annual_report` 只有 `quarter=4` |
 
-??? note "下載連結 1 小時內有效"
-    `url` 為暫時下載連結，**有效期 1 小時**，過期後無法下載，需要重新查詢以取得新的連結。請勿將連結保存後重複使用。
+    - 回應為轉址，跟隨轉址即可下載檔案本身（PDF；少數 2013 年財務報告為 Word 檔 .doc）。
+    - 該期沒有對應檔案時回傳 404。
+    - 參數缺漏或不合法（例如 `annual_report` 但 `quarter` 不是 4）時回傳 400。
+
+??? note "提供的是 PDF 檔案，不是財報數字"
+    本資料集提供的是報告 PDF 檔案。如需損益、資產負債、現金流量等財報數字，請使用 [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)、[資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)、[現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)。
 
 ??? note "收錄範圍"
     - 財務報告書（`financial_report`）每期一份中文版報告，以合併財務報告為主；沒有合併財務報告時，依序收錄個別、重編、個體財務報告。不含英文版。
-    - 少數 2013 年財務報告來源僅提供 Word 檔，下載連結為 .doc 檔。
+    - 少數 2013 年財務報告來源僅提供 Word 檔，下載的檔案為 .doc 檔。
     - 股東會年報（`annual_report`）收錄中文版年報。
     - 部分年報 PDF 的文字層可能為亂碼或殘缺（來源檔本身如此），如需擷取文字可能需要使用 OCR。
 
@@ -1775,19 +1786,30 @@
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
+        # 查詢：該期有哪些檔案與檔案大小
         df = api.taiwan_stock_financial_report_file(
             stock_id="2330",
             year=2025,
             quarter=4,
+        )
+        # 下載：一次下載一個檔案
+        api.taiwan_stock_financial_report_file_download(
+            stock_id="2330",
+            year=2025,
+            quarter=4,
+            report_category="annual_report",
         )
         ```
     === "Python-request"
         ```python
         import requests
         import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
+
         token = "" # 參考登入，獲取金鑰
         headers = {"Authorization": f"Bearer {token}"}
+
+        # 查詢：該期有哪些檔案與檔案大小
+        url = "https://api.finmindtrade.com/api/v4/data"
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
@@ -1795,9 +1817,24 @@
             "quarter": 4,
         }
         resp = requests.get(url, headers=headers, params=parameter)
-        data = resp.json()
-        data = pd.DataFrame(data["data"])
+        data = pd.DataFrame(resp.json()["data"])
         print(data.head())
+
+        # 下載：一次下載一個檔案（requests 預設會跟隨轉址）
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        parameter = {
+            "dataset": "TaiwanStockFinancialReportFile",
+            "data_id": "2330",
+            "year": 2025,
+            "quarter": 4,
+            "report_category": "annual_report",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        resp.raise_for_status()  # 該期沒有檔案時為 404
+        # 少數 2013 年財務報告為 Word 檔（.doc），其餘為 PDF
+        ext = "doc" if resp.headers.get("Content-Type") == "application/msword" else "pdf"
+        with open(f"2330_2025-12-31_annual_report.{ext}", "wb") as f:
+            f.write(resp.content)
 
         ```
     === "R"
@@ -1805,8 +1842,11 @@
         library(httr)
         library(data.table)
         library(dplyr)
-        url = 'https://api.finmindtrade.com/api/v4/data'
+
         token = "" # 參考登入，獲取金鑰
+
+        # 查詢：該期有哪些檔案與檔案大小
+        url = 'https://api.finmindtrade.com/api/v4/data'
         response = httr::GET(
             url = url,
             query = list(
@@ -1823,48 +1863,36 @@
         data.table
         head(df)
 
-        ```
-    === "下載 PDF"
-        ```python
-        import requests
-        import pandas as pd
-        url = "https://api.finmindtrade.com/api/v4/data"
-        token = "" # 參考登入，獲取金鑰
-        headers = {"Authorization": f"Bearer {token}"}
-        parameter = {
-            "dataset": "TaiwanStockFinancialReportFile",
-            "data_id": "2330",
-            "year": 2025,
-            "quarter": 4,
-        }
-        resp = requests.get(url, headers=headers, params=parameter)
-        df = pd.DataFrame(resp.json()["data"])
-        # 下載連結 1 小時內有效，取得後請盡快下載
-        for _, row in df.iterrows():
-            file = requests.get(row["url"])
-            file.raise_for_status()
-            # 少數 2013 年財務報告為 Word 檔（.doc），其餘為 PDF
-            ext = "doc" if file.headers.get("Content-Type") == "application/msword" else "pdf"
-            file_name = f"{row['stock_id']}_{row['date']}_{row['report_category']}.{ext}"
-            with open(file_name, "wb") as f:
-                f.write(file.content)
-            print(file_name, len(file.content))
+        # 下載：一次下載一個檔案（httr 預設會跟隨轉址）
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockFinancialReportFile",
+                data_id= "2330",
+                year= 2025,
+                quarter= 4,
+                report_category= "annual_report"
+            ),
+            add_headers(Authorization = paste("Bearer", token)),
+            write_disk("2330_2025-12-31_annual_report.pdf", overwrite = TRUE)
+        )
+        stop_for_status(response) # 該期沒有檔案時為 404
 
         ```
 
 !!! output
     === "DataFrame"
-        |    | date       |   stock_id | report_category   |   file_size | url        |
-        |---:|:-----------|-----------:|:------------------|------------:|:-----------|
-        |  0 | 2025-12-31 |       2330 | annual_report     |     7006132 | https://... |
-        |  1 | 2025-12-31 |       2330 | financial_report  |    10175740 | https://... |
+        |    | date       |   stock_id | report_category   |   file_size |
+        |---:|:-----------|-----------:|:------------------|------------:|
+        |  0 | 2025-12-31 |       2330 | annual_report     |     7006132 |
+        |  1 | 2025-12-31 |       2330 | financial_report  |    10175740 |
     === "Schema"
         ```
         {
             date: str, # 期間截止日（財報為季底，年報為年度末）
             stock_id: str, # 股票代號
             report_category: str, # 報告類別：financial_report（財務報告書）/ annual_report（股東會年報）
-            file_size: int, # 檔案大小（位元組）
-            url: str # 下載連結（1 小時內有效）
+            file_size: int # 檔案大小（位元組）
         }
         ```
