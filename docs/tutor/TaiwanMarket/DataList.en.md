@@ -69,6 +69,7 @@ In the Taiwan financial market, we have 93 datasets, as listed below:
 - [Taiwan Stock Market Cap Weighting Table TaiwanStockMarketValueWeight](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-market-value-weight-table-taiwanstockmarketvalueweight-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Post-Split Reference Price TaiwanStockSplitPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-post-split-reference-price-taiwanstocksplitprice)
 - [Taiwan Stock Par Value Change Resumption Reference Price TaiwanStockParValueChange](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-par-value-change-resumption-reference-price-taiwanstockparvaluechange)
+- [Taiwan Stock Financial Report and Annual Report PDF TaiwanStockFinancialReportFile](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-financial-report-and-annual-report-pdf-taiwanstockfinancialreportfile-available-only-to-sponsorpro-members)
 
 #### Derivative
 
