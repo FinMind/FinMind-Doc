@@ -1746,12 +1746,10 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
 - Provides the full PDF files of financial reports and annual shareholders' meeting reports of TWSE-listed, TPEx-listed and emerging-market companies.
 - Data range: financial reports 2013-03-31 ~ now (from 2013 Q1, one per quarter); annual reports 2013-12-31 ~ now (from fiscal year 2013, one per year)
-- `data_id` (stock id) is required; whole-market queries without a stock id are not supported.
-- Usage takes two steps:
-    1. **Query**: call `/api/v4/data` with `data_id` (stock id), `start_date` and `end_date` (optional) to find which files the company has within the date range and their sizes (`date` is the period end date: the quarter end for financial reports; on 12-31 of Q4 there are both the annual financial report and the annual shareholders' meeting report).
-    2. **Download**: then download them one at a time with `/api/v4/storage_objects`, passing `data_id`, `year`, `quarter` and `report_category`; one file per request.
+- Download one file per request via `/api/v4/storage_objects` with `data_id` (stock id), `year` (calendar year), `quarter` (1 to 4) and `report_category`; all four are required. Whole-market downloads are not supported.
+- `quarter=1` to `3` is the financial report for that quarter; `quarter=4` has the annual financial report (`financial_report`) and the annual shareholders' meeting report (`annual_report`).
 
-??? note "Download: storage_objects parameters"
+??? note "Download parameters and response"
     | Parameter | Description |
     |---|---|
     | `dataset` | `TaiwanStockFinancialReportFile` |
@@ -1760,16 +1758,17 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
     | `quarter` | Quarter 1 to 4, required |
     | `report_category` | `financial_report` (financial report) or `annual_report` (annual shareholders' meeting report), required; `annual_report` is only available for `quarter=4` |
 
-    - The response is a redirect; follow it to download the file itself (PDF; a small number of 2013 financial reports are Word .doc files).
+    - The response is a redirect; follow it to download the file itself.
+    - Downloaded file name format: `TaiwanStockFinancialReportFile_{data_id}_{date}_{report_category}.pdf` (`date` is the period end date, e.g. `2025-12-31`).
     - Returns 404 when there is no matching file for that period.
-    - Returns 400 when parameters are missing or invalid (e.g. `annual_report` with a `quarter` other than 4).
+    - Returns 400 when parameters are missing or invalid (e.g. `quarter` not 1 to 4, `report_category` not one of the two values above, or `annual_report` with a `quarter` other than 4).
 
 ??? note "Provides PDF files, not financial statement figures"
     This dataset provides the report PDF files. For financial statement figures such as income, balance sheet and cash flow items, please use [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements), [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet) and [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement).
 
 ??? note "Coverage"
     - Financial reports (`financial_report`): one Chinese report per period, primarily the consolidated financial report; when no consolidated financial report is available, the individual, restated, or parent-company-only financial report is included, in that order. English versions are not included.
-    - For a small number of 2013 financial reports, the source only provides a Word file, so the downloaded file is a .doc file.
+    - Files are mostly PDF; for a small number of 2013 financial reports, the source only provides a Word file, so the downloaded file is a .doc file.
     - Annual reports (`annual_report`) are the Chinese annual shareholders' meeting reports.
     - The text layer of some annual report PDFs may be garbled or incomplete (as in the source files); OCR may be needed if you need to extract text.
 
@@ -1780,42 +1779,23 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
         api = DataLoader()
         # api.login_by_token(api_token='token')
-        # Query: files within the date range and their sizes
-        df = api.taiwan_stock_financial_report_file(
-            stock_id="2330",
-            start_date="2024-01-01",
-            end_date="2025-12-31",
-        )
-        # Download: one file per request
-        api.taiwan_stock_financial_report_file_download(
+        # Downloads one file and returns its content (bytes); raises an exception when there is no file for the period
+        content = api.taiwan_stock_financial_report_file_download(
             stock_id="2330",
             year=2025,
             quarter=4,
             report_category="annual_report",
         )
+        with open("TaiwanStockFinancialReportFile_2330_2025-12-31_annual_report.pdf", "wb") as f:
+            f.write(content)
         ```
     === "Python-request"
         ```python
         import requests
-        import pandas as pd
 
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
         token = "" # Refer to login to obtain the token
         headers = {"Authorization": f"Bearer {token}"}
-
-        # Query: files within the date range and their sizes
-        url = "https://api.finmindtrade.com/api/v4/data"
-        parameter = {
-            "dataset": "TaiwanStockFinancialReportFile",
-            "data_id": "2330",
-            "start_date": "2024-01-01",
-            "end_date": "2025-12-31",
-        }
-        resp = requests.get(url, headers=headers, params=parameter)
-        data = pd.DataFrame(resp.json()["data"])
-        print(data.head())
-
-        # Download: one file per request (requests follows redirects by default)
-        url = "https://api.finmindtrade.com/api/v4/storage_objects"
         parameter = {
             "dataset": "TaiwanStockFinancialReportFile",
             "data_id": "2330",
@@ -1823,42 +1803,22 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
             "quarter": 4,
             "report_category": "annual_report",
         }
+        # requests follows redirects by default and gets the file itself
         resp = requests.get(url, headers=headers, params=parameter)
         resp.raise_for_status()  # 404 when there is no file for the period
         # A small number of 2013 financial reports are Word files (.doc); others are PDF
         ext = "doc" if resp.headers.get("Content-Type") == "application/msword" else "pdf"
-        with open(f"2330_2025-12-31_annual_report.{ext}", "wb") as f:
+        with open(f"TaiwanStockFinancialReportFile_2330_2025-12-31_annual_report.{ext}", "wb") as f:
             f.write(resp.content)
 
         ```
     === "R"
         ```R
         library(httr)
-        library(data.table)
-        library(dplyr)
 
-        token = "" # Refer to login to obtain the token
-
-        # Query: files within the date range and their sizes
-        url = 'https://api.finmindtrade.com/api/v4/data'
-        response = httr::GET(
-            url = url,
-            query = list(
-                dataset="TaiwanStockFinancialReportFile",
-                data_id= "2330",
-                start_date= "2024-01-01",
-                end_date= "2025-12-31"
-            ),
-            add_headers(Authorization = paste("Bearer", token))
-        )
-        data = content(response)
-        df = data$data %>%
-        do.call('rbind',.) %>%
-        data.table
-        head(df)
-
-        # Download: one file per request (httr follows redirects by default)
         url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the token
+        # httr follows redirects by default; write_disk writes the file to disk
         response = httr::GET(
             url = url,
             query = list(
@@ -1869,28 +1829,46 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
                 report_category= "annual_report"
             ),
             add_headers(Authorization = paste("Bearer", token)),
-            write_disk("2330_2025-12-31_annual_report.pdf", overwrite = TRUE)
+            write_disk("TaiwanStockFinancialReportFile_2330_2025-12-31_annual_report.pdf", overwrite = TRUE)
         )
         stop_for_status(response) # 404 when there is no file for the period
 
         ```
+    === "Multiple periods"
+        ```python
+        import requests
 
-!!! output
-    === "DataFrame"
-        |    | date       |   stock_id | report_category   |   file_size |
-        |---:|:-----------|-----------:|:------------------|------------:|
-        |  ... | ...      |        ... | ...               |         ... |
-        |  5 | 2025-03-31 |       2330 | financial_report  |     5715493 |
-        |  6 | 2025-06-30 |       2330 | financial_report  |     5771204 |
-        |  7 | 2025-09-30 |       2330 | financial_report  |     5345863 |
-        |  8 | 2025-12-31 |       2330 | annual_report     |     7006132 |
-        |  9 | 2025-12-31 |       2330 | financial_report  |    10175740 |
-    === "Schema"
-        ```
-        {
-            date: str, # period end date (quarter end for financial_report, fiscal year end for annual_report)
-            stock_id: str, # stock id
-            report_category: str, # report category: financial_report / annual_report
-            file_size: int # file size (bytes)
-        }
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        quarter_end = {1: "03-31", 2: "06-30", 3: "09-30", 4: "12-31"}
+
+        # Download 2330's quarterly financial reports and annual reports for 2024-2025
+        for year in [2024, 2025]:
+            for quarter in [1, 2, 3, 4]:
+                categories = ["financial_report"]
+                if quarter == 4:
+                    categories.append("annual_report")  # annual reports are Q4 only
+                for report_category in categories:
+                    parameter = {
+                        "dataset": "TaiwanStockFinancialReportFile",
+                        "data_id": "2330",
+                        "year": year,
+                        "quarter": quarter,
+                        "report_category": report_category,
+                    }
+                    resp = requests.get(url, headers=headers, params=parameter)
+                    if resp.status_code == 404:
+                        print(year, quarter, report_category, "no file for this period")
+                        continue
+                    resp.raise_for_status()
+                    ext = "doc" if resp.headers.get("Content-Type") == "application/msword" else "pdf"
+                    file_name = (
+                        f"TaiwanStockFinancialReportFile_2330_"
+                        f"{year}-{quarter_end[quarter]}_{report_category}.{ext}"
+                    )
+                    with open(file_name, "wb") as f:
+                        f.write(resp.content)
+                    print(file_name, len(resp.content))
+
         ```
