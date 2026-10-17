@@ -1,5 +1,6 @@
 #### 2026-10-17
 * 新增 [台股財報與年報 PDF TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)：提供財務報告書與股東會年報的完整 PDF 檔案，透過 storage_objects 逐檔下載；資料區間財務報告書 2013 年第一季 ~ now、股東會年報 2013 年度 ~ now（只限 sponsorpro 會員使用）
+* [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) `type` 新增 `EffectOfExchangeRateChangesOnCashAndCashEquivalents`（匯率變動對現金及約當現金之影響），歷史資料已回補至 2013-03-31
 * [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
 
 #### 2026-10-11
