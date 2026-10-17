@@ -1,6 +1,11 @@
 #### 2026-10-17
 * [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) `type` 新增 `EffectOfExchangeRateChangesOnCashAndCashEquivalents`（匯率變動對現金及約當現金之影響），歷史資料已回補至 2013-03-31
 * [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
+* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
+    * **14:30:00 盤後定價交易**：以證交所、櫃買中心公布的盤後定價成交為準逐日校正，共 445 個交易日（2020-03-06 ~ 2026-01-13）。缺漏的盤後定價成交已補上（上市 178,204 筆、上櫃 74,006 筆），主要在 2020-04 ~ 2020-07、2023-05 ~ 2025-03、2025-10 ~ 2026-01；2025-04 ~ 2025-09 部分交易日（以週一為主）的 14:30:00 列為 13:30:00 收盤列的複本或非實際成交，已移除並改為實際的盤後定價成交。**2024-03-12 ~ 2024-08-19 尚在處理中，完成後另行公告**
+    * **2026-03-19** 09:43:24 ~ 09:44:14：上市股票缺漏的逐筆成交已補齊
+    * 分 K 開盤價、收盤價：同一秒有多筆成交時，原本未依實際成交先後取值，可能取到同一秒第二筆的價格（例：6477 2024-07-03 09:00 開盤價 48.05，正確為 48.00）；已改依實際成交先後計算，歷史分 K 已全部重新計算，最高價、最低價、成交量不受影響
+* [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增已知缺漏時段：以下時段上市股票的逐筆成交來源未提供，無法補齊（2024-07-03 當日共 242 檔上市股票的第一筆成交不是開盤價）：2022-03-01 ~ 2022-03-10 開盤後數段（最長約 2 分鐘）、2024-07-02 09:38:25 ~ 09:38:40、2024-07-03 09:00:11 ~ 09:00:22、2024-07-18 12:12:32 ~ 12:12:45、2026-03-10 11:19:45 ~ 11:19:55
 
 #### 2026-10-11
 * **資料校正公告**：[綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements) 的 `EPS` 已校正，其他科目不受影響：(1) **2026-03-31、2026-06-30** 兩季部分金融保險業（金控、銀行、票券、保險）股票缺 `EPS`（2026-03-31 共 38 家、2026-06-30 共 41 家），已補齊上市、上櫃、興櫃公司這兩季的 `EPS`；(2) 公開發行公司（非上市、上櫃、興櫃）自 **2025-12-31** 起缺 `EPS`（2025-12-31 共 173 家、2026-03-31 共 38 家、2026-06-30 共 280 家），已補齊；(3) 只申報半年報的公司（以興櫃公司為主），**2013～2025 年各年 12-31** 的 `EPS` 原為全年數值，已校正為下半年數值（全年減上半年），與其他季別同為單季口徑，上市、上櫃及按季申報的公司不受影響。**曾下載或查詢過上述資料的使用者請重新取得資料**
