@@ -2388,6 +2388,7 @@
 - 提供台股，上市、上櫃、興櫃，的分點資訊！
 - 資料區間：2021-06-30 ~ now
 - 資料更新時間 **星期一至五 18:30**，實際更新時間以 API 資料為主
+- 如需一次取得當日所有股票、所有券商分點，請使用 [一次拿特定日期，所有資料](#taiwanstocktradingdailyreportsecidagg-sponsorpro)
 
 !!! example
     === "Package"
@@ -2467,6 +2468,88 @@
             sell_volume: int64, # 賣出總股數
             buy_price: float, # 買進均價
             sell_price: float, # 賣出均價
+        }
+        ```
+
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用) { #taiwanstocktradingdailyreportsecidagg-sponsorpro }
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2021-06-30 ~ now，逐交易日提供，歷史資料亦可下載；非交易日沒有檔案。
+- 輸入 dataset、date 參數，回傳該日所有股票、所有券商分點的統計。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢；資料依 stock_id、securities_trader_id 排序。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_trading_daily_report_secid_agg(
+            start_date="2024-07-01",
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
+            "date": "2024-07-01",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockTradingDailyReportSecIdAgg",
+                date= "2024-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader | securities_trader_id | stock_id | date       | buy_volume | sell_volume | buy_price | sell_price |
+        |---:|:------------------|:---------------------|:---------|:-----------|-----------:|------------:|----------:|-----------:|
+        |  0 | 合庫              | 1020                 | 0050     | 2024-07-01 |     101016 |        1000 |    186.45 |     186.65 |
+        |  1 | 合庫台中          | 1021                 | 0050     | 2024-07-01 |       5521 |        5131 |    186.85 |     187.34 |
+        |  2 | 合庫台南          | 1022                 | 0050     | 2024-07-01 |        210 |        3100 |    186.66 |     186.52 |
+        |  3 | 合庫高雄          | 1023                 | 0050     | 2024-07-01 |       3068 |        6327 |    187.59 |     187.11 |
+        |  4 | 合庫嘉義          | 1024                 | 0050     | 2024-07-01 |       3053 |           0 |     187.9 |          0 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # 券商名稱
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str, # 日期
+            buy_volume: int64, # 買進總股數
+            sell_volume: int64, # 賣出總股數
+            buy_price: float64, # 買進均價（四捨五入至小數第 2 位）
+            sell_price: float64, # 賣出均價（四捨五入至小數第 2 位）
         }
         ```
 
