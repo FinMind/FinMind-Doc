@@ -1,4 +1,4 @@
-In Taiwan stock chip data, we have 26 datasets as follows:
+In Taiwan stock chip data, we have 27 datasets as follows:
 
 
 - [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-purchase-short-sale-taiwanstockmarginpurchaseshortsale)
@@ -29,6 +29,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - [Individual Stock Margin Maintenance TaiwanStockMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-maintenance-taiwanstockmarginmaintenance-only-available-for-sponsor-members)
 - [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#disposition-securities-period-taiwanstockdispositionsecuritiesperiod-only-available-for-backer-sponsor-members)
 - [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#day-trading-borrowing-fee-rate-taiwanstockdaytradingborrowingfeerate-only-available-for-backer-sponsor-members)
+- [Daily Stock Broker Concentration TaiwanStockBrokerDailyConcentration](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-stock-broker-concentration-taiwanstockbrokerdailyconcentration-only-available-for-sponsor-members)
 
 
 ----------------------------------
@@ -2387,6 +2388,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
+- To get all stocks and all securities trader branches for a day at once, use [Fetch all data for a specific date at once](#taiwanstocktradingdailyreportsecidagg-sponsorpro).
 
 !!! example
     === "Package"
@@ -2466,6 +2468,88 @@ In Taiwan stock chip data, we have 26 datasets as follows:
             sell_volume: int64, # total shares sold
             buy_price: float, # average buy price
             sell_price: float, # average sell price
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members) { #taiwanstocktradingdailyreportsecidagg-sponsorpro }
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: 2021-06-30 ~ now, one trading day at a time; historical data is also available for download. There is no file for non-trading days.
+- Providing the dataset and date parameters returns the aggregate statistics of all stocks and all securities trader branches for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query stock by stock. Rows are sorted by stock_id and securities_trader_id.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_trading_daily_report_secid_agg(
+            start_date="2024-07-01",
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the API key
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
+            "date": "2024-07-01",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the API key
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockTradingDailyReportSecIdAgg",
+                date= "2024-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader | securities_trader_id | stock_id | date       | buy_volume | sell_volume | buy_price | sell_price |
+        |---:|:------------------|:---------------------|:---------|:-----------|-----------:|------------:|----------:|-----------:|
+        |  0 | 合庫              | 1020                 | 0050     | 2024-07-01 |     101016 |        1000 |    186.45 |     186.65 |
+        |  1 | 合庫台中          | 1021                 | 0050     | 2024-07-01 |       5521 |        5131 |    186.85 |     187.34 |
+        |  2 | 合庫台南          | 1022                 | 0050     | 2024-07-01 |        210 |        3100 |    186.66 |     186.52 |
+        |  3 | 合庫高雄          | 1023                 | 0050     | 2024-07-01 |       3068 |        6327 |    187.59 |     187.11 |
+        |  4 | 合庫嘉義          | 1024                 | 0050     | 2024-07-01 |       3053 |           0 |     187.9 |          0 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # securities trader name
+            securities_trader_id: str, # securities trader code
+            stock_id: str, # stock symbol
+            date: str, # date
+            buy_volume: int64, # total shares bought
+            sell_volume: int64, # total shares sold
+            buy_price: float64, # average buy price (rounded to 2 decimals)
+            sell_price: float64, # average sell price (rounded to 2 decimals)
         }
         ```
 
@@ -3454,5 +3538,88 @@ In Taiwan stock chip data, we have 26 datasets as follows:
             margin_cost: float, # margin cost line (estimated moving weighted average cost of the margin position)
             margin_ratio: float, # margin purchase ratio applied (0.6 / 0.5)
             margin_maintenance: float, # margin maintenance ratio (%), e.g. 156.1
+        }
+        ```
+
+-----------------------------------
+#### Daily Stock Broker Concentration TaiwanStockBrokerDailyConcentration (only available for [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2021-06-30 ~ now
+- Data update time **Monday to Friday after market close**, the actual update time is based on the API data.
+- For each stock and each day, provides the total net buy volume of the top K net-buying brokers (`top_buy_volume`) and the total net sell volume of the top K net-selling brokers (`top_sell_volume`, a positive value)
+- Calculation: from the day's broker branch data (TaiwanStockTradingDailyReport), compute each broker's net buy (buy − sell); the sum over the top `top_k` net buyers is `top_buy_volume`, and the sum over the top `top_k` net sellers is `top_sell_volume`
+- `top_k` is currently fixed at **15**
+- Unit: **shares** (not lots)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_stock_broker_daily_concentration(
+            stock_id="2330",
+            start_date="2024-01-02",
+            end_date="2024-01-04",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to the login section to get the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockBrokerDailyConcentration",
+            "data_id": "2330",
+            "start_date": "2024-01-02",
+            "end_date": "2024-01-04",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to the login section to get the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockBrokerDailyConcentration",
+                data_id= "2330",
+                start_date= "2024-01-02",
+                end_date= "2024-01-04"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   |   top_k |   top_buy_volume |   top_sell_volume |
+        |---:|:-----------|:-----------|--------:|-----------------:|------------------:|
+        |  0 | 2024-01-02 | 2330       |      15 |         13614669 |           9900342 |
+        |  1 | 2024-01-03 | 2330       |      15 |          4589398 |          17133909 |
+        |  2 | 2024-01-04 | 2330       |      15 |          7182074 |           6952525 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock ID
+            top_k: int, # top K (currently fixed at 15)
+            top_buy_volume: int, # total net buy volume of the top_k net-buying brokers (shares)
+            top_sell_volume: int, # total net sell volume of the top_k net-selling brokers (shares, positive value)
         }
         ```

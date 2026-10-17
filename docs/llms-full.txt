@@ -442,6 +442,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Endpoint: `GET https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report_secid_agg` (專屬 endpoint，不走 /api/v4/data)
 - Params: data_id=2330, start_date=2024-07-01, end_date=2024-07-15
 - Columns: securities_trader, securities_trader_id, stock_id, date, buy_volume, sell_volume, buy_price, sell_price
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReportSecIdAgg&date=2024-07-01` returns whole-day parquet (all stocks × all broker branches) via signed URL, ignores data_id / securities_trader_id. Available from 2021-06-30 onwards. Python SDK: `api.taiwan_stock_trading_daily_report_secid_agg(start_date='2024-07-01', use_object=True)`.
 
 ### TaiwanStockBlockTradingDailyReport (鉅額交易買賣日報表)
 - Tier: Sponsor
@@ -510,6 +511,15 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Note: this dataset is an ESTIMATED indicator. Public disclosure provides only the per-stock margin purchase balance in lots, not the per-stock margin purchase amount, so there is no official ground truth; every service that publishes this indicator estimates it differently and the numbers will not match. Use it as a relative measure of margin pressure, not an exact value
 - Note: margin_ratio always uses the statutory maximum margin purchase ratio (TWSE 60%; TPEx 60% from 2014-11-10, 50% before). Stocks flagged for attention or under disposition may in practice get a lower ratio or have margin trading suspended
 - Note: margin_cost is a nominal value already adjusted for share-count events (splits / par value changes, capital reductions, stock dividends) and with the cash dividend per share deducted on the ex-dividend date; it is not the original purchase price
+
+### TaiwanStockBrokerDailyConcentration (每日個股主力集中度)
+- Tier: Sponsor
+- Data range: 2021-06-30 ~ now
+- Update: Mon-Fri after market close
+- Params: dataset=TaiwanStockBrokerDailyConcentration, data_id=2330, start_date=2024-01-02, end_date=2024-01-04
+- Columns: date, stock_id, top_k (currently fixed at 15), top_buy_volume (total net buy volume of the top_k net-buying brokers, shares), top_sell_volume (total net sell volume of the top_k net-selling brokers, shares, positive value)
+- Formula: from TaiwanStockTradingDailyReport, net buy per broker = buy - sell; top_buy_volume = sum of the top_k largest net buys; top_sell_volume = sum of the top_k largest net sells
+- Unit: shares (not lots)
 
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
