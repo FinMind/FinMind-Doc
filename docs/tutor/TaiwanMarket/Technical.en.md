@@ -1267,6 +1267,7 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 - Providing the dataset, stock_id, and start_date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22. In addition, 2019-05-16 only has data for a small number of ETFs.
+- Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,236 stocks took only 3 minutes 40 seconds.
 
 ??? note "TickType has been corrected across the full history (2018-12-07 ~ 2023-03-10)"
@@ -1388,6 +1389,7 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 - Providing the dataset and date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
 - Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22. In addition, 2019-05-16 only has data for a small number of ETFs.
+- Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 
 ??? note "TickType has been corrected across the full history (2018-12-07 ~ 2023-03-10)"
     Before 2023-03-13, trades whose side could not be determined were all labelled 1 (buyer-initiated), which made the buyer-initiated share noticeably too high. Every trading day in this range has been regenerated using the same rule applied from 2023-03-13 onward. If you downloaded any of these dates before, please fetch the data again.
@@ -2273,6 +2275,7 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 - Data range: individual stocks 2019-01-01 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
 - Data update time: **Monday to Friday 15:50**. The actual update time is based on the API data.
 - Some data is missing on these dates: 2019-02-20, 2019-02-21, 2019-02-22 (only the TAIEX index minute K is available on these three days; there is no individual-stock data). In addition, on 2019-05-16 only a small number of ETFs have individual-stock data.
+- Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
 
 ??? note "This table also provides the TAIEX index minute K"
