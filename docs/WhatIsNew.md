@@ -1,3 +1,6 @@
+#### 2026-10-19
+* **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：2022-10-31 ~ 2022-11-29 上市股票分點已校正（API 與整日下載檔皆已更新），其中 2022-10-31 ~ 2022-11-03 缺漏的上市股票分點已補齊，上櫃股票分點仍不完整；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 同步更新。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
+
 #### 2026-10-18
 * [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增已下市股票的逐筆與分 K 資料，資料區間 2018-12-07 ~ 2024-03-29（API 與整日下載檔皆可取得）
 * **資料校正公告**：[每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)：以下問題已修正，歷史資料已全部重新計算。**曾下載或查詢過的使用者請重新取得資料**
