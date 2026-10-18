@@ -2388,6 +2388,7 @@
 - 提供台股，上市、上櫃、興櫃，的分點資訊！
 - 資料區間：2021-06-30 ~ now
 - 資料更新時間 **星期一至五 18:30**，實際更新時間以 API 資料為主
+- 必須同時帶 data_id（股票代號）與 securities_trader_id（券商分點代號），以及 start_date、end_date；缺少任一 id 會回傳 HTTP 400，錯誤原因請見回應的 `detail` 欄位
 - 如需一次取得當日所有股票、所有券商分點，請使用 [一次拿特定日期，所有資料](#taiwanstocktradingdailyreportsecidagg-sponsorpro)
 
 !!! example

@@ -2388,6 +2388,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
+- Both data_id (stock code) and securities_trader_id (securities trader branch code) are required, along with start_date and end_date. If either id is missing, the API returns HTTP 400 and the reason is given in the `detail` field of the response.
 - To get all stocks and all securities trader branches for a day at once, use [Fetch all data for a specific date at once](#taiwanstocktradingdailyreportsecidagg-sponsorpro).
 
 !!! example
