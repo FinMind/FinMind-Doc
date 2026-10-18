@@ -1,5 +1,5 @@
 #### 2026-10-18
-* **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：已下市股票在下市前的逐筆成交先前未收錄，現已補齊並重新產製（API 與整日下載檔皆已更新），分 K 同步補上，共 2018-12-07 ~ 2024-03-29 的 1,281 個交易日、54 檔、28,845 檔·日（例：8179、6575、8490）；部分股票、日期來源未提供逐筆資料，無法補齊。**曾下載或查詢過上述期間資料的使用者請重新取得資料**
+* [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增已下市股票的逐筆與分 K 資料，資料區間 2018-12-07 ~ 2024-03-29（API 與整日下載檔皆可取得）
 
 #### 2026-10-17
 * [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) `type` 新增 `EffectOfExchangeRateChangesOnCashAndCashEquivalents`（匯率變動對現金及約當現金之影響），歷史資料已回補至 2013-03-31
