@@ -1,5 +1,8 @@
 #### 2026-10-18
 * [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增已下市股票的逐筆與分 K 資料，資料區間 2018-12-07 ~ 2024-03-29（API 與整日下載檔皆可取得）
+* **資料校正公告**：[每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)：以下問題已修正，歷史資料已全部重新計算。**曾下載或查詢過的使用者請重新取得資料**
+    * **前一交易日無成交**：次日參考價原本沿用更早的收盤價，已改依交易所規則，以前一日參考價為準，並依最後揭示買賣價調整（例：3085 2026-10-13 由 12.10 / 13.30 / 10.90 更正為 15.40 / 16.90 / 13.90）
+    * **興櫃轉上市、上櫃的股票**：轉板前的興櫃期間原本給了 ±10% 的漲跌停價，已更正為 0（興櫃無漲跌幅限制），`reference_price` 不變（例：1294 2024-07-09 的漲停 / 跌停由 192.5 / 157.5 更正為 0 / 0）
 
 #### 2026-10-17
 * [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) `type` 新增 `EffectOfExchangeRateChangesOnCashAndCashEquivalents`（匯率變動對現金及約當現金之影響），歷史資料已回補至 2013-03-31
