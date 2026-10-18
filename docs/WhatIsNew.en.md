@@ -1,3 +1,6 @@
+#### 2026-10-18
+* [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) add tick and minute K data of delisted stocks, covering 2018-12-07 ~ 2024-03-29 (available via both the API and whole-day download files)
+
 #### 2026-10-17
 * [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement) `type` adds `EffectOfExchangeRateChangesOnCashAndCashEquivalents` (effect of exchange rate changes on cash and cash equivalents); historical data has been backfilled to 2013-03-31
 * [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download

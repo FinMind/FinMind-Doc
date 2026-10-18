@@ -1,3 +1,6 @@
+#### 2026-10-18
+* [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增已下市股票的逐筆與分 K 資料，資料區間 2018-12-07 ~ 2024-03-29（API 與整日下載檔皆可取得）
+
 #### 2026-10-17
 * [現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) `type` 新增 `EffectOfExchangeRateChangesOnCashAndCashEquivalents`（匯率變動對現金及約當現金之影響），歷史資料已回補至 2013-03-31
 * [當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 新增 storage_objects 一次取得整日資料的下載方式（只限 sponsorpro 會員）；歷史資料亦可下載
