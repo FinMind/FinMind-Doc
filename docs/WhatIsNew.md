@@ -1,8 +1,10 @@
 #### 2026-10-19
+* [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增 2018-12-07 ~ 2018-12-28 的個股分 K 資料，資料區間更新為 2018-12-07 ~ now（API 與整日下載檔皆可取得）；2018-12-22 無個股資料，僅有加權指數 TAIEX 分 K
 * **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：2022-10-31 ~ 2022-11-29 上市股票分點已校正（API 與整日下載檔皆已更新），其中 2022-10-31 ~ 2022-11-03 缺漏的上市股票分點已補齊，上櫃股票分點仍不完整；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 同步更新。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
     * **興櫃股票逐筆缺漏**：2024-03-12 ~ 2025-09-30 共 366 個交易日，興櫃股票（含之後轉上市、上櫃的股票，如 2646）的逐筆原本未收錄，已補齊
     * **14:30:00 盤後定價交易**：2026-10-17 公告中尚在處理的 2024-03-12 ~ 2024-08-19（95 個交易日）已完成校正，缺漏的盤後定價成交已補上（上市 54,737 筆、上櫃 24,909 筆）
+    * **2025-02-17 ~ 2025-09-30（其中 128 個交易日）與 2026-03-19**：已依來源重新取得整日逐筆，部分逐筆成交的時間、筆數拆分與 TickType 原本與來源不一致，已校正；每日約 0.02% ~ 0.5% 的紀錄有變動，各股每日成交量合計幾乎不變（例：1711 2026-03-19 09:51:31.943518 成交量由 5 更正為 10、TickType 由 2 更正為 1）。2026-03-19 除 2026-10-17 公告補齊的 09:43:24 ~ 09:44:14 外，其他時段的紀錄也有變動
 
 #### 2026-10-18
 * [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增已下市股票的逐筆與分 K 資料，資料區間 2018-12-07 ~ 2024-03-29（API 與整日下載檔皆可取得）

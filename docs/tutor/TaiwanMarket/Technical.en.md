@@ -2073,9 +2073,9 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Taiwan Stock Minute K Table TaiwanStockKBar (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: individual stocks 2019-01-01 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
+- Data range: individual stocks 2018-12-07 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
 - Data update time: **Monday to Friday 15:50**. The actual update time is based on the API data.
-- Some data is missing on these dates: 2019-02-20, 2019-02-21, 2019-02-22 (only the TAIEX index minute K is available on these three days; there is no individual-stock data). In addition, on 2019-05-16 only a small number of ETFs have individual-stock data.
+- Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22 (only the TAIEX index minute K is available on these four days; there is no individual-stock data). In addition, on 2019-05-16 only a small number of ETFs have individual-stock data.
 - Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
 
@@ -2086,7 +2086,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
     df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
     ```
 
-    - Data range **2005-01-03 ~ now**, longer than the individual-stock minute K (which starts 2019-01-01)
+    - Data range **2005-01-03 ~ now**, longer than the individual-stock minute K (which starts 2018-12-07)
     - **271 rows** per trading day, covering `09:00:00` ~ `13:30:00`, one row per minute
     - An index has no trading volume, so `volume` is **always 0**; `open` / `high` / `low` / `close` are index values within that minute
     - Make-up trading Saturdays are covered as well
@@ -2223,7 +2223,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: 2019-01-02 ~ now, one trading day at a time.
+- Data range: 2018-12-07 ~ now, one trading day at a time.
 - Providing the dataset and date parameters returns all market data for that day.
 - Downloads the whole-day parquet via a signed URL — no need to query stock by stock.
 
