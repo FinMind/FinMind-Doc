@@ -1,6 +1,7 @@
 #### 2026-10-19
 * [台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 新增 2018-12-07 ~ 2018-12-28 的個股分 K 資料（API 與整日下載檔皆可取得）
 * **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：2022-10-31 ~ 2022-11-29 上市股票分點已校正（API 與整日下載檔皆已更新），其中 2022-10-31 ~ 2022-11-03 缺漏的上市股票分點已補齊，上櫃股票分點仍不完整；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 同步更新。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
+* **資料校正公告**：[每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)：2001-12-04 ~ 2026-10-16 期間共 14,804 筆參考價與漲跌停價原為 0 的資料已補上（連續多日無成交，或前一交易日無收盤行情的股票；例：00643K 2022-06-01、4305 2001-12-04）。**已下載的使用者，請將本地 `reference_price` 為 0 的資料依 `stock_id`、`date` 重新取得**（上市首日等沒有前一日收盤價的情況仍為 0）
 * **資料校正公告**：[台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），分 K 同步重新計算。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
     * **興櫃股票逐筆缺漏**：2024-03-12 ~ 2025-09-30 共 366 個交易日，興櫃股票（含之後轉上市、上櫃的股票，如 2646）的逐筆原本未收錄，已補齊
     * **14:30:00 盤後定價交易**：2026-10-17 公告中尚在處理的 2024-03-12 ~ 2024-08-19（95 個交易日）已完成校正，缺漏的盤後定價成交已補上（上市 54,737 筆、上櫃 24,909 筆）
