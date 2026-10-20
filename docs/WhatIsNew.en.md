@@ -1,3 +1,6 @@
+#### 2026-10-20
+* [Day Trading Short-Selling Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor): added **OTC (TPEX)** data — previously only TWSE-listed stocks were covered; OTC stocks' day-trading borrowing fee rates are now included as well
+
 #### 2026-09-24
 * **Data correction notice**: [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members), [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members): holdings for 11 ETFs were missing on **2026-02-11** (the last trading day before the Lunar New Year holiday) and have been filled in. **If you downloaded or queried data for 2026-02-11 or 2026-02-23 before, please fetch it again**
     * ETFs filled in: 00980A, 00981A, 00981D, 00982A, 00983A, 00985A, 00988A, 00990A, 00992A, 00994A, 00995A

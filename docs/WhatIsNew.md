@@ -1,3 +1,6 @@
+#### 2026-10-20
+* [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)：新增**上櫃 (TPEX)** 資料，原本僅涵蓋上市 (TWSE)，現已同時收錄上櫃個股的當沖券差借券費率
+
 #### 2026-09-24
 * **資料校正公告**：[主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor)、[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor)：**2026-02-11**（春節前最後一個交易日）有 11 檔 ETF 缺持股資料，已補齊。**曾下載或查詢過 2026-02-11、2026-02-23 資料的使用者請重新取得資料**
     * 補齊的 ETF：00980A、00981A、00981D、00982A、00983A、00985A、00988A、00990A、00992A、00994A、00995A
