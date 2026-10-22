@@ -329,6 +329,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 2005-01-01 ~ now
 - Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
+- Warrants: included (stock_id = warrant code); TWSE warrants from 2012-05-02, TPEx warrants from 2021-01-04
 - Update: Mon-Fri 20:00
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySell, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySell, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
@@ -341,6 +342,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Same data as TaiwanStockInstitutionalInvestorsBuySell but wide format: one row per (date, stock_id), each institutional investor's buy/sell as its own column
 - Data range: 2005-01-01 ~ now
 - Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
+- Warrants: included (stock_id = warrant code); TWSE warrants from 2012-05-02, TPEx warrants from 2021-01-04
 - Update: Mon-Fri 20:00
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySellWide, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySellWide, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)

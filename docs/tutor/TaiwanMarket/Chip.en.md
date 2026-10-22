@@ -314,6 +314,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
 - Data range: 2005-01-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
+- Warrants: institutional investors' buy/sell for warrants is included (`stock_id` is the warrant code) — TWSE-listed warrants from 2012-05-02, TPEx-listed warrants from 2021-01-04
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
 
 ??? note "Values may be updated slightly after the initial release"
@@ -514,6 +515,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Same source data as `TaiwanStockInstitutionalInvestorsBuySell`, but in **wide format**: one row per trading day, with each institutional investor's buy/sell flattened into its own column — no manual pivot needed.
 - Data range: 2005-01-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
+- Warrants: institutional investors' buy/sell for warrants is included (`stock_id` is the warrant code) — TWSE-listed warrants from 2012-05-02, TPEx-listed warrants from 2021-01-04
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
 
 ??? note "Values may be updated slightly after the initial release"
