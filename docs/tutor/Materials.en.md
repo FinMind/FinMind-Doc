@@ -1,8 +1,8 @@
 In the commodities market, we offer 2 datasets, as follows:
 
-- [Gold Price Table GoldPrice](https://finmind.github.io/en/tutor/Materials/#goldprice)
+- [Gold Price Table GoldPrice](https://finmind.github.io/en/tutor/Materials/#gold-price-table-goldprice)
 
-- [Crude Oil Price Table CrudeOilPrices](https://finmind.github.io/en/tutor/Materials/#crudeoilprices)
+- [Crude Oil Price Table CrudeOilPrices](https://finmind.github.io/en/tutor/Materials/#crude-oil-price-table-crudeoilprices)
 
 In addition, the following list summarizes the available crude oil benchmarks. There are currently 2 of them.
 

@@ -1,10 +1,10 @@
 In European stock data, we offer 1 dataset, as follows:
 
-- [Europe Stock Price Table EuropeStockPrice](https://finmind.github.io/en/tutor/EuropeMarket/Technical/#europestockprice)
+- [Europe Stock Price Table EuropeStockPrice](https://finmind.github.io/en/tutor/EuropeMarket/Technical/#europe-stock-price-table-europestockprice)
 
 In addition, the following list summarizes the available datasets:
 
-- [Europe Stock List EuropeStockInfo](https://finmind.github.io/en/tutor/EuropeMarket/Technical/#europestockinfo)
+- [Europe Stock List EuropeStockInfo](https://finmind.github.io/en/tutor/EuropeMarket/Technical/#europe-stock-list-europestockinfo)
 
 The usage of each dataset is explained one by one below. For the specific dataset schemas, please refer to [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 

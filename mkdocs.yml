@@ -58,6 +58,7 @@ nav:
         - 登入說明: "login.md"
         - 更新 Token: "update_token.md"
     - API 使用次數: "api_usage_count.md"
+    - 方案與價格: "Pricing.md"
     - 資料集:
         - 台灣市場:
             - 總覽: "tutor/TaiwanMarket/DataList.md"
@@ -172,6 +173,7 @@ plugins:
                 登入說明: Login Guide
                 更新 Token: Update Token
                 API 使用次數: API Usage Count
+                方案與價格: Pricing
                 資料集: Datasets
                 台灣市場: Taiwan Market
                 技術面: Technical

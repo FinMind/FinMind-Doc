@@ -8,7 +8,9 @@
 
 ## 安裝 { #install }
 
-請先至 [FinMind](https://finmindtrade.com/analysis/#/account/register) 註冊取得 Token，並安裝 [uv](https://docs.astral.sh/uv/)。
+請先至 [FinMind](https://finmindtrade.com/analysis/#/account/register) 註冊取得 Token。
+
+**Claude Desktop（一鍵安裝，免裝 Python、免改設定檔）：** 下載 [finmind.mcpb](https://github.com/FinMind/FinMind-MCP/releases/latest/download/finmind.mcpb)，在檔案上點兩下，於安裝視窗貼上 Token 即可。若點兩下沒有反應，開啟 Claude Desktop「設定 → 擴充功能（Extensions）」，把檔案拖進視窗。
 
 **Claude Code（一鍵安裝）：** 先 `export FINMIND_TOKEN=your_token_here`，再於 Claude Code 內輸入：
 
@@ -19,7 +21,7 @@
 
 裝好後 `/reload-plugins` 連線、`/mcp` 確認。（plugin 讀環境變數 `${FINMIND_TOKEN}`，需在啟動 Claude Code 前先 export。）
 
-**其他工具（Claude Desktop / Cursor / Windsurf / Gemini CLI）：** 在該工具的 MCP 設定檔加入：
+**其他工具（Cursor / Windsurf / Gemini CLI，或想手動設定的 Claude Desktop）：** 先安裝 [uv](https://docs.astral.sh/uv/)，再於該工具的 MCP 設定檔加入：
 
 ```json
 {
@@ -36,11 +38,11 @@
 **Codex CLI** 的設定格式不同（用 `~/.codex/config.toml` 的 `[mcp_servers]`），或一行 `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`。
 
 !!! tip "Windows 使用者"
-    上述指令以 macOS / Linux 為例，Windows 請改在 **PowerShell** 操作：
+    Claude Desktop 用上方一鍵安裝即可，不需要以下步驟。其他工具的指令以 macOS / Linux 為例，Windows 請改在 **PowerShell** 操作：
 
     - 安裝 uv：`winget install --id astral-sh.uv -e`（裝完關閉 PowerShell 重開新視窗讓 PATH 生效），驗證 `uvx finmind-mcp --help`。
     - 設定 Token：`$env:FINMIND_TOKEN = "your_token_here"`（僅當前視窗）或 `setx FINMIND_TOKEN "your_token_here"`（永久，需重開程式生效）；也可直接填入上方設定檔的 `env` 區塊，最不易出錯。
-    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同，請用 `where.exe uvx` 查出完整路徑（通常是 `C:\Users\<帳號>\.local\bin\uvx.exe`），填入設定檔的 `command`；JSON 中反斜線要寫成 `\\`。
+    - 若工具（如 Claude Desktop）顯示找不到指令或連線失敗：圖形介面應用讀到的 PATH 和終端機不同。先把該工具**完全結束後重開**，多半就能解決；仍不行再用 `where.exe uvx` 查出完整路徑（winget 安裝通常是 `C:\Users\<帳號>\AppData\Local\Microsoft\WinGet\Links\uvx.exe`，請以實際印出的第一行為準），填入設定檔的 `command`。JSON 中每個反斜線都要寫成 `\\`（或改用正斜線 `/`），直接貼上單一反斜線會讓設定檔變成不合法的 JSON。
 
     完整步驟（pipx 路線、各 host 的 Windows 設定檔路徑、常見問題）詳見 [Windows 安裝指引](https://github.com/FinMind/FinMind-MCP/blob/master/install/windows.md)。
 
@@ -86,7 +88,7 @@
 
 ## 資料欄位注意事項 { #caveats }
 
-以下為 AI agent 判讀查詢結果時常見的欄位定義差異（台股股價、期貨逐筆），並非資料錯誤，請於分析時一併考量。
+以下為 AI agent 判讀查詢結果時常見的欄位定義差異（台股股價、期貨／選擇權逐筆），並非資料錯誤，請於分析時一併考量。
 
 ??? warning "興櫃個股：`open` 為「前日均價」，可能落在當日高低之外（非資料錯誤）"
     興櫃股票採**議價交易、沒有開盤價**。因此本表對興櫃個股，`open` 欄填入的是 **「前日均價」**，而非當日開盤價；`max` / `min` / `close` 仍為當日最高 / 最低 / 最後成交價，皆正確可用。
@@ -112,3 +114,14 @@
     - **00:00–05:00** 的逐筆，歸屬於 TaiwanFuturesDaily 中**交易日 D（當日）**的夜盤（after_market）。
     - **08:45–13:45** 的逐筆，歸屬於交易日 D 的一般交易時段（position）。
     - **15:00–24:00** 的逐筆，屬於**次一交易日**的夜盤。
+
+??? note "選擇權逐筆（TaiwanOptionTick）成交量（volume）計量方式"
+    與期貨逐筆相同，選擇權逐筆成交量採「雙邊」計量：每一筆撮合成交會同時記錄買方與賣方各一次，常見為兩筆內容相同的紀錄，並非重複資料。將逐筆 volume 加總後，約為日成交資料 TaiwanOptionDaily（單邊口數）的 **2 倍**。
+
+    **逐序列核對公式**：某一序列（contract_date、履約價、買賣權相同）在同一交易時段內，
+
+    `該序列逐筆 volume 加總 ＝ 2 × TaiwanOptionDaily 該序列 volume − 2 × 該序列議價申報鉅額交易口數`
+
+    - 議價申報的鉅額交易不會出現在逐筆成交資料中，但會計入日成交量，並非逐筆資料缺漏。
+    - 逐筆資料**沒有內外盤（主動買／賣方向）欄位**。
+    - 夜盤逐筆的交易日歸屬與期貨相同：00:00–05:00 屬當日交易日的夜盤（after_market），15:00–24:00 屬次一交易日的夜盤。

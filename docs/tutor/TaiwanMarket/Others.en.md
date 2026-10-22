@@ -1,9 +1,9 @@
 
 For Taiwan stock news and other data, we have 3 datasets, as listed below:
 
-- [Related News Table TaiwanStockNews](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanstocknews)
-- [Taiwan Monthly Business Indicator Table TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
-- [Per-Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor)
+- [Related News Table TaiwanStockNews](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#related-news-table-taiwanstocknews)
+- [Taiwan Monthly Business Indicator Table TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwan-monthly-business-indicator-table-taiwanbusinessindicator-only-available-to-backersponsor-members)
+- [Per-Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#per-company-industry-chain-taiwanstockindustrychain-only-available-to-backersponsor-members)
 
 
 #### Related News Table TaiwanStockNews

@@ -8,7 +8,9 @@ If your AI tool supports [MCP (Model Context Protocol)](https://modelcontextprot
 
 ## Installation { #install }
 
-First register at [FinMind](https://finmindtrade.com/analysis/#/account/register) to get a token, and install [uv](https://docs.astral.sh/uv/).
+First register at [FinMind](https://finmindtrade.com/analysis/#/account/register) to get a token.
+
+**Claude Desktop (one-click, no Python or config editing needed):** download [finmind.mcpb](https://github.com/FinMind/FinMind-MCP/releases/latest/download/finmind.mcpb), double-click it, and paste your token in the install dialog. If double-clicking does nothing, open Claude Desktop → Settings → Extensions and drag the file into the window.
 
 **Claude Code (one-click):** first `export FINMIND_TOKEN=your_token_here`, then run inside Claude Code:
 
@@ -19,7 +21,7 @@ First register at [FinMind](https://finmindtrade.com/analysis/#/account/register
 
 After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugin reads `${FINMIND_TOKEN}` from the environment, so export it before launching Claude Code.)
 
-**Other tools (Claude Desktop / Cursor / Windsurf / Gemini CLI):** add this to the tool's MCP config file:
+**Other tools (Cursor / Windsurf / Gemini CLI, or Claude Desktop if you prefer manual setup):** install [uv](https://docs.astral.sh/uv/) first, then add this to the tool's MCP config file:
 
 ```json
 {
@@ -36,11 +38,11 @@ After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugi
 **Codex CLI** uses a different config format (`[mcp_servers]` in `~/.codex/config.toml`), or a one-liner: `codex mcp add finmind --env FINMIND_TOKEN=... -- uvx finmind-mcp`.
 
 !!! tip "Windows users"
-    The commands above use macOS / Linux syntax. On Windows, use **PowerShell** instead:
+    For Claude Desktop, the one-click install above is all you need. For other tools, the commands above use macOS / Linux syntax; on Windows, use **PowerShell** instead:
 
     - Install uv: `winget install --id astral-sh.uv -e` (close and reopen PowerShell afterwards so PATH takes effect), then verify with `uvx finmind-mcp --help`.
     - Set the token: `$env:FINMIND_TOKEN = "your_token_here"` (current window only) or `setx FINMIND_TOKEN "your_token_here"` (persistent; restart apps to pick it up) — or simply put it in the config file's `env` block above, which is the most reliable option.
-    - If your tool (e.g. Claude Desktop) reports the command not found or fails to connect: GUI apps see a different PATH than your terminal. Run `where.exe uvx` to find the full path (usually `C:\Users\<name>\.local\bin\uvx.exe`) and use it as `command` in the config; escape backslashes as `\\` in JSON.
+    - If your tool (e.g. Claude Desktop) reports the command not found or fails to connect: GUI apps see a different PATH than your terminal. First fully quit and reopen the tool — that usually fixes it. If not, run `where.exe uvx` to find the full path (for a winget install, typically `C:\Users\<name>\AppData\Local\Microsoft\WinGet\Links\uvx.exe`; use the first line it prints) and use it as `command` in the config. In JSON, write every backslash as `\\` (or use forward slashes `/`) — pasting single backslashes makes the config file invalid JSON.
 
     For the full walkthrough (pipx route, per-host Windows config paths, troubleshooting), see the [Windows installation guide](https://github.com/FinMind/FinMind-MCP/blob/master/install/windows.md).
 
@@ -87,7 +89,7 @@ Which 5 stocks had the highest institutional net-buy value today?
 
 ## Data field caveats { #caveats }
 
-The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures ticks). They are not data errors:
+The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures / options ticks). They are not data errors:
 
 ??? warning "Emerging stocks: `open` is the *previous-day average price*, and may fall outside the day's high/low (not a data error)"
     Emerging-board stocks trade by negotiation and **have no opening price**. For emerging stocks this table therefore fills `open` with the **previous-day average price**, not an opening price; `max` / `min` / `close` are still the day's high / low / last traded price and are correct.
@@ -112,3 +114,14 @@ The following are common field-definition differences to keep in mind when an AI
     - **00:00–05:00** ticks belong to the after-hours (after_market) session of **trading day D** in TaiwanFuturesDaily.
     - **08:45–13:45** ticks belong to the regular session (position) of trading day D.
     - **15:00–24:00** ticks belong to the after-hours session of the **next trading day**.
+
+??? note "Options ticks (TaiwanOptionTick): how volume is counted"
+    As with futures ticks, options tick volume is counted on a **double-sided** basis: each matched trade records both the buy side and the sell side once, typically appearing as two identical rows; these are not duplicates. The summed tick volume is about **2×** the (single-side) volume in the daily data TaiwanOptionDaily.
+
+    **Per-series reconciliation**: for a given series (same contract_date, strike and call/put) within the same trading session,
+
+    `sum of tick volume of that series = 2 × TaiwanOptionDaily volume of that series − 2 × negotiated block-trade lots of that series`
+
+    - Negotiated block trades are not included in tick data, but are included in daily volume; this is not missing tick data.
+    - Tick data has **no buy/sell-initiated (aggressor side) field**.
+    - Trading-day attribution of after-hours ticks is the same as for futures: 00:00–05:00 belongs to trading day D's after-hours session (after_market), 15:00–24:00 to the next trading day's after-hours session.

@@ -1,25 +1,25 @@
 In Taiwan stock technical data, we have 20 datasets, as follows:
 
-- [Taiwan Stock Overview TaiwanStockInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
-- [Taiwan Stock Overview (with Warrants) TaiwanStockInfoWithWarrant](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
-- [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
-- [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
-- [Taiwan Stock Price Table TaiwanStockPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-- [Taiwan Stock Weekly K Table TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)
-- [Taiwan Stock Monthly K Table TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)
-- [Taiwan Adjusted Stock Price Table TaiwanStockPriceAdj](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
-- [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)
-- [Taiwan Individual Stock PER, PBR Table TaiwanStockPER](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)
-- [Order and Trade Statistics Every 5 Seconds TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
-- [Taiwan Weighted Index TaiwanVariousIndicators5Seconds](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanvariousindicators5seconds)
-- [Day Trading Targets and Volume/Value TaiwanStockDayTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading)
-- [Weighted/OTC Total Return Index TaiwanStockTotalReturnIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstocktotalreturnindex)
-- [Taiwan Individual Stock 10-Year Line Table TaiwanStock10Year](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstock10year-backersponsor)
-- [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor)
-- [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#5-taiwanstockevery5secondsindex-backersponsor)
-- [Taiwan Stock Suspension Announcement TaiwanStockSuspended](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)
-- [Day Trading Sell-First-Then-Buy Suspension Notice TaiwanStockDayTradingSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor)
-- [Daily Price Limit TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)
+- [Taiwan Stock Overview TaiwanStockInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-overview-taiwanstockinfo)
+- [Taiwan Stock Overview (with Warrants) TaiwanStockInfoWithWarrant](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-overview-with-warrants-taiwanstockinfowithwarrant)
+- [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-warrant-underlying-reference-table-taiwanstockinfowithwarrantsummary-available-only-to-sponsor-members)
+- [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-trading-date-taiwanstocktradingdate)
+- [Taiwan Stock Price Table TaiwanStockPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-stock-price-information-taiwanstockprice)
+- [Taiwan Stock Weekly K Table TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-weekly-k-table-taiwanstockweekprice-available-only-to-backer-sponsor-members)
+- [Taiwan Stock Monthly K Table TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-monthly-k-table-taiwanstockmonthprice-available-only-to-backer-sponsor-members)
+- [Taiwan Adjusted Stock Price Table TaiwanStockPriceAdj](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-adjusted-stock-price-table-taiwanstockpriceadj-available-only-to-backer-sponsor-members)
+- [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members)
+- [Taiwan Individual Stock PER, PBR Table TaiwanStockPER](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#individual-stock-per-pbr-table-taiwanstockper)
+- [Order and Trade Statistics Every 5 Seconds TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#order-and-trade-statistics-every-5-seconds-taiwanstockstatisticsoforderbookandtrade)
+- [Taiwan Weighted Index TaiwanVariousIndicators5Seconds](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#weighted-index-taiwanvariousindicators5seconds)
+- [Day Trading Targets and Volume/Value TaiwanStockDayTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#day-trading-targets-and-volumevalue-taiwanstockdaytrading)
+- [Weighted/OTC Total Return Index TaiwanStockTotalReturnIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#weightedotc-total-return-index-taiwanstocktotalreturnindex)
+- [Taiwan Individual Stock 10-Year Line Table TaiwanStock10Year](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-individual-stock-10-year-line-table-taiwanstock10year-available-only-to-backer-sponsor-members)
+- [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members)
+- [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members)
+- [Taiwan Stock Suspension Announcement TaiwanStockSuspended](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-suspension-announcement-taiwanstocksuspended-available-only-to-backer-sponsor-members)
+- [Day Trading Sell-First-Then-Buy Suspension Notice TaiwanStockDayTradingSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#day-trading-sell-first-then-buy-suspension-notice-taiwanstockdaytradingsuspension-available-only-to-backer-sponsor-members)
+- [Daily Price Limit TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-price-limit-taiwanstockpricelimit-available-only-to-backer-sponsor-members)
 
 
 ----------------------------------
@@ -1064,14 +1064,17 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one stock's data for one day.)
 
-- Data range: 2019-01-01 ~ now.
+- Data range: 2018-12-07 ~ now.
 - Providing the dataset, stock_id, and start_date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
-- Some data is missing on this date: 2019-02-20.
+- Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22. In addition, 2019-05-16 only has data for a small number of ETFs.
+- Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,236 stocks took only 3 minutes 40 seconds.
 
-??? note "Historical limitation of TickType in 2019"
-    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+??? note "TickType has been corrected across the full history (2018-12-07 ~ 2023-03-10)"
+    Before 2023-03-13, trades whose side could not be determined were all labelled 1 (buyer-initiated), which made the buyer-initiated share noticeably too high. Every trading day in this range has been regenerated using the same rule applied from 2023-03-13 onward. If you downloaded any of these dates before, please fetch the data again.
+
+    **For dates before 2021-06-22, about 8% ~ 10% of trades have TickType 0 (undetermined)**, because the source data itself carries no side information for those trades, while the old version labelled them all as buyer-initiated. If you group statistics by TickType, treat 0 separately rather than merging it into either side.
 
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares**. Both units therefore appear in the same day of data. This is a difference between markets, not a data error. The same rule applies to `volume` in `TaiwanStockKBar` (minute K).
@@ -1162,11 +1165,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
     === "DataFrame"
         |    | date       |   stock_id |   deal_price |   volume | Time         |   TickType |
         |---:|:-----------|-----------:|-------------:|---------:|:-------------|-----------:|
-        |  0 | 2020-01-02 |       2330 |        332.5 |      520 | 09:00:00.000 |          0 |
-        |  1 | 2020-01-02 |       2330 |        332.5 |      520 | 09:00:00.646 |          0 |
-        |  2 | 2020-01-02 |       2330 |        333   |       45 | 09:00:05.000 |          0 |
-        |  3 | 2020-01-02 |       2330 |        333   |       45 | 09:00:05.660 |          0 |
-        |  4 | 2020-01-02 |       2330 |        333   |       22 | 09:00:10.000 |          0 |
+        |  0 | 2020-01-02 |       2330 |        332.5 |      520 | 09:00:00.646 |          0 |
+        |  1 | 2020-01-02 |       2330 |        333   |       45 | 09:00:05.660 |          0 |
+        |  2 | 2020-01-02 |       2330 |        333   |       22 | 09:00:10.672 |          1 |
+        |  3 | 2020-01-02 |       2330 |        333   |       15 | 09:00:15.686 |          1 |
+        |  4 | 2020-01-02 |       2330 |        333.5 |        3 | 09:00:20.700 |          1 |
     === "Schema"
         ```
         {
@@ -1183,13 +1186,16 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: 2019-01-01 ~ now.
+- Data range: 2018-12-07 ~ now.
 - Providing the dataset and date parameters returns data for that day.
 - Data update time: **Monday to Friday 15:30**. The actual update time is based on the API data.
-- Some data is missing on this date: 2019-02-20.
+- Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22. In addition, 2019-05-16 only has data for a small number of ETFs.
+- Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 
-??? note "Historical limitation of TickType in 2019"
-    For all of 2019 (2019-01-01 ~ 2019-12-31), the TickType column is always 1, so buy/sell-side classification is not available for that year. Complete TickType values (0: unknown, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)) are available from 2020-01-02 onward. Do not use TickType for buy/sell-side analysis on 2019 data.
+??? note "TickType has been corrected across the full history (2018-12-07 ~ 2023-03-10)"
+    Before 2023-03-13, trades whose side could not be determined were all labelled 1 (buyer-initiated), which made the buyer-initiated share noticeably too high. Every trading day in this range has been regenerated using the same rule applied from 2023-03-13 onward. If you downloaded any of these dates before, please fetch the data again.
+
+    **For dates before 2021-06-22, about 8% ~ 10% of trades have TickType 0 (undetermined)**, because the source data itself carries no side information for those trades, while the old version labelled them all as buyer-initiated. If you group statistics by TickType, treat 0 separately rather than merging it into either side.
 
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares**. Both units therefore appear in the same day of data. This is a difference between markets, not a data error. The same rule applies to `volume` in `TaiwanStockKBar` (minute K).
@@ -1199,6 +1205,12 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
     **Example**: for 1294, the `emerging` row has `date` 2024-09-25 while the `tpex` row carries the current date, so it is a TPEx stock today and its `volume` is in lots; 1260 has only an `emerging` row carrying the current date, so it is still an Emerging stock and its `volume` is in shares.
 
     Also note, when reconciling tick data against the daily volume in `TaiwanStockPrice`: for TWSE / TPEx stocks the daily volume **includes block trades** (see `TaiwanStockBlockTrade`), while tick data does not, so the two will not match exactly.
+
+??? note "Row order of the whole-day files"
+    The whole-day files are sorted by `stock_id` and `Time`; when several trades share the same time, they are ordered by actual execution sequence. You can take each stock's first row (the open) or its last trade before a given time directly in file order.
+
+??? note "Multiple rows with the same time, price and volume are not duplicates"
+    Under continuous trading, a stock can have several rows with identical time, deal price and volume. These are usually separate real trades from one large order being matched in several fills, not duplicate data, so please do not deduplicate them. You can reconcile them against the daily trade count (`Trading_turnover`) and volume in `TaiwanStockPrice`.
 
 !!! example
     === "Package"
@@ -1254,13 +1266,13 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 
 !!! output
     === "DataFrame"
-        |    | date       |   stock_id |   deal_price |   volume | Time     |   TickType |
-        |---:|:-----------|-----------:|-------------:|---------:|:---------|-----------:|
-        |  0 | 2019-01-02 |       0050 |        75.85 |      167 | 09:00:03 |          1 |
-        |  1 | 2019-01-02 |       0050 |        75.90 |       11 | 09:00:08 |          1 |
-        |  2 | 2019-01-02 |       0050 |        75.85 |        2 | 09:00:18 |          1 |
-        |  3 | 2019-01-02 |       0050 |        75.85 |       31 | 09:00:23 |          1 |
-        |  4 | 2019-01-02 |       0050 |        75.85 |       19 | 09:00:28 |          1 |
+        |    | date       |   stock_id |   deal_price |   volume | Time         |   TickType |
+        |---:|:-----------|-----------:|-------------:|---------:|:-------------|-----------:|
+        |  0 | 2019-01-02 |       0050 |        75.85 |      167 | 09:00:03.794 |          0 |
+        |  1 | 2019-01-02 |       0050 |        75.90 |       11 | 09:00:08.813 |          1 |
+        |  2 | 2019-01-02 |       0050 |        75.85 |        2 | 09:00:18.852 |          2 |
+        |  3 | 2019-01-02 |       0050 |        75.85 |       31 | 09:00:23.871 |          2 |
+        |  4 | 2019-01-02 |       0050 |        75.85 |       19 | 09:00:28.890 |          2 |
     === "Schema"
         ```
         {
@@ -1452,6 +1464,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 (Due to the large data volume, each request only provides one day's data.)
 
 - Data range: 2005-01-01 ~ now
+
+??? note "Scope of cumulative trades"
+    Cumulative trades (`TotalDealOrder`, `TotalDealVolume`, `TotalDealMoney`) only count regular trades on the centralized market and **exclude odd-lot, block, after-hours fixed-price, auction and tender trades**, so the closing total is slightly lower than the daily market volume, and the gap widens on days with large block trades. Volume is in lots (1,000 shares) and value in millions of NTD.
+
+    Interval: one row per minute until 2011-01-14, every 15 seconds from 2011-01-17, every 10 seconds from 2014-02-24, and every 5 seconds from 2014-12-29.
 
 !!! example
     === "Package"
@@ -2056,9 +2073,10 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Taiwan Stock Minute K Table TaiwanStockKBar (available only to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: individual stocks 2019-01-01 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
+- Data range: individual stocks 2018-12-07 ~ now; **TAIEX index (`data_id="TAIEX"`) 2005-01-03 ~ now**
 - Data update time: **Monday to Friday 15:50**. The actual update time is based on the API data.
-- Some data is missing on this date: 2019-02-20.
+- Some data is missing on these dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22 (only the TAIEX index minute K is available on these four days; there is no individual-stock data). In addition, on 2019-05-16 only a small number of ETFs have individual-stock data.
+- Ticks of TWSE-listed stocks are missing in some periods and cannot be filled in: several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 - Enabling Async significantly reduces the data update time. In a Colab test, downloading 2,175 stocks took only 2 minutes 31 seconds.
 
 ??? note "This table also provides the TAIEX index minute K"
@@ -2068,13 +2086,18 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
     df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
     ```
 
-    - Data range **2005-01-03 ~ now**, longer than the individual-stock minute K (which starts 2019-01-01)
+    - Data range **2005-01-03 ~ now**, longer than the individual-stock minute K (which starts 2018-12-07)
     - **271 rows** per trading day, covering `09:00:00` ~ `13:30:00`, one row per minute
     - An index has no trading volume, so `volume` is **always 0**; `open` / `high` / `low` / `close` are index values within that minute
     - Make-up trading Saturdays are covered as well
 
 ??? note "The unit of `volume` differs by market: lots for TWSE / TPEx, shares for Emerging"
     The `volume` column keeps each market's native trading unit: **TWSE and TPEx stocks are in lots (1 lot = 1,000 shares); Emerging stocks are in shares** — the same rule as `TaiwanStockPriceTick`. For how to determine a stock's market (and the caveat that transferred stocks keep two rows in `TaiwanStockInfo`), see the note of the same name in the `TaiwanStockPriceTick` section.
+
+??? note "A 13:33 minute K for TWSE / TPEx stocks is the delayed closing auction"
+    When the closing call auction of a TWSE or TPEx stock triggers the price stabilization measure, the closing match is delayed and executes at **13:33**, so that day has an extra 13:33 minute K. This bar is **the official closing match of the day** — a valid trade that should be kept. Its `close` equals the official closing price of the day (`close` in `TaiwanStockPrice`), which you can use to identify delayed-close days.
+
+    Emerging stocks trade continuously until 15:00, so 13:33 is just an ordinary intraday minute for them and has nothing to do with a delayed close. Because a stock may move from the Emerging board to TWSE / TPEx, decide the market by its status on that day.
 
 !!! example
     === "Package"
@@ -2200,7 +2223,7 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 #### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (Due to the large data volume, each request only provides one day's data.)
 
-- Data range: 2019-01-02 ~ now, one trading day at a time.
+- Data range: 2018-12-07 ~ now, one trading day at a time.
 - Providing the dataset and date parameters returns all market data for that day.
 - Downloads the whole-day parquet via a signed URL — no need to query stock by stock.
 
@@ -2285,6 +2308,11 @@ In Taiwan stock technical data, we have 20 datasets, as follows:
 (Due to the large data volume, each request only provides one day's data.)
 
 - Data range: 2005-01-03 ~ now
+
+??? note "13:30:00 closing value, index name history and known gaps"
+    - **13:30:00 is the official closing index**: for both TWSE and TPEx indices, the 13:30:00 value is the day's closing index. After TPEx indices enter the closing auction at 13:25, the published intraday value stops changing, so 13:25 ~ 13:29:55 stay at the same value and 13:30:00 is the closing index.
+    - **TPEx chemical index name**: `Chemical` for the full history (the former name `ChemicalEngineering`, used from 2007-07-02 to 2025-09-12, has been merged into `Chemical`).
+    - **Known gap**: on 2017-05-08 the raw TPEx index data starts at 09:00:05, with no 09:00:00 point.
 
 !!! example
     === "Package"

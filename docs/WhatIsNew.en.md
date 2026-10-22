@@ -1,19 +1,134 @@
 #### 2026-10-20
 * [Day Trading Short-Selling Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor): added **OTC (TPEX)** data — previously only TWSE-listed stocks were covered; OTC stocks' day-trading borrowing fee rates are now included as well
 
+#### 2026-10-19
+* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) adds individual-stock minute K data for 2018-12-07 ~ 2018-12-28 (available via both the API and whole-day download files)
+* **Data correction notice**: [Taiwan Stock Trading Daily Report by Branch TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-trading-daily-report-by-branch-query-by-stock_id-taiwanstocktradingdailyreport-only-available-for-sponsor-members): branch data for TWSE-listed stocks from 2022-10-31 to 2022-11-29 has been corrected (both the API and whole-day download files are updated); missing TWSE-listed branch data on 2022-10-31 ~ 2022-11-03 has been filled in, while TPEx-listed branch data on those days is still incomplete. [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members) has been updated accordingly. **If you downloaded or queried data for this period, please fetch it again**
+* **Data correction notice**: [Daily Price Limit TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-price-limit-taiwanstockpricelimit-available-only-to-backer-sponsor-members): 14,804 records between 2001-12-04 and 2026-10-16 whose reference price and price limits were 0 have been filled in (stocks with no trades for several consecutive days, or with no closing quote on the previous trading day; e.g. 00643K on 2022-06-01, 4305 on 2001-12-04). **If you have downloaded this data, please fetch again the local records whose `reference_price` is 0, by `stock_id` and `date`** (days with no previous close, such as a listing day, remain 0)
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issues have been corrected and the data regenerated (both the API and whole-day download files are updated); the minute K has been recalculated accordingly. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **Missing ticks of emerging-market stocks**: on 366 trading days from 2024-03-12 to 2025-09-30, ticks of emerging-market stocks (including stocks that later moved to TWSE or TPEx, e.g. 2646) were not included; they have been filled in
+    * **14:30:00 after-hours fixed-price trades**: 2024-03-12 ~ 2024-08-19 (95 trading days), noted as still being processed in the 2026-10-17 notice, has been corrected; missing after-hours fixed-price trades have been added (54,737 TWSE and 24,909 TPEx records)
+    * **2025-02-17 ~ 2025-09-30, 2026-03-19**: whole-day ticks have been fetched again from the source; the time, the split into records and the TickType of some records have been corrected (under about 0.5% of records per day; daily total volume is almost unchanged)
+
+#### 2026-10-18
+* [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) add tick and minute K data of delisted stocks, covering 2018-12-07 ~ 2024-03-29 (available via both the API and whole-day download files)
+* **Data correction notice**: [Daily Price Limit TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-price-limit-taiwanstockpricelimit-available-only-to-backer-sponsor-members): the following issues have been corrected and all historical data has been recalculated. **If you downloaded or queried this data before, please fetch it again**
+    * **No trade on the previous trading day**: the next day's reference price is now calculated per the exchange rule (e.g. 3085 on 2026-10-13)
+    * **Stocks that moved from the emerging market to TWSE/TPEx**: price limits during the emerging-market period before the transfer have been corrected to 0 (e.g. 1294 on 2024-07-09)
+
+#### 2026-10-17
+* [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement) `type` adds `EffectOfExchangeRateChangesOnCashAndCashEquivalents` (effect of exchange rate changes on cash and cash equivalents); historical data has been backfilled to 2013-03-31
+* [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issues have been corrected and the data regenerated (both the API and whole-day download files are updated); the minute K has been recalculated accordingly. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **14:30:00 after-hours fixed-price trades**: 445 trading days from 2020-03-06 to 2026-01-13 have been corrected against the after-hours fixed-price trades published by the exchanges; missing trades have been added and records that were not actual trades removed. **2024-03-12 ~ 2024-08-19 is still being processed and will be announced separately when completed**
+    * **2026-03-19** 09:43:24 ~ 09:44:14: missing ticks of TWSE-listed stocks have been filled in
+    * **Minute K open and close**: when several trades share the same second, they are now taken in actual trade order; all historical minute K have been recalculated
+* [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) add known gap periods (five periods of TWSE-listed stocks in 2022-03 ~ 2026-03, not available from the source and cannot be filled in); see the dataset page
+
+#### 2026-10-11
+* **Data correction notice**: `EPS` in [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements) has been corrected: (1) missing `EPS` of some financial and insurance companies for 2026-03-31 and 2026-06-30 has been filled in; (2) missing `EPS` of public companies from 2025-12-31 onward has been filled in; (3) for companies that file only semiannual reports, `EPS` for 12-31 of each year from 2013 to 2025 has been corrected from the full-year figure to the second-half figure. **If you downloaded or queried the data above before, please fetch it again**
+* **Data correction notice**: [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) queried through the data API now returns minute K for the full trading session (including the 14:30 after-hours bar and emerging-market bars after 13:30), consistent with the whole-day download files. **If needed, please fetch the data again**
+
+#### 2026-10-10
+* **Data correction notice**: [Taiwan Stock Trading Daily Report by Branch TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-trading-daily-report-by-branch-query-by-stock_id-taiwanstocktradingdailyreport-only-available-for-sponsor-members): branch data for TWSE-listed stocks on 2023-01-11 has been filled in (both the API and whole-day download files are updated); data for TPEx-listed stocks on that day is still missing. 2023-01-12 ~ 2023-01-17, previously listed as missing, have been verified as complete and removed from the missing dates. **If you downloaded or queried data for 2023-01-11, please fetch it again**
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issue has been corrected and the data regenerated (both the API and whole-day download files are updated); the minute K has been recalculated accordingly. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **2019-10-01 ~ 2020-02-05**: 44 duplicate records on 43 stock-days (same time and price, different volume, not actual trades) have been removed (e.g. 6147 on 2019-11-26)
+* [Taiwan Stock Government Bank Buy/Sell TaiwanStockGovernmentBankBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-government-bank-buysell-taiwanstockgovernmentbankbuysell-only-available-for-sponsor-members): `bank_name` adds `八大官股` (total of the eight banks); historical data has been backfilled to 2021-06-30
+
+#### 2026-10-09
+* [Taiwan Stock Government Bank Buy/Sell TaiwanStockGovernmentBankBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-government-bank-buysell-taiwanstockgovernmentbankbuysell-only-available-for-sponsor-members): data update time moved earlier to Monday to Friday 18:30 (previously 23:30)
+
+#### 2026-10-06
+* [Taiwan Stock Trading Daily Report by Branch TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-trading-daily-report-by-branch-query-by-stock_id-taiwanstocktradingdailyreport-only-available-for-sponsor-members) and [Taiwan Stock Warrant Trading Daily Report by Branch TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-warrant-trading-daily-report-by-branch-query-by-stock_id-taiwanstockwarranttradingdailyreport-only-available-for-sponsor-members): data update time moved earlier to Monday to Friday 18:00 (previously 21:00, warrants 23:00 ~ 01:00); [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members) moved earlier to 18:30 (previously 21:00)
+
+#### 2026-10-05
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issues have been corrected and the data regenerated (both the API and whole-day download files are updated); the minute K has been recalculated accordingly. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **2020-03-24 ~ 2023-03-01**: some trades were inserted a second time (the inserted copy placed at the end of the stock's rows, with a time earlier than the preceding rows), on 194 trading days and 1,874 stock-days; removed
+    * **2020-03-02 ~ 2020-04-30**: TWSE/TPEx stocks (mostly ETFs) with no after-hours fixed-price trade on the day had a 14:30:00 record (a copy of the closing row or the last intraday trade), 653 records on 35 trading days; removed
+    * **2020-03-06, 2021-07-27**: for 14 stocks, a block of non-trade records was appended after the complete intraday ticks (the first one with a negative volume, prices possibly outside the day's high/low, e.g. 2939 on 2021-07-27); removed, and the volume of each stock now matches the exchange
+    * **2020-03-06**: 29 stocks had one extra non-trade record (mostly the last record of the day, e.g. 0052, 2429, 4555); removed
+    * **2021-11-15**: an erroneous 2303 record with price 68.8, above the day's high; removed
+
+#### 2026-10-04
+* Added [Daily Stock Broker Concentration TaiwanStockBrokerDailyConcentration](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-stock-broker-concentration-taiwanstockbrokerdailyconcentration-only-available-for-sponsor-members): for each stock and each day, the total net buy volume of the top 15 net-buying brokers and the total net sell volume of the top 15 net-selling brokers; data range 2021-06-30 ~ now (only available for sponsor members)
+* [Block Trade Daily Transactions TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members) now includes TWSE "stock portfolio" block trades, with historical data backfilled to 2005-04-04; multiple block trades of the same stock on the same day with the same price and volume are now each listed, so identical rows each represent an actual trade
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issues have been corrected and the data regenerated (both the API and whole-day download files are updated); the minute K has been recalculated accordingly. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **2025-10-01 ~ 2026-07-15**: for some stocks that moved from the emerging market to TWSE/TPEx, the intraday ticks of a day were recorded twice (about 420,000 extra records in the 2025-10 ~ 2026-03 whole-day files); only one copy is now kept. 14:30:00 records of the same stocks that duplicated the 13:30:00 closing row (not actual after-hours fixed-price trades) were removed as well
+    * **2020-02-25 ~ 2020-02-27**: the same trade appeared twice because of different floating-point representations of the price (e.g. 3.47 and 3.4699999999999998); removed
+    * **2019-10-01 ~ 2020-03-20**: some trades were recorded twice (the duplicate placed at the end of the stock's rows); removed
+    * **2022-07-20 ~ 2022-10-18**: mainly TPEx stocks, about 165 per day had an extra non-trade 13:30:00 closing row (price equal to the close, volume copied from the last intraday trade), plus a few 13:30:00 rows with price 0; removed
+    * **13:33:00 delayed-close trades**: on 99 trading days, including 2020-03 ~ 2020-04 and 2022-07 ~ 2022-10, the same delayed-close trade of some stocks appeared multiple times; only one is now kept
+* **Data correction notice**: [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members): the following issues have been corrected. **If you downloaded or queried the data below, please fetch it again**
+    * TPEx chemical industry index: named `ChemicalEngineering` from 2007-07-02 to 2025-09-12, and from 2014-10-01 to 2025-09-12 it coexisted with `Chemical` (identical values). It is now `Chemical` for the full history; **`ChemicalEngineering` is no longer provided, please use `Chemical`**
+    * **2005-01-03 ~ 2006-12-29** TPEx indices: the frozen pre-close values at 13:31 ~ 13:34 were removed, so the last point of each day is the 13:30:00 close, consistent with 2007 onwards
+    * **2005-03-01 ~ 2005-12-30** `NonFinanceNonElectronicsSubIndex`: the raw data was published at 100 times the value; divided by 100 so it connects with adjacent trading days
+
+#### 2026-10-01
+* [MCP Server](https://finmind.github.io/en/tutor/ai/Mcp/#install) now supports one-click install for Claude Desktop: download finmind.mcpb, double-click it and paste your token, with no Python installation or config file editing needed.
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the following issues have been corrected and the data regenerated. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **2019 ~ 2026**, emerging-market stocks: the duplicate-record handling for TWSE/TPEx closing auction and after-hours fixed-price trades was mistakenly applied to emerging-market stocks, so multiple trades with the same price and volume within the 13:30:00 and 14:30:00 seconds were kept as only one. In the minute K, 117 emerging-stock minutes (13:30, 14:30) had understated volume and have been regenerated; when querying emerging-stock ticks through the data API, some of the trades in these two seconds were missing, which has been fixed (Sponsor Pro whole-day download files were not affected)
+    * **2019-01-02 ~ 2020-02-05** (242 trading days): the minute K was missing emerging-market stocks and some products such as ETNs (about 80 ~ 150 per day); these have been filled in
+    * **2019-01 ~ 2020-02** (77 trading days): the tick data of some TWSE/TPEx stocks contained duplicate records, making tick volume higher than the official daily volume; these have been removed and the tick data and minute K regenerated (both the API and whole-day download files are updated)
+
+#### 2026-09-30
+* [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members), [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members) now cover 5 more active ETFs: 00408A, 00409A, 00410A, 00411A and 00987D, with historical data backfilled from each ETF's inception; the data source does not provide 2026-09-07 for 00411A and 00987D, so that date cannot be filled in
+* **Data correction notice**: [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members): for some ETFs on 2026-07-27 ~ 2026-07-29, and for 00400A on 2026-09-07 ~ 2026-09-08, the holding changes were not recalculated after the daily holdings were updated; this has been corrected. Constituents that previously showed a change but no longer do now appear with both `buy` and `sell` equal to 0 and can be ignored. **If you downloaded or queried data for these dates before, please fetch it again**
+
+#### 2026-09-29
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): from **2021-03-05 to 2021-04-14** (27 trading days), the raw tick data of emerging-market stocks contained a non-trade record repeating the previous trade every 5 minutes (xx:x0:00, xx:x5:00), which inflated tick and minute-K volumes and produced minute bars after 15:00. These records have been removed and the minute K bars recalculated (both the API and whole-day download files are updated). **If you downloaded or queried tick or minute-K data of emerging-market stocks for this period, please fetch it again**
+
+#### 2026-09-28
+* **Data correction notice**: [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the TAIEX minute bars with `stock_id` `001` from **2023-03-13 to 2026-01-22** have been removed; market-index minute bars are now provided only as `TAIEX` (both the API and whole-day download files are updated). **If you used `001`, please switch to `TAIEX`**
+* **Data correction notice**: [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members): the 13:30:00 values of TPEx indices have been corrected for the full history (from 2005-01-03) and are now the official closing index, consistent with TWSE indices. **If you downloaded or queried TPEx index data before, please fetch it again**
+    * On 23 trading days from 2005-01 to 2005-03, the closing value published in the raw data differs from the daily closing index by 0.01; this is a rounding difference at the source
+
+#### 2026-09-26
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members): in the whole-day files downloaded via `storage_objects`, on some dates the rows of a stock were not in time order (an earlier block of trades was appended after the stock's later rows), so reading values in file order could give wrong results. **The whole-day files for all trading days since 2018-12-07 have been regenerated; if you downloaded them before, please fetch them again**
+    * The whole-day files are now sorted by `stock_id` and `Time`; when several trades share the same time, they are ordered by actual execution sequence
+    * The most affected dates include 2020-03-02, 2020-03-12 and 2021-08-03 (the raw data for that day was entirely in reverse time order); other dates mostly affected only a few stocks. The data content and row counts are unchanged; only the row order was adjusted
+
+#### 2026-09-25
+* **Data correction notice**: [Taiwan Stock Historical Tick Data Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members), [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): some dates contained duplicated or non-trade records. They were removed after checking each stock against the daily volume and after-hours fixed-price trades published by TWSE and TPEx, and the minute K was recalculated. **If you downloaded or queried data for the dates below, please fetch it again**
+    * **2018-12-07 ~ 2019-09-27** (190 trading days): the same trade also appeared as a duplicate record with `.000` milliseconds, about 198,000 records in total; removed
+    * **Duplicated 13:30:00 closing-auction rows**: on some dates the closing-auction trade of a stock appeared several times with identical values (e.g. TPEx stocks from 2022-07-20 to 2022-10-18); now only one row per stock per day is kept
+    * **2020-01-02 ~ 2020-04-28**: some stocks had trades recorded twice, or extra non-trade 13:30:00 closing rows / 14:30:00 after-hours rows; removed
+    * **2025-06-16**: most stocks had an extra 14:30:00 record identical to the 13:30:00 closing row (not an actual after-hours fixed-price trade); removed
+    * Minute K: a few bars on **2020-03-06** and **2021-07-27** had negative volume, and some bars from **2020-03-23 ~ 2023-07-13** had OHLC or low price equal to 0. Both came from non-trade records in the raw data; they are now excluded and the bars recalculated
+    * The official daily volume includes odd-lot and block trades, so the tick volume total being slightly lower than the official daily volume is expected
+* **Data correction notice**: [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members):
+    * The 13:30:00 value of TPEx indices previously recorded the last value published before the closing auction; it has been corrected to the official closing index for the full history, consistent with TWSE indices
+    * **2026-06-02** had 7 extra series with legacy names (`CompositAveragePrice` and `IndustryAveragePrice` were 0 all day); removed
+    * **2007-07-02 ~ 2014-01-03**: the TPEx shipping index name had a leading Tab character; unified to `ShippingTransportation`
+    * **2005-01-03 ~ 2008-09-18**: some TWSE indices existed under both a legacy and the current name (e.g. `TSEWeighted` and `TAIEX`, `Electron` and `Electronic`, with identical values); only the current name is kept. **2005-09-16** only had the legacy names and has been renamed to the current names; the TAIEX minute K for that day has been filled in as well
+    * **2017-05-08**: the raw TPEx index data starts at 09:00:05 with no 09:00:00 point, so it cannot be filled
+* **Data correction notice**: [Order and Trade Statistics Every 5 Seconds TaiwanStockStatisticsOfOrderBookAndTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#order-and-trade-statistics-every-5-seconds-taiwanstockstatisticsoforderbookandtrade): on **2023-08-04** the cumulative trade values at 09:00:00 were wrongly the previous trading day's closing totals and have been corrected to 0; on **2011-01-21** the whole day contained another date's data and has been corrected. Duplicated rows at the same time on some dates have also been removed
+* **Data correction notice**: [Daily Stock Price TaiwanStockPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-stock-price-information-taiwanstockprice), [Taiwan Adjusted Stock Price TaiwanStockPriceAdj](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-adjusted-stock-price-table-taiwanstockpriceadj-available-only-to-backer-sponsor-members), [Taiwan Stock Weekly K Table TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-weekly-k-table-taiwanstockweekprice-available-only-to-backer-sponsor-members), [Taiwan Stock Monthly K Table TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-monthly-k-table-taiwanstockmonthprice-available-only-to-backer-sponsor-members):
+    * For TPEx stocks on **2015-11-23**, **2020-03-09**, **2020-03-10** and **2020-04-24**, trading volume, value and number of trades did not include after-hours fixed-price and odd-lot trades; they have been corrected to the full-day scope used on all other trading days. OHLC and price change are not affected
+    * Adjusted prices were updated accordingly; TPEx weekly and monthly K (2020-03 ~ 2024-12) were recalculated from the daily data
+* **Data correction notice**: [Taiwan Historical Tick-Level Stock Price Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members): the `TickType` (buy/sell side) labelling has been corrected across **1,028 trading days** from **2018-12-07 to 2023-03-10**. **If you downloaded or queried data in this period before, please fetch it again**
+    * Issue: before 2023-03-13, trades whose side the source could not determine were all labelled 1 (buyer-initiated), which made the buyer-initiated share noticeably too high — up to 0.82 on some dates, returning to around 0.50 after the fix
+    * The corrected data uses the same rule applied from 2023-03-13 onward. `TickType`: 1 = buyer-initiated (trade at ask), 2 = seller-initiated (trade at bid), 0 = undetermined
+    * **For dates before 2021-06-22, about 8% ~ 10% of trades have `TickType` 0 (undetermined)**, because the source data itself carries no side information for them. If you group statistics by `TickType`, treat 0 separately rather than merging it into either side
+    * About 1.52 million rows (0.15% of the period, spread over 187 trading days) could not be retrieved from the source again; the original rows and their original labels were kept so that no trade record is lost
+* **Data correction notice**: [Taiwan Historical Tick-Level Stock Price Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members): **2018-12-10** contained a full duplicate of the whole day and has been regenerated. **If you ran any analysis on that date, please recompute it**
+    * Issue: almost every trade that day had an identical second copy, making the day's traded volume about twice the actual figure; after regeneration, per-stock volume was verified against the official daily volume
+    * The whole range 2018-12-07 to 2022-09-30 was checked for the same pattern; this is the only affected day
+* [Taiwan Historical Tick-Level Stock Price Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members): data range corrected to **2018-12-07 ~ now** (previously listed as 2019-01-01); the known missing dates are now listed as **2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22**, and **2019-05-16** only has data for a small number of ETFs
+
 #### 2026-09-24
 * **Data correction notice**: [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members), [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members): holdings for 11 ETFs were missing on **2026-02-11** (the last trading day before the Lunar New Year holiday) and have been filled in. **If you downloaded or queried data for 2026-02-11 or 2026-02-23 before, please fetch it again**
     * ETFs filled in: 00980A, 00981A, 00981D, 00982A, 00983A, 00985A, 00988A, 00990A, 00992A, 00994A, 00995A
     * Issue: the holdings for the last trading day before the Lunar New Year holiday are only published on the first trading day after the holiday; the gap exceeded a check limit used when collecting the data, so that day was skipped. This has been fixed, and long holidays are now handled correctly
     * Holding changes recalculated accordingly: 2026-02-11 now has that day's buys and sells; 2026-02-23 was previously computed against 2026-02-10 and is now computed against 2026-02-11. On 2026-02-23 some components show rows with both `buy` and `sell` equal to 0, meaning no change on that day; these rows can be ignored
     * For 00981D, 00983A, 00988A and 00990A, the data source does not provide holdings for **2026-02-10**, so **that date cannot be filled in**
+* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members): the known missing dates are now listed as **2019-02-20, 2019-02-21, 2019-02-22** (only the TAIEX index minute K is available on these days; there is no individual-stock data), and on **2019-05-16** only a small number of ETFs have individual-stock data. These match the missing dates of [Taiwan Historical Tick-Level Stock Price Table TaiwanStockPriceTick](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-historical-tick-data-table-taiwanstockpricetick-available-only-to-backer-sponsor-members); the source did not provide tick data for these dates, so they cannot be filled
 
 #### 2026-09-20
 * **Data correction notice**: [Futures tick TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members), [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members): some 2018 trading days were missing part of their tick data and have been rebuilt from the exchange's original data. **The dates below were regenerated and verified; if you downloaded or queried them before, please fetch the data again**
     * Affected dates (70 trading days): 2018-03-23, 2018-03-26, 2018-03-27, 2018-04-03, 2018-04-09, 2018-04-13, 2018-04-16, 2018-04-23, 2018-04-30, 2018-05-02, 2018-05-07, 2018-05-11, 2018-05-14, 2018-05-21, 2018-05-25, 2018-05-28, 2018-06-01, 2018-06-04, 2018-06-11, 2018-06-19, 2018-06-22, 2018-06-25, 2018-06-29, 2018-07-02, 2018-07-09, 2018-07-16, 2018-07-23, 2018-07-30, 2018-08-03, 2018-08-06, 2018-08-07, 2018-08-10, 2018-08-13, 2018-08-17, 2018-08-20, 2018-08-24, 2018-08-27, 2018-08-28, 2018-09-03, 2018-09-07, 2018-09-10, 2018-09-14, 2018-09-17, 2018-09-25, 2018-09-28, 2018-10-01, 2018-10-05, 2018-10-08, 2018-10-11, 2018-10-15, 2018-10-19, 2018-10-22, 2018-10-26, 2018-10-29, 2018-11-02, 2018-11-05, 2018-11-09, 2018-11-12, 2018-11-16, 2018-11-19, 2018-11-23, 2018-11-26, 2018-11-27, 2018-11-30, 2018-12-03, 2018-12-04, 2018-12-07, 2018-12-10, 2018-12-14, 2018-12-17
     * Issue: some trades on these dates were not recorded, mostly in the first few seconds after the day session opened on Mondays (the first trading day after a weekend). For TAIEX Futures (TX), 42 trading days were missing 29,909 rows in total
     * Every date was verified on both row counts and traded volume before going live; the full-year 2018 TX tick data has also been compared row by row against the exchange's original data and matches exactly
-* **Data correction notice**: [Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell), [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide): `Foreign_Dealer_Self` (foreign dealer self) for TPEx stocks between **2017-12-18 and 2018-01-12** (19 trading days) was wrong and has been fixed. **If you downloaded or queried TPEx data for this period before, please fetch it again**
+* **Data correction notice**: [Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#institutional-investors-buysell-taiwanstockinstitutionalinvestorsbuysell), [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#institutional-investors-buysell-wide-taiwanstockinstitutionalinvestorsbuysellwide): `Foreign_Dealer_Self` (foreign dealer self) for TPEx stocks between **2017-12-18 and 2018-01-12** (19 trading days) was wrong and has been fixed. **If you downloaded or queried TPEx data for this period before, please fetch it again**
     * Issue: TPEx did not report foreign dealer self separately at the time (it was split out from 2018-01-15), but for about 380 TPEx stocks in this period `Foreign_Dealer_Self` had been filled with the same values as `Foreign_Investor`, so summing all categories double-counted foreign investors
     * After the fix, `Foreign_Dealer_Self` buy/sell for TPEx stocks in this period are 0; in addition, the investment trust buy/sell shares of 7 TPEx stocks on 2018-01-12 were corrected to the official figures
     * Verified day by day against the official data; TWSE stocks and other periods are not affected
@@ -30,7 +145,7 @@
     * Other dates were spot-checked by reconciling tick volume against minute K-bar volume; no similar issue found
 
 #### 2026-09-19
-* [Day Trading Short-Selling Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor): fixed an issue where each stock only had one row per day (the source data can have multiple rows per stock per day with different borrowed share counts and fee rates); all original rows are now preserved, and historical data has been backfilled
+* [Day Trading Short-Selling Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#day-trading-borrowing-fee-rate-taiwanstockdaytradingborrowingfeerate-only-available-for-backer-sponsor-members): fixed an issue where each stock only had one row per day (the source data can have multiple rows per stock per day with different borrowed share counts and fee rates); all original rows are now preserved, and historical data has been backfilled
 * [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
 * [Futures tick TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members), [Options tick TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-trading-detail-table-taiwanoptiontick-available-only-to-backer-sponsor-members) and [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members) require `data_id`; to fetch a whole day's data at once, use storage_objects bulk download
 * **Data correction notice (supplement to 2026-09-17)**: [Futures tick TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members), [Futures Minute KBar TaiwanFuturesKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-minute-kbar-taiwanfutureskbar-available-only-to-sponsor-members): **2018-02-13** had the same duplicated after-hours data as described in the 2026-09-17 notice but was not included in that fix; it has now been fixed. **This date was regenerated and verified; if you downloaded or queried it before, please fetch the data again**
@@ -80,7 +195,7 @@
     * [Daily Stock Price TaiwanStockPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-stock-price-information-taiwanstockprice) and other daily datasets (PER, institutional investors, margin trading, day trading, foreign shareholding) plus [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members): Saturday make-up trading days and missing indices backfilled
 
 #### 2026-08-20
-* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) now provides the **TAIEX index minute K**: pass `TAIEX` as `data_id`. Range **2005-01-03 ~ now** (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00 ~ 13:30, one row per minute
+* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members) now provides the **TAIEX index minute K**: pass `TAIEX` as `data_id`. Range **2005-01-03 ~ now** (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00 ~ 13:30, one row per minute
     * An index has no trading volume, so `volume` is always 0; `open` / `high` / `low` / `close` are index values within that minute
 
 #### 2026-08-09
@@ -115,41 +230,41 @@
 * Added [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/): explains FinMind's data sources and licensing basis (data obtained via government open data platforms is used under the Open Government Data License of Taiwan), the scope of the license granted to users (the right to use this service, excluding redistribution / resale / mirroring), and disclaimers such as all data being for reference only
 
 #### 2026-07-01
-* Added [Taiwan Option VIX TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionvix-backersponsor): data range 2026-03-01 ~ now
-* Added [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondmonthlyanalysis-backersponsor): data range 2026-05-01 ~ now
+* Added [Taiwan Option VIX TaiwanOptionVix](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiex-options-volatility-index-taiwanoptionvix-available-only-to-backer-sponsor-members): data range 2026-03-01 ~ now
+* Added [Convertible Bond Monthly Analysis TaiwanStockConvertibleBondMonthlyAnalysis](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#convertible-bond-monthly-analysis-taiwanstockconvertiblebondmonthlyanalysis-only-available-to-backersponsor-members): data range 2026-05-01 ~ now
 
 #### 2026-06-15
-* [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor) now covers **OTC (TPEX)** warrants' underlying (mother stock) reference in addition to listed (TWSE); OTC warrant underlying history goes back to 2011-01-03, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants)
-* [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
+* [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-warrant-underlying-reference-table-taiwanstockinfowithwarrantsummary-available-only-to-sponsor-members) now covers **OTC (TPEX)** warrants' underlying (mother stock) reference in addition to listed (TWSE); OTC warrant underlying history goes back to 2011-01-03, so you can look up the warrants of a given underlying (including expired and code-reused historical warrants)
+* [Taiwan Stock Warrant Trading Daily Report TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-warrant-trading-daily-report-by-branch-query-by-stock_id-taiwanstockwarranttradingdailyreport-only-available-for-sponsor-members) now supports storage_objects whole-day bulk download (sponsorpro members only); historical data is also available for download
 
 #### 2026-06-13
-* Added [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide): same data as `TaiwanStockInstitutionalInvestorsBuySell` but in wide format — one row per trading day with each institutional investor's buy/sell as its own column, no manual pivot needed. Columns cover all historical investor categories; a category is 0 in eras where it did not exist (dealer split into proprietary/hedging from 2014-12-01; foreign dealer self from 2018-01-15). Data range 2005-01-01 ~ now
+* Added [Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#institutional-investors-buysell-wide-taiwanstockinstitutionalinvestorsbuysellwide): same data as `TaiwanStockInstitutionalInvestorsBuySell` but in wide format — one row per trading day with each institutional investor's buy/sell as its own column, no manual pivot needed. Columns cover all historical investor categories; a category is 0 in eras where it did not exist (dealer split into proprietary/hedging from 2014-12-01; foreign dealer self from 2018-01-15). Data range 2005-01-01 ~ now
 * The FinMind Python package now supports **Python 3.12** (Python 3.8–3.11 remain supported). Starting from this release, dependencies are upgraded to `pandas>=2.0` and `ta>=0.11` (`numpy` and `pydantic` unchanged).
     * **No code changes are required** to call FinMind: the public `DataLoader`, strategy, and plotting interfaces are unchanged.
     * :warning: **Upgrade note**: installing/upgrading also bumps `pandas` to 2.x and `ta` to 0.11 in your environment. If your **own surrounding code** still uses pandas 1.x APIs removed in 2.0, you will need to adjust it — common examples: `df.append()` → `pd.concat([...])`, `df.to_dict("r")` → `df.to_dict("records")`, `df.iteritems()` → `df.items()`. If you cannot adjust yet, pin an older FinMind version for now.
 
 #### 2026-06-09
-* Added [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtick-sponsor) (sponsor members only): per-trade futures spread (near/far month) data, including contract months, deal time, spread deal price, volume, near month price, far month price, and spread-to-spread deal flag. Only one day of data is provided per request; data accumulates daily since 2026-04-27 (earlier historical backfill not yet included).
+* Added [Futures Spread Tick Table TaiwanFuturesSpreadTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-spread-tick-table-taiwanfuturesspreadtick-available-only-to-sponsor-members) (sponsor members only): per-trade futures spread (near/far month) data, including contract months, deal time, spread deal price, volume, near month price, far month price, and spread-to-spread deal flag. Only one day of data is provided per request; data accumulates daily since 2026-04-27 (earlier historical backfill not yet included).
 
 #### 2026-06-05
-* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor), [Futures Trading Detail TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturestick-backersponsor), and [Options Trading Detail TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiontick-backersponsor) now support storage_objects bulk download to fetch a whole day's data at once (sponsorpro members only). Historical data is also available for download.
+* [Taiwan Stock Minute K Table TaiwanStockKBar](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-minute-k-table-taiwanstockkbar-available-only-to-sponsor-members), [Futures Trading Detail TaiwanFuturesTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-trading-detail-table-taiwanfuturestick-available-only-to-backer-sponsor-members), and [Options Trading Detail TaiwanOptionTick](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-trading-detail-table-taiwanoptiontick-available-only-to-backer-sponsor-members) now support storage_objects bulk download to fetch a whole day's data at once (sponsorpro members only). Historical data is also available for download.
 
 #### 2026-06-03
 * Added [Service Status & Uptime](https://finmind.github.io/en/ServiceStatus/): a public, real-time status page at [status.finmindtrade.com](https://status.finmindtrade.com), explaining how API uptime is calculated and the status tiers (Operational / Degraded Performance / Partial Outage / Major Outage), which serve as the basis for the enterprise-plan SLA.
 
 #### 2026-05-23
-* Added [Taiwan Stock Index Codes](https://finmind.github.io/en/tutor/TaiwanMarket/IndexCodes/): [taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) `data_id` also accepts 91 three-digit index codes in addition to 4-digit stock IDs (e.g. `001` = TAIEX, `101` = OTC weighted), grouped into broad market / sector / themed (Smart Beta) / leverage & inverse categories.
+* Added [Taiwan Stock Index Codes](https://finmind.github.io/en/tutor/TaiwanMarket/IndexCodes/): [taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members) `data_id` also accepts 91 three-digit index codes in addition to 4-digit stock IDs (e.g. `001` = TAIEX, `101` = OTC weighted), grouped into broad market / sector / themed (Smart Beta) / leverage & inverse categories.
 
 #### 2026-05-22
-* [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue) added a **creation time** `create_time` column (YYYY-MM-DD); empty string for older historical rows.
+* [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#monthly-revenue-table-taiwanstockmonthrevenue) added a **creation time** `create_time` column (YYYY-MM-DD); empty string for older historical rows.
 
 #### 2026-05-19
 * The following datasets now cover **emerging market companies** in addition to TWSE-listed and TPEx OTC companies (distinguished by `stock_id`; use `TaiwanStockInfo` to look up market type):
-    * [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockmonthrevenue)
-    * [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
-    * [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
-    * [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)
-    * [Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
+    * [Monthly Revenue Table TaiwanStockMonthRevenue](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#monthly-revenue-table-taiwanstockmonthrevenue)
+    * [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements)
+    * [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet)
+    * [Cash Flows Statement TaiwanStockCashFlowsStatement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#cash-flows-statement-taiwanstockcashflowsstatement)
+    * [Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#institutional-investors-buysell-taiwanstockinstitutionalinvestorsbuysell)
 
 #### 2026-05-06
 * [Taiwan Stock Trading Daily Report by Branch TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/) storage_objects docs: added a FinMind package example (`taiwan_stock_trading_daily_report(use_object=True)`).
@@ -161,25 +276,25 @@
 * Added the "[Update Token](https://finmind.github.io/en/update_token/)" feature: users can reset their token themselves on the user info page. The old token becomes invalid immediately, with no need to contact support.
 
 #### 2026-04-30
-* Added [Loan Collateral Balance TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+* Added [Loan Collateral Balance TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#loan-collateral-balance-taiwanstockloancollateralbalance-only-available-for-sponsor-members)
 
 #### 2026-04-28
-* Added [Block Trade Daily Transaction Information TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
+* Added [Block Trade Daily Transaction Information TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members)
 
 #### 2026-04-19
-* Added [Day Trading Securities Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
+* Added [Day Trading Securities Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#day-trading-borrowing-fee-rate-taiwanstockdaytradingborrowingfeerate-only-available-for-backer-sponsor-members)
 
 #### 2026-04-17
-* Added [Block Trade Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
+* Added [Block Trade Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#block-trading-daily-report-taiwanstockblocktradingdailyreport-only-available-for-sponsor-members)
 
 #### 2026-04-12
-* [TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor) documentation update: 0 means no price limit.
+* [TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-price-limit-taiwanstockpricelimit-available-only-to-backer-sponsor-members) documentation update: 0 means no price limit.
 
 #### 2026-04-03
 * Added async batch query example.
 
 #### 2026-03-28
-* Updated [TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor) documentation with ESB and TWSE data.
+* Updated [TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#disposition-securities-period-taiwanstockdispositionsecuritiesperiod-only-available-for-backer-sponsor-members) documentation with ESB and TWSE data.
 
 #### 2026-03-26
 * Fixed mistakenly entered data range for the shareholding distribution table.
@@ -197,24 +312,24 @@
 * Added an LLM / AI integration section to the homepage.
 
 #### 2026-03-06
-* Added [Daily Price Limit TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor)
+* Added [Daily Price Limit TaiwanStockPriceLimit](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-price-limit-taiwanstockpricelimit-available-only-to-backer-sponsor-members)
 
 #### 2026-02-22
 * Updated futures and options real-time information documentation, adding supported codes and an explanation that an empty value retrieves all data.
 
 #### 2026-02-07
-* Added [Futures Spread Trading TaiwanFuturesSpreadTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesspreadtrading-backersponsor)
+* Added [Futures Spread Trading TaiwanFuturesSpreadTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-spread-trading-quote-table-taiwanfuturesspreadtrading-available-only-to-backer-sponsor-members)
 
 #### 2026-02-01
-* Added [Futures Final Settlement Price TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesfinalsettlementprice-backersponsor)
-* Added [Option Final Settlement Price TaiwanOptionFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionfinalsettlementprice-backersponsor)
+* Added [Futures Final Settlement Price TaiwanFuturesFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-final-settlement-price-taiwanfuturesfinalsettlementprice-available-only-to-backer-sponsor-members)
+* Added [Option Final Settlement Price TaiwanOptionFinalSettlementPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-final-settlement-price-taiwanoptionfinalsettlementprice-available-only-to-backer-sponsor-members)
 
 #### 2026-01-31
-* [TaiwanStockSuspended](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor) and [TaiwanStockDayTradingSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor) added FinMind package examples.
+* [TaiwanStockSuspended](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-suspension-announcement-taiwanstocksuspended-available-only-to-backer-sponsor-members) and [TaiwanStockDayTradingSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#day-trading-sell-first-then-buy-suspension-notice-taiwanstockdaytradingsuspension-available-only-to-backer-sponsor-members) added FinMind package examples.
 
 #### 2026-01-24
-* Added [Taiwan Stock Suspended Trading Announcement TaiwanStockSuspended](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstocksuspended-backersponsor)
-* Added [Day Trading Sell-Then-Buy Suspension Notice TaiwanStockDayTradingSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockdaytradingsuspension-backersponsor)
+* Added [Taiwan Stock Suspended Trading Announcement TaiwanStockSuspended](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-suspension-announcement-taiwanstocksuspended-available-only-to-backer-sponsor-members)
+* Added [Day Trading Sell-Then-Buy Suspension Notice TaiwanStockDayTradingSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#day-trading-sell-first-then-buy-suspension-notice-taiwanstockdaytradingsuspension-available-only-to-backer-sponsor-members)
 
 #### 2026-01-23
 * Added English translations to the documentation.
@@ -232,42 +347,42 @@
 * Enhanced the tick data async usage documentation.
 
 #### 2025-10-06
-* Added [Dividend Policy Table TaiwanStockDividend](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)
+* Added [Dividend Policy Table TaiwanStockDividend](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#dividend-policy-table-taiwanstockdividend)
 
 #### 2025-09-21
-* Added the kind parameter to [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockevery5secondsindex-backersponsor).
+* Added the kind parameter to [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members).
 
 #### 2025-09-11
 * FinMind package added async batch query functionality.
 
 #### 2025-08-31
-* Added [Taiwan Stock Par Value Change Reference Price TaiwanStockParValueChange](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockparvaluechange)
+* Added [Taiwan Stock Par Value Change Reference Price TaiwanStockParValueChange](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-par-value-change-resumption-reference-price-taiwanstockparvaluechange)
 
 #### 2025-08-13
 * Added the suspension marker for sell-then-buy trades, and corrected the documentation for futures and options institutional investors.
 
 #### 2025-07-20
-* Added [Taiwan Stock Warrant Underlying Mapping Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
-* Added [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
-* Added [Taiwan Stock Post-Split Reference Price TaiwanStockSplitPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
+* Added [Taiwan Stock Warrant Underlying Mapping Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-warrant-underlying-reference-table-taiwanstockinfowithwarrantsummary-available-only-to-sponsor-members)
+* Added [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-trading-date-taiwanstocktradingdate)
+* Added [Taiwan Stock Post-Split Reference Price TaiwanStockSplitPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-post-split-reference-price-taiwanstocksplitprice)
 
 #### 2025-05-25
-* [Taiwan Stock Tick by Securities Trader TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreport-sponsor) added FinMind package example.
-* [Taiwan Stock Warrant Tick by Securities Trader TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockwarranttradingdailyreport-sponsor) added FinMind package example.
+* [Taiwan Stock Tick by Securities Trader TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-trading-daily-report-by-branch-query-by-stock_id-taiwanstocktradingdailyreport-only-available-for-sponsor-members) added FinMind package example.
+* [Taiwan Stock Warrant Tick by Securities Trader TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-warrant-trading-daily-report-by-branch-query-by-stock_id-taiwanstockwarranttradingdailyreport-only-available-for-sponsor-members) added FinMind package example.
 
 #### 2025-05-11
-* Added [US Stock Minute Price USStockPriceMinute](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#usstockpriceminute-backersponsor)
-* [Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor) added FinMind package example.
+* Added [US Stock Minute Price USStockPriceMinute](https://finmind.github.io/en/tutor/UnitedStatesMarket/Technical/#us-stock-minute-k-price-table-usstockpriceminute-available-only-to-backer-sponsor-members)
+* [Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#per-company-industry-chain-taiwanstockindustrychain-only-available-to-backersponsor-members) added FinMind package example.
 
 #### 2025-05-10
-* Added [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockevery5secondsindex-backersponsor)
+* Added [Index Statistics Every 5 Seconds TaiwanStockEvery5SecondsIndex](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#index-statistics-every-5-seconds-taiwanstockevery5secondsindex-available-only-to-backer-sponsor-members)
 * API authentication updated; tokens are now passed via the header `Authorization: Bearer <token>`.
 
 #### 2025-04-06
-* Added [Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanstockindustrychain-backersponsor)
+* Added [Company Industry Chain TaiwanStockIndustryChain](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#per-company-industry-chain-taiwanstockindustrychain-only-available-to-backersponsor-members)
 
 #### 2025-02-09
-* Added [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
+* Added [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#disposition-securities-period-taiwanstockdispositionsecuritiesperiod-only-available-for-backer-sponsor-members)
 
 #### 2025-01-05
 * TaiwanStockConvertibleBond, CnnFearGreedIndex, Futures/OptionOpenInterestLargeTraders, Futures/OptionInstitutionalInvestorsAfterHours, and TaiwanStockHoldingSharesPer are now available to backer-tier members.
@@ -276,58 +391,58 @@
 * FinMind package added async batch query functionality.
 
 #### 2024-12-07
-* Added data range descriptions for [TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor) and [CnnFearGreedIndex](https://finmind.github.io/en/tutor/Others/#cnnfeargreedindex).
+* Added data range descriptions for [TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwan-monthly-business-indicator-table-taiwanbusinessindicator-only-available-to-backersponsor-members) and [CnnFearGreedIndex](https://finmind.github.io/en/tutor/Others/#cnnfeargreedindex-available-only-to-backer-sponsor-members).
 
 #### 2024-12-01
-* Added [Taiwan Monthly Business Indicator TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwanbusinessindicator-backersponsor)
+* Added [Taiwan Monthly Business Indicator TaiwanBusinessIndicator](https://finmind.github.io/en/tutor/TaiwanMarket/Others/#taiwan-monthly-business-indicator-table-taiwanbusinessindicator-only-available-to-backersponsor-members)
 
 #### 2024-11-17
-* Added [Taiwan Stock Market Value Weight TaiwanStockMarketValueWeight](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
+* Added [Taiwan Stock Market Value Weight TaiwanStockMarketValueWeight](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-market-value-weight-table-taiwanstockmarketvalueweight-available-only-to-backer-sponsor-members)
 
 #### 2024-10-12
-* Added [Futures Open Interest Large Traders TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesopeninterestlargetraders-backersponsor)
-* Added [Option Open Interest Large Traders TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptionopeninterestlargetraders-backersponsor)
-* Added [Futures After-Hours Institutional Investors TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesinstitutionalinvestorsafterhours-backersponsor)
-* Added [Option After-Hours Institutional Investors TaiwanOptionInstitutionalInvestorsAfterHours](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptioninstitutionalinvestorsafterhours-backersponsor)
+* Added [Futures Open Interest Large Traders TaiwanFuturesOpenInterestLargeTraders](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-open-interest-of-large-traders-taiwanfuturesopeninterestlargetraders-available-only-to-backer-sponsor-members)
+* Added [Option Open Interest Large Traders TaiwanOptionOpenInterestLargeTraders](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-open-interest-of-large-traders-taiwanoptionopeninterestlargetraders-available-only-to-backer-sponsor-members)
+* Added [Futures After-Hours Institutional Investors TaiwanFuturesInstitutionalInvestorsAfterHours](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-after-hours-top-three-institutional-investors-trading-taiwanfuturesinstitutionalinvestorsafterhours-available-only-to-backer-sponsor-members)
+* Added [Option After-Hours Institutional Investors TaiwanOptionInstitutionalInvestorsAfterHours](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-after-hours-top-three-institutional-investors-trading-taiwanoptioninstitutionalinvestorsafterhours-available-only-to-backer-sponsor-members)
 
 #### 2024-09-28
 * Added [API usage query](https://finmind.github.io/en/api_usage_count/), allowing users to check api_usage and api_usage_limit through the package.
 
 #### 2024-09-26
-* [TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) added securities_trader_id and end_date parameters.
+* [TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members) added securities_trader_id and end_date parameters.
 
 #### 2024-08-25
-* Added [Daily Securities Trader Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
+* Added [Daily Securities Trader Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members)
 
 #### 2024-07-14
-* Added [Taiwan Stock Weekly K-line TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockweekprice-backersponsor)
-* Added [Taiwan Stock Monthly K-line TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockmonthprice-backersponsor)
+* Added [Taiwan Stock Weekly K-line TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-weekly-k-table-taiwanstockweekprice-available-only-to-backer-sponsor-members)
+* Added [Taiwan Stock Monthly K-line TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-monthly-k-table-taiwanstockmonthprice-available-only-to-backer-sponsor-members)
 
 #### 2024-05-28
-* Added [Taiwan Total Exchange Margin Maintenance TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
+* Added [Taiwan Total Exchange Margin Maintenance TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-total-exchange-margin-maintenance-taiwantotalexchangemarginmaintenance-only-available-for-backer-sponsor-members)
 
 #### 2024-05-19
-* Added FinMind package example for [Securities Trader Info TaiwanSecuritiesTraderInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo).
-* Added data range description for [Capital Reduction Reference Price TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockcapitalreductionreferenceprice).
+* Added FinMind package example for [Securities Trader Info TaiwanSecuritiesTraderInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#securities-trader-information-taiwansecuritiestraderinfo).
+* Added data range description for [Capital Reduction Reference Price TaiwanStockCapitalReductionReferencePrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#capital-reduction-resumption-reference-price-taiwanstockcapitalreductionreferenceprice).
 
 #### 2024-05-08
 * Removed the exchange rate data source.
 
 #### 2024-04-18
-* Added [Margin Short Sale Suspension (Short Covering Date) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginshortsalesuspension)
+* Added [Margin Short Sale Suspension (Short Covering Date) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#margin-short-sale-suspension-short-sale-covering-date-taiwanstockmarginshortsalesuspension)
 
 #### 2024-04-01
 * Added FinMind package examples to the [Convertible Bond](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/) series of datasets.
 
 #### 2024-03-24
 * Added the convertible bond series of datasets:
-    * [Convertible Bond Overview TaiwanStockConvertibleBondInfo](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinfo-backersponsor)
-    * [Convertible Bond Daily Transaction Info TaiwanStockConvertibleBondDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddaily-backersponsor)
-    * [Convertible Bond Institutional Investors Daily Trading Info TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebondinstitutionalinvestors-backersponsor)
-    * [Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#taiwanstockconvertiblebonddailyoverview-backersponsor)
+    * [Convertible Bond Overview TaiwanStockConvertibleBondInfo](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#convertible-bond-overview-taiwanstockconvertiblebondinfo-only-available-to-backersponsor-members)
+    * [Convertible Bond Daily Transaction Info TaiwanStockConvertibleBondDaily](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#convertible-bond-daily-trading-information-taiwanstockconvertiblebonddaily-only-available-to-backersponsor-members)
+    * [Convertible Bond Institutional Investors Daily Trading Info TaiwanStockConvertibleBondInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#convertible-bond-institutional-investors-daily-trading-taiwanstockconvertiblebondinstitutionalinvestors-only-available-to-backersponsor-members)
+    * [Convertible Bond Daily Overview TaiwanStockConvertibleBondDailyOverview](https://finmind.github.io/en/tutor/TaiwanMarket/ConvertibleBond/#convertible-bond-daily-overview-taiwanstockconvertiblebonddailyoverview-only-available-to-backersponsor-members)
 
 #### 2024-03-19
-* Added [Taiwan Stock Delisting Table TaiwanStockDelisting](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
+* Added [Taiwan Stock Delisting Table TaiwanStockDelisting](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-delisting-table-taiwanstockdelisting)
 
 #### 2024-01-27
 * Added column schema documentation for all market datasets.
@@ -340,17 +455,17 @@
 * Removed real-time quotes due to data source issues.
 
 #### 2021-05-23
-* Added [Total Short Sale Balance Limit Table TaiwanDailyShortSaleBalances](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
+* Added [Total Short Sale Balance Limit Table TaiwanDailyShortSaleBalances](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#credit-limit-daily-short-sale-balances-taiwandailyshortsalebalances)
 
 #### 2021-03-18
-* Added [Day Trading Securities and Trading Volume TaiwanStockDayTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockdaytrading).
+* Added [Day Trading Securities and Trading Volume TaiwanStockDayTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#day-trading-targets-and-volumevalue-taiwanstockdaytrading).
 
 
 #### 2021-02-22
 * Added the `streaming_all_data` parameter to retrieve real-time data (tick), covering all data from market open to the current moment.
 
 #### 2021-01-26
-* Added [CnnFearGreedIndex Fear and Greed Index](https://finmind.github.io/en/tutor/Others/#cnnfeargreedindex)
+* Added [CnnFearGreedIndex Fear and Greed Index](https://finmind.github.io/en/tutor/Others/#cnnfeargreedindex-available-only-to-backer-sponsor-members)
 * Registered users surpassed 500.
 
 #### 2021-01-25
@@ -375,23 +490,23 @@
 * Web development of the data download feature: since most users use Excel for financial analysis, we are developing the web Excel data download function.
 
 #### 2020-05-06
-* Added [Securities Lending Transaction Detail SecuritiesLending](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
-* Added [Order Book and Trade Statistics Every 5 Seconds StockStatisticsOfOrderBookAndTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#5-taiwanstockstatisticsoforderbookandtrade)
+* Added [Securities Lending Transaction Detail SecuritiesLending](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#securities-lending-transaction-details-taiwanstocksecuritieslending)
+* Added [Order Book and Trade Statistics Every 5 Seconds StockStatisticsOfOrderBookAndTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#order-and-trade-statistics-every-5-seconds-taiwanstockstatisticsoforderbookandtrade)
 
 
 #### 2020-05-01
-* Added [Taiwan Futures daily data](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanfuturesdaily)
-* Added [Taiwan Options daily data](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#taiwanoptiondaily)
+* Added [Taiwan Futures daily data](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#futures-daily-trading-information-taiwanfuturesdaily)
+* Added [Taiwan Options daily data](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#options-daily-trading-information-taiwanoptiondaily)
 
 #### 2020-04-24
 * Added Taiwan Stock real-time best five bid/ask.
-* Added [Taiwan Futures real-time quotes](https://finmind.github.io/en/tutor/TaiwanMarket/Derivative/#info-taiwanfutopttickinfo)
+* Added [Taiwan Futures real-time quotes](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#futures-and-options-real-time-quote-overview-taiwanfutopttickinfo)
 
 #### 2020-04-15
 * Added documentation.
-* Added [Taiwan Stock real-time price](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockpriceminute)
+* Added [Taiwan Stock real-time price](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members)
 * Added [US Treasury Bond Yield](https://finmind.github.io/en/tutor/Macroeconomy/#governmentbondsyield)
-* Added [Taiwan Stock PER and PBR Table TaiwanStockPER](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwanstockper)
+* Added [Taiwan Stock PER and PBR Table TaiwanStockPER](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#individual-stock-per-pbr-table-taiwanstockper)
 
 
 #### 2019-10-23

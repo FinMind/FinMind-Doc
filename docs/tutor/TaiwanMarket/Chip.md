@@ -1,4 +1,4 @@
-在台股籌碼面，我們擁有 26 種資料集，如下:
+在台股籌碼面，我們擁有 27 種資料集，如下:
 
 
 - [個股融資融劵表 TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
@@ -29,6 +29,7 @@
 - [個股融資維持率 TaiwanStockMarginMaintenance](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockmarginmaintenance-sponsor)
 - [公布處置有價證券表 TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
 - [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
+- [每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor)
 
 
 ----------------------------------
@@ -1671,8 +1672,8 @@
 - 提供台股，上市、上櫃、興櫃，的分點資訊！
 - 資料區間：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料
-- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
-- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03, 2023-01-11~2023-01-17
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
+- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03（上櫃不完整）, 2023-01-11（僅缺上櫃）
 - 開啟 Async 功能，可大幅縮短資料更新時間，colab 實測 2175 檔股票，只需 4 分 20 秒即可完成下載。
 
 ??? note "興櫃自營商分點的 `price` 為 0 屬正常現象，非資料缺失"
@@ -1681,6 +1682,21 @@
     - 這是興櫃市場結構特性，**並非資料缺失或錯誤**；同一檔興櫃股票的「一般券商分點」仍有正常成交價。
     - 上市、上櫃股票不受影響，各分點（含自營商）皆有成交價。
     - 參考：[櫃買中心〈興櫃股票交易制度〉](https://www.tpex.org.tw/web/emergingstock/trading_rule/rule.php?l=zh-tw)。
+
+??? note "同一股票同一天，分點買進合計與賣出合計不一定相等"
+    來源資料本身即有部分個股的分點買進合計與賣出合計不相等，FinMind 的資料與來源一致，**並非資料缺漏或處理錯誤**，請勿自行平衡或補值。
+
+    - 每個交易日約有數十檔個股出現，幾乎都是上市股票。
+    - 差額多為整張，少數為零股；多數情況只有一邊短少，少數情況兩邊都短少。
+    - 與鉅額交易無關：本資料集不含鉅額交易，出現差額的個股當日多半沒有鉅額交易。
+    - 分點買賣超為「已揭露部分」的統計，全市場加總不一定為零。
+    - 若需要當日一般交易（不含鉅額）的總量，建議以 `TaiwanStockPrice` 的 `Trading_Volume` 減去 [TaiwanStockBlockTrade](#taiwanstockblocktrade-sponsor) 的鉅額成交量為準，而不是以分點合計反推。
+
+??? note "興櫃股票：一般分點的買賣金額合計與當日成交金額不一定相等"
+    以「一般分點（不含推薦證券商）的買進金額＋賣出金額」核對興櫃股票的當日成交金額時，多數交易日會相等，但以下兩種情況會出現差額。FinMind 的資料與櫃買中心公布的興櫃買賣日報表一致，**並非資料缺漏**。
+
+    - **推薦證券商之間互相成交**（一般分點合計少於成交金額）：買賣雙方都是推薦證券商時，這筆成交不會出現在一般分點。「推薦證券商買進股數＋賣出股數－當日成交量」即為推薦證券商之間互相成交的股數，例如 6696 在 2026-06-26 為 6,000 股（以 397 元成交，差額 2,382,000 元）。
+    - **系統外議價交易**（一般分點合計多於成交金額）：買賣日報表除了電腦議價點選系統的成交，也包含「系統外議價交易」。這類成交會列在分點資料中，但不計入 `TaiwanStockPrice` 的當日成交金額。
 
 !!! example
     === "Package"
@@ -1786,8 +1802,8 @@
 - 提供台股，上市、上櫃、興櫃，的分點資訊！
 - 資料區間：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料
-- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
-- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03, 2023-01-11~2023-01-17
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
+- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03（上櫃不完整）, 2023-01-11（僅缺上櫃）
 
 !!! example
     === "Package"
@@ -1878,8 +1894,8 @@
 - 資料區間：2021-06-30 ~ now
 - 輸入 dataset、date 參數，會回傳 date 當天所有股票的分點資料
 - 透過 signed URL 下載整日 parquet，免逐檔查詢，適合需要全市場分點的批次分析
-- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
-- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03, 2023-01-11~2023-01-17
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
+- 部分資料缺失，缺失日期為：2022-10-31~2022-11-03（上櫃不完整）, 2023-01-11（僅缺上櫃）
 
 !!! example
     === "Package"
@@ -1961,7 +1977,7 @@
 
 - 資料區間：2023-06-21 ~ now
 - 由於資料量過大，單次請求只提供一天資料
-- 資料更新時間 **星期一至五 01:00**，實際更新時間以 API 資料為主
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -2061,7 +2077,7 @@
 
 - 資料區間：2023-06-21 ~ now
 - 由於資料量過大，單次請求只提供一天資料)
-- 資料更新時間 **星期一至五 23:00**，實際更新時間以 API 資料為主
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Python-request"
@@ -2133,7 +2149,7 @@
 - 資料區間：2023-06-21 ~ now
 - 輸入 dataset、date 參數，會回傳 date 當天所有權證的分點資料
 - 透過 signed URL 下載整日 parquet，免逐檔查詢，適合需要全市場權證分點的批次分析
-- 每日更新，實際更新時間以 API 資料為主
+- 資料更新時間 **星期一至五 18:00**，實際更新時間以 API 資料為主
 
 !!! example
     === "Package"
@@ -2212,8 +2228,11 @@
 
 - 資料區間：2021-06-30 ~ now
 - 由於資料量過大，單次請求只提供一天資料
-- 資料更新時間 **星期一至五 23:30**，實際更新時間以 API 資料為主
+- 資料更新時間 **星期一至五 18:30**，實際更新時間以 API 資料為主
 - 部分資料缺失，缺失日期為：2023-01-11（整日無資料）, 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26
+
+??? note "bank_name 銀行名稱"
+    `bank_name` 共 9 種值：合庫、華南、彰銀、第一、兆豐、臺銀、土銀、台企銀，以及 `八大官股`。`八大官股` 為前述八家行庫所有分點的合計，數值等於同一天、同一檔股票八家行庫各列的加總。
 
 !!! example
     === "Package"
@@ -2368,7 +2387,9 @@
 
 - 提供台股，上市、上櫃、興櫃，的分點資訊！
 - 資料區間：2021-06-30 ~ now
-- 資料更新時間 **星期一至五 21:00**，實際更新時間以 API 資料為主
+- 資料更新時間 **星期一至五 18:30**，實際更新時間以 API 資料為主
+- 必須同時帶 data_id（股票代號）與 securities_trader_id（券商分點代號），以及 start_date、end_date；缺少任一 id 會回傳 HTTP 400，錯誤原因請見回應的 `detail` 欄位
+- 如需一次取得當日所有股票、所有券商分點，請使用 [一次拿特定日期，所有資料](#taiwanstocktradingdailyreportsecidagg-sponsorpro)
 
 !!! example
     === "Package"
@@ -2448,6 +2469,88 @@
             sell_volume: int64, # 賣出總股數
             buy_price: float, # 買進均價
             sell_price: float, # 賣出均價
+        }
+        ```
+
+#### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用) { #taiwanstocktradingdailyreportsecidagg-sponsorpro }
+(由於資料量過大，單次請求只提供一天資料)
+
+- 資料區間：2021-06-30 ~ now，逐交易日提供，歷史資料亦可下載；非交易日沒有檔案。
+- 輸入 dataset、date 參數，回傳該日所有股票、所有券商分點的統計。
+- 透過 signed URL 下載整日 parquet，免逐檔查詢；資料依 stock_id、securities_trader_id 排序。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_trading_daily_report_secid_agg(
+            start_date="2024-07-01",
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
+            "date": "2024-07-01",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockTradingDailyReportSecIdAgg",
+                date= "2024-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader | securities_trader_id | stock_id | date       | buy_volume | sell_volume | buy_price | sell_price |
+        |---:|:------------------|:---------------------|:---------|:-----------|-----------:|------------:|----------:|-----------:|
+        |  0 | 合庫              | 1020                 | 0050     | 2024-07-01 |     101016 |        1000 |    186.45 |     186.65 |
+        |  1 | 合庫台中          | 1021                 | 0050     | 2024-07-01 |       5521 |        5131 |    186.85 |     187.34 |
+        |  2 | 合庫台南          | 1022                 | 0050     | 2024-07-01 |        210 |        3100 |    186.66 |     186.52 |
+        |  3 | 合庫高雄          | 1023                 | 0050     | 2024-07-01 |       3068 |        6327 |    187.59 |     187.11 |
+        |  4 | 合庫嘉義          | 1024                 | 0050     | 2024-07-01 |       3053 |           0 |     187.9 |          0 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # 券商名稱
+            securities_trader_id: str, # 券商代碼
+            stock_id: str, # 股票代碼
+            date: str, # 日期
+            buy_volume: int64, # 買進總股數
+            sell_volume: int64, # 賣出總股數
+            buy_price: float64, # 買進均價（四捨五入至小數第 2 位）
+            sell_price: float64, # 賣出均價（四捨五入至小數第 2 位）
         }
         ```
 
@@ -3434,5 +3537,88 @@
             margin_cost: float, # 融資成本線（估算的融資部位移動加權平均成本）
             margin_ratio: float, # 計算所採用的融資成數（0.6 / 0.5）
             margin_maintenance: float, # 融資維持率（%），例 156.1
+        }
+        ```
+
+-----------------------------------
+#### 每日個股主力集中度 TaiwanStockBrokerDailyConcentration (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 資料區間：2021-06-30 ~ now
+- 資料更新時間 **星期一至五 盤後**，實際更新時間以 API 資料為主
+- 統計每支股票當日前 K 大買超券商的買超股數總和（`top_buy_volume`）與前 K 大賣超券商的賣超股數總和（`top_sell_volume`，正值）
+- 計算方式：從當日券商分點資料（TaiwanStockTradingDailyReport）計算每家券商淨買超（買 − 賣），取前 `top_k` 大買超加總為 `top_buy_volume`，前 `top_k` 大賣超加總為 `top_sell_volume`
+- 目前 `top_k` 固定為 **15**
+- 單位為**股**（非張）
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_stock_broker_daily_concentration(
+            stock_id="2330",
+            start_date="2024-01-01",
+            end_date="2024-01-31",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockBrokerDailyConcentration",
+            "data_id": "2330",
+            "start_date": "2024-01-01",
+            "end_date": "2024-01-31",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockBrokerDailyConcentration",
+                data_id= "2330",
+                start_date= "2024-01-01",
+                end_date= "2024-01-31"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   |   top_k |   top_buy_volume |   top_sell_volume |
+        |---:|:-----------|:-----------|--------:|-----------------:|------------------:|
+        |  0 | 2024-01-02 | 2330       |      15 |         12345678 |           9876543 |
+        |  1 | 2024-01-03 | 2330       |      15 |         11234567 |          10234567 |
+        |  2 | 2024-01-04 | 2330       |      15 |         13456789 |           8765432 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            top_k: int, # 前 K 大（目前固定為 15）
+            top_buy_volume: int, # 前 top_k 大買超券商買超股數總和（股）
+            top_sell_volume: int, # 前 top_k 大賣超券商賣超股數總和（股，正值）
         }
         ```

@@ -1,10 +1,10 @@
 In Japanese stock data, we offer 1 dataset, as follows:
 
-- [Japan Stock Price Table JapanStockPrice](https://finmind.github.io/en/tutor/JapanMarket/Technical/#japanstockprice)
+- [Japan Stock Price Table JapanStockPrice](https://finmind.github.io/en/tutor/JapanMarket/Technical/#japan-stock-price-table-japanstockprice)
 
 In addition, the following list summarizes the available datasets:
 
-- [Japan Stock List JapanStockInfo](https://finmind.github.io/en/tutor/JapanMarket/Technical/#japanstockinfo)
+- [Japan Stock List JapanStockInfo](https://finmind.github.io/en/tutor/JapanMarket/Technical/#japan-stock-list-japanstockinfo)
 
 The usage of each dataset is explained one by one below. For the specific dataset schemas, please refer to [finmindapi](http://api.finmindtrade.com/docs#/default/method_api_v3_data_get)
 

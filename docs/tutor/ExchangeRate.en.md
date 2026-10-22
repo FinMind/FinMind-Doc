@@ -1,6 +1,6 @@
 In the foreign exchange market, we offer 19 currency datasets, as follows:
 
-- [Foreign Currency to TWD Exchange Rate Table TaiwanExchangeRate](https://finmind.github.io/en/tutor/InterestRate/#taiwanexchangerate)
+- [Foreign Currency to TWD Exchange Rate Table TaiwanExchangeRate](https://finmind.github.io/en/tutor/ExchangeRate/#foreign-currency-to-twd-exchange-rate-table-taiwanexchangerate)
 
 In addition, the following list summarizes the available currencies. There are currently 19 of them.
 

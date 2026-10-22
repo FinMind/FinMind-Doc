@@ -1,34 +1,35 @@
-In Taiwan stock chip data, we have 26 datasets as follows:
+In Taiwan stock chip data, we have 27 datasets as follows:
 
 
-- [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginpurchaseshortsale)
-- [Total Market Margin Purchase / Short Sale TaiwanStockTotalMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktotalmarginpurchaseshortsale)
-- [Individual Stock Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)
-- [Individual Stock Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide)
-- [Total Market Institutional Investors Buy/Sell TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktotalinstitutionalinvestors)
-- [Foreign Investor Shareholding TaiwanStockShareholding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockshareholding)
-- [Shareholders Holding Shares Distribution TaiwanStockHoldingSharesPer](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockholdingsharesper-backersponsor)
-- [Securities Lending Transaction Details TaiwanStockSecuritiesLending](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocksecuritieslending)
-- [Margin Short Sale Suspension (Short Sale Covering Date) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockmarginshortsalesuspension)
-- [Credit Limit Daily Short Sale Balances TaiwanDailyShortSaleBalances](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwandailyshortsalebalances)
-- [Securities Trader Information TaiwanSecuritiesTraderInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwansecuritiestraderinfo)
-- [Taiwan Stock Trading Daily Report by Branch (query by stock_id) TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)
-- [Taiwan Stock Trading Daily Report by Branch (query by securities_trader_id) TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor_1)
-- [Taiwan Stock Warrant Trading Daily Report by Branch (query by stock_id) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor)
-- [Taiwan Stock Warrant Trading Daily Report by Branch (query by securities_trader_id) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#query-by-taiwanstockwarranttradingdailyreport-sponsor_1)
-- [Taiwan Stock Government Bank Buy/Sell TaiwanstockGovernmentBankBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockgovernmentbankbuysell-sponsor)
-- [Taiwan Total Exchange Margin Maintenance TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwantotalexchangemarginmaintenance-backersponsor)
-- [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)
-- [Block Trading Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktradingdailyreport-sponsor)
-- [Block Trade Daily Transactions TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockblocktrade-sponsor)
-- [Loan Collateral Balance TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockloancollateralbalance-sponsor)
+- [Individual Stock Margin Purchase / Short Sale TaiwanStockMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-purchase-short-sale-taiwanstockmarginpurchaseshortsale)
+- [Total Market Margin Purchase / Short Sale TaiwanStockTotalMarginPurchaseShortSale](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-total-market-margin-purchase-short-sale-taiwanstocktotalmarginpurchaseshortsale)
+- [Individual Stock Institutional Investors Buy/Sell TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#institutional-investors-buysell-taiwanstockinstitutionalinvestorsbuysell)
+- [Individual Stock Institutional Investors Buy/Sell (Wide) TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#institutional-investors-buysell-wide-taiwanstockinstitutionalinvestorsbuysellwide)
+- [Total Market Institutional Investors Buy/Sell TaiwanStockTotalInstitutionalInvestors](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-total-market-institutional-investors-buysell-taiwanstocktotalinstitutionalinvestors)
+- [Foreign Investor Shareholding TaiwanStockShareholding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#foreign-investor-shareholding-taiwanstockshareholding)
+- [Shareholders Holding Shares Distribution TaiwanStockHoldingSharesPer](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#shareholders-holding-shares-distribution-taiwanstockholdingsharesper-only-available-for-backer-sponsor-members)
+- [Securities Lending Transaction Details TaiwanStockSecuritiesLending](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#securities-lending-transaction-details-taiwanstocksecuritieslending)
+- [Margin Short Sale Suspension (Short Sale Covering Date) TaiwanStockMarginShortSaleSuspension](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#margin-short-sale-suspension-short-sale-covering-date-taiwanstockmarginshortsalesuspension)
+- [Credit Limit Daily Short Sale Balances TaiwanDailyShortSaleBalances](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#credit-limit-daily-short-sale-balances-taiwandailyshortsalebalances)
+- [Securities Trader Information TaiwanSecuritiesTraderInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#securities-trader-information-taiwansecuritiestraderinfo)
+- [Taiwan Stock Trading Daily Report by Branch (query by stock_id) TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-trading-daily-report-by-branch-query-by-stock_id-taiwanstocktradingdailyreport-only-available-for-sponsor-members)
+- [Taiwan Stock Trading Daily Report by Branch (query by securities_trader_id) TaiwanStockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-trading-daily-report-by-branch-query-by-securities_trader_id-taiwanstocktradingdailyreport-only-available-for-sponsor-members)
+- [Taiwan Stock Warrant Trading Daily Report by Branch (query by stock_id) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-warrant-trading-daily-report-by-branch-query-by-stock_id-taiwanstockwarranttradingdailyreport-only-available-for-sponsor-members)
+- [Taiwan Stock Warrant Trading Daily Report by Branch (query by securities_trader_id) TaiwanStockWarrantTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-warrant-trading-daily-report-by-branch-query-by-securities_trader_id-taiwanstockwarranttradingdailyreport-only-available-for-sponsor-members)
+- [Taiwan Stock Government Bank Buy/Sell TaiwanstockGovernmentBankBuySell](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-stock-government-bank-buysell-taiwanstockgovernmentbankbuysell-only-available-for-sponsor-members)
+- [Taiwan Total Exchange Margin Maintenance TaiwanTotalExchangeMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-total-exchange-margin-maintenance-taiwantotalexchangemarginmaintenance-only-available-for-backer-sponsor-members)
+- [Daily Securities Trader Branch Aggregate Statistics TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-securities-trader-branch-aggregate-statistics-taiwanstocktradingdailyreportsecidagg-only-available-for-sponsor-members)
+- [Block Trading Daily Report TaiwanStockBlockTradingDailyReport](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#block-trading-daily-report-taiwanstockblocktradingdailyreport-only-available-for-sponsor-members)
+- [Block Trade Daily Transactions TaiwanStockBlockTrade](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members)
+- [Loan Collateral Balance TaiwanStockLoanCollateralBalance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#loan-collateral-balance-taiwanstockloancollateralbalance-only-available-for-sponsor-members)
 - [Taiwan Active ETF List TaiwanStockActiveETFInfo](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwan-active-etf-list-taiwanstockactiveetfinfo)
 - [Active ETF Daily Holding TaiwanStockActiveETFHolding](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-taiwanstockactiveetfholding-only-available-for-sponsor-members)
 - [Active ETF Daily Holding Change TaiwanStockActiveETFHoldingChange](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#active-etf-daily-holding-change-taiwanstockactiveetfholdingchange-only-available-for-sponsor-members)
 - [Industry Chain Money Flow TaiwanStockIndustryChainMoneyFlow](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#industry-chain-money-flow-taiwanstockindustrychainmoneyflow-only-available-for-sponsor-members)
 - [Individual Stock Margin Maintenance TaiwanStockMarginMaintenance](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#individual-stock-margin-maintenance-taiwanstockmarginmaintenance-only-available-for-sponsor-members)
-- [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdispositionsecuritiesperiod-backersponsor)
-- [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)
+- [Disposition Securities Period TaiwanStockDispositionSecuritiesPeriod](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#disposition-securities-period-taiwanstockdispositionsecuritiesperiod-only-available-for-backer-sponsor-members)
+- [Day Trading Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#day-trading-borrowing-fee-rate-taiwanstockdaytradingborrowingfeerate-only-available-for-backer-sponsor-members)
+- [Daily Stock Broker Concentration TaiwanStockBrokerDailyConcentration](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#daily-stock-broker-concentration-taiwanstockbrokerdailyconcentration-only-available-for-sponsor-members)
 
 
 ----------------------------------
@@ -1671,8 +1672,8 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 21:00**, the actual update time is based on the API data.
-- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
+- Some data is missing on the following dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete), 2023-01-11 (TPEx-listed stocks only).
 - Enabling Async can significantly reduce data fetch time. In Colab tests, downloading 2,175 stocks takes only 4 minutes 20 seconds.
 
 ??? note "A `price` of 0 on emerging-stock dealer (自營商) branches is expected, not missing data"
@@ -1681,6 +1682,21 @@ In Taiwan stock chip data, we have 26 datasets as follows:
     - This is a structural characteristic of the emerging market, **not missing or erroneous data**; ordinary (non-dealer) branches of the same emerging stock still carry normal execution prices.
     - Listed (TWSE) and OTC stocks are unaffected — every branch, including dealers, has an execution price.
     - Reference: [TPEx — Emerging Stock Trading System](https://www.tpex.org.tw/web/emergingstock/trading_rule/rule.php?l=zh-tw).
+
+??? note "Total branch buy and total branch sell for the same stock and day may not be equal"
+    In the source data, total branch buy and total branch sell are not equal for some stocks. FinMind's data matches the source, so this is **not missing data or a processing error**; please do not balance or fill the difference yourself.
+
+    - It occurs for a few dozen stocks per trading day, almost all of them listed (TWSE) stocks.
+    - The difference is usually whole board lots, occasionally odd lots; in most cases only one side is short, occasionally both sides are.
+    - It is unrelated to block trades: this dataset excludes block trades, and most affected stocks have no block trade that day.
+    - Branch net buy/sell reflects only the disclosed portion, so it does not necessarily sum to zero across the market.
+    - To get the day's regular trading volume (excluding block trades), use `Trading_Volume` from `TaiwanStockPrice` minus the block trade volume from [TaiwanStockBlockTrade](#block-trade-daily-transactions-taiwanstockblocktrade-only-available-for-sponsor-members), rather than deriving it from branch totals.
+
+??? note "Emerging stocks: total buy and sell value of regular branches may not equal the day's trading value"
+    When checking an emerging-board (興櫃) stock's daily trading value against "buy value + sell value of regular branches (excluding recommending securities dealers)", the two match on most trading days, but differ in the two cases below. FinMind's data matches the emerging-stock daily broker report published by TPEx, so this is **not missing data**.
+
+    - **Trades between recommending securities dealers** (regular-branch total is lower than the trading value): when both sides of a trade are recommending dealers, the trade does not appear in any regular branch. "Recommending dealers' buy shares + sell shares − daily trading volume" equals the shares traded between recommending dealers, e.g. 6,000 shares for 6696 on 2026-06-26 (at 397, a difference of 2,382,000).
+    - **Off-system negotiated trades** (regular-branch total is higher than the trading value): besides trades on the computerized negotiation system, the daily broker report also includes "off-system negotiated trades" (系統外議價交易). These appear in the branch data but are not counted in the daily trading value of `TaiwanStockPrice`.
 
 !!! example
     === "Package"
@@ -1786,8 +1802,8 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 21:00**, the actual update time is based on the API data.
-- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
+- Some data is missing on the following dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete), 2023-01-11 (TPEx-listed stocks only).
 
 !!! example
     === "Package"
@@ -1878,8 +1894,8 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2021-06-30 ~ now.
 - Providing the dataset and date parameters returns the branch-level trading data of all stocks for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering the entire market.
-- Data update time: **Monday to Friday 21:00**. The actual update time is based on the API data.
-- Some data is missing on these dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Data update time: **Monday to Friday 18:00**. The actual update time is based on the API data.
+- Some data is missing on these dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete), 2023-01-11 (TPEx-listed stocks only).
 
 !!! example
     === "Package"
@@ -1961,7 +1977,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 2023-06-21 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 01:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
 !!! example
     === "Package"
@@ -2061,7 +2077,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 2023-06-21 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 23:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
 !!! example
     === "Python-request"
@@ -2133,7 +2149,7 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 - Data range: 2023-06-21 ~ now.
 - Providing the dataset and date parameters returns the branch-level trading data of all warrants for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering all warrants in the market.
-- Updated daily. The actual update time is based on the API data.
+- Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
 !!! example
     === "Package"
@@ -2212,8 +2228,11 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
-- Data update time **Monday to Friday 23:30**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
 - Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
+
+??? note "bank_name values"
+    `bank_name` has 9 values: 合庫, 華南, 彰銀, 第一, 兆豐, 臺銀, 土銀, 台企銀, and `八大官股`. `八大官股` is the total of all branches of the eight government banks above; its values equal the sum of the eight banks' rows for the same date and stock.
 
 !!! example
     === "Package"
@@ -2368,7 +2387,9 @@ In Taiwan stock chip data, we have 26 datasets as follows:
 
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
-- Data update time **Monday to Friday 21:00**, the actual update time is based on the API data.
+- Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
+- Both data_id (stock code) and securities_trader_id (securities trader branch code) are required, along with start_date and end_date. If either id is missing, the API returns HTTP 400 and the reason is given in the `detail` field of the response.
+- To get all stocks and all securities trader branches for a day at once, use [Fetch all data for a specific date at once](#taiwanstocktradingdailyreportsecidagg-sponsorpro).
 
 !!! example
     === "Package"
@@ -2448,6 +2469,88 @@ In Taiwan stock chip data, we have 26 datasets as follows:
             sell_volume: int64, # total shares sold
             buy_price: float, # average buy price
             sell_price: float, # average sell price
+        }
+        ```
+
+#### Fetch all data for a specific date at once (available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members) { #taiwanstocktradingdailyreportsecidagg-sponsorpro }
+(Due to the large data volume, each request only provides one day's data.)
+
+- Data range: 2021-06-30 ~ now, one trading day at a time; historical data is also available for download. There is no file for non-trading days.
+- Providing the dataset and date parameters returns the aggregate statistics of all stocks and all securities trader branches for that day.
+- Downloads the whole-day parquet via a signed URL — no need to query stock by stock. Rows are sorted by stock_id and securities_trader_id.
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_trading_daily_report_secid_agg(
+            start_date="2024-07-01",
+            use_object=True,
+        )
+        ```
+    === "Python-request"
+        ```python
+        import io
+        import requests
+        import pandas as pd
+
+        url = "https://api.finmindtrade.com/api/v4/storage_objects"
+        token = "" # Refer to login to obtain the API key
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
+            "date": "2024-07-01",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = pd.read_parquet(io.BytesIO(resp.content))
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        library(arrow)
+
+        url = 'https://api.finmindtrade.com/api/v4/storage_objects'
+        token = "" # Refer to login to obtain the API key
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockTradingDailyReportSecIdAgg",
+                date= "2024-07-01"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        con = content(response, "raw")
+        data <- read_parquet(con)
+        close(con)
+        head(data)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | securities_trader | securities_trader_id | stock_id | date       | buy_volume | sell_volume | buy_price | sell_price |
+        |---:|:------------------|:---------------------|:---------|:-----------|-----------:|------------:|----------:|-----------:|
+        |  0 | 合庫              | 1020                 | 0050     | 2024-07-01 |     101016 |        1000 |    186.45 |     186.65 |
+        |  1 | 合庫台中          | 1021                 | 0050     | 2024-07-01 |       5521 |        5131 |    186.85 |     187.34 |
+        |  2 | 合庫台南          | 1022                 | 0050     | 2024-07-01 |        210 |        3100 |    186.66 |     186.52 |
+        |  3 | 合庫高雄          | 1023                 | 0050     | 2024-07-01 |       3068 |        6327 |    187.59 |     187.11 |
+        |  4 | 合庫嘉義          | 1024                 | 0050     | 2024-07-01 |       3053 |           0 |     187.9 |          0 |
+    === "Schema"
+        ```
+        {
+            securities_trader: str, # securities trader name
+            securities_trader_id: str, # securities trader code
+            stock_id: str, # stock symbol
+            date: str, # date
+            buy_volume: int64, # total shares bought
+            sell_volume: int64, # total shares sold
+            buy_price: float64, # average buy price (rounded to 2 decimals)
+            sell_price: float64, # average sell price (rounded to 2 decimals)
         }
         ```
 
@@ -3436,5 +3539,88 @@ In Taiwan stock chip data, we have 26 datasets as follows:
             margin_cost: float, # margin cost line (estimated moving weighted average cost of the margin position)
             margin_ratio: float, # margin purchase ratio applied (0.6 / 0.5)
             margin_maintenance: float, # margin maintenance ratio (%), e.g. 156.1
+        }
+        ```
+
+-----------------------------------
+#### Daily Stock Broker Concentration TaiwanStockBrokerDailyConcentration (only available for [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+
+- Data range: 2021-06-30 ~ now
+- Data update time **Monday to Friday after market close**, the actual update time is based on the API data.
+- For each stock and each day, provides the total net buy volume of the top K net-buying brokers (`top_buy_volume`) and the total net sell volume of the top K net-selling brokers (`top_sell_volume`, a positive value)
+- Calculation: from the day's broker branch data (TaiwanStockTradingDailyReport), compute each broker's net buy (buy − sell); the sum over the top `top_k` net buyers is `top_buy_volume`, and the sum over the top `top_k` net sellers is `top_sell_volume`
+- `top_k` is currently fixed at **15**
+- Unit: **shares** (not lots)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+        df = api.taiwan_stock_broker_daily_concentration(
+            stock_id="2330",
+            start_date="2024-01-02",
+            end_date="2024-01-04",
+        )
+        ```
+    === "Python"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to the login section to get the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockBrokerDailyConcentration",
+            "data_id": "2330",
+            "start_date": "2024-01-02",
+            "end_date": "2024-01-04",
+        }
+        data = requests.get(url, headers=headers, params=parameter)
+        data = data.json()
+        data = pd.DataFrame(data['data'])
+        print(data.head())
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to the login section to get the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockBrokerDailyConcentration",
+                data_id= "2330",
+                start_date= "2024-01-02",
+                end_date= "2024-01-04"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   |   top_k |   top_buy_volume |   top_sell_volume |
+        |---:|:-----------|:-----------|--------:|-----------------:|------------------:|
+        |  0 | 2024-01-02 | 2330       |      15 |         13614669 |           9900342 |
+        |  1 | 2024-01-03 | 2330       |      15 |          4589398 |          17133909 |
+        |  2 | 2024-01-04 | 2330       |      15 |          7182074 |           6952525 |
+    === "Schema"
+        ```
+        {
+            date: str, # date
+            stock_id: str, # stock ID
+            top_k: int, # top K (currently fixed at 15)
+            top_buy_volume: int, # total net buy volume of the top_k net-buying brokers (shares)
+            top_sell_volume: int, # total net sell volume of the top_k net-selling brokers (shares, positive value)
         }
         ```

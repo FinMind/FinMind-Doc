@@ -10,7 +10,7 @@ Base URL: `https://api.finmindtrade.com/api/v4`
 
 Register at finmindtrade.com, get token via login API or website. Pass token as `Authorization: Bearer {token}` header.
 
-Rate limit: 600 requests/hour (with token), 300/hour (without token).
+Rate limit: 300 requests/hour (without token), 600/hour (free registered token); paid plans up to 20,000/hour — see Membership Tiers & Pricing below.
 
 #### Update Token (Self-Service Reset)
 
@@ -122,11 +122,23 @@ df = api.taiwan_stock_daily(
 
 Async batch query is supported by datasets that require `data_id` parameter. Not supported by: info, snapshot, tick, total aggregation, and convertible bond datasets.
 
-## Membership Tiers
+## Membership Tiers & Pricing
 
-- **Free**: Basic datasets, 600 req/hour
-- **Backer**: More datasets (marked "backer" below), higher limits
-- **Sponsor**: Full access to all datasets including real-time data, branch trading data, and minute-level data
+All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the plan falls back to Free when it expires. Buy at the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor). Full comparison: [Pricing](https://finmind.github.io/en/Pricing/).
+
+| Plan | Monthly | Yearly | API limit | Datasets | License |
+|---|---|---|---|---|---|
+| Free | NT$0 | NT$0 | 300 req/hour (600 with registered token) | 45 | Non-commercial |
+| Backer | NT$699 | NT$5,499 | 1,600 req/hour | 81 | Non-commercial |
+| Sponsor (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 97 | Non-commercial |
+| Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 97 + whole-day all-symbol download | Commercial |
+
+- **Free**: Basic datasets.
+- **Backer**: More datasets (marked "backer" below), all-stocks-by-date queries without `data_id`.
+- **Sponsor**: Full access to all datasets including real-time data, branch trading data, and minute-level data.
+- **Sponsor Pro**: Everything in Sponsor, plus commercial license (SaaS / AI / web / app / internal systems) and whole-day all-symbol download via `/storage_objects`.
+- Upgrade anytime by paying the prorated difference for the remaining days (minimum NT$100).
+- All plans: no redistribution of raw data, no mirror APIs, no displaying real-time data directly on public web/app interfaces; attribution "FinMind" required.
 
 ---
 
@@ -177,12 +189,15 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ### TaiwanStockPriceTick (台灣股價歷史逐筆資料表)
 - Tier: Backer/Sponsor
-- Data range: 2019-01-01 ~ now
+- Data range: 2018-12-07 ~ now
 - Update: Mon-Fri 15:30
 - Params: dataset=TaiwanStockPriceTick, data_id=2330, start_date=2020-01-02
 - Columns: date (str), stock_id (str), deal_price (float64), volume (int64), Time (str), TickType (str: 0=unknown, 1=buyer-initiated (trade at ask), 2=seller-initiated (trade at bid))
-- Note: Single day per request.
-- Known limitation: TickType is always 1 for all 2019 data (buy/sell-side classification unavailable that year); complete 0/1/2 values start from 2020-01-02.
+- Note: Single day per request. Whole-day files (storage_objects) are sorted by stock_id, Time; trades at the same time are in execution order.
+- TickType correction: every trading day from 2018-12-07 to 2023-03-10 was regenerated using the same rule applied from 2023-03-13 onward; the old version labelled undeterminable trades as 1 (buyer-initiated), which inflated the buyer-initiated share. Re-download if you fetched these dates before.
+- Known limitation: for dates before 2021-06-22, roughly 8-10% of trades have TickType 0 (undetermined) because the source data carries no side information for them; treat 0 separately rather than merging it into either side.
+- Missing dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22 have no tick data; 2019-05-16 only has data for a small number of ETFs.
+- Missing periods (TWSE-listed stocks, cannot be filled in): several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
 - Note: `volume` keeps each market's native trading unit — lots (1 lot = 1,000 shares) for TWSE/TPEX stocks, shares for emerging-board (興櫃) stocks — so both units appear in the same day of data. This is a market difference, not a data error, and the same rule applies to TaiwanStockKBar. Determine the market from TaiwanStockInfo by taking the row with the latest `date` per `stock_id`; filtering on `type == "emerging"` alone also picks up already-transferred stocks, which makes the emerging volume unit look inconsistent.
 - Note: when reconciling against TaiwanStockPrice.Trading_Volume (always in shares), TWSE/TPEX daily volume includes block trades (see TaiwanStockBlockTrade) while tick data does not, so the two will not match exactly.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockPriceTick&date=2019-01-02` returns whole-day parquet via signed URL, ignores data_id. Python SDK: `api.taiwan_stock_tick(date='2019-01-02', use_object=True)`.
@@ -199,7 +214,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2005-01-01 ~ now
 - Params: dataset=TaiwanStockStatisticsOfOrderBookAndTrade, start_date=2021-01-07
 - Columns: Time (str), TotalBuyOrder (str), TotalBuyVolume (int64), TotalSellOrder (int64), TotalSellVolume (int64), TotalDealOrder (int64), TotalDealVolume (int64), TotalDealMoney (int64), date (str)
-- Note: Single day per request.
+- Note: Single day per request. Cumulative trades exclude odd-lot, block, after-hours fixed-price, auction and tender trades, so the closing total is slightly lower than the daily market volume. Interval: 1 min until 2011-01-14, 15 s from 2011-01-17, 10 s from 2014-02-24, 5 s from 2014-12-29.
 
 ### TaiwanVariousIndicators5Seconds (台股加權指數)
 - Tier: Free
@@ -236,14 +251,16 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 
 ### TaiwanStockKBar (台股分K資料表)
 - Tier: Sponsor
-- Data range: 2019-01-01 ~ now
+- Data range: 2018-12-07 ~ now
 - Update: Mon-Fri 15:50
 - Params: dataset=TaiwanStockKBar, data_id=2330, start_date=2023-09-22
 - Columns: date (str), minute (str), stock_id (str), open (float64), high (float64), low (float64), close (float64), volume (float32)
 - Note: Single day per request.
 - Note: `volume` keeps each market's native trading unit — lots (1 lot = 1,000 shares) for TWSE/TPEX stocks, shares for emerging-board (興櫃) stocks — the same rule as TaiwanStockPriceTick. Determine the market from TaiwanStockInfo by taking the row with the latest `date` per `stock_id`.
-- Note: the TAIEX index minute K is in this same dataset — use data_id=TAIEX. Range 2005-01-03 ~ now (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00:00-13:30:00, one row per minute; `volume` is always 0 because an index has no trading volume. Make-up trading Saturdays are covered.
-- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockKBar&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from 2019-01-02 onwards. Python SDK: `api.taiwan_stock_kbar(date='2026-01-02', use_object=True)`.
+- Note: the TAIEX index minute K is in this same dataset — use data_id=TAIEX. Range 2005-01-03 ~ now (longer than the 2018-12-07 start for individual stocks), 271 rows per trading day covering 09:00:00-13:30:00, one row per minute; `volume` is always 0 because an index has no trading volume. Make-up trading Saturdays are covered.
+- Missing dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22 have no individual-stock minute K (only TAIEX is available); on 2019-05-16 only a small number of ETFs have data.
+- Missing periods (TWSE-listed stocks, cannot be filled in): several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockKBar&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from 2018-12-07 onwards. Python SDK: `api.taiwan_stock_kbar(date='2026-01-02', use_object=True)`.
 
 ### TaiwanStockWeekPrice (台股週K資料表)
 - Tier: Backer/Sponsor
@@ -266,7 +283,7 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2005-01-03 ~ now
 - Params: dataset=TaiwanStockEvery5SecondsIndex, start_date=2025-05-09
 - Columns: date (str), time (str), stock_id (str), price (float), kind (str)
-- Note: Single day per request.
+- Note: Single day per request. 13:30:00 is the official closing index for both TWSE and TPEx. TPEx chemical index is Chemical for the full history (ChemicalEngineering was merged into Chemical on 2026-10-04). 2017-05-08 TPEx has no 09:00:00 point.
 
 ### TaiwanStockSuspended (台股暫停交易公告)
 - Tier: Backer/Sponsor
@@ -390,8 +407,10 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params (by broker): securities_trader_id=1020, date=2022-06-16
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
 - Note: Single day per request, only `date` (no start_date/end_date).
-- Note: Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11~2023-01-17.
+- Note: Some data is missing on the following dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete), 2023-01-11 (TPEx-listed stocks only).
 - Note: For emerging-board (興櫃) stocks, the recommending securities dealer (market maker; securities_trader_id ends with `T`) quotes two-way across many price levels, so that branch row's price shows 0 (buy/sell share counts are still correct). This is normal for emerging stocks, not missing data; listed (TWSE)/OTC (TPEX) stocks are unaffected.
+- Known limitation: for the same stock and day, total branch buy and total branch sell may not be equal. This comes from the source data (FinMind matches the source), occurs for a few dozen stocks per trading day (almost all listed/TWSE), and is unrelated to block trades (this dataset excludes block trades). Do not balance or fill the difference; for regular trading volume use TaiwanStockPrice.Trading_Volume minus TaiwanStockBlockTrade volume.
+- Known limitation: for emerging-board (興櫃) stocks, regular-branch (excluding recommending securities dealers) buy value + sell value may not equal TaiwanStockPrice.Trading_money. Lower = trades between two recommending dealers (not shown in regular branches; shares = dealers' buy + sell - daily volume). Higher = off-system negotiated trades (系統外議價交易), which are in the daily broker report but not in the daily trading value. FinMind matches the TPEx source; not missing data.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReport&date=2022-06-16` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_trading_daily_report(date='2022-06-16', use_object=True)`.
 
 ### TaiwanStockWarrantTradingDailyReport (台股權證分點資料表)
@@ -405,10 +424,11 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 ### TaiwanStockGovernmentBankBuySell (台股八大行庫買賣表)
 - Tier: Sponsor
 - Data range: 2021-06-30 ~ now
-- Update: Mon-Fri 23:30
+- Update: Mon-Fri 18:30
 - Params: dataset=TaiwanStockGovernmentBankBuySell, start_date=2023-01-17
 - Columns: date, stock_id, buy_amount, sell_amount, buy, sell, bank_name
 - Note: Some data is missing on the following dates: 2023-01-11 (no data for the entire day), 2023-03-16, 2023-04-06, 2023-10-25, 2025-03-26.
+- Note: bank_name values: 合庫, 華南, 彰銀, 第一, 兆豐, 臺銀, 土銀, 台企銀, and 八大官股 (total of the eight banks, equal to the sum of their rows for the same date and stock).
 
 ### TaiwanTotalExchangeMarginMaintenance (台灣大盤融資維持率)
 - Tier: Backer/Sponsor
@@ -422,8 +442,9 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Data range: 2021-06-30 ~ now
 - Update: Mon-Fri 21:00
 - Endpoint: `GET https://api.finmindtrade.com/api/v4/taiwan_stock_trading_daily_report_secid_agg` (專屬 endpoint，不走 /api/v4/data)
-- Params: data_id=2330, start_date=2024-07-01, end_date=2024-07-15
+- Params: data_id=2330, securities_trader_id=1020, start_date=2024-07-01, end_date=2024-07-15 (data_id and securities_trader_id are both required; missing either returns HTTP 400 with the reason in `detail`)
 - Columns: securities_trader, securities_trader_id, stock_id, date, buy_volume, sell_volume, buy_price, sell_price
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReportSecIdAgg&date=2024-07-01` returns whole-day parquet (all stocks × all broker branches) via signed URL, ignores data_id / securities_trader_id. Available from 2021-06-30 onwards. Python SDK: `api.taiwan_stock_trading_daily_report_secid_agg(start_date='2024-07-01', use_object=True)`.
 
 ### TaiwanStockBlockTradingDailyReport (鉅額交易買賣日報表)
 - Tier: Sponsor
@@ -492,6 +513,15 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Note: this dataset is an ESTIMATED indicator. Public disclosure provides only the per-stock margin purchase balance in lots, not the per-stock margin purchase amount, so there is no official ground truth; every service that publishes this indicator estimates it differently and the numbers will not match. Use it as a relative measure of margin pressure, not an exact value
 - Note: margin_ratio always uses the statutory maximum margin purchase ratio (TWSE 60%; TPEx 60% from 2014-11-10, 50% before). Stocks flagged for attention or under disposition may in practice get a lower ratio or have margin trading suspended
 - Note: margin_cost is a nominal value already adjusted for share-count events (splits / par value changes, capital reductions, stock dividends) and with the cash dividend per share deducted on the ex-dividend date; it is not the original purchase price
+
+### TaiwanStockBrokerDailyConcentration (每日個股主力集中度)
+- Tier: Sponsor
+- Data range: 2021-06-30 ~ now
+- Update: Mon-Fri after market close
+- Params: dataset=TaiwanStockBrokerDailyConcentration, data_id=2330, start_date=2024-01-02, end_date=2024-01-04
+- Columns: date, stock_id, top_k (currently fixed at 15), top_buy_volume (total net buy volume of the top_k net-buying brokers, shares), top_sell_volume (total net sell volume of the top_k net-selling brokers, shares, positive value)
+- Formula: from TaiwanStockTradingDailyReport, net buy per broker = buy - sell; top_buy_volume = sum of the top_k largest net buys; top_sell_volume = sum of the top_k largest net sells
+- Unit: shares (not lots)
 
 ### TaiwanStockDispositionSecuritiesPeriod (公布處置有價證券表)
 - Tier: Backer/Sponsor
@@ -646,6 +676,10 @@ Async batch query is supported by datasets that require `data_id` parameter. Not
 - Params: dataset=TaiwanOptionTick, data_id=OCO, start_date=2020-04-01
 - Columns: ExercisePrice, PutCall, contract_date, date, option_id, price, volume
 - Note: Single day per request. data_id is required; for all option products of a day use the bulk download below.
+- Volume convention: tick volume is double-sided (each matched trade records both buy and sell side once; same time/series/price volume always sums to an even number, typically two identical rows), so summed tick volume is ~2x the single-side volume in TaiwanOptionDaily. These are not duplicates.
+- Volume reconciliation per series (same contract_date, strike, call/put; same session): sum(tick volume of the series) = 2 x TaiwanOptionDaily volume of the series - 2 x negotiated block-trade lots of the series. Negotiated block trades (TAIFEX Market Data > Daily Market Report > Block Trade > Negotiation) are not in tick data but are in daily volume. Regular-session block trades belong to position, after-hours ones to that trading day's after_market.
+- No buy/sell side: tick data has no aggressor-side (buy/sell-initiated) field.
+- Trading-day attribution: the after-hours (night) session is attributed to the next business day (TAIFEX rule). In a tick file, 00:00-05:00 ticks belong to trading day D's after_market in TaiwanOptionDaily; 08:45-13:45 to day D's regular session; 15:00-24:00 to the next trading day's after_market.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanOptionTick&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from 2011-01-03 onwards (incomplete between 2019-01-16 and 2019-06-30). Python SDK: `api.taiwan_option_tick(date='2026-01-02', use_object=True)`.
 
 ### TaiwanFuturesInstitutionalInvestors (期貨三大法人買賣)
