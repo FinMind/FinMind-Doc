@@ -1,3 +1,6 @@
+#### 2026-10-22
+* **Data correction notice**: [Dividend Policy Table TaiwanStockDividend](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#dividend-policy-table-taiwanstockdividend): ETF income distributions could previously have several records for the same ex-dividend date (including stale records with a 0 amount or invalid dates, e.g. 00850 on 2023-11-16); each distribution now has exactly one record, and distributions whose amount has not yet been announced are listed only after the announcement. Individual stock dividends are not affected. **If you downloaded or queried ETF income distribution data (2009 ~ 2026), please fetch it again**
+
 #### 2026-10-20
 * [Day Trading Short-Selling Borrowing Fee Rate TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/en/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor): added **OTC (TPEX)** data — previously only TWSE-listed stocks were covered; OTC stocks' day-trading borrowing fee rates are now included as well
 

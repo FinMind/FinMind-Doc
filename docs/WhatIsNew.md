@@ -1,3 +1,6 @@
+#### 2026-10-22
+* **資料校正公告**：[股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)：ETF 收益分配原本同一次除息可能有多列（含金額為 0、日期異常的舊列，例：00850 2023-11-16），已改為每次除息只保留一列；尚未公告金額的除息改為公告後才列入。個股股利不受影響。**曾下載或查詢過 ETF 收益分配資料（2009 ~ 2026）的使用者請重新取得資料**
+
 #### 2026-10-20
 * [現股當日沖銷券差借券費率 TaiwanStockDayTradingBorrowingFeeRate](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockdaytradingborrowingfeerate-backersponsor)：新增**上櫃 (TPEX)** 資料，原本僅涵蓋上市 (TWSE)，現已同時收錄上櫃個股的當沖券差借券費率
 
