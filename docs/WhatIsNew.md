@@ -1,3 +1,6 @@
+#### 2026-10-23
+* **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：2021-06-30 ~ 2025-09-16（集中在 2024-03 以前）部分股票（多為創新板及興櫃轉上市、上櫃的股票，例：6645 2022-02-16）的分點明細重複收錄一次，分點買賣合計為當日成交量的兩倍，重複已移除並重新產製（API 與整日下載檔皆已更新）；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)、[每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor) 同步更新。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
+
 #### 2026-10-22
 * **資料校正公告**：[股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)：ETF 收益分配原本同一次除息可能有多列（含金額為 0、日期異常的舊列，例：00850 2023-11-16），已改為每次除息只保留一列；尚未公告金額的除息改為公告後才列入。個股股利不受影響。**曾下載或查詢過 ETF 收益分配資料（2009 ~ 2026）的使用者請重新取得資料**
 * [個股三大法人買賣表 TaiwanStockInstitutionalInvestorsBuySell](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysell)、[個股三大法人買賣表（寬表）TaiwanStockInstitutionalInvestorsBuySellWide](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockinstitutionalinvestorsbuysellwide) 新增上市權證的三大法人買賣資料，資料區間 2012-05-02 ~ 2017-11-13（2017-11-14 起原本即包含權證）
