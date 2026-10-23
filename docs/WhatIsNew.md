@@ -1,5 +1,6 @@
 #### 2026-10-24
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.0 版：可存取 FinMind 所有公開資料與 endpoint，新增 `query_endpoint`（當日卷商分點統計、權證分點、股票／期貨／選擇權即時快照等）與 `download_storage_object`（整日全市場資料下載到本機，限 sponsorpro 會員）；權限不足時會說明所需方案並提供升級連結。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
+* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor) 新增受益證券 01010T 京城樂富R1 的分點資料，資料區間 2026-08-24 至今（API 與整日下載檔皆可取得）；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor) 同步新增
 
 #### 2026-10-23
 * **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：2021-06-30 ~ 2025-09-16（集中在 2024-03 以前）部分股票（多為創新板及興櫃轉上市、上櫃的股票，例：6645 2022-02-16）的分點明細重複收錄一次，分點買賣合計為當日成交量的兩倍，重複已移除並重新產製（API 與整日下載檔皆已更新）；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)、[每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor) 同步更新。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
