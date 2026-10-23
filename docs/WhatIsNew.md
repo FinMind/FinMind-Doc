@@ -1,5 +1,6 @@
 #### 2026-10-23
 * **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：2021-06-30 ~ 2025-09-16（集中在 2024-03 以前）部分股票（多為創新板及興櫃轉上市、上櫃的股票，例：6645 2022-02-16）的分點明細重複收錄一次，分點買賣合計為當日成交量的兩倍，重複已移除並重新產製（API 與整日下載檔皆已更新）；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)、[每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor) 同步更新。**曾下載或查詢過這段期間資料的使用者請重新取得資料**
+* [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 補上 2024-03-12 ~ 2025-09-30 原本缺少的興櫃股票逐筆與分 K 資料（API 與整日下載檔皆可取得；2026-10-19 公告時部分交易日尚未更新，現已全部完成）。補齊後，興櫃股票逐筆與分 K 資料區間為 2018-12-07 至今，僅 2019-02-20 ~ 2019-03-15、2019-05-16、2022-09-23、2022-09-26、2026-01-09 因來源無資料而沒有興櫃資料
 
 #### 2026-10-22
 * **資料校正公告**：[股利政策表 TaiwanStockDividend](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdividend)：ETF 收益分配原本同一次除息可能有多列（含金額為 0、日期異常的舊列，例：00850 2023-11-16），已改為每次除息只保留一列；尚未公告金額的除息改為公告後才列入。個股股利不受影響。**曾下載或查詢過 ETF 收益分配資料（2009 ~ 2026）的使用者請重新取得資料**
