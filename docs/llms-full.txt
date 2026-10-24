@@ -261,16 +261,16 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 
 ### TaiwanStockKBar (台股分K資料表)
 - Tier: Sponsor
-- Data range: 2019-01-01 ~ now
+- Data range: 2018-12-07 ~ now
 - Update: Mon-Fri 15:50
 - Params: dataset=TaiwanStockKBar, data_id=2330, start_date=2023-09-22
 - Columns: date (str), minute (str), stock_id (str), open (float64), high (float64), low (float64), close (float64), volume (float32)
 - Note: Single day per request.
 - Note: `volume` keeps each market's native trading unit — lots (1 lot = 1,000 shares) for TWSE/TPEX stocks, shares for emerging-board (興櫃) stocks — the same rule as TaiwanStockPriceTick. Determine the market from TaiwanStockInfo by taking the row with the latest `date` per `stock_id`.
-- Note: the TAIEX index minute K is in this same dataset — use data_id=TAIEX. Range 2005-01-03 ~ now (longer than the 2019-01-01 start for individual stocks), 271 rows per trading day covering 09:00:00-13:30:00, one row per minute; `volume` is always 0 because an index has no trading volume. Make-up trading Saturdays are covered.
-- Missing dates: 2019-02-20, 2019-02-21, 2019-02-22 have no individual-stock minute K (only TAIEX is available); on 2019-05-16 only a small number of ETFs have data.
+- Note: the TAIEX index minute K is in this same dataset — use data_id=TAIEX. Range 2005-01-03 ~ now (longer than the 2018-12-07 start for individual stocks), 271 rows per trading day covering 09:00:00-13:30:00, one row per minute; `volume` is always 0 because an index has no trading volume. Make-up trading Saturdays are covered.
+- Missing dates: 2018-12-22, 2019-02-20, 2019-02-21, 2019-02-22 have no individual-stock minute K (only TAIEX is available); on 2019-05-16 only a small number of ETFs have data.
 - Missing periods (TWSE-listed stocks, cannot be filled in): several periods after the open on 2022-03-01 ~ 2022-03-10 (up to about 2 minutes), 2024-07-02 09:38:25 ~ 09:38:40, 2024-07-03 09:00:11 ~ 09:00:22, 2024-07-18 12:12:32 ~ 12:12:45, 2026-03-10 11:19:45 ~ 11:19:55.
-- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockKBar&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from 2019-01-02 onwards. Python SDK: `api.taiwan_stock_kbar(date='2026-01-02', use_object=True)`.
+- Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockKBar&date=2026-01-02` returns whole-day parquet via signed URL, ignores data_id. Available from 2018-12-07 onwards. Python SDK: `api.taiwan_stock_kbar(date='2026-01-02', use_object=True)`.
 
 ### TaiwanStockWeekPrice (台股週K資料表)
 - Tier: Backer/Sponsor
@@ -339,6 +339,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
 - Data range: 2005-01-01 ~ now
 - Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
+- Warrants: included (stock_id = warrant code); TWSE warrants from 2012-05-02, TPEx warrants from 2014-12-01
 - Update: Mon-Fri 20:00
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySell, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySell, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
@@ -351,6 +352,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Same data as TaiwanStockInstitutionalInvestorsBuySell but wide format: one row per (date, stock_id), each institutional investor's buy/sell as its own column
 - Data range: 2005-01-01 ~ now
 - Coverage: 上市 (TWSE), 上櫃 (TPEx), 興櫃 (Emerging) 三市場，以 stock_id 區分
+- Warrants: included (stock_id = warrant code); TWSE warrants from 2012-05-02, TPEx warrants from 2014-12-01
 - Update: Mon-Fri 20:00
 - Params: dataset=TaiwanStockInstitutionalInvestorsBuySellWide, data_id=2330, start_date=2020-04-01, end_date=2020-04-12
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockInstitutionalInvestorsBuySellWide, start_date=2020-04-01 (不帶 data_id，取得該日所有股票資料)
@@ -551,6 +553,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: dataset=TaiwanStockFinancialStatements, data_id=2330, start_date=2019-01-01
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockFinancialStatements, start_date=2019-01-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), type (str), value (float64), origin_name (str)
+- Unit: value 為新台幣元（含 KY 公司皆為新台幣；財報原始千元已乘以 1000；EPS 為每股元不換算）。金額科目為單季值：同一年度逐季相減年初累計數，Q4 = 全年 − 前三季，四季相加即全年。只公告半年報／年報的公司一年只有 06-30（上半年）、12-31（下半年）兩筆。金融業科目不同（例：金控 Revenue 對應「淨收益」），以 origin_name 確認原始科目。
 - Caveat (EPS 為單季值，且遇配股／分割會被追溯調整): EPS 是單季數字，各季存放該季財報公布當下的原始值。依 IAS 33，無償配股（股票股利）、股票分割須追溯調整所有列報期間的加權平均股數，該季財報會下修先前各季 EPS，但本表不回頭改寫舊值 → 同一年度內各季 EPS 股數基準不一致，直接相加會對不上財報累計 EPS。例：3081 於 2026-07-15 除權配股票股利 1 元（無償配股 10%），本表 2026 Q1 EPS=3.44（原始值）、Q2 EPS=4.62（已追溯調整），相加 8.06，但財報上半年累計 EPS=7.75（Q1 追溯調整後為 3.44÷1.1=3.13，3.13+4.62=7.75）。跨季合計請改用 IncomeAfterTaxes 相加後除以同一加權平均股數；可用 TaiwanStockDividend 的 StockEarningsDistribution 欄位判斷區間內是否配股。
 
 ### TaiwanStockBalanceSheet (資產負債表)
@@ -560,6 +563,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: dataset=TaiwanStockBalanceSheet, data_id=2330, start_date=2019-03-31
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockBalanceSheet, start_date=2019-03-31 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), type (str), value (float64), origin_name (str)
+- Unit: value 為新台幣元（含 KY 公司；財報原始千元已乘以 1000），季末時點餘額。type 以 _per 結尾者為占資產總額百分比（%），非金額。
 
 ### TaiwanStockCashFlowsStatement (現金流量表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -568,6 +572,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: dataset=TaiwanStockCashFlowsStatement, data_id=2330, start_date=2019-03-31
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockCashFlowsStatement, start_date=2019-03-31 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), type (str), value (float64), origin_name (str)
+- Unit: value 為新台幣元（含 KY 公司；財報原始千元已乘以 1000）。各季為年初至該季的累計數（未換算單季），12-31 即全年；單季值請以同年度相鄰兩季相減。
 
 ### TaiwanStockDividend (股利政策表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
