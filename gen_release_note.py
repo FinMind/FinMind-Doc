@@ -3,8 +3,16 @@ import requests
 
 
 RELEASE_URL = "https://api.github.com/repos/FinMind/FinMind/releases"
-res = requests.get(RELEASE_URL)
-releases = res.json()
+releases = []
+page = 1
+while True:
+    res = requests.get(RELEASE_URL, params={"per_page": 100, "page": page})
+    res.raise_for_status()
+    page_releases = res.json()
+    if not page_releases:
+        break
+    releases.extend(page_releases)
+    page += 1
 contents = [
     f"""## version: {release["tag_name"]} ({release["published_at"][:10]})
 
