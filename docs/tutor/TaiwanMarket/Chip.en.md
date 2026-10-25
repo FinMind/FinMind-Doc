@@ -1602,6 +1602,14 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
 - Provides securities trader related information, used with the Taiwan Stock Trading Daily Report by Branch (TaiwanStockTradingDailyReport). Use the securities_trader_id to query all stock transactions of a particular securities trader.
 
+??? note "Branch names may differ from Securities Trader Information; match by `securities_trader_id`"
+    For listed and OTC stocks, `securities_trader` in the Trading Daily Report follows the short branch name printed on the daily broker trading report (for emerging stocks it matches Securities Trader Information), while Securities Trader Information uses the official name from the TWSE broker directory. The two are updated at different times: after a branch is renamed or relocated, the daily report may keep the old name, and the short names used for listed (TWSE) and OTC (TPEx) stocks may also differ.
+
+    - Example: `9853` is "元大-市府" in Securities Trader Information but "元大南屯" in the Trading Daily Report.
+    - Example: "元大高雄" in the Trading Daily Report is `989F` for listed stocks (Securities Trader Information: "元大-三民") but `981m` for OTC stocks (Securities Trader Information: "元大-高雄").
+    - As a result, the same `securities_trader_id` may appear with different names across stocks on the same day.
+    - Always query and match by `securities_trader_id`, not by name.
+
 !!! example
     === "Package"
         ```python
@@ -1699,6 +1707,14 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
     - **Trades between recommending securities dealers** (regular-branch total is lower than the trading value): when both sides of a trade are recommending dealers, the trade does not appear in any regular branch. "Recommending dealers' buy shares + sell shares − daily trading volume" equals the shares traded between recommending dealers, e.g. 6,000 shares for 6696 on 2026-06-26 (at 397, a difference of 2,382,000).
     - **Off-system negotiated trades** (regular-branch total is higher than the trading value): besides trades on the computerized negotiation system, the daily broker report also includes "off-system negotiated trades" (系統外議價交易). These appear in the branch data but are not counted in the daily trading value of `TaiwanStockPrice`.
+
+??? note "Branch names may differ from Securities Trader Information; match by `securities_trader_id`"
+    For listed and OTC stocks, `securities_trader` in the Trading Daily Report follows the short branch name printed on the daily broker trading report (for emerging stocks it matches Securities Trader Information), while Securities Trader Information uses the official name from the TWSE broker directory. The two are updated at different times: after a branch is renamed or relocated, the daily report may keep the old name, and the short names used for listed (TWSE) and OTC (TPEx) stocks may also differ.
+
+    - Example: `9853` is "元大-市府" in Securities Trader Information but "元大南屯" in the Trading Daily Report.
+    - Example: "元大高雄" in the Trading Daily Report is `989F` for listed stocks (Securities Trader Information: "元大-三民") but `981m` for OTC stocks (Securities Trader Information: "元大-高雄").
+    - As a result, the same `securities_trader_id` may appear with different names across stocks on the same day.
+    - Always query and match by `securities_trader_id`, not by name.
 
 !!! example
     === "Package"
@@ -1806,6 +1822,14 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 - Some data is missing on the following dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete).
+
+??? note "Branch names may differ from Securities Trader Information; match by `securities_trader_id`"
+    For listed and OTC stocks, `securities_trader` in the Trading Daily Report follows the short branch name printed on the daily broker trading report (for emerging stocks it matches Securities Trader Information), while Securities Trader Information uses the official name from the TWSE broker directory. The two are updated at different times: after a branch is renamed or relocated, the daily report may keep the old name, and the short names used for listed (TWSE) and OTC (TPEx) stocks may also differ.
+
+    - Example: `9853` is "元大-市府" in Securities Trader Information but "元大南屯" in the Trading Daily Report.
+    - Example: "元大高雄" in the Trading Daily Report is `989F` for listed stocks (Securities Trader Information: "元大-三民") but `981m` for OTC stocks (Securities Trader Information: "元大-高雄").
+    - As a result, the same `securities_trader_id` may appear with different names across stocks on the same day.
+    - Always query and match by `securities_trader_id`, not by name.
 
 !!! example
     === "Package"
