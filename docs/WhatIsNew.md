@@ -1,3 +1,9 @@
+#### 2026-10-27
+* **資料校正公告**：[台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor)：以下問題已修正並重新產製（API 與整日下載檔皆已更新），[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)、[每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor) 同步更新。**曾下載或查詢過以下日期資料的使用者請重新取得資料**
+    * **2021-06-28 ~ 2025-01-09**：2026-10-23 公告之外，另有部分股票的分點明細整檔或部分重複收錄（多集中在 2024-04 ~ 2025-01；例：2753 2021-06-28），重複已移除
+    * **2024-09-12、2024-11-18**：部分股票混入隔日的分點資料（例：3062 2024-09-12），已移除
+    * **2022-04-20**：重複收錄的分點已移除；部分上市股票的分點為隔日資料，尚在處理中，完成後另行公告
+
 #### 2026-10-24
 * 新增 [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading-backersponsor)，資料區間 2004-12-24 ~ now
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.0 版：可存取 FinMind 所有公開資料與 endpoint，新增 `query_endpoint`（當日卷商分點統計、權證分點、股票／期貨／選擇權即時快照等）與 `download_storage_object`（整日全市場資料下載到本機，限 sponsorpro 會員）；權限不足時會說明所需方案並提供升級連結。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
