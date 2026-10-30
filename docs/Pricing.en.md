@@ -86,7 +86,10 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 | Integrate into commercial products for sale | ❌ | ✅ |
 | Redistribute raw data or build a mirror API | ❌ | ❌ |
 | Display real-time data directly on public web / app interfaces | ❌ | ❌ |
+| Provide broker branch data (incl. derived statistics) to third parties | ❌ | ❌ |
 | Attribution "FinMind" required | Yes | Yes |
+
+Broker branch datasets (stock and warrant broker branch trading reports, daily branch aggregate statistics, block trading daily report) are subject to additional restrictions imposed by the source institutions: **under every plan they are for your own use only** and must not be provided to third parties in any form, including derived results such as branch rankings or net buy/sell statistics. Even with Sponsor Pro, they may not be displayed in products sold to others.
 
 FinMind is not responsible for any use beyond the licensed scope. See [Disclaimer & Data Licensing](Disclaimer.md) and [Terms of Use & Privacy Policy](PrivacyPolicy.md).
 
@@ -97,6 +100,9 @@ FinMind is not responsible for any use beyond the licensed scope. See [Disclaime
 
 ??? note "Which plan do I need for a commercial product (SaaS, app, AI service)?"
     Commercial use requires Sponsor Pro. Free, Backer and Sponsor are for non-commercial use only.
+
+??? note "Can I show broker branch data to paying members of my own product?"
+    No. Broker branch datasets are for your own use only (including internal research and analysis within your company). Under every plan, including Sponsor Pro, they must not be provided to third parties in any form — derived branch rankings or net buy/sell statistics included. If you need to display them externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](Disclaimer.md).
 
 ??? note "Not sure which plan to choose?"
     Start with Backer, then upgrade to Sponsor or Sponsor Pro anytime by paying the prorated difference.
