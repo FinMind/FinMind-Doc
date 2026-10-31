@@ -83,39 +83,17 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 |:---|:---:|:---:|
 | Personal, academic, web / app development and other non-commercial use | ✅ | ✅ |
 | Commercial use: SaaS, AI, web / app, internal company systems | ❌ | ✅ |
-| Integrate into commercial products for sale | ❌ | ✅ |
+| Integrate into commercial products for sale (except broker branch data and financial report PDFs) | ❌ | ✅ |
 | Redistribute raw data or build a mirror API | ❌ | ❌ |
 | Display real-time data directly on public web / app interfaces | ❌ | ❌ |
 | Attribution "FinMind" required | Yes | Yes |
 
-Broker branch datasets (stock and warrant broker branch trading reports, daily branch aggregate statistics, block trading daily report) are subject to additional restrictions imposed by the source institutions: **under every plan they are for your own use only** and must not be provided to third parties in any form. Even with Sponsor Pro, they may not be displayed in products sold to others.
-
-FinMind is not responsible for any use beyond the licensed scope. See [Disclaimer & Data Licensing](Disclaimer.md) and [Terms of Use & Privacy Policy](PrivacyPolicy.md).
+For common commercial-use questions, see [Commercial Use Q&A](CommercialUse.md). FinMind is not responsible for any use beyond the licensed scope. See [Disclaimer & Data Licensing](Disclaimer.md) and [Terms of Use & Privacy Policy](PrivacyPolicy.md).
 
 ## FAQ
 
 ??? note "Will I be charged automatically?"
     No. All plans are one-time payments and fall back to Free when they expire — nothing to cancel.
-
-??? note "Which plan do I need for a commercial product (SaaS, app, AI service)?"
-    Commercial use requires Sponsor Pro. Free, Backer and Sponsor are for non-commercial use only.
-
-??? note "Can I show broker branch data to paying members of my own product?"
-    No. Broker branch datasets are for your own use only (including internal research and analysis within your company). Under every plan, including Sponsor Pro, they must not be provided to third parties in any form. If you need to display them externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](Disclaimer.md).
-
-??? note "I'm a developer. How can my users access intraday real-time data and broker branch data too?"
-    Ask your users to **each register a FinMind account and subscribe to a plan** (intraday real-time data and broker branch datasets require Sponsor or above), then enter their own FinMind token in your tool. Since each user fetches the data with their own account and it is shown only to that user, it counts as that user's own use; what they can access depends on the plan they subscribe to.
-
-    How to set it up:
-
-    - Provide a field in your tool for users to enter their FinMind token, and point them to the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor) to register and subscribe.
-    - Call the FinMind API directly from the user's side with the user's own token.
-
-    Please note:
-
-    - Do not embed or share your own token in the tool for others to fetch data.
-    - Your server should not fetch data with users' tokens and then store, cache, or aggregate it for other people.
-    - Show the data only to the token owner; do not display it publicly to others (e.g., on public web pages or to other users).
 
 ??? note "Not sure which plan to choose?"
     Start with Backer, then upgrade to Sponsor or Sponsor Pro anytime by paying the prorated difference.
