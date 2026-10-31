@@ -50,7 +50,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 ## Available tools { #tools }
 
-Since version 0.1.0, the MCP server can access all public FinMind data and endpoints, including whole-day, market-wide downloads (storage_objects). It provides 8 tools, which your AI tool picks automatically based on your question:
+Since version 0.1.0, the MCP server can access all public FinMind data and endpoints, including whole-day, market-wide downloads (storage_objects); version 0.1.1 adds financial report and annual report PDFs (`download_financial_report`). It provides 8 tools, which your AI tool picks automatically based on your question:
 
 | Tool | Purpose |
 |---|---|
@@ -72,6 +72,7 @@ Access depends on your membership tier. When a query exceeds your plan, the tool
     - The summary requires `pyarrow`. The Claude Desktop one-click install already includes it; other tools do not install it by default (the file is still downloaded and its path returned). To get summaries, change `args` in your config to `["--from", "finmind-mcp[parquet]", "finmind-mcp"]`.
 
 ??? note "Financial report PDFs (`download_financial_report`)"
+    - Requires version 0.1.1 or later (`uvx` picks it up automatically; Claude Desktop users should download finmind.mcpb again).
     - Available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members.
     - No need to download files yourself or install a PDF reader: the tool first returns the cover and table of contents, then the AI reads the notes by page number or finds pages by keyword.
     - Each call returns up to about 30,000 characters; files are cached locally, so the same report is not downloaded again.

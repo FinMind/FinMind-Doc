@@ -50,7 +50,7 @@
 
 ## 可用工具 { #tools }
 
-自 0.1.0 版起，MCP server 可存取 FinMind 所有公開資料與 endpoint，包含整日全市場下載（storage_objects）。共 8 個工具，由 AI 工具依問題自動選用：
+自 0.1.0 版起，MCP server 可存取 FinMind 所有公開資料與 endpoint，包含整日全市場下載（storage_objects）；0.1.1 版新增財報與年報 PDF（`download_financial_report`）。共 8 個工具，由 AI 工具依問題自動選用：
 
 | 工具 | 用途 |
 |---|---|
@@ -72,6 +72,7 @@
     - 回傳摘要需要 `pyarrow`。Claude Desktop 一鍵安裝已內含；其他工具預設不裝（沒裝時仍會下載並回傳檔案路徑），如需摘要，請把設定檔的 `args` 改成 `["--from", "finmind-mcp[parquet]", "finmind-mcp"]`。
 
 ??? note "財報 PDF（`download_financial_report`）注意事項"
+    - 請更新至 0.1.1 版以上（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）。
     - 限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用。
     - 不用自己下載檔案或另外安裝讀 PDF 的工具：工具會先回封面與目錄，AI 再依頁次讀附註，或用關鍵字找頁面。
     - 一次最多回傳約 30,000 字；檔案存在本機快取，同一份再查不會重新下載。
