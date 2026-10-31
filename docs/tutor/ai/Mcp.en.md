@@ -50,7 +50,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 
 ## Available tools { #tools }
 
-Since version 0.1.0, the MCP server can access all public FinMind data and endpoints, including whole-day, market-wide downloads (storage_objects). It provides 7 tools, which your AI tool picks automatically based on your question:
+Since version 0.1.0, the MCP server can access all public FinMind data and endpoints, including whole-day, market-wide downloads (storage_objects). It provides 8 tools, which your AI tool picks automatically based on your question:
 
 | Tool | Purpose |
 |---|---|
@@ -60,6 +60,7 @@ Since version 0.1.0, the MCP server can access all public FinMind data and endpo
 | `query_trading_daily_report` | Single-day branch trading, by stock or by securities trader branch |
 | `query_endpoint` | Other dedicated endpoints: daily branch aggregate statistics (SecIdAgg), warrant branch reports, real-time stock / futures / options snapshots, `datalist`, `translation` |
 | `download_storage_object` | Download whole-day, market-wide data (ticks, minute K, branch reports, etc.) to your machine; returns the file path, row count, columns and first rows, with optional filtering by ID / branch |
+| `download_financial_report` | Download a listed company's [financial report or annual report PDF](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-financial-report-and-annual-report-pdf-taiwanstockfinancialreportfile-available-only-to-sponsorpro-members) and read its table of contents, specific pages, or pages containing a keyword (e.g. revenue breakdowns or inventory composition in the notes) |
 | `get_pricing` | Membership plan prices and licensing (no token needed) |
 
 Access depends on your membership tier. When a query exceeds your plan, the tool tells you which plan is required (Backer / Sponsor / Sponsor Pro) and links to the [upgrade page](https://finmindtrade.com/analysis/#/Sponsor/sponsor).
@@ -69,6 +70,12 @@ Access depends on your membership tier. When a query exceeds your plan, the tool
     - Whole-day files are often tens of MB, so the tool returns only a summary (up to 500 rows); the full file is saved locally and can be read with `pandas.read_parquet(path)`.
     - Files are saved under `finmind-mcp/storage_objects/` in your user cache directory by default; set the `FINMIND_DOWNLOAD_DIR` environment variable to change the location. Repeated queries for the same dataset and day reuse the local file.
     - The summary requires `pyarrow`. The Claude Desktop one-click install already includes it; other tools do not install it by default (the file is still downloaded and its path returned). To get summaries, change `args` in your config to `["--from", "finmind-mcp[parquet]", "finmind-mcp"]`.
+
+??? note "Financial report PDFs (`download_financial_report`)"
+    - Available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members.
+    - No need to download files yourself or install a PDF reader: the tool first returns the cover and table of contents, then the AI reads the notes by page number or finds pages by keyword.
+    - Each call returns up to about 30,000 characters; files are cached locally, so the same report is not downloaded again.
+    - In some PDFs the main statement pages are images, and some annual reports have a corrupted text layer; the tool flags these pages instead of returning garbled text. For income statement, balance sheet and cash flow figures, query the three financial statement datasets instead.
 
 ## Examples { #examples }
 
@@ -124,6 +131,14 @@ Download the whole-day minute K file for 10/16 and give me the TSMC part.
 ```
 
 > Expected result: the tool calls `download_storage_object` to save the whole-day file locally, returns the file path, and filters out TSMC's minute K bars.
+
+### Read Financial Report Notes (Sponsor Pro)
+
+```
+TSMC's inventory jumped in Q2 2026. Is it unsold finished goods? Check the notes in the financial report.
+```
+
+> Expected result: the tool first calls `query_dataset` on the balance sheet to confirm the inventory change, then calls `download_financial_report` to find the inventory note in the financial report and answers based on the split between finished goods, work in process and raw materials.
 
 ## Data field caveats { #caveats }
 
