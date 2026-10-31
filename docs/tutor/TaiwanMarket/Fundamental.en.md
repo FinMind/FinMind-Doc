@@ -1788,11 +1788,8 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
     - Annual reports (`annual_report`) are the Chinese annual shareholders' meeting reports.
     - The text layer of some annual report PDFs may be garbled or incomplete (as in the source files); OCR may be needed if you need to extract text.
 
-??? note "Usage scope: rights in the files belong to the issuing company"
-    - The files come from the Market Observation Post System (MOPS). Copyright and other rights belong to the issuing company, its certifying accountants, or other rights holders; FinMind only provides a means of access and grants no rights in the files themselves.
-    - Files are provided as published by the source, without modifying their content; when the source provides an archive or split volumes, they are only extracted and merged into a single PDF in file-name order.
-    - If you use their content in services offered to others (e.g., AI retrieval or summarization), auditors' reports and notes to the financial statements may be protected by copyright — please assess legal compliance yourself.
-    - See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
+??? note "Usage scope"
+    Rights in the files belong to the issuing company. See [Commercial Use Q&A](https://finmind.github.io/en/CommercialUse/).
 
 !!! example
     === "Package"

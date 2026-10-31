@@ -104,14 +104,6 @@ FinMind is not responsible for any use beyond the licensed scope. See [Disclaime
 ??? note "Can I show broker branch data to paying members of my own product?"
     No. Broker branch datasets are for your own use only (including internal research and analysis within your company). Under every plan, including Sponsor Pro, they must not be provided to third parties in any form. If you need to display them externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](Disclaimer.md).
 
-??? note "Does the Sponsor Pro commercial license cover the financial report and annual report PDFs?"
-    No. These PDFs are original documents published by each company; copyright belongs to the issuing company and its certifying accountants. FinMind only provides a means of access and grants no rights in the files themselves. The Sponsor Pro commercial license covers only FinMind's service and the data compiled by FinMind:
-
-    - Do not redistribute or resell the PDF files, or build a mirror download service.
-    - If you use their content in services offered to others (e.g., AI retrieval, or summaries shown to your customers), auditors' reports and notes to the financial statements may be protected by copyright — please assess legal compliance yourself.
-
-    See [Disclaimer & Data Licensing](Disclaimer.md).
-
 ??? note "I'm a developer. How can my users access intraday real-time data and broker branch data too?"
     Ask your users to **each register a FinMind account and subscribe to a plan** (intraday real-time data and broker branch datasets require Sponsor or above), then enter their own FinMind token in your tool. Since each user fetches the data with their own account and it is shown only to that user, it counts as that user's own use; what they can access depends on the plan they subscribe to.
 
