@@ -628,6 +628,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Response: redirect to the file itself; follow it to download (mostly PDF; a few 2013 financial reports are Word .doc). File name: TaiwanStockFinancialReportFile_{data_id}_{date}_{report_category}.pdf (date = period end date). 404 when the period has no such file; 400 for missing/invalid parameters.
 - Python SDK: `api.taiwan_stock_financial_report_file_download(stock_id="2330", year=2025, quarter=4, report_category="annual_report")` (returns file bytes)
 - Note: provides PDF files, not financial figures (use TaiwanStockFinancialStatements / TaiwanStockBalanceSheet / TaiwanStockCashFlowsStatement for figures). Financial reports are Chinese consolidated reports (Chinese individual reports for companies without subsidiaries); parent-company-only reports and English versions are not included. The text layer of some annual report PDFs may be garbled or incomplete; OCR may be needed.
+- Usage restriction: files come from MOPS; copyright belongs to the issuing company / certifying accountants. FinMind only provides access and grants no rights in the files; the Sponsor Pro commercial license does not extend to them (no redistribution, resale, or mirror download service). Content is unmodified (archives/split volumes are only extracted and merged into one PDF). Using auditors' reports or notes in services for others, including AI retrieval/summarization, is at the user's own legal risk.
 
 ---
 
