@@ -139,7 +139,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - **Sponsor Pro**: Everything in Sponsor, plus commercial license (SaaS / AI / web / app / internal systems) and whole-day all-symbol download via `/storage_objects`.
 - Upgrade anytime by paying the prorated difference for the remaining days (minimum NT$100).
 - All plans: no redistribution of raw data, no mirror APIs, no displaying real-time data directly on public web/app interfaces; attribution "FinMind" required.
-- Broker branch datasets (TaiwanStockTradingDailyReport, TaiwanStockWarrantTradingDailyReport, TaiwanStockTradingDailyReportSecIdAgg, TaiwanStockBlockTradingDailyReport): for the subscriber's own use only under every plan, including Sponsor Pro. Must not be provided to third parties in any form, including derived statistics (branch rankings, net buy/sell), e.g. on public web/app or to a product's paying members; external display requires the user's own authorization from the source institutions.
+- Broker branch datasets (TaiwanStockTradingDailyReport, TaiwanStockWarrantTradingDailyReport, TaiwanStockTradingDailyReportSecIdAgg, TaiwanStockBlockTradingDailyReport): for the subscriber's own use only under every plan, including Sponsor Pro. Must not be provided to third parties in any form, e.g. on public web/app or to a product's paying members; external display requires the user's own authorization from the source institutions.
 
 ---
 
@@ -427,7 +427,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Known limitation: for emerging-board (興櫃) stocks, regular-branch (excluding recommending securities dealers) buy value + sell value may not equal TaiwanStockPrice.Trading_money. Lower = trades between two recommending dealers (not shown in regular branches; shares = dealers' buy + sell - daily volume). Higher = off-system negotiated trades (系統外議價交易), which are in the daily broker report but not in the daily trading value. FinMind matches the TPEx source; not missing data.
 - Known limitation: securities_trader names may differ from TaiwanSecuritiesTraderInfo. For listed (TWSE) and OTC (TPEx) stocks the name is the short branch name printed on each market's daily broker report (emerging stocks use the TaiwanSecuritiesTraderInfo name); after a branch is renamed or relocated the report may keep the old name, and TWSE and TPEx short names can differ. E.g. 9853 = "元大南屯" in this dataset but "元大-市府" in TaiwanSecuritiesTraderInfo; "元大高雄" is 989F for listed stocks but 981m for OTC stocks. The same securities_trader_id can therefore carry different names on the same day; always filter and join by securities_trader_id, never by name.
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReport&date=2022-06-16` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_trading_daily_report(date='2022-06-16', use_object=True)`.
-- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form, including derived statistics. Source: Taiwan Stock Exchange / Taipei Exchange.
+- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form. Source: Taiwan Stock Exchange / Taipei Exchange.
 
 ### TaiwanStockWarrantTradingDailyReport (台股權證分點資料表)
 - Tier: Sponsor
@@ -436,7 +436,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params (by broker): dataset=TaiwanStockWarrantTradingDailyReport, data_id=5920, start_date=2023-06-21
 - Columns: securities_trader, price, buy, sell, securities_trader_id, stock_id, date
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockWarrantTradingDailyReport&date=2023-06-21` returns whole-day parquet via signed URL, ignores data_id / securities_trader_id. Python SDK: `api.taiwan_stock_warrant_trading_daily_report(date='2023-06-21', use_object=True)`.
-- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form, including derived statistics. Source: Taiwan Stock Exchange / Taipei Exchange.
+- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form. Source: Taiwan Stock Exchange / Taipei Exchange.
 
 ### TaiwanStockGovernmentBankBuySell (台股八大行庫買賣表)
 - Tier: Sponsor
@@ -462,7 +462,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: data_id=2330, securities_trader_id=1020, start_date=2024-07-01, end_date=2024-07-15 (data_id and securities_trader_id are both required; missing either returns HTTP 400 with the reason in `detail`)
 - Columns: securities_trader, securities_trader_id, stock_id, date, buy_volume, sell_volume, buy_price, sell_price
 - Bulk download (sponsorpro): `GET /api/v4/storage_objects?dataset=TaiwanStockTradingDailyReportSecIdAgg&date=2024-07-01` returns whole-day parquet (all stocks × all broker branches) via signed URL, ignores data_id / securities_trader_id. Available from 2021-06-30 onwards. Python SDK: `api.taiwan_stock_trading_daily_report_secid_agg(start_date='2024-07-01', use_object=True)`.
-- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form, including derived statistics. Source: Taiwan Stock Exchange / Taipei Exchange.
+- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form. Source: Taiwan Stock Exchange / Taipei Exchange.
 
 ### TaiwanStockBlockTradingDailyReport (鉅額交易買賣日報表)
 - Tier: Sponsor
@@ -470,7 +470,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Update: Mon-Fri 21:00
 - Params: dataset=TaiwanStockBlockTradingDailyReport, start_date=2026-04-28
 - Columns: securities_trader, price, buy, sell, trade_type, securities_trader_id, stock_id, date
-- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form, including derived statistics. Source: Taiwan Stock Exchange / Taipei Exchange.
+- Usage restriction: own use only (all plans incl. Sponsor Pro); must not be retransmitted or provided to third parties in any form. Source: Taiwan Stock Exchange / Taipei Exchange.
 
 ### TaiwanStockBlockTrade (鉅額交易日成交資訊)
 - Tier: Sponsor

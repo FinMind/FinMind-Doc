@@ -1689,7 +1689,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -1833,7 +1833,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -1940,7 +1940,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -2029,7 +2029,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -2136,7 +2136,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -2215,7 +2215,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -2462,7 +2462,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -2557,7 +2557,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
@@ -2644,7 +2644,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 ??? note "Usage scope: for your own use only, not for third parties"
     This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
 
-    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying the raw data or derived statistics (e.g., branch rankings, net buy/sell statistics) on public-facing web or app interfaces, or to paying members.
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
     - This restriction applies to every plan, **including Sponsor Pro**.
     - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 

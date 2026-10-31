@@ -25,7 +25,7 @@ If you use data obtained through this service for external-facing purposes, you 
 1. What FinMind grants you is the **right to use this service (API / SDK)**; its scope is defined by the FinMind Terms of Use and the plan you subscribe to.
 2. This license does **not** include redistributing or reselling the data provided by this service, nor building a mirror service substantially equivalent to this service.
 3. If you need to publish the data, redistribute it, or provide it to third parties, you are responsible for confirming and obtaining any license required by the original data provider. Such licenses cannot be granted by FinMind, nor obtained by FinMind on your behalf.
-4. Broker branch data is subject to additional restrictions imposed by its source institutions: it is **for your own use only** and, regardless of the plan you subscribe to, must not be retransmitted or provided to third parties in any form, including statistics derived from it.
+4. Broker branch data is subject to additional restrictions imposed by its source institutions: it is **for your own use only** and, regardless of the plan you subscribe to, must not be retransmitted or provided to third parties in any form.
 
 ## 4. Disclaimer
 
