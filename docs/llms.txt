@@ -19,7 +19,7 @@
 
 ## Pricing
 
-All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the plan falls back to Free when it expires. Buy at the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor). Full comparison: [Pricing](https://finmind.github.io/en/Pricing/).
+All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the plan falls back to Free when it expires. Buy at the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor). Full comparison: [Pricing](https://finmind.github.io/en/Pricing/). Commercial use: [Commercial Use Q&A](https://finmind.github.io/en/CommercialUse/).
 
 | Plan | Monthly | Yearly | API limit | Datasets | License |
 |---|---|---|---|---|---|
