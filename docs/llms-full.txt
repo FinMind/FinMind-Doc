@@ -317,7 +317,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Params: dataset=TaiwanStockPriceLimit, data_id=2330, start_date=2023-01-01
 - Params (all stocks, Backer/Sponsor): dataset=TaiwanStockPriceLimit, start_date=2023-01-01 (不帶 data_id，取得該日所有股票資料)
 - Columns: date (str), stock_id (str), reference_price (float64), limit_up (float64), limit_down (float64)
-- Note: limit_up/limit_down 為 0 表示無漲跌幅限制（槓桿型 ETF 如 00631L、反向型 ETF 如 00632R、興櫃股票）
+- Note: limit_up/limit_down 為交易所公布值；為 0 表示無漲跌幅限制（興櫃股票、新上市櫃掛牌首 5 個交易日、連結國外標的之 ETF 如 00646、00647L、00648R）；國內成分的槓桿型、反向型 ETF（如 00631L、00632R）有漲跌停價
 
 ---
 
