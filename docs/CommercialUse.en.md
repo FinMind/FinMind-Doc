@@ -8,25 +8,55 @@ hide:
 
 Building a product or serving clients with FinMind? These questions cover it.
 
-!!! info "Which plan do I need for commercial use?"
-    **Sponsor Pro.** Commercial use such as SaaS, AI, apps, and internal company systems requires Sponsor Pro.
-
-!!! success "Can I integrate the data into a product I sell?"
-    **Yes.** With Sponsor Pro you can integrate FinMind data into products you sell.
-
-    Please don't resell the raw data or run a mirror API.
-
-!!! tip "My users want real-time and broker branch data too. Is there a way?"
-    **One way:** let users sign in with their own FinMind account (Sponsor or above) in your product.
-
-    Please don't embed your own account or token in the product.
-
-!!! success "Can I use financial report PDFs in a commercial product?"
-    **Yes.** You can download and analyze them for your products and services.
-
-    Rights in the files belong to the issuing company; if you use them for AI retrieval or summaries, assess copyright yourself.
-
-!!! info "Do I need to credit the data source?"
-    **Yes.** Credit the data source as "FinMind".
+<div class="qa">
+  <div class="qa-item">
+    <p class="qa-q">Which plan do I need for commercial use?</p>
+    <div class="qa-a">
+      <span class="qa-v qa-v--plan">Sponsor Pro</span>
+      <div class="qa-body">
+      <p>Commercial use such as SaaS, AI, apps, and internal company systems requires Sponsor Pro.</p>
+      </div>
+    </div>
+  </div>
+  <div class="qa-item">
+    <p class="qa-q">Can I integrate the data into a product I sell?</p>
+    <div class="qa-a">
+      <span class="qa-v qa-v--yes">Yes</span>
+      <div class="qa-body">
+      <p>With Sponsor Pro you can integrate FinMind data into products you sell.</p>
+      <p class="qa-note">Please don't resell the raw data or run a mirror API.</p>
+      </div>
+    </div>
+  </div>
+  <div class="qa-item">
+    <p class="qa-q">My users want real-time and broker branch data too. Is there a way?</p>
+    <div class="qa-a">
+      <span class="qa-v qa-v--plan">One way</span>
+      <div class="qa-body">
+      <p>Let users sign in with their own FinMind account (Sponsor or above) in your product.</p>
+      <p class="qa-note">Please don't embed your own account or token in the product.</p>
+      </div>
+    </div>
+  </div>
+  <div class="qa-item">
+    <p class="qa-q">Can I use financial report PDFs in a commercial product?</p>
+    <div class="qa-a">
+      <span class="qa-v qa-v--yes">Yes</span>
+      <div class="qa-body">
+      <p>You can download and analyze them for your products and services.</p>
+      <p class="qa-note">Rights in the files belong to the issuing company; if you use them for AI retrieval or summaries, assess copyright yourself.</p>
+      </div>
+    </div>
+  </div>
+  <div class="qa-item">
+    <p class="qa-q">Do I need to credit the data source?</p>
+    <div class="qa-a">
+      <span class="qa-v qa-v--plan">Yes</span>
+      <div class="qa-body">
+      <p>Credit the data source as "FinMind".</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 See [Disclaimer & Data Licensing](Disclaimer.md) and [Terms of Use & Privacy Policy](PrivacyPolicy.md) for the full terms. For other questions, email finmind.tw@gmail.com.

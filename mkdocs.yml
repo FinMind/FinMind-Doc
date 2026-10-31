@@ -116,6 +116,9 @@ nav:
 # ============================================================
 #  Markdown extensions
 # ============================================================
+extra_css:
+    - stylesheets/qa.css
+
 markdown_extensions:
     - toc:
         permalink: true

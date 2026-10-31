@@ -1,0 +1,48 @@
+/* 商業使用 Q&A（CommercialUse.md）：一題一列，左側結論標籤、右側說明，與 vueWeb /Sponsor/commercial_use 一致 */
+.md-typeset .qa {
+  --qa-ink: #1d2433;
+  --qa-line: #e3e6ec;
+  --qa-yes: #1c7a4a;
+  --qa-yes-bg: #e8f4ee;
+  --qa-plan: #2f4f8f;
+  --qa-plan-bg: #ebf0f9;
+  margin: 1.2em 0 1.6em;
+  border-top: 2px solid var(--qa-ink);
+}
+.md-typeset .qa-item {
+  padding: 1.1em 0;
+  border-bottom: 1px solid var(--qa-line);
+}
+.md-typeset .qa-q {
+  margin: 0 0 0.6em;
+  color: var(--qa-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.md-typeset .qa-a {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9em;
+}
+.md-typeset .qa-v {
+  flex: 0 0 7.5em;
+  padding: 0.15em 0.6em;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.7;
+  text-align: center;
+}
+.md-typeset .qa-v--yes { color: var(--qa-yes); background: var(--qa-yes-bg); }
+.md-typeset .qa-v--plan { color: var(--qa-plan); background: var(--qa-plan-bg); }
+.md-typeset .qa-body p { margin: 0; }
+.md-typeset .qa-body .qa-note {
+  margin-top: 0.35em;
+  font-size: 0.72rem;
+  color: #6b7488;
+}
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .qa-a { flex-direction: column; gap: 0.5em; }
+  .md-typeset .qa-v { flex-basis: auto; }
+}
