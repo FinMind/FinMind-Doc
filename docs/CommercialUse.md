@@ -1,5 +1,5 @@
 ---
-description: FinMind 商業使用 Q&A：商業用途方案、整合產品對外販售、使用者以自己的 FinMind 帳號使用、財報 PDF 與來源標示。
+description: FinMind 商業使用 Q&A：商業用途方案、整合產品用於商業行為、使用者以自己的 FinMind 帳號使用、財報 PDF 與來源標示。
 hide:
     - toc
 ---
@@ -19,12 +19,12 @@ hide:
     </div>
   </div>
   <div class="qa-item">
-    <p class="qa-q">可以把資料整合進產品對外販售嗎？</p>
+    <p class="qa-q">可以把資料整合進產品，用於商業行為嗎？</p>
     <div class="qa-a">
       <span class="qa-v qa-v--yes">可以</span>
       <div class="qa-body">
-      <p>Sponsor Pro 可以把 FinMind 資料整合進你的產品對外販售。</p>
-      <p class="qa-note">請勿直接轉賣原始資料，或架設鏡像 API。</p>
+      <p>Sponsor Pro 可以把 FinMind 資料整合進你的產品，用於商業行為；<strong>即時資料、券商分點資料除外</strong>（做法見下一題）。</p>
+      <p class="qa-note">請勿直接再散布原始資料，或架設鏡像 API。</p>
       </div>
     </div>
   </div>
