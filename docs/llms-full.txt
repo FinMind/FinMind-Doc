@@ -140,6 +140,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Upgrade anytime by paying the prorated difference for the remaining days (minimum NT$100).
 - All plans: no redistribution of raw data, no mirror APIs, no displaying real-time data directly on public web/app interfaces; attribution "FinMind" required.
 - Broker branch datasets (TaiwanStockTradingDailyReport, TaiwanStockWarrantTradingDailyReport, TaiwanStockTradingDailyReportSecIdAgg, TaiwanStockBlockTradingDailyReport): for the subscriber's own use only under every plan, including Sponsor Pro. Must not be provided to third parties in any form, e.g. on public web/app or to a product's paying members; external display requires the user's own authorization from the source institutions.
+- Original documents (TaiwanStockFinancialReportFile: financial report and annual report PDFs): copyright belongs to the issuing company / certifying accountants; FinMind only provides access and grants no rights in the files. The Sponsor Pro commercial license does not extend to the files themselves: no redistribution, resale, or mirror download service; using their text (auditors' reports, notes) in services for others, including AI retrieval/summarization, is at the user's own legal risk.
 - Developers whose end users want Sponsor-tier data (intraday real-time, broker branch): have each end user register their own FinMind account, subscribe (Sponsor or above), and enter their own token in the developer's tool; calls made client-side with the user's own token and shown only to that user count as the user's own use. The developer must not embed/share their own token, and their server must not store, cache, or aggregate data fetched with users' tokens for others.
 
 ---
@@ -552,7 +553,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 
 ---
 
-## Taiwan Market - Fundamental (12 datasets)
+## Taiwan Market - Fundamental (13 datasets)
 
 ### TaiwanStockFinancialStatements (綜合損益表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -643,6 +644,17 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Data range: 2020-01-01 ~ now
 - Params: dataset=TaiwanStockParValueChange, start_date=2020-01-01
 - Columns: date (str), stock_id (str), stock_name (str), before_close (float64), after_ref_close (float64), after_ref_max (float64), after_ref_min (float64), after_ref_open (float64)
+
+### TaiwanStockFinancialReportFile (台股財報與年報 PDF)
+- Tier: Sponsor Pro
+- Data range: financial_report 2013-03-31 ~ now (quarterly, from 2013 Q1); annual_report 2013-12-31 ~ now (yearly, from fiscal year 2013)
+- Update: Daily
+- Endpoint: download only, one file per request via `GET /api/v4/storage_objects` (not available via /api/v4/data)
+- Params: dataset=TaiwanStockFinancialReportFile, data_id=2330, year=2025, quarter=4, report_category=annual_report (all required; quarter 1-4; report_category: financial_report/annual_report; annual_report only for quarter=4)
+- Response: redirect to the file itself; follow it to download (mostly PDF; a few 2013 financial reports are Word .doc). File name: TaiwanStockFinancialReportFile_{data_id}_{date}_{report_category}.pdf (date = period end date). 404 when the period has no such file; 400 for missing/invalid parameters.
+- Python SDK: `api.taiwan_stock_financial_report_file_download(stock_id="2330", year=2025, quarter=4, report_category="annual_report")` (returns file bytes)
+- Note: provides PDF files, not financial figures (use TaiwanStockFinancialStatements / TaiwanStockBalanceSheet / TaiwanStockCashFlowsStatement for figures). Financial reports are Chinese consolidated reports (Chinese individual reports for companies without subsidiaries); parent-company-only reports and English versions are not included. The text layer of some annual report PDFs may be garbled or incomplete; OCR may be needed.
+- Usage restriction: files come from MOPS; copyright belongs to the issuing company / certifying accountants. FinMind only provides access and grants no rights in the files; the Sponsor Pro commercial license does not extend to them (no redistribution, resale, or mirror download service). Content is unmodified (archives/split volumes are only extracted and merged into one PDF). Using auditors' reports or notes in services for others, including AI retrieval/summarization, is at the user's own legal risk.
 
 ---
 
