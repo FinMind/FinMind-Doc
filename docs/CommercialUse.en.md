@@ -16,7 +16,7 @@ Building a product or serving clients with FinMind? These questions cover it.
 
 ### My users want real-time and broker branch data too. Is there a way?
 
-**One way:** let users enter the token from their own FinMind account (Sponsor or above) in your product. Please don't embed your own token in the product.
+**One way:** let users sign in with their own FinMind account (Sponsor or above) in your product. Please don't embed your own account or token in the product.
 
 ### Can I use financial report PDFs in a commercial product?
 
