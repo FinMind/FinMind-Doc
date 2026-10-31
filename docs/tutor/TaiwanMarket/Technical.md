@@ -2846,9 +2846,11 @@
 ??? note
     `limit_up` 和 `limit_down` 為 **0** 時，表示該標的無漲跌幅限制，包含：
 
-    - 槓桿型 ETF（如 00631L）
-    - 反向型 ETF（如 00632R）
     - 興櫃股票
+    - 新上市、上櫃股票掛牌首 5 個交易日
+    - 連結國外標的之 ETF（如 00646、00647L、00648R）
+
+    其餘股票與 ETF 的漲跌停價為交易所公布值，國內成分的槓桿型、反向型 ETF（如 00631L、00632R）也有漲跌停價。
 
 #### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 

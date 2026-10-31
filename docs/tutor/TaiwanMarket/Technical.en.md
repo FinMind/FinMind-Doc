@@ -2846,9 +2846,11 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 ??? note
     When `limit_up` and `limit_down` are **0**, this means the instrument has no price-limit, including:
 
-    - Leveraged ETFs (e.g., 00631L)
-    - Inverse ETFs (e.g., 00632R)
     - Emerging stocks
+    - Newly listed stocks during their first 5 trading days
+    - ETFs tracking foreign underlyings (e.g., 00646, 00647L, 00648R)
+
+    For all other stocks and ETFs, the limit prices are the values published by the exchange; leveraged and inverse ETFs tracking domestic underlyings (e.g., 00631L, 00632R) also have price limits.
 
 #### Fetch all data for a specific date at once (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 

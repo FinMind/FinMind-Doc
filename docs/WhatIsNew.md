@@ -1,5 +1,8 @@
 #### 2026-10-31
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.1 版：新增 `download_financial_report`，可直接讀[台股財報與年報 PDF](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)的目錄、指定頁或含關鍵字的頁面（例如附註裡的營收細分、存貨組成），不需自己寫程式下載（限 sponsorpro 會員）。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
+* [每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor) 資料源改為交易所公布的漲跌停價（上市 2005-12-19 起、上櫃 2007-04-23 起；更早的日期依當時規則計算，2015-06-01 以前為 7%），歷史資料已全部更新，曾下載過的使用者可重新取得
+    * 國內成分的槓桿型、反向型 ETF（如 00631L）有漲跌停價；連結國外標的之 ETF（如 00646、00647L）、新上市櫃掛牌首 5 個交易日為 0（無漲跌幅限制）
+    * 新增已下櫃上櫃股票的資料（例：1333 2015-01-05）；尚未上市櫃期間（例：2633 2015 年）為 0
 
 #### 2026-10-24
 * 新增 [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading-backersponsor)，資料區間 2004-12-24 ~ now
