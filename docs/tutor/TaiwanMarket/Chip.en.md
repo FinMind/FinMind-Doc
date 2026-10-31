@@ -314,6 +314,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
 - Data range: 2005-01-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
+- Warrants: institutional investors' buy/sell for warrants is included (`stock_id` is the warrant code) — TWSE-listed warrants from 2012-05-02, TPEx-listed warrants from 2014-12-01
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
 
 ??? note "Values may be updated slightly after the initial release"
@@ -514,6 +515,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Same source data as `TaiwanStockInstitutionalInvestorsBuySell`, but in **wide format**: one row per trading day, with each institutional investor's buy/sell flattened into its own column — no manual pivot needed.
 - Data range: 2005-01-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
+- Warrants: institutional investors' buy/sell for warrants is included (`stock_id` is the warrant code) — TWSE-listed warrants from 2012-05-02, TPEx-listed warrants from 2014-12-01
 - Data update time **Monday to Friday 20:00**, the actual update time is based on the API data.
 
 ??? note "Values may be updated slightly after the initial release"
@@ -1600,6 +1602,14 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
 - Provides securities trader related information, used with the Taiwan Stock Trading Daily Report by Branch (TaiwanStockTradingDailyReport). Use the securities_trader_id to query all stock transactions of a particular securities trader.
 
+??? note "Branch names may differ from Securities Trader Information; match by `securities_trader_id`"
+    For listed and OTC stocks, `securities_trader` in the Trading Daily Report follows the short branch name printed on the daily broker trading report (for emerging stocks it matches Securities Trader Information), while Securities Trader Information uses the official name from the TWSE broker directory. The two are updated at different times: after a branch is renamed or relocated, the daily report may keep the old name, and the short names used for listed (TWSE) and OTC (TPEx) stocks may also differ.
+
+    - Example: `9853` is "元大-市府" in Securities Trader Information but "元大南屯" in the Trading Daily Report.
+    - Example: "元大高雄" in the Trading Daily Report is `989F` for listed stocks (Securities Trader Information: "元大-三民") but `981m` for OTC stocks (Securities Trader Information: "元大-高雄").
+    - As a result, the same `securities_trader_id` may appear with different names across stocks on the same day.
+    - Always query and match by `securities_trader_id`, not by name.
+
 !!! example
     === "Package"
         ```python
@@ -1673,8 +1683,15 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
-- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11 (TPEx-listed stocks only).
+- Some data is missing on the following dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete).
 - Enabling Async can significantly reduce data fetch time. In Colab tests, downloading 2,175 stocks takes only 4 minutes 20 seconds.
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
 ??? note "A `price` of 0 on emerging-stock dealer (自營商) branches is expected, not missing data"
     Emerging stocks (where `TaiwanStockInfo` reports the `stock_id` as `emerging`) trade on a **quote-driven negotiation market run by recommending securities firms**, unlike the central-matching auction used for listed/OTC stocks. The recommending firms act as market makers, **continuously quoting bid/ask and filling orders with their own capital and inventory — i.e. the dealer (自營商) branch, whose `securities_trader_id` ends in `T`**. Because that daily market-making position trades both sides across many price levels, there is no single representative execution price, so `price` is reported as `0` for that branch row (`buy`/`sell` share counts are still correct).
@@ -1697,6 +1714,14 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
     - **Trades between recommending securities dealers** (regular-branch total is lower than the trading value): when both sides of a trade are recommending dealers, the trade does not appear in any regular branch. "Recommending dealers' buy shares + sell shares − daily trading volume" equals the shares traded between recommending dealers, e.g. 6,000 shares for 6696 on 2026-06-26 (at 397, a difference of 2,382,000).
     - **Off-system negotiated trades** (regular-branch total is higher than the trading value): besides trades on the computerized negotiation system, the daily broker report also includes "off-system negotiated trades" (系統外議價交易). These appear in the branch data but are not counted in the daily trading value of `TaiwanStockPrice`.
+
+??? note "Branch names may differ from Securities Trader Information; match by `securities_trader_id`"
+    For listed and OTC stocks, `securities_trader` in the Trading Daily Report follows the short branch name printed on the daily broker trading report (for emerging stocks it matches Securities Trader Information), while Securities Trader Information uses the official name from the TWSE broker directory. The two are updated at different times: after a branch is renamed or relocated, the daily report may keep the old name, and the short names used for listed (TWSE) and OTC (TPEx) stocks may also differ.
+
+    - Example: `9853` is "元大-市府" in Securities Trader Information but "元大南屯" in the Trading Daily Report.
+    - Example: "元大高雄" in the Trading Daily Report is `989F` for listed stocks (Securities Trader Information: "元大-三民") but `981m` for OTC stocks (Securities Trader Information: "元大-高雄").
+    - As a result, the same `securities_trader_id` may appear with different names across stocks on the same day.
+    - Always query and match by `securities_trader_id`, not by name.
 
 !!! example
     === "Package"
@@ -1803,7 +1828,22 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Data range: 2021-06-30 ~ now
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
-- Some data is missing on the following dates: 2022-10-31~2022-11-03, 2023-01-11 (TPEx-listed stocks only).
+- Some data is missing on the following dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete).
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
+
+??? note "Branch names may differ from Securities Trader Information; match by `securities_trader_id`"
+    For listed and OTC stocks, `securities_trader` in the Trading Daily Report follows the short branch name printed on the daily broker trading report (for emerging stocks it matches Securities Trader Information), while Securities Trader Information uses the official name from the TWSE broker directory. The two are updated at different times: after a branch is renamed or relocated, the daily report may keep the old name, and the short names used for listed (TWSE) and OTC (TPEx) stocks may also differ.
+
+    - Example: `9853` is "元大-市府" in Securities Trader Information but "元大南屯" in the Trading Daily Report.
+    - Example: "元大高雄" in the Trading Daily Report is `989F` for listed stocks (Securities Trader Information: "元大-三民") but `981m` for OTC stocks (Securities Trader Information: "元大-高雄").
+    - As a result, the same `securities_trader_id` may appear with different names across stocks on the same day.
+    - Always query and match by `securities_trader_id`, not by name.
 
 !!! example
     === "Package"
@@ -1895,7 +1935,14 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Providing the dataset and date parameters returns the branch-level trading data of all stocks for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering the entire market.
 - Data update time: **Monday to Friday 18:00**. The actual update time is based on the API data.
-- Some data is missing on these dates: 2022-10-31~2022-11-03, 2023-01-11 (TPEx-listed stocks only).
+- Some data is missing on these dates: 2022-10-31~2022-11-03 (TPEx-listed stocks incomplete).
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
 !!! example
     === "Package"
@@ -1978,6 +2025,13 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Data range: 2023-06-21 ~ now
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
 !!! example
     === "Package"
@@ -2079,6 +2133,13 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Due to the large data volume, only one day of data is provided per request.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
 
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
+
 !!! example
     === "Python-request"
         ```python
@@ -2150,6 +2211,13 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Providing the dataset and date parameters returns the branch-level trading data of all warrants for that day.
 - Downloads the whole-day parquet via a signed URL, avoiding file-by-file queries — suitable for batch analysis covering all warrants in the market.
 - Data update time **Monday to Friday 18:00**, the actual update time is based on the API data.
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
 !!! example
     === "Package"
@@ -2388,7 +2456,15 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Provides Taiwan stock trading by branch information for listed (TWSE), OTC, and emerging stocks!
 - Data range: 2021-06-30 ~ now
 - Data update time **Monday to Friday 18:30**, the actual update time is based on the API data.
+- Both data_id (stock code) and securities_trader_id (securities trader branch code) are required, along with start_date and end_date. If either id is missing, the API returns HTTP 400 and the reason is given in the `detail` field of the response.
 - To get all stocks and all securities trader branches for a day at once, use [Fetch all data for a specific date at once](#taiwanstocktradingdailyreportsecidagg-sponsorpro).
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
 !!! example
     === "Package"
@@ -2478,6 +2554,13 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 - Providing the dataset and date parameters returns the aggregate statistics of all stocks and all securities trader branches for that day.
 - Downloads the whole-day parquet via a signed URL — no need to query stock by stock. Rows are sorted by stock_id and securities_trader_id.
 
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
+
 !!! example
     === "Package"
         ```python
@@ -2557,6 +2640,13 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 
 - Data range: 2026-04-28 ~ now
 - Only requires a date input, no stock symbol needed.
+
+??? note "Usage scope: for your own use only, not for third parties"
+    This data is sourced from the Taiwan Stock Exchange and the Taipei Exchange, which impose additional restrictions on its use:
+
+    - It is for the subscriber's own use only (including internal research and analysis within your company). **It must not be retransmitted or provided to any third party in any form**, including displaying it on public-facing web or app interfaces, or to paying members.
+    - This restriction applies to every plan, **including Sponsor Pro**.
+    - If you need to display it externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](https://finmind.github.io/en/Disclaimer/).
 
 !!! example
     === "Python"

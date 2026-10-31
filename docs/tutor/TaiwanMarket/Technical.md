@@ -1,10 +1,11 @@
-在台股技術面，我們擁有 20 種資料集，如下:
+在台股技術面，我們擁有 21 種資料集，如下:
 
 - [台股總覽 TaiwanStockInfo](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfo)
 - [台股總覽(含權證) TaiwanStockInfoWithWarrant](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrant)
 - [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
 - [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
+- [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading-backersponsor)
 - [台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)
 - [台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
@@ -526,6 +527,204 @@
             close: float64, # 收盤價
             spread: float64, # 漲跌幅
             Trading_turnover: int64 # 交易筆數
+        }
+        ```
+
+
+----------------------------------
+
+#### 盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+- 提供台股，上市、上櫃，每檔證券每日盤後定價交易（以當日收盤價撮合）的成交結果，包含成交價、成交量、成交筆數、成交金額，以及撮合後剩餘的未成交買量、賣量
+- 資料區間：2004-12-24 ~ now（上市自 2004-12-24、上櫃自 2011-01-03 起）
+- 資料更新時間 **星期一至五 15:00**，實際更新時間以 API 資料為主
+
+??? note "`volume`、`unfilled_buy_volume`、`unfilled_sell_volume` 的單位是「張」，不是股"
+    本表的 `volume`（成交量）、`unfilled_buy_volume`（未成交買量）、`unfilled_sell_volume`（未成交賣量）皆沿用交易所公告的**交易單位（張）**，一般股票 1 張 = 1,000 股；以外幣交易的 ETF 等依其各自的交易單位計算，本表不換算為股數。這與 `TaiwanStockPrice` 的 `Trading_Volume`（單位為股）不同，比對時請先換算。
+
+??? note "收錄當日所有證券，包含沒有盤後成交的列"
+    本表收錄交易所公告表中的**全部證券**，當天沒有盤後定價成交的證券也會有一列，其 `volume`、`trading_turnover`、`trading_money` 為 `0`。這類無成交列的 `price`：
+
+    - **上市**（`market="twse"`）：為當日的定價，即當日收盤價
+    - **上櫃**（`market="tpex"`）：為 `0`
+
+    若只需要實際有盤後成交的資料，請以 `volume > 0` 篩選。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_after_hours_fixed_price_trading(
+            stock_id='2330',
+            start_date='2025-09-22',
+            end_date='2025-09-26',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockAfterHoursFixedPriceTrading",
+            "data_id": "2330",
+            "start_date": "2025-09-22",
+            "end_date": "2025-09-26",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockAfterHoursFixedPriceTrading",
+                data_id= "2330",
+                start_date= "2025-09-22",
+                end_date= "2025-09-26"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+    === "Package-Async"
+        ```python
+        from FinMind.data import DataLoader
+        from loguru import logger
+        import datetime
+
+        api = DataLoader()
+        api.login_by_token(api_token='token')
+
+        start = datetime.datetime.now()
+        df = api.taiwan_stock_after_hours_fixed_price_trading(
+            stock_id_list=['2330', '2317', '2454', '3008'],
+            start_date='2025-01-01',
+            end_date='2025-12-31',
+            use_async=True,
+        )
+        cost = datetime.datetime.now() - start
+        logger.info(cost)
+        ```
+
+
+!!! output
+    === "DataFrame"
+        |    | date       |   stock_id | market   |   price |   volume |   trading_turnover |   trading_money |   unfilled_buy_volume |   unfilled_sell_volume |
+        |---:|:-----------|-----------:|:---------|--------:|---------:|-------------------:|----------------:|----------------------:|-----------------------:|
+        |  0 | 2025-09-22 |       2330 | twse     |    1295 |       97 |                 68 |       125615000 |                    50 |                      0 |
+        |  1 | 2025-09-23 |       2330 | twse     |    1340 |       97 |                 75 |       129980000 |                     0 |                    158 |
+        |  2 | 2025-09-24 |       2330 | twse     |    1340 |      100 |                 76 |       134000000 |                    20 |                      0 |
+        |  3 | 2025-09-25 |       2330 | twse     |    1320 |       57 |                 50 |        75240000 |                   231 |                      0 |
+        |  4 | 2025-09-26 |       2330 | twse     |    1300 |       77 |                 68 |       100100000 |                    84 |                      0 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            market: str, # 市場別，twse 上市、tpex 上櫃
+            price: float64, # 成交價，盤後定價成交價（元）
+            volume: int64, # 成交量，單位：張
+            trading_turnover: int64, # 成交筆數
+            trading_money: int64, # 成交金額（元）
+            unfilled_buy_volume: int64, # 未成交買量，撮合後剩餘委買量（張）
+            unfilled_sell_volume: int64 # 未成交賣量，撮合後剩餘委賣量（張）
+        }
+        ```
+
+#### 一次拿特定日期，所有資料(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_after_hours_fixed_price_trading(
+            start_date='2025-09-22',
+        )
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockAfterHoursFixedPriceTrading",
+            "start_date": "2025-09-22",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockAfterHoursFixedPriceTrading",
+                start_date= "2025-09-22"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id | market   |   price |   volume |   trading_turnover |   trading_money |   unfilled_buy_volume |   unfilled_sell_volume |
+        |---:|:-----------|:---------|:---------|--------:|---------:|-------------------:|----------------:|----------------------:|-----------------------:|
+        |  0 | 2025-09-22 | 0050     | twse     |   57.4  |      155 |                105 |         8897000 |                   123 |                      0 |
+        |  1 | 2025-09-22 | 0051     | twse     |   86.3  |        0 |                  0 |               0 |                     4 |                      0 |
+        |  2 | 2025-09-22 | 0052     | twse     |  226.25 |        0 |                  0 |               0 |                     0 |                      0 |
+        |  3 | 2025-09-22 | 0053     | twse     |  125.55 |        0 |                  0 |               0 |                     0 |                      0 |
+        |  4 | 2025-09-22 | 0055     | twse     |   30.74 |        0 |                  0 |               0 |                     0 |                      0 |
+    === "Schema"
+        ```
+        {
+            date: str, # 日期
+            stock_id: str, # 股票代號
+            market: str, # 市場別，twse 上市、tpex 上櫃
+            price: float64, # 成交價，盤後定價成交價（元）
+            volume: int64, # 成交量，單位：張
+            trading_turnover: int64, # 成交筆數
+            trading_money: int64, # 成交金額（元）
+            unfilled_buy_volume: int64, # 未成交買量，撮合後剩餘委買量（張）
+            unfilled_sell_volume: int64 # 未成交賣量，撮合後剩餘委賣量（張）
         }
         ```
 
@@ -1068,6 +1267,7 @@
 - 輸入 dataset、stock_id、start_date 參數，會回傳 start_date 當天資料。
 - 資料更新時間 **星期一至五 15:30**，實際更新時間以 API 資料為主。
 - 部分資料缺失，缺失日期為：2018-12-22、2019-02-20、2019-02-21、2019-02-22；另 2019-05-16 僅有少數 ETF 的資料。
+- 部分時段上市股票的逐筆成交缺漏，無法補齊：2022-03-01 ~ 2022-03-10 開盤後數段（最長約 2 分鐘）、2024-07-02 09:38:25 ~ 09:38:40、2024-07-03 09:00:11 ~ 09:00:22、2024-07-18 12:12:32 ~ 12:12:45、2026-03-10 11:19:45 ~ 11:19:55。
 - 開啟 Async 功能，可大幅縮短資料更新時間，colab 實測 2236 檔股票，只需 3 分 40 秒即可完成下載。
 
 ??? note "TickType 內外盤標記已全面修正（2018-12-07 ~ 2023-03-10）"
@@ -1189,6 +1389,7 @@
 - 輸入 dataset、date 參數，會回傳 date 當天資料。
 - 資料更新時間 **星期一至五 15:30**，實際更新時間以 API 資料為主。
 - 部分資料缺失，缺失日期為：2018-12-22、2019-02-20、2019-02-21、2019-02-22；另 2019-05-16 僅有少數 ETF 的資料。
+- 部分時段上市股票的逐筆成交缺漏，無法補齊：2022-03-01 ~ 2022-03-10 開盤後數段（最長約 2 分鐘）、2024-07-02 09:38:25 ~ 09:38:40、2024-07-03 09:00:11 ~ 09:00:22、2024-07-18 12:12:32 ~ 12:12:45、2026-03-10 11:19:45 ~ 11:19:55。
 
 ??? note "TickType 內外盤標記已全面修正（2018-12-07 ~ 2023-03-10）"
     2023-03-13 以前的資料，舊版把無法判定內外盤的成交一律標記為 1（外盤），使外盤占比明顯偏高。此區間的全部交易日已重新產製，改用與 2023-03-13 之後一致的判定規則。若您先前已下載過這些日期的資料，請重新取得。
@@ -2071,9 +2272,10 @@
 #### 台股分 K 資料表 TaiwanStockKBar (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
-- 資料區間：個股 2019-01-01 ~ now；**加權指數（`data_id="TAIEX"`）2005-01-03 ~ now**
+- 資料區間：個股 2018-12-07 ~ now；**加權指數（`data_id="TAIEX"`）2005-01-03 ~ now**
 - 資料更新時間 **星期一至五 15:50**，實際更新時間以 API 資料為主
-- 部分資料缺失，缺失日期為：2019-02-20、2019-02-21、2019-02-22（這三天僅有加權指數 TAIEX 分 K，無個股資料）；另 2019-05-16 個股僅有少數 ETF 的資料。
+- 部分資料缺失，缺失日期為：2018-12-22、2019-02-20、2019-02-21、2019-02-22（這四天僅有加權指數 TAIEX 分 K，無個股資料）；另 2019-05-16 個股僅有少數 ETF 的資料。
+- 部分時段上市股票的逐筆成交缺漏，無法補齊：2022-03-01 ~ 2022-03-10 開盤後數段（最長約 2 分鐘）、2024-07-02 09:38:25 ~ 09:38:40、2024-07-03 09:00:11 ~ 09:00:22、2024-07-18 12:12:32 ~ 12:12:45、2026-03-10 11:19:45 ~ 11:19:55。
 - 開啟 Async 功能，可大幅縮短資料更新時間，colab 實測 2175 檔股票，只需 2 分 31 秒即可完成下載。
 
 ??? note "本表也提供加權指數（TAIEX）分 K"
@@ -2083,7 +2285,7 @@
     df = api.taiwan_stock_kbar(stock_id="TAIEX", date="2026-08-19")
     ```
 
-    - 資料區間 **2005-01-03 ~ now**，比個股分 K（2019-01-01 起）更長
+    - 資料區間 **2005-01-03 ~ now**，比個股分 K（2018-12-07 起）更長
     - 每個交易日 **271 筆**，涵蓋 `09:00:00` ~ `13:30:00` 每分鐘一筆
     - 指數本身沒有成交量，因此 `volume` **固定為 0**；`open` / `high` / `low` / `close` 為該分鐘內的指數值
     - 補行交易的星期六同樣有資料
@@ -2220,7 +2422,7 @@
 #### 一次拿特定日期，所有資料 (只限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (由於資料量過大，單次請求只提供一天資料)
 
-- 資料區間：2019-01-02 ~ now，逐交易日提供。
+- 資料區間：2018-12-07 ~ now，逐交易日提供。
 - 輸入 dataset、date 參數，回傳該日全市場資料。
 - 透過 signed URL 下載整日 parquet，免逐檔查詢。
 

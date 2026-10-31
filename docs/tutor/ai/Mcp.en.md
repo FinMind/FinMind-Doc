@@ -48,6 +48,28 @@ After install, run `/reload-plugins` to connect and `/mcp` to verify. (The plugi
 
 For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `codex mcp add` one-liners, and verification steps, see the [FinMind-MCP install guides](https://github.com/FinMind/FinMind-MCP/tree/master/install).
 
+## Available tools { #tools }
+
+Since version 0.1.0, the MCP server can access all public FinMind data and endpoints, including whole-day, market-wide downloads (storage_objects). It provides 7 tools, which your AI tool picks automatically based on your question:
+
+| Tool | Purpose |
+|---|---|
+| `query_dataset` | General query by dataset, ID and date range (every dataset on `/api/v4/data`) |
+| `list_datasets` | List all datasets with the required membership tier and descriptions (no token needed) |
+| `get_stock_info` | Taiwan stock IDs, names and industries |
+| `query_trading_daily_report` | Single-day branch trading, by stock or by securities trader branch |
+| `query_endpoint` | Other dedicated endpoints: daily branch aggregate statistics (SecIdAgg), warrant branch reports, real-time stock / futures / options snapshots, `datalist`, `translation` |
+| `download_storage_object` | Download whole-day, market-wide data (ticks, minute K, branch reports, etc.) to your machine; returns the file path, row count, columns and first rows, with optional filtering by ID / branch |
+| `get_pricing` | Membership plan prices and licensing (no token needed) |
+
+Access depends on your membership tier. When a query exceeds your plan, the tool tells you which plan is required (Backer / Sponsor / Sponsor Pro) and links to the [upgrade page](https://finmindtrade.com/analysis/#/Sponsor/sponsor).
+
+??? note "Whole-day downloads (`download_storage_object`)"
+    - Whole-day downloads are available only to [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members.
+    - Whole-day files are often tens of MB, so the tool returns only a summary (up to 500 rows); the full file is saved locally and can be read with `pandas.read_parquet(path)`.
+    - Files are saved under `finmind-mcp/storage_objects/` in your user cache directory by default; set the `FINMIND_DOWNLOAD_DIR` environment variable to change the location. Repeated queries for the same dataset and day reuse the local file.
+    - The summary requires `pyarrow`. The Claude Desktop one-click install already includes it; other tools do not install it by default (the file is still downloaded and its path returned). To get summaries, change `args` in your config to `["--from", "finmind-mcp[parquet]", "finmind-mcp"]`.
+
 ## Examples { #examples }
 
 > MCP is called automatically by the tool, so just ask in natural language — **no `/finmind` prefix needed**. It is best for follow-up questions and cross-dataset agentic analysis.
@@ -58,7 +80,7 @@ For per-host config file locations, the `claude mcp add` / `gemini mcp add` / `c
 How have TSMC's stock prices trended over the past month?
 ```
 
-> Expected result: the tool automatically calls `taiwan_stock_daily`, returns TSMC (2330) daily prices for the past month, and summarizes the trend.
+> Expected result: the tool automatically calls `query_dataset` (TaiwanStockPrice), returns TSMC (2330) daily prices for the past month, and summarizes the trend.
 
 ![TSMC stock prices for the past month](../../img/tsmc_1m_price.png)
 
@@ -87,9 +109,25 @@ Which 5 stocks had the highest institutional net-buy value today?
 
 > Expected result: the tool queries today's institutional trading data, sorts it, and returns the top 5 stocks by net-buy value.
 
+### Branch Aggregate Statistics (Sponsor)
+
+```
+How many shares of TSMC did 合庫 (1020) buy and sell each day from 7/1 to 7/5?
+```
+
+> Expected result: the tool calls `query_endpoint` (TaiwanStockTradingDailyReportSecIdAgg) and returns 合庫's daily buy/sell shares and average prices for TSMC over that period.
+
+### Whole-Day Market-Wide Download (Sponsor Pro)
+
+```
+Download the whole-day minute K file for 10/16 and give me the TSMC part.
+```
+
+> Expected result: the tool calls `download_storage_object` to save the whole-day file locally, returns the file path, and filters out TSMC's minute K bars.
+
 ## Data field caveats { #caveats }
 
-The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures ticks). They are not data errors:
+The following are common field-definition differences to keep in mind when an AI agent interprets query results (Taiwan stock prices, futures / options ticks). They are not data errors:
 
 ??? warning "Emerging stocks: `open` is the *previous-day average price*, and may fall outside the day's high/low (not a data error)"
     Emerging-board stocks trade by negotiation and **have no opening price**. For emerging stocks this table therefore fills `open` with the **previous-day average price**, not an opening price; `max` / `min` / `close` are still the day's high / low / last traded price and are correct.
@@ -114,3 +152,14 @@ The following are common field-definition differences to keep in mind when an AI
     - **00:00–05:00** ticks belong to the after-hours (after_market) session of **trading day D** in TaiwanFuturesDaily.
     - **08:45–13:45** ticks belong to the regular session (position) of trading day D.
     - **15:00–24:00** ticks belong to the after-hours session of the **next trading day**.
+
+??? note "Options ticks (TaiwanOptionTick): how volume is counted"
+    As with futures ticks, options tick volume is counted on a **double-sided** basis: each matched trade records both the buy side and the sell side once, typically appearing as two identical rows; these are not duplicates. The summed tick volume is about **2×** the (single-side) volume in the daily data TaiwanOptionDaily.
+
+    **Per-series reconciliation**: for a given series (same contract_date, strike and call/put) within the same trading session,
+
+    `sum of tick volume of that series = 2 × TaiwanOptionDaily volume of that series − 2 × negotiated block-trade lots of that series`
+
+    - Negotiated block trades are not included in tick data, but are included in daily volume; this is not missing tick data.
+    - Tick data has **no buy/sell-initiated (aggressor side) field**.
+    - Trading-day attribution of after-hours ticks is the same as for futures: 00:00–05:00 belongs to trading day D's after-hours session (after_market), 15:00–24:00 to the next trading day's after-hours session.

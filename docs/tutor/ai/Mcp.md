@@ -48,6 +48,28 @@
 
 各 host 的設定檔位置、`claude mcp add` / `gemini mcp add` / `codex mcp add` 指令與驗證方式，詳見 [FinMind-MCP 安裝指南](https://github.com/FinMind/FinMind-MCP/tree/master/install)。
 
+## 可用工具 { #tools }
+
+自 0.1.0 版起，MCP server 可存取 FinMind 所有公開資料與 endpoint，包含整日全市場下載（storage_objects）。共 7 個工具，由 AI 工具依問題自動選用：
+
+| 工具 | 用途 |
+|---|---|
+| `query_dataset` | 通用查詢：指定 dataset、代號與日期區間（`/api/v4/data` 的所有資料集） |
+| `list_datasets` | 列出所有資料集、所需會員等級與說明（不需 Token） |
+| `get_stock_info` | 台股代號、名稱、產業 |
+| `query_trading_daily_report` | 單日分點進出，可依個股或券商分點查詢 |
+| `query_endpoint` | 其他專屬 endpoint：當日卷商分點統計（SecIdAgg）、權證分點、股票／期貨／選擇權即時快照、`datalist`、`translation` |
+| `download_storage_object` | 整日全市場資料（逐筆、分 K、分點等）下載到本機，回傳檔案路徑、筆數、欄位與前幾列，可依代號／分點過濾 |
+| `get_pricing` | 會員方案價格與授權說明（不需 Token） |
+
+權限依你的會員等級而定。查詢超出方案範圍時，工具會說明需要的方案（Backer / Sponsor / Sponsor Pro）並附上[升級連結](https://finmindtrade.com/analysis/#/Sponsor/sponsor)。
+
+??? note "整日下載（`download_storage_object`）注意事項"
+    - 整日下載限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用。
+    - 整日檔動輒數十 MB，工具只回摘要（最多 500 列）；完整資料存在本機，可用 `pandas.read_parquet(路徑)` 讀取。
+    - 檔案預設存到使用者快取目錄下的 `finmind-mcp/storage_objects/`，可用環境變數 `FINMIND_DOWNLOAD_DIR` 指定位置；同一天同一資料集再查會直接用本機檔。
+    - 回傳摘要需要 `pyarrow`。Claude Desktop 一鍵安裝已內含；其他工具預設不裝（沒裝時仍會下載並回傳檔案路徑），如需摘要，請把設定檔的 `args` 改成 `["--from", "finmind-mcp[parquet]", "finmind-mcp"]`。
+
 ## 範例 { #examples }
 
 > MCP 由工具自動呼叫，直接用自然語言提問即可，**不需要加 `/finmind`**。最適合連續追問、跨資料集的 agentic 分析。
@@ -58,7 +80,7 @@
 台積電最近一個月股價走勢如何？
 ```
 
-> 預期結果：工具自動呼叫 `taiwan_stock_daily`，回傳台積電（2330）近一個月每日股價並摘要走勢。
+> 預期結果：工具自動呼叫 `query_dataset`（TaiwanStockPrice），回傳台積電（2330）近一個月每日股價並摘要走勢。
 
 
 ### 多輪追問
@@ -86,9 +108,25 @@
 
 > 預期結果：工具查詢當日三大法人買賣資料，排序後回傳買超金額前 5 名的個股清單。
 
+### 分點統計（Sponsor）
+
+```
+合庫（1020）7/1~7/5 每天買賣台積電多少張？
+```
+
+> 預期結果：工具呼叫 `query_endpoint`（TaiwanStockTradingDailyReportSecIdAgg），回傳合庫在該期間每天買賣台積電的股數與均價。
+
+### 整日全市場下載（Sponsor Pro）
+
+```
+下載 10/16 全市場分 K 整日檔，給我台積電的部分。
+```
+
+> 預期結果：工具呼叫 `download_storage_object` 把整日檔存到本機，回傳檔案路徑，並過濾出台積電的分 K。
+
 ## 資料欄位注意事項 { #caveats }
 
-以下為 AI agent 判讀查詢結果時常見的欄位定義差異（台股股價、期貨逐筆），並非資料錯誤，請於分析時一併考量。
+以下為 AI agent 判讀查詢結果時常見的欄位定義差異（台股股價、期貨／選擇權逐筆），並非資料錯誤，請於分析時一併考量。
 
 ??? warning "興櫃個股：`open` 為「前日均價」，可能落在當日高低之外（非資料錯誤）"
     興櫃股票採**議價交易、沒有開盤價**。因此本表對興櫃個股，`open` 欄填入的是 **「前日均價」**，而非當日開盤價；`max` / `min` / `close` 仍為當日最高 / 最低 / 最後成交價，皆正確可用。
@@ -114,3 +152,14 @@
     - **00:00–05:00** 的逐筆，歸屬於 TaiwanFuturesDaily 中**交易日 D（當日）**的夜盤（after_market）。
     - **08:45–13:45** 的逐筆，歸屬於交易日 D 的一般交易時段（position）。
     - **15:00–24:00** 的逐筆，屬於**次一交易日**的夜盤。
+
+??? note "選擇權逐筆（TaiwanOptionTick）成交量（volume）計量方式"
+    與期貨逐筆相同，選擇權逐筆成交量採「雙邊」計量：每一筆撮合成交會同時記錄買方與賣方各一次，常見為兩筆內容相同的紀錄，並非重複資料。將逐筆 volume 加總後，約為日成交資料 TaiwanOptionDaily（單邊口數）的 **2 倍**。
+
+    **逐序列核對公式**：某一序列（contract_date、履約價、買賣權相同）在同一交易時段內，
+
+    `該序列逐筆 volume 加總 ＝ 2 × TaiwanOptionDaily 該序列 volume − 2 × 該序列議價申報鉅額交易口數`
+
+    - 議價申報的鉅額交易不會出現在逐筆成交資料中，但會計入日成交量，並非逐筆資料缺漏。
+    - 逐筆資料**沒有內外盤（主動買／賣方向）欄位**。
+    - 夜盤逐筆的交易日歸屬與期貨相同：00:00–05:00 屬當日交易日的夜盤（after_market），15:00–24:00 屬次一交易日的夜盤。

@@ -886,6 +886,23 @@ In Taiwan stock derivatives data, we have 19 datasets, as follows:
 - Data range: 2011-01-03 ~ now.
 - Data update time: **Monday to Friday 6:00**. The actual update time is based on the API data.
 
+??? note "How volume is counted"
+    Tick volume is counted on a **double-sided** basis: each matched trade records both the buy side and the sell side once, so for the same time, same series (contract month / week, strike, call/put) and same price, the summed tick volume is always even, typically appearing as two identical rows. As a result, the summed tick volume is about **2×** the (single-side) volume in the daily data TaiwanOptionDaily; these are not duplicate records. Convert accordingly when reconciling tick volume against daily volume.
+
+    **Per-series reconciliation**: for a given series (same contract_date, strike and call/put) within the same trading session,
+
+    `sum of tick volume of that series = 2 × TaiwanOptionDaily volume of that series − 2 × negotiated block-trade lots of that series`
+
+    - **Negotiated block trades are not included in tick data, but are included in daily volume.** They are why tick volume falls slightly short of 2× daily volume; this is not missing tick data. Details are published on the TAIFEX website under "Market Data > Daily Market Report > Block Trade > Negotiation": trades in the regular trading session count toward the regular session (position), and after-hours trades count toward that trading day's after-hours session (after_market).
+    - Tick data contains only trade price and volume; there is **no buy/sell-initiated (aggressor side) field**.
+
+??? note "Trading-day attribution of after-hours ticks"
+    The after-hours (night) session follows the TAIFEX rule of being attributed to the **next business day**. The after-hours session for trading day D is the segment running from 15:00 on the previous business day until 05:00 on day D. Therefore, within a tick file:
+
+    - **00:00–05:00** ticks belong to the after-hours (after_market) session of **trading day D** in TaiwanOptionDaily.
+    - **08:45–13:45** ticks belong to the regular session (position) of trading day D.
+    - **15:00–24:00** ticks belong to the after-hours session of the **next trading day**.
+
 !!! example
     === "Package"
         ```python

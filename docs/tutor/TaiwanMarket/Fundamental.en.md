@@ -21,6 +21,13 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 - Data range: 1990-03-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
+??? note "Amount unit, currency and how single-quarter values are derived"
+    - **Currency**: all companies are reported in **New Taiwan Dollars (TWD)**, including foreign (KY) companies. No other currency is used.
+    - **Unit**: `value` is in **TWD (dollars)**. The financial statements report amounts in thousand TWD; this table multiplies them by 1000. `EPS` is in TWD per share and is not converted.
+    - **Single-quarter values**: `date` is the quarter-end date, and every amount item is a **single-quarter** figure. Financial statements report year-to-date cumulative amounts; this table subtracts consecutive quarters within the same fiscal year: Q1 = Q1 YTD, Q2 = H1 YTD − Q1 YTD, Q3 = 9-month YTD − H1 YTD, Q4 = full year − 9-month YTD, so the four quarters sum to the full-year figure. For example, 2330's 2024 quarterly `Revenue` is 592.6 / 673.5 / 759.7 / 868.5 billion TWD, matching the sum of the three months of `TaiwanStockMonthRevenue` in each quarter.
+    - **Companies that only file semi-annual and annual reports** (some emerging-market and public companies): such a year has only two rows, 06-30 and 12-31. The 06-30 row is the first-half total and the 12-31 row is the second-half total (full year − first half). Check whether the year has 03-31 / 09-30 rows to tell.
+    - **Financial companies**: banks, financial holding companies, securities firms and insurers use different income statement items. For example, a financial holding company's `Revenue` maps to "net revenue" (淨收益). Use the `origin_name` column to see the original item name of each row.
+
 ??? note "EPS is a single-quarter figure and is retroactively restated after a stock dividend / split — summing quarters will not match the cumulative EPS"
     The `EPS` (basic earnings per share) in this table is a **single-quarter** figure, and each quarter stores the value **as originally reported in that quarter's financial statements**.
 
@@ -28,7 +35,7 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
     Example — 3081 (Landmark Optoelectronics), FY2026. The company went ex-rights on 2026-07-15 with a stock dividend of NT$1 (100 shares per 1,000 shares held, i.e. a 10% bonus issue). This table reports `EPS` of **3.44** for 2026 Q1 (as originally reported, pre-bonus share count) and **4.62** for 2026 Q2 (already on the restated share count), which sum to 8.06 — but the reported first-half cumulative EPS is **7.75**. The gap arises because Q1's 3.44 was restated in the Q2 report to `3.44 ÷ 1.1 = 3.13`, and `3.13 + 4.62 = 7.75`.
 
-    **Recommended approach**: to aggregate across quarters, do not sum `EPS`. Sum `IncomeAfterTaxes` (net income for the period) instead and divide by a single weighted average share count. For the example above: `(317,515 + 468,487) thousand TWD ÷ approx. 101,420 thousand shares = 7.75`.
+    **Recommended approach**: to aggregate across quarters, do not sum `EPS`. Sum `IncomeAfterTaxes` (net income for the period) instead and divide by a single weighted average share count. For the example above: `(317,515,000 + 468,487,000) TWD ÷ approx. 101,420,000 shares = 7.75`.
 
     To detect whether a bonus issue occurred within your query range, check the `StockEarningsDistribution` (stock dividend) field in `TaiwanStockDividend`; in the example above its value is 1.0.
 
@@ -205,6 +212,11 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 - Data range: 2011-12-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
 
+??? note "Amount unit, currency and the `_per` items"
+    - **Currency / unit**: all companies are reported in **New Taiwan Dollars (TWD)**, including foreign (KY) companies. `value` is in **TWD (dollars)** — the statements report thousand TWD, and this table multiplies by 1000.
+    - **Point-in-time values**: the balance sheet shows balances as of each quarter-end date, so there is no single-quarter vs. cumulative distinction.
+    - **`type` values ending in `_per`** (e.g. `TotalAssets_per`): the item as a percentage of total assets, in %, not an amount. `TotalAssets_per` is 100.
+
 !!! example
     === "Package"
         ```python
@@ -376,6 +388,10 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 
 - Data range: 2008-06-01 ~ now
 - Coverage: listed (TWSE), OTC (TPEx) and emerging market companies, distinguished by `stock_id` (use `TaiwanStockInfo` to look up market type)
+
+??? note "Amount unit, currency and year-to-date cumulative values"
+    - **Currency / unit**: all companies are reported in **New Taiwan Dollars (TWD)**, including foreign (KY) companies. `value` is in **TWD (dollars)** — the statements report thousand TWD, and this table multiplies by 1000.
+    - **Year-to-date cumulative**: unlike the income statement, this table is **not** converted to single quarters. Each quarter stores the **year-to-date cumulative amount** as reported, so the 12-31 row is the full-year figure. For example, 2330's 2024 `CashFlowsFromOperatingActivities` is 436.3 / 814.0 / 1,206.0 / 1,826.2 billion TWD. To get single-quarter values, subtract the previous quarter within the same fiscal year (Q1 needs no subtraction).
 
 !!! example
     === "Package"
