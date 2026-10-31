@@ -86,7 +86,6 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 | Integrate into commercial products for sale | ❌ | ✅ |
 | Redistribute raw data or build a mirror API | ❌ | ❌ |
 | Display real-time data directly on public web / app interfaces | ❌ | ❌ |
-| Provide broker branch data to third parties | ❌ | ❌ |
 | Attribution "FinMind" required | Yes | Yes |
 
 Broker branch datasets (stock and warrant broker branch trading reports, daily branch aggregate statistics, block trading daily report) are subject to additional restrictions imposed by the source institutions: **under every plan they are for your own use only** and must not be provided to third parties in any form. Even with Sponsor Pro, they may not be displayed in products sold to others.
