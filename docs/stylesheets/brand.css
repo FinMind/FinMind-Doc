@@ -1,0 +1,10 @@
+/* 畫面左上角固定顯示 FinMind 商標（證交所交易資訊契約）：
+   Material 預設在窄螢幕隱藏 header logo，這裡改為所有寬度都顯示。 */
+.md-header__button.md-logo {
+  display: inline-block;
+}
+.md-header__button.md-logo img {
+  height: 1.1rem;
+  width: auto;
+  filter: brightness(0) invert(1); /* 黑字商標在深色 header 上改為白色 */
+}

@@ -1,6 +1,6 @@
 # Disclaimer & Data Licensing
 
-**Version date**: 2026-10-30
+**Version date**: 2026-10-31
 
 ---
 
@@ -12,7 +12,14 @@ For data obtained via government open data platforms, FinMind uses such data und
 
 All other data is used in accordance with the public disclosure or open data rules published by each original data provider.
 
-The basis of FinMind's lawful use is the **public licensing framework** described above; FinMind is not an authorized distributor of any data provider, nor does it represent the position of any data provider.
+The basis of FinMind's lawful use is the **public licensing framework** described above, together with information-use agreements separately concluded with data providers; FinMind does not represent the position of any data provider.
+
+### Taiwan Stock Exchange Trading Information
+
+For Taiwan Stock Exchange trading information provided through this service, **Source: Taiwan Stock Exchange (TWSE)**; this information is processed and provided by **芬麥數據股份有限公司 (FinMind)**.
+
+1. Users must comply with the TWSE Regulations Governing the Use of Trading Information and other applicable rules on trading information.
+2. All information is subject to the data announced by the Taiwan Stock Exchange.
 
 ## 2. Attribution
 
