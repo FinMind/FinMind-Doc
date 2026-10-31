@@ -1,5 +1,14 @@
 在台股即時資料，我們擁有 4 種資料集，如下:
 
+??? note "使用台股即時資料須先於會員中心填寫姓名、電話、地址"
+    依臺灣證券交易所規定，使用台股即時資料（[taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)）須先於[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址，填寫後可隨時檢視或修改。
+
+    - **2027-01-31 前**：未填寫者仍可正常使用，API 回應會多一個 `profile_notice` 欄位提醒填寫。
+    - **2027-01-31 起**：未填寫者將無法使用台股即時資料，API 回傳 HTTP 403。
+    - 期貨、選擇權即時資料（`TaiwanFutOptTickInfo`、`taiwan_futures_snapshot`、`taiwan_options_snapshot`）不受影響。
+
+    資料用途請見[隱私權政策](https://finmind.github.io/PrivacyPolicy/#realtime-profile)。
+
 
 - [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)
 - [期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwanfutopttickinfo)

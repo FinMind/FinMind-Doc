@@ -1,4 +1,5 @@
 #### 2026-10-31
+* 依臺灣證券交易所規定，使用[台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) 須先於[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址。2027-01-31 前未填寫者仍可使用，API 回應會附 `profile_notice` 提醒；2027-01-31 起未填寫者將無法使用台股即時資料（回傳 HTTP 403）。期貨、選擇權即時資料不受影響
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.1 版：新增 `download_financial_report`，可直接讀[台股財報與年報 PDF](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)的目錄、指定頁或含關鍵字的頁面（例如附註裡的營收細分、存貨組成），不需自己寫程式下載（限 sponsorpro 會員）。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
 
 #### 2026-10-24

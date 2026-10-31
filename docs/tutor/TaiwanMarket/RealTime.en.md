@@ -1,5 +1,14 @@
 For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
+??? note "Taiwan stock real-time data requires your name, phone number, and address in the Member Center"
+    Under Taiwan Stock Exchange regulations, you must first fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) before using Taiwan stock real-time data ([taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members)). You can view or update this information at any time afterwards.
+
+    - **Before 2027-01-31**: users who have not filled it in can still use the data as usual; API responses include an extra `profile_notice` field as a reminder.
+    - **From 2027-01-31**: users who have not filled it in will no longer be able to use Taiwan stock real-time data; the API returns HTTP 403.
+    - Futures and options real-time data (`TaiwanFutOptTickInfo`, `taiwan_futures_snapshot`, `taiwan_options_snapshot`) are not affected.
+
+    For how this information is used, see the [Privacy Policy](https://finmind.github.io/en/PrivacyPolicy/#realtime-profile).
+
 
 - [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members)
 - [Futures and Options Real-Time Quote Overview TaiwanFutOptTickInfo](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#futures-and-options-real-time-quote-overview-taiwanfutopttickinfo)

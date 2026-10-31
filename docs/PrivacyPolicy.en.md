@@ -57,7 +57,13 @@ When you use the service through a third-party AI platform (such as ChatGPT), yo
 
 The service applies reasonable technical and organizational measures to protect the data it processes. Please keep your access credential secure and avoid disclosing it.
 
-### 11. Updates to This Policy
+### 11. Taiwan Stock Real-Time Data User Information {#realtime-profile}
+
+To manage and report real-time data users in accordance with the Taiwan Stock Exchange's regulations on the use and management of trading information, users of Taiwan stock real-time data must provide their name, phone number, and address. This information is used only for the above purpose and for contacting users; it is not provided to any third party except as required by law or by the Taiwan Stock Exchange.
+
+You can view or update the information you provided at any time in the [Member Center](https://finmindtrade.com/analysis/#/account/user).
+
+### 12. Updates to This Policy
 
 This policy may be updated from time to time as the service evolves; the updated version will be posted on this page.
 

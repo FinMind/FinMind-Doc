@@ -805,6 +805,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 ### taiwan_stock_tick_snapshot (台股即時資訊)
 - Tier: Sponsor
 - Params: dataset=taiwan_stock_tick_snapshot, data_id=2330 (or empty for all)
+- User information required (Taiwan Stock Exchange regulation): users must fill in name, phone number, and address in the Member Center (https://finmindtrade.com/analysis/#/account/user). Before 2027-01-31, users who have not filled it in still get data plus a `profile_notice` field in the response; from 2027-01-31 they get HTTP 403. Futures/options real-time data are not affected.
 - Columns: amount, average_price, buy_price, buy_volume, change_price, change_rate, close, high, low, open, sell_price, sell_volume, total_amount, total_volume, volume, volume_ratio, yesterday_volume, date, stock_id, TickType
 - Index codes (3-digit data_id, 91 indices): besides 4-digit stock IDs, data_id also accepts 3-digit index codes:
   - Broad market: 001=加權指數(TAIEX), 002=不含金融指數, 003=不含電子指數, 034=未含金電股發行量加權股價指數, 101=櫃檯買賣發行量加權股價指數(OTC)
