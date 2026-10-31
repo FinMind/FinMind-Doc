@@ -1792,7 +1792,7 @@
     檔案權利屬原發行公司，詳見[商業使用 Q&A](https://finmind.github.io/CommercialUse/)。
 
 ??? note "用 AI 直接讀財報（MCP）"
-    使用 [FinMind MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 時，不需要寫程式下載：直接問「台積電 2026 第二季財報附註裡的存貨組成是什麼？」，AI 會用 `download_financial_report` 下載這份 PDF、看目錄並讀出相關頁面。
+    使用 [FinMind MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools)（0.1.1 版起）時，不需要寫程式下載：直接問「台積電 2026 第二季財報附註裡的存貨組成是什麼？」，AI 會用 `download_financial_report` 下載這份 PDF、看目錄並讀出相關頁面。
 
 !!! example
     === "Package"

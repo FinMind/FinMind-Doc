@@ -1,3 +1,6 @@
+#### 2026-10-31
+* [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.1 版：新增 `download_financial_report`，可直接讀[台股財報與年報 PDF](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)的目錄、指定頁或含關鍵字的頁面（例如附註裡的營收細分、存貨組成），不需自己寫程式下載（限 sponsorpro 會員）。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
+
 #### 2026-10-24
 * 新增 [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading-backersponsor)，資料區間 2004-12-24 ~ now
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.0 版：可存取 FinMind 所有公開資料與 endpoint，新增 `query_endpoint`（當日卷商分點統計、權證分點、股票／期貨／選擇權即時快照等）與 `download_storage_object`（整日全市場資料下載到本機，限 sponsorpro 會員）；權限不足時會說明所需方案並提供升級連結。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
