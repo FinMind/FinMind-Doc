@@ -50,7 +50,7 @@
 
 ## 可用工具 { #tools }
 
-自 0.1.0 版起，MCP server 可存取 FinMind 所有公開資料與 endpoint，包含整日全市場下載（storage_objects）。共 7 個工具，由 AI 工具依問題自動選用：
+自 0.1.0 版起，MCP server 可存取 FinMind 所有公開資料與 endpoint，包含整日全市場下載（storage_objects）。共 8 個工具，由 AI 工具依問題自動選用：
 
 | 工具 | 用途 |
 |---|---|
@@ -60,6 +60,7 @@
 | `query_trading_daily_report` | 單日分點進出，可依個股或券商分點查詢 |
 | `query_endpoint` | 其他專屬 endpoint：當日卷商分點統計（SecIdAgg）、權證分點、股票／期貨／選擇權即時快照、`datalist`、`translation` |
 | `download_storage_object` | 整日全市場資料（逐筆、分 K、分點等）下載到本機，回傳檔案路徑、筆數、欄位與前幾列，可依代號／分點過濾 |
+| `download_financial_report` | 下載上市櫃公司[財報與股東會年報 PDF](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)，直接讀目錄、指定頁或含關鍵字的頁面（例如附註裡的營收細分、存貨組成） |
 | `get_pricing` | 會員方案價格與授權說明（不需 Token） |
 
 權限依你的會員等級而定。查詢超出方案範圍時，工具會說明需要的方案（Backer / Sponsor / Sponsor Pro）並附上[升級連結](https://finmindtrade.com/analysis/#/Sponsor/sponsor)。
@@ -69,6 +70,12 @@
     - 整日檔動輒數十 MB，工具只回摘要（最多 500 列）；完整資料存在本機，可用 `pandas.read_parquet(路徑)` 讀取。
     - 檔案預設存到使用者快取目錄下的 `finmind-mcp/storage_objects/`，可用環境變數 `FINMIND_DOWNLOAD_DIR` 指定位置；同一天同一資料集再查會直接用本機檔。
     - 回傳摘要需要 `pyarrow`。Claude Desktop 一鍵安裝已內含；其他工具預設不裝（沒裝時仍會下載並回傳檔案路徑），如需摘要，請把設定檔的 `args` 改成 `["--from", "finmind-mcp[parquet]", "finmind-mcp"]`。
+
+??? note "財報 PDF（`download_financial_report`）注意事項"
+    - 限 [sponsorpro](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用。
+    - 不用自己下載檔案或另外安裝讀 PDF 的工具：工具會先回封面與目錄，AI 再依頁次讀附註，或用關鍵字找頁面。
+    - 一次最多回傳約 30,000 字；檔案存在本機快取，同一份再查不會重新下載。
+    - 部分 PDF 的主要報表頁是影像、部分年報文字層損壞，工具會標出這些頁面而不回傳亂碼；損益、資產負債、現金流量數字請改查三大報表資料集。
 
 ## 範例 { #examples }
 
@@ -123,6 +130,14 @@
 ```
 
 > 預期結果：工具呼叫 `download_storage_object` 把整日檔存到本機，回傳檔案路徑，並過濾出台積電的分 K。
+
+### 讀財報附註（Sponsor Pro）
+
+```
+台積電 2026 第二季存貨大增，是成品賣不掉嗎？幫我看財報附註。
+```
+
+> 預期結果：工具先用 `query_dataset` 查資產負債表確認存貨變化，再呼叫 `download_financial_report` 到財報附註找「存貨」那一頁，依製成品、在製品、原料的組成回答。
 
 ## 資料欄位注意事項 { #caveats }
 

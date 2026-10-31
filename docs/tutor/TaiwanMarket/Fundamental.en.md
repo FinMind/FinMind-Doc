@@ -1791,6 +1791,9 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 ??? note "Usage scope"
     Rights in the files belong to the issuing company. See [Commercial Use Q&A](https://finmind.github.io/en/CommercialUse/).
 
+??? note "Read reports with AI (MCP)"
+    With the [FinMind MCP Server](https://finmind.github.io/en/tutor/ai/Mcp/#tools) you don't need to write download code: just ask "What is the inventory breakdown in the notes of TSMC's Q2 2026 financial report?" and the AI uses `download_financial_report` to download the PDF, check its table of contents and read the relevant pages.
+
 !!! example
     === "Package"
         ```python
