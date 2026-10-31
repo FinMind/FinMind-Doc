@@ -104,12 +104,19 @@ FinMind is not responsible for any use beyond the licensed scope. See [Disclaime
 ??? note "Can I show broker branch data to paying members of my own product?"
     No. Broker branch datasets are for your own use only (including internal research and analysis within your company). Under every plan, including Sponsor Pro, they must not be provided to third parties in any form. If you need to display them externally, please obtain the corresponding authorization from the source institution yourself. See [Disclaimer & Data Licensing](Disclaimer.md).
 
-??? note "My tool lets users enter their own FinMind token. Whose use is it?"
-    If every user fetches the data **with their own FinMind account and plan**, directly from the user's side with their own token, and the data is shown only to that user, it counts as that user's own use. What the user can access depends on the plan they subscribe to (e.g., broker branch datasets and intraday real-time data require Sponsor or above).
+??? note "I'm a developer. How can my users access intraday real-time data and broker branch data too?"
+    Ask your users to **each register a FinMind account and subscribe to a plan** (intraday real-time data and broker branch datasets require Sponsor or above), then enter their own FinMind token in your tool. Since each user fetches the data with their own account and it is shown only to that user, it counts as that user's own use; what they can access depends on the plan they subscribe to.
 
-    - Developers must not embed or share their own token in the tool for others to fetch data.
-    - The developer's server must not fetch data with users' tokens and then store, cache, or aggregate it for other people.
-    - The same applies to intraday real-time data: it may be fetched with the user's own token and shown only to that user, but must not be publicly displayed to others (e.g., on public web pages or to other users).
+    How to set it up:
+
+    - Provide a field in your tool for users to enter their FinMind token, and point them to the [sponsor page](https://finmindtrade.com/analysis/#/Sponsor/sponsor) to register and subscribe.
+    - Call the FinMind API directly from the user's side with the user's own token.
+
+    Please note:
+
+    - Do not embed or share your own token in the tool for others to fetch data.
+    - Your server should not fetch data with users' tokens and then store, cache, or aggregate it for other people.
+    - Show the data only to the token owner; do not display it publicly to others (e.g., on public web pages or to other users).
 
 ??? note "Not sure which plan to choose?"
     Start with Backer, then upgrade to Sponsor or Sponsor Pro anytime by paying the prorated difference.
