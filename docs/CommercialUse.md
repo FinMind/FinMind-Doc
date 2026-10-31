@@ -1,5 +1,5 @@
 ---
-description: FinMind 商業使用 Q&A：商業用途方案、整合產品對外販售、讓使用者以自己的 FinMind 帳號使用即時與分點資料、財報 PDF 與來源標示。
+description: FinMind 商業使用 Q&A：商業用途方案、整合產品對外販售、使用者以自己的 FinMind 帳號使用、財報 PDF 與來源標示。
 ---
 
 # 商業使用 Q&A
@@ -14,9 +14,9 @@ description: FinMind 商業使用 Q&A：商業用途方案、整合產品對外�
 
 **可以。** Sponsor Pro 可以把 FinMind 資料整合進你的產品對外販售。請勿直接轉賣原始資料，或架設鏡像 API。
 
-### 我的使用者也想看即時、分點資料？
+### 我的使用者也想看即時、分點資料，有什麼做法？
 
-**可以。** 讓你的使用者也成為 [FinMind 用戶](https://finmindtrade.com/analysis/#/Sponsor/sponsor)（Sponsor 以上），在你的產品輸入自己的 token，就能直接使用，沒有限制。資料由使用者端以自己的 token 取得；請勿在產品內建你的 token。
+**一種做法：** 讓使用者以自己的 FinMind 帳號（Sponsor 以上），在你的產品輸入 token 使用。請勿在產品內建你的 token。
 
 ### 財報 PDF 可以用在商業產品嗎？
 

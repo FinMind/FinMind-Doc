@@ -1,5 +1,5 @@
 ---
-description: FinMind commercial use Q&A — which plan to choose, building products for sale, letting your users access real-time and broker branch data with their own FinMind accounts, financial report PDFs, and attribution.
+description: FinMind commercial use Q&A — which plan to choose, building products for sale, users with their own FinMind accounts, financial report PDFs, and attribution.
 ---
 
 # Commercial Use Q&A
@@ -14,9 +14,9 @@ Building a product or serving clients with FinMind? These questions cover it.
 
 **Yes.** With Sponsor Pro you can integrate FinMind data into products you sell. Please don't resell the raw data or run a mirror API.
 
-### My users want real-time and broker branch data too?
+### My users want real-time and broker branch data too. Is there a way?
 
-**Yes.** Have your users become [FinMind users](https://finmindtrade.com/analysis/#/Sponsor/sponsor) as well (Sponsor or above) and enter their own token in your product — then they can use it directly, without restrictions. The data is fetched on the user's side with their own token; please don't embed your own token in the product.
+**One way:** let users enter the token from their own FinMind account (Sponsor or above) in your product. Please don't embed your own token in the product.
 
 ### Can I use financial report PDFs in a commercial product?
 
