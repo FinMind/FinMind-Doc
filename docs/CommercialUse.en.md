@@ -1,5 +1,5 @@
 ---
-description: FinMind commercial use Q&A — which plan to choose, building products for sale, users with their own FinMind accounts, financial report PDFs, and attribution.
+description: FinMind commercial use Q&A — which plan to choose, integrating data into products for commercial use, users with their own FinMind accounts, financial report PDFs, and attribution.
 hide:
     - toc
 ---
@@ -19,12 +19,12 @@ Building a product or serving clients with FinMind? These questions cover it.
     </div>
   </div>
   <div class="qa-item">
-    <p class="qa-q">Can I integrate the data into a product I sell?</p>
+    <p class="qa-q">Can I integrate the data into my product for commercial use?</p>
     <div class="qa-a">
       <span class="qa-v qa-v--yes">Yes</span>
       <div class="qa-body">
-      <p>With Sponsor Pro you can integrate FinMind data into products you sell.</p>
-      <p class="qa-note">Please don't resell the raw data or run a mirror API.</p>
+      <p>With Sponsor Pro you can integrate FinMind data into your product for commercial use, <strong>except real-time data and broker branch data</strong> (see the next question).</p>
+      <p class="qa-note">Please don't redistribute the raw data or run a mirror API.</p>
       </div>
     </div>
   </div>
