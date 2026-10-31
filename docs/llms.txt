@@ -33,6 +33,8 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Sponsor adds: stock minute K, broker branch trading report, real-time stock/futures/options data, active ETF holdings, per-stock margin maintenance ratio, block trades, futures minute K, etc.
 - Sponsor Pro adds: commercial license and whole-day all-symbol download (stock tick, broker branch reports, stock minute K, futures/options tick).
 - All plans: no redistribution of raw data, no mirror APIs, no displaying real-time data directly on public web/app interfaces; attribution "FinMind" required.
+- Broker branch datasets (TaiwanStockTradingDailyReport, TaiwanStockWarrantTradingDailyReport, TaiwanStockTradingDailyReportSecIdAgg, TaiwanStockBlockTradingDailyReport): for the subscriber's own use only under every plan, including Sponsor Pro. Must not be provided to third parties in any form, e.g. on public web/app or to a product's paying members; external display requires the user's own authorization from the source institutions.
+- Developers whose end users want Sponsor-tier data (intraday real-time, broker branch): have each end user register their own FinMind account, subscribe (Sponsor or above), and enter their own token in the developer's tool; calls made client-side with the user's own token and shown only to that user count as the user's own use. The developer must not embed/share their own token, and their server must not store, cache, or aggregate data fetched with users' tokens for others.
 
 ## Python SDK
 
