@@ -4,7 +4,11 @@
 site_name: FinMind
 site_url: https://finmind.github.io/
 site_author: 'Sam'
-copyright: 'Copyright'
+copyright: >-
+    資訊來源：臺灣證券交易所「TWSE」｜本資訊由芬麥數據股份有限公司處理提供<br>
+    1. 使用者須遵守臺灣證券交易所『交易資訊使用管理辦法』等交易資訊管理相關規定。<br>
+    2. 所有資訊以臺灣證券交易所公告資料為準。<br>
+    © 芬麥數據股份有限公司 FinMind ｜ <a href="/Disclaimer/">免責聲明與資料授權</a>
 
 # ============================================================
 #  Repository
@@ -32,6 +36,7 @@ theme:
         - search.highlight
         - search.suggest
         - search.share
+    logo: images/finmind-logo.png   # 畫面左上角固定顯示 FinMind 商標（證交所交易資訊契約）
     icon:
         repo: fontawesome/brands/github
 
@@ -118,6 +123,7 @@ nav:
 # ============================================================
 extra_css:
     - stylesheets/qa.css
+    - stylesheets/brand.css
 
 markdown_extensions:
     - toc:
@@ -169,6 +175,11 @@ plugins:
               name: English
               build: true
               site_name: FinMind
+              copyright: >-
+                  Source: Taiwan Stock Exchange (TWSE) | This information is processed and provided by 芬麥數據股份有限公司 (FinMind)<br>
+                  1. Users must comply with the TWSE Regulations Governing the Use of Trading Information and other applicable rules on trading information.<br>
+                  2. All information is subject to the data announced by the Taiwan Stock Exchange.<br>
+                  © 芬麥數據股份有限公司 FinMind | <a href="/en/Disclaimer/">Disclaimer &amp; Data Licensing</a>
               theme:
                 language: en
               nav_translations:
