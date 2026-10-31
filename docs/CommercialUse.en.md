@@ -1,34 +1,26 @@
 ---
-description: FinMind commercial use Q&A — which plan to choose, building products for sale, real-time data, broker branch data, users' own tokens, financial report PDFs, and attribution.
+description: FinMind commercial use Q&A — which plan to choose, building products for sale, letting your users access real-time and broker branch data with their own FinMind accounts, financial report PDFs, and attribution.
 ---
 
 # Commercial Use Q&A
 
-Read these before you build a product or take on clients.
+Building a product or serving clients with FinMind? These questions cover it.
 
 ### Which plan do I need for commercial use?
 
-**Sponsor Pro.** Commercial use such as SaaS, AI, apps, and internal company systems requires Sponsor Pro. Other plans are for non-commercial use only.
+**Sponsor Pro.** Commercial use such as SaaS, AI, apps, and internal company systems requires Sponsor Pro.
 
 ### Can I integrate the data into a product I sell?
 
-**Yes.** Sponsor Pro allows it, except for broker branch data and financial report PDFs. Do not redistribute raw data or build a mirror API.
+**Yes.** With Sponsor Pro you can integrate FinMind data into products you sell. Please don't resell the raw data or run a mirror API.
 
-### Can I show real-time data on my website or app?
+### My users want real-time and broker branch data too?
 
-**No.** Real-time data must not be displayed on public websites or apps.
-
-### Can I show broker branch data to my clients or paying members?
-
-**No.** Broker branch data is for your own use only.
-
-### My users want real-time and broker branch data too. How?
-
-**Yes.** Ask your users to [subscribe to FinMind](https://finmindtrade.com/analysis/#/Sponsor/sponsor) (Sponsor or above) and enter their own token in your tool, so the data is fetched on the user's side and shown only to them. Do not embed your own token in the tool, and do not have your server fetch the data to store or pass on to others.
+**Yes.** Have your users become [FinMind users](https://finmindtrade.com/analysis/#/Sponsor/sponsor) as well (Sponsor or above) and enter their own token in your product — then they can use it directly, without restrictions. The data is fetched on the user's side with their own token; please don't embed your own token in the product.
 
 ### Can I use financial report PDFs in a commercial product?
 
-**For your own use.** Rights in the files belong to the issuing company; the Sponsor Pro commercial license does not cover the files themselves. If you use them for AI retrieval or summaries, assess copyright yourself.
+**Yes.** You can download and analyze them for your products and services. Rights in the files belong to the issuing company; if you use them for AI retrieval or summaries, assess copyright yourself.
 
 ### Do I need to credit the data source?
 
