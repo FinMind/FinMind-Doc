@@ -83,7 +83,7 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 |:---|:---:|:---:|
 | Personal, academic, web / app development and other non-commercial use | ✅ | ✅ |
 | Commercial use: SaaS, AI, web / app, internal company systems | ❌ | ✅ |
-| Integrate into commercial products for sale | ❌ | ✅ |
+| Integrate into products for commercial use (except real-time and broker branch data) | ❌ | ✅ |
 | Redistribute raw data or build a mirror API | ❌ | ❌ |
 | Display real-time data directly on public web / app interfaces | ❌ | ❌ |
 | Attribution "FinMind" required | Yes | Yes |
