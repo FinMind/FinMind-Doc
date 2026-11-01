@@ -1,3 +1,6 @@
+#### 2026-11-01
+* [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor) 補上 2022-10 ~ 2022-11 上櫃股票分點資料：2022-10-31 ~ 2022-11-03 缺漏的上櫃股票分點（例：3081 2022-10-31；這 4 天上櫃分點的券商代號大小寫也改為與來源一致，例：116b）、數檔新上櫃股票掛牌初期的分點（例：6843 2022-11-21），以及 2022-10-03 ~ 2022-11-28 少數上櫃股票的部分分點明細（例：8069 2022-11-17）（API 與整日下載檔皆可取得，曾下載這些日期的使用者可重新取得）；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)、[每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor) 同步更新
+
 #### 2026-10-31
 * [MCP Server](https://finmind.github.io/tutor/ai/Mcp/#tools) 0.1.1 版：新增 `download_financial_report`，可直接讀[台股財報與年報 PDF](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)的目錄、指定頁或含關鍵字的頁面（例如附註裡的營收細分、存貨組成），不需自己寫程式下載（限 sponsorpro 會員）。請更新至最新版（`uvx` 會自動取得新版，Claude Desktop 請重新下載 finmind.mcpb）
 * [每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor) 資料源改為交易所公布的漲跌停價（上市 2005-12-19 起、上櫃 2007-04-23 起；更早的日期依當時規則計算，2015-06-01 以前為 7%），歷史資料已全部更新，曾下載過的使用者可重新取得
