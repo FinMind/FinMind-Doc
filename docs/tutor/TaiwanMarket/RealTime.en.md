@@ -7,7 +7,6 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
     - **Before 2027-01-31**: you can still use the data as usual; API responses include an extra `profile_notice` field as a reminder.
     - **From 2027-01-31**: you will no longer be able to get Taiwan stock real-time data; the API returns an HTTP 403 error whose message includes a link to the Member Center.
-    - Not affected: Taiwan stock historical data (including historical tick data), and futures and options real-time data (`TaiwanFutOptTickInfo`, `taiwan_futures_snapshot`, `taiwan_options_snapshot`).
 
     For how this information is used, see the [Privacy Policy](https://finmind.github.io/en/PrivacyPolicy/#realtime-profile).
 
@@ -23,7 +22,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 (updated approximately every 10 seconds)
 
 ??? note "Name, phone number, and address required by 2027-01-31"
-    To use this dataset, fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by 2027-01-31. Before then, users who have not filled it in can still use the data, with a `profile_notice` reminder in the response; from 2027-01-31, they will no longer be able to get Taiwan stock real-time data, and the API returns an HTTP 403 error whose message includes a link to the Member Center. Taiwan stock historical data and futures/options real-time data are not affected.
+    To use this dataset, fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by 2027-01-31. Before then, users who have not filled it in can still use the data, with a `profile_notice` reminder in the response; from 2027-01-31, they will no longer be able to get Taiwan stock real-time data, and the API returns an HTTP 403 error whose message includes a link to the Member Center.
 
 !!! example
     === "Package"

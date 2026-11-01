@@ -7,7 +7,6 @@
 
     - **2027-01-31 前**：仍可正常使用，API 回應會多一個 `profile_notice` 欄位提醒填寫。
     - **2027-01-31 起**：將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。
-    - 不受影響的資料：台股歷史資料（含歷史逐筆資料），以及期貨、選擇權即時資料（`TaiwanFutOptTickInfo`、`taiwan_futures_snapshot`、`taiwan_options_snapshot`）。
 
     資料用途請見[隱私權政策](https://finmind.github.io/PrivacyPolicy/#realtime-profile)。
 
@@ -23,7 +22,7 @@
 (約 10 秒更新一次)
 
 ??? note "須於 2027-01-31 前填寫姓名、電話、地址"
-    使用本資料集須於 2027-01-31 前在[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址。期限前未填寫仍可使用，回應會附 `profile_notice` 提醒；2027-01-31 起未填寫者將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。台股歷史資料及期貨、選擇權即時資料不受影響。
+    使用本資料集須於 2027-01-31 前在[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址。期限前未填寫仍可使用，回應會附 `profile_notice` 提醒；2027-01-31 起未填寫者將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。
 
 !!! example
     === "Package"
