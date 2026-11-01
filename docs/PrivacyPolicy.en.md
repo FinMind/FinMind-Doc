@@ -46,7 +46,7 @@ The above data is used only for the following purposes:
 
 ### 8. What We Do Not Do
 
-- We do not sell your personal data
+- We do not provide your personal data to third parties for commercial purposes
 - We do not use the data for purposes unrelated to the service
 
 ### 9. Third-Party Platforms
