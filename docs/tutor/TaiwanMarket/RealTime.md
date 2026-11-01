@@ -1,5 +1,15 @@
 在台股即時資料，我們擁有 4 種資料集，如下:
 
+??? note "使用台股即時資料須先於會員中心填寫姓名、電話、地址"
+    依臺灣證券交易所規定，使用台股即時資料（[taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)）的用戶，須於 **2027-01-31** 前在[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址（註冊時也可一併填寫），填寫後可隨時檢視或修改。
+
+    未填寫會怎樣：
+
+    - **2027-01-31 前**：仍可正常使用，API 回應會多一個 `profile_notice` 欄位提醒填寫。
+    - **2027-01-31 起**：將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。
+
+    資料用途請見[隱私權政策](https://finmind.github.io/PrivacyPolicy/#realtime-profile)。
+
 
 - [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)
 - [期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwanfutopttickinfo)
@@ -10,6 +20,9 @@
 ----------------------------------
 #### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 (約 10 秒更新一次)
+
+??? note "須於 2027-01-31 前填寫姓名、電話、地址"
+    使用本資料集須於 2027-01-31 前在[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址。期限前未填寫仍可使用，回應會附 `profile_notice` 提醒；2027-01-31 起未填寫者將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。
 
 !!! example
     === "Package"

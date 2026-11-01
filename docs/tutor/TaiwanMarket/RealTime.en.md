@@ -1,5 +1,15 @@
 For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
+??? note "Taiwan stock real-time data requires your name, phone number, and address in the Member Center"
+    Under Taiwan Stock Exchange regulations, users of Taiwan stock real-time data ([taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members)) must fill in their name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by **2027-01-31** (you can also fill it in when registering). You can view or update this information at any time afterwards.
+
+    What happens if you have not filled it in:
+
+    - **Before 2027-01-31**: you can still use the data as usual; API responses include an extra `profile_notice` field as a reminder.
+    - **From 2027-01-31**: you will no longer be able to get Taiwan stock real-time data; the API returns an HTTP 403 error whose message includes a link to the Member Center.
+
+    For how this information is used, see the [Privacy Policy](https://finmind.github.io/en/PrivacyPolicy/#realtime-profile).
+
 
 - [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members)
 - [Futures and Options Real-Time Quote Overview TaiwanFutOptTickInfo](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#futures-and-options-real-time-quote-overview-taiwanfutopttickinfo)
@@ -10,6 +20,9 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 ----------------------------------
 #### Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (updated approximately every 10 seconds)
+
+??? note "Name, phone number, and address required by 2027-01-31"
+    To use this dataset, fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by 2027-01-31. Before then, users who have not filled it in can still use the data, with a `profile_notice` reminder in the response; from 2027-01-31, they will no longer be able to get Taiwan stock real-time data, and the API returns an HTTP 403 error whose message includes a link to the Member Center.
 
 !!! example
     === "Package"
