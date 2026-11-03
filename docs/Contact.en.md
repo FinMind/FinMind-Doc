@@ -4,3 +4,4 @@
 ## Page: [FinMind](https://www.facebook.com/profile.php?id=100065614368124)
 ## Issue: [GitHub](https://github.com/FinMind/FinMind)
 ## Other: FinMind.TW@gmail.com
+## Support Hours: Mon–Fri 09:00–18:00 (UTC+8)
