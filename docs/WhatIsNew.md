@@ -1,3 +1,6 @@
+#### 2026-11-05
+* [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor) 補上 00985D 主動貝萊德優投等的持股資料，資料區間 2026-03-20 ~ now；另補上 00996A 2026-09-22 ~ 2026-11-04、00400A 2026-10-23 ~ 2026-11-04 原本缺少的日期；[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor) 同步補上
+
 #### 2026-11-04
 * [股價日成交資訊 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice) 補上 2022-11-28 ~ 2023-03-27 上市部分成交量為 0 或成交極少的股日資料（多為權證，也包含少數個股，例：9931 2022-12-05、1583 2022-12-22）；[台灣還原股價 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)、[每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor) 同步補上（曾下載這些日期的使用者可重新取得）
 
