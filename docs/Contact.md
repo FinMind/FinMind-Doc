@@ -4,3 +4,4 @@
 ## 粉絲專頁: [FinMind](https://www.facebook.com/profile.php?id=100065614368124)
 ## Issue: [GitHub](https://github.com/FinMind/FinMind)
 ## other: FinMind.TW@gmail.com
+## 客服時間: 週一至週五 09:00–18:00
