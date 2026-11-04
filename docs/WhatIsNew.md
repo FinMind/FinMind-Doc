@@ -1,3 +1,6 @@
+#### 2026-11-04
+* [股價日成交資訊 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice) 補上 2022-11-28 ~ 2023-03-27 上市部分成交量為 0 或成交極少的股日資料（多為權證，也包含少數個股，例：9931 2022-12-05、1583 2022-12-22）；[台灣還原股價 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)、[每日漲跌停價 TaiwanStockPriceLimit](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricelimit-backersponsor) 同步補上（曾下載這些日期的使用者可重新取得）
+
 #### 2026-11-01
 * [台股分點資料表 TaiwanStockTradingDailyReport](https://finmind.github.io/tutor/TaiwanMarket/Chip/#query-by-taiwanstocktradingdailyreport-sponsor) 補上 2022-10 ~ 2022-11 上櫃股票分點資料：2022-10-31 ~ 2022-11-03 缺漏的上櫃股票分點（例：3081 2022-10-31；這 4 天上櫃分點的券商代號大小寫也改為與來源一致，例：116b）、數檔新上櫃股票掛牌初期的分點（例：6843 2022-11-21），以及 2022-10-03 ~ 2022-11-28 少數上櫃股票的部分分點明細（例：8069 2022-11-17）（API 與整日下載檔皆可取得，曾下載這些日期的使用者可重新取得）；[當日卷商分點統計表 TaiwanStockTradingDailyReportSecIdAgg](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstocktradingdailyreportsecidagg-sponsor)、[每日個股主力集中度 TaiwanStockBrokerDailyConcentration](https://finmind.github.io/tutor/TaiwanMarket/Chip/#taiwanstockbrokerdailyconcentration-sponsor) 同步更新
 
