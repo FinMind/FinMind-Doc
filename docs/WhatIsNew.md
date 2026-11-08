@@ -1,3 +1,6 @@
+#### 2026-11-08
+* [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)、[台股分 K 資料表 TaiwanStockKBar](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockkbar-sponsor) 補上 2023-03-13 ~ 2024-04-11 部分原本缺少的興櫃股票逐筆與分 K 資料（例：6906 2023-12-26），以及 2024-04 ~ 2026-07 部分 ETF 與股票掛牌初期的逐筆與分 K 資料（例：00400A 2026-04-09）（API 與整日下載檔皆可取得；2026-10-23 公告的興櫃資料區間當時仍缺這段，現已補齊）
+
 #### 2026-11-05
 * [主動式ETF每日持股明細 TaiwanStockActiveETFHolding](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etf-taiwanstockactiveetfholding-sponsor) 補上 00985D 主動貝萊德優投等的持股資料，資料區間 2026-03-20 ~ now；另補上 00996A 2026-09-22 ~ 2026-11-04、00400A 2026-10-23 ~ 2026-11-04 原本缺少的日期；[主動式ETF每日持股異動（買賣）TaiwanStockActiveETFHoldingChange](https://finmind.github.io/tutor/TaiwanMarket/Chip/#etftaiwanstockactiveetfholdingchange-sponsor) 同步補上
 
