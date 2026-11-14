@@ -5,7 +5,7 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 - [Taiwan Warrant Underlying Reference Table TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-warrant-underlying-reference-table-taiwanstockinfowithwarrantsummary-available-only-to-sponsor-members)
 - [Taiwan Stock Trading Date TaiwanStockTradingDate](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-trading-date-taiwanstocktradingdate)
 - [Taiwan Stock Price Table TaiwanStockPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#daily-stock-price-information-taiwanstockprice)
-- [Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-after-hours-fixed-price-trading-taiwanstockafterhoursfixedpricetrading-available-only-to-backer-sponsor-members)
+- [Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-after-hours-fixed-price-trading-taiwanstockafterhoursfixedpricetrading)
 - [Taiwan Stock Weekly K Table TaiwanStockWeekPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-weekly-k-table-taiwanstockweekprice-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Monthly K Table TaiwanStockMonthPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-monthly-k-table-taiwanstockmonthprice-available-only-to-backer-sponsor-members)
 - [Taiwan Adjusted Stock Price Table TaiwanStockPriceAdj](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-adjusted-stock-price-table-taiwanstockpriceadj-available-only-to-backer-sponsor-members)
@@ -533,7 +533,7 @@ In Taiwan stock technical data, we have 21 datasets, as follows:
 
 ----------------------------------
 
-#### Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading (available only to [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+#### Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading
 
 - Provides the daily after-hours fixed-price trading results (matched at the day's closing price) for each Taiwan listed (TWSE) and OTC (TPEx) security, including the trading price, volume, number of transactions, trading value, and the unfilled buy / sell volume remaining after matching
 - Data range: 2004-12-24 ~ now (TWSE from 2004-12-24, TPEx from 2011-01-03)

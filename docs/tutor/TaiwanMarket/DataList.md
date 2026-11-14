@@ -7,7 +7,7 @@
 - [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
 - [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-- [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading-backersponsor)
+- [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading)
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
 - [台灣股價歷史逐筆資料表 TaiwanStockPriceTick](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpricetick-backersponsor)
 - [個股 PER、PBR 資料表 TaiwanStockPER](https://finmind.github.io/tutor/TaiwanMarket/Technical/#perpbr-taiwanstockper)

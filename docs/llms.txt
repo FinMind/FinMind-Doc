@@ -23,7 +23,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 
 | Plan | Monthly | Yearly | API limit | Datasets | License |
 |---|---|---|---|---|---|
-| Free | NT$0 | NT$0 | 300 req/hour (600 with registered token) | 45 | Non-commercial |
+| Free | NT$0 | NT$0 | 300 req/hour (600 with registered token) | 46 | Non-commercial |
 | Backer | NT$699 | NT$5,499 | 1,600 req/hour | 81 | Non-commercial |
 | Sponsor (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 97 | Non-commercial |
 | Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 97 + whole-day all-symbol download | Commercial (SaaS / AI / app / internal systems) |

@@ -30,7 +30,7 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 
 | Plan | Monthly | Yearly | API / Download Limit | Datasets | License |
 |:---:|:---:|:---:|:---:|:---:|:---:|
-| Free | Free | Free | 300 req/hour (600 req/hour for registered members) | 45 | Non-commercial |
+| Free | Free | Free | 300 req/hour (600 req/hour for registered members) | 46 | Non-commercial |
 | Backer | NT$699 | NT$5,499 | 1,600 req/hour | 81 | Non-commercial |
 | **Sponsor** (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 97 | Non-commercial |
 | Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 97 + whole-day all-symbol download | **Commercial** |
@@ -50,7 +50,7 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 
 ### Free
 
-- **Technical**: Taiwan stock info (incl. warrants), active ETF list, daily stock price, trading dates, sector price index, PER/PBR, 5-second order/trade statistics, TAIEX, day-trading targets and volume, total return indices
+- **Technical**: Taiwan stock info (incl. warrants), active ETF list, daily stock price, after-hours fixed-price trading, trading dates, sector price index, PER/PBR, 5-second order/trade statistics, TAIEX, day-trading targets and volume, total return indices
 - **Chip**: margin purchase / short sale (per stock and market-wide), institutional investors buy/sell (per stock and market-wide), foreign shareholding, securities lending, short-sale suspension, margin quota balance, securities trader info
 - **Fundamental**: cash flow statement, income statement, balance sheet, dividend policy, ex-dividend results, monthly revenue, capital reduction / split / par-value change reference prices, delisting
 - **Derivative**: futures & options daily overview, futures & options real-time quote overview, futures daily, options daily, futures / options institutional investors, futures / options dealer daily volume
