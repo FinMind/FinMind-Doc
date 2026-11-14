@@ -896,6 +896,7 @@
 #### 股東持股分級表 TaiwanStockHoldingSharesPer(只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
 
 - 資料區間：2010-01-29 ~ now
+- 資料更新時間 **每週六 04:00**（資料日期為該週最後一個交易日，通常為星期五），實際更新時間以 API 資料為主
 !!! example
     === "Package"
         ```python

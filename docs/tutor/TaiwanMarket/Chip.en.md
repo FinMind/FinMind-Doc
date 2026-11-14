@@ -896,6 +896,7 @@ In Taiwan stock chip data, we have 27 datasets as follows:
 #### Shareholders Holding Shares Distribution TaiwanStockHoldingSharesPer (only available for [backer, sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 
 - Data range: 2010-01-29 ~ now
+- Data update time **every Saturday 04:00** (the data date is the last trading day of the week, usually Friday), the actual update time is based on the API data.
 !!! example
     === "Package"
         ```python
