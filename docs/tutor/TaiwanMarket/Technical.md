@@ -5,7 +5,7 @@
 - [台股權證標的對照表 TaiwanStockInfoWithWarrantSummary](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockinfowithwarrantsummary-sponsor)
 - [台股交易日 TaiwanStockTradingDate](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstocktradingdate)
 - [台灣股價資料表 TaiwanStockPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockprice)
-- [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading-backersponsor)
+- [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading)
 - [台股週 K 資料表 TaiwanStockWeekPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockweekprice-backersponsor)
 - [台股月 K 資料表 TaiwanStockMonthPrice](https://finmind.github.io/tutor/TaiwanMarket/Technical/#k-taiwanstockmonthprice-backersponsor)
 - [台灣還原股價資料表 TaiwanStockPriceAdj](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockpriceadj-backersponsor)
@@ -533,7 +533,7 @@
 
 ----------------------------------
 
-#### 盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading (只限 [backer、sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+#### 盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading
 
 - 提供台股，上市、上櫃，每檔證券每日盤後定價交易（以當日收盤價撮合）的成交結果，包含成交價、成交量、成交筆數、成交金額，以及撮合後剩餘的未成交買量、賣量
 - 資料區間：2004-12-24 ~ now（上市自 2004-12-24、上櫃自 2011-01-03 起）
