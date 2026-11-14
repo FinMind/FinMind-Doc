@@ -31,9 +31,9 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 | Plan | Monthly | Yearly | API / Download Limit | Datasets | License |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 | Free | Free | Free | 300 req/hour (600 req/hour for registered members) | 46 | Non-commercial |
-| Backer | NT$699 | NT$5,499 | 1,600 req/hour | 81 | Non-commercial |
-| **Sponsor** (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 97 | Non-commercial |
-| Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 97 + whole-day all-symbol download | **Commercial** |
+| Backer | NT$699 | NT$5,499 | 1,600 req/hour | 83 | Non-commercial |
+| **Sponsor** (recommended) | NT$999 | NT$8,888 | 6,000 req/hour | 102 | Non-commercial |
+| Sponsor Pro | NT$3,330 | NT$29,620 | 20,000 req/hour | 102 + whole-day all-symbol download | **Commercial** |
 
 - Each higher plan includes everything in the lower plans (Backer ⊃ Free, Sponsor ⊃ Backer, Sponsor Pro ⊃ Sponsor).
 - Check your current usage and quota via [API Usage Count](api_usage_count.md).
@@ -69,7 +69,7 @@ All prices are in **New Taiwan Dollars (TWD)** and can be purchased on the [FinM
 ### Sponsor (includes Backer)
 
 - **Technical**: stock minute K, warrant underlying mapping
-- **Chip**: broker branch trading report, eight government banks buy/sell, broker branch daily statistics, block trade daily report, block trade daily, loan collateral balance, per-stock margin maintenance ratio, active ETF daily holdings, active ETF holding changes, industry chain money flow
+- **Chip**: broker branch trading report, warrant broker branch trading report, eight government banks buy/sell, broker branch daily statistics, block trade daily report, block trade daily, loan collateral balance, per-stock margin maintenance ratio, active ETF daily holdings, active ETF holding changes, industry chain money flow
 - **Real-time**: Taiwan stock, futures and options real-time data
 - **Derivative**: futures spread tick, futures minute K
 
