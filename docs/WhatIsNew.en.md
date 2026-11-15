@@ -1,4 +1,5 @@
 #### 2026-11-15
+* New [Data Quality Assurance](https://finmind.github.io/en/DataQuality/) section: the 2026-11 data quality report is now public. All 102 datasets passed the checks, 100 of which were compared record by record with official public data or the original source values; each dataset lists the checks performed and reproducible query parameters. The report will be updated monthly.
 * [Taiwan Stock After-Hours Fixed-Price Trading TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/en/tutor/TaiwanMarket/Technical/#taiwan-stock-after-hours-fixed-price-trading-taiwanstockafterhoursfixedpricetrading) is now available to free members (query with data_id; fetching all stocks for a specific date remains limited to backer and sponsor members).
 
 #### 2026-11-08
