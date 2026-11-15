@@ -3,9 +3,10 @@
 Every month FinMind runs a full quality validation of its datasets: cross-checks against official public data and between related datasets, trading-day coverage and update timeliness, and field- and value-level consistency. This edition was run on **2026-11-15**; the next edition is expected early next month.
 
 <div class="dq-stats" markdown>
-<div class="dq-stat"><b>102</b><span>datasets reported</span></div>
-<div class="dq-stat"><b>8,827</b><span>sample queries</span></div>
-<div class="dq-stat"><b>43.8M</b><span>rows checked</span></div>
+<div class="dq-stat"><b>100</b><span>datasets reported</span></div>
+<div class="dq-stat"><b>100</b><span>compared record by record with official public data or original source values</span></div>
+<div class="dq-stat"><b>8,736</b><span>sample queries</span></div>
+<div class="dq-stat"><b>43.7M</b><span>rows checked</span></div>
 <div class="dq-stat"><b>9</b><span>checks per dataset</span></div>
 </div>
 
@@ -57,7 +58,6 @@ Every dataset below is <span class="dq-pill dq-pill--ok">Validated</span> in thi
 | [TaiwanStockMarketValueWeight](TaiwanStockMarketValueWeight.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [TaiwanStockMonthPrice](TaiwanStockMonthPrice.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> |
 | [TaiwanStockMonthRevenue](TaiwanStockMonthRevenue.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
-| [TaiwanStockNews](TaiwanStockNews.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [TaiwanStockPER](TaiwanStockPER.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--note">Coverage note</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [TaiwanStockParValueChange](TaiwanStockParValueChange.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [TaiwanStockPrice](TaiwanStockPrice.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> |
@@ -150,7 +150,6 @@ Every dataset below is <span class="dq-pill dq-pill--ok">Validated</span> in thi
 
 | Dataset | Timeliness | Coverage | Make-up days | Official match | Cross-dataset |
 |---|---|---|---|---|---|
-| [CnnFearGreedIndex](CnnFearGreedIndex.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--note">Coverage note</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [CrudeOilPrices](CrudeOilPrices.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [GoldPrice](GoldPrice.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [GovernmentBondsYield](GovernmentBondsYield.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |

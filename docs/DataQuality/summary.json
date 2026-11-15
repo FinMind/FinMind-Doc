@@ -2,7 +2,7 @@
  "schema": 1,
  "edition": "2026-11",
  "run_date": "2026-11-15",
- "generated_at": "2026-11-15T02:17:19Z",
+ "generated_at": "2026-11-15T13:47:47Z",
  "report_url": {
   "zh": "https://finmind.github.io/DataQuality/",
   "en": "https://finmind.github.io/en/DataQuality/"
@@ -30,27 +30,6 @@
   }
  },
  "datasets": [
-  {
-   "dataset": "CnnFearGreedIndex",
-   "group": "macro",
-   "overall": "validated_notes",
-   "checks": {
-    "D9": "pass",
-    "D2cal": "note",
-    "D2sat": "na",
-    "OFF": "na",
-    "XCHK": "planned",
-    "D6": "pass",
-    "D5": "pass",
-    "D8": "pass",
-    "D3": "na"
-   },
-   "official_match_rate": null,
-   "cross_dataset_match_rate": null,
-   "first_date": "2011-01-03",
-   "last_date": "2026-11-13",
-   "run_date": "2026-11-14"
-  },
   {
    "dataset": "CrudeOilPrices",
    "group": "macro",
@@ -1624,27 +1603,6 @@
    "cross_dataset_match_rate": null,
    "first_date": "2002-02-01",
    "last_date": "2026-11-01",
-   "run_date": "2026-11-14"
-  },
-  {
-   "dataset": "TaiwanStockNews",
-   "group": "stock",
-   "overall": "validated",
-   "checks": {
-    "D9": "pass",
-    "D2cal": "pass",
-    "D2sat": "pass",
-    "OFF": "na",
-    "XCHK": "planned",
-    "D6": "pass",
-    "D5": "pass",
-    "D8": "pass",
-    "D3": "pass"
-   },
-   "official_match_rate": null,
-   "cross_dataset_match_rate": null,
-   "first_date": "2010-04-22",
-   "last_date": "2026-11-13",
    "run_date": "2026-11-14"
   },
   {
