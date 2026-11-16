@@ -1,4 +1,5 @@
 #### 2026-11-15
+* 新增[資料品質保證](https://finmind.github.io/DataQuality/)章節：公開 2026-11 資料品質檢測報告，100 個資料集皆通過檢測，並與官方公開資料或資料來源原始值逐筆比對；每個資料集附檢測方式與可重現的查詢參數，之後每月更新
 * [盤後定價交易 TaiwanStockAfterHoursFixedPriceTrading](https://finmind.github.io/tutor/TaiwanMarket/Technical/#taiwanstockafterhoursfixedpricetrading) 開放免費會員使用（帶 data_id 查詢；一次拿特定日期所有資料仍限 backer、sponsor 會員）
 
 #### 2026-11-08

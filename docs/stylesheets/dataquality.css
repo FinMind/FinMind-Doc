@@ -1,0 +1,102 @@
+/* 資料品質保證（DataQuality/）：結果標籤、統計卡、三大機制卡，色票與 qa.css / vueWeb 一致 */
+.md-typeset {
+  --dq-ink: #1d2433;
+  --dq-line: #e3e6ec;
+  --dq-ok: #1c7a4a;
+  --dq-ok-bg: #e8f4ee;
+  --dq-note: #2f4f8f;
+  --dq-note-bg: #ebf0f9;
+  --dq-mute: #6b7488;
+  --dq-mute-bg: #f1f3f6;
+}
+[data-md-color-scheme="slate"] .md-typeset {
+  --dq-ink: #e3e6ec;
+  --dq-line: #3a4152;
+  --dq-ok: #7fd3a4;
+  --dq-ok-bg: rgba(28, 122, 74, 0.22);
+  --dq-note: #a9bdf0;
+  --dq-note-bg: rgba(47, 79, 143, 0.3);
+  --dq-mute: #a3abbd;
+  --dq-mute-bg: rgba(255, 255, 255, 0.06);
+}
+.md-typeset .dq-pill {
+  display: inline-block;
+  padding: 0.05em 0.6em;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.7;
+  white-space: nowrap;
+}
+.md-typeset .dq-pill--ok,
+.md-typeset .dq-pill--pass { color: var(--dq-ok); background: var(--dq-ok-bg); }
+.md-typeset .dq-pill--ok::before { content: "\2713\00a0"; }
+.md-typeset .dq-pill--note { color: var(--dq-note); background: var(--dq-note-bg); }
+.md-typeset .dq-pill--na,
+.md-typeset .dq-pill--planned { color: var(--dq-mute); background: var(--dq-mute-bg); font-weight: 600; }
+
+.md-typeset .dq-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8em;
+  margin: 1.4em 0;
+}
+.md-typeset .dq-stat {
+  padding: 0.9em 1em;
+  border: 1px solid var(--dq-line);
+  border-top: 3px solid var(--dq-ok);
+  border-radius: 6px;
+}
+.md-typeset .dq-stat b {
+  display: block;
+  color: var(--dq-ink);
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+.md-typeset .dq-stat span { display: block; color: var(--dq-mute); font-size: 0.68rem; line-height: 1.45; }
+
+.md-typeset .dq-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8em;
+  margin: 1em 0 1.6em;
+}
+.md-typeset .dq-pillar {
+  padding: 0.4em 1em 0.2em;
+  border: 1px solid var(--dq-line);
+  border-radius: 6px;
+}
+.md-typeset .dq-pillar p { margin: 0.5em 0; font-size: 0.74rem; }
+.md-typeset .dq-pillar strong { color: var(--dq-ink); font-size: 0.82rem; }
+.md-typeset .dq-pillar__no {
+  display: block;
+  margin-top: 0.6em;
+  color: var(--dq-ok);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .dq-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .md-typeset .dq-stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .md-typeset .dq-pillars { grid-template-columns: 1fr; }
+}
+
+/* 總覽表：Dataset ＋ 5 項主要指標共 6 欄；桌機收窄間距並讓長 dataset 名稱斷行，手機再縮小字級 */
+.md-typeset .dq-table table:not([class]) { font-size: 0.64rem; }
+.md-typeset .dq-table table:not([class]) th,
+.md-typeset .dq-table table:not([class]) td { padding: 0.65em 0.5em; }
+.md-typeset .dq-table td:first-child { overflow-wrap: anywhere; min-width: 9em; }
+.md-typeset .dq-table th:not(:first-child) { white-space: nowrap; }
+.md-typeset .dq-table .dq-pill { padding: 0.05em 0.5em; }
+@media screen and (max-width: 44.9375em) {
+  .md-typeset .dq-table table:not([class]) { font-size: 0.58rem; }
+  .md-typeset .dq-table table:not([class]) th,
+  .md-typeset .dq-table table:not([class]) td { padding: 0.5em 0.35em; }
+  .md-typeset .dq-table th:not(:first-child) { white-space: normal; }
+  .md-typeset .dq-table td:first-child { word-break: break-all; min-width: 7em; }
+  .md-typeset .dq-table .dq-pill { padding: 0.05em 0.4em; }
+}
+
+/* 資料集報告標題是很長的英文 dataset 名稱，手機上允許斷行避免撐出橫向捲動 */
+.md-typeset h1 { overflow-wrap: anywhere; }

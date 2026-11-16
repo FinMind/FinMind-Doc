@@ -108,6 +108,9 @@ nav:
     - 更新公告: "WhatIsNew.md"
     - 版本紀錄: "release.md"
     - 服務與政策:
+        - 資料品質保證:
+            - 品質保證機制: "DataQuality/Methodology.md"
+            - 資料品質總覽: "DataQuality/index.md"
         - 服務狀態與可用率: "ServiceStatus.md"
         - 壓力測試: "StressTest.md"
         - IP 封鎖政策: "BanIPPolicy.md"
@@ -124,6 +127,7 @@ nav:
 extra_css:
     - stylesheets/qa.css
     - stylesheets/brand.css
+    - stylesheets/dataquality.css
 
 markdown_extensions:
     - toc:
@@ -220,6 +224,9 @@ plugins:
                 版本紀錄: Release Note
                 服務與政策: Service & Policy
                 關於: About
+                資料品質保證: Data Quality Assurance
+                品質保證機制: How We Validate
+                資料品質總覽: Data Quality Overview
                 服務狀態與可用率: Service Status & Uptime
                 壓力測試: Stress Test
                 IP 封鎖政策: IP Ban Policy
