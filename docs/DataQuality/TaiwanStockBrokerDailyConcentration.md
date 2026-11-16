@@ -1,24 +1,24 @@
-# TaiwanFutOptInstitutionalInvestors 資料品質報告（2026-11）
+# TaiwanStockBrokerDailyConcentration 資料品質報告（2026-11）
 
 [← 回資料品質總覽](index.md)　｜　[檢測方法](Methodology.md)
 
 | 項目 | 內容 |
 |---|---|
 | 驗證結果 | <span class="dq-pill dq-pill--ok">已驗證</span> |
-| 檢測日期 | 2026-11-14 |
+| 檢測日期 | 2026-11-16 |
 | 資料類型 | 日頻（交易日） |
-| 資料期間 | 2017-07-17 ～ 2026-11-13 |
-| 本期驗證規模 | 查詢 103 次、檢查 4,077 列 |
+| 資料期間 | 2021-06-28 ～ 2026-11-13 |
+| 本期驗證規模 | 查詢 87 次、檢查 105,193 列 |
 
 ## 主要指標
 
 | 檢測項目 | 結果 | 說明 |
 |---|---|---|
 | 資料更新時效 | <span class="dq-pill dq-pill--pass">通過</span> | 最新資料日 2026-11-13，與最近交易日同步 |
-| 交易日涵蓋率 | <span class="dq-pill dq-pill--pass">通過</span> | 抽樣 50 個交易日，有資料 50（100.0%） |
-| 補行交易日涵蓋 | <span class="dq-pill dq-pill--pass">通過</span> | 期間內 3 個週六補行交易日全數查核，有資料 3（100.0%） |
-| 與官方來源一致率 | <span class="dq-pill dq-pill--pass">通過</span> | 抽樣 2026-10-28、2026-10-29、2026-10-30、2025-10-31、2024-10-30，逐筆對照官方公開資料：交叉核對 417 筆，一致 417 筆（100.00%） |
-| 跨資料集一致性 | <span class="dq-pill dq-pill--pass">通過</span> | 交叉核對 1,848 筆，一致 1,848 筆（100.00%）：期貨法人分項 × 期權合計 1,488/1,488；選擇權法人分項 × 期權合計 360/360 |
+| 交易日涵蓋率 | <span class="dq-pill dq-pill--pass">通過</span> | 抽樣 40 個交易日，有資料 40（100.0%） |
+| 補行交易日涵蓋 | <span class="dq-pill dq-pill--na">不適用</span> | 此類資料不適用 |
+| 與官方來源一致率 | <span class="dq-pill dq-pill--pass">通過</span> | 抽樣 2026-10-01、2026-10-30、2021-10-15，以官方公開資料重算後逐筆核對：交叉核對 15 筆，一致 15 筆（100.00%） |
+| 跨資料集一致性 | <span class="dq-pill dq-pill--pass">通過</span> | 交叉核對 48 筆，一致 48 筆（100.00%）：主力集中度 × 日成交量 48/48 |
 
 ## 其他檢查
 
@@ -26,7 +26,7 @@
 |---|---|---|
 | 查詢方式一致性 | <span class="dq-pill dq-pill--pass">通過</span> | 單日、區間、指定代號查詢結果一致 |
 | 欄位格式一致性 | <span class="dq-pill dq-pill--pass">通過</span> | 各年度欄位格式一致 |
-| 數值與主鍵一致性 | <span class="dq-pill dq-pill--pass">通過</span> | 檢查 4,077 列，全部規則通過 |
+| 數值與主鍵一致性 | <span class="dq-pill dq-pill--pass">通過</span> | 檢查 105,193 列，全部規則通過 |
 | 每日內容獨立性 | <span class="dq-pill dq-pill--pass">通過</span> | 各日內容皆獨立 |
 
 ## 資料特性說明
@@ -35,14 +35,14 @@
 
 ## 資料維護紀錄
 
-本資料集近期沒有資料維護公告；所有公告見[更新公告](https://finmind.github.io/WhatIsNew/)。
+- 2026-10-23：依官方來源更新（詳見[更新公告](https://finmind.github.io/WhatIsNew/#2026-10-23)）
 
 ## 可重現查詢
 
 以下參數可直接帶入 `https://api.finmindtrade.com/api/v4/data` 自行驗證（需自備 token）：
 
 ```text
-dataset=TaiwanFutOptInstitutionalInvestors&start_date=2026-11-13&end_date=2026-11-13
+dataset=TaiwanStockBrokerDailyConcentration&start_date=2026-11-13&end_date=2026-11-13
 ```
 
 ---
