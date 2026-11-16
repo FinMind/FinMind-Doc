@@ -1,12 +1,12 @@
 # 資料品質總覽（2026-11）
 
-FinMind 每月對資料集進行一次全面品質驗證：與官方公開資料交叉核對、相關資料集之間互相勾稽、查核交易日涵蓋與更新時效，並逐項確認數值與欄位一致。本期驗證日期為 **2026-11-15**，下次更新預計於下個月上旬。
+FinMind 每月對資料集進行一次全面品質驗證：與官方公開資料交叉核對、相關資料集之間互相勾稽、查核交易日涵蓋與更新時效，並逐項確認數值與欄位一致。本期驗證日期為 **2026-11-16**，下次更新預計於下個月上旬。
 
 <div class="dq-stats" markdown>
-<div class="dq-stat"><b>100</b><span>本期公開驗證報告</span></div>
-<div class="dq-stat"><b>100</b><span>與官方公開資料或資料來源原始值逐筆比對</span></div>
-<div class="dq-stat"><b>8,736</b><span>抽樣查詢次數</span></div>
-<div class="dq-stat"><b>43.7M</b><span>檢查資料列數</span></div>
+<div class="dq-stat"><b>104</b><span>本期公開驗證報告</span></div>
+<div class="dq-stat"><b>104</b><span>與官方公開資料或資料來源原始值逐筆比對</span></div>
+<div class="dq-stat"><b>9,184</b><span>抽樣查詢次數</span></div>
+<div class="dq-stat"><b>45.6M</b><span>檢查資料列數</span></div>
 <div class="dq-stat"><b>9</b><span>檢測項目</span></div>
 </div>
 
@@ -26,9 +26,11 @@ FinMind 每月對資料集進行一次全面品質驗證：與官方公開資料
 | [TaiwanStockActiveETFHolding](TaiwanStockActiveETFHolding.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--note">資料特性說明</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockActiveETFHoldingChange](TaiwanStockActiveETFHoldingChange.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockActiveETFInfo](TaiwanStockActiveETFInfo.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
+| [TaiwanStockAfterHoursFixedPriceTrading](TaiwanStockAfterHoursFixedPriceTrading.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockBalanceSheet](TaiwanStockBalanceSheet.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockBlockTrade](TaiwanStockBlockTrade.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--note">資料特性說明</span> | <span class="dq-pill dq-pill--note">資料特性說明</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanStockBlockTradingDailyReport](TaiwanStockBlockTradingDailyReport.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
+| [TaiwanStockBrokerDailyConcentration](TaiwanStockBrokerDailyConcentration.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockCapitalReductionReferencePrice](TaiwanStockCapitalReductionReferencePrice.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanStockCashFlowsStatement](TaiwanStockCashFlowsStatement.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanStockDayTrading](TaiwanStockDayTrading.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
@@ -73,6 +75,7 @@ FinMind 每月對資料集進行一次全面品質驗證：與官方公開資料
 | [TaiwanStockTotalMarginPurchaseShortSale](TaiwanStockTotalMarginPurchaseShortSale.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockTotalReturnIndex](TaiwanStockTotalReturnIndex.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanStockTradingDailyReport](TaiwanStockTradingDailyReport.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
+| [TaiwanStockTradingDailyReportSecIdAgg](TaiwanStockTradingDailyReportSecIdAgg.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanStockTradingDate](TaiwanStockTradingDate.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanStockWarrantTradingDailyReport](TaiwanStockWarrantTradingDailyReport.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanStockWeekPrice](TaiwanStockWeekPrice.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
@@ -94,6 +97,7 @@ FinMind 每月對資料集進行一次全面品質驗證：與官方公開資料
 | [TaiwanFuturesFinalSettlementPrice](TaiwanFuturesFinalSettlementPrice.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanFuturesInstitutionalInvestors](TaiwanFuturesInstitutionalInvestors.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanFuturesInstitutionalInvestorsAfterHours](TaiwanFuturesInstitutionalInvestorsAfterHours.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
+| [TaiwanFuturesKBar](TaiwanFuturesKBar.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> |
 | [TaiwanFuturesOpenInterestLargeTraders](TaiwanFuturesOpenInterestLargeTraders.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanFuturesSpreadTick](TaiwanFuturesSpreadTick.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--na">不適用</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |
 | [TaiwanFuturesSpreadTrading](TaiwanFuturesSpreadTrading.md) | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--note">資料特性說明</span> | <span class="dq-pill dq-pill--pass">通過</span> | <span class="dq-pill dq-pill--planned">規劃中</span> |

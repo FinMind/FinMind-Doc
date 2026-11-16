@@ -1,8 +1,8 @@
 {
  "schema": 1,
  "edition": "2026-11",
- "run_date": "2026-11-15",
- "generated_at": "2026-11-15T13:47:47Z",
+ "run_date": "2026-11-16",
+ "generated_at": "2026-11-16T05:25:32Z",
  "report_url": {
   "zh": "https://finmind.github.io/DataQuality/",
   "en": "https://finmind.github.io/en/DataQuality/"
@@ -451,6 +451,27 @@
    "run_date": "2026-11-14"
   },
   {
+   "dataset": "TaiwanFuturesKBar",
+   "group": "derivative",
+   "overall": "validated",
+   "checks": {
+    "D9": "pass",
+    "D2cal": "pass",
+    "D2sat": "pass",
+    "OFF": "pass",
+    "XCHK": "pass",
+    "D6": "pass",
+    "D5": "pass",
+    "D8": "pass",
+    "D3": "pass"
+   },
+   "official_match_rate": 1.0,
+   "cross_dataset_match_rate": 1.0,
+   "first_date": "2011-01-03",
+   "last_date": "2026-11-13",
+   "run_date": "2026-11-16"
+  },
+  {
    "dataset": "TaiwanFuturesOpenInterestLargeTraders",
    "group": "derivative",
    "overall": "validated",
@@ -808,6 +829,27 @@
    "run_date": "2026-11-14"
   },
   {
+   "dataset": "TaiwanStockAfterHoursFixedPriceTrading",
+   "group": "stock",
+   "overall": "validated_notes",
+   "checks": {
+    "D9": "pass",
+    "D2cal": "pass",
+    "D2sat": "pass",
+    "OFF": "pass",
+    "XCHK": "pass",
+    "D6": "pass",
+    "D5": "pass",
+    "D8": "note",
+    "D3": "pass"
+   },
+   "official_match_rate": 1.0,
+   "cross_dataset_match_rate": 1.0,
+   "first_date": "2004-12-24",
+   "last_date": "2026-11-13",
+   "run_date": "2026-11-16"
+  },
+  {
    "dataset": "TaiwanStockBalanceSheet",
    "group": "stock",
    "overall": "validated",
@@ -869,6 +911,27 @@
    "first_date": "2026-04-28",
    "last_date": "2026-11-13",
    "run_date": "2026-11-14"
+  },
+  {
+   "dataset": "TaiwanStockBrokerDailyConcentration",
+   "group": "stock",
+   "overall": "validated",
+   "checks": {
+    "D9": "pass",
+    "D2cal": "pass",
+    "D2sat": "na",
+    "OFF": "pass",
+    "XCHK": "pass",
+    "D6": "pass",
+    "D5": "pass",
+    "D8": "pass",
+    "D3": "pass"
+   },
+   "official_match_rate": 1.0,
+   "cross_dataset_match_rate": 1.0,
+   "first_date": "2021-06-28",
+   "last_date": "2026-11-13",
+   "run_date": "2026-11-16"
   },
   {
    "dataset": "TaiwanStockCapitalReductionReferencePrice",
@@ -1919,6 +1982,27 @@
    "first_date": "2021-06-28",
    "last_date": "2026-11-13",
    "run_date": "2026-11-14"
+  },
+  {
+   "dataset": "TaiwanStockTradingDailyReportSecIdAgg",
+   "group": "stock",
+   "overall": "validated",
+   "checks": {
+    "D9": "pass",
+    "D2cal": "pass",
+    "D2sat": "na",
+    "OFF": "pass",
+    "XCHK": "pass",
+    "D6": "pass",
+    "D5": "pass",
+    "D8": "pass",
+    "D3": "pass"
+   },
+   "official_match_rate": 1.0,
+   "cross_dataset_match_rate": 1.0,
+   "first_date": "2021-06-30",
+   "last_date": "2026-11-13",
+   "run_date": "2026-11-16"
   },
   {
    "dataset": "TaiwanStockTradingDate",
