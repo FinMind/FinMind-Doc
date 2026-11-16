@@ -2,7 +2,7 @@
  "schema": 1,
  "edition": "2026-11",
  "run_date": "2026-11-16",
- "generated_at": "2026-11-16T05:25:32Z",
+ "generated_at": "2026-11-16T08:17:38Z",
  "report_url": {
   "zh": "https://finmind.github.io/DataQuality/",
   "en": "https://finmind.github.io/en/DataQuality/"
@@ -322,27 +322,6 @@
    "cross_dataset_match_rate": null,
    "first_date": null,
    "last_date": null,
-   "run_date": "2026-11-14"
-  },
-  {
-   "dataset": "TaiwanFutOptInstitutionalInvestors",
-   "group": "derivative",
-   "overall": "validated",
-   "checks": {
-    "D9": "pass",
-    "D2cal": "pass",
-    "D2sat": "pass",
-    "OFF": "pass",
-    "XCHK": "pass",
-    "D6": "pass",
-    "D5": "pass",
-    "D8": "pass",
-    "D3": "pass"
-   },
-   "official_match_rate": 1.0,
-   "cross_dataset_match_rate": 1.0,
-   "first_date": "2017-07-17",
-   "last_date": "2026-11-13",
    "run_date": "2026-11-14"
   },
   {

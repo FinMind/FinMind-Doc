@@ -3,9 +3,9 @@
 Every month FinMind runs a full quality validation of its datasets: cross-checks against official public data and between related datasets, trading-day coverage and update timeliness, and field- and value-level consistency. This edition was run on **2026-11-16**; the next edition is expected early next month.
 
 <div class="dq-stats" markdown>
-<div class="dq-stat"><b>104</b><span>datasets reported</span></div>
-<div class="dq-stat"><b>104</b><span>compared record by record with official public data or original source values</span></div>
-<div class="dq-stat"><b>9,184</b><span>sample queries</span></div>
+<div class="dq-stat"><b>103</b><span>datasets reported</span></div>
+<div class="dq-stat"><b>103</b><span>compared record by record with official public data or original source values</span></div>
+<div class="dq-stat"><b>9,081</b><span>sample queries</span></div>
 <div class="dq-stat"><b>45.6M</b><span>rows checked</span></div>
 <div class="dq-stat"><b>9</b><span>checks per dataset</span></div>
 </div>
@@ -91,7 +91,6 @@ Every dataset below is <span class="dq-pill dq-pill--ok">Validated</span> in thi
 | Dataset | Timeliness | Coverage | Make-up days | Official match | Cross-dataset |
 |---|---|---|---|---|---|
 | [TaiwanFutOptDailyInfo](TaiwanFutOptDailyInfo.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
-| [TaiwanFutOptInstitutionalInvestors](TaiwanFutOptInstitutionalInvestors.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> |
 | [TaiwanFutOptTickInfo](TaiwanFutOptTickInfo.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
 | [TaiwanFuturesDaily](TaiwanFuturesDaily.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--pass">Passed</span> |
 | [TaiwanFuturesFinalSettlementPrice](TaiwanFuturesFinalSettlementPrice.md) | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--na">N/A</span> | <span class="dq-pill dq-pill--pass">Passed</span> | <span class="dq-pill dq-pill--planned">Planned</span> |
