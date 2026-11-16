@@ -1,3 +1,8 @@
+#### 2026-11-17
+* **Data correction notice**: [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet): the following updates are complete (the API is updated). **If you downloaded or queried data for 2012 ~ 2026, please fetch it again**
+    * **All quarters, 2012 ~ 2026**: values now match each quarter's own financial report on MOPS (some periods previously carried the restated comparative figures from the following year's report, e.g. 2905 on 2025-06-30 `Equity`)
+    * **New item**: Current portion of long-term liabilities `LongtermLiabilitiesCurrentPortion` (and `LongtermLiabilitiesCurrentPortion_per`), data range 2012-03-31 ~ 2026-09-30; `OtherCurrentLiabilities` is unchanged
+
 #### 2026-11-16
 * The [Data Quality Assurance](https://finmind.github.io/en/DataQuality/) report adds 4 datasets: futures minute K bars, after-hours fixed-price trading, daily stock broker concentration, and daily securities trader branch aggregate statistics. All 103 datasets passed the checks and were compared record by record with official public data or original source values.
 
