@@ -393,6 +393,7 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 ??? note "Amount unit, currency and year-to-date cumulative values"
     - **Currency / unit**: all companies are reported in **New Taiwan Dollars (TWD)**, including foreign (KY) companies. `value` is in **TWD (dollars)** — the statements report thousand TWD, and this table multiplies by 1000.
     - **Year-to-date cumulative**: unlike the income statement, this table is **not** converted to single quarters. Each quarter stores the **year-to-date cumulative amount** as reported, so the 12-31 row is the full-year figure. For example, 2330's 2024 `CashFlowsFromOperatingActivities` is 436.3 / 814.0 / 1,206.0 / 1,826.2 billion TWD. To get single-quarter values, subtract the previous quarter within the same fiscal year (Q1 needs no subtraction).
+    - **Quarterly values**: each quarter matches that quarter's own financial report on MOPS; restated comparative figures from the following year's report are not used.
 
 !!! example
     === "Package"
