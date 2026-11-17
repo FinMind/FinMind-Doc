@@ -1,3 +1,10 @@
+#### 2026-11-18
+* **資料校正公告**：[資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)、[現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement)：以下更新已完成（API 已更新）。**曾下載或查詢過以下期間資料的使用者請重新取得資料**
+    * **資產負債表 2012 ~ 2026 各季**：數值改為與公開資訊觀測站該季財報相同（部分期別原為隔年同季財報比較欄的重編數字，例：2905 2025-06-30 `Equity`）
+    * **現金流量表 2013 ~ 2026 各季**：數值改為與公開資訊觀測站該季財報相同（例：2847 2015-09-30 `NetCashInflowFromOperatingActivities`）
+    * **資產負債表新增科目**：一年內到期長期負債 `LongtermLiabilitiesCurrentPortion`（及 `LongtermLiabilitiesCurrentPortion_per`），資料區間 2012-03-31 ~ 2026-09-30；`OtherCurrentLiabilities` 維持原值
+* [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)、[綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)、[現金流量表 TaiwanStockCashFlowsStatement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockcashflowsstatement) 補上 2013 年以後下市公司的歷史財報（例：3598 奕力 2012 ~ 2016 各季），曾下載這些公司資料的使用者可重新取得
+
 #### 2026-11-16
 * [資料品質保證](https://finmind.github.io/DataQuality/) 報告新增期貨分 K、盤後定價交易、每日個股主力集中度、當日券商分點統計 4 個資料集，共 103 個資料集皆通過檢測，並與官方公開資料或資料來源原始值逐筆比對
 
