@@ -4,6 +4,10 @@ on:
   push:
     branches: [ master ]
 
+# 部署用的是 FINMIND_DOC_TOKEN（推到另一個 repo），GITHUB_TOKEN 只需要讀取權限
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -11,22 +15,27 @@ jobs:
       matrix:
         python-version: [ "3.10" ]
     steps:
-      - uses: actions/checkout@v2
+      # actions 釘在 commit SHA（註解為對應版本），避免 tag 被改指向惡意版本
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install uv
-        uses: astral-sh/setup-uv@v4
+        uses: astral-sh/setup-uv@38f3f104447c67c051c4a08e39b64a148898af3a # v4.2.0
       - name: Install dependencies
         run: |
           uv sync
       - name: Generate releaese note
         run: |
           uv run python gen_release_note.py
-      - name: Build and publish
+      - name: Build
+        run: |
+          uv run mkdocs build
+      - name: Publish
         env:
           FINMIND_DOC_TOKEN: ${{ secrets.FINMIND_DOC_TOKEN }}
         run: |
-          uv run mkdocs build
           make deploy-github-page
