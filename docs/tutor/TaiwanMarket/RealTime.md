@@ -78,9 +78,9 @@
 
 !!! output
     === "DataFrame"
-        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
-        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
-        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |
+        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   |
+        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|
+        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       |
     === "Schema"
         ```
         {
@@ -103,9 +103,25 @@
             yesterday_volume: int64, # 昨日成交量
             date: str, # 成交時間
             stock_id: str, # 股票代碼
-            TickType: str # 成交種類 (0: 無法判斷, 1: 外盤成交（買方主動買進，成交在賣方掛價）, 2: 內盤成交（賣方主動賣出，成交在買方掛價）)
+            TickType: str # 成交種類 (0: 無法判斷, 1: 外盤成交（買方主動買進，成交在賣方掛價）, 2: 內盤成交（賣方主動賣出，成交在買方掛價）),
+            yesterday_close: float64, # 昨收價
+            limit_up: float64, # 漲停價（興櫃股票為 null）
+            limit_down: float64, # 跌停價（興櫃股票為 null）
+            buy_prices: list, # 委買第 1 ~ 5 檔價格（第 1 檔同 buy_price；市價委託價格為 0）
+            buy_volumes: list, # 委買第 1 ~ 5 檔數量
+            sell_prices: list, # 委賣第 1 ~ 5 檔價格（第 1 檔同 sell_price；市價委託價格為 0）
+            sell_volumes: list, # 委賣第 1 ~ 5 檔數量
+            inside_volume: int64, # 內盤成交量
+            outside_volume: int64, # 外盤成交量
+            after_hours_volume: int64, # 盤後定價交易成交量
+            is_closed: bool # 收盤註記（True 表示已收盤）
         }
         ```
+
+??? note "成交量單位與興櫃股票欄位說明"
+    * 成交量、委買委賣量相關欄位（`volume`、`total_volume`、`yesterday_volume`、`buy_volume`、`sell_volume`、`buy_volumes`、`sell_volumes`、`inside_volume`、`outside_volume`、`after_hours_volume`）的單位：上市、上櫃股票為張，興櫃股票為股
+    * 興櫃股票沒有漲跌停限制，`limit_up`、`limit_down` 為 null
+    * 興櫃股票只提供最佳一檔委買委賣，`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes` 僅第 1 檔有值，第 2 ~ 5 檔為 0
 
 !!! info "data_id 指數代號"
     `data_id` 除了支援個股代號（4 碼）之外，也支援 91 個指數代號（3 碼），例如 `001` = 加權指數、`101` = 櫃買加權。完整對照表請見 [台股指數代號對照表](IndexCodes.md)。

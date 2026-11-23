@@ -1,3 +1,6 @@
+#### 2026-11-24
+* [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members) adds 11 fields: previous close `yesterday_close`, limit-up / limit-down prices `limit_up`, `limit_down`, best 5 bid / ask prices and volumes `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`, inside / outside volume `inside_volume`, `outside_volume`, after-hours fixed-price trading volume `after_hours_volume`, and market close flag `is_closed`
+
 #### 2026-11-16
 * The [Data Quality Assurance](https://finmind.github.io/en/DataQuality/) report adds 4 datasets: futures minute K bars, after-hours fixed-price trading, daily stock broker concentration, and daily securities trader branch aggregate statistics. All 103 datasets passed the checks and were compared record by record with official public data or original source values.
 

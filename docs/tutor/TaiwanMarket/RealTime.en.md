@@ -78,9 +78,9 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 !!! output
     === "DataFrame"
-        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
-        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
-        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |
+        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   |
+        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|
+        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       |
     === "Schema"
         ```
         {
@@ -103,9 +103,25 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
             yesterday_volume: int64, # yesterday's volume
             date: str, # transaction time
             stock_id: str, # stock code
-            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)),
+            yesterday_close: float64, # previous close
+            limit_up: float64, # limit-up price (null for emerging-market stocks)
+            limit_down: float64, # limit-down price (null for emerging-market stocks)
+            buy_prices: list, # best 5 bid prices (level 1 equals buy_price; 0 for market orders)
+            buy_volumes: list, # best 5 bid volumes
+            sell_prices: list, # best 5 ask prices (level 1 equals sell_price; 0 for market orders)
+            sell_volumes: list, # best 5 ask volumes
+            inside_volume: int64, # inside volume (traded at bid)
+            outside_volume: int64, # outside volume (traded at ask)
+            after_hours_volume: int64, # after-hours fixed-price trading volume
+            is_closed: bool # market close flag (True once the stock has closed for the day)
         }
         ```
+
+??? note "Volume units and emerging-market stock fields"
+    * Volume fields (`volume`, `total_volume`, `yesterday_volume`, `buy_volume`, `sell_volume`, `buy_volumes`, `sell_volumes`, `inside_volume`, `outside_volume`, `after_hours_volume`) are in lots for TWSE- and TPEx-listed stocks, and in shares for emerging-market stocks
+    * Emerging-market stocks have no price limits, so `limit_up` and `limit_down` are null
+    * Emerging-market stocks provide only the best bid and ask, so `buy_prices`, `buy_volumes`, `sell_prices` and `sell_volumes` have a value only at level 1; levels 2 ~ 5 are 0
 
 !!! info "data_id index codes"
     In addition to regular stock IDs (4 digits), `data_id` also supports 91 index codes (3 digits). For example, `001` = TAIEX, `101` = OTC weighted index. See the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).

@@ -1,3 +1,6 @@
+#### 2026-11-24
+* [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor) 新增 11 個欄位：昨收價 `yesterday_close`、漲跌停價 `limit_up`、`limit_down`、委買委賣 1 ~ 5 檔價量 `buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`、內外盤成交量 `inside_volume`、`outside_volume`、盤後定價交易成交量 `after_hours_volume`、收盤註記 `is_closed`
+
 #### 2026-11-16
 * [資料品質保證](https://finmind.github.io/DataQuality/) 報告新增期貨分 K、盤後定價交易、每日個股主力集中度、當日券商分點統計 4 個資料集，共 103 個資料集皆通過檢測，並與官方公開資料或資料來源原始值逐筆比對
 
