@@ -118,23 +118,99 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         }
         ```
 
-??? note "Indices and stocks return different fields"
-    When `data_id` is an index code (3 digits, e.g. `001` = TAIEX), the following stock-only fields are always null:
-
-    * `yesterday_close`, `limit_up`, `limit_down`
-    * `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`
-    * `inside_volume`, `outside_volume`, `after_hours_volume`
-    * `is_closed`
-
-    When querying multiple codes or all codes (empty `data_id`), stocks and indices are returned in the same table; tell them apart by the length of `stock_id`.
-
 ??? note "Volume units and emerging-market stock fields"
     * Volume fields (`volume`, `total_volume`, `yesterday_volume`, `buy_volume`, `sell_volume`, `buy_volumes`, `sell_volumes`, `inside_volume`, `outside_volume`, `after_hours_volume`) are in lots for TWSE- and TPEx-listed stocks, and in shares for emerging-market stocks
     * Emerging-market stocks have no price limits, so `limit_up` and `limit_down` are null
     * Emerging-market stocks provide only the best bid and ask, so `buy_prices`, `buy_volumes`, `sell_prices` and `sell_volumes` have a value only at level 1; levels 2 ~ 5 are 0
 
 !!! info "data_id index codes"
-    In addition to regular stock IDs (4 digits), `data_id` also supports 91 index codes (3 digits). For example, `001` = TAIEX, `101` = OTC weighted index. See the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
+    Besides stock IDs, `data_id` also supports 91 index codes (3 digits), e.g. `001` = TAIEX. Indices return different fields from stocks; see [Taiwan Stock Index Real-Time Information](#taiwan-stock-index-real-time-information-taiwan_stock_tick_snapshot-index-only-available-to-sponsor-members) below.
+
+----------------------------------
+#### Taiwan Stock Index Real-Time Information taiwan_stock_tick_snapshot index (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+Uses the same API as Taiwan Stock Real-Time Information: pass an index code (3 digits) as `data_id` to get real-time index data, e.g. `001` = TAIEX, `101` = OTC index. 91 indices are supported; see the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
+
+??? note "Indices and stocks return different fields"
+    Indices return only the fields listed in the Schema below. They have no stock bid/ask fields (`buy_price`, `buy_volume`, `sell_price`, `sell_volume`, `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`), no `TickType`, and no `yesterday_close`, `limit_up`, `limit_down`, `inside_volume`, `outside_volume`, `after_hours_volume` or `is_closed`; they additionally return the index name `name`.
+
+    With an empty `data_id` (all codes), stocks and indices are returned in the same table; tell them apart by the length of `stock_id` (3 digits for indices).
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_tick_snapshot(stock_id="001")
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        token = "" # See login section to obtain a token
+        headers = {"Authorization": f"Bearer {token}"}
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        parameter = {
+            "data_id": "001",
+            # "data_id": ["001", "101"], # multiple codes at once
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # See login section to obtain a token
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        response = httr::GET(
+        url = url,
+        query = list(
+            data_id="001",
+            # data_id=c("001", "101"), # multiple codes at once
+            token = "" # See login section to obtain a token
+        ),
+        add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |    open |    high |     low |   close |   change_price |   change_rate |   average_price |   volume |   total_volume |      amount |   total_amount |   yesterday_volume |   volume_ratio | date                |   stock_id | name     |
+        |---:|--------:|--------:|--------:|--------:|---------------:|--------------:|----------------:|---------:|---------------:|------------:|---------------:|-------------------:|---------------:|:--------------------|-----------:|:---------|
+        |  0 | 35899.5 | 37108.2 | 35442.4 | 36811.9 |          778.6 |          2.16 |               0 |   363837 |       15776245 | 38042420910 |  1079165406470 |           16796828 |           0.94 | 2026-11-23 13:33:00 |        001 | 加權指數 |
+    === "Schema"
+        ```
+        {
+            open: float64, # opening index level
+            high: float64, # highest index level
+            low: float64, # lowest index level
+            close: float64, # latest index level
+            change_price: float64, # change in points
+            change_rate: float64, # change in percent
+            average_price: float64, # not applicable to indices, always 0
+            volume: int64, # volume (lots)
+            total_volume: int64, # accumulated volume (lots)
+            amount: int64, # trading value (TWD)
+            total_amount: int64, # accumulated trading value (TWD)
+            yesterday_volume: int64, # previous day's volume (lots)
+            volume_ratio: float64, # ratio of today's to yesterday's volume
+            date: str, # update time
+            stock_id: str, # index code (3 digits)
+            name: str # index name
+        }
+        ```
 
 ----------------------------------
 #### Futures and Options Real-Time Quote Overview TaiwanFutOptTickInfo
