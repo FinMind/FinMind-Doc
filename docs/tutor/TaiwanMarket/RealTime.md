@@ -118,6 +118,16 @@
         }
         ```
 
+??? note "指數與個股的回傳欄位不同"
+    `data_id` 為指數代號（3 碼，例如 `001` 加權指數）時，以下欄位為個股專屬，指數一律為 null：
+
+    * `yesterday_close`、`limit_up`、`limit_down`
+    * `buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`
+    * `inside_volume`、`outside_volume`、`after_hours_volume`
+    * `is_closed`
+
+    一次查詢多檔或全部（`data_id` 空值）時，個股與指數會在同一張表，請依 `stock_id` 長度區分。
+
 ??? note "成交量單位與興櫃股票欄位說明"
     * 成交量、委買委賣量相關欄位（`volume`、`total_volume`、`yesterday_volume`、`buy_volume`、`sell_volume`、`buy_volumes`、`sell_volumes`、`inside_volume`、`outside_volume`、`after_hours_volume`）的單位：上市、上櫃股票為張，興櫃股票為股
     * 興櫃股票沒有漲跌停限制，`limit_up`、`limit_down` 為 null

@@ -118,6 +118,16 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         }
         ```
 
+??? note "Indices and stocks return different fields"
+    When `data_id` is an index code (3 digits, e.g. `001` = TAIEX), the following stock-only fields are always null:
+
+    * `yesterday_close`, `limit_up`, `limit_down`
+    * `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`
+    * `inside_volume`, `outside_volume`, `after_hours_volume`
+    * `is_closed`
+
+    When querying multiple codes or all codes (empty `data_id`), stocks and indices are returned in the same table; tell them apart by the length of `stock_id`.
+
 ??? note "Volume units and emerging-market stock fields"
     * Volume fields (`volume`, `total_volume`, `yesterday_volume`, `buy_volume`, `sell_volume`, `buy_volumes`, `sell_volumes`, `inside_volume`, `outside_volume`, `after_hours_volume`) are in lots for TWSE- and TPEx-listed stocks, and in shares for emerging-market stocks
     * Emerging-market stocks have no price limits, so `limit_up` and `limit_down` are null
