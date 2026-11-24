@@ -19,7 +19,21 @@
 
 ----------------------------------
 #### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(約 10 秒更新一次)
+(Sponsor 會員約 10 秒更新一次；Sponsor Pro 會員約每秒更新一次)
+
+??? note "Sponsor 與 Sponsor Pro 會員的差異"
+    | | Sponsor | Sponsor Pro |
+    |---|---|---|
+    | 更新頻率 | 約 10 秒一次 | 約每秒一次 |
+    | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 11 個欄位：昨收價、漲跌停價、委買委賣 1 ~ 5 檔價量、內外盤成交量、盤後定價交易成交量、收盤註記 |
+    | 上市櫃盤前試撮（08:30 ~ 09:00） | 無 | 有，說明見下方「上市櫃盤前試撮」 |
+
+    下方 output 範例為 Sponsor Pro 會員的回傳內容。
+
+??? note "上市櫃盤前試撮（Sponsor Pro）"
+    * 08:30 ~ 09:00 尚未成交的上市、上櫃股票，回傳盤前試撮資訊：`close` 為試撮價，`volume`、`total_volume` 為試撮累計量，`date` 的時間為試撮時間，`TickType` 為 0
+    * 09:00 開盤後以實際成交為準；尚未有成交的股票，`close` 為昨收價，`volume`、`total_volume` 為 0
+    * 興櫃股票沒有盤前試撮
 
 ??? note "須於 2027-01-31 前填寫姓名、電話、地址"
     使用本資料集須於 2027-01-31 前在[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址。期限前未填寫仍可使用，回應會附 `profile_notice` 提醒；2027-01-31 起未填寫者將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。
@@ -104,17 +118,17 @@
             date: str, # 成交時間
             stock_id: str, # 股票代碼
             TickType: str # 成交種類 (0: 無法判斷, 1: 外盤成交（買方主動買進，成交在賣方掛價）, 2: 內盤成交（賣方主動賣出，成交在買方掛價）),
-            yesterday_close: float64, # 昨收價
-            limit_up: float64, # 漲停價（興櫃股票為 null）
-            limit_down: float64, # 跌停價（興櫃股票為 null）
-            buy_prices: list, # 委買第 1 ~ 5 檔價格（第 1 檔同 buy_price；市價委託價格為 0）
-            buy_volumes: list, # 委買第 1 ~ 5 檔數量
-            sell_prices: list, # 委賣第 1 ~ 5 檔價格（第 1 檔同 sell_price；市價委託價格為 0）
-            sell_volumes: list, # 委賣第 1 ~ 5 檔數量
-            inside_volume: int64, # 內盤成交量
-            outside_volume: int64, # 外盤成交量
-            after_hours_volume: int64, # 盤後定價交易成交量
-            is_closed: bool # 收盤註記（True 表示已收盤）
+            yesterday_close: float64, # （Sponsor Pro）昨收價
+            limit_up: float64, # （Sponsor Pro）漲停價（興櫃股票為 null）
+            limit_down: float64, # （Sponsor Pro）跌停價（興櫃股票為 null）
+            buy_prices: list, # （Sponsor Pro）委買第 1 ~ 5 檔價格（第 1 檔同 buy_price；市價委託價格為 0）
+            buy_volumes: list, # （Sponsor Pro）委買第 1 ~ 5 檔數量
+            sell_prices: list, # （Sponsor Pro）委賣第 1 ~ 5 檔價格（第 1 檔同 sell_price；市價委託價格為 0）
+            sell_volumes: list, # （Sponsor Pro）委賣第 1 ~ 5 檔數量
+            inside_volume: int64, # （Sponsor Pro）內盤成交量
+            outside_volume: int64, # （Sponsor Pro）外盤成交量
+            after_hours_volume: int64, # （Sponsor Pro）盤後定價交易成交量
+            is_closed: bool # （Sponsor Pro）收盤註記（True 表示已收盤）
         }
         ```
 
@@ -131,7 +145,7 @@
 與台股即時資訊使用同一個 API，`data_id` 帶指數代號（3 碼）即可取得指數即時資訊，例如 `001` = 加權指數、`101` = 櫃買指數，共 91 個指數，完整對照表請見 [台股指數代號對照表](IndexCodes.md)。
 
 ??? note "指數與個股的回傳欄位不同"
-    指數只回傳下方 Schema 列出的欄位，沒有個股的委買委賣（`buy_price`、`buy_volume`、`sell_price`、`sell_volume`、`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`）、成交種類（`TickType`），也沒有 `yesterday_close`、`limit_up`、`limit_down`、`inside_volume`、`outside_volume`、`after_hours_volume`、`is_closed`；另外多了指數名稱 `name`。
+    指數只回傳下方 Schema 列出的欄位，沒有個股的委買委賣（`buy_price`、`buy_volume`、`sell_price`、`sell_volume`、`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`）、成交種類（`TickType`），也沒有 `yesterday_close`、`limit_up`、`limit_down`、`inside_volume`、`outside_volume`、`after_hours_volume`、`is_closed`；另外多了指數名稱 `name`。Sponsor 與 Sponsor Pro 會員回傳的指數欄位相同。
 
     `data_id` 空值（一次全部）時，個股與指數會在同一張表回傳，可依 `stock_id` 長度區分（指數為 3 碼）。
 

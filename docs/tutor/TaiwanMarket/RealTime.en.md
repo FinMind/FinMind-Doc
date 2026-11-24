@@ -19,7 +19,21 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 ----------------------------------
 #### Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
-(updated approximately every 10 seconds)
+(updated approximately every 10 seconds for Sponsor members, and approximately every second for Sponsor Pro members)
+
+??? note "Sponsor vs. Sponsor Pro"
+    | | Sponsor | Sponsor Pro |
+    |---|---|---|
+    | Update frequency | About every 10 seconds | About every second |
+    | Fields | Fields in the Schema below that are not marked "Sponsor Pro" | All fields, including the 11 fields marked "Sponsor Pro" in the Schema: previous close, limit-up / limit-down prices, best 5 bid / ask prices and volumes, inside / outside volume, after-hours fixed-price trading volume, and market close flag |
+    | Pre-market trial matching for TWSE / TPEx stocks (08:30 ~ 09:00) | Not included | Included; see "Pre-market trial matching" below |
+
+    The output example below shows a Sponsor Pro response.
+
+??? note "Pre-market trial matching for TWSE / TPEx stocks (Sponsor Pro)"
+    * From 08:30 to 09:00, TWSE- and TPEx-listed stocks that have not traded yet return pre-market trial matching data: `close` is the trial matching price, `volume` and `total_volume` are the cumulative trial matching volume, the time in `date` is the trial matching time, and `TickType` is 0
+    * From the 09:00 open, data reflects actual trades; stocks that have not traded yet show the previous close as `close`, with `volume` and `total_volume` at 0
+    * Emerging-market stocks have no pre-market trial matching
 
 ??? note "Name, phone number, and address required by 2027-01-31"
     To use this dataset, fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by 2027-01-31. Before then, users who have not filled it in can still use the data, with a `profile_notice` reminder in the response; from 2027-01-31, they will no longer be able to get Taiwan stock real-time data, and the API returns an HTTP 403 error whose message includes a link to the Member Center.
@@ -104,17 +118,17 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
             date: str, # transaction time
             stock_id: str, # stock code
             TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)),
-            yesterday_close: float64, # previous close
-            limit_up: float64, # limit-up price (null for emerging-market stocks)
-            limit_down: float64, # limit-down price (null for emerging-market stocks)
-            buy_prices: list, # best 5 bid prices (level 1 equals buy_price; 0 for market orders)
-            buy_volumes: list, # best 5 bid volumes
-            sell_prices: list, # best 5 ask prices (level 1 equals sell_price; 0 for market orders)
-            sell_volumes: list, # best 5 ask volumes
-            inside_volume: int64, # inside volume (traded at bid)
-            outside_volume: int64, # outside volume (traded at ask)
-            after_hours_volume: int64, # after-hours fixed-price trading volume
-            is_closed: bool # market close flag (True once the stock has closed for the day)
+            yesterday_close: float64, # (Sponsor Pro) previous close
+            limit_up: float64, # (Sponsor Pro) limit-up price (null for emerging-market stocks)
+            limit_down: float64, # (Sponsor Pro) limit-down price (null for emerging-market stocks)
+            buy_prices: list, # (Sponsor Pro) best 5 bid prices (level 1 equals buy_price; 0 for market orders)
+            buy_volumes: list, # (Sponsor Pro) best 5 bid volumes
+            sell_prices: list, # (Sponsor Pro) best 5 ask prices (level 1 equals sell_price; 0 for market orders)
+            sell_volumes: list, # (Sponsor Pro) best 5 ask volumes
+            inside_volume: int64, # (Sponsor Pro) inside volume (traded at bid)
+            outside_volume: int64, # (Sponsor Pro) outside volume (traded at ask)
+            after_hours_volume: int64, # (Sponsor Pro) after-hours fixed-price trading volume
+            is_closed: bool # (Sponsor Pro) market close flag (True once the stock has closed for the day)
         }
         ```
 
@@ -131,7 +145,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 Uses the same API as Taiwan Stock Real-Time Information: pass an index code (3 digits) as `data_id` to get real-time index data, e.g. `001` = TAIEX, `101` = OTC index. 91 indices are supported; see the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
 
 ??? note "Indices and stocks return different fields"
-    Indices return only the fields listed in the Schema below. They have no stock bid/ask fields (`buy_price`, `buy_volume`, `sell_price`, `sell_volume`, `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`), no `TickType`, and no `yesterday_close`, `limit_up`, `limit_down`, `inside_volume`, `outside_volume`, `after_hours_volume` or `is_closed`; they additionally return the index name `name`.
+    Indices return only the fields listed in the Schema below. They have no stock bid/ask fields (`buy_price`, `buy_volume`, `sell_price`, `sell_volume`, `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`), no `TickType`, and no `yesterday_close`, `limit_up`, `limit_down`, `inside_volume`, `outside_volume`, `after_hours_volume` or `is_closed`; they additionally return the index name `name`. Sponsor and Sponsor Pro members receive the same index fields.
 
     With an empty `data_id` (all codes), stocks and indices are returned in the same table; tell them apart by the length of `stock_id` (3 digits for indices).
 
