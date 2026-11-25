@@ -1,5 +1,5 @@
 
-在台股基本面，我們擁有 13 種資料集，如下:
+在台股基本面，我們擁有 14 種資料集，如下:
 
 - [綜合損益表 TaiwanStockFinancialStatements](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockfinancialstatements)
 - [資產負債表 TaiwanStockBalanceSheet](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockbalancesheet)
@@ -12,6 +12,7 @@
 - [台灣股票下市櫃表 TaiwanStockDelisting](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockdelisting)
 - [台股市值比重表 TaiwanStockMarketValueWeight](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockmarketvalueweight-backersponsor)
 - [台股分割後參考價 TaiwanStockSplitPrice](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitprice)
+- [分割／反分割預告表 TaiwanStockSplitPriceAnnouncement](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstocksplitpriceannouncement)
 - [台灣股票變更面額恢復買賣參考價格 TaiwanStockParValueChange](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#taiwanstockparvaluechange)
 - [台股財報與年報 PDF TaiwanStockFinancialReportFile](https://finmind.github.io/tutor/TaiwanMarket/Fundamental/#pdf-taiwanstockfinancialreportfile-sponsorpro)
 
@@ -1676,6 +1677,78 @@
             max_price: float, # 分割後最高價
             min_price: float, # 分割後最低價
             open_price: float # 分割後開盤價
+        }
+        ```
+
+----------------------------------
+#### 分割／反分割預告表 TaiwanStockSplitPriceAnnouncement
+
+- 提供台股 ETF（上市、上櫃）分割／反分割預告：停止買賣日期、恢復買賣日期與分割（反分割）比率，停止買賣前即可查詢。
+- 資料區間：2026-11-30 ~ now
+- 資料更新時間-星期一至五 18:00，實際更新時間以 API 資料為主。
+
+??? note "資料說明"
+    - 本資料為交易所公布的分割／反分割**預告**，時程以交易所最新公告為準；若預告時程異動，資料會更新為最新公告內容。
+    - 僅涵蓋 ETF（上市、上櫃）的分割／反分割，個股變更面額請見 [TaiwanStockParValueChange](#taiwanstockparvaluechange)。
+    - 資料自 2026-11-30 起提供，之前的預告不提供。
+    - `date` 為恢復買賣日期，通常為未來日期。
+    - `split_ratio` = 分割後受益權單位數 / 分割前受益權單位數；分割 > 1、反分割 < 1（例如 8.0 為 1 拆 8；0.25 為 4 併 1）。
+    - 恢復買賣後的參考價請見 [TaiwanStockSplitPrice](#taiwanstocksplitprice)。
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockSplitPriceAnnouncement",
+            "start_date": "2026-11-30",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # 參考登入，獲取金鑰
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockSplitPriceAnnouncement",
+                start_date="2026-11-30"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | type   | stop_trading_date   |   split_ratio |
+        |---:|:-----------|:-----------|:-------|:--------------------|--------------:|
+        |  0 | 2026-12-08 | 0053       | 分割   | 2026-12-02          |             8 |
+    === "Schema"
+        ```
+        {
+            date: str, # 恢復買賣日期
+            stock_id: str, # 股票代碼
+            type: str, # 分割／反分割
+            stop_trading_date: str, # 停止買賣日期
+            split_ratio: float # 分割（反分割）比率
         }
         ```
 

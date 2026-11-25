@@ -552,7 +552,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 
 ---
 
-## Taiwan Market - Fundamental (13 datasets)
+## Taiwan Market - Fundamental (14 datasets)
 
 ### TaiwanStockFinancialStatements (綜合損益表)
 - Tier: Free (with data_id) / Backer/Sponsor (all stocks by start_date only)
@@ -637,6 +637,14 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 - Tier: Free
 - Params: dataset=TaiwanStockSplitPrice
 - Columns: date (str), stock_id (str), type (str: 分割/反分割), before_price (float), after_price (float), max_price (float), min_price (float), open_price (float)
+
+### TaiwanStockSplitPriceAnnouncement (分割／反分割預告表)
+- Tier: Free
+- Data range: 2026-11-30 ~ now (no data before 2026-11-30)
+- Update: Mon-Fri 18:00
+- Params: dataset=TaiwanStockSplitPriceAnnouncement, start_date=2026-11-30 (data_id is optional)
+- Columns: date (str, trading resumption date, usually a future date), stock_id (str), type (str: 分割/反分割), stop_trading_date (str, trading suspension start date), split_ratio (float, units after / units before; > 1 split, < 1 reverse split, e.g. 8.0 = 1-for-8)
+- Note: announcements of upcoming ETF (TWSE/TPEx) splits / reverse splits; the schedule follows the latest exchange announcement and rows are updated if it changes. Individual stock par value changes are not included (see TaiwanStockParValueChange). Post-split reference prices: see TaiwanStockSplitPrice.
 
 ### TaiwanStockParValueChange (台灣股票變更面額恢復買賣參考價格)
 - Tier: Free
