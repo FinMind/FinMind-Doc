@@ -71,7 +71,7 @@ paths:
             TaiwanStockCashFlowsStatement, TaiwanStockDividend, TaiwanStockDividendResult,
             TaiwanStockMonthRevenue, TaiwanStockCapitalReductionReferencePrice,
             TaiwanStockMarketValue, TaiwanStockDelisting, TaiwanStockMarketValueWeight,
-            TaiwanStockSplitPrice, TaiwanStockParValueChange.
+            TaiwanStockSplitPrice, TaiwanStockSplitPriceAnnouncement, TaiwanStockParValueChange.
             Taiwan Derivative: TaiwanFutOptDailyInfo, TaiwanFuturesDaily, TaiwanOptionDaily,
             TaiwanFuturesTick, TaiwanOptionTick, TaiwanFuturesInstitutionalInvestors,
             TaiwanOptionInstitutionalInvestors, TaiwanFuturesInstitutionalInvestorsAfterHours,

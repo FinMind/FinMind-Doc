@@ -1,5 +1,5 @@
 
-In Taiwan stock fundamental data, we have 13 datasets, as follows:
+In Taiwan stock fundamental data, we have 14 datasets, as follows:
 
 - [Income Statement TaiwanStockFinancialStatements](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#income-statement-taiwanstockfinancialstatements)
 - [Balance Sheet TaiwanStockBalanceSheet](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#balance-sheet-taiwanstockbalancesheet)
@@ -12,6 +12,7 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
 - [Taiwan Stock Delisting Table TaiwanStockDelisting](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-delisting-table-taiwanstockdelisting)
 - [Taiwan Stock Market Value Weight Table TaiwanStockMarketValueWeight](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-market-value-weight-table-taiwanstockmarketvalueweight-available-only-to-backer-sponsor-members)
 - [Taiwan Stock Post-Split Reference Price TaiwanStockSplitPrice](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-post-split-reference-price-taiwanstocksplitprice)
+- [Taiwan ETF Split / Reverse Split Announcement TaiwanStockSplitPriceAnnouncement](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-etf-split-reverse-split-announcement-taiwanstocksplitpriceannouncement)
 - [Taiwan Stock Par Value Change Resumption Reference Price TaiwanStockParValueChange](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-par-value-change-resumption-reference-price-taiwanstockparvaluechange)
 - [Taiwan Stock Financial Report and Annual Report PDF TaiwanStockFinancialReportFile](https://finmind.github.io/en/tutor/TaiwanMarket/Fundamental/#taiwan-stock-financial-report-and-annual-report-pdf-taiwanstockfinancialreportfile-available-only-to-sponsorpro-members)
 
@@ -1676,6 +1677,78 @@ In Taiwan stock fundamental data, we have 13 datasets, as follows:
             max_price: float, # post-split max price
             min_price: float, # post-split min price
             open_price: float # post-split open price
+        }
+        ```
+
+----------------------------------
+#### Taiwan ETF Split / Reverse Split Announcement TaiwanStockSplitPriceAnnouncement
+
+- Provides announcements of upcoming splits / reverse splits of Taiwan ETFs (TWSE and TPEx listed): trading suspension date, trading resumption date and split (reverse split) ratio, available before trading is suspended.
+- Data range: 2026-11-30 ~ now
+- Data update time: Monday to Friday 18:00. The actual update time is based on the API data.
+
+??? note "Data notes"
+    - This dataset contains split / reverse split **announcements** published by the exchanges; the schedule is subject to the latest exchange announcement. If an announced schedule changes, the data is updated to the latest announcement.
+    - Only ETF (TWSE and TPEx listed) splits / reverse splits are covered. For par value changes of individual stocks, see [TaiwanStockParValueChange](#taiwan-stock-par-value-change-resumption-reference-price-taiwanstockparvaluechange).
+    - Data is available from 2026-11-30; earlier announcements are not provided.
+    - `date` is the trading resumption date, usually a future date.
+    - `split_ratio` = units after / units before; > 1 for a split, < 1 for a reverse split (e.g. 8.0 = 1-for-8 split; 0.25 = 4-for-1 reverse split).
+    - For the post-split reference prices after trading resumes, see [TaiwanStockSplitPrice](#taiwan-stock-post-split-reference-price-taiwanstocksplitprice).
+
+!!! example
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        url = "https://api.finmindtrade.com/api/v4/data"
+        token = "" # Refer to login to obtain the token
+        headers = {"Authorization": f"Bearer {token}"}
+        parameter = {
+            "dataset": "TaiwanStockSplitPriceAnnouncement",
+            "start_date": "2026-11-30",
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        url = 'https://api.finmindtrade.com/api/v4/data'
+        token = "" # Refer to login to obtain the token
+        response = httr::GET(
+            url = url,
+            query = list(
+                dataset="TaiwanStockSplitPriceAnnouncement",
+                start_date="2026-11-30"
+            ),
+            add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    | date       | stock_id   | type   | stop_trading_date   |   split_ratio |
+        |---:|:-----------|:-----------|:-------|:--------------------|--------------:|
+        |  0 | 2026-12-08 | 0053       | 分割   | 2026-12-02          |             8 |
+    === "Schema"
+        ```
+        {
+            date: str, # trading resumption date
+            stock_id: str, # stock code (ETF ID)
+            type: str, # 分割 (split) / 反分割 (reverse split)
+            stop_trading_date: str, # trading suspension start date
+            split_ratio: float # split (reverse split) ratio
         }
         ```
 
