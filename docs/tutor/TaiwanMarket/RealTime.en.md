@@ -22,7 +22,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 (updated approximately every 10 seconds)
 
 ??? note "At most 50 stocks per request from 2027-02-01"
-    Starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
+    In accordance with Taiwan Stock Exchange (TWSE) regulations, starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
 
     Until 2027-01-31, you can still fetch all stocks at once by omitting `data_id` (or passing `data_id=""`). See the "Python-request" tab below for a batched example.
 
@@ -47,7 +47,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
         parameter = {
             "data_id": "2330",
-            # "data_id": ["2330", "2317"], # fetch multiple at once (at most 50 per request from 2027-02-01)
+            # "data_id": ["2330", "2317"], # fetch multiple at once (per TWSE regulations, max 50 per request from 2027-02-01)
             # "data_id": "", # fetch all at once (only until 2027-01-31)
         }
         resp = requests.get(url, headers=headers, params=parameter)
@@ -55,7 +55,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         data = pd.DataFrame(data["data"])
         print(data.head())
 
-        # Fetch multiple stocks in batches (at most 50 per request from 2027-02-01)
+        # Fetch multiple stocks in batches (per TWSE regulations, max 50 per request from 2027-02-01)
         stock_ids = ["2330", "2317", "2454", "2303", "0050"]  # stocks to query
         batch_size = 50
         dfs = []
@@ -81,7 +81,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         url = url,
         query = list(
             data_id="2330",
-            # data_id=c("2330", "2317"), # fetch multiple at once (at most 50 per request from 2027-02-01)
+            # data_id=c("2330", "2317"), # fetch multiple at once (per TWSE regulations, max 50 per request from 2027-02-01)
             # data_id="", # fetch all at once (only until 2027-01-31)
             token = "" # See login section to obtain a token
         ),

@@ -804,7 +804,7 @@ All prices in TWD (New Taiwan Dollars). One-time payment, no auto-renewal; the p
 ### taiwan_stock_tick_snapshot (台股即時資訊)
 - Tier: Sponsor
 - Params: dataset=taiwan_stock_tick_snapshot, data_id=2330 (or a list; empty for all until 2027-01-31)
-- Request limit: Starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
+- Request limit: In accordance with Taiwan Stock Exchange (TWSE) regulations, starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
 - User information required (Taiwan Stock Exchange regulation): users must fill in name, phone number, and address in the Member Center (https://finmindtrade.com/analysis/#/account/user). Before 2027-01-31, users who have not filled it in still get data plus a `profile_notice` field in the response; from 2027-01-31 they get HTTP 403 (the error message includes the Member Center link).
 - Columns: amount, average_price, buy_price, buy_volume, change_price, change_rate, close, high, low, open, sell_price, sell_volume, total_amount, total_volume, volume, volume_ratio, yesterday_volume, date, stock_id, TickType
 - Index codes (3-digit data_id, 91 indices): besides 4-digit stock IDs, data_id also accepts 3-digit index codes:

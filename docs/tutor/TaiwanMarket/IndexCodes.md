@@ -132,7 +132,7 @@
         df = api.taiwan_stock_tick_snapshot(stock_id="001")  # 加權指數
         # 一次拿多個（個股 + 指數可混搭）
         df = api.taiwan_stock_tick_snapshot(stock_id=["001", "101", "2330"])
-        # 一次拿全部（僅 2027-01-31 前可用；2027-02-01 起每次最多 50 檔，請分批帶入 stock_id）
+        # 一次拿全部（僅 2027-01-31 前可用；依證交所規範，2027-02-01 起每次最多 50 檔，請分批帶入 stock_id）
         df = api.taiwan_stock_tick_snapshot()
         ```
     === "Python-request"

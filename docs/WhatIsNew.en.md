@@ -1,5 +1,5 @@
 #### 2026-11-27
-* [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members): Starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
+* [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members): In accordance with Taiwan Stock Exchange (TWSE) regulations, starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
 
 #### 2026-11-16
 * The [Data Quality Assurance](https://finmind.github.io/en/DataQuality/) report adds 4 datasets: futures minute K bars, after-hours fixed-price trading, daily stock broker concentration, and daily securities trader branch aggregate statistics. All 103 datasets passed the checks and were compared record by record with official public data or original source values.
