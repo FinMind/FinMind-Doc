@@ -1,3 +1,6 @@
+#### 2026-11-27
+* [台股即時資訊 taiwan_stock_tick_snapshot](https://finmind.github.io/tutor/TaiwanMarket/RealTime/#taiwan_stock_tick_snapshot-sponsor)：自 2027-02-01 起，台股即時報價 snapshot 每次請求最多 50 檔，且不再支援不帶 data_id 一次取得全部股票，請改為分批帶入 data_id（每次最多 50 檔）。
+
 #### 2026-11-16
 * [資料品質保證](https://finmind.github.io/DataQuality/) 報告新增期貨分 K、盤後定價交易、每日個股主力集中度、當日券商分點統計 4 個資料集，共 103 個資料集皆通過檢測，並與官方公開資料或資料來源原始值逐筆比對
 

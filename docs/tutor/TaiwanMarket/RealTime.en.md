@@ -21,6 +21,11 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 #### Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
 (updated approximately every 10 seconds)
 
+??? note "At most 50 stocks per request from 2027-02-01"
+    Starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
+
+    Until 2027-01-31, you can still fetch all stocks at once by omitting `data_id` (or passing `data_id=""`). See the "Python-request" tab below for a batched example.
+
 ??? note "Name, phone number, and address required by 2027-01-31"
     To use this dataset, fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by 2027-01-31. Before then, users who have not filled it in can still use the data, with a `profile_notice` reminder in the response; from 2027-01-31, they will no longer be able to get Taiwan stock real-time data, and the API returns an HTTP 403 error whose message includes a link to the Member Center.
 
@@ -42,12 +47,26 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
         parameter = {
             "data_id": "2330",
-            # "data_id": ["2330", "2317"], # fetch multiple at once
-            # "data_id": "", # fetch all at once
+            # "data_id": ["2330", "2317"], # fetch multiple at once (at most 50 per request from 2027-02-01)
+            # "data_id": "", # fetch all at once (only until 2027-01-31)
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        # Fetch multiple stocks in batches (at most 50 per request from 2027-02-01)
+        stock_ids = ["2330", "2317", "2454", "2303", "0050"]  # stocks to query
+        batch_size = 50
+        dfs = []
+        for i in range(0, len(stock_ids), batch_size):
+            resp = requests.get(
+                url,
+                headers=headers,
+                params={"data_id": stock_ids[i : i + batch_size]},
+            )
+            dfs.append(pd.DataFrame(resp.json()["data"]))
+        data = pd.concat(dfs, ignore_index=True)
         print(data.head())
 
         ```
@@ -62,8 +81,8 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
         url = url,
         query = list(
             data_id="2330",
-            # data_id=c("2330", "2317"), # fetch multiple at once
-            # data_id="", # fetch all at once
+            # data_id=c("2330", "2317"), # fetch multiple at once (at most 50 per request from 2027-02-01)
+            # data_id="", # fetch all at once (only until 2027-01-31)
             token = "" # See login section to obtain a token
         ),
         add_headers(Authorization = paste("Bearer", token))
