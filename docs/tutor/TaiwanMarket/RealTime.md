@@ -19,13 +19,13 @@
 
 ----------------------------------
 #### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(Sponsor 會員約 10 秒更新一次；Sponsor Pro 會員約每秒更新一次)
+(Sponsor 會員每 10 秒更新一次；Sponsor Pro 會員每秒更新一次)
 
 ??? note "Sponsor 與 Sponsor Pro 會員的差異"
     | | Sponsor | Sponsor Pro |
     |---|---|---|
-    | 更新頻率 | 約 10 秒一次 | 約每秒一次 |
-    | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 11 個欄位：昨收價、漲跌停價、委買委賣 1 ~ 5 檔價量、內外盤成交量、盤後定價交易成交量、收盤註記 |
+    | 更新頻率 | 每 10 秒一次 | 每秒一次 |
+    | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 11 個欄位：昨收價、漲跌停價、最佳五檔委買委賣價量、內外盤成交量、盤後定價交易成交量、收盤註記 |
     | 上市櫃盤前試撮（08:30 ~ 09:00） | 無 | 有，說明見下方「上市櫃盤前試撮」 |
 
     下方 output 範例為 Sponsor Pro 會員的回傳內容。

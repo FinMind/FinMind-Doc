@@ -19,12 +19,12 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 ----------------------------------
 #### Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
-(updated approximately every 10 seconds for Sponsor members, and approximately every second for Sponsor Pro members)
+(updated every 10 seconds for Sponsor members, and every second for Sponsor Pro members)
 
 ??? note "Sponsor vs. Sponsor Pro"
     | | Sponsor | Sponsor Pro |
     |---|---|---|
-    | Update frequency | About every 10 seconds | About every second |
+    | Update frequency | Every 10 seconds | Every second |
     | Fields | Fields in the Schema below that are not marked "Sponsor Pro" | All fields, including the 11 fields marked "Sponsor Pro" in the Schema: previous close, limit-up / limit-down prices, best 5 bid / ask prices and volumes, inside / outside volume, after-hours fixed-price trading volume, and market close flag |
     | Pre-market trial matching for TWSE / TPEx stocks (08:30 ~ 09:00) | Not included | Included; see "Pre-market trial matching" below |
 
