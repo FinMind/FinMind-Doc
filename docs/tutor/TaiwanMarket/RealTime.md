@@ -19,7 +19,21 @@
 
 ----------------------------------
 #### 台股即時資訊 taiwan_stock_tick_snapshot (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
-(約 10 秒更新一次)
+(Sponsor 會員每 10 秒更新一次；Sponsor Pro 會員每秒更新一次)
+
+??? note "Sponsor 與 Sponsor Pro 會員的差異"
+    | | Sponsor | Sponsor Pro |
+    |---|---|---|
+    | 更新頻率 | 每 10 秒一次 | 每秒一次 |
+    | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 11 個欄位：昨收價、漲跌停價、最佳五檔委買委賣價量、內外盤成交量、盤後定價交易成交量、收盤註記 |
+    | 上市櫃盤前試撮（08:30 ~ 09:00） | 無 | 有，說明見下方「上市櫃盤前試撮」 |
+
+    下方 output 範例為 Sponsor Pro 會員的回傳內容。
+
+??? note "上市櫃盤前試撮（Sponsor Pro）"
+    * 08:30 ~ 09:00 尚未成交的上市、上櫃股票，回傳盤前試撮資訊：`close` 為試撮價，`volume`、`total_volume` 為試撮累計量，`date` 的時間為試撮時間，`TickType` 為 0
+    * 09:00 開盤後以實際成交為準；尚未有成交的股票，`close` 為昨收價，`volume`、`total_volume` 為 0
+    * 興櫃股票沒有盤前試撮
 
 ??? note "2027-02-01 起每次請求最多 50 檔"
     依臺灣證券交易所規範，自 2027-02-01 起，台股即時報價 snapshot 每次請求最多 50 檔，且不再支援不帶 data_id 一次取得全部股票，請改為分批帶入 data_id（每次最多 50 檔）。
@@ -97,9 +111,9 @@
 
 !!! output
     === "DataFrame"
-        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
-        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
-        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |
+        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   |
+        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|
+        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       |
     === "Schema"
         ```
         {
@@ -122,12 +136,114 @@
             yesterday_volume: int64, # 昨日成交量
             date: str, # 成交時間
             stock_id: str, # 股票代碼
-            TickType: str # 成交種類 (0: 無法判斷, 1: 外盤成交（買方主動買進，成交在賣方掛價）, 2: 內盤成交（賣方主動賣出，成交在買方掛價）)
+            TickType: str # 成交種類 (0: 無法判斷, 1: 外盤成交（買方主動買進，成交在賣方掛價）, 2: 內盤成交（賣方主動賣出，成交在買方掛價）),
+            yesterday_close: float64, # （Sponsor Pro）昨收價
+            limit_up: float64, # （Sponsor Pro）漲停價（興櫃股票為 null）
+            limit_down: float64, # （Sponsor Pro）跌停價（興櫃股票為 null）
+            buy_prices: list, # （Sponsor Pro）委買第 1 ~ 5 檔價格（第 1 檔同 buy_price；市價委託價格為 0）
+            buy_volumes: list, # （Sponsor Pro）委買第 1 ~ 5 檔數量
+            sell_prices: list, # （Sponsor Pro）委賣第 1 ~ 5 檔價格（第 1 檔同 sell_price；市價委託價格為 0）
+            sell_volumes: list, # （Sponsor Pro）委賣第 1 ~ 5 檔數量
+            inside_volume: int64, # （Sponsor Pro）內盤成交量
+            outside_volume: int64, # （Sponsor Pro）外盤成交量
+            after_hours_volume: int64, # （Sponsor Pro）盤後定價交易成交量
+            is_closed: bool # （Sponsor Pro）收盤註記（True 表示已收盤）
         }
         ```
 
+??? note "成交量單位與興櫃股票欄位說明"
+    * 成交量、委買委賣量相關欄位（`volume`、`total_volume`、`yesterday_volume`、`buy_volume`、`sell_volume`、`buy_volumes`、`sell_volumes`、`inside_volume`、`outside_volume`、`after_hours_volume`）的單位：上市、上櫃股票為張，興櫃股票為股
+    * 興櫃股票沒有漲跌停限制，`limit_up`、`limit_down` 為 null
+    * 興櫃股票只提供最佳一檔委買委賣，`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes` 僅第 1 檔有值，第 2 ~ 5 檔為 0
+
 !!! info "data_id 指數代號"
-    `data_id` 除了支援個股代號（4 碼）之外，也支援 91 個指數代號（3 碼），例如 `001` = 加權指數、`101` = 櫃買加權。完整對照表請見 [台股指數代號對照表](IndexCodes.md)。
+    `data_id` 除了支援個股代號之外，也支援 91 個指數代號（3 碼），例如 `001` = 加權指數。指數的回傳欄位與個股不同，請見下方 [台股指數即時資訊](#taiwan_stock_tick_snapshot-index-sponsor)。
+
+----------------------------------
+#### 台股指數即時資訊 taiwan_stock_tick_snapshot index (只限 [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) 會員使用)
+與台股即時資訊使用同一個 API，`data_id` 帶指數代號（3 碼）即可取得指數即時資訊，例如 `001` = 加權指數、`101` = 櫃買指數，共 91 個指數，完整對照表請見 [台股指數代號對照表](IndexCodes.md)。
+
+??? note "指數與個股的回傳欄位不同"
+    指數只回傳下方 Schema 列出的欄位，沒有個股的委買委賣（`buy_price`、`buy_volume`、`sell_price`、`sell_volume`、`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`）、成交種類（`TickType`），也沒有 `yesterday_close`、`limit_up`、`limit_down`、`inside_volume`、`outside_volume`、`after_hours_volume`、`is_closed`；另外多了指數名稱 `name`。Sponsor 與 Sponsor Pro 會員回傳的指數欄位相同。
+
+    `data_id` 空值（一次全部）時，個股與指數會在同一張表回傳，可依 `stock_id` 長度區分（指數為 3 碼）。
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_tick_snapshot(stock_id="001")
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        token = "" # 參考登入，獲取金鑰
+        headers = {"Authorization": f"Bearer {token}"}
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        parameter = {
+            "data_id": "001",
+            # "data_id": ["001", "101"], # 一次拿多個
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # 參考登入，獲取金鑰
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        response = httr::GET(
+        url = url,
+        query = list(
+            data_id="001",
+            # data_id=c("001", "101"), # 一次拿多個
+            token = "" # 參考登入，獲取金鑰
+        ),
+        add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |    open |    high |     low |   close |   change_price |   change_rate |   average_price |   volume |   total_volume |      amount |   total_amount |   yesterday_volume |   volume_ratio | date                |   stock_id | name     |
+        |---:|--------:|--------:|--------:|--------:|---------------:|--------------:|----------------:|---------:|---------------:|------------:|---------------:|-------------------:|---------------:|:--------------------|-----------:|:---------|
+        |  0 | 35899.5 | 37108.2 | 35442.4 | 36811.9 |          778.6 |          2.16 |               0 |   363837 |       15776245 | 38042420910 |  1079165406470 |           16796828 |           0.94 | 2026-11-23 13:33:00 |        001 | 加權指數 |
+    === "Schema"
+        ```
+        {
+            open: float64, # 開盤指數
+            high: float64, # 最高指數
+            low: float64, # 最低指數
+            close: float64, # 最新指數
+            change_price: float64, # 漲跌點數
+            change_rate: float64, # 漲跌百分比
+            average_price: float64, # 指數無均價，固定為 0
+            volume: int64, # 成交量（張）
+            total_volume: int64, # 累積成交量（張）
+            amount: int64, # 成交金額（元）
+            total_amount: int64, # 累積成交金額（元）
+            yesterday_volume: int64, # 昨日成交量（張）
+            volume_ratio: float64, # 昨日與今日成交量比
+            date: str, # 更新時間
+            stock_id: str, # 指數代號（3 碼）
+            name: str # 指數名稱
+        }
+        ```
 
 ----------------------------------
 #### 期貨、選擇權即時報價總覽 TaiwanFutOptTickInfo
