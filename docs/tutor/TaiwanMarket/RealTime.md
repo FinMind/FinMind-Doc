@@ -25,8 +25,9 @@
     | | Sponsor | Sponsor Pro |
     |---|---|---|
     | 更新頻率 | 每 10 秒一次 | 每秒一次 |
-    | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 11 個欄位：昨收價、漲跌停價、最佳五檔委買委賣價量、內外盤成交量、盤後定價交易成交量、收盤註記 |
+    | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 24 個欄位：昨收價、漲跌停價、最佳五檔委買委賣價量、內外盤成交量、盤後定價交易成交量、收盤註記，以及 13 個盤中零股欄位（`odd_lot_*`） |
     | 上市櫃盤前試撮（08:30 ~ 09:00） | 無 | 有，說明見下方「上市櫃盤前試撮」 |
+    | 上市櫃盤中零股報價（09:00 ~ 13:30） | 無 | 有，說明見下方「上市櫃盤中零股報價」 |
 
     下方 output 範例為 Sponsor Pro 會員的回傳內容。
 
@@ -34,6 +35,13 @@
     * 08:30 ~ 09:00 尚未成交的上市、上櫃股票，回傳盤前試撮資訊：`close` 為試撮價，`volume`、`total_volume` 為試撮累計量，`date` 的時間為試撮時間，`TickType` 為 0
     * 09:00 開盤後以實際成交為準；尚未有成交的股票，`close` 為昨收價，`volume`、`total_volume` 為 0
     * 興櫃股票沒有盤前試撮
+
+??? note "上市櫃盤中零股報價（Sponsor Pro）"
+    * 每列個股另附同一檔股票的盤中零股報價，欄位皆以 `odd_lot_` 開頭，說明見下方 Schema
+    * 盤中零股交易時段為 09:00 ~ 13:30
+    * 零股量相關欄位（`odd_lot_total_volume`、`odd_lot_buy_volume`、`odd_lot_sell_volume`）的單位為股；整股的量相關欄位單位為張
+    * `odd_lot_is_simulated` 為 True 時，表示零股價量為試撮資訊，不是實際成交
+    * 只有上市、上櫃股票提供；興櫃股票的 `odd_lot_*` 欄位為 null
 
 ??? note "2027-02-01 起每次請求最多 50 檔"
     依臺灣證券交易所規範，自 2027-02-01 起，台股即時報價 snapshot 每次請求最多 50 檔，且不再支援不帶 data_id 一次取得全部股票，請改為分批帶入 data_id（每次最多 50 檔）。
@@ -111,9 +119,9 @@
 
 !!! output
     === "DataFrame"
-        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   |
-        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|
-        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       |
+        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   | odd_lot_date        |   odd_lot_open |   odd_lot_high |   odd_lot_low |   odd_lot_close |   odd_lot_change_price |   odd_lot_change_rate |   odd_lot_total_volume |   odd_lot_buy_price |   odd_lot_buy_volume |   odd_lot_sell_price |   odd_lot_sell_volume | odd_lot_is_simulated   |
+        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|:--------------------|---------------:|---------------:|--------------:|----------------:|-----------------------:|----------------------:|-----------------------:|--------------------:|---------------------:|---------------------:|----------------------:|:-----------------------|
+        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       | 2021-12-08 10:31:20 |            613 |            614 |           608 |             610 |                      3 |                  0.49 |                 152340 |                 609 |                 1520 |                  610 |                  2380 | False                  |
     === "Schema"
         ```
         {
@@ -147,12 +155,27 @@
             inside_volume: int64, # （Sponsor Pro）內盤成交量
             outside_volume: int64, # （Sponsor Pro）外盤成交量
             after_hours_volume: int64, # （Sponsor Pro）盤後定價交易成交量
-            is_closed: bool # （Sponsor Pro）收盤註記（True 表示已收盤）
+            is_closed: bool, # （Sponsor Pro）收盤註記（True 表示已收盤）
+            odd_lot_date: str, # （Sponsor Pro）零股最近成交時間
+            odd_lot_open: float64, # （Sponsor Pro）零股開盤價
+            odd_lot_high: float64, # （Sponsor Pro）零股最高價
+            odd_lot_low: float64, # （Sponsor Pro）零股最低價
+            odd_lot_close: float64, # （Sponsor Pro）零股成交價
+            odd_lot_change_price: float64, # （Sponsor Pro）零股漲跌
+            odd_lot_change_rate: float64, # （Sponsor Pro）零股漲跌幅（%）
+            odd_lot_total_volume: int64, # （Sponsor Pro）零股累計成交量（股）
+            odd_lot_buy_price: float64, # （Sponsor Pro）零股最佳委買價
+            odd_lot_buy_volume: int64, # （Sponsor Pro）零股最佳委買量（股）
+            odd_lot_sell_price: float64, # （Sponsor Pro）零股最佳委賣價
+            odd_lot_sell_volume: int64, # （Sponsor Pro）零股最佳委賣量（股）
+            odd_lot_is_simulated: bool # （Sponsor Pro）是否為零股試撮（True 表示為試撮，不是實際成交）
         }
         ```
 
 ??? note "成交量單位與興櫃股票欄位說明"
-    * 成交量、委買委賣量相關欄位（`volume`、`total_volume`、`yesterday_volume`、`buy_volume`、`sell_volume`、`buy_volumes`、`sell_volumes`、`inside_volume`、`outside_volume`、`after_hours_volume`）的單位：上市、上櫃股票為張，興櫃股票為股
+    * 整股成交量、委買委賣量相關欄位（`volume`、`total_volume`、`yesterday_volume`、`buy_volume`、`sell_volume`、`buy_volumes`、`sell_volumes`、`inside_volume`、`outside_volume`、`after_hours_volume`）的單位：上市、上櫃股票為張，興櫃股票為股
+    * 盤中零股量相關欄位（`odd_lot_total_volume`、`odd_lot_buy_volume`、`odd_lot_sell_volume`）的單位為股
+    * 興櫃股票沒有盤中零股，`odd_lot_*` 欄位為 null
     * 興櫃股票沒有漲跌停限制，`limit_up`、`limit_down` 為 null
     * 興櫃股票只提供最佳一檔委買委賣，`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes` 僅第 1 檔有值，第 2 ~ 5 檔為 0
 
@@ -164,7 +187,7 @@
 與台股即時資訊使用同一個 API，`data_id` 帶指數代號（3 碼）即可取得指數即時資訊，例如 `001` = 加權指數、`101` = 櫃買指數，共 91 個指數，完整對照表請見 [台股指數代號對照表](IndexCodes.md)。
 
 ??? note "指數與個股的回傳欄位不同"
-    指數只回傳下方 Schema 列出的欄位，沒有個股的委買委賣（`buy_price`、`buy_volume`、`sell_price`、`sell_volume`、`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`）、成交種類（`TickType`），也沒有 `yesterday_close`、`limit_up`、`limit_down`、`inside_volume`、`outside_volume`、`after_hours_volume`、`is_closed`；另外多了指數名稱 `name`。Sponsor 與 Sponsor Pro 會員回傳的指數欄位相同。
+    指數只回傳下方 Schema 列出的欄位，沒有個股的委買委賣（`buy_price`、`buy_volume`、`sell_price`、`sell_volume`、`buy_prices`、`buy_volumes`、`sell_prices`、`sell_volumes`）、成交種類（`TickType`），也沒有 `yesterday_close`、`limit_up`、`limit_down`、`inside_volume`、`outside_volume`、`after_hours_volume`、`is_closed` 與盤中零股欄位 `odd_lot_*`；另外多了指數名稱 `name`。Sponsor 與 Sponsor Pro 會員回傳的指數欄位相同。
 
     `data_id` 空值（一次全部）時，個股與指數會在同一張表回傳，可依 `stock_id` 長度區分（指數為 3 碼）。
 
