@@ -1,4 +1,4 @@
-#### 2026-11-24
+#### 2026-11-27
 * [Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot](https://finmind.github.io/en/tutor/TaiwanMarket/RealTime/#taiwan-stock-real-time-information-taiwan_stock_tick_snapshot-only-available-to-sponsor-members): for Sponsor Pro members, updates now arrive every second, with pre-market trial matching for TWSE / TPEx stocks (08:30 ~ 09:00) and 11 additional fields: previous close `yesterday_close`, limit-up / limit-down prices `limit_up`, `limit_down`, best 5 bid / ask prices and volumes `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`, inside / outside volume `inside_volume`, `outside_volume`, after-hours fixed-price trading volume `after_hours_volume`, and market close flag `is_closed`
 
 #### 2026-11-16
