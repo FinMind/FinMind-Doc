@@ -27,7 +27,7 @@
     | 更新頻率 | 每 10 秒一次 | 每秒一次 |
     | 回傳欄位 | 下方 Schema 中未標註「Sponsor Pro」的欄位 | 全部欄位，另含 Schema 中標註「Sponsor Pro」的 24 個欄位：昨收價、漲跌停價、最佳五檔委買委賣價量、內外盤成交量、盤後定價交易成交量、收盤註記，以及 13 個盤中零股欄位（`odd_lot_*`） |
     | 上市櫃盤前試撮（08:30 ~ 09:00） | 無 | 有，說明見下方「上市櫃盤前試撮」 |
-    | 上市櫃盤中零股報價（09:00 ~ 13:30） | 無 | 有，說明見下方「上市櫃盤中零股報價」 |
+    | 上市櫃盤中零股報價（09:00 ~ 13:30，13:40 後含盤後零股） | 無 | 有，說明見下方「上市櫃盤中零股報價」 |
 
     下方 output 範例為 Sponsor Pro 會員的回傳內容。
 
@@ -38,7 +38,8 @@
 
 ??? note "上市櫃盤中零股報價（Sponsor Pro）"
     * 每列個股另附同一檔股票的盤中零股報價，欄位皆以 `odd_lot_` 開頭，說明見下方 Schema
-    * 盤中零股交易時段為 09:00 ~ 13:30
+    * 盤中零股 09:00 ~ 13:30；13:40 後含盤後零股（成交價、時間、最佳一檔委買委賣價為盤後零股，累計成交量為盤中＋盤後合計）
+    * `odd_lot_open`、`odd_lot_high`、`odd_lot_low` 為盤中零股的值；收盤後最佳一檔委買委賣量為 0
     * 零股量相關欄位（`odd_lot_total_volume`、`odd_lot_buy_volume`、`odd_lot_sell_volume`）的單位為股；整股的量相關欄位單位為張
     * `odd_lot_is_simulated` 為 True 時，表示零股價量為試撮資訊，不是實際成交
     * 只有上市、上櫃股票提供；興櫃股票的 `odd_lot_*` 欄位為 null
@@ -156,17 +157,17 @@
             outside_volume: int64, # （Sponsor Pro）外盤成交量
             after_hours_volume: int64, # （Sponsor Pro）盤後定價交易成交量
             is_closed: bool, # （Sponsor Pro）收盤註記（True 表示已收盤）
-            odd_lot_date: str, # （Sponsor Pro）零股最近成交時間
-            odd_lot_open: float64, # （Sponsor Pro）零股開盤價
-            odd_lot_high: float64, # （Sponsor Pro）零股最高價
-            odd_lot_low: float64, # （Sponsor Pro）零股最低價
-            odd_lot_close: float64, # （Sponsor Pro）零股成交價
+            odd_lot_date: str, # （Sponsor Pro）零股最近成交時間（13:40 後為盤後零股）
+            odd_lot_open: float64, # （Sponsor Pro）零股開盤價（盤中零股）
+            odd_lot_high: float64, # （Sponsor Pro）零股最高價（盤中零股）
+            odd_lot_low: float64, # （Sponsor Pro）零股最低價（盤中零股）
+            odd_lot_close: float64, # （Sponsor Pro）零股成交價（13:40 後為盤後零股）
             odd_lot_change_price: float64, # （Sponsor Pro）零股漲跌
             odd_lot_change_rate: float64, # （Sponsor Pro）零股漲跌幅（%）
-            odd_lot_total_volume: int64, # （Sponsor Pro）零股累計成交量（股）
-            odd_lot_buy_price: float64, # （Sponsor Pro）零股最佳委買價
+            odd_lot_total_volume: int64, # （Sponsor Pro）零股累計成交量（股；13:40 後為盤中＋盤後合計）
+            odd_lot_buy_price: float64, # （Sponsor Pro）零股最佳委買價（13:40 後為盤後零股）
             odd_lot_buy_volume: int64, # （Sponsor Pro）零股最佳委買量（股）
-            odd_lot_sell_price: float64, # （Sponsor Pro）零股最佳委賣價
+            odd_lot_sell_price: float64, # （Sponsor Pro）零股最佳委賣價（13:40 後為盤後零股）
             odd_lot_sell_volume: int64, # （Sponsor Pro）零股最佳委賣量（股）
             odd_lot_is_simulated: bool # （Sponsor Pro）是否為零股試撮（True 表示為試撮，不是實際成交）
         }

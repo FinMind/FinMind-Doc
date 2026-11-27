@@ -27,7 +27,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
     | Update frequency | Every 10 seconds | Every second |
     | Fields | Fields in the Schema below that are not marked "Sponsor Pro" | All fields, including the 24 fields marked "Sponsor Pro" in the Schema: previous close, limit-up / limit-down prices, best 5 bid / ask prices and volumes, inside / outside volume, after-hours fixed-price trading volume, market close flag, and 13 intraday odd-lot fields (`odd_lot_*`) |
     | Pre-market trial matching for TWSE / TPEx stocks (08:30 ~ 09:00) | Not included | Included; see "Pre-market trial matching" below |
-    | Intraday odd-lot quotes for TWSE / TPEx stocks (09:00 ~ 13:30) | Not included | Included; see "Intraday odd-lot quotes" below |
+    | Intraday odd-lot quotes for TWSE / TPEx stocks (09:00 ~ 13:30; from 13:40 includes after-hours odd-lot trading) | Not included | Included; see "Intraday odd-lot quotes" below |
 
     The output example below shows a Sponsor Pro response.
 
@@ -38,7 +38,8 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 ??? note "Intraday odd-lot quotes for TWSE / TPEx stocks (Sponsor Pro)"
     * Each stock row also carries the intraday odd-lot quote for the same stock, in fields prefixed with `odd_lot_`; see the Schema below
-    * The intraday odd-lot trading session is 09:00 ~ 13:30
+    * Intraday odd-lot trading 09:00 ~ 13:30; from 13:40 the values include after-hours odd-lot trading (last price, time and best bid/ask become after-hours values; total volume is intraday + after-hours)
+    * `odd_lot_open`, `odd_lot_high` and `odd_lot_low` are intraday odd-lot values; after the close, the best bid / ask volumes are 0
     * Odd-lot volume fields (`odd_lot_total_volume`, `odd_lot_buy_volume`, `odd_lot_sell_volume`) are in shares, while the board-lot volume fields are in lots
     * When `odd_lot_is_simulated` is True, the odd-lot price and volume are trial matching data, not actual trades
     * Available for TWSE- and TPEx-listed stocks only; the `odd_lot_*` fields are null for emerging-market stocks
@@ -156,17 +157,17 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
             outside_volume: int64, # (Sponsor Pro) outside volume (traded at ask)
             after_hours_volume: int64, # (Sponsor Pro) after-hours fixed-price trading volume
             is_closed: bool, # (Sponsor Pro) market close flag (True once the stock has closed for the day)
-            odd_lot_date: str, # (Sponsor Pro) odd-lot last trade time
-            odd_lot_open: float64, # (Sponsor Pro) odd-lot open price
-            odd_lot_high: float64, # (Sponsor Pro) odd-lot high price
-            odd_lot_low: float64, # (Sponsor Pro) odd-lot low price
-            odd_lot_close: float64, # (Sponsor Pro) odd-lot last price
+            odd_lot_date: str, # (Sponsor Pro) odd-lot last trade time (after-hours odd-lot from 13:40)
+            odd_lot_open: float64, # (Sponsor Pro) odd-lot open price (intraday odd-lot)
+            odd_lot_high: float64, # (Sponsor Pro) odd-lot high price (intraday odd-lot)
+            odd_lot_low: float64, # (Sponsor Pro) odd-lot low price (intraday odd-lot)
+            odd_lot_close: float64, # (Sponsor Pro) odd-lot last price (after-hours odd-lot from 13:40)
             odd_lot_change_price: float64, # (Sponsor Pro) odd-lot price change
             odd_lot_change_rate: float64, # (Sponsor Pro) odd-lot price change (%)
-            odd_lot_total_volume: int64, # (Sponsor Pro) odd-lot cumulative volume (shares)
-            odd_lot_buy_price: float64, # (Sponsor Pro) odd-lot best bid price
+            odd_lot_total_volume: int64, # (Sponsor Pro) odd-lot cumulative volume (shares; intraday + after-hours from 13:40)
+            odd_lot_buy_price: float64, # (Sponsor Pro) odd-lot best bid price (after-hours odd-lot from 13:40)
             odd_lot_buy_volume: int64, # (Sponsor Pro) odd-lot best bid volume (shares)
-            odd_lot_sell_price: float64, # (Sponsor Pro) odd-lot best ask price
+            odd_lot_sell_price: float64, # (Sponsor Pro) odd-lot best ask price (after-hours odd-lot from 13:40)
             odd_lot_sell_volume: int64, # (Sponsor Pro) odd-lot best ask volume (shares)
             odd_lot_is_simulated: bool # (Sponsor Pro) odd-lot trial matching flag (True means trial matching data, not an actual trade)
         }
