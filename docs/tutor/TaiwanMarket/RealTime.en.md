@@ -25,8 +25,9 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
     | | Sponsor | Sponsor Pro |
     |---|---|---|
     | Update frequency | Every 10 seconds | Every second |
-    | Fields | Fields in the Schema below that are not marked "Sponsor Pro" | All fields, including the 11 fields marked "Sponsor Pro" in the Schema: previous close, limit-up / limit-down prices, best 5 bid / ask prices and volumes, inside / outside volume, after-hours fixed-price trading volume, and market close flag |
+    | Fields | Fields in the Schema below that are not marked "Sponsor Pro" | All fields, including the 24 fields marked "Sponsor Pro" in the Schema: previous close, limit-up / limit-down prices, best 5 bid / ask prices and volumes, inside / outside volume, after-hours fixed-price trading volume, market close flag, and 13 intraday odd-lot fields (`odd_lot_*`) |
     | Pre-market trial matching for TWSE / TPEx stocks (08:30 ~ 09:00) | Not included | Included; see "Pre-market trial matching" below |
+    | Intraday odd-lot quotes for TWSE / TPEx stocks (09:00 ~ 13:30; from 13:40 includes after-hours odd-lot trading) | Not included | Included; see "Intraday odd-lot quotes" below |
 
     The output example below shows a Sponsor Pro response.
 
@@ -34,6 +35,14 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
     * From 08:30 to 09:00, TWSE- and TPEx-listed stocks that have not traded yet return pre-market trial matching data: `close` is the trial matching price, `volume` and `total_volume` are the cumulative trial matching volume, the time in `date` is the trial matching time, and `TickType` is 0
     * From the 09:00 open, data reflects actual trades; stocks that have not traded yet show the previous close as `close`, with `volume` and `total_volume` at 0
     * Emerging-market stocks have no pre-market trial matching
+
+??? note "Intraday odd-lot quotes for TWSE / TPEx stocks (Sponsor Pro)"
+    * Each stock row also carries the intraday odd-lot quote for the same stock, in fields prefixed with `odd_lot_`; see the Schema below
+    * Intraday odd-lot trading 09:00 ~ 13:30; from 13:40 the values include after-hours odd-lot trading (last price, time and best bid/ask become after-hours values; total volume is intraday + after-hours)
+    * `odd_lot_open`, `odd_lot_high` and `odd_lot_low` are intraday odd-lot values; after the close, the best bid / ask volumes are 0
+    * Odd-lot volume fields (`odd_lot_total_volume`, `odd_lot_buy_volume`, `odd_lot_sell_volume`) are in shares, while the board-lot volume fields are in lots
+    * When `odd_lot_is_simulated` is True, the odd-lot price and volume are trial matching data, not actual trades
+    * Available for TWSE- and TPEx-listed stocks only; the `odd_lot_*` fields are null for emerging-market stocks
 
 ??? note "At most 50 stocks per request from 2027-02-01"
     In accordance with Taiwan Stock Exchange (TWSE) regulations, starting 2027-02-01, the Taiwan stock real-time snapshot accepts at most 50 stocks per request, and fetching all stocks at once without data_id will no longer be supported. Please pass data_id in batches of up to 50.
@@ -111,9 +120,9 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 !!! output
     === "DataFrame"
-        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   |
-        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|
-        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       |
+        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   | odd_lot_date        |   odd_lot_open |   odd_lot_high |   odd_lot_low |   odd_lot_close |   odd_lot_change_price |   odd_lot_change_rate |   odd_lot_total_volume |   odd_lot_buy_price |   odd_lot_buy_volume |   odd_lot_sell_price |   odd_lot_sell_volume | odd_lot_is_simulated   |
+        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|:--------------------|---------------:|---------------:|--------------:|----------------:|-----------------------:|----------------------:|-----------------------:|--------------------:|---------------------:|---------------------:|----------------------:|:-----------------------|
+        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       | 2021-12-08 10:31:20 |            613 |            614 |           608 |             610 |                      3 |                  0.49 |                 152340 |                 609 |                 1520 |                  610 |                  2380 | False                  |
     === "Schema"
         ```
         {
@@ -147,12 +156,27 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
             inside_volume: int64, # (Sponsor Pro) inside volume (traded at bid)
             outside_volume: int64, # (Sponsor Pro) outside volume (traded at ask)
             after_hours_volume: int64, # (Sponsor Pro) after-hours fixed-price trading volume
-            is_closed: bool # (Sponsor Pro) market close flag (True once the stock has closed for the day)
+            is_closed: bool, # (Sponsor Pro) market close flag (True once the stock has closed for the day)
+            odd_lot_date: str, # (Sponsor Pro) odd-lot last trade time (after-hours odd-lot from 13:40)
+            odd_lot_open: float64, # (Sponsor Pro) odd-lot open price (intraday odd-lot)
+            odd_lot_high: float64, # (Sponsor Pro) odd-lot high price (intraday odd-lot)
+            odd_lot_low: float64, # (Sponsor Pro) odd-lot low price (intraday odd-lot)
+            odd_lot_close: float64, # (Sponsor Pro) odd-lot last price (after-hours odd-lot from 13:40)
+            odd_lot_change_price: float64, # (Sponsor Pro) odd-lot price change
+            odd_lot_change_rate: float64, # (Sponsor Pro) odd-lot price change (%)
+            odd_lot_total_volume: int64, # (Sponsor Pro) odd-lot cumulative volume (shares; intraday + after-hours from 13:40)
+            odd_lot_buy_price: float64, # (Sponsor Pro) odd-lot best bid price (after-hours odd-lot from 13:40)
+            odd_lot_buy_volume: int64, # (Sponsor Pro) odd-lot best bid volume (shares)
+            odd_lot_sell_price: float64, # (Sponsor Pro) odd-lot best ask price (after-hours odd-lot from 13:40)
+            odd_lot_sell_volume: int64, # (Sponsor Pro) odd-lot best ask volume (shares)
+            odd_lot_is_simulated: bool # (Sponsor Pro) odd-lot trial matching flag (True means trial matching data, not an actual trade)
         }
         ```
 
 ??? note "Volume units and emerging-market stock fields"
-    * Volume fields (`volume`, `total_volume`, `yesterday_volume`, `buy_volume`, `sell_volume`, `buy_volumes`, `sell_volumes`, `inside_volume`, `outside_volume`, `after_hours_volume`) are in lots for TWSE- and TPEx-listed stocks, and in shares for emerging-market stocks
+    * Board-lot volume fields (`volume`, `total_volume`, `yesterday_volume`, `buy_volume`, `sell_volume`, `buy_volumes`, `sell_volumes`, `inside_volume`, `outside_volume`, `after_hours_volume`) are in lots for TWSE- and TPEx-listed stocks, and in shares for emerging-market stocks
+    * Intraday odd-lot volume fields (`odd_lot_total_volume`, `odd_lot_buy_volume`, `odd_lot_sell_volume`) are in shares
+    * Emerging-market stocks have no intraday odd-lot trading, so the `odd_lot_*` fields are null
     * Emerging-market stocks have no price limits, so `limit_up` and `limit_down` are null
     * Emerging-market stocks provide only the best bid and ask, so `buy_prices`, `buy_volumes`, `sell_prices` and `sell_volumes` have a value only at level 1; levels 2 ~ 5 are 0
 
@@ -164,7 +188,7 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 Uses the same API as Taiwan Stock Real-Time Information: pass an index code (3 digits) as `data_id` to get real-time index data, e.g. `001` = TAIEX, `101` = OTC index. 91 indices are supported; see the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
 
 ??? note "Indices and stocks return different fields"
-    Indices return only the fields listed in the Schema below. They have no stock bid/ask fields (`buy_price`, `buy_volume`, `sell_price`, `sell_volume`, `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`), no `TickType`, and no `yesterday_close`, `limit_up`, `limit_down`, `inside_volume`, `outside_volume`, `after_hours_volume` or `is_closed`; they additionally return the index name `name`. Sponsor and Sponsor Pro members receive the same index fields.
+    Indices return only the fields listed in the Schema below. They have no stock bid/ask fields (`buy_price`, `buy_volume`, `sell_price`, `sell_volume`, `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`), no `TickType`, and no `yesterday_close`, `limit_up`, `limit_down`, `inside_volume`, `outside_volume`, `after_hours_volume`, `is_closed` or the intraday odd-lot fields `odd_lot_*`; they additionally return the index name `name`. Sponsor and Sponsor Pro members receive the same index fields.
 
     With an empty `data_id` (all codes), stocks and indices are returned in the same table; tell them apart by the length of `stock_id` (3 digits for indices).
 
