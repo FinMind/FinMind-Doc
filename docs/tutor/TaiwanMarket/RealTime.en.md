@@ -19,7 +19,21 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 ----------------------------------
 #### Taiwan Stock Real-Time Information taiwan_stock_tick_snapshot (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
-(updated approximately every 10 seconds)
+(updated every 10 seconds for Sponsor members, and every second for Sponsor Pro members)
+
+??? note "Sponsor vs. Sponsor Pro"
+    | | Sponsor | Sponsor Pro |
+    |---|---|---|
+    | Update frequency | Every 10 seconds | Every second |
+    | Fields | Fields in the Schema below that are not marked "Sponsor Pro" | All fields, including the 11 fields marked "Sponsor Pro" in the Schema: previous close, limit-up / limit-down prices, best 5 bid / ask prices and volumes, inside / outside volume, after-hours fixed-price trading volume, and market close flag |
+    | Pre-market trial matching for TWSE / TPEx stocks (08:30 ~ 09:00) | Not included | Included; see "Pre-market trial matching" below |
+
+    The output example below shows a Sponsor Pro response.
+
+??? note "Pre-market trial matching for TWSE / TPEx stocks (Sponsor Pro)"
+    * From 08:30 to 09:00, TWSE- and TPEx-listed stocks that have not traded yet return pre-market trial matching data: `close` is the trial matching price, `volume` and `total_volume` are the cumulative trial matching volume, the time in `date` is the trial matching time, and `TickType` is 0
+    * From the 09:00 open, data reflects actual trades; stocks that have not traded yet show the previous close as `close`, with `volume` and `total_volume` at 0
+    * Emerging-market stocks have no pre-market trial matching
 
 ??? note "Name, phone number, and address required by 2027-01-31"
     To use this dataset, fill in your name, phone number, and address in the [Member Center](https://finmindtrade.com/analysis/#/account/user) by 2027-01-31. Before then, users who have not filled it in can still use the data, with a `profile_notice` reminder in the response; from 2027-01-31, they will no longer be able to get Taiwan stock real-time data, and the API returns an HTTP 403 error whose message includes a link to the Member Center.
@@ -78,9 +92,9 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
 
 !!! output
     === "DataFrame"
-        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |
-        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|
-        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |
+        |    |   amount |   average_price |   buy_price |   buy_volume |   change_price |   change_rate |   close |   high |   low |   open |   sell_price |   sell_volume |   total_amount |   total_volume |   volume |   volume_ratio |   yesterday_volume | date                       |   stock_id |   TickType |   yesterday_close |   limit_up |   limit_down | buy_prices                | buy_volumes            | sell_prices               | sell_volumes            |   inside_volume |   outside_volume |   after_hours_volume | is_closed   |
+        |---:|---------:|----------------:|------------:|-------------:|---------------:|--------------:|--------:|-------:|------:|-------:|-------------:|--------------:|---------------:|---------------:|---------:|---------------:|-------------------:|:---------------------------|-----------:|-----------:|------------------:|-----------:|-------------:|:--------------------------|:-----------------------|:--------------------------|:------------------------|----------------:|-----------------:|---------------------:|:------------|
+        |  0 |   610000 |          611.42 |         609 |          208 |              3 |          0.49 |     610 |    614 |   608 |    614 |          610 |           821 |     5578566000 |           9124 |        1 |           0.49 |              18606 | 2021-12-08 10:31:23.098000 |       2330 |          1 |               607 |        667 |          547 | [609, 608, 607, 606, 605] | [208, 512, 377, 290, 455] | [610, 611, 612, 613, 614] | [821, 603, 418, 352, 509] |            4380 |             4744 |                    0 | False       |
     === "Schema"
         ```
         {
@@ -103,12 +117,114 @@ For Taiwan stock real-time data, we have 4 datasets, as listed below:
             yesterday_volume: int64, # yesterday's volume
             date: str, # transaction time
             stock_id: str, # stock code
-            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid))
+            TickType: str # tick type (0: undetermined, 1: buyer-initiated (trade at ask), 2: seller-initiated (trade at bid)),
+            yesterday_close: float64, # (Sponsor Pro) previous close
+            limit_up: float64, # (Sponsor Pro) limit-up price (null for emerging-market stocks)
+            limit_down: float64, # (Sponsor Pro) limit-down price (null for emerging-market stocks)
+            buy_prices: list, # (Sponsor Pro) best 5 bid prices (level 1 equals buy_price; 0 for market orders)
+            buy_volumes: list, # (Sponsor Pro) best 5 bid volumes
+            sell_prices: list, # (Sponsor Pro) best 5 ask prices (level 1 equals sell_price; 0 for market orders)
+            sell_volumes: list, # (Sponsor Pro) best 5 ask volumes
+            inside_volume: int64, # (Sponsor Pro) inside volume (traded at bid)
+            outside_volume: int64, # (Sponsor Pro) outside volume (traded at ask)
+            after_hours_volume: int64, # (Sponsor Pro) after-hours fixed-price trading volume
+            is_closed: bool # (Sponsor Pro) market close flag (True once the stock has closed for the day)
         }
         ```
 
+??? note "Volume units and emerging-market stock fields"
+    * Volume fields (`volume`, `total_volume`, `yesterday_volume`, `buy_volume`, `sell_volume`, `buy_volumes`, `sell_volumes`, `inside_volume`, `outside_volume`, `after_hours_volume`) are in lots for TWSE- and TPEx-listed stocks, and in shares for emerging-market stocks
+    * Emerging-market stocks have no price limits, so `limit_up` and `limit_down` are null
+    * Emerging-market stocks provide only the best bid and ask, so `buy_prices`, `buy_volumes`, `sell_prices` and `sell_volumes` have a value only at level 1; levels 2 ~ 5 are 0
+
 !!! info "data_id index codes"
-    In addition to regular stock IDs (4 digits), `data_id` also supports 91 index codes (3 digits). For example, `001` = TAIEX, `101` = OTC weighted index. See the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
+    Besides stock IDs, `data_id` also supports 91 index codes (3 digits), e.g. `001` = TAIEX. Indices return different fields from stocks; see [Taiwan Stock Index Real-Time Information](#taiwan-stock-index-real-time-information-taiwan_stock_tick_snapshot-index-only-available-to-sponsor-members) below.
+
+----------------------------------
+#### Taiwan Stock Index Real-Time Information taiwan_stock_tick_snapshot index (only available to [sponsor](https://finmindtrade.com/analysis/#/Sponsor/sponsor) members)
+Uses the same API as Taiwan Stock Real-Time Information: pass an index code (3 digits) as `data_id` to get real-time index data, e.g. `001` = TAIEX, `101` = OTC index. 91 indices are supported; see the full mapping in [Taiwan Stock Index Codes](IndexCodes.md).
+
+??? note "Indices and stocks return different fields"
+    Indices return only the fields listed in the Schema below. They have no stock bid/ask fields (`buy_price`, `buy_volume`, `sell_price`, `sell_volume`, `buy_prices`, `buy_volumes`, `sell_prices`, `sell_volumes`), no `TickType`, and no `yesterday_close`, `limit_up`, `limit_down`, `inside_volume`, `outside_volume`, `after_hours_volume` or `is_closed`; they additionally return the index name `name`. Sponsor and Sponsor Pro members receive the same index fields.
+
+    With an empty `data_id` (all codes), stocks and indices are returned in the same table; tell them apart by the length of `stock_id` (3 digits for indices).
+
+!!! example
+    === "Package"
+        ```python
+        from FinMind.data import DataLoader
+
+        api = DataLoader()
+        # api.login_by_token(api_token='token')
+        df = api.taiwan_stock_tick_snapshot(stock_id="001")
+        ```
+    === "Python-request"
+        ```python
+        import requests
+        import pandas as pd
+        token = "" # See login section to obtain a token
+        headers = {"Authorization": f"Bearer {token}"}
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        parameter = {
+            "data_id": "001",
+            # "data_id": ["001", "101"], # multiple codes at once
+        }
+        resp = requests.get(url, headers=headers, params=parameter)
+        data = resp.json()
+        data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        ```
+    === "R"
+        ```R
+        library(httr)
+        library(data.table)
+        library(dplyr)
+        token = "" # See login section to obtain a token
+        url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
+        response = httr::GET(
+        url = url,
+        query = list(
+            data_id="001",
+            # data_id=c("001", "101"), # multiple codes at once
+            token = "" # See login section to obtain a token
+        ),
+        add_headers(Authorization = paste("Bearer", token))
+        )
+        data = content(response)
+        df = data$data %>%
+        do.call('rbind',.) %>%
+        data.table
+        head(df)
+
+        ```
+
+!!! output
+    === "DataFrame"
+        |    |    open |    high |     low |   close |   change_price |   change_rate |   average_price |   volume |   total_volume |      amount |   total_amount |   yesterday_volume |   volume_ratio | date                |   stock_id | name     |
+        |---:|--------:|--------:|--------:|--------:|---------------:|--------------:|----------------:|---------:|---------------:|------------:|---------------:|-------------------:|---------------:|:--------------------|-----------:|:---------|
+        |  0 | 35899.5 | 37108.2 | 35442.4 | 36811.9 |          778.6 |          2.16 |               0 |   363837 |       15776245 | 38042420910 |  1079165406470 |           16796828 |           0.94 | 2026-11-23 13:33:00 |        001 | 加權指數 |
+    === "Schema"
+        ```
+        {
+            open: float64, # opening index level
+            high: float64, # highest index level
+            low: float64, # lowest index level
+            close: float64, # latest index level
+            change_price: float64, # change in points
+            change_rate: float64, # change in percent
+            average_price: float64, # not applicable to indices, always 0
+            volume: int64, # volume (lots)
+            total_volume: int64, # accumulated volume (lots)
+            amount: int64, # trading value (TWD)
+            total_amount: int64, # accumulated trading value (TWD)
+            yesterday_volume: int64, # previous day's volume (lots)
+            volume_ratio: float64, # ratio of today's to yesterday's volume
+            date: str, # update time
+            stock_id: str, # index code (3 digits)
+            name: str # index name
+        }
+        ```
 
 ----------------------------------
 #### Futures and Options Real-Time Quote Overview TaiwanFutOptTickInfo
