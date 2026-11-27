@@ -132,7 +132,7 @@ The tables below list all codes, grouped by purpose. Names are kept in the origi
         df = api.taiwan_stock_tick_snapshot(stock_id="001")  # TAIEX
         # Fetch multiple at once (stocks and indices can be mixed)
         df = api.taiwan_stock_tick_snapshot(stock_id=["001", "101", "2330"])
-        # Fetch all snapshots in one call
+        # Fetch all snapshots in one call (only until 2027-01-31; per TWSE regulations, max 50 per request from 2027-02-01, so pass stock_id in batches)
         df = api.taiwan_stock_tick_snapshot()
         ```
     === "Python-request"

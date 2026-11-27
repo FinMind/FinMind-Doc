@@ -35,6 +35,11 @@
     * 09:00 開盤後以實際成交為準；尚未有成交的股票，`close` 為昨收價，`volume`、`total_volume` 為 0
     * 興櫃股票沒有盤前試撮
 
+??? note "2027-02-01 起每次請求最多 50 檔"
+    依臺灣證券交易所規範，自 2027-02-01 起，台股即時報價 snapshot 每次請求最多 50 檔，且不再支援不帶 data_id 一次取得全部股票，請改為分批帶入 data_id（每次最多 50 檔）。
+
+    2027-01-31 前仍可不帶 `data_id`（或 `data_id=""`）一次取得全部股票。分批範例請見下方「Python-request」分頁。
+
 ??? note "須於 2027-01-31 前填寫姓名、電話、地址"
     使用本資料集須於 2027-01-31 前在[會員中心](https://finmindtrade.com/analysis/#/account/user)填寫姓名、電話、地址。期限前未填寫仍可使用，回應會附 `profile_notice` 提醒；2027-01-31 起未填寫者將無法取得台股即時資料，API 回傳 HTTP 403 錯誤，錯誤訊息會附會員中心連結。
 
@@ -56,12 +61,26 @@
         url = "https://api.finmindtrade.com/api/v4/taiwan_stock_tick_snapshot"
         parameter = {
             "data_id": "2330",
-            # "data_id": ["2330", "2317"], # 一次拿多個
-            # "data_id": "", # 一次全部
+            # "data_id": ["2330", "2317"], # 一次拿多個（依證交所規範，2027-02-01 起每次最多 50 檔）
+            # "data_id": "", # 一次全部（僅 2027-01-31 前可用）
         }
         resp = requests.get(url, headers=headers, params=parameter)
         data = resp.json()
         data = pd.DataFrame(data["data"])
+        print(data.head())
+
+        # 分批取得多檔（依證交所規範，2027-02-01 起每次最多 50 檔）
+        stock_ids = ["2330", "2317", "2454", "2303", "0050"]  # 要查詢的股票清單
+        batch_size = 50
+        dfs = []
+        for i in range(0, len(stock_ids), batch_size):
+            resp = requests.get(
+                url,
+                headers=headers,
+                params={"data_id": stock_ids[i : i + batch_size]},
+            )
+            dfs.append(pd.DataFrame(resp.json()["data"]))
+        data = pd.concat(dfs, ignore_index=True)
         print(data.head())
 
         ```
@@ -76,8 +95,8 @@
         url = url,
         query = list(
             data_id="2330",
-            # data_id=c("2330", "2317"), # 一次拿多個
-            # data_id="", # 一次全部
+            # data_id=c("2330", "2317"), # 一次拿多個（依證交所規範，2027-02-01 起每次最多 50 檔）
+            # data_id="", # 一次全部（僅 2027-01-31 前可用）
             token = "" # 參考登入，獲取金鑰
         ),
         add_headers(Authorization = paste("Bearer", token))
