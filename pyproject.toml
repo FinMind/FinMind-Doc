@@ -3,10 +3,18 @@ name = "finmind-doc"
 version = "0.1.0"
 requires-python = ">=3.10"
 dependencies = [
-    "mkdocs-material>=9.0,<10",
+    "mkdocs-material>=9.7.7,<10",
     "markdown-include==0.8.1",
-    "pymdown-extensions>=10.14",
+    "pymdown-extensions>=11.0.1",
     "requests>=2.31",
-    "mkdocs==1.5.3",
+    "mkdocs==1.6.1",
     "mkdocs-static-i18n>=1.2",
+]
+
+[tool.uv]
+# 資安下限：間接相依（經 requests）只鎖在 lock，不列為直接相依
+constraint-dependencies = [
+    "urllib3>=2.8.0",
+    "certifi>=2026.10.18",
+    "idna>=3.15",
 ]
